@@ -21,7 +21,7 @@
   "scripts": {
     "build": "pnpm -C packages/cli build",
     "dev": "pnpm -C docs dev",
-    "dev:prepare": "pnpm --filter=./packages/** build",
+    "prepare": "pnpm --filter=./packages/** build",
     "gen": "node scripts/gen.mjs",
     "lint": "eslint .",
     "test": "vitest",

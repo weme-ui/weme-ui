@@ -12,7 +12,7 @@ export const presetHalo = definePreset((userOptions: UserPresetOptions = {}) => 
   const options = resolveOptions(userOptions)
 
   return {
-    name: '@haloapp/unocss-preset-halo',
+    name: '@weme-ui/unocss-preset-halo',
     extendTheme: (t) => {
       const {
         colors,

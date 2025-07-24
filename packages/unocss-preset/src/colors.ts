@@ -1,6 +1,6 @@
-import type { Colors } from '@haloapp/colors'
+import type { Colors } from '@weme-ui/colors'
 import type { DeepPartial, HaloPresetOptions } from './types'
-import { getColorNames, transformColor } from '@haloapp/colors'
+import { getColorNames, transformColor } from '@weme-ui/colors'
 
 export function resolveColors(
   colors: DeepPartial<Record<string, string>> | undefined,

@@ -1,6 +1,6 @@
-import type { ColorAppearance } from '@haloapp/colors'
+import type { ColorAppearance } from '@weme-ui/colors'
 import type { HaloPresetOptions, HaloTheme, HaloThemeColors, HaloThemeDefinition, UserPresetOptions } from './types'
-import { transformColor } from '@haloapp/colors'
+import { transformColor } from '@weme-ui/colors'
 import { parseTokenValue } from './utils'
 
 export function resolveThemes(

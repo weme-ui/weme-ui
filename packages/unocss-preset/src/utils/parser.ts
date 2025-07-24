@@ -1,5 +1,5 @@
-import type { ColorAppearance } from '@haloapp/colors'
-import { getColorNames, toColorString, transformColor } from '@haloapp/colors'
+import type { ColorAppearance } from '@weme-ui/colors'
+import { getColorNames, toColorString, transformColor } from '@weme-ui/colors'
 
 export function parseColor(str: string) {
   const result: {

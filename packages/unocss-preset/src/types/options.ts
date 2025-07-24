@@ -1,4 +1,4 @@
-import type { Colors } from '@haloapp/colors'
+import type { Colors } from '@weme-ui/colors'
 import type { HaloTheme, HaloThemeDefinition } from './themes'
 import type { DeepPartial } from './utils'
 

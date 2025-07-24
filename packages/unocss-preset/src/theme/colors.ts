@@ -1,6 +1,6 @@
-import type { Colors } from '@haloapp/colors'
+import type { Colors } from '@weme-ui/colors'
 import type { HaloPresetOptions, Theme } from '../types'
-import { transformColor } from '@haloapp/colors'
+import { transformColor } from '@weme-ui/colors'
 
 export function colors(options: HaloPresetOptions) {
   return {

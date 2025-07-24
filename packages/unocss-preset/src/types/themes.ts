@@ -1,4 +1,4 @@
-import type { ColorAppearance, ColorScalesArray } from '@haloapp/colors'
+import type { ColorAppearance, ColorScalesArray } from '@weme-ui/colors'
 import type { DeepPartial } from './utils'
 
 export type HaloThemeDefinition = DeepPartial<Omit<HaloTheme<string>, 'id' | 'name'>> & {

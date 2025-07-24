@@ -1,0 +1,4 @@
+---
+title: Home
+navigation: false
+---

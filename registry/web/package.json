@@ -1,0 +1,47 @@
+{
+  "name": "@weme-ui/registry-web",
+  "type": "module",
+  "version": "1.0.0",
+  "private": true,
+  "packageManager": "pnpm@10.13.1",
+  "description": "Weme UI components registry.",
+  "author": "Allen Luo <luoyi@mouji.net>",
+  "license": "MIT",
+  "homepage": "https://github.com/weme-ui/weme-ui",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/weme-ui/weme-ui.git",
+    "directory": "registry/web"
+  },
+  "bugs": {
+    "url": "https://github.com/weme-ui/weme-ui/issues"
+  },
+  "scripts": {
+    "test": "vitest run",
+    "typecheck": "vue-tsc --noEmit"
+  },
+  "peerDependencies": {
+    "@vueuse/core": "catalog:registry",
+    "clsx": "catalog:registry",
+    "reka-ui": "catalog:registry",
+    "tailwind-merge": "catalog:registry",
+    "tailwind-variants": "catalog:registry",
+    "unocss": "catalog:dev",
+    "vue": "catalog:dev"
+  },
+  "devDependencies": {
+    "@nuxt/test-utils": "catalog:testing",
+    "@vue/test-utils": "catalog:testing",
+    "@vueuse/core": "catalog:registry",
+    "clsx": "catalog:registry",
+    "happy-dom": "catalog:testing",
+    "playwright-core": "catalog:testing",
+    "reka-ui": "catalog:registry",
+    "tailwind-merge": "catalog:registry",
+    "tailwind-variants": "catalog:registry",
+    "unocss": "catalog:dev",
+    "vitest": "catalog:testing",
+    "vue": "catalog:dev",
+    "vue-tsc": "catalog:dev"
+  }
+}

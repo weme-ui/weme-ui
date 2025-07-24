@@ -1,0 +1,9 @@
+import type { PrimitiveProps } from 'reka-ui'
+import type { {{ pascalCase name }}StyleSlots } from './{{ lowerCase name }}.style'
+
+export interface {{ pascalCase name }}Props extends PrimitiveProps {
+  class?: any
+  ui?: Partial<{{ pascalCase name }}StyleSlots>
+}
+
+export interface {{ pascalCase name }}Emits {}

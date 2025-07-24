@@ -1,0 +1,156 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`themes > should create theme css variables 1`] = `
+"
+            [data-theme=light] {
+              color-scheme: light;
+              --test-radius: 0.25rem;
+              --test-accent: var(--test-accent-9);--test-accent-1: var(--custom-accent-1, oklch(99.42% 0.0015 286.4));--test-accent-2: var(--custom-accent-2, oklch(98.29% 0.008 271.4));--test-accent-3: var(--custom-accent-3, oklch(96.07% 0.0172 268.5));--test-accent-4: var(--custom-accent-4, oklch(93.53% 0.0338 268.5));--test-accent-5: var(--custom-accent-5, oklch(90.32% 0.0511 270));--test-accent-6: var(--custom-accent-6, oklch(86.3% 0.0714 271.5));--test-accent-7: var(--custom-accent-7, oklch(80.68% 0.0869 271.4));--test-accent-8: var(--custom-accent-8, oklch(73.01% 0.1133 270.5));--test-accent-9: var(--custom-accent-9, oklch(54.36% 0.1912 267.1));--test-accent-10: var(--custom-accent-10, oklch(51.12% 0.1946 266.5));--test-accent-11: var(--custom-accent-11, oklch(50.97% 0.1728 267.1));--test-accent-12: var(--custom-accent-12, oklch(31.26% 0.0856 268.6));--test-neutral: var(--test-neutral-9);--test-neutral-1: var(--custom-neutral-1, oklch(99.09% 0 none));--test-neutral-2: var(--custom-neutral-2, oklch(98.1% 0 none));--test-neutral-3: var(--custom-neutral-3, oklch(95.35% 0 none));--test-neutral-4: var(--custom-neutral-4, oklch(92.96% 0 none));--test-neutral-5: var(--custom-neutral-5, oklch(90.79% 0 none));--test-neutral-6: var(--custom-neutral-6, oklch(88.38% 0 none));--test-neutral-7: var(--custom-neutral-7, oklch(85.08% 0 none));--test-neutral-8: var(--custom-neutral-8, oklch(79.1% 0 none));--test-neutral-9: var(--custom-neutral-9, oklch(64.35% 0 none));--test-neutral-10: var(--custom-neutral-10, oklch(60.85% 0 none));--test-neutral-11: var(--custom-neutral-11, oklch(50.31% 0 none));--test-neutral-12: var(--custom-neutral-12, oklch(24.3% 0 none));--test-info: var(--test-info-9);,--test-info-1: oklch(99.32% 0.0033 247.6);,--test-info-2: oklch(98.15% 0.0096 243.3);,--test-info-3: oklch(96% 0.0199 236.7);,--test-info-4: oklch(93.73% 0.0371 239);,--test-info-5: oklch(90.6% 0.0535 242.8);,--test-info-6: oklch(86.38% 0.0686 243.2);,--test-info-7: oklch(80.92% 0.0884 243.3);,--test-info-8: oklch(73.48% 0.1211 243);,--test-info-9: oklch(64.93% 0.193 251.8);,--test-info-10: oklch(62.11% 0.1837 251.9);,--test-info-11: oklch(55.77% 0.1889 253);,--test-info-12: oklch(32.4% 0.0965 259);--test-success: var(--test-success-9);,--test-success-1: oklch(99.43% 0.0043 159.1);,--test-success-2: oklch(98.16% 0.0091 155.3);,--test-success-3: oklch(95.88% 0.0229 156.4);,--test-success-4: oklch(93.25% 0.0364 156.6);,--test-success-5: oklch(89.95% 0.0496 157.2);,--test-success-6: oklch(85.7% 0.0645 157.9);,--test-success-7: oklch(79.77% 0.0839 159);,--test-success-8: oklch(71.44% 0.1124 160.6);,--test-success-9: oklch(64.05% 0.1327 157.8);,--test-success-10: oklch(61.12% 0.1263 158.3);,--test-success-11: oklch(52.9% 0.133 158.3);,--test-success-12: oklch(32.18% 0.0474 164.6);--test-warning: var(--test-warning-9);,--test-warning-1: oklch(99.22% 0.0026 40.73);,--test-warning-2: oklch(97.87% 0.0154 70.83);,--test-warning-3: oklch(95.76% 0.0368 78.11);,--test-warning-4: oklch(92.03% 0.0811 74.16);,--test-warning-5: oklch(89.04% 0.1066 70.84);,--test-warning-6: oklch(85.73% 0.11 64.43);,--test-warning-7: oklch(80.53% 0.1126 59.88);,--test-warning-8: oklch(74.54% 0.1321 54.82);,--test-warning-9: oklch(68.9% 0.1911 44.8);,--test-warning-10: oklch(66.22% 0.1944 43.49);,--test-warning-11: oklch(59.19% 0.186 46.95);,--test-warning-12: oklch(35.01% 0.0687 40.82);--test-error: var(--test-error-9);,--test-error-1: oklch(99.35% 0.0031 22.75);,--test-error-2: oklch(98.32% 0.0083 16.02);,--test-error-3: oklch(95.61% 0.021 16.23);,--test-error-4: oklch(92.81% 0.0473 16.68);,--test-error-5: oklch(89.61% 0.062 17.33);,--test-error-6: oklch(85.7% 0.0746 17.87);,--test-error-7: oklch(80.72% 0.0895 18.44);,--test-error-8: oklch(74.5% 0.1133 19.09);,--test-error-9: oklch(62.54% 0.1935 22.98);,--test-error-10: oklch(59.99% 0.1952 23.89);,--test-error-11: oklch(55.72% 0.1978 25.13);,--test-error-12: oklch(33.91% 0.109 16.68);
+              --test-fg-dimmed: var(--test-neutral-5);--test-fg-muted: var(--test-neutral-7);--test-fg-toned: var(--test-neutral-9);--test-fg: var(--test-neutral-11);--test-fg-highlighted: var(--test-neutral-12);--test-bg: #fff;--test-bg-dimmed: var(--test-neutral-2);--test-bg-muted: var(--test-neutral-3);--test-bg-elevated: var(--test-neutral-4);--test-border: var(--test-neutral-5);--test-border-elevated: var(--test-neutral-6);--test-header-height: 3rem;--test-header-bg: var(--test-panel-bg);--test-brand-fg: var(--test-accent-9);--test-brand-bg: var(--test-panel-bg);--test-activity-width: 3.5rem;--test-activity-fg-: var(--test-fg);--test-activity-fg-highlighted: var(--test-accent-9);--test-activity-bg: var(--test-panel-bg);--test-sidebar-width: 15rem;--test-sidebar-bg: var(--test-panel-bg);--test-panel-fg-: var(--test-fg);--test-panel-fg-highlighted: var(--test-fg-highlighted);--test-panel-bg: white;
+            }
+          "
+`;
+
+exports[`themes > should resolved themes 1`] = `
+[
+  {
+    "appearance": "light",
+    "colors": {
+      "accent": [
+        "oklch(99.42% 0.0015 286.4)",
+        "oklch(98.29% 0.008 271.4)",
+        "oklch(96.07% 0.0172 268.5)",
+        "oklch(93.53% 0.0338 268.5)",
+        "oklch(90.32% 0.0511 270)",
+        "oklch(86.3% 0.0714 271.5)",
+        "oklch(80.68% 0.0869 271.4)",
+        "oklch(73.01% 0.1133 270.5)",
+        "oklch(54.36% 0.1912 267.1)",
+        "oklch(51.12% 0.1946 266.5)",
+        "oklch(50.97% 0.1728 267.1)",
+        "oklch(31.26% 0.0856 268.6)",
+      ],
+      "error": [
+        "oklch(99.35% 0.0031 22.75)",
+        "oklch(98.32% 0.0083 16.02)",
+        "oklch(95.61% 0.021 16.23)",
+        "oklch(92.81% 0.0473 16.68)",
+        "oklch(89.61% 0.062 17.33)",
+        "oklch(85.7% 0.0746 17.87)",
+        "oklch(80.72% 0.0895 18.44)",
+        "oklch(74.5% 0.1133 19.09)",
+        "oklch(62.54% 0.1935 22.98)",
+        "oklch(59.99% 0.1952 23.89)",
+        "oklch(55.72% 0.1978 25.13)",
+        "oklch(33.91% 0.109 16.68)",
+      ],
+      "info": [
+        "oklch(99.32% 0.0033 247.6)",
+        "oklch(98.15% 0.0096 243.3)",
+        "oklch(96% 0.0199 236.7)",
+        "oklch(93.73% 0.0371 239)",
+        "oklch(90.6% 0.0535 242.8)",
+        "oklch(86.38% 0.0686 243.2)",
+        "oklch(80.92% 0.0884 243.3)",
+        "oklch(73.48% 0.1211 243)",
+        "oklch(64.93% 0.193 251.8)",
+        "oklch(62.11% 0.1837 251.9)",
+        "oklch(55.77% 0.1889 253)",
+        "oklch(32.4% 0.0965 259)",
+      ],
+      "neutral": [
+        "oklch(99.09% 0 none)",
+        "oklch(98.1% 0 none)",
+        "oklch(95.35% 0 none)",
+        "oklch(92.96% 0 none)",
+        "oklch(90.79% 0 none)",
+        "oklch(88.38% 0 none)",
+        "oklch(85.08% 0 none)",
+        "oklch(79.1% 0 none)",
+        "oklch(64.35% 0 none)",
+        "oklch(60.85% 0 none)",
+        "oklch(50.31% 0 none)",
+        "oklch(24.3% 0 none)",
+      ],
+      "success": [
+        "oklch(99.43% 0.0043 159.1)",
+        "oklch(98.16% 0.0091 155.3)",
+        "oklch(95.88% 0.0229 156.4)",
+        "oklch(93.25% 0.0364 156.6)",
+        "oklch(89.95% 0.0496 157.2)",
+        "oklch(85.7% 0.0645 157.9)",
+        "oklch(79.77% 0.0839 159)",
+        "oklch(71.44% 0.1124 160.6)",
+        "oklch(64.05% 0.1327 157.8)",
+        "oklch(61.12% 0.1263 158.3)",
+        "oklch(52.9% 0.133 158.3)",
+        "oklch(32.18% 0.0474 164.6)",
+      ],
+      "warning": [
+        "oklch(99.22% 0.0026 40.73)",
+        "oklch(97.87% 0.0154 70.83)",
+        "oklch(95.76% 0.0368 78.11)",
+        "oklch(92.03% 0.0811 74.16)",
+        "oklch(89.04% 0.1066 70.84)",
+        "oklch(85.73% 0.11 64.43)",
+        "oklch(80.53% 0.1126 59.88)",
+        "oklch(74.54% 0.1321 54.82)",
+        "oklch(68.9% 0.1911 44.8)",
+        "oklch(66.22% 0.1944 43.49)",
+        "oklch(59.19% 0.186 46.95)",
+        "oklch(35.01% 0.0687 40.82)",
+      ],
+    },
+    "id": "light",
+    "name": "Light",
+    "radius": "0.25rem",
+    "tokens": {
+      "activity": {
+        "background": "var(--test-panel-bg)",
+        "foreground": {
+          "default": "var(--test-fg)",
+          "highlighted": "var(--test-accent-9)",
+        },
+        "width": "3.5rem",
+      },
+      "background": {
+        "default": "#fff",
+        "dimmed": "var(--test-neutral-2)",
+        "elevated": "var(--test-neutral-4)",
+        "muted": "var(--test-neutral-3)",
+      },
+      "border": {
+        "default": "var(--test-neutral-5)",
+        "elevated": "var(--test-neutral-6)",
+      },
+      "brand": {
+        "background": "var(--test-panel-bg)",
+        "foreground": "var(--test-accent-9)",
+      },
+      "foreground": {
+        "default": "var(--test-neutral-11)",
+        "dimmed": "var(--test-neutral-5)",
+        "highlighted": "var(--test-neutral-12)",
+        "muted": "var(--test-neutral-7)",
+        "toned": "var(--test-neutral-9)",
+      },
+      "header": {
+        "background": "var(--test-panel-bg)",
+        "height": "3rem",
+      },
+      "panel": {
+        "background": "white",
+        "foreground": {
+          "default": "var(--test-fg)",
+          "highlighted": "var(--test-fg-highlighted)",
+        },
+      },
+      "sidebar": {
+        "background": "var(--test-panel-bg)",
+        "width": "15rem",
+      },
+    },
+    "translucent": false,
+  },
+]
+`;

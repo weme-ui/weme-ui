@@ -1,0 +1,40 @@
+import { describe, expect, it } from 'vitest'
+import { parseColor, parseTokenValue } from '../src/utils'
+
+describe('parser', () => {
+  it('should color parsed', () => {
+    [
+      ['accent', 'accent', undefined, undefined],
+      ['accent-1', 'accent', 1, undefined],
+      ['accent/10', 'accent', undefined, 10],
+      ['accent-1/10', 'accent', 1, 10],
+      ['accent-soft-12', 'accent-soft', 12, undefined],
+      ['accent-soft-12/100', 'accent-soft', 12, 100],
+    ].forEach(
+      ([raw, color, scale, opacity]) => {
+        expect(parseColor(raw as string)).toEqual({
+          color,
+          scale,
+          opacity,
+        })
+      },
+    )
+  })
+
+  it('should token value parsed', () => {
+    // normal
+    expect(parseTokenValue('var(--bala-bala)', 'light', 'ui-')).toMatchInlineSnapshot(`"var(--bala-bala)"`)
+
+    // hex
+    expect(parseTokenValue('#05f', 'light', 'ui-')).toMatchInlineSnapshot(`"oklch(53.32% 0.2596 262.6)"`)
+
+    // color scales
+    expect(parseTokenValue('gray.2', 'light', 'ui-')).toMatchInlineSnapshot(`"oklch(98.1% 0 none)"`)
+
+    // theme colors
+    expect(parseTokenValue('color.accent.9', 'light', 'ui-')).toMatchInlineSnapshot(`"var(--ui-accent-9)"`)
+
+    // theme tokens
+    expect(parseTokenValue('theme.foreground.default', 'light', 'ui-')).toMatchInlineSnapshot(`"var(--ui-fg)"`)
+  })
+})

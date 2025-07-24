@@ -1,0 +1,22 @@
+<script lang="ts" setup>
+import type { {{ pascalCase name }}Props } from './{{ lowerCase name }}.props'
+import { reactiveOmit } from '@vueuse/core'
+import { Primitive } from 'reka-ui'
+import { computed } from 'vue'
+import { cn } from '../../utils'
+import { use{{ pascalCase name }}Style } from './{{ lowerCase name }}.style'
+
+const props = defineProps<{{ pascalCase name }}Props>()
+const delegated = reactiveOmit(props, 'class', 'ui')
+
+const ui = computed(() => use{{ pascalCase name }}Style(props))
+</script>
+
+<template>
+  <Primitive
+    v-bind="delegated"
+    :class="cn(ui, props.class)"
+  >
+    <slot />
+  </Primitive>
+</template>

@@ -1,0 +1,38 @@
+{
+  "name": "@weme-ui/weme-ui",
+  "type": "module",
+  "version": "1.0.0",
+  "packageManager": "pnpm@10.13.1",
+  "description": "Weme UI - Re-usable Web UI components with Reka UI and UnoCSS.",
+  "author": "Allen Luo <luoyi@mouji.net>",
+  "license": "MIT",
+  "homepage": "https://github.com/weme-ui/weme-ui#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/weme-ui/weme-ui.git",
+    "directory": "packages/cli"
+  },
+  "bugs": {
+    "url": "https://github.com/weme-ui/weme-ui/issues"
+  },
+  "keywords": [
+    "ui-components",
+    "re-usable-ui-components",
+    "unocss",
+    "reka-ui",
+    "weme-ui"
+  ],
+  "dependencies": {
+    "citty": "catalog:cli",
+    "consola": "catalog:cli",
+    "pathe": "catalog:cli",
+    "scule": "catalog:cli"
+  },
+  "devDependencies": {
+    "@types/node": "catalog:build",
+    "bumpp": "catalog:build",
+    "tsdown": "catalog:build",
+    "typescript": "catalog:build",
+    "vitest": "catalog:testing"
+  }
+}

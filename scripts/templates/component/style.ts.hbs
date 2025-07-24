@@ -1,0 +1,12 @@
+import type { UiVariantProps } from '../../utils'
+import { createVariants } from '../../utils'
+
+export const use{{ pascalCase name }}Style = createVariants({
+  slots: {},
+  variants: {},
+  compoundVariants: [],
+  defaultVariants: {},
+})
+
+export type {{ pascalCase name }}StyleSlots = typeof use{{ pascalCase name }}Style['slots']
+export type {{ pascalCase name }}StyleProps = UiVariantProps<typeof use{{ pascalCase name }}Style>

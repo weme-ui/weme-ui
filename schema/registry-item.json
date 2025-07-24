@@ -1,0 +1,139 @@
+{
+  "$schema": "https://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "The name of the item. This is used to identify the item in the registry. It should be unique for your registry."
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "asset",
+        "component",
+        "composable",
+        "file",
+        "layout",
+        "plugin",
+        "style",
+        "theme",
+        "type",
+        "util"
+      ],
+      "description": "The type of the item. This is used to group items in the registry."
+    },
+    "description": {
+      "type": "string",
+      "description": "A short description of the item."
+    },
+    "title": {
+      "type": "string",
+      "description": "The human-readable title for your registry item. Keep it short and descriptive."
+    },
+    "author": {
+      "type": "string",
+      "description": "The author of the item. Recommended format: username <url>"
+    },
+    "dependencies": {
+      "type": "array",
+      "description": "An array of NPM dependencies required by the registry item.",
+      "items": {
+        "type": "string"
+      }
+    },
+    "devDependencies": {
+      "type": "array",
+      "description": "An array of NPM dev dependencies required by the registry item.",
+      "items": {
+        "type": "string"
+      }
+    },
+    "files": {
+      "type": "array",
+      "description": "The main payload of files required by the registry item.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "path": {
+            "type": "string",
+            "description": "The path to the file. This is relative to the registry item's directory."
+          },
+          "content": {
+            "type": "string",
+            "description": "The content of the file. This is a stringified version of the file's content."
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "asset",
+              "component",
+              "composable",
+              "file",
+              "layout",
+              "plugin",
+              "style",
+              "theme",
+              "type",
+              "util"
+            ],
+            "description": "The type of the file. This is used to group files in the registry."
+          },
+          "target": {
+            "type": "string",
+            "description": "The target path to the file. This is relative to the user's project directory."
+          }
+        },
+        "if": {
+          "properties": {
+            "type": {
+              "enum": ["file"]
+            }
+          }
+        },
+        "then": {
+          "required": ["path", "type", "target"]
+        },
+        "else": {
+          "required": ["path", "type"]
+        }
+      }
+    },
+    "cssVars": {
+      "type": "object",
+      "description": "The CSS variables required by the registry item.",
+      "properties": {
+        "light": {
+          "type": "object",
+          "description": "The CSS variables for light mode.",
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "dark": {
+          "type": "object",
+          "description": "The CSS variables for dark mode.",
+          "additionalProperties": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "meta": {
+      "type": "object",
+      "description": "Additional metadata for the registry item. This is an object with any key value pairs.",
+      "additionalProperties": true
+    },
+    "docs": {
+      "type": "string",
+      "description": "The documentation for the registry item. This is a markdown string."
+    },
+    "categories": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "description": "The categories of the registry item. This is an array of strings."
+      }
+    }
+  },
+  "required": ["name", "type"]
+}

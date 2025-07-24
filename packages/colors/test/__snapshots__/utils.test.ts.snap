@@ -1,0 +1,218 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`utils > should get color names 1`] = `
+[
+  "black",
+  "white",
+  "gray",
+  "mauve",
+  "slate",
+  "sage",
+  "olive",
+  "sand",
+  "tomato",
+  "red",
+  "ruby",
+  "crimson",
+  "pink",
+  "plum",
+  "purple",
+  "violet",
+  "iris",
+  "indigo",
+  "blue",
+  "cyan",
+  "teal",
+  "jade",
+  "green",
+  "grass",
+  "bronze",
+  "gold",
+  "brown",
+  "orange",
+  "amber",
+  "yellow",
+  "lime",
+  "mint",
+  "sky",
+]
+`;
+
+exports[`utils > should get color names 2`] = `
+[
+  "tomato",
+  "red",
+  "ruby",
+  "crimson",
+  "pink",
+  "plum",
+  "purple",
+  "violet",
+  "iris",
+  "indigo",
+  "blue",
+  "cyan",
+  "teal",
+  "jade",
+  "green",
+  "grass",
+  "bronze",
+  "gold",
+  "brown",
+  "orange",
+  "amber",
+  "yellow",
+  "lime",
+  "mint",
+  "sky",
+]
+`;
+
+exports[`utils > should get color names 3`] = `
+[
+  "gray",
+  "mauve",
+  "slate",
+  "sage",
+  "olive",
+  "sand",
+]
+`;
+
+exports[`utils > should get radix color 1`] = `
+[
+  "oklch(0% 0 none / 0.05)",
+  "oklch(0% 0 none / 0.1)",
+  "oklch(0% 0 none / 0.15)",
+  "oklch(0% 0 none / 0.2)",
+  "oklch(0% 0 none / 0.3)",
+  "oklch(0% 0 none / 0.4)",
+  "oklch(0% 0 none / 0.5)",
+  "oklch(0% 0 none / 0.6)",
+  "oklch(0% 0 none / 0.7)",
+  "oklch(0% 0 none / 0.8)",
+  "oklch(0% 0 none / 0.9)",
+  "oklch(0% 0 none / 0.95)",
+]
+`;
+
+exports[`utils > should get radix color 2`] = `
+[
+  {
+    "alpha": 1,
+    "coords": [
+      0.17973246055483877,
+      0.004277634496519416,
+      128.338255479547,
+    ],
+    "spaceId": "oklch",
+  },
+  {
+    "alpha": 1,
+    "coords": [
+      0.21165579405893234,
+      0.004105841933120096,
+      128.28736060851094,
+    ],
+    "spaceId": "oklch",
+  },
+  {
+    "alpha": 1,
+    "coords": [
+      0.2515841298813772,
+      0.005082727095308246,
+      129.00851914367138,
+    ],
+    "spaceId": "oklch",
+  },
+  {
+    "alpha": 1,
+    "coords": [
+      0.2807454069652463,
+      0.0056028888898918515,
+      131.4360498780601,
+    ],
+    "spaceId": "oklch",
+  },
+  {
+    "alpha": 1,
+    "coords": [
+      0.3100843491295378,
+      0.006558806521863961,
+      131.44715749995157,
+    ],
+    "spaceId": "oklch",
+  },
+  {
+    "alpha": 1,
+    "coords": [
+      0.3463972476514622,
+      0.0076470079390652925,
+      134.43131593036014,
+    ],
+    "spaceId": "oklch",
+  },
+  {
+    "alpha": 1,
+    "coords": [
+      0.3985962298858755,
+      0.009645027679510223,
+      136.02536798373785,
+    ],
+    "spaceId": "oklch",
+  },
+  {
+    "alpha": 1,
+    "coords": [
+      0.4876956222394584,
+      0.012367493765092231,
+      140.77952511590513,
+    ],
+    "spaceId": "oklch",
+  },
+  {
+    "alpha": 1,
+    "coords": [
+      0.5352299554471645,
+      0.017614383640660522,
+      139.61437772386046,
+    ],
+    "spaceId": "oklch",
+  },
+  {
+    "alpha": 1,
+    "coords": [
+      0.5812375261552609,
+      0.01632615521390139,
+      140.06362826061832,
+    ],
+    "spaceId": "oklch",
+  },
+  {
+    "alpha": 1,
+    "coords": [
+      0.7659440335244477,
+      0.012765356783994604,
+      139.49583931218433,
+    ],
+    "spaceId": "oklch",
+  },
+  {
+    "alpha": 1,
+    "coords": [
+      0.9470128722237816,
+      0.003355782945848951,
+      144.7599607460728,
+    ],
+    "spaceId": "oklch",
+  },
+]
+`;
+
+exports[`utils > should transform color to string 1`] = `"oklch(56.35% 0.2408 260.8)"`;
+
+exports[`utils > should transform color to string 2`] = `"oklch(85.78% 0.0714 146.8)"`;
+
+exports[`utils > should transform color to string 3`] = `"oklch(0% 0 0)"`;
+
+exports[`utils > should transform color to string 4`] = `"oklch(100% 0 none)"`;

@@ -1,0 +1,75 @@
+{
+  "name": "@weme-ui/unocss-preset",
+  "type": "module",
+  "version": "1.0.0",
+  "packageManager": "pnpm@10.13.1",
+  "description": "Weme UI - UnoCSS Preset",
+  "author": "Allen Luo <luoyi@mouji.net>",
+  "license": "MIT",
+  "homepage": "https://github.com/weme-ui/weme-ui#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/weme-ui/weme-ui.git",
+    "directory": "packages/unocss-preset"
+  },
+  "bugs": {
+    "url": "https://github.com/weme-ui/weme-ui/issues"
+  },
+  "keywords": [
+    "unocss",
+    "unocss-preset",
+    "weme-ui"
+  ],
+  "sideEffects": false,
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "typesVersions": {
+    "*": {
+      "*": [
+        "./dist/*",
+        "./dist/index.d.ts"
+      ]
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsdown",
+    "dev": "tsdown --watch",
+    "prepublishOnly": "pnpm run build",
+    "release": "bumpp --commit --push --tag && pnpm publish --access public",
+    "test": "vitest",
+    "typecheck": "tsgo --noEmit",
+    "play": "vite playground"
+  },
+  "peerDependencies": {
+    "@radix-ui/colors": "catalog:dev",
+    "@weme-ui/colors": "workspace:*",
+    "bezier-easing": "catalog:dev",
+    "colorjs.io": "catalog:dev",
+    "unocss": "catalog:dev"
+  },
+  "devDependencies": {
+    "@radix-ui/colors": "catalog:dev",
+    "@types/node": "catalog:build",
+    "@vitejs/plugin-vue": "catalog:dev",
+    "@weme-ui/colors": "workspace:*",
+    "bezier-easing": "catalog:dev",
+    "bumpp": "catalog:build",
+    "colorjs.io": "catalog:dev",
+    "tsdown": "catalog:build",
+    "typescript": "catalog:build",
+    "unocss": "catalog:dev",
+    "vite": "catalog:dev",
+    "vitest": "catalog:testing",
+    "vue": "catalog:dev"
+  }
+}

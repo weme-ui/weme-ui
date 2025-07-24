@@ -1,0 +1,41 @@
+export default {
+  id: '{{ themeId }}',
+  name: '{{ themeName }}',
+  appearance: '{{ themeAppearance }}',
+  translucent: {{ themeTranslucent }},
+  radius: '{{ themeRadius }}',
+  colors: {
+    accent: 'indigo',
+    neutral: 'gray',
+    info: 'blue',
+    success: 'green',
+    warning: 'orange',
+    error: 'red',
+  },
+  tokens: {
+    foreground: {
+      dimmed: '5',
+      muted: '7',
+      toned: '9',
+      default: '11',
+      highlighted: '12',
+    },
+    background: {
+      default: 'default',
+      dimmed: '2',
+      muted: '3',
+      elevated: '4',
+    },
+    border: {
+      default: '5',
+      elevated: '6',
+    },
+    panel: {
+      foreground: {
+        default: 'fg',
+        highlighted: 'fg-highlighted',
+      },
+      background: 'white',
+    },
+  },
+}

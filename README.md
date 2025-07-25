@@ -9,7 +9,7 @@
 [![License][license-src]][license-href]
 
 <p align="center">
-  Re-usable Web UI components with Reka UI and UnoCSS.
+  Re-usable UI components with Reka UI and UnoCSS.
 </p>
 
 ## 特性

@@ -22,7 +22,7 @@ pnpm i -D @weme-ui/unocss-preset unocss
 
 ```ts
 // uno.config.ts
-import { presetHalo } from '@weme-ui/unocss-preset'
+import { presetWemeUI } from '@weme-ui/unocss-preset'
 import { defineConfig, presetWind4 } from 'unocss'
 
 export default defineConfig({
@@ -31,7 +31,7 @@ export default defineConfig({
       reset: true,
       arbitraryVariants: true,
     }),
-    presetHalo(),
+    presetWemeUI(),
   ],
 })
 ```

@@ -1,10 +1,10 @@
 {
-  "name": "@weme-ui/docs",
+  "name": "docs",
   "type": "module",
   "version": "1.0.0",
   "private": true,
   "packageManager": "pnpm@10.13.1",
-  "description": "Weme UI - Re-usable Web UI components with Reka UI, and UnoCSS.",
+  "description": "Weme UI - Re-usable UI components with Reka UI, and UnoCSS.",
   "author": "Allen Luo <luoyi@mouji.net>",
   "license": "MIT",
   "homepage": "https://github.com/weme-ui/weme-ui#readme",
@@ -24,7 +24,6 @@
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
-    "@mouji/modoc": "catalog:dev",
     "nuxt": "catalog:dev",
     "vue": "catalog:dev"
   },

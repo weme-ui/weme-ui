@@ -1,0 +1,42 @@
+{
+  "name": "modoc",
+  "type": "module",
+  "version": "1.0.0",
+  "packageManager": "pnpm@10.13.1",
+  "description": "Beautifully designed Nuxt Content template built with Weme UI.",
+  "author": "Allen Luo <luoyi@mouji.net>",
+  "license": "MIT",
+  "homepage": "https://github.com/weme-ui/weme-ui#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/weme-ui/weme-ui.git",
+    "directory": "packages/modoc"
+  },
+  "bugs": {
+    "url": "https://github.com/weme-ui/weme-ui/issues"
+  },
+  "main": "./nuxt.config.ts",
+  "files": [
+    "app",
+    "content.config.ts",
+    "nuxt.config.ts"
+  ],
+  "scripts": {
+    "dev": "nuxi dev .playground",
+    "dev:prepare": "nuxt prepare .playground",
+    "build": "nuxt build .playground",
+    "generate": "nuxt generate .playground",
+    "preview": "nuxt preview .playground",
+    "prepublishOnly": "pnpm run build",
+    "release": "bumpp --commit --push --tag && pnpm publish --access public"
+  },
+  "dependencies": {
+    "@nuxt/content": "catalog:dev"
+  },
+  "devDependencies": {
+    "@nuxtjs/i18n": "catalog:dev",
+    "nuxt": "catalog:dev",
+    "typescript": "catalog:build",
+    "vue": "catalog:dev"
+  }
+}

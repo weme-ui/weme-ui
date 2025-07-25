@@ -50,7 +50,7 @@ jobs:
         run: pnpm install --frozen-lockfile
 
       - name: Prepare
-        run: pnpm run prepare
+        run: pnpm run dev:prepare
 
       - name: Typecheck
         run: pnpm run typecheck
@@ -74,7 +74,7 @@ jobs:
         run: pnpm install --frozen-lockfile
 
       - name: Prepare
-        run: pnpm run prepare
+        run: pnpm run dev:prepare
 
       - name: Test
         run: pnpm run test

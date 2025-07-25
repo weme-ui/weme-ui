@@ -16,7 +16,6 @@ describe('themes', () => {
     )
 
     expect(themes).toMatchSnapshot()
-    expect(themes[0]).toHaveProperty('tokens.activity.background', 'var(--test-panel-bg)')
   })
 
   it('should create theme css variables', () => {

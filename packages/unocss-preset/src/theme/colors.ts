@@ -1,8 +1,8 @@
 import type { Colors } from '@weme-ui/colors'
-import type { HaloPresetOptions, Theme } from '../types'
+import type { Theme, WemePresetOptions } from '../types'
 import { transformColor } from '@weme-ui/colors'
 
-export function colors(options: HaloPresetOptions) {
+export function colors(options: WemePresetOptions) {
   return {
     ...createDefaultColors(),
     ...createUserColors(options.accentColors),

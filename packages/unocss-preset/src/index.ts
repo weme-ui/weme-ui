@@ -2,17 +2,18 @@ import type { UserPresetOptions } from './types'
 import { definePreset, mergeDeep } from 'unocss'
 import { resolveOptions } from './options'
 import { preflights } from './preflights'
+import { rules } from './rules'
 import { shortcuts } from './shortcuts'
 import { theme } from './theme'
 import { variants } from './variants'
 
 export * from './types/themes'
 
-export const presetHalo = definePreset((userOptions: UserPresetOptions = {}) => {
+export const presetWemeUI = definePreset((userOptions: UserPresetOptions = {}) => {
   const options = resolveOptions(userOptions)
 
   return {
-    name: '@weme-ui/unocss-preset-halo',
+    name: '@weme-ui/unocss-preset',
     extendTheme: (t) => {
       const {
         colors,
@@ -35,6 +36,7 @@ export const presetHalo = definePreset((userOptions: UserPresetOptions = {}) => 
       }
     },
     preflights: preflights(options),
+    rules: rules(options),
     shortcuts,
     variants,
     shorthands: {

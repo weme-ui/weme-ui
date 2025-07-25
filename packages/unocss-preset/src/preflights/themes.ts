@@ -1,26 +1,27 @@
 import type { ColorScalesArray } from '@weme-ui/colors'
-import type { HaloTheme, Preflight } from '../types'
+import type { Preflight, WemeTheme } from '../types'
+import { createCssVars, minifyCss } from '../utils'
 
-export function preflightThemes(prefix: string, themes: HaloTheme[]): Preflight[] {
+export function preflightThemes(prefix: string, themes: WemeTheme[]): Preflight[] {
   return Object.entries(themes)
     .map(([_, theme]) => {
       return {
         getCSS() {
-          return `
+          return minifyCss(`
             [data-theme=${theme.id}] {
               color-scheme: ${theme.appearance};
               --${prefix}radius: ${theme.radius};
-              ${createThemeColorCssVars(prefix, theme.colors)}
-              ${createThemeTokenCssVars(prefix, theme.tokens)}
+              ${createThemeColor(prefix, theme.colors)}
+              ${createCssVars(prefix, theme.tokens as unknown as Record<string, string>)}
             }
-          `
+          `)
         },
         layer: 'base',
       }
     })
 }
 
-function createThemeColorCssVars(prefix: string, colors: HaloTheme['colors']): string {
+function createThemeColor(prefix: string, colors: WemeTheme['colors']): string {
   return Object.entries(colors)
     .map(([name, scales]: [string, ColorScalesArray]) => {
       // support custom color scales
@@ -43,38 +44,6 @@ function createThemeColorCssVars(prefix: string, colors: HaloTheme['colors']): s
           (value, i) => `--${prefix}${name}-${i + 1}: ${value};`,
         ),
       ]
-    })
-    .join('')
-}
-
-function createThemeTokenCssVars(
-  prefix: string,
-  tokens: HaloTheme['tokens'],
-): string {
-  const maps: Record<string, string> = {
-    foreground: 'fg',
-    background: 'bg',
-  }
-
-  function getAlias(name: string) {
-    return maps[name] ?? name
-  }
-
-  return Object.entries(tokens)
-    .map(([name, values]: [string, Record<string, string | Record<string, string>>]) => {
-      return Object.entries(values)
-        .map(([tokenName, value]: [string, string | Record<string, string>]) => {
-          if (typeof value === 'string')
-            return `--${prefix}${getAlias(name)}${tokenName !== 'default' ? `-${getAlias(tokenName)}` : ''}: ${value};`
-
-          return Object.entries(value)
-            .map(
-              ([subTokenName, subValue]) =>
-                `--${prefix}${getAlias(name)}-${getAlias(tokenName)}-${subTokenName !== 'default' ? getAlias(subTokenName) : ''}: ${subValue};`,
-            )
-            .join('')
-        })
-        .join('')
     })
     .join('')
 }

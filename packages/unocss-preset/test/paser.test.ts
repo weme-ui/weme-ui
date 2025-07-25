@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { parseColor, parseTokenValue } from '../src/utils'
+import { parseColor, parseCssVarValue } from '../src/utils'
 
 describe('parser', () => {
   it('should color parsed', () => {
@@ -21,20 +21,20 @@ describe('parser', () => {
     )
   })
 
-  it('should token value parsed', () => {
+  it('should css variable value parsed', () => {
     // normal
-    expect(parseTokenValue('var(--bala-bala)', 'light', 'ui-')).toMatchInlineSnapshot(`"var(--bala-bala)"`)
+    expect(parseCssVarValue('ui-', 'light', 'var(--bala-bala)')).toMatchInlineSnapshot(`"var(--bala-bala)"`)
 
     // hex
-    expect(parseTokenValue('#05f', 'light', 'ui-')).toMatchInlineSnapshot(`"oklch(53.32% 0.2596 262.6)"`)
+    expect(parseCssVarValue('ui-', 'light', '#05f')).toMatchInlineSnapshot(`"oklch(53.32% 0.2596 262.6)"`)
 
     // color scales
-    expect(parseTokenValue('gray.2', 'light', 'ui-')).toMatchInlineSnapshot(`"oklch(98.1% 0 none)"`)
+    expect(parseCssVarValue('ui-', 'light', 'gray.2')).toMatchInlineSnapshot(`"oklch(98.1% 0 none)"`)
 
     // theme colors
-    expect(parseTokenValue('color.accent.9', 'light', 'ui-')).toMatchInlineSnapshot(`"var(--ui-accent-9)"`)
+    expect(parseCssVarValue('ui-', 'light', 'color.accent.9')).toMatchInlineSnapshot(`"var(--ui-accent-9)"`)
 
     // theme tokens
-    expect(parseTokenValue('theme.foreground.default', 'light', 'ui-')).toMatchInlineSnapshot(`"var(--ui-fg)"`)
+    expect(parseCssVarValue('ui-', 'light', 'theme.foreground.default')).toMatchInlineSnapshot(`"var(--ui-fg)"`)
   })
 })

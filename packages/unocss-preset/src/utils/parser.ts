@@ -32,7 +32,7 @@ export function parseColor(str: string) {
   return result
 }
 
-export function parseTokenValue(value: string, appearance: ColorAppearance, prefix: string): string {
+export function parseCssVarValue(prefix: string, appearance: ColorAppearance, value: string): string {
   if (value.startsWith('#'))
     return toColorString(value)
 
@@ -58,11 +58,7 @@ export function parseTokenValue(value: string, appearance: ColorAppearance, pref
         foreground: 'fg',
         background: 'bg',
         border: 'border',
-        header: 'header',
-        activity: 'activity',
-        brand: 'brand',
-        sidebar: 'sidebar',
-        panel: 'panel',
+        ring: 'ring',
       }
 
       return `var(--${prefix}${mappings[name]}${scale !== 'default' ? `-${scale}` : ''})`

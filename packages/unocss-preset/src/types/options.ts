@@ -1,8 +1,8 @@
 import type { Colors } from '@weme-ui/colors'
-import type { HaloTheme, HaloThemeDefinition } from './themes'
+import type { WemeTheme, WemeThemeDefinition } from './themes'
 import type { DeepPartial } from './utils'
 
-export interface HaloPresetOptions<C = Colors, T = HaloTheme> {
+export interface WemePresetOptions<C = Colors, T = WemeTheme, V = Record<string, string>> {
   /**
    * Prefix for css variables
    *
@@ -28,7 +28,7 @@ export interface HaloPresetOptions<C = Colors, T = HaloTheme> {
   neutralColors: C
 
   /**
-   * Default background color
+   * Background colors
    *
    * @default { light: '#fff', dark: '#111' }
    */
@@ -41,6 +41,11 @@ export interface HaloPresetOptions<C = Colors, T = HaloTheme> {
    * Themes
    */
   themes: T[]
+
+  /**
+   * Components Css Variables
+   */
+  cssVars: V
 }
 
-export type UserPresetOptions = DeepPartial<HaloPresetOptions<Record<string, string>, HaloThemeDefinition>>
+export type UserPresetOptions = DeepPartial<WemePresetOptions<Record<string, string>, WemeThemeDefinition, Record<string, string> | Record<string, Record<string, string>>>>

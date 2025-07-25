@@ -1,8 +1,9 @@
-import type { HaloPresetOptions, Preflight } from '../types'
+import type { Preflight, WemePresetOptions } from '../types'
+import { preflightCssVars } from './cssvars'
 import { preflightReset } from './reset'
 import { preflightThemes } from './themes'
 
-export function preflights(options: HaloPresetOptions): Preflight[] {
+export function preflights(options: WemePresetOptions): Preflight[] {
   const preflights: Preflight[] = []
 
   if (options.reset)
@@ -12,6 +13,9 @@ export function preflights(options: HaloPresetOptions): Preflight[] {
     // Themes
     ...preflightThemes(options.prefix, options.themes),
   )
+
+  if (Object.keys(options.cssVars).length)
+    preflights.push(preflightCssVars(options.prefix, options.cssVars))
 
   return preflights
 }

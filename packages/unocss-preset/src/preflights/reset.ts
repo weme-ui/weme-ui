@@ -17,6 +17,6 @@ export function preflightReset(): Preflight {
     getCSS() {
       return minifyCss(resetCSS)
     },
-    layer: 'base',
+    layer: 'preflight',
   }
 }

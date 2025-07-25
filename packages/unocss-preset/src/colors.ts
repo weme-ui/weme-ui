@@ -1,10 +1,10 @@
 import type { Colors } from '@weme-ui/colors'
-import type { DeepPartial, HaloPresetOptions } from './types'
+import type { DeepPartial, WemePresetOptions } from './types'
 import { getColorNames, transformColor } from '@weme-ui/colors'
 
 export function resolveColors(
   colors: DeepPartial<Record<string, string>> | undefined,
-  background: HaloPresetOptions['background'],
+  background: WemePresetOptions['background'],
   isNeutral: boolean = false,
 ): Colors {
   const defaultColors = isNeutral
@@ -45,7 +45,7 @@ export function resolveColors(
   }
 }
 
-function resolveDefaultAccentColors(background: HaloPresetOptions['background']): Colors {
+function resolveDefaultAccentColors(background: WemePresetOptions['background']): Colors {
   const accents = getColorNames('accent')
 
   return accents.reduce((acc, name) => {
@@ -65,7 +65,7 @@ function resolveDefaultAccentColors(background: HaloPresetOptions['background'])
   }, {} as Colors)
 }
 
-function resolveDefaultNeutralColors(background: HaloPresetOptions['background']): Colors {
+function resolveDefaultNeutralColors(background: WemePresetOptions['background']): Colors {
   const neutrals = getColorNames('neutral')
 
   return neutrals.reduce((acc, name) => {

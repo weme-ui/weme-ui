@@ -1,5 +1,5 @@
 import { defineConfig, presetWind4 } from 'unocss'
-import { presetHalo } from './src'
+import { presetWemeUI } from './src'
 
 export default defineConfig({
   presets: [
@@ -7,7 +7,7 @@ export default defineConfig({
       reset: true,
       arbitraryVariants: true,
     }),
-    presetHalo(),
+    presetWemeUI(),
   ],
 
   content: {

@@ -1,7 +1,7 @@
 <p align="center">
   <img align="center" src="https://raw.githubusercontent.com/moujinet/assets/main/weme-ui/png/weme-128-duotone.png" height="128" />
   <h1 align="center">
-    Weme UI - UnoCSS Preset
+    Weme UI <sup style="color: #888">unocss-preset</sup>
   </h1>
 </p>
 
@@ -41,9 +41,9 @@ export default defineConfig({
 [MIT][license-href] License © 2025 [weme-ui][github-href]
 
 [github-href]: https://github.com/weme-ui/weme-ui
-[npm-version-src]: https://img.shields.io/npm/v/@weme-ui/unocss-preset?style=flat&colorA=18181b&colorB=18181b
+[npm-version-src]: https://img.shields.io/npm/v/@weme-ui/unocss-preset?style=flat&colorA=1d2129&colorB=1d2129
 [npm-version-href]: https://npmjs.com/package/@weme-ui/unocss-preset
-[license-src]: https://img.shields.io/github/license/@weme-ui/unocss-preset.svg?style=flat&colorA=18181b&colorB=18181b
+[license-src]: https://img.shields.io/github/license/@weme-ui/unocss-preset.svg?style=flat&colorA=1d2129&colorB=1d2129
 [license-href]: https://github.com/weme-ui/weme-ui/blob/main/LICENSE
 [unocss-href]: https://unocss.dev
 [reka-href]: https://reka-ui.com

@@ -1,0 +1,66 @@
+{
+  "name": "@weme-ui/nuxt",
+  "type": "module",
+  "version": "1.0.0",
+  "packageManager": "pnpm@10.13.1",
+  "description": "Weme UI - Nuxt module.",
+  "author": "Allen Luo <luoyi@mouji.net>",
+  "license": "MIT",
+  "homepage": "https://github.com/weme-ui/weme-ui#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/weme-ui/weme-ui.git",
+    "directory": "packages/nuxt"
+  },
+  "bugs": {
+    "url": "https://github.com/weme-ui/weme-ui/issues"
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/types.d.mts",
+      "import": "./dist/module.mjs"
+    }
+  },
+  "main": "./dist/module.mjs",
+  "typesVersions": {
+    "*": {
+      ".": [
+        "./dist/types.d.mts"
+      ]
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "prepack": "nuxt-module-build build",
+    "dev": "pnpm run dev:prepare && nuxi dev playground",
+    "dev:build": "nuxi build playground",
+    "dev:prepare": "nuxt-module-build build --stub && nuxt-module-build prepare && nuxi prepare playground",
+    "prepublishOnly": "pnpm run prepack",
+    "release": "bumpp --commit --push --tag && pnpm publish --access public",
+    "typecheck": "vue-tsc --noEmit"
+  },
+  "dependencies": {
+    "@nuxt/kit": "catalog:nuxt",
+    "@weme-ui/colors": "workspace:*",
+    "@weme-ui/unocss-preset": "workspace:*"
+  },
+  "devDependencies": {
+    "@nuxt/devtools": "catalog:nuxt",
+    "@nuxt/icon": "catalog:nuxt",
+    "@nuxt/module-builder": "catalog:nuxt",
+    "@nuxt/schema": "catalog:nuxt",
+    "@nuxt/test-utils": "catalog:nuxt",
+    "@types/node": "catalog:build",
+    "@unocss/nuxt": "catalog:nuxt",
+    "@vueuse/nuxt": "catalog:nuxt",
+    "defu": "catalog:dev",
+    "fast-glob": "catalog:dev",
+    "nuxt": "catalog:nuxt",
+    "typescript": "catalog:build",
+    "unocss": "catalog:dev",
+    "vitest": "catalog:testing",
+    "vue-tsc": "catalog:vue"
+  }
+}

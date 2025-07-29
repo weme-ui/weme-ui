@@ -1,0 +1,579 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`weme.style > should resolved color compound variants 1`] = `
+[
+  {
+    "class": [
+      "ui-accent",
+    ],
+    "color": "accent",
+    "variant": "solid",
+  },
+  {
+    "class": [
+      "ui-neutral",
+    ],
+    "color": "neutral",
+    "variant": "solid",
+  },
+  {
+    "class": [
+      "ui-info",
+    ],
+    "color": "info",
+    "variant": "solid",
+  },
+  {
+    "class": [
+      "ui-success",
+    ],
+    "color": "success",
+    "variant": "solid",
+  },
+  {
+    "class": [
+      "ui-warning",
+    ],
+    "color": "warning",
+    "variant": "solid",
+  },
+  {
+    "class": [
+      "ui-error",
+    ],
+    "color": "error",
+    "variant": "solid",
+  },
+]
+`;
+
+exports[`weme.style > should resolved color compound variants 2`] = `
+[
+  {
+    "class": {
+      "base": [
+        "ui-accent",
+      ],
+    },
+    "color": "accent",
+    "variant": "solid",
+  },
+  {
+    "class": {
+      "base": [
+        "ui-neutral",
+      ],
+    },
+    "color": "neutral",
+    "variant": "solid",
+  },
+  {
+    "class": {
+      "base": [
+        "ui-info",
+      ],
+    },
+    "color": "info",
+    "variant": "solid",
+  },
+  {
+    "class": {
+      "base": [
+        "ui-success",
+      ],
+    },
+    "color": "success",
+    "variant": "solid",
+  },
+  {
+    "class": {
+      "base": [
+        "ui-warning",
+      ],
+    },
+    "color": "warning",
+    "variant": "solid",
+  },
+  {
+    "class": {
+      "base": [
+        "ui-error",
+      ],
+    },
+    "color": "error",
+    "variant": "solid",
+  },
+]
+`;
+
+exports[`weme.style > should resolved color compound variants 3`] = `
+[
+  {
+    "class": [
+      "ui-accent",
+    ],
+    "color": "accent",
+    "variant": "solid",
+  },
+  {
+    "class": [
+      "ui-accent-soft",
+    ],
+    "color": "accent",
+    "variant": "soft",
+  },
+  {
+    "class": [
+      "ui-accent-surface",
+    ],
+    "color": "accent",
+    "variant": "surface",
+  },
+  {
+    "class": [
+      "ui-neutral",
+    ],
+    "color": "neutral",
+    "variant": "solid",
+  },
+  {
+    "class": [
+      "ui-neutral-soft",
+    ],
+    "color": "neutral",
+    "variant": "soft",
+  },
+  {
+    "class": [
+      "ui-neutral-surface",
+    ],
+    "color": "neutral",
+    "variant": "surface",
+  },
+  {
+    "class": [
+      "ui-info",
+    ],
+    "color": "info",
+    "variant": "solid",
+  },
+  {
+    "class": [
+      "ui-info-soft",
+    ],
+    "color": "info",
+    "variant": "soft",
+  },
+  {
+    "class": [
+      "ui-info-surface",
+    ],
+    "color": "info",
+    "variant": "surface",
+  },
+  {
+    "class": [
+      "ui-success",
+    ],
+    "color": "success",
+    "variant": "solid",
+  },
+  {
+    "class": [
+      "ui-success-soft",
+    ],
+    "color": "success",
+    "variant": "soft",
+  },
+  {
+    "class": [
+      "ui-success-surface",
+    ],
+    "color": "success",
+    "variant": "surface",
+  },
+  {
+    "class": [
+      "ui-warning",
+    ],
+    "color": "warning",
+    "variant": "solid",
+  },
+  {
+    "class": [
+      "ui-warning-soft",
+    ],
+    "color": "warning",
+    "variant": "soft",
+  },
+  {
+    "class": [
+      "ui-warning-surface",
+    ],
+    "color": "warning",
+    "variant": "surface",
+  },
+  {
+    "class": [
+      "ui-error",
+    ],
+    "color": "error",
+    "variant": "solid",
+  },
+  {
+    "class": [
+      "ui-error-soft",
+    ],
+    "color": "error",
+    "variant": "soft",
+  },
+  {
+    "class": [
+      "ui-error-surface",
+    ],
+    "color": "error",
+    "variant": "surface",
+  },
+]
+`;
+
+exports[`weme.style > should resolved color compound variants 4`] = `
+[
+  {
+    "class": {
+      "base": [
+        "ui-accent",
+      ],
+    },
+    "color": "accent",
+    "variant": "solid",
+  },
+  {
+    "class": {
+      "base": [
+        "ui-accent-soft",
+      ],
+    },
+    "color": "accent",
+    "variant": "soft",
+  },
+  {
+    "class": {
+      "base": [
+        "ui-accent-surface",
+      ],
+    },
+    "color": "accent",
+    "variant": "surface",
+  },
+  {
+    "class": {
+      "base": [
+        "ui-neutral",
+      ],
+    },
+    "color": "neutral",
+    "variant": "solid",
+  },
+  {
+    "class": {
+      "base": [
+        "ui-neutral-soft",
+      ],
+    },
+    "color": "neutral",
+    "variant": "soft",
+  },
+  {
+    "class": {
+      "base": [
+        "ui-neutral-surface",
+      ],
+    },
+    "color": "neutral",
+    "variant": "surface",
+  },
+  {
+    "class": {
+      "base": [
+        "ui-info",
+      ],
+    },
+    "color": "info",
+    "variant": "solid",
+  },
+  {
+    "class": {
+      "base": [
+        "ui-info-soft",
+      ],
+    },
+    "color": "info",
+    "variant": "soft",
+  },
+  {
+    "class": {
+      "base": [
+        "ui-info-surface",
+      ],
+    },
+    "color": "info",
+    "variant": "surface",
+  },
+  {
+    "class": {
+      "base": [
+        "ui-success",
+      ],
+    },
+    "color": "success",
+    "variant": "solid",
+  },
+  {
+    "class": {
+      "base": [
+        "ui-success-soft",
+      ],
+    },
+    "color": "success",
+    "variant": "soft",
+  },
+  {
+    "class": {
+      "base": [
+        "ui-success-surface",
+      ],
+    },
+    "color": "success",
+    "variant": "surface",
+  },
+  {
+    "class": {
+      "base": [
+        "ui-warning",
+      ],
+    },
+    "color": "warning",
+    "variant": "solid",
+  },
+  {
+    "class": {
+      "base": [
+        "ui-warning-soft",
+      ],
+    },
+    "color": "warning",
+    "variant": "soft",
+  },
+  {
+    "class": {
+      "base": [
+        "ui-warning-surface",
+      ],
+    },
+    "color": "warning",
+    "variant": "surface",
+  },
+  {
+    "class": {
+      "base": [
+        "ui-error",
+      ],
+    },
+    "color": "error",
+    "variant": "solid",
+  },
+  {
+    "class": {
+      "base": [
+        "ui-error-soft",
+      ],
+    },
+    "color": "error",
+    "variant": "soft",
+  },
+  {
+    "class": {
+      "base": [
+        "ui-error-surface",
+      ],
+    },
+    "color": "error",
+    "variant": "surface",
+  },
+]
+`;
+
+exports[`weme.style > should resolved color variants 1`] = `
+{
+  "accent": [
+    "ui-accent",
+  ],
+  "error": [
+    "ui-error",
+  ],
+  "info": [
+    "ui-info",
+  ],
+  "neutral": [
+    "ui-neutral",
+  ],
+  "success": [
+    "ui-success",
+  ],
+  "warning": [
+    "ui-warning",
+  ],
+}
+`;
+
+exports[`weme.style > should resolved color variants 2`] = `
+{
+  "accent": {
+    "base": [
+      "ui-accent",
+    ],
+  },
+  "error": {
+    "base": [
+      "ui-error",
+    ],
+  },
+  "info": {
+    "base": [
+      "ui-info",
+    ],
+  },
+  "neutral": {
+    "base": [
+      "ui-neutral",
+    ],
+  },
+  "success": {
+    "base": [
+      "ui-success",
+    ],
+  },
+  "warning": {
+    "base": [
+      "ui-warning",
+    ],
+  },
+}
+`;
+
+exports[`weme.style > should resolved color variants 3`] = `
+{
+  "accent": [
+    "ui-accent",
+    "ui-accent-hover",
+    "ui-accent-active",
+  ],
+  "error": [
+    "ui-error",
+    "ui-error-hover",
+    "ui-error-active",
+  ],
+  "info": [
+    "ui-info",
+    "ui-info-hover",
+    "ui-info-active",
+  ],
+  "neutral": [
+    "ui-neutral",
+    "ui-neutral-hover",
+    "ui-neutral-active",
+  ],
+  "success": [
+    "ui-success",
+    "ui-success-hover",
+    "ui-success-active",
+  ],
+  "warning": [
+    "ui-warning",
+    "ui-warning-hover",
+    "ui-warning-active",
+  ],
+}
+`;
+
+exports[`weme.style > should resolved color variants 4`] = `
+{
+  "accent": {
+    "base": [
+      "ui-accent",
+      "ui-accent-hover",
+      "ui-accent-active",
+    ],
+  },
+  "error": {
+    "base": [
+      "ui-error",
+      "ui-error-hover",
+      "ui-error-active",
+    ],
+  },
+  "info": {
+    "base": [
+      "ui-info",
+      "ui-info-hover",
+      "ui-info-active",
+    ],
+  },
+  "neutral": {
+    "base": [
+      "ui-neutral",
+      "ui-neutral-hover",
+      "ui-neutral-active",
+    ],
+  },
+  "success": {
+    "base": [
+      "ui-success",
+      "ui-success-hover",
+      "ui-success-active",
+    ],
+  },
+  "warning": {
+    "base": [
+      "ui-warning",
+      "ui-warning-hover",
+      "ui-warning-active",
+    ],
+  },
+}
+`;
+
+exports[`weme.style > should resolved color variants 5`] = `
+{
+  "accent": "",
+  "error": "",
+  "info": "",
+  "neutral": "",
+  "success": "",
+  "warning": "",
+}
+`;
+
+exports[`weme.style > should resolved color variants 6`] = `
+{
+  "accent": {
+    "base": "",
+  },
+  "error": {
+    "base": "",
+  },
+  "info": {
+    "base": "",
+  },
+  "neutral": {
+    "base": "",
+  },
+  "success": {
+    "base": "",
+  },
+  "warning": {
+    "base": "",
+  },
+}
+`;

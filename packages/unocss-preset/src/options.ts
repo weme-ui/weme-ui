@@ -1,15 +1,16 @@
 import type { UserPresetOptions, WemePresetOptions } from './types'
 import { resolveColors } from './colors'
-import { DEFAULT_BACKGROUND_DARK, DEFAULT_BACKGROUND_LIGHT } from './constants'
+import { DEFAULT_BACKGROUND_DARK, DEFAULT_BACKGROUND_LIGHT, DEFAULT_PREFIX } from './constants'
 import { resolveThemes } from './themes'
 
 export function resolveOptions(options: UserPresetOptions): WemePresetOptions {
-  const prefix = options.prefix ?? 'ui-'
+  const prefix = options.prefix ?? DEFAULT_PREFIX
   const reset = options.reset ?? true
   const background = resolveBackground(options.background)
   const accentColors = resolveColors(options.accentColors, background)
   const neutralColors = resolveColors(options.neutralColors, background, true)
-  const themes = resolveThemes(options.themes || [], background, prefix)
+  const injectDefaultThemes = options.injectDefaultThemes ?? true
+  const themes = resolveThemes(options.themes || [], background, prefix, injectDefaultThemes)
   const cssVars = resolveCssVars(options.cssVars)
 
   return {
@@ -18,6 +19,7 @@ export function resolveOptions(options: UserPresetOptions): WemePresetOptions {
     accentColors,
     neutralColors,
     background,
+    injectDefaultThemes,
     themes,
     cssVars,
   }

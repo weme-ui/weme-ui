@@ -38,6 +38,13 @@ export interface WemePresetOptions<C = Colors, T = WemeTheme, V = Record<string,
   }
 
   /**
+   * Inject default themes
+   *
+   * @default true
+   */
+  injectDefaultThemes: boolean
+
+  /**
    * Themes
    */
   themes: T[]

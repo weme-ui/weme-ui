@@ -68,8 +68,8 @@
     "tsdown": "catalog:build",
     "typescript": "catalog:build",
     "unocss": "catalog:dev",
-    "vite": "catalog:dev",
+    "vite": "catalog:build",
     "vitest": "catalog:testing",
-    "vue": "catalog:dev"
+    "vue": "catalog:vue"
   }
 }

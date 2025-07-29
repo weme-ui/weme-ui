@@ -1,15 +1,20 @@
 import type { ColorAppearance } from '@weme-ui/colors'
-import type { UserPresetOptions, WemePresetOptions, WemeTheme, WemeThemeColors, WemeThemeDefinition } from './types'
+import type { UserPresetOptions, WemePresetOptions, WemeTheme, WemeThemeDefinition } from './types'
 import { transformColor } from '@weme-ui/colors'
+import { DEFAULT_THEMES } from './constants'
 import { parseCssVarValue } from './utils'
 
 export function resolveThemes(
   themes: UserPresetOptions['themes'],
   background: WemePresetOptions['background'],
   prefix: WemePresetOptions['prefix'],
+  injectDefaultThemes: boolean,
 ): WemeTheme[] {
-  if (!themes)
-    return []
+  themes = themes || []
+
+  if (themes.length === 0 && injectDefaultThemes) {
+    themes = DEFAULT_THEMES as WemeThemeDefinition[]
+  }
 
   return themes.map((theme) => {
     const {
@@ -39,7 +44,7 @@ function resolveThemeColors(
   appearance: ColorAppearance,
   background: WemePresetOptions['background'],
 ): WemeTheme['colors'] {
-  const normalized: WemeThemeColors = {
+  const normalized: WemeThemeDefinition['colors'] = {
     accent: colors?.accent ?? 'indigo',
     neutral: colors?.neutral ?? 'gray',
     info: colors?.info ?? 'blue',

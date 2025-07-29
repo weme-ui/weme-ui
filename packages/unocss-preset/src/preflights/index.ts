@@ -7,7 +7,7 @@ export function preflights(options: WemePresetOptions): Preflight[] {
   const preflights: Preflight[] = []
 
   if (options.reset)
-    preflights.push(preflightReset())
+    preflights.push(preflightReset(options.prefix))
 
   preflights.push(
     // Themes

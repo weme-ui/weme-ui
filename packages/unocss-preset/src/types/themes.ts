@@ -16,7 +16,7 @@ export interface WemeTheme<T = ColorScalesArray> {
   tokens: WemeThemeTokens
 }
 
-export interface WemeThemeColors<T = string> {
+interface WemeThemeColors<T = string> {
   accent: T
   neutral: T
   info: T
@@ -25,7 +25,7 @@ export interface WemeThemeColors<T = string> {
   error: T
 }
 
-export interface WemeThemeTokens {
+interface WemeThemeTokens {
   foreground: {
     // --ui-fg-dimmed: 5
     dimmed: string

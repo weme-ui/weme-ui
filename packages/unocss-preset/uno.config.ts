@@ -9,13 +9,4 @@ export default defineConfig({
     }),
     presetWemeUI(),
   ],
-
-  content: {
-    pipeline: {
-      include: [
-        /\.(vue|[jt]sx|ts|mdx?|phtml|html|yml|yaml)($|\?)/,
-        /\.ui.([jt]s)$/,
-      ],
-    },
-  },
 })

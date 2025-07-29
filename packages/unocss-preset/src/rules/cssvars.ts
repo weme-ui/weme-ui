@@ -19,45 +19,45 @@ export function cssVarRules(options: WemePresetOptions): Rule[] {
     ),
 
     // Width
-    createCssVarRule(
+    createSizeCssVarRule(
       /^w-(.+)$/,
       'width',
       options,
     ),
 
     // Height
-    createCssVarRule(
+    createSizeCssVarRule(
       /^h-(.+)$/,
       'height',
       options,
     ),
 
     // Size
-    createCssVarRule(
+    createSizeCssVarRule(
       /^size-(.+)$/,
       'size',
       options,
     ),
 
     // Padding
-    createCssVarRule(
+    createPaddingCssVarRule(
       /^pa?()-?(.+)$/,
       'padding',
       options,
     ),
-    createCssVarRule(
+    createPaddingCssVarRule(
       /^p-?([rltbsexy])(?:-?(.+))?$/,
       'padding',
       options,
     ),
 
     // Margin
-    createCssVarRule(
+    createPaddingCssVarRule(
       /^ma?()-?(.+)$/,
       'margin',
       options,
     ),
-    createCssVarRule(
+    createPaddingCssVarRule(
       /^m-?([rltbsexy])(?:-?(.+))?$/,
       'margin',
       options,
@@ -65,11 +65,7 @@ export function cssVarRules(options: WemePresetOptions): Rule[] {
   ]
 }
 
-function createCssVarRule(
-  matcher: RegExp,
-  property: string,
-  options: WemePresetOptions,
-): Rule {
+function createCssVarRule(matcher: RegExp, property: string, options: WemePresetOptions): Rule {
   const { prefix, cssVars } = options
 
   const map: Record<string, Record<string, string>> = {
@@ -80,17 +76,24 @@ function createCssVarRule(
       color: 'fg',
       background: 'bg',
     },
-    direction: {
-      l: 'left',
-      r: 'right',
-      t: 'top',
-      b: 'bottom',
-      s: 'left',
-      e: 'right',
-      x: 'inline',
-      y: 'block',
-    },
   }
+
+  return [
+    matcher,
+    ([, c]) => {
+      const suffix = map.suffix[property] ?? property
+
+      if (Object.keys(cssVars).includes(`${c}-${map.token[property] ?? property}`)) {
+        return {
+          [`${property}`]: `var(--${prefix}${c}-${suffix})`,
+        }
+      }
+    },
+  ]
+}
+
+function createSizeCssVarRule(matcher: RegExp, property: string, options: WemePresetOptions): Rule {
+  const { prefix, cssVars } = options
 
   if (property === 'size') {
     return [
@@ -109,8 +112,34 @@ function createCssVarRule(
             height: `var(--${prefix}${c}-width)`,
           }
         }
+
+        if (Object.keys(cssVars).includes(`${c}-height`)) {
+          return {
+            width: `var(--${prefix}${c}-height)`,
+            height: `var(--${prefix}${c}-height)`,
+          }
+        }
       },
     ]
+  }
+
+  return createCssVarRule(matcher, property, options)
+}
+
+function createPaddingCssVarRule(matcher: RegExp, property: string, options: WemePresetOptions): Rule {
+  const { prefix, cssVars } = options
+
+  const map: Record<string, Record<string, string>> = {
+    direction: {
+      l: 'left',
+      r: 'right',
+      t: 'top',
+      b: 'bottom',
+      s: 'left',
+      e: 'right',
+      x: 'inline',
+      y: 'block',
+    },
   }
 
   if (property === 'padding' || property === 'margin') {
@@ -159,16 +188,5 @@ function createCssVarRule(
     ]
   }
 
-  return [
-    matcher,
-    ([, c]) => {
-      const suffix = map.suffix[property] ?? property
-
-      if (Object.keys(cssVars).includes(`${c}-${map.token[property] ?? property}`)) {
-        return {
-          [`${property}`]: `var(--${prefix}${c}-${suffix})`,
-        }
-      }
-    },
-  ]
+  return createCssVarRule(matcher, property, options)
 }

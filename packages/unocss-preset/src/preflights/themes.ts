@@ -16,7 +16,7 @@ export function preflightThemes(prefix: string, themes: WemeTheme[]): Preflight[
             }
           `)
         },
-        layer: 'base',
+        layer: 'theme',
       }
     })
 }
@@ -43,7 +43,7 @@ function createThemeColor(prefix: string, colors: WemeTheme['colors']): string {
         ...scales.map(
           (value, i) => `--${prefix}${name}-${i + 1}: ${value};`,
         ),
-      ]
+      ].join('')
     })
     .join('')
 }

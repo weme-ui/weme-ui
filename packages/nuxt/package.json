@@ -1,7 +1,7 @@
 {
   "name": "@weme-ui/nuxt",
   "type": "module",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "packageManager": "pnpm@10.13.1",
   "description": "Weme UI - Nuxt module.",
   "author": "Allen Luo <luoyi@mouji.net>",

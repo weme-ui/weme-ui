@@ -39,8 +39,7 @@
     "dev:prepare": "pnpm run build --stub && nuxt-module-build prepare && nuxi prepare playground",
     "prepack": "pnpm run build",
     "prepublishOnly": "pnpm run build",
-    "release": "pnpm publish --no-git-checks --access public",
-    "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s",
+    "release": "bumpp '--commit=chore(nuxt): Release: %s' --push --no-tag && pnpm publish --no-git-checks --access public",
     "typecheck": "vue-tsc --noEmit"
   },
   "peerDependencies": {

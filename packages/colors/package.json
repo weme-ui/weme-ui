@@ -47,7 +47,7 @@
     "dev": "tsdown --watch",
     "dev:prepare": "pnpm run build",
     "prepublishOnly": "pnpm run build",
-    "release": "bumpp --commit --push --no-tag && pnpm publish --no-git-checks --access public",
+    "release": "bumpp '--commit=chore(colors): Release: %s' --push --no-tag && pnpm publish --no-git-checks --access public",
     "test": "vitest",
     "typecheck": "tsgo --noEmit"
   },

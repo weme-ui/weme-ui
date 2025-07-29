@@ -34,6 +34,7 @@
     "@commitlint/cli": "catalog:build",
     "@commitlint/config-conventional": "catalog:build",
     "@typescript/native-preview": "catalog:build",
+    "bumpp": "catalog:build",
     "citty": "catalog:cli",
     "commitizen": "catalog:build",
     "consola": "catalog:cli",

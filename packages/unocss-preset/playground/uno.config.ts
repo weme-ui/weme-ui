@@ -1,4 +1,4 @@
-import { defineConfig, presetWind4 } from 'unocss'
+import { defineConfig, presetWind4, transformerVariantGroup } from 'unocss'
 import { presetWemeUI } from '../src'
 
 export default defineConfig({
@@ -7,6 +7,7 @@ export default defineConfig({
       reset: true,
       arbitraryVariants: true,
     }),
+
     presetWemeUI({
       cssVars: {
         block: {
@@ -31,5 +32,9 @@ export default defineConfig({
         },
       },
     }),
+  ],
+
+  transformers: [
+    transformerVariantGroup(),
   ],
 })

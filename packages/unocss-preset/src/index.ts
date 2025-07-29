@@ -44,7 +44,7 @@ export const presetWemeUI = definePreset((userOptions: UserPresetOptions = {}) =
     },
     preflights: preflights(options),
     rules: rules(options),
-    shortcuts,
+    shortcuts: shortcuts(options),
     variants,
     shorthands: {
       'theme-colors': `(${DEFAULT_THEME_COLORS.join('|')})`,

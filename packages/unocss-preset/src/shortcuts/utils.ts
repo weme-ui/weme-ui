@@ -2,6 +2,16 @@ import type { Shortcuts } from '../types'
 
 export const utils = [
   {
+    'cursor-button': 'cursor-default',
+    'cursor-checkbox': 'cursor-default',
+    'cursor-disabled': 'cursor-not-allowed',
+    'cursor-link': 'cursor-pointer',
+    'cursor-menu': 'cursor-default',
+    'cursor-radio': 'cursor-default',
+    'cursor-switch': 'cursor-default',
+  },
+
+  {
     'is-disabled': 'op-45 select-none pointer-events-none',
     'is-loading': 'select-none pointer-events-none',
   },

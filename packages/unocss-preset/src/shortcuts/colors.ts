@@ -1,30 +1,44 @@
-import type { Shortcuts } from '../types'
+import type { Shortcuts, WemePresetOptions } from '../types'
+import { DEFAULT_THEME_COLORS } from '../constants'
 
-export const colors = [
-  // Normal
-  [/^ui-solid-(.*)$/, ([, c]) => `c-${c}-1 bg-${c}-9`, { autocomplete: ['ui-solid-<theme-colors>', 'ui-solid-<colors>'] }],
-  [/^ui-soft-(.*)$/, ([, c]) => `c-${c}-11 bg-${c}-3`, { autocomplete: ['ui-soft-<theme-colors>', 'ui-soft-<colors>'] }],
-  [/^ui-surface-(.*)$/, ([, c]) => `c-${c}-11 bg-${c}-2 ring-(~ ${c}-6)`, { autocomplete: ['ui-surface-<theme-colors>', 'ui-surface-<colors>'] }],
-  [/^ui-outline-(.*)$/, ([, c]) => `c-${c}-9 ring-(~ ${c}-6)`, { autocomplete: ['ui-outline-<theme-colors>', 'ui-outline-<colors>'] }],
-  [/^ui-ghost-(.*)$/, ([, c]) => `c-${c}-9`, { autocomplete: ['ui-ghost-<theme-colors>', 'ui-ghost-<colors>'] }],
-  [/^ui-link-(.*)$/, ([, c]) => `c-${c}-9`, { autocomplete: ['ui-link-<theme-colors>', 'ui-link-<colors>'] }],
-  [/^ui-inverse-(.*)$/, ([, c]) => `c-${c}-9 bg-${c}-1`, { autocomplete: ['ui-inverse-<theme-colors>', 'ui-inverse-<colors>'] }],
+export function getColors(options: WemePresetOptions) {
+  const colorNames = [
+    ...DEFAULT_THEME_COLORS,
+    ...Object.keys(options.accentColors),
+    ...Object.keys(options.neutralColors),
+  ]
 
-  // Hover
-  [/^ui-solid-(.*)-hover$/, ([, c]) => `c-${c}-1 bg-${c}-10`, { autocomplete: ['ui-solid-<theme-colors>-hover', 'ui-solid-<colors>-hover'] }],
-  [/^ui-soft-(.*)-hover$/, ([, c]) => `c-${c}-11 bg-${c}-4`, { autocomplete: ['ui-soft-<theme-colors>-hover', 'ui-soft-<colors>-hover'] }],
-  [/^ui-surface-(.*)-hover$/, ([, c]) => `c-${c}-11 bg-${c}-3 ring-(~ ${c}-7)`, { autocomplete: ['ui-surface-<theme-colors>-hover', 'ui-surface-<colors>-hover'] }],
-  [/^ui-outline-(.*)-hover$/, ([, c]) => `c-${c}-9 bg-${c}-4 ring-(~ ${c}-7)`, { autocomplete: ['ui-outline-<theme-colors>-hover', 'ui-outline-<colors>-hover'] }],
-  [/^ui-ghost-(.*)-hover$/, ([, c]) => `c-${c}-10 bg-${c}-4`, { autocomplete: ['ui-ghost-<theme-colors>-hover', 'ui-ghost-<colors>-hover'] }],
-  [/^ui-link-(.*)-hover$/, ([, c]) => `c-${c}-10`, { autocomplete: ['ui-link-<theme-colors>-hover', 'ui-link-<colors>-hover'] }],
-  [/^ui-inverse-(.*)-hover$/, ([, c]) => `c-${c}-10 bg-${c}-2`, { autocomplete: ['ui-inverse-<theme-colors>-hover', 'ui-inverse-<colors>-hover'] }],
+  function resolveClassName(color: string, classes: string) {
+    if (colorNames.includes(color))
+      return classes
+  }
 
-  // Active
-  [/^ui-solid-(.*)-active$/, ([, c]) => `c-${c}-1 bg-${c}-11`, { autocomplete: ['ui-solid-<theme-colors>-active', 'ui-solid-<colors>-active'] }],
-  [/^ui-soft-(.*)-active$/, ([, c]) => `c-${c}-11 bg-${c}-5`, { autocomplete: ['ui-soft-<theme-colors>-active', 'ui-soft-<colors>-active'] }],
-  [/^ui-surface-(.*)-active$/, ([, c]) => `c-${c}-11 bg-${c}-4 ring-(~ ${c}-8)`, { autocomplete: ['ui-surface-<theme-colors>-active', 'ui-surface-<colors>-active'] }],
-  [/^ui-outline-(.*)-active$/, ([, c]) => `c-${c}-9 bg-${c}-5 ring-(~ ${c}-8)`, { autocomplete: ['ui-outline-<theme-colors>-active', 'ui-outline-<colors>-active'] }],
-  [/^ui-ghost-(.*)-active$/, ([, c]) => `c-${c}-11 bg-${c}-5`, { autocomplete: ['ui-ghost-<theme-colors>-active', 'ui-ghost-<colors>-active'] }],
-  [/^ui-link-(.*)-active$/, ([, c]) => `c-${c}-11`, { autocomplete: ['ui-link-<theme-colors>-active', 'ui-link-<colors>-active'] }],
-  [/^ui-inverse-(.*)-active$/, ([, c]) => `c-${c}-11 bg-${c}-3`, { autocomplete: ['ui-inverse-<theme-colors>-active', 'ui-inverse-<colors>-active'] }],
-] satisfies Shortcuts
+  return [
+    // Normal
+    [/^ui-(.*)$/, ([, c]) => resolveClassName(c, `c-${c}-1 bg-${c}-9`), { autocomplete: ['ui-<theme-colors>', 'ui-<colors>'] }],
+    [/^ui-(.*)-soft$/, ([, c]) => resolveClassName(c, `c-${c}-11 bg-${c}-3`), { autocomplete: ['ui-<theme-colors>-soft', 'ui-<colors>-soft'] }],
+    [/^ui-(.*)-surface$/, ([, c]) => resolveClassName(c, `c-${c}-11 bg-${c}-2 ring-(~ ${c}-6)`), { autocomplete: ['ui-<theme-colors>-surface', 'ui-<colors>-surface'] }],
+    [/^ui-(.*)-outline$/, ([, c]) => resolveClassName(c, `c-${c}-9 ring-(~ ${c}-6)`), { autocomplete: ['ui-<theme-colors>-outline', 'ui-<colors>-outline'] }],
+    [/^ui-(.*)-ghost$/, ([, c]) => resolveClassName(c, `c-${c}-9`), { autocomplete: ['ui-<theme-colors>-ghost', 'ui-<colors>-ghost'] }],
+    [/^ui-(.*)-link$/, ([, c]) => resolveClassName(c, `c-${c}-9`), { autocomplete: ['ui-<theme-colors>-link', 'ui-<colors>-link'] }],
+    [/^ui-(.*)-inverse$/, ([, c]) => resolveClassName(c, `c-${c}-9 bg-${c}-1`), { autocomplete: ['ui-<theme-colors>-inverse', 'ui-<colors>-inverse'] }],
+
+    // Hover
+    [/^ui-(.*)-hover$/, ([, c]) => resolveClassName(c, `hover:c-${c}-1 hover:bg-${c}-10`), { autocomplete: ['ui-<theme-colors>-hover', 'ui-<colors>-hover'] }],
+    [/^ui-(.*)-soft-hover$/, ([, c]) => resolveClassName(c, `hover:c-${c}-11 hover:bg-${c}-4`), { autocomplete: ['ui-<theme-colors>-soft-hover', 'ui-<colors>-soft-hover'] }],
+    [/^ui-(.*)-surface-hover$/, ([, c]) => resolveClassName(c, `hover:c-${c}-11 hover:bg-${c}-3 hover:ring-(~ ${c}-7)`), { autocomplete: ['ui-<theme-colors>-surface-hover', 'ui-<colors>-surface-hover'] }],
+    [/^ui-(.*)-outline-hover$/, ([, c]) => resolveClassName(c, `hover:c-${c}-9 hover:bg-${c}-4 hover:ring-(~ ${c}-7)`), { autocomplete: ['ui-<theme-colors>-outline-hover', 'ui-<colors>-outline-hover'] }],
+    [/^ui-(.*)-ghost-hover$/, ([, c]) => resolveClassName(c, `hover:c-${c}-10 hover:bg-${c}-4`), { autocomplete: ['ui-<theme-colors>-ghost-hover', 'ui-<colors>-ghost-hover'] }],
+    [/^ui-(.*)-link-hover$/, ([, c]) => resolveClassName(c, `hover:c-${c}-10`), { autocomplete: ['ui-<theme-colors>-link-hover', 'ui-<colors>-link-hover'] }],
+    [/^ui-(.*)-inverse-hover$/, ([, c]) => resolveClassName(c, `hover:c-${c}-10 hover:bg-${c}-2`), { autocomplete: ['ui-<theme-colors>-inverse-hover', 'ui-<colors>-inverse-hover'] }],
+
+    // Active
+    [/^ui-(.*)-active$/, ([, c]) => resolveClassName(c, `active:c-${c}-1 active:bg-${c}-11`), { autocomplete: ['ui-<theme-colors>-active', 'ui-<colors>-active'] }],
+    [/^ui-(.*)-soft-active$/, ([, c]) => resolveClassName(c, `active:c-${c}-11 active:bg-${c}-5`), { autocomplete: ['ui-<theme-colors>-soft-active', 'ui-<colors>-soft-active'] }],
+    [/^ui-(.*)-surface-active$/, ([, c]) => resolveClassName(c, `active:c-${c}-11 active:bg-${c}-4 active:ring-(~ ${c}-8)`), { autocomplete: ['ui-<theme-colors>-surface-active', 'ui-<colors>-surface-active'] }],
+    [/^ui-(.*)-outline-active$/, ([, c]) => resolveClassName(c, `active:c-${c}-9 active:bg-${c}-5 active:ring-(~ ${c}-8)`), { autocomplete: ['ui-<theme-colors>-outline-active', 'ui-<colors>-outline-active'] }],
+    [/^ui-(.*)-ghost-active$/, ([, c]) => resolveClassName(c, `active:c-${c}-11 active:bg-${c}-5`), { autocomplete: ['ui-<theme-colors>-ghost-active', 'ui-<colors>-ghost-active'] }],
+    [/^ui-(.*)-link-active$/, ([, c]) => resolveClassName(c, `active:c-${c}-11`), { autocomplete: ['ui-<theme-colors>-link-active', 'ui-<colors>-link-active'] }],
+    [/^ui-(.*)-inverse-active$/, ([, c]) => resolveClassName(c, `active:c-${c}-11 active:bg-${c}-3`), { autocomplete: ['ui-<theme-colors>-inverse-active', 'ui-<colors>-inverse-active'] }],
+  ] satisfies Shortcuts
+}

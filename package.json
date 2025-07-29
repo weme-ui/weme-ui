@@ -51,8 +51,8 @@
     "scule": "catalog:cli",
     "simple-git-hooks": "catalog:build",
     "typescript": "catalog:build",
-    "vite": "catalog:dev",
-    "vue-tsc": "catalog:dev",
+    "vite": "catalog:build",
+    "vue-tsc": "catalog:vue",
     "yaml-eslint-parser": "catalog:lint"
   },
   "simple-git-hooks": {

@@ -1,5 +1,5 @@
 import type { NuxtTemplate } from 'nuxt/schema'
-import type { WemeThemeDefinition } from '../module'
+import type { WemeThemeDefinition } from '../runtime/types'
 
 export function createUnoCssConfig(
   prefix: string,

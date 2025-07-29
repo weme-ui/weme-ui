@@ -1,6 +1,6 @@
 import type { NuxtTypeTemplate } from 'nuxt/schema'
-import type { WemeThemeDefinition } from '../module'
-import { WemeIcons } from '../runtime'
+import type { WemeThemeDefinition } from '../runtime/types'
+import { WemeIcons } from '../runtime/icons'
 
 export function createWemeType(
   themes: WemeThemeDefinition[],

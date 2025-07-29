@@ -4,7 +4,7 @@ import type { NuxtTemplate } from 'nuxt/schema'
 import { addPlugin, addTemplate, addTypeTemplate, createResolver, defineNuxtModule, hasNuxtModule, installModule } from '@nuxt/kit'
 import { defu } from 'defu'
 import { name, version } from '../package.json'
-import { WemeIcons } from './runtime'
+import { WemeIcons } from './runtime/icons'
 import { getTemplates } from './templates'
 
 export type * from './runtime/types'
@@ -90,7 +90,6 @@ export default defineNuxtModule<WemeNuxtOptions>({
 
     nuxt.options.weme = options
     nuxt.options.alias['#weme'] = resolver.resolve('../.nuxt/weme')
-    nuxt.options.alias['#weme/runtime'] = resolver.resolve('runtime')
 
     nuxt.options.appConfig.weme = {
       theme: 'default',

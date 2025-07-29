@@ -1,7 +1,7 @@
 {
   "name": "@weme-ui/nuxt",
   "type": "module",
-  "version": "1.0.1",
+  "version": "0.0.0",
   "packageManager": "pnpm@10.13.1",
   "description": "Weme UI - Nuxt module.",
   "author": "Allen Luo <luoyi@mouji.net>",
@@ -33,13 +33,19 @@
     "dist"
   ],
   "scripts": {
-    "prepack": "nuxt-module-build build",
+    "build": "nuxt-module-build build",
     "dev": "pnpm run dev:prepare && nuxi dev playground",
     "dev:build": "nuxi build playground",
-    "dev:prepare": "nuxt-module-build build --stub && nuxt-module-build prepare && nuxi prepare playground",
-    "prepublishOnly": "pnpm run prepack",
-    "release": "bumpp --commit --push --tag && pnpm publish --access public",
+    "dev:prepare": "pnpm run build --stub && nuxt-module-build prepare && nuxi prepare playground",
+    "prepack": "pnpm run build",
+    "prepublishOnly": "pnpm run build",
+    "release": "pnpm publish --no-git-checks --access public",
+    "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s",
     "typecheck": "vue-tsc --noEmit"
+  },
+  "peerDependencies": {
+    "defu": "catalog:dev",
+    "fast-glob": "catalog:dev"
   },
   "dependencies": {
     "@nuxt/kit": "catalog:nuxt",

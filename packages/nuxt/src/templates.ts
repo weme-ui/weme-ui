@@ -1,5 +1,6 @@
 import type { NuxtTemplate } from 'nuxt/schema'
-import type { WemeNuxtOptions, WemeThemeDefinition } from './module'
+import type { WemeNuxtOptions } from './module'
+import type { WemeThemeDefinition } from './runtime/types'
 import { getColorNames } from '@weme-ui/colors'
 import { createWemeConfigType } from './templates/config'
 import { createWemeStyles } from './templates/styles'

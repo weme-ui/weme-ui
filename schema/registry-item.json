@@ -9,16 +9,13 @@
     "type": {
       "type": "string",
       "enum": [
-        "asset",
         "component",
         "composable",
         "file",
         "layout",
-        "plugin",
         "style",
         "theme",
-        "type",
-        "util"
+        "type"
       ],
       "description": "The type of the item. This is used to group items in the registry."
     },
@@ -48,6 +45,13 @@
         "type": "string"
       }
     },
+    "registryDependencies": {
+      "type": "array",
+      "description": "An array of registry dependencies required by the registry item. This is an array of registry item names.",
+      "items": {
+        "type": "string"
+      }
+    },
     "files": {
       "type": "array",
       "description": "The main payload of files required by the registry item.",
@@ -65,16 +69,13 @@
           "type": {
             "type": "string",
             "enum": [
-              "asset",
               "component",
               "composable",
               "file",
               "layout",
-              "plugin",
               "style",
               "theme",
-              "type",
-              "util"
+              "type"
             ],
             "description": "The type of the file. This is used to group files in the registry."
           },
@@ -101,21 +102,8 @@
     "cssVars": {
       "type": "object",
       "description": "The CSS variables required by the registry item.",
-      "properties": {
-        "light": {
-          "type": "object",
-          "description": "The CSS variables for light mode.",
-          "additionalProperties": {
-            "type": "string"
-          }
-        },
-        "dark": {
-          "type": "object",
-          "description": "The CSS variables for dark mode.",
-          "additionalProperties": {
-            "type": "string"
-          }
-        }
+      "additionalProperties": {
+        "type": "string"
       }
     },
     "meta": {

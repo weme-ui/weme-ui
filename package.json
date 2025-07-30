@@ -26,7 +26,9 @@
     "lint": "eslint .",
     "test": "vitest",
     "typecheck": "pnpm -r typecheck",
+    "release": "bumpp -r --excute=\"pnpm i\"",
     "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s",
+    "taze": "taze major -I -r",
     "commit": "czg"
   },
   "devDependencies": {
@@ -51,6 +53,7 @@
     "rimraf": "catalog:cli",
     "scule": "catalog:cli",
     "simple-git-hooks": "catalog:build",
+    "taze": "catalog:build",
     "typescript": "catalog:build",
     "vite": "catalog:build",
     "vue-tsc": "catalog:vue",

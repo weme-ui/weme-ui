@@ -1,7 +1,7 @@
 {
   "name": "@weme-ui/registry-web",
   "type": "module",
-  "version": "1.0.0",
+  "version": "0.0.0",
   "private": true,
   "packageManager": "pnpm@10.13.1",
   "description": "Weme UI components registry.",
@@ -21,27 +21,27 @@
     "typecheck": "vue-tsc --noEmit"
   },
   "peerDependencies": {
-    "@vueuse/core": "catalog:registry",
-    "clsx": "catalog:registry",
-    "reka-ui": "catalog:registry",
-    "tailwind-merge": "catalog:registry",
-    "tailwind-variants": "catalog:registry",
+    "@vueuse/core": "catalog:dev",
+    "clsx": "catalog:dev",
+    "reka-ui": "catalog:dev",
+    "tailwind-merge": "catalog:dev",
+    "tailwind-variants": "catalog:dev",
     "unocss": "catalog:dev",
-    "vue": "catalog:dev"
+    "vue": "catalog:vue"
   },
   "devDependencies": {
-    "@nuxt/test-utils": "catalog:testing",
+    "@nuxt/test-utils": "catalog:nuxt",
     "@vue/test-utils": "catalog:testing",
-    "@vueuse/core": "catalog:registry",
-    "clsx": "catalog:registry",
+    "@vueuse/core": "catalog:dev",
+    "clsx": "catalog:dev",
     "happy-dom": "catalog:testing",
     "playwright-core": "catalog:testing",
-    "reka-ui": "catalog:registry",
-    "tailwind-merge": "catalog:registry",
-    "tailwind-variants": "catalog:registry",
+    "reka-ui": "catalog:dev",
+    "tailwind-merge": "catalog:dev",
+    "tailwind-variants": "catalog:dev",
     "unocss": "catalog:dev",
     "vitest": "catalog:testing",
-    "vue": "catalog:dev",
-    "vue-tsc": "catalog:dev"
+    "vue": "catalog:vue",
+    "vue-tsc": "catalog:vue"
   }
 }

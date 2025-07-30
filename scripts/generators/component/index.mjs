@@ -31,6 +31,7 @@ export default defineCommand({
     const name = kebabCase(args.name)
     const registry = kebabCase(args.registry)
     const dest = resolve(join(`registry/${registry}`, 'components'))
+    const docs = resolve('docs/content/components')
 
     const templates = [
       'vue.hbs',
@@ -39,6 +40,6 @@ export default defineCommand({
     ]
 
     await generateTemplates(name, registry, dest, templates)
-    await generateDocuments(name, registry)
+    await generateDocuments(name, registry, docs)
   },
 })

@@ -23,7 +23,7 @@ export default defineCommand({
       'package.json.hbs',
       'registry.json.hbs',
       'tsconfig.json.hbs',
-      'utils/index.ts.hbs',
+      'utils/variants.ts.hbs',
     ]
 
     await generateTemplates(name, dest, templates)

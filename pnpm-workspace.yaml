@@ -2,6 +2,7 @@ packages:
   - registry/*
   - packages/*
   - docs
+  - scripts
 
 catalogs:
   build:
@@ -15,6 +16,7 @@ catalogs:
     cz-git: ^1.12.0
     czg: ^1.12.0
     simple-git-hooks: ^2.13.0
+    taze: ^19.1.0
     tsdown: 0.12.9
     typescript: 5.8.3
     vite: 7.0.4
@@ -67,12 +69,13 @@ catalogs:
     vue: ^3.5.18
     vue-tsc: ^3.0.4
 
-autoInstallPeers: true
-shamefullyHoist: true
-engineStrict: true
 hoist: true
+engineStrict: true
+shamefullyHoist: true
+autoInstallPeers: true
 
 onlyBuiltDependencies:
   - '@parcel/watcher'
   - esbuild
   - simple-git-hooks
+  - vue-demi

@@ -1,0 +1,42 @@
+{
+  "name": "@weme-ui/docs-template",
+  "type": "module",
+  "version": "0.0.0",
+  "packageManager": "pnpm@10.13.1",
+  "description": "Beautifully designed Nuxt Content template built with Weme UI.",
+  "author": "Allen Luo <luoyi@mouji.net>",
+  "license": "MIT",
+  "homepage": "https://github.com/weme-ui/weme-ui#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/weme-ui/weme-ui.git",
+    "directory": "packages/docs-template"
+  },
+  "bugs": {
+    "url": "https://github.com/weme-ui/weme-ui/issues"
+  },
+  "main": "./nuxt.config.ts",
+  "files": [
+    "app",
+    "nuxt.config.ts"
+  ],
+  "scripts": {
+    "dev": "nuxi dev .playground",
+    "dev:prepare": "nuxt prepare .playground",
+    "build": "nuxt build .playground",
+    "generate": "nuxt generate .playground",
+    "preview": "nuxt preview .playground",
+    "prepublishOnly": "pnpm run build"
+  },
+  "dependencies": {
+    "@nuxt/content": "catalog:nuxt",
+    "@weme-ui/nuxt": "workspace:*",
+    "@weme-ui/unocss-preset": "workspace:*"
+  },
+  "devDependencies": {
+    "@nuxtjs/i18n": "catalog:nuxt",
+    "nuxt": "catalog:nuxt",
+    "typescript": "catalog:build",
+    "vue": "catalog:vue"
+  }
+}

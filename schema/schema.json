@@ -2,9 +2,18 @@
   "$schema": "https://json-schema.org/draft-07/schema#",
   "type": "object",
   "properties": {
-    "style": {
+    "registry": {
       "type": "string",
       "enum": ["web", "mobile"]
+    },
+    "cdn": {
+      "type": "string",
+      "enum": [
+        "esm.sh",
+        "jsdelivr.net",
+        "unpkg.com"
+      ],
+      "description": "The CDN url for the registry. This is used to load the registry item's files."
     },
     "unocss": {
       "type": "object",
@@ -16,19 +25,6 @@
         "reset": {
           "type": "boolean",
           "description": "Whether to inject the reset styles, default is `true`."
-        },
-        "background": {
-          "type": "object",
-          "properties": {
-            "light": {
-              "type": "string",
-              "description": "The default background color for light mode, default is `#fff`."
-            },
-            "dark": {
-              "type": "string",
-              "description": "The default background color for dark mode, default is `#111`."
-            }
-          }
         },
         "accentColors": {
           "type": "object",
@@ -43,17 +39,38 @@
           "additionalProperties": {
             "type": "string"
           }
+        },
+        "background": {
+          "type": "object",
+          "properties": {
+            "light": {
+              "type": "string",
+              "description": "The default background color for light mode, default is `#fff`."
+            },
+            "dark": {
+              "type": "string",
+              "description": "The default background color for dark mode, default is `#111`."
+            }
+          }
         }
       }
     },
-    "cdn": {
-      "type": "string",
-      "enum": [
-        "esm.sh",
-        "jsdelivr.net",
-        "unpkg.com"
-      ],
-      "description": "The CDN url for the registry. This is used to load the registry item's files."
+    "iconLibrary": {
+      "type": "string"
+    },
+    "alias": {
+      "type": "object",
+      "properties": {
+        "components": {
+          "type": "string"
+        },
+        "layouts": {
+          "type": "string"
+        },
+        "themes": {
+          "type": "string"
+        }
+      }
     }
   },
   "required": ["style", "unocss"]

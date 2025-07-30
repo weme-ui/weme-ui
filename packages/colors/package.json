@@ -1,7 +1,7 @@
 {
   "name": "@weme-ui/colors",
   "type": "module",
-  "version": "0.0.1",
+  "version": "0.0.0",
   "packageManager": "pnpm@10.13.1",
   "description": "Weme UI - Colors",
   "author": "Allen Luo <luoyi@mouji.net>",
@@ -47,7 +47,6 @@
     "dev": "tsdown --watch",
     "dev:prepare": "pnpm run build",
     "prepublishOnly": "pnpm run build",
-    "release": "bumpp '--commit=chore(colors): Release: %s' --push --no-tag && pnpm publish --no-git-checks --access public",
     "test": "vitest",
     "typecheck": "tsgo --noEmit"
   },

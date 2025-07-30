@@ -132,7 +132,7 @@ export default defineNuxtModule<WemeNuxtOptions>({
     })
 
     // Plugins
-    addPlugin({ src: resolver.resolve('runtime/plugins/custom-theme.ts') })
+    addPlugin({ src: resolver.resolve('runtime/plugins/custom-theme') })
 
     // Templates
     const templates: NuxtTemplate[] = await getTemplates(options)

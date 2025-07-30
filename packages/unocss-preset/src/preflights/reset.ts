@@ -11,6 +11,10 @@ html,
   -webkit-font-smoothing: antialiased;
 }
 
+body {
+  color: var(--ui-fg);
+}
+
 ::-webkit-scrollbar {
   width: 0.25rem;
 }
@@ -20,8 +24,8 @@ html,
 }
 
 ::-webkit-scrollbar-track {
-  background: var(--ui-bg);
   border-radius: 3px;
+  background: var(--ui-bg);
 }
 
 ::-webkit-scrollbar-thumb {
@@ -34,11 +38,11 @@ html,
 }
 
 ::-moz-selection {
-  background: color-mix(in oklch, var(--ui-accent) 20%, transparent);
+  background: color-mix(in oklch, var(--ui-accent-9) 20%, transparent);
 }
 
 ::selection {
-  background: color-mix(in oklch, var(--ui-accent) 20%, transparent);
+  background: color-mix(in oklch, var(--ui-accent-9) 20%, transparent);
 }
 `
 

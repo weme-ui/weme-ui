@@ -46,16 +46,16 @@ module.exports = {
         'revert',
         'wip',
         'types',
-        'ci',
       ],
     ],
   },
   prompt: {
     /** @use `nr commit :b` */
     alias: {
-      d: 'docs: 更新文档',
-      b: 'chore: 更新依赖',
-      c: 'chore: 更新配置',
+      d: 'chore(docs): 更新文档',
+      b: 'chore(deps): 更新依赖',
+      c: 'chore(ci): 更新 CI 配置',
+      u: 'feat(unocss-preset): 更新 UnoCSS Preset',
     },
     customScopesAlign: !scopeComplete ? 'top' : 'bottom',
     defaultScope: scopeComplete,

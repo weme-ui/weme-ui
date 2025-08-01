@@ -1,23 +1,19 @@
 export default defineNuxtConfig({
   modules: [
-    '@nuxt/content',
     '@weme-ui/nuxt',
+    '@nuxt/content',
     // '@nuxtjs/i18n',
   ],
 
   content: {
-    experimental: {
-      sqliteConnector: 'native',
+    build: {
+      markdown: {
+        toc: {
+          depth: 3,
+        },
+      },
     },
   },
-
-  // i18n: {
-  //   locales: [
-  //     { code: 'cn', language: 'zh-CN' },
-  //     { code: 'en', language: 'en-US' },
-  //   ],
-  //   defaultLocale: 'cn',
-  // },
 
   devtools: {
     enabled: true,

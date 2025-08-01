@@ -17,12 +17,14 @@
     "url": "https://github.com/weme-ui/weme-ui/issues"
   },
   "scripts": {
-    "test": "vitest run",
-    "typecheck": "vue-tsc --noEmit"
+    "dev": "nuxi dev playground",
+    "dev:prepare": "nuxi prepare playground",
+    "typecheck": "vue-tsc --noEmit && cd playground && vue-tsc --noEmit"
   },
   "peerDependencies": {
     "@vueuse/core": "catalog:dev",
     "clsx": "catalog:dev",
+    "nuxt": "catalog:nuxt",
     "reka-ui": "catalog:dev",
     "tailwind-merge": "catalog:dev",
     "tailwind-variants": "catalog:dev",
@@ -31,16 +33,16 @@
   },
   "devDependencies": {
     "@nuxt/test-utils": "catalog:nuxt",
-    "@vue/test-utils": "catalog:testing",
+    "@vue/test-utils": "catalog:vue",
     "@vueuse/core": "catalog:dev",
     "clsx": "catalog:dev",
     "happy-dom": "catalog:testing",
+    "nuxt": "catalog:nuxt",
     "playwright-core": "catalog:testing",
     "reka-ui": "catalog:dev",
     "tailwind-merge": "catalog:dev",
     "tailwind-variants": "catalog:dev",
     "unocss": "catalog:dev",
-    "vitest": "catalog:testing",
     "vue": "catalog:vue",
     "vue-tsc": "catalog:vue"
   }

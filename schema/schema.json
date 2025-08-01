@@ -2,10 +2,6 @@
   "$schema": "https://json-schema.org/draft-07/schema#",
   "type": "object",
   "properties": {
-    "registry": {
-      "type": "string",
-      "enum": ["web", "mobile"]
-    },
     "cdn": {
       "type": "string",
       "enum": [

@@ -3,6 +3,7 @@ import { resolve } from 'node:path'
 import { consola } from 'consola'
 import { mkdirp } from 'mkdirp'
 import { asyncWriteFile } from '../../utils/file.mjs'
+import { readPackageJson } from '../../utils/package.mjs'
 import { renderTemplate } from '../../utils/template.mjs'
 
 export async function generateTemplates(name, destPath, templates) {
@@ -11,8 +12,17 @@ export async function generateTemplates(name, destPath, templates) {
   if (!existsSync(destPath))
     await mkdirp(destPath)
 
+  const { author, license, version, packageManager } = readPackageJson()
+
   for (const template of templates) {
-    const content = renderTemplate(`registry/${template}`, { name })
+    const content = renderTemplate(`registry/${template}`, {
+      name,
+      author,
+      license,
+      version,
+      packageManager,
+    })
+
     const destFilename = `${template.replace('.hbs', '')}`
 
     if (!content) {

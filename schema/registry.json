@@ -9,6 +9,12 @@
     "homepage": {
       "type": "string"
     },
+    "categories": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
     "items": {
       "type": "array",
       "items": {

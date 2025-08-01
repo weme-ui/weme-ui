@@ -15,7 +15,7 @@ catalogs:
     conventional-changelog: ^7.1.1
     cz-git: ^1.12.0
     czg: ^1.12.0
-    simple-git-hooks: ^2.13.0
+    simple-git-hooks: ^2.13.1
     taze: ^19.1.0
     tsdown: 0.12.9
     typescript: 5.8.3
@@ -37,9 +37,10 @@ catalogs:
     colorjs.io: ^0.5.2
     defu: ^6.1.4
     fast-glob: ^3.3.3
-    reka-ui: ^2.4.0
+    reka-ui: ^2.4.1
     tailwind-merge: ^3.3.1
-    tailwind-variants: ^2.0.1
+    tailwind-variants: ^2.1.0
+    ufo: ^1.6.1
     unocss: ^66.3.3
   lint:
     '@antfu/eslint-config': ^5.0.0
@@ -59,6 +60,7 @@ catalogs:
     '@nuxtjs/i18n': 10.0.1
     '@unocss/nuxt': ^66.3.3
     '@vueuse/nuxt': ^13.6.0
+    better-sqlite3: ^12.2.0
     nuxt: ^4.0.2
   testing:
     '@vue/test-utils': ^2.4.6
@@ -76,6 +78,7 @@ autoInstallPeers: true
 
 onlyBuiltDependencies:
   - '@parcel/watcher'
+  - better-sqlite3
   - esbuild
   - simple-git-hooks
   - vue-demi

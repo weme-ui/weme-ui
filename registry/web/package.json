@@ -4,7 +4,7 @@
   "version": "0.0.0",
   "private": true,
   "packageManager": "pnpm@10.14.0",
-  "description": "Weme UI components registry.",
+  "description": "Weme UI Web components registry.",
   "author": "Allen Luo <luoyi@mouji.net>",
   "license": "MIT",
   "homepage": "https://github.com/weme-ui/weme-ui",
@@ -16,10 +16,25 @@
   "bugs": {
     "url": "https://github.com/weme-ui/weme-ui/issues"
   },
+  "keywords": [
+    "vue",
+    "nuxt",
+    "unocss",
+    "reka-ui",
+    "radix-colors",
+    "weme-ui",
+    "weme-ui-registry",
+    "weme-ui-web-registry",
+    "vue-components",
+    "nuxt-components",
+    "reka-ui-components",
+    "unocss-ui-components",
+    "radix-colors-components"
+  ],
   "scripts": {
-    "dev": "nuxi dev playground",
-    "dev:prepare": "nuxi prepare playground",
-    "typecheck": "vue-tsc --noEmit && cd playground && vue-tsc --noEmit"
+    "dev": "nuxi dev .playground",
+    "dev:prepare": "nuxi prepare .playground",
+    "typecheck": "vue-tsc --noEmit && cd .playground && vue-tsc --noEmit"
   },
   "peerDependencies": {
     "@vueuse/core": "catalog:dev",
@@ -35,6 +50,8 @@
     "@nuxt/test-utils": "catalog:nuxt",
     "@vue/test-utils": "catalog:vue",
     "@vueuse/core": "catalog:dev",
+    "@weme-ui/nuxt": "workspace:*",
+    "@weme-ui/unocss-preset": "workspace:*",
     "clsx": "catalog:dev",
     "happy-dom": "catalog:testing",
     "nuxt": "catalog:nuxt",

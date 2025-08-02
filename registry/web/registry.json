@@ -1,7 +1,17 @@
 {
   "$schema": "../../schema/registry.json",
-  "name": "Weme UI for web",
+  "name": "Weme UI for Web",
   "homepage": "https://github.com/weme-ui/weme-ui/registry/web",
+  "categories": [
+    "general",
+    "layout",
+    "navigation",
+    "data-display",
+    "forms",
+    "chart",
+    "feedback",
+    "other"
+  ],
   "items": [
   ]
 }

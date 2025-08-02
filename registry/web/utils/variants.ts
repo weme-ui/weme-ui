@@ -1,10 +1,13 @@
 import type { ClassValue } from 'clsx'
 import { clsx } from 'clsx'
 import { twMerge } from 'tailwind-merge'
+import { createTV } from 'tailwind-variants'
 
-export { tv as createVariants } from 'tailwind-variants'
+export type { VariantProps } from 'tailwind-variants'
 
-export type { VariantProps as UiVariantProps } from 'tailwind-variants'
+export const createVariants = createTV({
+  twMerge: false,
+})
 
 export function cn(...extras: ClassValue[]) {
   return twMerge(

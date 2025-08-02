@@ -476,6 +476,12 @@ importers:
       '@vueuse/core':
         specifier: catalog:dev
         version: 13.6.0(vue@3.5.18(typescript@5.8.3))
+      '@weme-ui/nuxt':
+        specifier: workspace:*
+        version: link:../../packages/nuxt
+      '@weme-ui/unocss-preset':
+        specifier: workspace:*
+        version: link:../../packages/unocss-preset
       clsx:
         specifier: catalog:dev
         version: 2.1.1
@@ -506,24 +512,6 @@ importers:
       vue-tsc:
         specifier: catalog:vue
         version: 3.0.4(typescript@5.8.3)
-
-  scripts:
-    devDependencies:
-      '@vueuse/core':
-        specifier: catalog:dev
-        version: 13.6.0(vue@3.5.18(typescript@5.8.3))
-      clsx:
-        specifier: catalog:dev
-        version: 2.1.1
-      reka-ui:
-        specifier: catalog:dev
-        version: 2.4.1(typescript@5.8.3)(vue@3.5.18(typescript@5.8.3))
-      tailwind-merge:
-        specifier: catalog:dev
-        version: 3.3.1
-      tailwind-variants:
-        specifier: catalog:dev
-        version: 2.1.0(tailwind-merge@3.3.1)(tailwindcss@4.1.11)
 
 packages:
 

@@ -18,10 +18,10 @@
   "main": "./nuxt.config.ts",
   "scripts": {
     "dev": "cd .playground && nuxi dev --extends ..",
-    "dev:prepare": "nuxt prepare .playground --extends .",
-    "build": "cd .playground && nuxt build --extends ..",
-    "generate": "cd .playground && nuxt generate --extends ..",
-    "preview": "cd .playground && nuxt preview --extends .."
+    "dev:prepare": "nuxi prepare .playground --extends .",
+    "build": "cd .playground && nuxi build --extends ..",
+    "generate": "cd .playground && nuxi generate --extends ..",
+    "preview": "cd .playground && nuxi preview --extends .."
   },
   "dependencies": {
     "@nuxt/content": "catalog:nuxt",

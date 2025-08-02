@@ -30,6 +30,13 @@ export const backgroundRules: Rule[] = [
     { autocomplete: 'bg-(default|dimmed|muted|elevated)' },
   ),
 
+  createThemeTokenRule(
+    /^bg-(border|border-elevated)$/,
+    'background-color',
+    'border',
+    { autocomplete: 'bg-(border|border-elevated)' },
+  ),
+
   createThemeColorRule(
     /^fill-(.+)$/,
     'fill',
@@ -41,6 +48,13 @@ export const backgroundRules: Rule[] = [
     'fill',
     'bg',
     { autocomplete: 'fill-(default|dimmed|muted|elevated)' },
+  ),
+
+  createThemeTokenRule(
+    /^fill-(border|border-elevated)$/,
+    'fill',
+    'border',
+    { autocomplete: 'fill-(border|border-elevated)' },
   ),
 ]
 
@@ -165,7 +179,7 @@ function createThemeTokenRule(
     ([, c]) => {
       const { color, opacity } = parseColor(c)
 
-      let colorVar = `var(--ui-${token}${color === 'default' ? '' : `-${color}`})`
+      let colorVar = `var(--ui-${token}${color === 'default' || token === color ? '' : `-${color.replace(token, '')}`})`
 
       if (opacity !== undefined) {
         colorVar = `color-mix(in oklch, ${colorVar} ${opacity}%, transparent)`

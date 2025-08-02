@@ -43,7 +43,7 @@ catalogs:
     ufo: ^1.6.1
     unocss: ^66.3.3
   lint:
-    '@antfu/eslint-config': ^5.0.0
+    '@antfu/eslint-config': ^5.1.0
     eslint: 9.31.0
     eslint-plugin-pnpm: ^1.1.0
     jsonc-eslint-parser: ^2.4.0
@@ -64,12 +64,12 @@ catalogs:
     nuxt: ^4.0.2
   testing:
     happy-dom: ^18.0.1
-    playwright-core: ^1.54.1
+    playwright-core: ^1.54.2
     vitest: 3.2.4
   vue:
     '@vue/test-utils': ^2.4.6
     vue: ^3.5.18
-    vue-tsc: ^3.0.4
+    vue-tsc: ^3.0.5
 
 hoist: true
 engineStrict: true

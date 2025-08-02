@@ -1,17 +1,17 @@
 import { consola } from 'consola'
 import handlebars from 'handlebars'
-import { dirname, join, resolve } from 'pathe'
+import { dirname, resolve } from 'pathe'
 import { camelCase, kebabCase, pascalCase, titleCase } from 'scule'
 import { mkdirs, readFile, readJsonFile, writeFile } from './file.mjs'
 
 // Title Case
-handlebars.registerHelper('titleCase', titleCase)
+handlebars.registerHelper('titleCase', value => titleCase(value))
 // kebab-case
-handlebars.registerHelper('kebabCase', kebabCase)
+handlebars.registerHelper('kebabCase', value => kebabCase(value))
 // camelCase
-handlebars.registerHelper('camelCase', camelCase)
+handlebars.registerHelper('camelCase', value => camelCase(value))
 // PascalCase
-handlebars.registerHelper('pascalCase', pascalCase)
+handlebars.registerHelper('pascalCase', value => pascalCase(value))
 // lowercase
 handlebars.registerHelper('lowerCase', value => value.toLowerCase())
 
@@ -46,11 +46,13 @@ export async function renderTemplates(tplPath, destPath, templates, data) {
 
   for (const { tpl, dest } of templates) {
     const fileName = compile(dest, tplData)
-    const filePath = resolve(join(destPath, fileName))
+    const filePath = resolve(destPath, fileName)
+
+    console.log(fileName)
 
     mkdirs(dirname(filePath))
 
-    const content = compile(readFile(resolve(join(tplPath, tpl))), tplData)
+    const content = compile(readFile(resolve(tplPath, tpl)), tplData)
 
     if (!content) {
       consola.error(`Failed to render template \`${fileName}\``)

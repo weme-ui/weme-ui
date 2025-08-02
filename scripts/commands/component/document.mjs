@@ -16,36 +16,15 @@ export async function generateDocument(src, dest, templates, data) {
   if (!needDocument)
     return
 
-  const category = await consola.prompt(
-    'What is the category of the component?',
-    {
-      type: 'select',
-      options: [
-        'General',
-        'Layout',
-        'Navigation',
-        'Data Display',
-        'Forms',
-        'Chart',
-        'Feedback',
-        'Other',
-      ],
-      initial: 'General',
-    },
-  )
-
   consola.start(`Generating \`${titleCase(registry)}\` component \`${titleCase(name)} document\`...`)
 
-  const destPath = `${dest}/${category.toLowerCase()}`
+  const destPath = `${dest}/${data.category.toLowerCase()}`
 
   await renderTemplates(
     src,
     destPath,
     templates,
-    {
-      ...data,
-      category,
-    },
+    data,
   )
 
   consola.success(`\`${titleCase(name)}\` document generated!`)

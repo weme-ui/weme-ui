@@ -1,9 +1,24 @@
+import { fileURLToPath } from 'node:url'
+
 export default defineNuxtConfig({
   modules: [
     '@weme-ui/nuxt',
   ],
 
+  components: {
+    dirs: [
+      {
+        prefix: 'Ui',
+        path: fileURLToPath(new URL('./../components', import.meta.url)),
+        pathPrefix: false,
+        extensions: ['.vue', '.tsx'],
+      },
+    ],
+  },
+
   devtools: {
     enabled: true,
   },
+
+  compatibilityDate: '2025-08-02',
 })

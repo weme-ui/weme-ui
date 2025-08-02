@@ -69,6 +69,7 @@ export default defineCommand({
         { tpl: 'uno.config.ts.hbs', dest: 'uno.config.ts' },
         { tpl: 'tsconfig.json.hbs', dest: 'tsconfig.json' },
         { tpl: 'app.vue.hbs', dest: 'app/app.vue' },
+        { tpl: 'index.vue.hbs', dest: 'app/pages/index.vue' },
       ],
       args,
     )

@@ -1,6 +1,6 @@
 import { readdirSync } from 'node:fs'
 import { defineCommand } from 'citty'
-import { join, resolve } from 'pathe'
+import { resolve } from 'pathe'
 import { kebabCase } from 'scule'
 import { generateComponent } from './component.mjs'
 import { generateDocument } from './document.mjs'
@@ -42,7 +42,7 @@ export default defineCommand({
     // Generate component -> registry/{registry}/components
     await generateComponent(
       src,
-      resolve(join('registry', kebabCase(registry), 'components')),
+      resolve('registry', kebabCase(registry), 'components'),
       [
         { tpl: 'vue.hbs', dest: '{{ kebabCase name }}.vue' },
         { tpl: 'props.ts.hbs', dest: '{{ kebabCase name }}.props.ts' },
@@ -51,10 +51,10 @@ export default defineCommand({
       args,
     )
 
-    // Generate playground -> registry/{registry}/playground/pages
+    // Generate playground -> registry/{registry}/.playground/app/pages
     await generatePlayground(
       src,
-      resolve(join('registry', kebabCase(registry), 'playground', 'pages')),
+      resolve('registry', kebabCase(registry), '.playground', 'app', 'pages'),
       [
         { tpl: 'playground.vue.hbs', dest: '{{ kebabCase name }}.vue' },
       ],
@@ -64,7 +64,7 @@ export default defineCommand({
     // Generate document -> docs/content/docs/{registry}/components
     await generateDocument(
       src,
-      resolve(join('docs', 'content', 'docs', kebabCase(registry), 'components')),
+      resolve('docs', 'content', 'docs', kebabCase(registry), 'components'),
       [
         { tpl: 'doc.hbs', dest: '{{ kebabCase name }}.md' },
       ],

@@ -35,7 +35,7 @@ export default defineCommand({
   async setup({ args }) {
     const { name, dest } = args
 
-    if (existsSync(dest) && await consola.prompt(
+    if (existsSync(resolve(dest, kebabCase(name))) && await consola.prompt(
       `Registry \`${titleCase(name)}\` already exists. Do you want to override it?`,
       {
         type: 'confirm',

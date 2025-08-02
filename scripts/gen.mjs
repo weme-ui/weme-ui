@@ -3,12 +3,13 @@ import { defineCommand, runMain } from 'citty'
 
 const main = defineCommand({
   meta: {
-    description: 'Weme UI Skeleton Generator',
+    description: 'Weme UI Boilerplate Generator',
   },
   subCommands: {
-    registry: () => import('./generators/registry/index.mjs').then(r => r.default),
-    component: () => import('./generators/component/index.mjs').then(r => r.default),
-    theme: () => import('./generators/theme/index.mjs').then(r => r.default),
+    package: () => import('./commands/package/index.mjs').then(r => r.default),
+    registry: () => import('./commands/registry/index.mjs').then(r => r.default),
+    component: () => import('./commands/component/index.mjs').then(r => r.default),
+    theme: () => import('./commands/theme/index.mjs').then(r => r.default),
   },
 })
 

@@ -1,25 +1,40 @@
 {
-  "name": "@weme-ui/registry-{{ name }}",
+  "name": "@weme-ui/registry-{{ kebabCase name }}",
   "type": "module",
   "version": "{{ version }}",
   "private": true,
   "packageManager": "{{ packageManager }}",
-  "description": "Weme UI components registry.",
+  "description": "Weme UI {{ titleCase name }} components registry.",
   "author": "{{{ author }}}",
   "license": "{{ license }}",
   "homepage": "https://github.com/weme-ui/weme-ui",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/weme-ui/weme-ui.git",
-    "directory": "registry/{{ name }}"
+    "directory": "registry/{{ kebabCase name }}"
   },
   "bugs": {
     "url": "https://github.com/weme-ui/weme-ui/issues"
   },
+  "keywords": [
+    "vue",
+    "nuxt",
+    "unocss",
+    "reka-ui",
+    "radix-colors",
+    "weme-ui",
+    "weme-ui-registry",
+    "weme-ui-{{ kebabCase name }}-registry",
+    "vue-components",
+    "nuxt-components",
+    "reka-ui-components",
+    "unocss-ui-components",
+    "radix-colors-components"
+  ],
   "scripts": {
-    "dev": "nuxi dev playground",
-    "dev:prepare": "nuxi prepare playground",
-    "typecheck": "vue-tsc --noEmit && cd playground && vue-tsc --noEmit"
+    "dev": "nuxi dev .playground",
+    "dev:prepare": "nuxi prepare .playground",
+    "typecheck": "vue-tsc --noEmit && cd .playground && vue-tsc --noEmit"
   },
   "peerDependencies": {
     "@vueuse/core": "catalog:dev",
@@ -35,6 +50,8 @@
     "@nuxt/test-utils": "catalog:nuxt",
     "@vue/test-utils": "catalog:vue",
     "@vueuse/core": "catalog:dev",
+    "@weme-ui/nuxt": "workspace:*",
+    "@weme-ui/unocss-preset": "workspace:*",
     "clsx": "catalog:dev",
     "happy-dom": "catalog:testing",
     "nuxt": "catalog:nuxt",

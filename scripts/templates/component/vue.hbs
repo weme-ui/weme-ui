@@ -1,10 +1,10 @@
 <script lang="ts" setup>
-import type { {{ pascalCase name }}Props } from './{{ lowerCase name }}.props'
+import type { {{ pascalCase name }}Props } from './{{ kebabCase name }}.props'
 import { reactiveOmit } from '@vueuse/core'
 import { Primitive } from 'reka-ui'
 import { computed } from 'vue'
 import { cn } from '../../utils/variants'
-import { use{{ pascalCase name }}Style } from './{{ lowerCase name }}.style'
+import { use{{ pascalCase name }}Style } from './{{ kebabCase name }}.style'
 
 const props = defineProps<{{ pascalCase name }}Props>()
 const delegated = reactiveOmit(props, 'class', 'ui')

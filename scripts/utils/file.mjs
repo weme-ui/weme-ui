@@ -1,74 +1,67 @@
-import { existsSync, readdirSync, readFileSync, writeFileSync } from 'node:fs'
-import { dirname, join } from 'node:path'
+import { copyFileSync, existsSync, readFileSync, writeFileSync } from 'node:fs'
 import consola from 'consola'
 import { mkdirp } from 'mkdirp'
+import { dirname, join, resolve } from 'pathe'
 
-export class FileReader {
-  constructor(root) {
-    this.root = root
-  }
-
-  list() {
-    return readdirSync(this.root)
-  }
-
-  read(name) {
-    return readFileSync(join(this.root, name), 'utf8')
-  }
-
-  readAnyOf(...names) {
-    let error
-
-    for (let id = 0; id < names.length; id++) {
-      const name = names[id]
-
-      try {
-        return this.read(name)
-      }
-      catch (e) {
-        if (!error && typeof e?.code === 'string') {
-          if (['EACCES', 'EPERM'].includes(e.code))
-            error = e.path
-        }
-
-        if (id === names.length - 1)
-          continue
-
-        if (error)
-          return `ERROR: Read File ${error} failed.`
-        else
-          return undefined
-      }
-    }
+export function mkdirs(...paths) {
+  for (const path of paths) {
+    if (!existsSync(path))
+      mkdirp.sync(path)
   }
 }
 
-export async function asyncWriteFile(filepath, content, silence = false, flag = 'w') {
-  const isExists = existsSync(filepath)
+export function copyFile(src, dest) {
+  if (existsSync(src) && !existsSync(dest))
+    return copyFileSync(src, dest)
+}
 
-  if (
-    isExists
-    && !silence
-    && !await consola.prompt(
-      `File \`${filepath}\` already exists.\n Do you want to override it?`,
-      {
-        type: 'confirm',
-        initial: true,
-      },
-    )
-  ) {
+export function readJsonFile(path, options = { root: '' }) {
+  const content = readFile(path, options)
+
+  if (!content) {
     return
   }
 
-  if (!existsSync(dirname(filepath)))
-    await mkdirp(dirname(filepath))
+  return JSON.parse(content)
+}
 
-  writeFileSync(filepath, content, {
+export function readFile(path, options = { root: '' }) {
+  const filePath = resolve(join(options.root, path))
+
+  if (!existsSync(filePath)) {
+    consola.error(`File \`${filePath}\` not found.`)
+    return
+  }
+
+  return readFileSync(filePath, 'utf8')
+}
+
+export async function writeFile(path, content, options = { flag: 'w', quiet: false }) {
+  const {
+    flag = 'w',
+    quiet = false,
+  } = options
+
+  const isExists = existsSync(path)
+
+  if (
+    isExists
+    && !quiet
+    && await consola.prompt(`File \`${path}\` already exists. Do you want to override it?`, {
+      type: 'confirm',
+      initial: true,
+    })) {
+    return
+  }
+
+  mkdirs(dirname(path))
+
+  writeFileSync(path, content, {
     encoding: 'utf8',
     flag,
   })
 
-  if (!silence) {
-    consola.info(`${isExists ? 'Overwrote' : 'Generated'} file \`${filepath}\``)
+  if (!quiet) {
+    consola.info(`${isExists ? 'Overwrote' : 'Generated'} file \`${path}\``)
   }
 }

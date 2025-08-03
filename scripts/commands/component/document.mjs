@@ -9,7 +9,7 @@ export async function generateDocument(src, dest, templates, data) {
     `Do you want to create a documentation for the \`${titleCase(name)}\` component?`,
     {
       type: 'confirm',
-      initial: true,
+      initial: false,
     },
   )
 

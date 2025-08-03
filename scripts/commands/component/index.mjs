@@ -1,12 +1,13 @@
-import { readdirSync } from 'node:fs'
+import { existsSync, readdirSync } from 'node:fs'
 import { defineCommand } from 'citty'
 import { consola } from 'consola'
-import { resolve } from 'pathe'
+import { join, resolve } from 'pathe'
 import { kebabCase, titleCase } from 'scule'
 import { readJsonFile } from '../../utils/file.mjs'
-import { generateComponent } from './component.mjs'
+import { renderTemplates } from '../../utils/template.mjs'
 import { generateDocument } from './document.mjs'
 import { generatePlayground } from './playground.mjs'
+import { updateRegistry } from './registry.mjs'
 
 const registries = readdirSync(resolve('./registry'), { withFileTypes: true })
   .filter(dir => dir.isDirectory())
@@ -39,8 +40,9 @@ export default defineCommand({
   },
 
   async setup({ args }) {
-    const { registry, src } = args
+    const { name, registry, src } = args
 
+    const dest = resolve('registry', kebabCase(registry), 'components')
     const registryJSON = readJsonFile(resolve('registry', kebabCase(registry), 'registry.json'))
     const categories = registryJSON.categories.map(c => ({ name: c, value: titleCase(c) }))
 
@@ -54,15 +56,39 @@ export default defineCommand({
       },
     )
 
+    let registryDest = join(dest, kebabCase(name))
+
+    if (name.includes('-')) {
+      const parentName = name.split('-').shift()
+      const parentPath = join(dest, parentName)
+
+      if (existsSync(parentPath)) {
+        const inside = await consola.prompt(
+          `Component \`${parentName}\` already exists. Do you want to create the component inside it?`,
+          {
+            type: 'confirm',
+            initial: false,
+          },
+        )
+
+        if (inside)
+          registryDest = parentPath
+
+        args.inside = inside
+      }
+    }
+
     if (!args.category) {
       // eslint-disable-next-line node/prefer-global/process
       process.exit(1)
     }
 
     // Generate component -> registry/{registry}/components
-    await generateComponent(
+    consola.start(`Generating \`${titleCase(registry)}\` component \`${titleCase(name)}\`...`)
+
+    await renderTemplates(
       src,
-      resolve('registry', kebabCase(registry), 'components'),
+      registryDest,
       [
         { tpl: 'vue.hbs', dest: '{{ kebabCase name }}.vue' },
         { tpl: 'props.ts.hbs', dest: '{{ kebabCase name }}.props.ts' },
@@ -70,6 +96,8 @@ export default defineCommand({
       ],
       args,
     )
+
+    consola.success(`\`${titleCase(name)}\` component generated!`)
 
     // Generate playground -> registry/{registry}/.playground/app/pages
     await generatePlayground(
@@ -90,5 +118,8 @@ export default defineCommand({
       ],
       args,
     )
+
+    // Update registry -> registry/{registry}/registry.json
+    await updateRegistry(args)
   },
 })

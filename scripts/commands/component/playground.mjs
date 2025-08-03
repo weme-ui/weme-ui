@@ -9,7 +9,7 @@ export async function generatePlayground(src, dest, templates, data) {
     `Do you want to create a playground for the \`${titleCase(name)}\` component?`,
     {
       type: 'confirm',
-      initial: true,
+      initial: false,
     },
   )
 

@@ -54,6 +54,7 @@ export default defineCommand({
         { tpl: 'package.json.hbs', dest: 'package.json' },
         { tpl: 'registry.json.hbs', dest: 'registry.json' },
         { tpl: 'tsconfig.json.hbs', dest: 'tsconfig.json' },
+        { tpl: 'uno.config.ts.hbs', dest: 'uno.config.ts' },
         { tpl: 'utils.ts.hbs', dest: 'utils/variants.ts' },
       ],
       args,

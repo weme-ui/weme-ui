@@ -111,7 +111,6 @@ export default defineNuxtModule<WemeNuxtOptions>({
     await registerModule('@vueuse/nuxt', 'vueuse')
 
     await registerModule<UnocssNuxtOptions>('@unocss/nuxt', 'unocss', {
-      uno: false,
       components: false,
       safelist: [
         'isolate',

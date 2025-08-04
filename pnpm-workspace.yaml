@@ -41,7 +41,7 @@ catalogs:
     tailwind-merge: ^3.3.1
     tailwind-variants: ^2.1.0
     ufo: ^1.6.1
-    unocss: ^66.4.0
+    unocss: ^66.4.1
   icon:
     '@iconify-json/lucide': ^1.2.60
   lint:
@@ -60,7 +60,7 @@ catalogs:
     '@nuxt/schema': ^4.0.2
     '@nuxt/test-utils': ^3.19.2
     '@nuxtjs/i18n': 10.0.1
-    '@unocss/nuxt': ^66.4.0
+    '@unocss/nuxt': ^66.4.1
     '@vueuse/nuxt': ^13.6.0
     better-sqlite3: ^12.2.0
     nuxt: ^4.0.2

@@ -54,7 +54,7 @@ export async function updateRegistry(data) {
     })
   }
 
-  await writeFile(registryJsonPath, JSON.stringify(registryJSON, null, 2), { quiet: true })
+  await writeFile(registryJsonPath, `${JSON.stringify(registryJSON, null, 2)}\n`, { quiet: true })
 
   consola.success(`Registry items updated!`)
 }

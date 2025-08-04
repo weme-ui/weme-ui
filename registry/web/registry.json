@@ -17,7 +17,7 @@
       "name": "icon",
       "type": "component",
       "title": "Icon",
-      "description": "The Icon component.",
+      "description": "A component to display any icon from Iconify.",
       "categories": [
         "general"
       ],
@@ -32,6 +32,18 @@
         },
         {
           "path": "components/icon/icon.style.ts",
+          "type": "style"
+        },
+        {
+          "path": "components/icon/icon-box.vue",
+          "type": "component"
+        },
+        {
+          "path": "components/icon/icon-box.props.ts",
+          "type": "type"
+        },
+        {
+          "path": "components/icon/icon-box.style.ts",
           "type": "style"
         }
       ]

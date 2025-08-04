@@ -47,6 +47,7 @@
     "vue": "catalog:vue"
   },
   "devDependencies": {
+    "@iconify-json/lucide": "catalog:icon",
     "@nuxt/test-utils": "catalog:nuxt",
     "@vue/test-utils": "catalog:vue",
     "@vueuse/core": "catalog:dev",

@@ -1,7 +1,7 @@
 {
   "$schema": "../../schema/registry.json",
   "name": "Weme UI for Web",
-  "homepage": "https://github.com/weme-ui/weme-ui/registry/web",
+  "homepage": "https://github.com/weme-ui/weme-ui/tree/main/registry/web",
   "categories": [
     "general",
     "layout",
@@ -13,5 +13,28 @@
     "other"
   ],
   "items": [
+    {
+      "name": "icon",
+      "type": "component",
+      "title": "Icon",
+      "description": "The Icon component.",
+      "categories": [
+        "general"
+      ],
+      "files": [
+        {
+          "path": "components/icon/icon.vue",
+          "type": "component"
+        },
+        {
+          "path": "components/icon/icon.props.ts",
+          "type": "type"
+        },
+        {
+          "path": "components/icon/icon.style.ts",
+          "type": "style"
+        }
+      ]
+    }
   ]
 }

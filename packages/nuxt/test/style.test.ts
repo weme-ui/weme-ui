@@ -18,8 +18,8 @@ describe('weme.style', () => {
     expect(createColorVariants({ variant: 'solid', states: 'normal', slot: 'base' })).toMatchSnapshot()
     expect(createColorVariants({ variant: 'solid', states: ['normal', 'hover', 'active'] })).toMatchSnapshot()
     expect(createColorVariants({ variant: 'solid', states: ['normal', 'hover', 'active'], slot: 'base' })).toMatchSnapshot()
-    expect(createColorVariants({ variant: 'solid', states: 'normal', defaults: '' })).toMatchSnapshot()
-    expect(createColorVariants({ variant: 'solid', states: 'normal', defaults: '', slot: 'base' })).toMatchSnapshot()
+    expect(createColorVariants({ defaults: '' })).toMatchSnapshot()
+    expect(createColorVariants({ defaults: '', slot: 'base' })).toMatchSnapshot()
   })
 
   it('should resolved color compound variants', () => {

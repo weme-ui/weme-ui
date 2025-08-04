@@ -101,13 +101,13 @@ export function createColorVariantClasses({
  * \`\`\`
  */
 export function createColorVariants({
-  variant,
-  states,
+  variant = 'solid',
+  states = 'normal',
   defaults,
   slot = '',
 }: {
-  variant: VariantName
-  states: StateName | StateName[]
+  variant?: VariantName
+  states?: StateName | StateName[]
   defaults?: string
   slot?: string
 }) {

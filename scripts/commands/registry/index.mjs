@@ -70,6 +70,7 @@ export default defineCommand({
         { tpl: 'tsconfig.json.hbs', dest: 'tsconfig.json' },
         { tpl: 'app.vue.hbs', dest: 'app/app.vue' },
         { tpl: 'index.vue.hbs', dest: 'app/pages/index.vue' },
+        { tpl: 'container.vue.hbs', dest: 'app/components/container.vue' },
       ],
       args,
     )

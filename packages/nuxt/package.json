@@ -55,7 +55,6 @@
     "@nuxt/icon": "catalog:nuxt",
     "@nuxt/module-builder": "catalog:nuxt",
     "@nuxt/schema": "catalog:nuxt",
-    "@nuxt/test-utils": "catalog:nuxt",
     "@types/node": "catalog:build",
     "@unocss/nuxt": "catalog:nuxt",
     "@vueuse/nuxt": "catalog:nuxt",
@@ -64,7 +63,6 @@
     "nuxt": "catalog:nuxt",
     "typescript": "catalog:build",
     "unocss": "catalog:dev",
-    "vitest": "catalog:testing",
     "vue-tsc": "catalog:vue"
   }
 }

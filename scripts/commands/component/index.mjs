@@ -99,10 +99,10 @@ export default defineCommand({
 
     consola.success(`\`${titleCase(name)}\` component generated!`)
 
-    // Generate playground -> registry/{registry}/.playground/app/pages
+    // Generate playground -> registry/{registry}/.playground/app/pages/components
     await generatePlayground(
       src,
-      resolve('registry', kebabCase(registry), '.playground', 'app', 'pages'),
+      resolve('registry', kebabCase(registry), '.playground', 'app', 'pages', 'components'),
       [
         { tpl: 'playground.vue.hbs', dest: '{{ kebabCase name }}.vue' },
       ],

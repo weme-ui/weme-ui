@@ -89,7 +89,7 @@ export default defineNuxtModule<WemeNuxtOptions>({
     options.imports.themes = [...new Set(options.imports.themes?.filter(Boolean).map(dir => resolver.resolve(dir)))]
 
     nuxt.options.weme = options
-    nuxt.options.alias['#weme'] = './weme'
+    nuxt.options.alias['#weme'] = resolver.resolve('runtime')
 
     nuxt.options.appConfig.weme = {
       theme: 'default',

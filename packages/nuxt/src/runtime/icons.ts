@@ -24,6 +24,7 @@ export const WemeIcons = {
   success: 'lucide:circle-check',
   warning: 'lucide:triangle-alert',
   error: 'lucide:circle-x',
+  help: 'i-lucide-circle-help',
 
   // Other
   external: 'lucide:arrow-up-right',

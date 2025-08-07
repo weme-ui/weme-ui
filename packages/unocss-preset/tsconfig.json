@@ -20,7 +20,7 @@
     "**/node_modules/**",
     "**/test/**",
     "**/playground/**",
-    "build.config.ts",
+    "tsdown.config.ts",
     "uno.config.ts"
   ]
 }

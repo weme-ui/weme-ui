@@ -19,6 +19,6 @@
     "**/dist/**",
     "**/node_modules/**",
     "**/test/**",
-    "build.config.ts"
+    "tsdown.config.ts"
   ]
 }

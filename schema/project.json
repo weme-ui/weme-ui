@@ -1,0 +1,99 @@
+{
+  "$schema": "https://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "properties": {
+    "provider": {
+      "type": "string",
+      "description": "The provider for the registry repository. This is used to load the registry item's files.",
+      "default": "github",
+      "examples": ["github", "esm", "unpkg", "jsdelivr", "https://git.self-hosted.com", "path/to/local/registry"]
+    },
+
+    "repos": {
+      "type": "array",
+      "description": "The repos to fetch the components from.",
+      "items": {
+        "type": "string"
+      },
+      "examples": ["@weme-ui/weme-ui"]
+    },
+
+    "prefix": {
+      "type": "object",
+      "description": "The prefix for the registry repository.",
+      "additionalProperties": {
+        "type": "string"
+      },
+      "propertyNames": {
+        "type": "string"
+      }
+    },
+
+    "paths": {
+      "type": "object",
+      "description": "The paths for the project.",
+      "properties": {
+        "components": {
+          "type": "string",
+          "description": "The path for the components.",
+          "default": "~/components"
+        }
+      },
+      "additionalProperties": {
+        "type": "string"
+      },
+      "propertyNames": {
+        "type": "string"
+      },
+      "required": ["components"]
+    },
+
+    "unocss": {
+      "type": "object",
+      "description": "The UnoCSS Preset options.",
+      "properties": {
+        "prefix": {
+          "type": "string",
+          "description": "The prefix for the CSS variables.",
+          "default": "ui"
+        },
+        "reset": {
+          "type": "boolean",
+          "description": "Whether to inject reset styles.",
+          "examples": [true]
+        },
+        "accentColors": {
+          "type": "object",
+          "description": "The custom accent colors for the project.",
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "neutralColors": {
+          "type": "object",
+          "description": "The custom neutral colors for the project.",
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "background": {
+          "type": "object",
+          "description": "The background colors for generating the custom color scales.",
+          "properties": {
+            "light": {
+              "type": "string",
+              "description": "The light background color.",
+              "default": "#fff"
+            },
+            "dark": {
+              "type": "string",
+              "description": "The dark background color.",
+              "default": "#111"
+            }
+          }
+        }
+      }
+    }
+  },
+  "required": ["paths"]
+}

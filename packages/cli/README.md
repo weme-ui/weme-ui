@@ -34,12 +34,6 @@ pnpm dlx @weme-ui/weme-ui init
 pnpm dlx @weme-ui/weme-ui add <component-name>
 ```
 
-### 创建主题
-
-```bash
-pnpm dlx @weme-ui/weme-ui theme <theme-name>
-```
-
 ---
 
 ## 鸣谢

@@ -2,7 +2,7 @@
   "name": "@weme-ui/nuxt",
   "type": "module",
   "version": "0.0.0",
-  "packageManager": "pnpm@10.14.0",
+  "packageManager": "pnpm@10.15.0",
   "description": "Weme UI - Nuxt module.",
   "author": "Allen Luo <luoyi@mouji.net>",
   "license": "MIT",
@@ -44,7 +44,7 @@
   },
   "peerDependencies": {
     "defu": "catalog:dev",
-    "fast-glob": "catalog:dev"
+    "fast-glob": "catalog:utils"
   },
   "dependencies": {
     "@nuxt/kit": "catalog:nuxt",
@@ -52,15 +52,15 @@
     "@weme-ui/unocss-preset": "workspace:*"
   },
   "devDependencies": {
-    "@nuxt/devtools": "catalog:nuxt",
-    "@nuxt/icon": "catalog:nuxt",
+    "@nuxt/devtools": "catalog:dev",
+    "@nuxt/icon": "catalog:dev",
     "@nuxt/module-builder": "catalog:nuxt",
     "@nuxt/schema": "catalog:nuxt",
     "@types/node": "catalog:build",
-    "@unocss/nuxt": "catalog:nuxt",
-    "@vueuse/nuxt": "catalog:nuxt",
+    "@unocss/nuxt": "catalog:dev",
+    "@vueuse/nuxt": "catalog:dev",
     "defu": "catalog:dev",
-    "fast-glob": "catalog:dev",
+    "fast-glob": "catalog:utils",
     "nuxt": "catalog:nuxt",
     "typescript": "catalog:build",
     "unocss": "catalog:dev",

@@ -9,6 +9,11 @@ export function createUnoCssConfig(
   neutralColors?: Record<string, string>,
   themes?: WemeThemeDefinition[],
 ): NuxtTemplate {
+  // TODO: Support CSS variables
+  // ?1. run cli add component
+  // ?2. write css vars to component.json from registry.json
+  // ?3. read and generate uno.config.ts
+
   return {
     filename: 'uno.config.ts',
     getContents() {
@@ -33,11 +38,6 @@ export default defineConfig({
       neutralColors: ${JSON.stringify(neutralColors || {}, null, 2)},
       injectDefaultThemes: ${themes && themes.length ? 'false' : 'true'},
       themes: ${JSON.stringify(themes || [], null, 2)},
-
-      // TODO: Support CSS variables
-      // ?1. run cli add component
-      // ?2. write css vars to component.json from registry.json
-      // ?3. read and generate uno.config.ts
     }),
   ],
 

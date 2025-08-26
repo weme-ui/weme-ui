@@ -2,7 +2,7 @@ import { copyFileSync, existsSync, readFileSync, writeFileSync } from 'node:fs'
 import { cwd, exit } from 'node:process'
 import { mkdirp } from 'mkdirp'
 import { dirname, relative, resolve } from 'pathe'
-import { consola } from '~/utils/consola'
+import { consola } from '../utils/consola'
 
 export function readFile(path: string, cwd: string = '', throwError = true) {
   const filePath = resolve(cwd, path)

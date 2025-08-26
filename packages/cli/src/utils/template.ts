@@ -4,7 +4,7 @@ import { downloadTemplate } from 'giget'
 import handlebars from 'handlebars'
 import { relative, resolve } from 'pathe'
 import { camelCase, kebabCase, pascalCase, titleCase } from 'scule'
-import { consola } from '~/utils/consola'
+import { consola } from '../utils/consola'
 import { readFile, writeFile } from './file'
 
 const TEMPLATES_PATH = resolve(cwd(), '.templates')

@@ -55,7 +55,6 @@ module.exports = {
       d: 'chore(docs): 更新文档',
       b: 'chore(deps): 更新依赖',
       c: 'chore(ci): 更新 CI 配置',
-      s: 'chore(scripts): 更新脚手架',
       u: 'feat(unocss-preset): 更新 UnoCSS Preset',
     },
     customScopesAlign: !scopeComplete ? 'top' : 'bottom',

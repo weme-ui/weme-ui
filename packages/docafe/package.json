@@ -21,8 +21,7 @@
   ],
   "main": "./nuxt.config.ts",
   "scripts": {
-    "dev:prepare": "nuxt prepare",
-    "typecheck": "vue-tsc --noEmit"
+    "dev:prepare": "nuxt prepare"
   },
   "peerDependencies": {
     "better-sqlite3": "catalog:docs",

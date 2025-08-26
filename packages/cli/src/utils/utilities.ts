@@ -1,7 +1,7 @@
 import type { PackageJson } from 'pkg-types'
 import { existsSync } from 'node:fs'
 import { resolve } from 'pathe'
-import { CLI_PATH, TEMPLATE_REPO } from '~/constants'
+import { CLI_PATH, TEMPLATE_REPO } from '../constants'
 import { readFile } from './file'
 
 export function existsPackageJson(cwd: string) {

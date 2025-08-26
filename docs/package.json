@@ -1,0 +1,55 @@
+{
+  "name": "docs",
+  "type": "module",
+  "version": "0.0.0",
+  "packageManager": "pnpm@10.15.0",
+  "description": "The documentation for Weme UI.",
+  "author": "Allen Luo <luoyi@mouji.net>",
+  "license": "MIT",
+  "homepage": "https://github.com/weme-ui/weme-ui#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/weme-ui/weme-ui.git",
+    "directory": "docs"
+  },
+  "bugs": {
+    "url": "https://github.com/weme-ui/weme-ui/issues"
+  },
+  "keywords": [
+    "weme-ui",
+    "weme-ui-docs"
+  ],
+  "scripts": {
+    "dev": "nuxt dev",
+    "dev:prepare": "nuxt prepare",
+    "build": "nuxt build",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview"
+  },
+  "dependencies": {
+    "clsx": "catalog:dev",
+    "reka-ui": "catalog:dev",
+    "tailwind-merge": "catalog:dev",
+    "tailwind-variants": "catalog:dev"
+  },
+  "devDependencies": {
+    "@iconify-json/lucide": "catalog:icon",
+    "@iconify-json/simple-icons": "catalog:icon",
+    "@nuxt/content": "catalog:docs",
+    "@nuxt/icon": "catalog:dev",
+    "@nuxtjs/i18n": "catalog:docs",
+    "@unocss/nuxt": "catalog:dev",
+    "@vueuse/core": "catalog:dev",
+    "@vueuse/nuxt": "catalog:dev",
+    "@weme-ui/colors": "workspace:*",
+    "@weme-ui/docafe": "workspace:*",
+    "@weme-ui/nuxt": "workspace:*",
+    "@weme-ui/unocss-preset": "workspace:*",
+    "better-sqlite3": "catalog:docs",
+    "defu": "catalog:dev",
+    "nuxt": "catalog:nuxt",
+    "typescript": "catalog:build",
+    "unocss": "catalog:dev",
+    "vue": "catalog:vue"
+  }
+}

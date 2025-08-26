@@ -1,0 +1,15 @@
+{
+  "$schema": "https://weme-ui.github.io/schema/project.json",
+  "repos": [
+    "@weme-ui/weme-ui"
+  ],
+  "paths": {
+    "components": "~/components",
+    "composables": "~/composables",
+    "layouts": "~/layouts",
+    "themes": "~/themes",
+    "plugins": "~/plugins",
+    "utils": "~/utils",
+    "types": "~/types"
+  }
+}

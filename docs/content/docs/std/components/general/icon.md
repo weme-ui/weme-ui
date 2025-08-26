@@ -54,14 +54,13 @@ data:
     description: 图标名称
     required: true
   - name: mode
-    type: 
+    type:
       - svg
       - css
     default: svg
     description: 图标模式
 ---
 ::
-
 
 ### 内建图标
 

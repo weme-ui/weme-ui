@@ -1,0 +1,9 @@
+{
+  "$schema": "https://weme-ui.github.io/schema/project.json",
+  "repos": [
+    "@weme-ui/weme-ui"
+  ],
+  "paths": {
+    "components": "~/components"
+  }
+}

@@ -1,7 +1,7 @@
 <p align="center">
-  <img align="center" src="https://raw.githubusercontent.com/moujinet/assets/main/weme-ui/png/weme-128-duotone.png" height="128" />
+  <img align="center" src="https://raw.githubusercontent.com/moujinet/assets/main/weme-ui/png/circle-128.png" height="128" />
   <h1 align="center">
-    Weme UI <sup style="color: #06f">cli</sup>
+    Weme UI <sup style="color: #4CBBA5">cli</sup>
   </h1>
 </p>
 

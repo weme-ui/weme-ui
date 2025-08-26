@@ -1,5 +1,13 @@
-import { cwd } from 'node:process'
+import { cwd, exit } from 'node:process'
 import { defineCommand } from 'citty'
+import { consola } from '~/utils/consola'
+import { downloadRemoteTemplate } from '~/utils/template'
+import { resolveCommandArgs } from '~/utils/utilities'
+import { initializeComponent } from './component'
+import { initializeProject } from './project'
+import { initializeRegistry } from './registry'
+import { initializeRepository } from './repository'
+import { initializeTheme } from './theme'
 
 export default defineCommand({
   meta: {
@@ -8,6 +16,11 @@ export default defineCommand({
   },
 
   args: {
+    'name': {
+      type: 'positional',
+      description: 'Name of the project/registry/repository.',
+      valueHint: 'name',
+    },
     'provider': {
       type: 'string',
       description: 'Provider of the registry.',
@@ -22,8 +35,13 @@ export default defineCommand({
     },
     'template': {
       type: 'string',
-      description: 'Initialize project with remote template repo.',
-      valueHint: 'url',
+      description: 'Template repository.',
+      valueHint: 'github:username/repo',
+    },
+    'type': {
+      type: 'string',
+      description: 'Initialize type.',
+      valueHint: 'project|repository|registry|component|theme',
     },
     'prefix': {
       type: 'string',
@@ -91,5 +109,63 @@ export default defineCommand({
       default: false,
       alias: 'f',
     },
+  },
+
+  async setup({ args }) {
+    consola.info('Initialize Weme UI')
+
+    if (!args.type) {
+      const type = await consola.prompt('What do you want to initialize?', {
+        type: 'select',
+        required: true,
+        options: [
+          { label: 'Project', value: 'project' },
+          { label: 'Repository', value: 'repository' },
+          { label: 'Registry', value: 'registry' },
+          { label: 'Component', value: 'component' },
+          { label: 'Theme', value: 'theme' },
+        ],
+        initial: 'project',
+        cancel: 'undefined',
+      })
+
+      if (type === undefined)
+        exit(0)
+
+      console.log('')
+
+      args.type = type
+    }
+
+    const resolvedArgs = resolveCommandArgs(args)
+
+    if (resolvedArgs.template && !resolvedArgs.template.startsWith('/'))
+      resolvedArgs.template = await downloadRemoteTemplate(resolvedArgs)
+
+    switch (resolvedArgs.type) {
+      case 'project':
+        await initializeProject(resolvedArgs)
+        break
+
+      case 'repository':
+        await initializeRepository(resolvedArgs)
+        break
+
+      case 'registry':
+        await initializeRegistry(resolvedArgs)
+        break
+
+      case 'component':
+        await initializeComponent(resolvedArgs)
+        break
+
+      case 'theme':
+        await initializeTheme(resolvedArgs)
+        break
+
+      default:
+        consola.error(`Type \`${resolvedArgs.type}\` is not implemented!`)
+        break
+    }
   },
 })

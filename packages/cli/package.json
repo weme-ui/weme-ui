@@ -2,11 +2,11 @@
   "name": "@weme-ui/weme-ui",
   "type": "module",
   "version": "0.0.0",
-  "packageManager": "pnpm@10.14.0",
+  "packageManager": "pnpm@10.15.0",
   "description": "Re-usable UI components with Reka UI and UnoCSS.",
   "author": "Allen Luo <luoyi@mouji.net>",
   "license": "MIT",
-  "homepage": "https://github.com/weme-ui/weme-ui#readme",
+  "homepage": "https://github.com/weme-ui/weme-ui",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/weme-ui/weme-ui.git",
@@ -45,7 +45,8 @@
   },
   "bin": "./dist/index.js",
   "files": [
-    "dist"
+    "dist",
+    "package.json"
   ],
   "scripts": {
     "build": "tsdown",
@@ -56,14 +57,19 @@
     "typecheck": "tsgo --noEmit"
   },
   "dependencies": {
-    "@clack/prompts": "catalog:cli",
-    "chalk": "catalog:cli",
-    "citty": "catalog:cli",
-    "diff": "catalog:cli",
-    "execa": "catalog:cli",
-    "pathe": "catalog:cli",
-    "zod": "catalog:dev",
-    "zod-to-json-schema": "catalog:dev"
+    "citty": "catalog:utils",
+    "consola": "catalog:utils",
+    "debug": "catalog:utils",
+    "diff": "catalog:utils",
+    "execa": "catalog:utils",
+    "giget": "catalog:utils",
+    "handlebars": "catalog:utils",
+    "mkdirp": "catalog:utils",
+    "nypm": "catalog:utils",
+    "pathe": "catalog:utils",
+    "pkg-types": "catalog:utils",
+    "scule": "catalog:utils",
+    "zod": "catalog:utils"
   },
   "devDependencies": {
     "@types/node": "catalog:build",

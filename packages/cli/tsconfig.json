@@ -9,6 +9,9 @@
     "paths": {
       "~/*": [
         "./src/*"
+      ],
+      "~~/*": [
+        "../../*"
       ]
     },
     "resolveJsonModule": true,

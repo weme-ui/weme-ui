@@ -42,6 +42,7 @@ export const registrySchema = z.object({
   description: z.string().optional(),
   version: z.string().optional(),
   prefix: z.string().optional(),
+  directory: z.string().optional(),
   access: z.enum(['public']).optional(),
   meta: z.object({
     authors: z.array(z.string()).optional(),

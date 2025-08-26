@@ -13,6 +13,5 @@ export const cli = defineCommand({
     add: () => import('./commands/add').then(r => r.default),
     info: () => import('./commands/info').then(r => r.default),
     update: () => import('./commands/update').then(r => r.default),
-    registry: () => import('./commands/registry').then(r => r.default),
   },
 })

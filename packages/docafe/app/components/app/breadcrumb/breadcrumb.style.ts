@@ -1,6 +1,6 @@
 import { createVariants } from '~/utils/styles'
 
-export const useAppBreadcrumbStyle = createVariants({
+export const useBreadcrumbStyle = createVariants({
   slots: {
     base: 'flex-(~ y-center) gap-x-4 text-sm list-none',
     link: 'transition-colors hover:text-accent-10',

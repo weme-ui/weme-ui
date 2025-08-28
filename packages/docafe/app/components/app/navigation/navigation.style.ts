@@ -1,6 +1,6 @@
 import { createVariants } from '~/utils/styles'
 
-export const useAppNavigationStyle = createVariants({
+export const useNavigationStyle = createVariants({
   slots: {
     base: 'p-6 w-75',
   },

@@ -1,10 +1,10 @@
 <script lang="ts" setup>
-import { useAppFooterStyle } from './footer.style'
+import { useFooterStyle } from './footer.style'
 
 const footer = useConfig('footer')
 const { page } = useContent()
 
-const ui = computed(() => useAppFooterStyle({
+const ui = computed(() => useFooterStyle({
   bordered: !!page.value?.footer.bordered,
 }))
 </script>

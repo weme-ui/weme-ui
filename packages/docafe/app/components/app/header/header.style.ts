@@ -1,6 +1,6 @@
 import { createVariants } from '~/utils/styles'
 
-export const useAppHeaderStyle = createVariants({
+export const useHeaderStyle = createVariants({
   slots: {
     base: [
       'sticky top-0 z-9 transition-colors',

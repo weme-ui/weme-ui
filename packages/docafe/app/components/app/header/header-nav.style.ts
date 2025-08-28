@@ -1,6 +1,6 @@
 import { createVariants } from '~/utils/styles'
 
-export const useAppHeaderNavStyle = createVariants({
+export const useHeaderNavStyle = createVariants({
   slots: {
     root: 'relative z-1 w-full',
     list: 'flex gap-x-2',

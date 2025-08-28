@@ -9,7 +9,7 @@ const { list } = defineProps<{
 const { page } = useContent()
 
 const { data: features } = await useAsyncData(
-  computed(() => `features:${page.value?.path}`),
+  computed(() => normalizePath('features', page.value?.path || '/')),
   () => list ? Promise.all(list.map(item => parseMarkdown(item))) : Promise.resolve([]),
 )
 

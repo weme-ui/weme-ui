@@ -17,6 +17,9 @@ export default defineNuxtConfig({
   content: {
     build: {
       markdown: {
+        toc: {
+          depth: 3,
+        },
         highlight: {
           theme: {
             default: 'andromeeda',

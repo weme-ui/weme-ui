@@ -36,6 +36,7 @@
   },
   "devDependencies": {
     "@iconify-json/catppuccin": "catalog:icon",
+    "@iconify-json/mingcute": "catalog:icon",
     "@nuxt/content": "catalog:docs",
     "@nuxt/icon": "catalog:dev",
     "@unocss/nuxt": "catalog:dev",

@@ -1,12 +1,6 @@
 <script lang="ts" setup>
-import { usePageStyle } from '~/styles/page.style'
-
 const config = useConfig()
 const { page } = useContent()
-
-const ui = computed(() => usePageStyle({
-  custom: !!page.value?.theme?.custom,
-}))
 
 definePageMeta({
   layout: 'playground',
@@ -26,9 +20,11 @@ useHead({
 </script>
 
 <template>
-  <div :class="ui.base()">
-    <main :class="ui.wrapper()">
-      <ContentRenderer v-if="page" :value="page" :class="ui.content()" />
-    </main>
-  </div>
+  <AppPage v-slot="{ ui }" :page>
+    <ContentRenderer
+      v-if="page"
+      :class="ui"
+      :value="page"
+    />
+  </AppPage>
 </template>

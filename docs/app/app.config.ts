@@ -1,7 +1,6 @@
 export default defineAppConfig({
   docafe: {
     site: {
-      name: 'Weme UI',
       title: 'Re-usable UI components with Reka UI and UnoCSS',
       titleTemplate: '%s - Weme UI',
       description: 'Re-usable UI components with Reka UI and UnoCSS.',
@@ -138,6 +137,29 @@ export default defineAppConfig({
           to: '/releases',
         },
       ],
+    },
+
+    outline: {
+      title: '大纲',
+      extends: {
+        title: '社区支持',
+        links: [
+          {
+            icon: 'lucide:star',
+            label: 'Star on GitHub',
+            to: 'https://github.com/weme-ui/weme-ui',
+            rel: 'noopener noreferrer',
+            target: '_blank',
+          },
+          {
+            icon: 'lucide:bug',
+            label: 'Report an issue',
+            to: 'https://github.com/weme-ui/weme-ui/issues',
+            rel: 'noopener noreferrer',
+            target: '_blank',
+          },
+        ],
+      },
     },
   },
 })

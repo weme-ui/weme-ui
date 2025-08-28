@@ -2,6 +2,7 @@
 import { useCardStyle } from '~/styles/card.style'
 
 const props = defineProps<{
+  title: string
   icon?: string
   href?: string
 }>()
@@ -29,10 +30,10 @@ const ui = computed(() => useCardStyle({
 
     <div class="flex-(~ col)">
       <h2 :class="ui.title()">
-        <slot name="title" mdc-unwrap="p" />
+        {{ title }}
       </h2>
       <p :class="ui.description()">
-        <slot name="description" mdc-unwrap="p" />
+        <slot mdc-unwrap="p" />
       </p>
     </div>
   </NuxtLink>

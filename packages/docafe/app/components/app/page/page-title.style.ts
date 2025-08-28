@@ -1,6 +1,6 @@
 import { createVariants } from '~/utils/styles'
 
-export const useAppPageTitleStyle = createVariants({
+export const usePageTitleStyle = createVariants({
   slots: {
     base: 'flex-(~ col) gap-y-4 pt-4',
     icon: '',

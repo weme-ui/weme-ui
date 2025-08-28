@@ -10,3 +10,13 @@ export function getUseValue<T = any>(...values: T[]): T {
 
   return result as T
 }
+
+export function normalizePath(suffix: string, path: string) {
+  const normalized = path === '/'
+    ? 'landing'
+    : path
+        .replace(/^\//, '')
+        .replace(/\//g, '-')
+
+  return `${normalized}:${suffix}`
+}

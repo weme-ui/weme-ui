@@ -1,9 +1,9 @@
 <script lang="ts" setup>
-import { useAppNavigationStyle } from './navigation.style'
+import { useNavigationStyle } from './navigation.style'
 
 const sidebar = useConfig('sidebar')
 
-const ui = computed(() => useAppNavigationStyle({
+const ui = computed(() => useNavigationStyle({
   bordered: !!sidebar.value?.bordered,
 }))
 </script>

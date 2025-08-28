@@ -81,7 +81,7 @@ interface DocafeConfig {
 
   theme?: DocafeConfigTheme
 
-  icons: DocafeConfigIcons
+  icons?: DocafeConfigIcons
 
   header?: {
     logo?: string

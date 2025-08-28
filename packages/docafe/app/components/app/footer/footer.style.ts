@@ -1,6 +1,6 @@
 import { createVariants } from '~/utils/styles'
 
-export const useAppFooterStyle = createVariants({
+export const useFooterStyle = createVariants({
   slots: {
     base: 'flex justify-between text-sm px-6 py-4 bg-neutral-1',
     copyright: '',

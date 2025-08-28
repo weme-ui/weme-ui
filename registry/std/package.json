@@ -1,0 +1,65 @@
+{
+  "name": "@weme-ui/std",
+  "type": "module",
+  "version": "0.0.0",
+  "private": true,
+  "packageManager": "pnpm@10.15.0",
+  "description": "Weme UI Std components registry.",
+  "author": "Allen Luo <luoyi@mouji.net>",
+  "license": "MIT",
+  "homepage": "https://github.com/weme-ui/weme-ui",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/weme-ui/weme-ui.git"
+  },
+  "bugs": {
+    "url": "https://github.com/weme-ui/weme-ui/issues"
+  },
+  "keywords": [
+    "vue",
+    "nuxt",
+    "unocss",
+    "reka-ui",
+    "radix-colors",
+    "weme-ui",
+    "weme-ui-registry",
+    "weme-ui-std",
+    "vue-components",
+    "nuxt-components",
+    "reka-ui-components",
+    "unocss-ui-components",
+    "radix-colors-components"
+  ],
+  "scripts": {
+    "dev:prepare": "nuxi prepare",
+    "typecheck": "vue-tsc --noEmit"
+  },
+  "peerDependencies": {
+    "@vueuse/core": "catalog:dev",
+    "clsx": "catalog:dev",
+    "nuxt": "catalog:nuxt",
+    "reka-ui": "catalog:dev",
+    "tailwind-merge": "catalog:dev",
+    "tailwind-variants": "catalog:dev",
+    "unocss": "catalog:dev",
+    "vue": "catalog:vue"
+  },
+  "devDependencies": {
+    "@iconify-json/lucide": "catalog:icon",
+    "@nuxt/test-utils": "catalog:testing",
+    "@vue/test-utils": "catalog:testing",
+    "@vueuse/core": "catalog:dev",
+    "@weme-ui/nuxt": "workspace:*",
+    "@weme-ui/unocss-preset": "workspace:*",
+    "clsx": "catalog:dev",
+    "happy-dom": "catalog:testing",
+    "nuxt": "catalog:nuxt",
+    "playwright-core": "catalog:testing",
+    "reka-ui": "catalog:dev",
+    "tailwind-merge": "catalog:dev",
+    "tailwind-variants": "catalog:dev",
+    "unocss": "catalog:dev",
+    "vue": "catalog:vue",
+    "vue-tsc": "catalog:vue"
+  }
+}

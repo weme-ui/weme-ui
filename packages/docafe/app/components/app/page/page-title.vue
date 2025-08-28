@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { useAppPageTitleStyle } from './title.style'
+import { usePageTitleStyle } from './page-title.style'
 
 defineOptions({
   inheritAttrs: false,
@@ -19,7 +19,7 @@ defineProps<{
   }>
 }>()
 
-const ui = useAppPageTitleStyle()
+const ui = usePageTitleStyle()
 </script>
 
 <template>

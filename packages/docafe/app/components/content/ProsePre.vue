@@ -60,10 +60,7 @@ const ui = computed(() => useProsePreStyle({
     </div>
 
     <div v-if="!filename && code" class="abs right-5 top-4 z-1">
-      <CopyButton
-        :inset="parsedMeta.has('inset')"
-        :code="code"
-      />
+      <CopyButton :code="code" inset />
     </div>
 
     <div :class="ui.wrapper()" :style="(parsedMeta.has('height') && !expanded) && `height: ${parsedMeta.get('height')}px`">

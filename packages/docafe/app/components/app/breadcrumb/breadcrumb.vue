@@ -1,12 +1,12 @@
 <script lang="ts" setup>
-import { useAppBreadcrumbStyle } from './breadcrumb.style'
+import { useBreadcrumbStyle } from './breadcrumb.style'
 
-const props = defineProps<{
+const { path } = defineProps<{
   path: string
 }>()
 
-const breadcrumbs = useBreadcrumb(props.path)
-const ui = useAppBreadcrumbStyle()
+const breadcrumbs = computed(() => useBreadcrumb(path))
+const ui = useBreadcrumbStyle()
 </script>
 
 <template>

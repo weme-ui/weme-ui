@@ -1,12 +1,6 @@
 <script lang="ts" setup>
 const route = useRoute()
-const pageId = computed(
-  () => route.path === '/'
-    ? 'landing'
-    : route.path
-        .replace(/^\//, '')
-        .replace(/\//g, '-'),
-)
+const pageId = computed(() => normalizePath('page', route.path))
 
 const { data: page } = await useAsyncData(
   pageId,
@@ -14,7 +8,7 @@ const { data: page } = await useAsyncData(
 )
 
 const { data: navigation } = await useAsyncData(
-  'navigation',
+  '__navigation',
   () => queryCollectionNavigation('docs'),
 )
 

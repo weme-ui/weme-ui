@@ -7,7 +7,7 @@ links:
     to: /docs/std/components/general
   - label: Source
     icon: lucide:code
-    to: https://github.com/weme-ui/weme-ui/blob/main/registry/std/components/icon
+    to: https://github.com/weme-ui/weme-ui/tree/main/registry/std/components/icon
     target: _blank
 ---
 
@@ -15,12 +15,7 @@ links:
 
 ::preview
 #preview
-:ExamplesStdIcon
-
-#code
-```vue inset
-<Icon name="info" class="size-6" />
-```
+:ExamplesStdIconBuiltin
 ::
 
 ## 特性
@@ -40,7 +35,17 @@ list:
 $ pnpm dlx @weme-ui/weme-ui add std/icon
 ```
 
-## API
+## Icon
+
+::preview
+#preview
+:ExamplesStdIcon{ name="weme:logo" class="size-10 c-accent-9" }
+
+#code
+```vue inset
+<UiIcon name="weme:logo" />
+```
+::
 
 ### 属性
 
@@ -59,10 +64,24 @@ data:
       - css
     default: svg
     description: 图标模式
+  - name: class
+    type:
+      - any
+    description: 自定义样式
 ---
 ::
 
 ### 内建图标
+
+::preview
+#preview
+:ExamplesStdIcon{ name="user" }
+
+#code
+```vue inset
+<UiIcon name="user" />
+```
+::
 
 ::data-table{ name="别名" description="图标名称" }
 ---
@@ -118,9 +137,134 @@ data:
 ---
 ::
 
-## 示例
+## IconBox
 
 ::preview
 #preview
-:ExamplesStdIconBuiltin
+:ExamplesStdIconVariants
+
+#code
+```vue inset
+<UiIconBox name="info" variant="solid" />
+```
+::
+
+### 属性
+
+::props-table
+---
+data:
+  - name: name
+    type:
+      - string
+    default: ''
+    description: 图标名称
+    required: true
+  - name: mode
+    type:
+      - svg
+      - css
+    default: svg
+    description: 图标模式
+  - name: color
+    type:
+      - accent
+      - neutral
+      - info
+      - success
+      - warning
+      - error
+    default: accent
+    description: 图标颜色
+  - name: variant
+    type:
+      - solid
+      - soft
+      - surface
+      - outline
+      - inverse
+    default: solid
+    description: 图标样式
+  - name: radius
+    type:
+      - none
+      - sm
+      - md
+      - lg
+      - xl
+      - full
+    default: sm
+    description: 图标圆角
+  - name: size
+    type:
+      - xs
+      - sm
+      - md
+      - lg
+      - xl
+    default: md
+    description: 图标大小
+---
+::
+
+### 样式
+
+::styles-table
+---
+data:
+  - slot: base
+    defaults: 'flex-(~ center)'
+  - slot: icon
+    defaults: ''
+---
+::
+
+#### 自定义样式
+
+```vue
+<UiIconBox
+  name="info"
+  :ui="{
+    base: 'bg-accent-1',
+    icon: 'c-accent-12',
+  }"
+/>
+```
+
+### 示例
+
+#### 颜色与样式
+
+::preview
+#preview
+:ExamplesStdIconColors
+
+#code
+```vue inset
+<UiIconBox name="info" color="error" />
+```
+::
+
+#### 图标尺寸
+
+::preview
+#preview
+:ExamplesStdIconSizes
+
+#code
+```vue inset
+<UiIconBox name="info" size="lg" />
+```
+::
+
+#### 圆角
+
+::preview
+#preview
+:ExamplesStdIconRadiuses
+
+#code
+```vue inset
+<UiIconBox name="info" radius="full" />
+```
 ::

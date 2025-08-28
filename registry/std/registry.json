@@ -1,0 +1,87 @@
+{
+  "$schema": "https://weme-ui.github.io/schema/registry.json",
+  "name": "@weme-ui/std",
+  "description": "Weme UI for Std components registry.",
+  "version": "0.0.0",
+  "prefix": "ui",
+  "directory": "registry/std",
+  "access": "public",
+  "meta": {
+    "authors": [
+      "Allen Luo <luoyi@mouji.net>"
+    ],
+    "homepage": "https://github.com/weme-ui/weme-ui",
+    "repository": "https://github.com/weme-ui/weme-ui.git",
+    "bugs": "https://github.com/weme-ui/weme-ui/issues",
+    "tags": [
+      "@weme-ui/std"
+    ]
+  },
+  "dependencies": [
+    "clsx",
+    "tailwind-merge",
+    "tailwind-variants"
+  ],
+  "devDependencies": [
+    "@weme-ui/nuxt",
+    "@weme-ui/unocss-preset"
+  ],
+  "items": [
+    {
+      "name": "icon",
+      "type": "component",
+      "title": "Icon",
+      "description": "A component to display any icon from Iconify.",
+      "author": "Allen Luo <luoyi@mouji.net>",
+      "categories": [
+        "general"
+      ],
+      "files": [
+        {
+          "path": "components/icon/icon.vue",
+          "type": "component"
+        },
+        {
+          "path": "components/icon/icon.props.ts",
+          "type": "type"
+        },
+        {
+          "path": "components/icon/icon-box.vue",
+          "type": "component"
+        },
+        {
+          "path": "components/icon/icon-box.props.ts",
+          "type": "type"
+        },
+        {
+          "path": "components/icon/icon-box.style.ts",
+          "type": "style"
+        }
+      ]
+    },
+    {
+      "name": "typography",
+      "type": "component",
+      "title": "Typography",
+      "description": "Styles for headings, paragraphs, text... etc.",
+      "author": "Allen Luo <luoyi@mouji.net>",
+      "categories": [
+        "general"
+      ],
+      "files": [
+        {
+          "path": "components/typography/typography.vue",
+          "type": "component"
+        },
+        {
+          "path": "components/typography/typography.props.ts",
+          "type": "type"
+        },
+        {
+          "path": "components/typography/typography.style.ts",
+          "type": "style"
+        }
+      ]
+    }
+  ]
+}

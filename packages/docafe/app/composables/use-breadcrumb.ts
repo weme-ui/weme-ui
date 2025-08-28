@@ -1,11 +1,9 @@
-import { createSharedComposable } from '@vueuse/core'
-
 interface BreadcrumbItem {
   label: string
   to: string
 }
 
-function _useBreadcrumb(url: string) {
+export function useBreadcrumb(url: string) {
   const { navigation } = useContent()
 
   const breadcrumbs: BreadcrumbItem[] = []
@@ -32,5 +30,3 @@ function _useBreadcrumb(url: string) {
 
   return breadcrumbs
 }
-
-export const useBreadcrumb = /* @__PURE__ */ createSharedComposable(_useBreadcrumb)

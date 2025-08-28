@@ -8,13 +8,13 @@ import {
   NavigationMenuTrigger,
   NavigationMenuViewport,
 } from 'reka-ui'
-import { useAppHeaderNavStyle } from './header-nav.style'
+import { useHeaderNavStyle } from './header-nav.style'
 
 defineProps<{
   nav?: DocafeConfigNavItem[]
 }>()
 
-const ui = useAppHeaderNavStyle()
+const ui = useHeaderNavStyle()
 </script>
 
 <template>

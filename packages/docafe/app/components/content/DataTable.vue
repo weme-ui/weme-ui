@@ -19,7 +19,7 @@ const ui = useTableStyle()
       <tr>
         <th :class="ui.cell()" width="20%">
           <span class="flex-(~ y-center) gap-x-2">
-            <AppIcon name="lucide:logs" />
+            <AppIcon name="lucide:brackets" />
             {{ name || '数据' }}
           </span>
         </th>

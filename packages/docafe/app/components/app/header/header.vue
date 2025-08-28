@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { useAppHeaderStyle } from './header.style'
+import { useHeaderStyle } from './header.style'
 
 const config = useConfig()
 const { page } = useContent()
@@ -20,7 +20,7 @@ const repoUrl = computed(() => {
   return href
 })
 
-const ui = computed(() => useAppHeaderStyle({
+const ui = computed(() => useHeaderStyle({
   bordered: !!page.value?.header.bordered,
 }))
 </script>

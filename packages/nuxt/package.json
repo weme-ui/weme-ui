@@ -42,16 +42,14 @@
     "prepublishOnly": "pnpm run build",
     "typecheck": "vue-tsc --noEmit"
   },
-  "peerDependencies": {
-    "defu": "catalog:dev",
-    "fast-glob": "catalog:utils"
-  },
   "dependencies": {
     "@nuxt/kit": "catalog:nuxt",
     "@weme-ui/colors": "workspace:*",
     "@weme-ui/unocss-preset": "workspace:*"
   },
   "devDependencies": {
+    "@iconify-json/lucide": "catalog:icon",
+    "@iconify-json/mingcute": "catalog:icon",
     "@nuxt/devtools": "catalog:dev",
     "@nuxt/icon": "catalog:dev",
     "@nuxt/module-builder": "catalog:nuxt",

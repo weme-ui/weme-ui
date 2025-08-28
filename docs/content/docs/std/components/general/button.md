@@ -185,7 +185,7 @@ data:
 
 ::preview
 #preview
-:ExamplesStdButton{ loading=true }
+:ExamplesStdButton{ :loading=true }
 
 #code
 ```vue inset
@@ -199,7 +199,7 @@ data:
 
 ::preview
 #preview
-:ExamplesStdButton{ disabled=true }
+:ExamplesStdButton{ :disabled=true }
 
 #code
 ```vue inset

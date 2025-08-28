@@ -83,8 +83,8 @@ catalogs:
       specifier: ^1.7.0
       version: 1.7.0
     reka-ui:
-      specifier: ^2.4.1
-      version: 2.4.1
+      specifier: ^2.5.0
+      version: 2.5.0
     tailwind-merge:
       specifier: ^3.3.1
       version: 3.3.1
@@ -209,8 +209,8 @@ catalogs:
       specifier: 1.3.0
       version: 1.3.0
     zod:
-      specifier: ^4.1.3
-      version: 4.1.3
+      specifier: ^4.1.4
+      version: 4.1.4
   vue:
     '@vitejs/plugin-vue':
       specifier: ^6.0.1
@@ -288,7 +288,7 @@ importers:
         version: 2.1.1
       reka-ui:
         specifier: catalog:dev
-        version: 2.4.1(typescript@5.9.2)(vue@3.5.20(typescript@5.9.2))
+        version: 2.5.0(typescript@5.9.2)(vue@3.5.20(typescript@5.9.2))
       tailwind-merge:
         specifier: catalog:dev
         version: 3.3.1
@@ -391,7 +391,7 @@ importers:
         version: 1.3.0
       zod:
         specifier: catalog:utils
-        version: 4.1.3
+        version: 4.1.4
     devDependencies:
       '@types/node':
         specifier: catalog:build
@@ -446,7 +446,7 @@ importers:
         version: 1.7.0(@vueuse/core@13.8.0(vue@3.5.20(typescript@5.9.2)))(vue@3.5.20(typescript@5.9.2))
       reka-ui:
         specifier: catalog:dev
-        version: 2.4.1(typescript@5.9.2)(vue@3.5.20(typescript@5.9.2))
+        version: 2.5.0(typescript@5.9.2)(vue@3.5.20(typescript@5.9.2))
       tailwind-merge:
         specifier: catalog:dev
         version: 3.3.1
@@ -640,7 +640,7 @@ importers:
         version: 1.55.0
       reka-ui:
         specifier: catalog:dev
-        version: 2.4.1(typescript@5.9.2)(vue@3.5.20(typescript@5.9.2))
+        version: 2.5.0(typescript@5.9.2)(vue@3.5.20(typescript@5.9.2))
       tailwind-merge:
         specifier: catalog:dev
         version: 3.3.1
@@ -6505,8 +6505,8 @@ packages:
   rehype-sort-attributes@5.0.1:
     resolution: {integrity: sha512-Bxo+AKUIELcnnAZwJDt5zUDDRpt4uzhfz9d0PVGhcxYWsbFj5Cv35xuWxu5r1LeYNFNhgGqsr9Q2QiIOM/Qctg==}
 
-  reka-ui@2.4.1:
-    resolution: {integrity: sha512-NB7DrCsODN8MH02BWtgiExygfFcuuZ5/PTn6fMgjppmFHqePvNhmSn1LEuF35nel6PFbA4v+gdj0IoGN1yZ+vw==}
+  reka-ui@2.5.0:
+    resolution: {integrity: sha512-81aMAmJeVCy2k0E6x7n1kypDY6aM1ldLis5+zcdV1/JtoAlSDck5OBsyLRJU9CfgbrQp1ImnRnBSmC4fZ2fkZQ==}
     peerDependencies:
       vue: '>= 3.2.0'
 
@@ -7838,8 +7838,8 @@ packages:
   zod@3.25.76:
     resolution: {integrity: sha512-gzUt/qt81nXsFGKIFcC3YnfEAx5NkunCfnDlvuBSSFS02bcXu4Lmea0AFIUwbLWxWPx3d9p8S5QoaujKcNQxcQ==}
 
-  zod@4.1.3:
-    resolution: {integrity: sha512-1neef4bMce1hNTrxvHVKxWjKfGDn0oAli3Wy1Uwb7TRO1+wEwoZUZNP1NXIEESybOBiFnBOhI6a4m6tCLE8dog==}
+  zod@4.1.4:
+    resolution: {integrity: sha512-2YqJuWkU6IIK9qcE4k1lLLhyZ6zFw7XVRdQGpV97jEIZwTrscUw+DY31Xczd8nwaoksyJUIxCojZXwckJovWxA==}
 
   zwitch@2.0.4:
     resolution: {integrity: sha512-bXE4cR/kVZhKZX/RjPEflHaKVhUVl85noU3v6b8apfQEc1x4A+zBxjZ4lN8LqGd6WZ3dl98pY4o717VFmoPp+A==}
@@ -15031,7 +15031,7 @@ snapshots:
       '@types/hast': 3.0.4
       unist-util-visit: 5.0.0
 
-  reka-ui@2.4.1(typescript@5.9.2)(vue@3.5.20(typescript@5.9.2)):
+  reka-ui@2.5.0(typescript@5.9.2)(vue@3.5.20(typescript@5.9.2)):
     dependencies:
       '@floating-ui/dom': 1.7.4
       '@floating-ui/vue': 1.1.9(vue@3.5.20(typescript@5.9.2))
@@ -16781,6 +16781,6 @@ snapshots:
 
   zod@3.25.76: {}
 
-  zod@4.1.3: {}
+  zod@4.1.4: {}
 
   zwitch@2.0.4: {}

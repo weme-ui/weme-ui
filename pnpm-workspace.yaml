@@ -31,7 +31,7 @@ catalogs:
     colorjs.io: ^0.5.2
     defu: ^6.1.4
     motion-v: ^1.7.0
-    reka-ui: ^2.4.1
+    reka-ui: ^2.5.0
     tailwind-merge: ^3.3.1
     tailwind-variants: ^3.1.0
     ufo: ^1.6.1
@@ -77,7 +77,7 @@ catalogs:
     pathe: 2.0.3
     pkg-types: ^2.3.0
     scule: 1.3.0
-    zod: ^4.1.3
+    zod: ^4.1.4
   vue:
     '@vitejs/plugin-vue': ^6.0.1
     vue: ^3.5.20

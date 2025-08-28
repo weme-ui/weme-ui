@@ -8,7 +8,7 @@ catalogs:
     '@commitlint/cli': ^19.8.1
     '@commitlint/config-conventional': ^19.8.1
     '@types/node': 24.0.15
-    '@typescript/native-preview': ^7.0.0-dev.20250827.1
+    '@typescript/native-preview': ^7.0.0-dev.20250828.1
     bumpp: ^10.2.3
     commitizen: ^4.3.1
     conventional-changelog: ^7.1.1

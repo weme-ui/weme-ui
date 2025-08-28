@@ -112,8 +112,8 @@ catalogs:
       specifier: ^1.2.16
       version: 1.2.16
     '@iconify-json/lucide':
-      specifier: ^1.2.64
-      version: 1.2.64
+      specifier: ^1.2.65
+      version: 1.2.65
     '@iconify-json/mingcute':
       specifier: ^1.2.5
       version: 1.2.5
@@ -298,7 +298,7 @@ importers:
     devDependencies:
       '@iconify-json/lucide':
         specifier: catalog:icon
-        version: 1.2.64
+        version: 1.2.65
       '@iconify-json/simple-icons':
         specifier: catalog:icon
         version: 1.2.49
@@ -520,7 +520,7 @@ importers:
     devDependencies:
       '@iconify-json/lucide':
         specifier: catalog:icon
-        version: 1.2.64
+        version: 1.2.65
       '@iconify-json/mingcute':
         specifier: catalog:icon
         version: 1.2.5
@@ -610,7 +610,7 @@ importers:
     devDependencies:
       '@iconify-json/lucide':
         specifier: catalog:icon
-        version: 1.2.64
+        version: 1.2.65
       '@nuxt/test-utils':
         specifier: catalog:testing
         version: 3.19.2(@vue/test-utils@2.4.6)(happy-dom@18.0.1)(magicast@0.3.5)(playwright-core@1.55.0)(typescript@5.9.2)(vitest@3.2.4(@types/debug@4.1.12)(@types/node@24.3.0)(happy-dom@18.0.1)(jiti@2.5.1)(terser@5.43.1)(yaml@2.8.1))
@@ -1373,8 +1373,8 @@ packages:
   '@iconify-json/catppuccin@1.2.16':
     resolution: {integrity: sha512-fwi01rvp04NrfxKXGhmaXal/ymiiqkgB/SqYzj41fZatRVVwetBqRbzpQhff1dXl8QJfyr2Ncs2AvSkTdn3ozA==}
 
-  '@iconify-json/lucide@1.2.64':
-    resolution: {integrity: sha512-QpeOqBwKztm/KD9L7sjc9ttLLfktMrsLKRMgqJRH6A2Z0s4BB/0XnhKEHPhrQugA9d1ES5aMy33ztbAHXZhqjQ==}
+  '@iconify-json/lucide@1.2.65':
+    resolution: {integrity: sha512-Ur5I3dZyLW8bZLTEtsMKQ9lkl8u5HIiwO79pYxlvAzKQ0Mc4milB+G04CxnFqlB15x/lRq2rTPSi7ep1utDXrg==}
 
   '@iconify-json/mingcute@1.2.5':
     resolution: {integrity: sha512-LKlW4wahStprbfJcpzUnuayObOVAuztgYSy3v5oTke6cBJNfqEeE/mtMhHgpoSgGJvo5hhde2Q0+DoxKEldY2A==}
@@ -8528,7 +8528,7 @@ snapshots:
     dependencies:
       '@iconify/types': 2.0.0
 
-  '@iconify-json/lucide@1.2.64':
+  '@iconify-json/lucide@1.2.65':
     dependencies:
       '@iconify/types': 2.0.0
 

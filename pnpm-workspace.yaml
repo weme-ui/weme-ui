@@ -42,7 +42,7 @@ catalogs:
     better-sqlite3: ^12.2.0
   icon:
     '@iconify-json/catppuccin': ^1.2.16
-    '@iconify-json/lucide': ^1.2.64
+    '@iconify-json/lucide': ^1.2.65
     '@iconify-json/mingcute': ^1.2.5
     '@iconify-json/simple-icons': ^1.2.49
   lint:

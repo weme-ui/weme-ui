@@ -87,10 +87,13 @@
       "name": "button",
       "type": "component",
       "title": "Button",
-      "description": "A component to display a button.",
+      "description": "Displays a button or a component that looks like a button.",
       "author": "Allen Luo <luoyi@mouji.net>",
       "categories": [
         "general"
+      ],
+      "registryDependencies": [
+        "icon"
       ],
       "files": [
         {
@@ -104,6 +107,58 @@
         {
           "path": "components/button/button.style.ts",
           "type": "style"
+        }
+      ]
+    },
+    {
+      "name": "link",
+      "type": "component",
+      "title": "Link",
+      "description": "A wrapper around with extra <NuxtLink /> props.",
+      "author": "Allen Luo <luoyi@mouji.net>",
+      "categories": [
+        "general"
+      ],
+      "files": [
+        {
+          "path": "components/link/link.vue",
+          "type": "component"
+        },
+        {
+          "path": "components/link/link.props.ts",
+          "type": "type"
+        },
+        {
+          "path": "components/link/link.style.ts",
+          "type": "style"
+        }
+      ]
+    },
+    {
+      "name": "kbd",
+      "type": "component",
+      "title": "Kbd",
+      "description": "A kbd element to display a keyboard key.",
+      "author": "Allen Luo <luoyi@mouji.net>",
+      "categories": [
+        "general"
+      ],
+      "files": [
+        {
+          "path": "components/kbd/kbd.vue",
+          "type": "component"
+        },
+        {
+          "path": "components/kbd/kbd.props.ts",
+          "type": "type"
+        },
+        {
+          "path": "components/kbd/kbd.style.ts",
+          "type": "style"
+        },
+        {
+          "path": "composables/use-kbd.ts",
+          "type": "composable"
         }
       ]
     }

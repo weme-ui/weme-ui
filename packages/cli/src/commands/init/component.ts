@@ -1,14 +1,14 @@
-import type { RegistryItemFileSchema, RegistryItemSchema, RegistrySchema } from '~/schemas/registry'
+import type { RegistryItemFileSchema, RegistryItemSchema, RegistrySchema } from '../../schemas/registry'
 import { exit } from 'node:process'
 import createDebugger from 'debug'
 import { resolve } from 'pathe'
 import { kebabCase, titleCase } from 'scule'
-import { registrySchema } from '~/schemas/registry'
-import { consola } from '~/utils/consola'
-import { writeFile } from '~/utils/file'
-import { existsComponent, existsRegistry } from '~/utils/repository'
-import { compile, renderTemplates } from '~/utils/template'
-import { loadJson } from '~/utils/utilities'
+import { registrySchema } from '../../schemas/registry'
+import { consola } from '../../utils/consola'
+import { writeFile } from '../../utils/file'
+import { existsComponent, existsRegistry } from '../../utils/repository'
+import { compile, renderTemplates } from '../../utils/template'
+import { loadJson } from '../../utils/utilities'
 import { normalizeOptions } from './options'
 
 const debug = createDebugger('init:component')
@@ -169,7 +169,7 @@ async function initialized(data: Record<string, any>) {
       src,
       data,
       templates: docs,
-      dest: resolve(data.cwd, 'docs', 'content', data.registry, 'components', data.category),
+      dest: resolve(data.cwd, 'docs', 'content', 'docs', data.registry, 'components', data.category),
     })
 
     debug('Docs:', docs)

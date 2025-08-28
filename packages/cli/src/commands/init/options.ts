@@ -1,6 +1,6 @@
 import { exit } from 'node:process'
-import { consola } from '~/utils/consola'
-import { getCliPackageJson, getPackageJson } from '~/utils/utilities'
+import { consola } from '../../utils/consola'
+import { getCliPackageJson, getPackageJson } from '../../utils/utilities'
 
 export async function normalizeOptions(args: Record<string, any>): Promise<Record<string, any>> {
   const [

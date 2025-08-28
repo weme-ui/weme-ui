@@ -141,7 +141,9 @@ data:
 #code
 ```vue inset
 <UiKbd value="meta" />
+
 <UiKbd value="ctrl" />
+
 <UiKbd value="alt" />
 ```
 ::

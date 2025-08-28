@@ -82,6 +82,30 @@
           "type": "style"
         }
       ]
+    },
+    {
+      "name": "button",
+      "type": "component",
+      "title": "Button",
+      "description": "A component to display a button.",
+      "author": "Allen Luo <luoyi@mouji.net>",
+      "categories": [
+        "general"
+      ],
+      "files": [
+        {
+          "path": "components/button/button.vue",
+          "type": "component"
+        },
+        {
+          "path": "components/button/button.props.ts",
+          "type": "type"
+        },
+        {
+          "path": "components/button/button.style.ts",
+          "type": "style"
+        }
+      ]
     }
   ]
 }

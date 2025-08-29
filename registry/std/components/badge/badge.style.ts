@@ -32,7 +32,7 @@ export const useBadgeStyle = createVariants({
     square: { true: 'px-unset' },
     closable: { true: '' },
     disabled: { true: 'is-disabled' },
-    clickable: { true: 'cursor-pointer' },
+    clickable: { true: 'cursor-link' },
   },
   compoundVariants: [
     // Static

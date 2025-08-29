@@ -96,10 +96,12 @@ export function createColorCompoundVariants({
   variants,
   states,
   slot = '',
+  extra,
 }: {
   variants: VariantName | VariantName[] | VariantNameMap
   states: StateName | StateName[]
   slot?: string
+  extra?: Record<string, any>
 }) {
   const compounds: any[] = []
 
@@ -109,6 +111,7 @@ export function createColorCompoundVariants({
         compounds.push({
           color,
           variant: alias,
+          ...extra,
           class: createColorVariantClasses({ color: color as ColorName, variant, states, slot }),
         })
       })
@@ -120,6 +123,7 @@ export function createColorCompoundVariants({
         compounds.push({
           color,
           variant,
+          ...extra,
           class: createColorVariantClasses({ color: color as ColorName, variant, states, slot }),
         })
       })

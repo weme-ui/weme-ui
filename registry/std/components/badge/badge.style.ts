@@ -56,11 +56,11 @@ export const useBadgeStyle = createVariants({
     { square: true, size: 'md', class: { base: 'w-8' } },
     { square: true, size: 'lg', class: { base: 'w-10' } },
 
-    // Removable
-    { removable: true, size: 'xs', class: { close: 'before:size-4' } },
-    { removable: true, size: 'sm', class: { close: 'before:size-5' } },
-    { removable: true, size: 'md', class: { close: 'before:size-6' } },
-    { removable: true, size: 'lg', class: { close: 'before:size-7' } },
+    // Closable
+    { closable: true, size: 'xs', class: { close: 'before:size-4' } },
+    { closable: true, size: 'sm', class: { close: 'before:size-5' } },
+    { closable: true, size: 'md', class: { close: 'before:size-6' } },
+    { closable: true, size: 'lg', class: { close: 'before:size-7' } },
   ],
   defaultVariants: {
     color: 'accent',

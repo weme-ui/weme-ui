@@ -9,7 +9,7 @@ const sizes = ['xs', 'sm', 'md', 'lg'] as const
   <div class="grid-(~ cols-6) gap-6">
     <template v-for="size in sizes" :key="size">
       <div v-for="color in colors" :key="color">
-        <Badge text="Badge" variant="surface" :color="color" :size="size" removable />
+        <Badge text="Badge" variant="surface" :color="color" :size="size" closable />
       </div>
     </template>
   </div>

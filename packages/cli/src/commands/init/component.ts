@@ -2,7 +2,7 @@ import type { RegistryItemFileSchema, RegistryItemSchema, RegistrySchema } from 
 import { exit } from 'node:process'
 import createDebugger from 'debug'
 import { resolve } from 'pathe'
-import { kebabCase, titleCase } from 'scule'
+import { kebabCase, pascalCase, titleCase } from 'scule'
 import { registrySchema } from '../../schemas/registry'
 import { consola } from '../../utils/consola'
 import { writeFile } from '../../utils/file'
@@ -83,7 +83,7 @@ async function resolveData(args: Record<string, any>) {
       options: [
         { label: 'General', value: 'general' },
         { label: 'Layout', value: 'layout' },
-        { label: 'Data', value: 'data' },
+        { label: 'Data Display', value: 'data-display' },
         { label: 'Form', value: 'form' },
         { label: 'Navigation', value: 'navigation' },
         { label: 'Feedback', value: 'feedback' },
@@ -114,9 +114,9 @@ async function initialized(data: Record<string, any>) {
   const dest = resolve(data.cwd, 'registry', data.registry, 'components', data.inside ? data.parent : data.name)
 
   const templates = [
+    '{{ name }}.vue.hbs',
     '{{ name }}.props.ts.hbs',
     '{{ name }}.style.ts.hbs',
-    '{{ name }}.vue.hbs',
   ].reduce((acc, tpl) => {
     acc.push({
       src: tpl,
@@ -127,8 +127,6 @@ async function initialized(data: Record<string, any>) {
 
   await renderTemplates({ src, dest, templates, data })
   await updateRegistryJson(data, templates)
-
-  debug('Templates:', templates)
 
   if (!data.force && await consola.prompt('Do you want to create a test for the component?', {
     type: 'confirm',
@@ -145,8 +143,6 @@ async function initialized(data: Record<string, any>) {
     }, [] as { src: string, dest: string }[])
 
     await renderTemplates({ src, dest, templates: tests, data })
-
-    debug('Tests:', tests)
 
     console.log('')
   }
@@ -171,8 +167,6 @@ async function initialized(data: Record<string, any>) {
       templates: docs,
       dest: resolve(data.cwd, 'docs', 'content', 'docs', data.registry, 'components', data.category),
     })
-
-    debug('Docs:', docs)
   }
 
   console.log('')
@@ -190,7 +184,16 @@ async function updateRegistryJson(
     resolve(data.cwd, 'registry', data.registry),
   )
 
+  debug('[Registry]', 'Loaded Registry Json:', resolve(data.cwd, 'registry', data.registry), JSON.stringify(registryJson))
+
+  if (!registryJson) {
+    consola.error('Failed to load `registry.json`')
+    exit(1)
+  }
+
   const resolvedName = data.inside ? data.parent : data.name
+
+  debug('[Registry]', 'Inside:', !!data.inside, 'Parent:', data.parent || '-', 'Name:', data.name, 'Resolved Name:', resolvedName)
 
   const registryItems: RegistryItemSchema[] = registryJson?.items || []
   const registryItem: RegistryItemSchema = registryItems.find(item => item.name === resolvedName) || {
@@ -202,6 +205,9 @@ async function updateRegistryJson(
     categories: [data.category],
     files: [],
   }
+
+  debug('[Registry]', `Loaded ${registryItems.length} registry items`)
+  debug('[Registry]', `Check Registry Item: ${resolvedName}`, `(${registryItems.find(item => item.name === resolvedName) ? 'Found' : 'Not Found'})`)
 
   templates.forEach((tpl) => {
     const file = {
@@ -217,8 +223,36 @@ async function updateRegistryJson(
       registryItem.files.push(file)
   })
 
-  if (registryItems.length === 0)
+  debug('[Registry]', 'Created Registry Item Files:', JSON.stringify(registryItem.files))
+
+  if (await consola.prompt('Do you want to add dependencies to the registry item?', {
+    type: 'confirm',
+    initial: false,
+  })) {
+    const registryDependencies = await consola.prompt('What are the dependencies of the registry item?', {
+      type: 'multiselect',
+      options: registryItems
+        .filter(item => item.name !== resolvedName)
+        .map(item => ({ label: pascalCase(item.name), value: item.name })),
+      cancel: 'undefined',
+    })
+
+    debug('[Registry]', 'Registry Dependencies:', registryDependencies)
+
+    if (registryDependencies && registryDependencies.length > 0) {
+      registryItem.registryDependencies = registryItem.registryDependencies || []
+
+      registryDependencies.forEach((dep) => {
+        if (registryItem.registryDependencies!.find(d => d === dep as unknown as string) === undefined)
+          registryItem.registryDependencies!.push(dep as unknown as string)
+      })
+    }
+  }
+
+  if (registryItems.find(item => item.name === resolvedName) === undefined)
     registryItems.push(registryItem)
+
+  debug('[Registry]', 'Updated Registry Items:', JSON.stringify(registryItems))
 
   const result = registrySchema.safeParse(registryJson)
 

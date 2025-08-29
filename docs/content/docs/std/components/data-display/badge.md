@@ -74,21 +74,21 @@ data:
       - full
     default: sm
     description: 徽章圆角
-  - name: square
-    type:
-      - boolean
-    default: false
-    description: 徽章是否为正方形
   - name: disabled
     type:
       - boolean
     default: false
     description: 徽章禁用状态
-  - name: removable
+  - name: closable
     type:
       - boolean
     default: false
-    description: 徽章可移除状态
+    description: 徽章可关闭状态
+  - name: clickable
+    type:
+      - boolean
+    default: false
+    description: 徽章可点击状态
   - name: class
     type:
       - any
@@ -101,10 +101,10 @@ data:
 ::emits-table
 ---
 data:
-  - name: remove
+  - name: close
     type:
       - () => void
-    description: 徽章移除事件
+    description: 徽章关闭事件
 ---
 ::
 
@@ -117,8 +117,8 @@ data:
     defaults: 'flex-(inline center) cursor-default select-none transition-colors'
   - slot: icon
     defaults: ''
-  - slot: remove
-    defaults: 'relative flex-(~ center) c-current ml-1 hover:before:(abs abs-center block content-[""] rounded-full bg-current op-20) active:before:op-30'
+  - slot: close
+    defaults: 'relative flex-(~ center) c-current ml-1 hover:before:(abs abs-center block content-[""] rounded-full bg-current op-20) active:before:op-30 hover:cursor-pointer'
 ---
 ::
 
@@ -192,15 +192,15 @@ data:
 ```
 ::
 
-### 可移除
+### 可关闭
 
 ::preview
 #preview
-:ExamplesStdBadgeRemovable
+:ExamplesStdBadgeClosable
 
 #code
 ```vue inset
-<UiBadge removable>
+<UiBadge closable>
   Text Badge
 </UiBadge>
 ```

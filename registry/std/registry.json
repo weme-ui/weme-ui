@@ -141,7 +141,7 @@
       "description": "A kbd element to display a keyboard key.",
       "author": "Allen Luo <luoyi@mouji.net>",
       "categories": [
-        "general"
+        "data-display"
       ],
       "files": [
         {
@@ -159,6 +159,33 @@
         {
           "path": "composables/use-kbd.ts",
           "type": "composable"
+        }
+      ]
+    },
+    {
+      "name": "badge",
+      "type": "component",
+      "title": "Badge",
+      "description": "Displays a badge or a component that looks like a badge.",
+      "author": "Allen Luo <luoyi@mouji.net>",
+      "categories": [
+        "general"
+      ],
+      "registryDependencies": [
+        "icon"
+      ],
+      "files": [
+        {
+          "path": "components/badge/badge.vue",
+          "type": "component"
+        },
+        {
+          "path": "components/badge/badge.props.ts",
+          "type": "type"
+        },
+        {
+          "path": "components/badge/badge.style.ts",
+          "type": "style"
         }
       ]
     }

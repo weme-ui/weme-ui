@@ -87,6 +87,12 @@ export async function normalizeOptions(args: Record<string, any>): Promise<Recor
       exit(0)
   }
 
+  const repo = pkg?.repository ?? repository
+  const repositoryUrl = typeof repo === 'string' ? repo : repo?.url
+  const repositoryName = repositoryUrl?.replace('git+', '')
+    .replace('https://github.com/', '')
+    .replace('.git', '')
+
   return {
     ...normalized,
 
@@ -96,6 +102,7 @@ export async function normalizeOptions(args: Record<string, any>): Promise<Recor
     packageManager: pkg?.packageManager ?? packageManager,
     homepage: pkg?.homepage ?? homepage,
     bugs: pkg?.bugs ?? bugs,
-    repository: pkg?.repository ?? repository,
+    repository: repo,
+    repositoryName,
   } as Record<string, any>
 }

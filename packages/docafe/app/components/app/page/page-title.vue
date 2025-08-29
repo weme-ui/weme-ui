@@ -37,10 +37,7 @@ const ui = usePageTitleStyle()
 
     <ul v-if="links?.length" :class="ui.links()">
       <li v-for="link in links" :key="link.to">
-        <NuxtLink :to="link.to" :target="link.target" :rel="link.rel" class="flex-(~ y-center) gap-x-1">
-          <AppIcon v-if="link.icon" :name="link.icon" />
-          {{ link.label }}
-        </NuxtLink>
+        <UiBadge :icon="link.icon" :text="link.label" :href="link.to" :target="link.target" :rel="link.rel" />
       </li>
     </ul>
   </div>

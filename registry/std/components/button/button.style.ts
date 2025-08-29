@@ -44,6 +44,13 @@ export const useButtonStyle = createVariants({
       states: ['normal', 'hover', 'active'],
       slot: 'base',
     }),
+
+    // Square
+    { square: true, size: 'xs', class: { base: 'w-5' } },
+    { square: true, size: 'sm', class: { base: 'w-6' } },
+    { square: true, size: 'md', class: { base: 'w-8' } },
+    { square: true, size: 'lg', class: { base: 'w-10' } },
+    { square: true, size: 'xl', class: { base: 'w-12' } },
   ],
   defaultVariants: {
     color: 'accent',

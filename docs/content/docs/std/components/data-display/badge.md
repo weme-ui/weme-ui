@@ -102,7 +102,7 @@ data:
 ---
 data:
   - name: remove
-    type: 
+    type:
       - () => void
     description: 徽章移除事件
 ---
@@ -191,7 +191,6 @@ data:
 <UiBadge icon="user" />
 ```
 ::
-
 
 ### 可移除
 

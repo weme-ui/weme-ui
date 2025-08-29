@@ -2,10 +2,9 @@
 import { useTableStyle } from '~/styles/table.style'
 
 defineProps<{
-  slot?: string
   data?: Array<{
     name: string
-    type?: string[]
+    payload?: string[]
     description?: string
   }>
 }>()
@@ -20,7 +19,7 @@ const ui = useTableStyle()
         <th :class="ui.cell()" width="20%">
           <span class="flex-(~ y-center) gap-x-2">
             <AppIcon name="lucide:circle-dot-dashed" />
-            插槽 ({{ slot || 'default' }})
+            插槽
           </span>
         </th>
         <th :class="ui.cell()">
@@ -36,13 +35,13 @@ const ui = useTableStyle()
           </span>
         </td>
         <td :class="ui.cell()">
-          <template v-if="item.type">
-            <ProseCode v-for="type in item.type" :key="type">
-              {{ type }}
+          <template v-if="item.payload">
+            <ProseCode v-for="payload in item.payload" :key="payload">
+              {{ payload }}
             </ProseCode>
           </template>
 
-          <p v-if="item.description" :class="item.type && 'mt-2'">
+          <p v-if="item.description" :class="item.payload && 'mt-2'">
             {{ item.description }}
           </p>
         </td>

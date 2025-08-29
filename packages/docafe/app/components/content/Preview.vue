@@ -1,11 +1,19 @@
 <script lang="ts" setup>
 import { usePreviewStyle } from '~/styles/preview.style'
 
-defineProps<{
+const props = withDefaults(defineProps<{
+  orientation?: 'vertical' | 'horizontal'
+  inverse?: boolean
   class?: any
-}>()
+}>(), {
+  orientation: 'vertical',
+  inverse: false,
+})
 
-const ui = usePreviewStyle()
+const ui = computed(() => usePreviewStyle({
+  orientation: props.orientation,
+  inverse: !!props.inverse,
+}))
 </script>
 
 <template>

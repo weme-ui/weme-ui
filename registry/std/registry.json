@@ -169,7 +169,7 @@
       "description": "Displays a badge or a component that looks like a badge.",
       "author": "Allen Luo <luoyi@mouji.net>",
       "categories": [
-        "general"
+        "data-display"
       ],
       "registryDependencies": [
         "icon"
@@ -185,6 +185,33 @@
         },
         {
           "path": "components/badge/badge.style.ts",
+          "type": "style"
+        }
+      ]
+    },
+    {
+      "name": "alert",
+      "type": "component",
+      "title": "Alert",
+      "description": "Displays a callout for user attention.",
+      "author": "Allen Luo <luoyi@mouji.net>",
+      "categories": [
+        "data-display"
+      ],
+      "registryDependencies": [
+        "icon"
+      ],
+      "files": [
+        {
+          "path": "components/alert/alert.vue",
+          "type": "component"
+        },
+        {
+          "path": "components/alert/alert.props.ts",
+          "type": "type"
+        },
+        {
+          "path": "components/alert/alert.style.ts",
           "type": "style"
         }
       ]

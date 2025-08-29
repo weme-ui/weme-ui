@@ -15,8 +15,8 @@ export function getColors(options: WemePresetOptions) {
 
   return [
     // Normal
-    [/^ui-(.*)$/, ([, c]) => resolveClassName(c, `c-${c}-1 bg-${c}-9`), { autocomplete: ['ui-<theme-colors>', 'ui-<colors>'] }],
-    [/^ui-(.*)-soft$/, ([, c]) => resolveClassName(c, `c-${c}-9 bg-${c}-3`), { autocomplete: ['ui-<theme-colors>-soft', 'ui-<colors>-soft'] }],
+    [/^ui-(.*)$/, ([, c]) => resolveClassName(c, `c-${c}-1 bg-${c}-9 selection:bg-${c}-8`), { autocomplete: ['ui-<theme-colors>', 'ui-<colors>'] }],
+    [/^ui-(.*)-soft$/, ([, c]) => resolveClassName(c, `c-${c}-9 bg-${c}-3 selection:bg-${c}-5`), { autocomplete: ['ui-<theme-colors>-soft', 'ui-<colors>-soft'] }],
     [/^ui-(.*)-surface$/, ([, c]) => resolveClassName(c, `c-${c}-9 bg-${c}-2 ring-(~ ${c}-6)`), { autocomplete: ['ui-<theme-colors>-surface', 'ui-<colors>-surface'] }],
     [/^ui-(.*)-outline$/, ([, c]) => resolveClassName(c, `c-${c}-9 ring-(~ ${c}-6)`), { autocomplete: ['ui-<theme-colors>-outline', 'ui-<colors>-outline'] }],
     [/^ui-(.*)-ghost$/, ([, c]) => resolveClassName(c, `c-${c}-9`), { autocomplete: ['ui-<theme-colors>-ghost', 'ui-<colors>-ghost'] }],

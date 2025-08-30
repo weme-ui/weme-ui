@@ -96,6 +96,20 @@ data:
 ---
 ::
 
+### 插槽
+
+::slots-table
+---
+data:
+  - name: default
+    description: 徽章文字
+  - name: icon
+    description: 徽章图标
+  - name: close
+    description: 徽章关闭按钮
+---
+::
+
 ### 事件
 
 ::emits-table

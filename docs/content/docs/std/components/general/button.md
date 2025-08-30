@@ -105,6 +105,8 @@ data:
 ---
 data:
   - name: click
+    type:
+      - (event: MouseEvent) => void
     description: 按钮点击事件
 ---
 ::

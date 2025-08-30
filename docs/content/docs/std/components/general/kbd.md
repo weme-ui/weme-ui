@@ -94,6 +94,58 @@ data:
 ---
 ::
 
+### 系统按键
+
+::data-table{ name="键名" description="系统" }
+---
+data:
+  - name: meta
+    description: Windows 下为 win 键，macOS 下为 command 键
+  - name: alt
+    description: Windows 下为 alt 键，macOS 下为 option 键
+  - name: ctrl
+    description: Windows 下为 ctrl 键，macOS 下为 control 键
+  - name: win
+    description: ⊞
+  - name: command
+    description: ⌘
+  - name: control
+    description: ⌃
+  - name: option
+    description: ⌥
+  - name: shift
+    description: ⇧
+  - name: enter
+    description: ↵
+  - name: delete
+    description: ⌦
+  - name: backspace
+    description: ⌫
+  - name: escape
+    description: ⎋
+  - name: tab
+    description: ⇥
+  - name: capsLock
+    description: ⇪
+  - name: arrowUp
+    description: ↑
+  - name: arrowRight
+    description: →
+  - name: arrowDown
+    description: ↓
+  - name: arrowLeft
+    description: ←
+  - name: pageup
+    description: ⇞
+  - name: pagedown
+    description: ⇟
+  - name: home
+    description: ↖
+  - name: end
+    description: ↘
+---
+::
+
 ## 示例
 
 ### 颜色样式

@@ -38,6 +38,11 @@ $ pnpm dlx @weme-ui/weme-ui add std/alert
 ::props-table
 ---
 data:
+  - name: modelValue
+    type:
+      - boolean
+    default: true
+    description: 是否可见 (v-model)
   - name: icon
     type:
       - string

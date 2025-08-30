@@ -12,10 +12,7 @@
     ],
     "homepage": "https://github.com/weme-ui/weme-ui",
     "repository": "https://github.com/weme-ui/weme-ui.git",
-    "bugs": "https://github.com/weme-ui/weme-ui/issues",
-    "tags": [
-      "@weme-ui/std"
-    ]
+    "bugs": "https://github.com/weme-ui/weme-ui/issues"
   },
   "dependencies": [
     "clsx",
@@ -23,8 +20,12 @@
     "tailwind-variants"
   ],
   "devDependencies": [
+    "@vueuse/core",
     "@weme-ui/nuxt",
-    "@weme-ui/unocss-preset"
+    "@weme-ui/unocss-preset",
+    "reka-ui",
+    "unocss",
+    "vue"
   ],
   "items": [
     {
@@ -56,6 +57,10 @@
         {
           "path": "components/icon/icon-box.style.ts",
           "type": "style"
+        },
+        {
+          "path": "utils/styles.ts",
+          "type": "util"
         }
       ]
     },
@@ -80,6 +85,10 @@
         {
           "path": "components/typography/typography.style.ts",
           "type": "style"
+        },
+        {
+          "path": "utils/styles.ts",
+          "type": "util"
         }
       ]
     },
@@ -107,6 +116,10 @@
         {
           "path": "components/button/button.style.ts",
           "type": "style"
+        },
+        {
+          "path": "utils/styles.ts",
+          "type": "util"
         }
       ]
     },
@@ -131,6 +144,10 @@
         {
           "path": "components/link/link.style.ts",
           "type": "style"
+        },
+        {
+          "path": "utils/styles.ts",
+          "type": "util"
         }
       ]
     },
@@ -159,6 +176,10 @@
         {
           "path": "composables/use-kbd.ts",
           "type": "composable"
+        },
+        {
+          "path": "utils/styles.ts",
+          "type": "util"
         }
       ]
     },
@@ -186,6 +207,10 @@
         {
           "path": "components/badge/badge.style.ts",
           "type": "style"
+        },
+        {
+          "path": "utils/styles.ts",
+          "type": "util"
         }
       ]
     },
@@ -213,6 +238,10 @@
         {
           "path": "components/alert/alert.style.ts",
           "type": "style"
+        },
+        {
+          "path": "utils/styles.ts",
+          "type": "util"
         }
       ]
     },
@@ -237,6 +266,42 @@
         {
           "path": "components/separator/separator.style.ts",
           "type": "style"
+        },
+        {
+          "path": "utils/styles.ts",
+          "type": "util"
+        }
+      ]
+    },
+    {
+      "name": "space",
+      "type": "component",
+      "title": "Space",
+      "description": "Set the spacing and separators between components.",
+      "author": "Allen Luo <luoyi@mouji.net>",
+      "categories": [
+        "layout"
+      ],
+      "files": [
+        {
+          "path": "components/space/space.vue",
+          "type": "component"
+        },
+        {
+          "path": "components/space/space.props.ts",
+          "type": "type"
+        },
+        {
+          "path": "components/space/space.style.ts",
+          "type": "style"
+        },
+        {
+          "path": "utils/slots.ts",
+          "type": "util"
+        },
+        {
+          "path": "utils/styles.ts",
+          "type": "util"
         }
       ]
     }

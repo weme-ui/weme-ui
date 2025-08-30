@@ -8,7 +8,7 @@ catalogs:
     '@commitlint/cli': ^19.8.1
     '@commitlint/config-conventional': ^19.8.1
     '@types/node': 24.0.15
-    '@typescript/native-preview': ^7.0.0-dev.20250828.1
+    '@typescript/native-preview': ^7.0.0-dev.20250829.3
     bumpp: ^10.2.3
     commitizen: ^4.3.1
     conventional-changelog: ^7.1.1
@@ -30,7 +30,7 @@ catalogs:
     clsx: ^2.1.1
     colorjs.io: ^0.5.2
     defu: ^6.1.4
-    motion-v: ^1.7.0
+    motion-v: ^1.7.1
     reka-ui: ^2.5.0
     tailwind-merge: ^3.3.1
     tailwind-variants: ^3.1.0

@@ -6,7 +6,7 @@ import { createTV } from 'tailwind-variants'
 export type { VariantProps } from 'tailwind-variants'
 
 export const createVariants = createTV({
-  twMerge: false,
+  twMerge: true,
 })
 
 export function cn(...extras: ClassValue[]) {

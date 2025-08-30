@@ -215,6 +215,30 @@
           "type": "style"
         }
       ]
+    },
+    {
+      "name": "separator",
+      "type": "component",
+      "title": "Separator",
+      "description": "Visually or semantically separates content.",
+      "author": "Allen Luo <luoyi@mouji.net>",
+      "categories": [
+        "layout"
+      ],
+      "files": [
+        {
+          "path": "components/separator/separator.vue",
+          "type": "component"
+        },
+        {
+          "path": "components/separator/separator.props.ts",
+          "type": "type"
+        },
+        {
+          "path": "components/separator/separator.style.ts",
+          "type": "style"
+        }
+      ]
     }
   ]
 }

@@ -51,7 +51,9 @@ function onClose() {
     <slot>{{ text }}</slot>
 
     <button v-if="closable" :class="cn(ui.close(), props.ui?.close)" @click="onClose">
-      <Icon name="close" />
+      <slot name="close">
+        <Icon name="close" />
+      </slot>
     </button>
   </Primitive>
 </template>

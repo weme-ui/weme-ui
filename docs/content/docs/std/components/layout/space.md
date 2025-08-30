@@ -124,6 +124,26 @@ data:
 ```
 ::
 
+### 间隔大小
+
+::preview
+#preview
+:ExamplesStdSpaceSize
+
+#code
+```vue-html inset
+<UiSpace size="lg">
+  <UiButton>Item 1</UiButton>
+  <UiButton>Item 2</UiButton>
+  <UiButton>Item 3</UiButton>
+
+  <template #separator>
+    <UiSeparator />
+  </template>
+</UiSpace>
+```
+::
+
 ### 分隔符
 
 ::preview

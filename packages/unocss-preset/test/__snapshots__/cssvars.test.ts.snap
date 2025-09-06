@@ -1,3 +1,0 @@
-// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
-
-exports[`css variables > should preflight css variables 1`] = `":root { --test-bg: #fff;--test-bg-dimmed: #eee;--test-panel: #eee;--test-panel-bg: #eee;--test-panel-fg: #333; }"`;

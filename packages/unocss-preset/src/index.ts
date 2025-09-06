@@ -1,56 +1,29 @@
 import type { UserPresetOptions } from './types'
-import { definePreset, mergeDeep } from 'unocss'
-import { DEFAULT_THEME_COLORS } from './constants'
+import { definePreset } from 'unocss'
 import { resolveOptions } from './options'
 import { preflights } from './preflights'
 import { rules } from './rules'
 import { shortcuts } from './shortcuts'
 import { theme } from './theme'
+import { resolveColorNames } from './utils'
 import { variants } from './variants'
 
-export { resolveThemes } from './themes'
-export * from './types/themes'
+export * from './types/theme'
 
-export const presetWemeUI = definePreset((userOptions: UserPresetOptions = {}) => {
-  const options = resolveOptions(userOptions)
-  const colorNames = Object.keys({
-    ...options.accentColors,
-    ...options.neutralColors,
-  })
+export const presetWemeUI = definePreset((_options: UserPresetOptions = {}) => {
+  const options = resolveOptions(_options)
 
   return {
     name: '@weme-ui/unocss-preset',
-    options,
-    extendTheme: (t) => {
-      const {
-        colors,
-        font,
-        text,
-        radius,
-        breakpoint,
-        verticalBreakpoint,
-        ...others
-      } = theme(options)
-
-      return {
-        ...mergeDeep(t, others),
-        colors,
-        font,
-        text,
-        radius,
-        breakpoint,
-        verticalBreakpoint,
-      }
-    },
-    preflights: preflights(options),
     rules: rules(options),
-    shortcuts: shortcuts(options),
+    theme: theme(options),
+    shortcuts: shortcuts(),
+    preflights: preflights(options),
     variants,
     shorthands: {
-      'theme-colors': `(${DEFAULT_THEME_COLORS.join('|')})`,
-      'colors': `(${colorNames.join('|')})`,
-      'scales': `(${Array.from({ length: 11 }, (_, i) => i + 1).join('|')})`,
+      color: `(${resolveColorNames(options).join('|')})`,
+      scale: `(${Array.from({ length: 11 }, (_, i) => i + 1).join('|')})`,
     },
-    enforce: 'post',
+    options,
   }
 })

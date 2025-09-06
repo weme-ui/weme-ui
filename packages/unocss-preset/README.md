@@ -41,9 +41,9 @@ export default defineConfig({
 [MIT][license-href] License © 2025 [weme-ui][github-href]
 
 [github-href]: https://github.com/weme-ui/weme-ui
-[npm-version-src]: https://img.shields.io/npm/v/@weme-ui/unocss-preset?style=flat&colorA=1d2129&colorB=1d2129
+[npm-version-src]: https://img.shields.io/npm/v/@weme-ui/unocss-preset?style=flat&colorA=1d2129&colorB=4CBBA5
 [npm-version-href]: https://npmjs.com/package/@weme-ui/unocss-preset
-[license-src]: https://img.shields.io/github/license/@weme-ui/unocss-preset.svg?style=flat&colorA=1d2129&colorB=1d2129
+[license-src]: https://img.shields.io/github/license/weme-ui/weme-ui.svg?style=flat&colorA=1d2129&colorB=4CBBA5
 [license-href]: https://github.com/weme-ui/weme-ui/blob/main/LICENSE
 [unocss-href]: https://unocss.dev
 [reka-href]: https://reka-ui.com

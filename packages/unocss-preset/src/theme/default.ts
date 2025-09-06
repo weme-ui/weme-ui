@@ -1,17 +1,19 @@
 import type { Theme, WemePresetOptions } from '../types'
-import { colors } from './colors'
-import { font, text } from './font'
-import { radius } from './misc'
-import { breakpoint, container, verticalBreakpoint } from './size'
+import { animate } from './animate'
+import { font, leading, text } from './font'
+import { radius, spacing } from './misc'
+import { breakpoint, verticalBreakpoint } from './size'
 
 export function theme(options: WemePresetOptions): Theme {
   return {
-    colors: colors(options),
     font,
     text,
-    radius,
+    leading,
+    spacing,
     breakpoint,
     verticalBreakpoint,
-    container,
+    animate,
+
+    radius: radius(options.variablePrefix),
   }
 }

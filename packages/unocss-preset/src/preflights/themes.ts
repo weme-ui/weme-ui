@@ -1,49 +1,155 @@
-import type { ColorScalesArray } from '@weme-ui/colors'
-import type { Preflight, WemeTheme } from '../types'
-import { createCssVars, minifyCss } from '../utils'
+import type { DeepPartial, Preflight, WemePresetOptions, WemeTheme, WemeThemeTokens } from '../types'
+import { transformColor } from '@weme-ui/colors'
+import { defu } from 'defu'
+import { defaultTheme } from '../defaults'
+import { minifyCss, trackColor } from '../utils'
 
-export function preflightThemes(prefix: string, themes: WemeTheme[]): Preflight[] {
-  return Object.entries(themes)
-    .map(([_, theme]) => {
+export function preflightThemes(options: WemePresetOptions): Preflight[] {
+  return options.themes
+    .sort((a, b) => (b.priority || 0) - (a.priority || 0))
+    .map((theme) => {
       return {
-        getCSS() {
-          return minifyCss(`
-            [data-theme=${theme.id}] {
-              color-scheme: ${theme.appearance};
-              --${prefix}radius: ${theme.radius};
-              ${createThemeColor(prefix, theme.colors)}
-              ${createCssVars(prefix, theme.tokens as unknown as Record<string, string>)}
-            }
-          `)
-        },
         layer: 'theme',
+        getCSS() {
+          const selector = theme.id === 'ROOT'
+            ? ':root'
+            : `[data-theme=${theme.id}]`
+
+          // If color is custom, transform it to color scales
+          // If color is not custom, use the color scales from options.colors
+          const {
+            lightColors,
+            darkColors,
+          } = resolveThemeColors(theme)
+
+          const {
+            lightTheme,
+            darkTheme,
+          } = resolveThemeTokens(options.variablePrefix, theme)
+
+          return minifyCss(`${
+            lightColors || lightTheme
+              ? `${selector} { ${lightColors} ${lightTheme} } `
+              : ''
+          }
+
+${
+  darkColors || darkTheme
+    ? `${selector}:where(.dark) { ${darkColors} ${darkTheme} } `
+    : ''
+}
+`)
+        },
       }
     })
 }
 
-function createThemeColor(prefix: string, colors: WemeTheme['colors']): string {
-  return Object.entries(colors)
-    .map(([name, scales]: [string, ColorScalesArray]) => {
-      // support custom color scales
-      if (['accent', 'neutral'].includes(name)) {
-        return [
-          // default
-          `--${prefix}${name}: var(--${prefix}${name}-9);`,
-          // scales
-          ...scales.map(
-            (value, i) => `--${prefix}${name}-${i + 1}: var(--custom-${name}-${i + 1}, ${value});`,
-          ),
-        ].join('')
+function resolveThemeColors(theme: WemeTheme): Record<'lightColors' | 'darkColors', string> {
+  const light: string[] = []
+  const dark: string[] = []
+
+  if (theme.colors) {
+    Object.entries(theme.colors).forEach(([name, color]) => {
+      if (
+        color.startsWith('#')
+        || color.startsWith('rgb(')
+        || color.startsWith('hsl(')
+        || color.startsWith('lch(')
+        || color.startsWith('oklch(')
+      ) {
+        transformColor({ color }).forEach((c, i) => {
+          light.push(`--${name}-${i + 1}: ${c};`)
+        })
+
+        transformColor({ color, appearance: 'dark' }).forEach((c, i) => {
+          dark.push(`--${name}-${i + 1}: ${c};`)
+        })
+      }
+      else {
+        for (let i = 1; i <= 12; i++) {
+          light.push(`--${name}-${i}: var(--${color}-${i});`)
+        }
+      }
+    })
+  }
+
+  return {
+    lightColors: light.join(''),
+    darkColors: dark.join(''),
+  }
+}
+
+function resolveThemeTokens(prefix: string, theme: WemeTheme): Record<'lightTheme' | 'darkTheme', string> {
+  const light: string[] = []
+  const dark: string[] = []
+
+  const resolvedTheme = defu(theme, defaultTheme) as WemeTheme
+
+  const shortcuts: Record<string, string> = {
+    foreground: 'fg',
+    background: 'bg',
+    default: '',
+  }
+
+  function resolveTokenName(name: string) {
+    return `--${prefix}-${name.split('-')
+      .map(n => shortcuts[n] ?? n)
+      .filter(Boolean)
+      .join('-')}`
+  }
+
+  function resolveTokenValue(value: string) {
+    if (value.startsWith('color.')) {
+      const [color, scale] = value.replace(/^color\./, '').split('.')
+      const trackKey = resolvedTheme.colors?.[color as any as keyof WemeTheme['colors']] ?? color
+
+      trackColor(trackKey, Number(scale))
+
+      return `var(--${color}-${scale})`
+    }
+
+    else if (value.startsWith('$')) {
+      return `var(${resolveTokenName(value.slice(1).replace(/\./g, '-'))})`
+    }
+
+    return value
+  }
+
+  if (theme.radius)
+    light.push(`${resolveTokenName('radius')}: ${theme.radius};`)
+
+  if (theme.tokens) {
+    Object.entries(theme.tokens).forEach(([name, value]) => {
+      if (name !== 'dark') {
+        if (typeof value === 'string')
+          light.push(`${resolveTokenName(name)}: ${resolveTokenValue(value)};`)
+
+        if (typeof value === 'object') {
+          Object.entries(value).forEach(([subName, subValue]) => {
+            light.push(`${resolveTokenName(`${name}-${subName}`)}: ${resolveTokenValue(subValue as string)};`)
+          })
+        }
       }
 
-      return [
-        // default
-        `--${prefix}${name}: var(--${prefix}${name}-9);`,
-        // scales
-        ...scales.map(
-          (value, i) => `--${prefix}${name}-${i + 1}: ${value};`,
-        ),
-      ].join('')
+      else {
+        const darkTokens = value as DeepPartial<WemeThemeTokens>
+
+        Object.entries(darkTokens).forEach(([name, value]) => {
+          if (typeof value === 'string')
+            dark.push(`${resolveTokenName(name)}: ${resolveTokenValue(value)};`)
+
+          if (typeof value === 'object') {
+            Object.entries(value).forEach(([subName, subValue]) => {
+              dark.push(`${resolveTokenName(`${name}-${subName}`)}: ${resolveTokenValue(subValue as string)};`)
+            })
+          }
+        })
+      }
     })
-    .join('')
+  }
+
+  return {
+    lightTheme: light.join(''),
+    darkTheme: dark.join(''),
+  }
 }

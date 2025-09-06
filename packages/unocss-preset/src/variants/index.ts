@@ -1,6 +1,2 @@
-import type { Variant } from '../types'
-import { dataVariants } from './data'
-
-export const variants: Variant[] = [
-  ...dataVariants(),
-]
+export * from './data'
+export * from './default'

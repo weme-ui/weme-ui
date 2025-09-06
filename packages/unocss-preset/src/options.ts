@@ -1,56 +1,85 @@
-import type { UserPresetOptions, WemePresetOptions } from './types'
-import { resolveColors } from './colors'
-import { DEFAULT_BACKGROUND_DARK, DEFAULT_BACKGROUND_LIGHT, DEFAULT_PREFIX } from './constants'
-import { resolveThemes } from './themes'
+import type { UserPresetOptions, WemeColors, WemePresetOptions, WemeTheme } from './types'
+import RadixColors from './colors'
+import { defaultTheme } from './defaults'
+import { trackColorScales } from './utils'
+import { transformColors } from './utils/color'
 
-export function resolveOptions(options: UserPresetOptions): WemePresetOptions {
-  const prefix = options.prefix ?? DEFAULT_PREFIX
-  const reset = options.reset ?? true
-  const background = resolveBackground(options.background)
-  const accentColors = resolveColors(options.accentColors, background)
-  const neutralColors = resolveColors(options.neutralColors, background, true)
-  const injectDefaultThemes = options.injectDefaultThemes ?? true
-  const themes = resolveThemes(options.themes || [], background, prefix, injectDefaultThemes)
-  const cssVars = resolveCssVars(options.cssVars)
-
+export function resolveOptions(_options: UserPresetOptions): WemePresetOptions {
   return {
-    prefix,
-    reset,
-    accentColors,
-    neutralColors,
-    background,
-    injectDefaultThemes,
-    themes,
-    cssVars,
+    variablePrefix: _options.variablePrefix || 'ui',
+    colors: resolveColors(_options.accentColors, _options.neutralColors),
+    themes: resolveThemes(_options.themes),
+    cssVars: resolveCssVars(_options.cssVars),
   }
 }
 
-function resolveBackground(
-  background: UserPresetOptions['background'],
-): WemePresetOptions['background'] {
-  return {
-    light: background?.light ?? DEFAULT_BACKGROUND_LIGHT,
-    dark: background?.dark ?? DEFAULT_BACKGROUND_DARK,
+function resolveColors(
+  accentColors?: Record<string, string>,
+  neutralColors?: Record<string, string>,
+) {
+  const colors: WemeColors = RadixColors
+
+  // Custom Accent Colors
+  if (accentColors && Object.keys(accentColors).length > 0) {
+    Object.entries(accentColors).forEach(([name, color]) => {
+      colors[name] = transformColors(color)
+    })
   }
+
+  // Custom Neutral Colors
+  if (neutralColors && Object.keys(neutralColors).length > 0) {
+    Object.entries(neutralColors).forEach(([name, color]) => {
+      colors[name] = transformColors(color, true)
+    })
+  }
+
+  return colors
 }
 
-function resolveCssVars(cssVars: UserPresetOptions['cssVars']): WemePresetOptions['cssVars'] {
-  if (!cssVars)
+function resolveThemes(themes?: WemeTheme[]): WemeTheme[] {
+  const resolved: WemeTheme[] = [
+    defaultTheme,
+    ...themes || [],
+  ]
+
+  // Track colors
+  resolved.forEach((theme) => {
+    if (theme.colors) {
+      Object.entries(theme.colors).forEach(([, color]) => {
+        if (
+          !color.startsWith('#')
+          && !color.startsWith('rgb(')
+          && !color.startsWith('hsl(')
+          && !color.startsWith('lch(')
+          && !color.startsWith('oklch(')
+        ) {
+          trackColorScales(color)
+        }
+      })
+    }
+  })
+
+  return resolved
+}
+
+function resolveCssVars(_cssVars?: UserPresetOptions['cssVars']): WemePresetOptions['cssVars'] {
+  if (!_cssVars)
     return {}
 
-  const flatVars: WemePresetOptions['cssVars'] = {}
+  const cssVars: WemePresetOptions['cssVars'] = {}
 
-  Object.entries(cssVars).forEach(([name, value]) => {
+  Object.entries(_cssVars).forEach(([name, value]) => {
     if (typeof value === 'string') {
-      flatVars[name] = value
+      cssVars[name] = value
       return
     }
 
     Object.entries(value as Record<string, string>)
       .forEach(([subName, subValue]) => {
-        flatVars[`${name}-${subName}`] = subValue
+        if (typeof subValue === 'string')
+          cssVars[`${name}-${subName}`] = subValue
       })
   })
 
-  return flatVars
+  return cssVars
 }

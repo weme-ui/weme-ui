@@ -2,7 +2,7 @@
   "name": "@weme-ui/unocss-preset",
   "type": "module",
   "version": "0.0.0",
-  "packageManager": "pnpm@10.15.0",
+  "packageManager": "pnpm@10.15.1",
   "description": "Weme UI - UnoCSS Preset",
   "author": "Allen Luo <luoyi@mouji.net>",
   "license": "MIT",
@@ -42,7 +42,7 @@
     "dist"
   ],
   "scripts": {
-    "build": "tsdown",
+    "build": "esno scripts/prepare.ts && tsdown",
     "dev": "tsdown --watch",
     "dev:prepare": "pnpm run build",
     "prepublishOnly": "pnpm run build",
@@ -53,8 +53,10 @@
   "peerDependencies": {
     "@radix-ui/colors": "catalog:dev",
     "@weme-ui/colors": "workspace:*",
+    "@weme-ui/schema": "catalog:dev",
     "bezier-easing": "catalog:dev",
     "colorjs.io": "catalog:dev",
+    "defu": "catalog:dev",
     "unocss": "catalog:dev"
   },
   "devDependencies": {
@@ -62,9 +64,13 @@
     "@types/node": "catalog:build",
     "@vitejs/plugin-vue": "catalog:vue",
     "@weme-ui/colors": "workspace:*",
+    "@weme-ui/schema": "catalog:dev",
     "bezier-easing": "catalog:dev",
     "bumpp": "catalog:build",
     "colorjs.io": "catalog:dev",
+    "defu": "catalog:dev",
+    "esno": "catalog:utils",
+    "reka-ui": "catalog:dev",
     "tsdown": "catalog:build",
     "typescript": "catalog:build",
     "unocss": "catalog:dev",

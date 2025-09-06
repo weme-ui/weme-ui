@@ -1,58 +1,35 @@
-import type { Colors } from '@weme-ui/colors'
-import type { WemeTheme, WemeThemeDefinition } from './themes'
-import type { DeepPartial } from './utils'
+import type { InlineCssVars, NestedCssVars } from '@weme-ui/schema'
+import type { WemeColors } from './colors'
+import type { WemeTheme } from './theme'
 
-export interface WemePresetOptions<C = Colors, T = WemeTheme, V = Record<string, string>> {
+export interface WemePresetOptions {
   /**
-   * Prefix for css variables
+   * **NOT WORK FOR COLORS**
    *
-   * @default 'ui-'
+   * @default 'ui'
    */
-  prefix: string
+  variablePrefix: string
 
   /**
-   * Inject reset styles
-   *
-   * @default true
+   * Resolved Colors.
    */
-  reset: boolean
+  colors: WemeColors
 
   /**
-   * Accent colors
+   * Resolved Themes.
    */
-  accentColors: C
+  themes: WemeTheme[]
 
   /**
-   * Neutral colors
+   * Components Css Variables.
    */
-  neutralColors: C
-
-  /**
-   * Background colors
-   *
-   * @default { light: '#fff', dark: '#111' }
-   */
-  background: {
-    light: string
-    dark: string
-  }
-
-  /**
-   * Inject default themes
-   *
-   * @default true
-   */
-  injectDefaultThemes: boolean
-
-  /**
-   * Themes
-   */
-  themes: T[]
-
-  /**
-   * Components Css Variables
-   */
-  cssVars: V
+  cssVars: InlineCssVars
 }
 
-export type UserPresetOptions = DeepPartial<WemePresetOptions<Record<string, string>, WemeThemeDefinition, Record<string, string> | Record<string, Record<string, string>>>>
+export interface UserPresetOptions {
+  variablePrefix?: string
+  accentColors?: Record<string, string>
+  neutralColors?: Record<string, string>
+  themes?: WemeTheme[]
+  cssVars?: InlineCssVars | NestedCssVars
+}

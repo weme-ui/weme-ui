@@ -1,9 +1,5 @@
 import type { Theme } from '../types'
 
-export const container = {
-
-} satisfies Theme['container']
-
 export const breakpoint = {
   xs: '520px',
   sm: '768px',

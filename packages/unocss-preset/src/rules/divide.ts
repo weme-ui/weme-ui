@@ -1,5 +1,5 @@
 import type { Rule, WemePresetOptions } from '../types'
-import { notLastChildSelectorVariant, resolveColor, resolveColorNames, resolveCssVarName } from '../utils'
+import { getColorNames, getCssVarName, notLastChildSelectorVariant, resolveColor } from '../utils'
 
 export function divideColor(options: WemePresetOptions): Rule[] {
   return [
@@ -7,7 +7,7 @@ export function divideColor(options: WemePresetOptions): Rule[] {
     [
       /^divide-(.+)$/,
       function* (match, ctx) {
-        const result = resolveColor('border-color', match[1], resolveColorNames(options))
+        const result = resolveColor('border-color', match[1], getColorNames(options))
 
         if (result) {
           yield {
@@ -25,7 +25,7 @@ export function divideColor(options: WemePresetOptions): Rule[] {
       /^divide-(default|elevated)$/,
       function* (match, ctx) {
         const result = {
-          'border-color': `var(${resolveCssVarName(`border-${match[1]}`, options.variablePrefix)})`,
+          'border-color': `var(${getCssVarName(`border-${match[1]}`, options.variablePrefix)})`,
         }
 
         if (result) {

@@ -63,6 +63,7 @@
     "@radix-ui/colors": "catalog:dev",
     "@types/node": "catalog:build",
     "@vitejs/plugin-vue": "catalog:vue",
+    "@vueuse/core": "catalog:dev",
     "@weme-ui/colors": "workspace:*",
     "@weme-ui/schema": "catalog:dev",
     "bezier-easing": "catalog:dev",
@@ -76,6 +77,7 @@
     "unocss": "catalog:dev",
     "vite": "catalog:build",
     "vitest": "catalog:testing",
-    "vue": "catalog:vue"
+    "vue": "catalog:vue",
+    "vue-router": "catalog:vue"
   }
 }

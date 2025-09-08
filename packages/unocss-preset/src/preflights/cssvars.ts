@@ -1,6 +1,6 @@
 import type { Preflight, WemePresetOptions, WemeTheme } from '../types'
 import { defaultTheme } from '../defaults'
-import { minifyCss, resolveCssVarName, trackColor } from '../utils'
+import { getCssVarName, minifyCss, trackColor } from '../utils'
 
 export function preflightCssVars(options: WemePresetOptions): Preflight {
   return {
@@ -20,7 +20,7 @@ export function preflightCssVars(options: WemePresetOptions): Preflight {
         }
 
         else if (value.startsWith('$')) {
-          return `var(${resolveCssVarName(value.slice(1).replace(/\./g, '-'), options.variablePrefix)})`
+          return `var(${getCssVarName(value.slice(1).replace(/\./g, '-'), options.variablePrefix)})`
         }
 
         return value
@@ -28,7 +28,7 @@ export function preflightCssVars(options: WemePresetOptions): Preflight {
 
       return minifyCss(`:root {
 ${Object.entries(options.cssVars)
-  .map(([name, value]) => `  ${resolveCssVarName(name, options.variablePrefix)}: ${resolveTokenValue(value)};`)
+  .map(([name, value]) => `  ${getCssVarName(name, options.variablePrefix)}: ${resolveTokenValue(value)};`)
   .join('\n')}
 }`)
     },

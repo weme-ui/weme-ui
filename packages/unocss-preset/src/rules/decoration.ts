@@ -1,5 +1,5 @@
 import type { Rule, WemePresetOptions } from '../types'
-import { resolveColor, resolveColorNames } from '../utils'
+import { getColorNames, resolveColor } from '../utils'
 
 export function textDecorationColor(options: WemePresetOptions): Rule[] {
   return [
@@ -7,7 +7,7 @@ export function textDecorationColor(options: WemePresetOptions): Rule[] {
     [
       /^(?:underline|decoration)-(.+)$/,
       ([, c]) => {
-        const result = resolveColor('text-decoration-color', c, resolveColorNames(options))
+        const result = resolveColor('text-decoration-color', c, getColorNames(options))
 
         if (result) {
           result['-webkit-text-decoration-color'] = result['text-decoration-color']

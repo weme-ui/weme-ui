@@ -1,5 +1,5 @@
 import type { Rule, WemePresetOptions } from '../types'
-import { resolveColor, resolveColorNames, resolveCssVarName } from '../utils'
+import { getColorNames, getCssVarName, resolveColor } from '../utils'
 
 export function placeholderColor(options: WemePresetOptions): Rule[] {
   return [
@@ -7,7 +7,7 @@ export function placeholderColor(options: WemePresetOptions): Rule[] {
     [
       /^placeholder-(.+)$/,
       ([, c]) => {
-        const result = resolveColor('color', c, resolveColorNames(options))
+        const result = resolveColor('color', c, getColorNames(options))
 
         if (result) {
           result.placeholder = result.color
@@ -23,7 +23,7 @@ export function placeholderColor(options: WemePresetOptions): Rule[] {
     [
       /^placeholder-(dimmed|muted|toned|default|highlighted)$/,
       ([, c]) => {
-        const color = `var(${resolveCssVarName(`fg-${c}`, options.variablePrefix)})`
+        const color = `var(${getCssVarName(`fg-${c}`, options.variablePrefix)})`
 
         return {
           color,

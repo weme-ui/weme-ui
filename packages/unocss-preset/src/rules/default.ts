@@ -1,6 +1,6 @@
 import type { Rule, WemePresetOptions } from '../types'
 import { bgGradientColor } from './background'
-import { borderColor, strokeColor, textStrokeColor } from './border'
+import { borderColor, borderSize, strokeColor, textStrokeColor } from './border'
 import { accentColor, bgColor, fgColor, fillColor } from './color'
 import { textDecorationColor } from './decoration'
 import { divideColor } from './divide'
@@ -8,6 +8,7 @@ import { outlineColor } from './outline'
 import { placeholderColor } from './placeholder'
 import { ringColor } from './ring'
 import { shadowColor, textShadowColor } from './shadow'
+import { boxSize } from './size'
 
 export function rules(options: WemePresetOptions): Rule[] {
   return [
@@ -26,5 +27,9 @@ export function rules(options: WemePresetOptions): Rule[] {
     textStrokeColor(options),
     textDecorationColor(options),
     placeholderColor(options),
+
+    // Css Variables
+    borderSize(options),
+    boxSize(options),
   ].flat()
 }

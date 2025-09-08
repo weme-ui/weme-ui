@@ -5,7 +5,7 @@ import { preflights } from './preflights'
 import { rules } from './rules'
 import { shortcuts } from './shortcuts'
 import { theme } from './theme'
-import { resolveColorNames } from './utils'
+import { getColorNames } from './utils'
 import { variants } from './variants'
 
 export * from './types/theme'
@@ -16,12 +16,12 @@ export const presetWemeUI = definePreset((_options: UserPresetOptions = {}) => {
   return {
     name: '@weme-ui/unocss-preset',
     rules: rules(options),
-    theme: theme(options),
-    shortcuts: shortcuts(),
+    shortcuts: shortcuts(options),
     preflights: preflights(options),
+    theme: theme(options),
     variants,
     shorthands: {
-      color: `(${resolveColorNames(options).join('|')})`,
+      color: `(${getColorNames(options).join('|')})`,
       scale: `(${Array.from({ length: 11 }, (_, i) => i + 1).join('|')})`,
     },
     options,

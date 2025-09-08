@@ -1,5 +1,5 @@
 import type { Rule, WemePresetOptions } from '../types'
-import { resolveColor, resolveColorNames, resolveCssVarName } from '../utils'
+import { getColorNames, getCssVarName, resolveColor } from '../utils'
 
 export function outlineColor(options: WemePresetOptions): Rule[] {
   return [
@@ -7,7 +7,7 @@ export function outlineColor(options: WemePresetOptions): Rule[] {
     [
       /^outline-(.+)$/,
       ([, c]) => {
-        return resolveColor('outline-color', c, resolveColorNames(options))
+        return resolveColor('outline-color', c, getColorNames(options))
       },
       { autocomplete: 'outline-<color>' },
     ],
@@ -18,7 +18,7 @@ export function outlineColor(options: WemePresetOptions): Rule[] {
       /^outline-(default|elevated)$/,
       ([, c]) => {
         return {
-          'outline-color': `var(${resolveCssVarName(`border-${c}`, options.variablePrefix)})`,
+          'outline-color': `var(${getCssVarName(`border-${c}`, options.variablePrefix)})`,
         }
       },
       {

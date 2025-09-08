@@ -1,5 +1,5 @@
 import type { Rule, WemePresetOptions } from '../types'
-import { resolveColor, resolveColorNames, resolveCssVarName } from '../utils'
+import { getColorNames, getCssVarName, resolveColor, resolveCssVar } from '../utils'
 
 export function bgColor(options: WemePresetOptions): Rule[] {
   return [
@@ -7,7 +7,7 @@ export function bgColor(options: WemePresetOptions): Rule[] {
     [
       /^bg-(.+)$/,
       ([, c]) => {
-        return resolveColor('background-color', c, resolveColorNames(options))
+        return resolveColor('background-color', c, getColorNames(options))
       },
       {
         autocomplete: [
@@ -24,7 +24,7 @@ export function bgColor(options: WemePresetOptions): Rule[] {
       /^bg-(default|dimmed|muted|elevated)$/,
       ([, c]) => {
         return {
-          'background-color': `var(${resolveCssVarName(`bg-${c}`, options.variablePrefix)})`,
+          'background-color': `var(${getCssVarName(`bg-${c}`, options.variablePrefix)})`,
         }
       },
       {
@@ -38,13 +38,22 @@ export function bgColor(options: WemePresetOptions): Rule[] {
       /^bg-(border|border-elevated)$/,
       ([, c]) => {
         return {
-          'background-color': `var(${resolveCssVarName(`border-${c === 'border' ? 'default' : c}`, options.variablePrefix)})`,
+          'background-color': `var(${getCssVarName(`border-${c === 'border' ? 'default' : c}`, options.variablePrefix)})`,
         }
       },
       {
         autocomplete: [
           'bg-(border|border-elevated)',
         ],
+      },
+    ],
+    // endregion
+
+    // region Css Variables
+    [
+      /^bg-(.+)$/,
+      ([, c]) => {
+        return resolveCssVar('background-color', c, options)
       },
     ],
     // endregion
@@ -57,7 +66,7 @@ export function fgColor(options: WemePresetOptions): Rule[] {
     [
       /^(?:text|color|c)-(.+)$/,
       ([, c]) => {
-        return resolveColor('color', c, resolveColorNames(options))
+        return resolveColor('color', c, getColorNames(options))
       },
       {
         autocomplete: [
@@ -74,13 +83,22 @@ export function fgColor(options: WemePresetOptions): Rule[] {
       /^(?:text|color|c)-(dimmed|muted|toned|default|highlighted)$/,
       ([, c]) => {
         return {
-          color: `var(${resolveCssVarName(`fg-${c}`, options.variablePrefix)})`,
+          color: `var(${getCssVarName(`fg-${c}`, options.variablePrefix)})`,
         }
       },
       {
         autocomplete: [
           '(text|color|c)-(dimmed|muted|toned|default|highlighted)',
         ],
+      },
+    ],
+    // endregion
+
+    // region Css Variables
+    [
+      /^(?:text|color|c)-(.+)$/,
+      ([, c]) => {
+        return resolveCssVar('color', c, options)
       },
     ],
     // endregion
@@ -93,7 +111,7 @@ export function fillColor(options: WemePresetOptions): Rule[] {
     [
       /^fill-(.+)$/,
       ([, c]) => {
-        return resolveColor('fill', c, resolveColorNames(options))
+        return resolveColor('fill', c, getColorNames(options))
       },
       {
         autocomplete: [
@@ -110,7 +128,7 @@ export function fillColor(options: WemePresetOptions): Rule[] {
       /^fill-(default|dimmed|muted|elevated)$/,
       ([, c]) => {
         return {
-          fill: `var(${resolveCssVarName(`bg-${c}`, options.variablePrefix)})`,
+          fill: `var(${getCssVarName(`bg-${c}`, options.variablePrefix)})`,
         }
       },
       {
@@ -124,7 +142,7 @@ export function fillColor(options: WemePresetOptions): Rule[] {
       /^fill-(border|border-elevated)$/,
       ([, c]) => {
         return {
-          fill: `var(${resolveCssVarName(`border-${c === 'border' ? 'default' : c}`, options.variablePrefix)})`,
+          fill: `var(${getCssVarName(`border-${c === 'border' ? 'default' : c}`, options.variablePrefix)})`,
         }
       },
       {
@@ -143,7 +161,7 @@ export function accentColor(options: WemePresetOptions): Rule[] {
     [
       /^accent-(.+)$/,
       ([, c]) => {
-        const result = resolveColor('accent', c, resolveColorNames(options))
+        const result = resolveColor('accent', c, getColorNames(options))
 
         if (result) {
           result['accent-color'] = result.accent
@@ -159,11 +177,11 @@ export function accentColor(options: WemePresetOptions): Rule[] {
     [
       /^accent-(dimmed|muted|toned|default|highlighted)$/,
       ([, c]) => {
-        const accent = `var(${resolveCssVarName(`fg-${c}`, options.variablePrefix)})`
+        const accent = `var(${getCssVarName(`fg-${c}`, options.variablePrefix)})`
 
         return {
           accent,
-          'accent-color': `var(${resolveCssVarName(`fg-${c}`, options.variablePrefix)})`,
+          'accent-color': `var(${getCssVarName(`fg-${c}`, options.variablePrefix)})`,
         }
       },
       {

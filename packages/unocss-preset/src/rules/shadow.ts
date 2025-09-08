@@ -1,5 +1,5 @@
 import type { Rule, WemePresetOptions } from '../types'
-import { resolveColor, resolveColorNames } from '../utils'
+import { getColorNames, resolveColor } from '../utils'
 
 export function shadowColor(options: WemePresetOptions): Rule[] {
   return [
@@ -7,7 +7,7 @@ export function shadowColor(options: WemePresetOptions): Rule[] {
     [
       /^shadow-(.+)$/,
       ([, c]) => {
-        return resolveColor('--un-shadow-color', c, resolveColorNames(options))
+        return resolveColor('--un-shadow-color', c, getColorNames(options))
       },
       { autocomplete: 'shadow-<color>' },
     ],
@@ -15,7 +15,7 @@ export function shadowColor(options: WemePresetOptions): Rule[] {
     [
       /^inset-shadow-(.+)$/,
       ([, c]) => {
-        return resolveColor('--un-inset-shadow-color', c, resolveColorNames(options))
+        return resolveColor('--un-inset-shadow-color', c, getColorNames(options))
       },
       { autocomplete: 'inset-shadow-<color>' },
     ],
@@ -29,7 +29,7 @@ export function textShadowColor(options: WemePresetOptions): Rule[] {
     [
       /^text-shadow-(.+)$/,
       ([, c]) => {
-        return resolveColor('text-shadow', c, resolveColorNames(options))
+        return resolveColor('text-shadow', c, getColorNames(options))
       },
       { autocomplete: 'text-shadow-<color>' },
     ],

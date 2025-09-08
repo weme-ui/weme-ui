@@ -1,5 +1,5 @@
 import type { Rule, WemePresetOptions } from '../types'
-import { resolveColor, resolveColorNames, resolveCssVarName } from '../utils'
+import { getColorNames, getCssVarName, resolveColor } from '../utils'
 
 export function ringColor(options: WemePresetOptions): Rule[] {
   return [
@@ -7,7 +7,7 @@ export function ringColor(options: WemePresetOptions): Rule[] {
     [
       /^ring-(.+)$/,
       ([, c]) => {
-        return resolveColor('--un-ring-color', c, resolveColorNames(options))
+        return resolveColor('--un-ring-color', c, getColorNames(options))
       },
       { autocomplete: 'ring-<color>' },
     ],
@@ -15,7 +15,7 @@ export function ringColor(options: WemePresetOptions): Rule[] {
     [
       /^inset-ring-(.+)$/,
       ([, c]) => {
-        return resolveColor('--un-inset-ring-color', c, resolveColorNames(options))
+        return resolveColor('--un-inset-ring-color', c, getColorNames(options))
       },
       { autocomplete: 'inset-ring-<color>' },
     ],
@@ -26,7 +26,7 @@ export function ringColor(options: WemePresetOptions): Rule[] {
       /^ring-(default)$/,
       ([, c]) => {
         return {
-          '--un-ring-color': `var(${resolveCssVarName(`ring-${c}`, options.variablePrefix)})`,
+          '--un-ring-color': `var(${getCssVarName(`ring-${c}`, options.variablePrefix)})`,
         }
       },
     ],
@@ -35,7 +35,7 @@ export function ringColor(options: WemePresetOptions): Rule[] {
       /^inset-ring-(default)$/,
       ([, c]) => {
         return {
-          '--un-inset-ring-color': `var(${resolveCssVarName(`ring-${c}`, options.variablePrefix)})`,
+          '--un-inset-ring-color': `var(${getCssVarName(`ring-${c}`, options.variablePrefix)})`,
         }
       },
     ],

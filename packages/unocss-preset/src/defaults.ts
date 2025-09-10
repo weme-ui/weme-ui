@@ -1,5 +1,23 @@
 import type { WemeTheme } from './types'
 
+export const defaultThemeColors = [
+  'accent',
+  'neutral',
+  'info',
+  'success',
+  'warning',
+  'error',
+]
+
+export const defaultAccentColors: Record<string, string> = {
+  gunmetal: '#1d2129',
+  ocean: '#05f',
+}
+
+export const defaultNeutralColors: Record<string, string> = {
+  iron: '#86909c',
+}
+
 export const defaultTheme: WemeTheme = {
   id: 'ROOT',
   name: 'ROOT',
@@ -7,10 +25,10 @@ export const defaultTheme: WemeTheme = {
   translucent: false,
   radius: '0.25rem',
   colors: {
-    accent: 'indigo',
-    neutral: 'gray',
-    info: 'blue',
-    success: 'green',
+    accent: 'gunmetal',
+    neutral: 'iron',
+    info: 'ocean',
+    success: 'grass',
     warning: 'orange',
     error: 'red',
   },

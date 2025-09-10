@@ -1,6 +1,7 @@
 import type { ColorAppearance } from '@weme-ui/colors'
 import type { WemeColors, WemeColorScales, WemePresetOptions } from '../types'
 import { transformColor } from '@weme-ui/colors'
+import { defaultThemeColors } from '../defaults'
 import { trackColor } from './tracker'
 
 export function parseColor(str: string) {
@@ -55,14 +56,7 @@ export function resolveColor(property: string, args: string, colors: string[]) {
 export function getColorNames(options: WemePresetOptions): string[] {
   return Object
     .keys(options.colors)
-    .concat([
-      'accent',
-      'neutral',
-      'info',
-      'success',
-      'warning',
-      'error',
-    ])
+    .concat(defaultThemeColors)
 }
 
 export function transformColors(color: string, isNeutral?: boolean): WemeColors[string] {
@@ -76,7 +70,12 @@ export function transformColors(color: string, isNeutral?: boolean): WemeColors[
         color = 'black'
     }
 
-    const result = transformColor({ color, appearance, isNeutral })
+    const result = transformColor({
+      color,
+      appearance,
+      isNeutral,
+      background: appearance === 'light' ? '#fff' : '#111',
+    })
 
     acc[appearance] = Object.fromEntries(
       result.map((c, i) => [i + 1, c]),

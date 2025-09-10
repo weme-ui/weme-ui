@@ -1,6 +1,7 @@
 import type { UserPresetOptions, WemeColors, WemePresetOptions, WemeTheme } from './types'
+import { defu } from 'defu'
 import RadixColors from './colors'
-import { defaultTheme } from './defaults'
+import { defaultAccentColors, defaultNeutralColors, defaultTheme } from './defaults'
 import { trackColorScales } from './utils'
 import { transformColors } from './utils/color'
 
@@ -18,6 +19,9 @@ function resolveColors(
   neutralColors?: Record<string, string>,
 ) {
   const colors: WemeColors = RadixColors
+
+  accentColors = defu(accentColors, defaultAccentColors)
+  neutralColors = defu(neutralColors, defaultNeutralColors)
 
   // Custom Accent Colors
   if (accentColors && Object.keys(accentColors).length > 0) {

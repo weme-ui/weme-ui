@@ -52,6 +52,7 @@
   },
   "peerDependencies": {
     "@radix-ui/colors": "catalog:dev",
+    "@unocss/rule-utils": "catalog:dev",
     "@weme-ui/colors": "workspace:*",
     "@weme-ui/schema": "catalog:dev",
     "bezier-easing": "catalog:dev",
@@ -62,6 +63,7 @@
   "devDependencies": {
     "@radix-ui/colors": "catalog:dev",
     "@types/node": "catalog:build",
+    "@unocss/rule-utils": "catalog:dev",
     "@vitejs/plugin-vue": "catalog:vue",
     "@vueuse/core": "catalog:dev",
     "@weme-ui/colors": "workspace:*",
@@ -76,6 +78,7 @@
     "typescript": "catalog:build",
     "unocss": "catalog:dev",
     "vite": "catalog:build",
+    "vite-plugin-vue-devtools": "catalog:dev",
     "vitest": "catalog:testing",
     "vue": "catalog:vue",
     "vue-router": "catalog:vue"

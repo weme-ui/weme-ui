@@ -8,6 +8,9 @@ import { theme } from './theme'
 import { getColorNames } from './utils'
 import { variants } from './variants'
 
+export { defaultThemeColors as colors } from './defaults'
+export { componentVariants } from './shortcuts/variants'
+
 export * from './types/theme'
 
 export const presetWemeUI = definePreset((_options: UserPresetOptions = {}) => {

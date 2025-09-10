@@ -8,9 +8,9 @@ import { preflightThemes } from './themes'
 export function preflights(options: WemePresetOptions): Preflight[] {
   return [
     ...preflightThemes(options),
-    preflightCssVars(options),
-    preflightColors(options),
     preflightProperties(),
     preflightReset(options.variablePrefix),
+    preflightColors(options),
+    preflightCssVars(options),
   ].filter(Boolean) as Preflight[]
 }

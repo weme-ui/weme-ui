@@ -12,6 +12,8 @@ const colors = [
 ] as const
 
 const radixColors = [
+  { name: 'Gunmetal', variants: ['btn-gunmetal', 'btn-gunmetal-soft', 'btn-gunmetal-surface', 'btn-gunmetal-outline', 'btn-gunmetal-ghost', 'btn-gunmetal-link', 'btn-gunmetal-inverse'] },
+  { name: 'Iron', variants: ['btn-iron', 'btn-iron-soft', 'btn-iron-surface', 'btn-iron-outline', 'btn-iron-ghost', 'btn-iron-link', 'btn-iron-inverse'] },
   { name: 'Gray', variants: ['btn-gray', 'btn-gray-soft', 'btn-gray-surface', 'btn-gray-outline', 'btn-gray-ghost', 'btn-gray-link', 'btn-gray-inverse'] },
   { name: 'Mauve', variants: ['btn-mauve', 'btn-mauve-soft', 'btn-mauve-surface', 'btn-mauve-outline', 'btn-mauve-ghost', 'btn-mauve-link', 'btn-mauve-inverse'] },
   { name: 'Slate', variants: ['btn-slate', 'btn-slate-soft', 'btn-slate-surface', 'btn-slate-outline', 'btn-slate-ghost', 'btn-slate-link', 'btn-slate-inverse'] },
@@ -28,6 +30,7 @@ const radixColors = [
   { name: 'Violet', variants: ['btn-violet', 'btn-violet-soft', 'btn-violet-surface', 'btn-violet-outline', 'btn-violet-ghost', 'btn-violet-link', 'btn-violet-inverse'] },
   { name: 'Iris', variants: ['btn-iris', 'btn-iris-soft', 'btn-iris-surface', 'btn-iris-outline', 'btn-iris-ghost', 'btn-iris-link', 'btn-iris-inverse'] },
   { name: 'Indigo', variants: ['btn-indigo', 'btn-indigo-soft', 'btn-indigo-surface', 'btn-indigo-outline', 'btn-indigo-ghost', 'btn-indigo-link', 'btn-indigo-inverse'] },
+  { name: 'Ocean', variants: ['btn-ocean', 'btn-ocean-soft', 'btn-ocean-surface', 'btn-ocean-outline', 'btn-ocean-ghost', 'btn-ocean-link', 'btn-ocean-inverse'] },
   { name: 'Blue', variants: ['btn-blue', 'btn-blue-soft', 'btn-blue-surface', 'btn-blue-outline', 'btn-blue-ghost', 'btn-blue-link', 'btn-blue-inverse'] },
   { name: 'Cyan', variants: ['btn-cyan', 'btn-cyan-soft', 'btn-cyan-surface', 'btn-cyan-outline', 'btn-cyan-ghost', 'btn-cyan-link', 'btn-cyan-inverse'] },
   { name: 'Teal', variants: ['btn-teal', 'btn-teal-soft', 'btn-teal-surface', 'btn-teal-outline', 'btn-teal-ghost', 'btn-teal-link', 'btn-teal-inverse'] },

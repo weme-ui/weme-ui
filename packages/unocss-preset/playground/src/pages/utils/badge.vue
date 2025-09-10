@@ -12,6 +12,8 @@ const colors = [
 ] as const
 
 const radixColors = [
+  { name: 'Gunmetal', variants: ['badge-gunmetal', 'badge-gunmetal-soft', 'badge-gunmetal-surface', 'badge-gunmetal-outline', 'badge-gunmetal-inverse'] },
+  { name: 'Iron', variants: ['badge-iron', 'badge-iron-soft', 'badge-iron-surface', 'badge-iron-outline', 'badge-iron-inverse'] },
   { name: 'Gray', variants: ['badge-gray', 'badge-gray-soft', 'badge-gray-surface', 'badge-gray-outline', 'badge-gray-inverse'] },
   { name: 'Mauve', variants: ['badge-mauve', 'badge-mauve-soft', 'badge-mauve-surface', 'badge-mauve-outline', 'badge-mauve-inverse'] },
   { name: 'Slate', variants: ['badge-slate', 'badge-slate-soft', 'badge-slate-surface', 'badge-slate-outline', 'badge-slate-inverse'] },
@@ -28,6 +30,7 @@ const radixColors = [
   { name: 'Violet', variants: ['badge-violet', 'badge-violet-soft', 'badge-violet-surface', 'badge-violet-outline', 'badge-violet-inverse'] },
   { name: 'Iris', variants: ['badge-iris', 'badge-iris-soft', 'badge-iris-surface', 'badge-iris-outline', 'badge-iris-inverse'] },
   { name: 'Indigo', variants: ['badge-indigo', 'badge-indigo-soft', 'badge-indigo-surface', 'badge-indigo-outline', 'badge-indigo-inverse'] },
+  { name: 'Ocean', variants: ['badge-ocean', 'badge-ocean-soft', 'badge-ocean-surface', 'badge-ocean-outline', 'badge-ocean-inverse'] },
   { name: 'Blue', variants: ['badge-blue', 'badge-blue-soft', 'badge-blue-surface', 'badge-blue-outline', 'badge-blue-inverse'] },
   { name: 'Cyan', variants: ['badge-cyan', 'badge-cyan-soft', 'badge-cyan-surface', 'badge-cyan-outline', 'badge-cyan-inverse'] },
   { name: 'Teal', variants: ['badge-teal', 'badge-teal-soft', 'badge-teal-surface', 'badge-teal-outline', 'badge-teal-inverse'] },

@@ -42,3 +42,11 @@ export function badgeShortcuts(options: WemePresetOptions) {
     ],
   ] satisfies Shortcuts
 }
+
+export const badgeVariants = [
+  'solid',
+  'soft',
+  'surface',
+  'outline',
+  'inverse',
+]

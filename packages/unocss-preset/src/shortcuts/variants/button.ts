@@ -19,25 +19,25 @@ export function buttonShortcuts(options: WemePresetOptions) {
 
     [
       /^btn-(.+)-soft$/,
-      ([, c]) => resolveClass(c, `c-${c}-10 bg-${c}-3 hover:(c-${c}-11 bg-${c}-4) active:bg-${c}-5`),
+      ([, c]) => resolveClass(c, `c-${c}-10 bg-${c}-3 hover:(c-${c}-9 bg-${c}-4) active:bg-${c}-5`),
       { autocomplete: 'btn-<colors>-soft' },
     ],
 
     [
       /^btn-(.+)-surface$/,
-      ([, c]) => resolveClass(c, `c-${c}-9 bg-${c}-3 b-(~ ${c}-5) hover:(c-${c}-11 bg-${c}-4) active:(bg-${c}-5 b-${c}-6)`),
+      ([, c]) => resolveClass(c, `c-${c}-9 bg-${c}-3 b-(~ ${c}-5) hover:(c-${c}-9 bg-${c}-4) active:(bg-${c}-5 b-${c}-6)`),
       { autocomplete: 'btn-<colors>-surface' },
     ],
 
     [
       /^btn-(.+)-outline$/,
-      ([, c]) => resolveClass(c, `c-${c}-9 b-(~ ${c}-5) hover:c-${c}-11 active:(bg-${c}-3 b-${c}-6)`),
+      ([, c]) => resolveClass(c, `c-${c}-9 b-(~ ${c}-5) hover:(c-${c}-9 bg-${c}-3) active:(bg-${c}-4 b-${c}-6)`),
       { autocomplete: 'btn-<colors>-outline' },
     ],
 
     [
       /^btn-(.+)-ghost$/,
-      ([, c]) => resolveClass(c, `c-${c}-9 hover:(c-${c}-11 bg-${c}-4) active:bg-${c}-5`),
+      ([, c]) => resolveClass(c, `c-${c}-9 hover:(c-${c}-9 bg-${c}-3) active:bg-${c}-4`),
       { autocomplete: 'btn-<colors>-ghost' },
     ],
 
@@ -49,8 +49,18 @@ export function buttonShortcuts(options: WemePresetOptions) {
 
     [
       /^btn-(.+)-inverse$/,
-      ([, c]) => resolveClass(c, `c-${c}-9 bg-${c}-1 hover:(c-${c}-11 bg-${c}-2) active:bg-${c}-3/70`),
+      ([, c]) => resolveClass(c, `c-${c}-9 bg-${c}-1 hover:(c-${c}-9 bg-${c}-2) active:bg-${c}-3/70`),
       { autocomplete: 'btn-<colors>-inverse' },
     ],
   ] satisfies Shortcuts
 }
+
+export const buttonVariants = [
+  'solid',
+  'soft',
+  'surface',
+  'outline',
+  'ghost',
+  'link',
+  'inverse',
+]

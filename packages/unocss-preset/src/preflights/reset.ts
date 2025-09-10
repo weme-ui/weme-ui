@@ -17,19 +17,19 @@ body {
 }
 
 ::-webkit-scrollbar {
-  width: 0.4rem;
+  width: 0.5rem;
 }
 
 ::-webkit-scrollbar:horizontal {
-  height: 0.4rem;
+  height: 0.5rem;
 }
 
 ::-webkit-scrollbar-track {
-  background: var(--ui-bg);
+  background: transparent;
 }
 
 ::-webkit-scrollbar-thumb {
-  background:var(--ui-border);
+  background: var(--ui-border);
   border-radius: 3px;
 }
 

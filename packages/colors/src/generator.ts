@@ -12,9 +12,13 @@ export function generateColor(
   const backgroundColor = new Color(background).to('oklch')
 
   const scales = getScaleColors(sourceColor, colors, backgroundColor)
+  const step9 = getStep9Colors(
+    scales,
+    sourceColor,
+  )
 
-  scales[8] = sourceColor
-  scales[9] = getHoverColor(sourceColor, [scales])
+  scales[8] = step9
+  scales[9] = getHoverColor(step9, [scales])
 
   scales[10].coords[1] = Math.min(
     Math.max(scales[8].coords[1], scales[7].coords[1]),
@@ -145,6 +149,19 @@ function getScaleColors(
   })
 
   return scale
+}
+
+function getStep9Colors(scale: ColorScalesArray<Color>, baseColor: Color) {
+  const referenceBackgroundColor = scale[0]
+  const distance = baseColor.deltaEOK(referenceBackgroundColor) * 100
+
+  // If the accent base color is close to the page background color, it's likely
+  // white on white or black on black, so we want to return something that makes sense instead
+  if (distance < 25) {
+    return scale[8]
+  }
+
+  return baseColor
 }
 
 function getHoverColor(source: Color, scales: ColorScalesArray<Color>[]) {

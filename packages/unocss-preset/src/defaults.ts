@@ -9,15 +9,6 @@ export const defaultThemeColors = [
   'error',
 ]
 
-export const defaultAccentColors: Record<string, string> = {
-  gunmetal: '#1d2129',
-  ocean: '#05f',
-}
-
-export const defaultNeutralColors: Record<string, string> = {
-  iron: '#86909c',
-}
-
 export const defaultTheme: WemeTheme = {
   id: 'ROOT',
   name: 'ROOT',

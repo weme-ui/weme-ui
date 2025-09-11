@@ -1,7 +1,7 @@
-import type { Rule, WemePresetOptions } from '../types'
+import type { Rule, WemePresetResolvedOptions } from '../types'
 import { getColorNames, resolveColor } from '../utils'
 
-export function textDecorationColor(options: WemePresetOptions): Rule[] {
+export function textDecorationColor(options: WemePresetResolvedOptions): Rule[] {
   return [
     // region Colors
     [

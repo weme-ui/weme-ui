@@ -1,6 +1,6 @@
 import type { Shortcuts } from '../types'
 
-export const staticShortcuts = [
+export const utilsShortcuts = [
   // Utils
   {
     'abs': 'absolute',

@@ -1,7 +1,7 @@
-import type { Rule, WemePresetOptions } from '../types'
+import type { Rule, WemePresetResolvedOptions } from '../types'
 import { resolveCssVar } from '../utils'
 
-export function boxSize(options: WemePresetOptions): Rule[] {
+export function boxSize(options: WemePresetResolvedOptions): Rule[] {
   return [
     // region Css Variables
     [

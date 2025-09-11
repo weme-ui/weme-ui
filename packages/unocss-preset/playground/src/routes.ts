@@ -30,6 +30,7 @@ export const routes: RouteRecordRaw[] = [
     },
     component: () => import('./pages/basic/spacing.vue'),
   },
+
   // Theme
   {
     path: '/theme/color',
@@ -39,21 +40,22 @@ export const routes: RouteRecordRaw[] = [
     },
     component: () => import('./pages/theme/color.vue'),
   },
+
   // Utils
   {
-    path: '/utils/button',
+    path: '/utils/clickable',
     meta: {
       category: 'Utils',
-      title: 'Button',
+      title: 'Clickable',
     },
-    component: () => import('./pages/utils/button.vue'),
+    component: () => import('./pages/utils/clickable.vue'),
   },
   {
-    path: '/utils/badge',
+    path: '/utils/static',
     meta: {
       category: 'Utils',
-      title: 'Badge',
+      title: 'Static',
     },
-    component: () => import('./pages/utils/badge.vue'),
+    component: () => import('./pages/utils/static.vue'),
   },
 ]

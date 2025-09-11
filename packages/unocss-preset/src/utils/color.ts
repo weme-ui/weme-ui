@@ -1,5 +1,5 @@
 import type { ColorAppearance } from '@weme-ui/colors'
-import type { WemeColors, WemeColorScales, WemePresetOptions } from '../types'
+import type { WemeColors, WemeColorScales, WemePresetResolvedOptions } from '../types'
 import { transformColor } from '@weme-ui/colors'
 import { defaultThemeColors } from '../defaults'
 import { trackColor } from './tracker'
@@ -53,7 +53,7 @@ export function resolveColor(property: string, args: string, colors: string[]) {
   }
 }
 
-export function getColorNames(options: WemePresetOptions): string[] {
+export function getColorNames(options: WemePresetResolvedOptions): string[] {
   return Object
     .keys(options.colors)
     .concat(defaultThemeColors)

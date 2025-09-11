@@ -1,10 +1,9 @@
-import type { UserPresetOptions, WemeColors, WemePresetOptions, WemeTheme } from './types'
+import type { WemeColors, WemePresetOptions, WemePresetResolvedOptions, WemeTheme } from './types'
 import RadixColors from './colors'
-import { defaultTheme } from './defaults'
 import { trackColorScales } from './utils'
 import { transformColors } from './utils/color'
 
-export function resolveOptions(_options: UserPresetOptions): WemePresetOptions {
+export function resolveOptions(_options: WemePresetOptions): WemePresetResolvedOptions {
   return {
     variablePrefix: _options.variablePrefix || 'ui',
     colors: resolveColors(_options.accentColors, _options.neutralColors),
@@ -38,8 +37,7 @@ function resolveColors(
 
 function resolveThemes(themes?: WemeTheme[]): WemeTheme[] {
   const resolved: WemeTheme[] = [
-    defaultTheme,
-    ...themes || [],
+    ...(themes || []),
   ]
 
   // Track colors
@@ -62,11 +60,11 @@ function resolveThemes(themes?: WemeTheme[]): WemeTheme[] {
   return resolved
 }
 
-function resolveCssVars(_cssVars?: UserPresetOptions['cssVars']): WemePresetOptions['cssVars'] {
+function resolveCssVars(_cssVars?: WemePresetOptions['cssVars']): WemePresetResolvedOptions['cssVars'] {
   if (!_cssVars)
     return {}
 
-  const cssVars: WemePresetOptions['cssVars'] = {}
+  const cssVars: WemePresetResolvedOptions['cssVars'] = {}
 
   Object.entries(_cssVars).forEach(([name, value]) => {
     if (typeof value === 'string') {

@@ -1,10 +1,10 @@
-import { badgeVariants } from './badge'
-import { buttonVariants } from './button'
+import { clickVariants } from './clickable'
+import { staticVariants } from './static'
 
-export * from './badge'
-export * from './button'
+export * from './clickable'
+export * from './static'
 
-export const componentVariants: Record<string, string[]> = {
-  btn: buttonVariants,
-  badge: badgeVariants,
+export const variantsMap: Record<string, string[]> = {
+  click: clickVariants,
+  static: staticVariants,
 }

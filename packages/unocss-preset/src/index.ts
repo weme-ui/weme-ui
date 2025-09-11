@@ -1,4 +1,4 @@
-import type { UserPresetOptions } from './types'
+import type { WemePresetOptions } from './types'
 import { definePreset } from 'unocss'
 import { resolveOptions } from './options'
 import { preflights } from './preflights'
@@ -8,12 +8,7 @@ import { theme } from './theme'
 import { getColorNames } from './utils'
 import { variants } from './variants'
 
-export { defaultThemeColors as colors } from './defaults'
-export { componentVariants } from './shortcuts/variants'
-
-export * from './types/theme'
-
-export const presetWemeUI = definePreset((_options: UserPresetOptions = {}) => {
+export const presetWemeUI = definePreset((_options: WemePresetOptions = {}) => {
   const options = resolveOptions(_options)
 
   return {
@@ -30,3 +25,9 @@ export const presetWemeUI = definePreset((_options: UserPresetOptions = {}) => {
     options,
   }
 })
+
+export { defaultThemeColors as colors } from './defaults'
+export { variantsMap } from './shortcuts/variants'
+
+export { WemePresetOptions }
+export * from './types/theme'

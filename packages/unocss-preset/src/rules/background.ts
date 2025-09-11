@@ -1,4 +1,4 @@
-import type { Rule, WemePresetOptions } from '../types'
+import type { Rule, WemePresetResolvedOptions } from '../types'
 import { getColorNames, resolveColor, trackProperty } from '../utils'
 
 const properties = {
@@ -13,7 +13,7 @@ const properties = {
   'gradient-to-position': trackProperty('--un-gradient-to-position', { syntax: '<length-percentage>', initialValue: '100%' }),
 }
 
-export function bgGradientColor(options: WemePresetOptions): Rule[] {
+export function bgGradientColor(options: WemePresetResolvedOptions): Rule[] {
   return [
     // region Colors
     [

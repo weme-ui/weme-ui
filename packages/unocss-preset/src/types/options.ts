@@ -2,7 +2,7 @@ import type { InlineCssVars, NestedCssVars } from '@weme-ui/schema'
 import type { WemeColors } from './colors'
 import type { WemeTheme } from './theme'
 
-export interface WemePresetOptions {
+export interface WemePresetResolvedOptions {
   /**
    * **NOT WORK FOR COLORS**
    *
@@ -26,7 +26,7 @@ export interface WemePresetOptions {
   cssVars: InlineCssVars
 }
 
-export interface UserPresetOptions {
+export interface WemePresetOptions {
   variablePrefix?: string
   accentColors?: Record<string, string>
   neutralColors?: Record<string, string>

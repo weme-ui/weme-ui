@@ -1,4 +1,4 @@
-import type { Rule, WemePresetOptions } from '../types'
+import type { Rule, WemePresetResolvedOptions } from '../types'
 import { bgGradientColor } from './background'
 import { borderColor, borderSize, strokeColor, textStrokeColor } from './border'
 import { accentColor, bgColor, fgColor, fillColor } from './color'
@@ -10,7 +10,7 @@ import { ringColor } from './ring'
 import { shadowColor, textShadowColor } from './shadow'
 import { boxSize } from './size'
 
-export function rules(options: WemePresetOptions): Rule[] {
+export function rules(options: WemePresetResolvedOptions): Rule[] {
   return [
     bgColor(options),
     bgGradientColor(options),

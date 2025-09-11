@@ -1,4 +1,4 @@
-import type { WemePresetOptions } from '../types'
+import type { WemePresetResolvedOptions } from '../types'
 
 const variablesAbbrMap: Record<string, string> = {
   background: 'bg',
@@ -27,7 +27,7 @@ const variablesPropertyMap: Record<string, string[]> = {
   'height': ['height'],
 }
 
-export function resolveCssVar(property: string, args: string, options: WemePresetOptions) {
+export function resolveCssVar(property: string, args: string, options: WemePresetResolvedOptions) {
   const suffixes = variablesPropertyMap[property] ?? []
   const variable = Object
     .keys(options.cssVars)

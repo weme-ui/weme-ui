@@ -1,7 +1,7 @@
-import type { Rule, WemePresetOptions } from '../types'
+import type { Rule, WemePresetResolvedOptions } from '../types'
 import { getColorNames, getCssVarName, resolveColor, resolveCssVar } from '../utils'
 
-export function bgColor(options: WemePresetOptions): Rule[] {
+export function bgColor(options: WemePresetResolvedOptions): Rule[] {
   return [
     // region Colors
     [
@@ -60,7 +60,7 @@ export function bgColor(options: WemePresetOptions): Rule[] {
   ]
 }
 
-export function fgColor(options: WemePresetOptions): Rule[] {
+export function fgColor(options: WemePresetResolvedOptions): Rule[] {
   return [
     // region Colors
     [
@@ -105,7 +105,7 @@ export function fgColor(options: WemePresetOptions): Rule[] {
   ]
 }
 
-export function fillColor(options: WemePresetOptions): Rule[] {
+export function fillColor(options: WemePresetResolvedOptions): Rule[] {
   return [
     // region Colors
     [
@@ -155,7 +155,7 @@ export function fillColor(options: WemePresetOptions): Rule[] {
   ]
 }
 
-export function accentColor(options: WemePresetOptions): Rule[] {
+export function accentColor(options: WemePresetResolvedOptions): Rule[] {
   return [
     // region Colors
     [

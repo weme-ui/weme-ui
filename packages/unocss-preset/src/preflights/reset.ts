@@ -48,7 +48,7 @@ body {
 
 export function preflightReset(prefix: string): Preflight {
   return {
-    layer: 'preflight',
+    layer: 'base',
     getCSS() {
       return minifyCss(resetCSS.replace(/ui/g, prefix))
     },

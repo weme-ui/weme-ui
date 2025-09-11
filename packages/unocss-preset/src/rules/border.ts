@@ -1,9 +1,9 @@
 /* eslint-disable regexp/no-empty-group */
 /* eslint-disable regexp/no-empty-capturing-group */
-import type { Rule, WemePresetOptions } from '../types'
+import type { Rule, WemePresetResolvedOptions } from '../types'
 import { getColorNames, getCssVarName, resolveColor, resolveCssVar } from '../utils'
 
-export function borderColor(options: WemePresetOptions): Rule[] {
+export function borderColor(options: WemePresetResolvedOptions): Rule[] {
   return [
     // region Colors
     [
@@ -103,7 +103,7 @@ export function borderColor(options: WemePresetOptions): Rule[] {
   ]
 }
 
-export function strokeColor(options: WemePresetOptions): Rule[] {
+export function strokeColor(options: WemePresetResolvedOptions): Rule[] {
   return [
     // region Colors
     [
@@ -133,7 +133,7 @@ export function strokeColor(options: WemePresetOptions): Rule[] {
   ]
 }
 
-export function textStrokeColor(options: WemePresetOptions): Rule[] {
+export function textStrokeColor(options: WemePresetResolvedOptions): Rule[] {
   return [
     // region Colors
     [
@@ -153,7 +153,7 @@ export function textStrokeColor(options: WemePresetOptions): Rule[] {
   ]
 }
 
-export function borderSize(options: WemePresetOptions): Rule[] {
+export function borderSize(options: WemePresetResolvedOptions): Rule[] {
   return [
     // region Css Variables
     [

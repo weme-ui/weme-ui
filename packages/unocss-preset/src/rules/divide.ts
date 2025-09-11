@@ -1,7 +1,7 @@
-import type { Rule, WemePresetOptions } from '../types'
+import type { Rule, WemePresetResolvedOptions } from '../types'
 import { getColorNames, getCssVarName, notLastChildSelectorVariant, resolveColor } from '../utils'
 
-export function divideColor(options: WemePresetOptions): Rule[] {
+export function divideColor(options: WemePresetResolvedOptions): Rule[] {
   return [
     // region Colors
     [

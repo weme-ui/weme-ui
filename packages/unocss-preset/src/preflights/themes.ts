@@ -1,10 +1,10 @@
-import type { DeepPartial, Preflight, WemePresetOptions, WemeTheme, WemeThemeTokens } from '../types'
+import type { DeepPartial, Preflight, WemePresetResolvedOptions, WemeTheme, WemeThemeTokens } from '../types'
 import { transformColor } from '@weme-ui/colors'
 import { defu } from 'defu'
 import { defaultTheme } from '../defaults'
 import { minifyCss, trackColor } from '../utils'
 
-export function preflightThemes(options: WemePresetOptions): Preflight[] {
+export function preflightThemes(options: WemePresetResolvedOptions): Preflight[] {
   return options.themes
     .sort((a, b) => (b.priority || 0) - (a.priority || 0))
     .map((theme) => {

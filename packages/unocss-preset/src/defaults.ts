@@ -16,9 +16,9 @@ export const defaultTheme: WemeTheme = {
   translucent: false,
   radius: '0.25rem',
   colors: {
-    accent: 'gunmetal',
-    neutral: 'iron',
-    info: 'ocean',
+    accent: 'indigo',
+    neutral: 'gray',
+    info: 'blue',
     success: 'grass',
     warning: 'orange',
     error: 'red',

@@ -1,7 +1,7 @@
-import type { Shortcuts, WemePresetOptions } from '../../types'
+import type { Shortcuts, WemePresetResolvedOptions } from '../../types'
 import { getColorNames } from '../../utils'
 
-export function badgeShortcuts(options: WemePresetOptions) {
+export function staticShortcuts(options: WemePresetResolvedOptions) {
   const colorNames = getColorNames(options)
 
   function resolveClass(color: string, classes: string) {
@@ -12,38 +12,38 @@ export function badgeShortcuts(options: WemePresetOptions) {
 
   return [
     [
-      /^badge-(.+)$/,
+      /^static-(.+)$/,
       ([, c]) => resolveClass(c, `c-${c}-1 bg-${c}-9 dark:c-${c}-12`),
-      { autocomplete: 'badge-<colors>' },
+      { autocomplete: 'static-<colors>' },
     ],
 
     [
-      /^badge-(.+)-soft$/,
+      /^static-(.+)-soft$/,
       ([, c]) => resolveClass(c, `c-${c}-10 bg-${c}-3`),
-      { autocomplete: 'badge-<colors>-soft' },
+      { autocomplete: 'static-<colors>-soft' },
     ],
 
     [
-      /^badge-(.+)-surface$/,
+      /^static-(.+)-surface$/,
       ([, c]) => resolveClass(c, `c-${c}-9 bg-${c}-3 b-(~ ${c}-5)`),
-      { autocomplete: 'badge-<colors>-surface' },
+      { autocomplete: 'static-<colors>-surface' },
     ],
 
     [
-      /^badge-(.+)-outline$/,
+      /^static-(.+)-outline$/,
       ([, c]) => resolveClass(c, `c-${c}-9 b-(~ ${c}-5)`),
-      { autocomplete: 'badge-<colors>-outline' },
+      { autocomplete: 'static-<colors>-outline' },
     ],
 
     [
-      /^badge-(.+)-inverse$/,
+      /^static-(.+)-inverse$/,
       ([, c]) => resolveClass(c, `c-${c}-9 bg-${c}-1`),
-      { autocomplete: 'badge-<colors>-inverse' },
+      { autocomplete: 'static-<colors>-inverse' },
     ],
   ] satisfies Shortcuts
 }
 
-export const badgeVariants = [
+export const staticVariants = [
   'solid',
   'soft',
   'surface',

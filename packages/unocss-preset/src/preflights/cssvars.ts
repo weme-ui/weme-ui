@@ -1,10 +1,10 @@
-import type { Preflight, WemePresetOptions, WemeTheme } from '../types'
+import type { Preflight, WemePresetResolvedOptions, WemeTheme } from '../types'
 import { defaultTheme } from '../defaults'
 import { getCssVarName, minifyCss, trackColor } from '../utils'
 
-export function preflightCssVars(options: WemePresetOptions): Preflight {
+export function preflightCssVars(options: WemePresetResolvedOptions): Preflight {
   return {
-    layer: 'base',
+    layer: 'theme',
     getCSS() {
       if (Object.keys(options.cssVars).length === 0)
         return ''

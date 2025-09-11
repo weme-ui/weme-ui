@@ -1,11 +1,11 @@
-import type { Preflight, WemeColorScales, WemePresetOptions } from '../types'
+import type { Preflight, WemeColorScales, WemePresetResolvedOptions } from '../types'
 import { minifyCss, trackedColors } from '../utils'
 
-export function preflightColors(options: WemePresetOptions): Preflight {
+export function preflightColors(options: WemePresetResolvedOptions): Preflight {
   const colors = options.colors
 
   return {
-    layer: 'theme',
+    layer: 'base',
     getCSS() {
       if (trackedColors.size === 0)
         return ''

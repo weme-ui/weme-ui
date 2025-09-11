@@ -1,3 +1,3 @@
 export * from './default'
-export * from './static'
+export * from './utils'
 export * from './variants'

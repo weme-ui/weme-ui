@@ -1,13 +1,13 @@
-import type { Shortcuts, WemePresetOptions } from '../types'
-import { staticShortcuts } from './static'
-import { badgeShortcuts, buttonShortcuts } from './variants'
+import type { Shortcuts, WemePresetResolvedOptions } from '../types'
+import { utilsShortcuts } from './utils'
+import { clickableShortcuts, staticShortcuts } from './variants'
 
-export function shortcuts(options: WemePresetOptions): Shortcuts {
+export function shortcuts(options: WemePresetResolvedOptions): Shortcuts {
   return [
-    ...staticShortcuts,
+    ...utilsShortcuts,
 
     // Variants
-    ...badgeShortcuts(options),
-    ...buttonShortcuts(options),
+    ...staticShortcuts(options),
+    ...clickableShortcuts(options),
   ].filter(Boolean) as Shortcuts
 }

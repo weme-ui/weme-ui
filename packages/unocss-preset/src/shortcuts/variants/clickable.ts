@@ -1,7 +1,7 @@
-import type { Shortcuts, WemePresetOptions } from '../../types'
+import type { Shortcuts, WemePresetResolvedOptions } from '../../types'
 import { getColorNames } from '../../utils'
 
-export function buttonShortcuts(options: WemePresetOptions) {
+export function clickableShortcuts(options: WemePresetResolvedOptions) {
   const colorNames = getColorNames(options)
 
   function resolveClass(color: string, classes: string) {
@@ -12,50 +12,50 @@ export function buttonShortcuts(options: WemePresetOptions) {
 
   return [
     [
-      /^btn-(.+)$/,
+      /^click-(.+)$/,
       ([, c]) => resolveClass(c, `c-${c}-1 bg-${c}-9 dark:c-${c}-12 hover:bg-${c}-10 active:bg-${c}-9`),
-      { autocomplete: 'btn-<colors>' },
+      { autocomplete: 'click-<colors>' },
     ],
 
     [
-      /^btn-(.+)-soft$/,
+      /^click-(.+)-soft$/,
       ([, c]) => resolveClass(c, `c-${c}-10 bg-${c}-3 hover:(c-${c}-9 bg-${c}-4) active:bg-${c}-5`),
-      { autocomplete: 'btn-<colors>-soft' },
+      { autocomplete: 'click-<colors>-soft' },
     ],
 
     [
-      /^btn-(.+)-surface$/,
+      /^click-(.+)-surface$/,
       ([, c]) => resolveClass(c, `c-${c}-9 bg-${c}-3 b-(~ ${c}-5) hover:(c-${c}-9 bg-${c}-4) active:(bg-${c}-5 b-${c}-6)`),
-      { autocomplete: 'btn-<colors>-surface' },
+      { autocomplete: 'click-<colors>-surface' },
     ],
 
     [
-      /^btn-(.+)-outline$/,
+      /^click-(.+)-outline$/,
       ([, c]) => resolveClass(c, `c-${c}-9 b-(~ ${c}-5) hover:(c-${c}-9 bg-${c}-3) active:(bg-${c}-4 b-${c}-6)`),
-      { autocomplete: 'btn-<colors>-outline' },
+      { autocomplete: 'click-<colors>-outline' },
     ],
 
     [
-      /^btn-(.+)-ghost$/,
+      /^click-(.+)-ghost$/,
       ([, c]) => resolveClass(c, `c-${c}-9 hover:(c-${c}-9 bg-${c}-3) active:bg-${c}-4`),
-      { autocomplete: 'btn-<colors>-ghost' },
+      { autocomplete: 'click-<colors>-ghost' },
     ],
 
     [
-      /^btn-(.+)-link$/,
+      /^click-(.+)-link$/,
       ([, c]) => resolveClass(c, `c-${c}-9 hover:c-${c}-11 active:c-${c}-10`),
-      { autocomplete: 'btn-<colors>-link' },
+      { autocomplete: 'click-<colors>-link' },
     ],
 
     [
-      /^btn-(.+)-inverse$/,
+      /^click-(.+)-inverse$/,
       ([, c]) => resolveClass(c, `c-${c}-9 bg-${c}-1 hover:(c-${c}-9 bg-${c}-2) active:bg-${c}-3/70`),
-      { autocomplete: 'btn-<colors>-inverse' },
+      { autocomplete: 'click-<colors>-inverse' },
     ],
   ] satisfies Shortcuts
 }
 
-export const buttonVariants = [
+export const clickVariants = [
   'solid',
   'soft',
   'surface',

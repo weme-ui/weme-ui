@@ -1,7 +1,7 @@
-import type { Rule, WemePresetOptions } from '../types'
+import type { Rule, WemePresetResolvedOptions } from '../types'
 import { getColorNames, getCssVarName, resolveColor } from '../utils'
 
-export function outlineColor(options: WemePresetOptions): Rule[] {
+export function outlineColor(options: WemePresetResolvedOptions): Rule[] {
   return [
     // region Colors
     [

@@ -1,7 +1,7 @@
-import type { Rule, WemePresetOptions } from '../types'
+import type { Rule, WemePresetResolvedOptions } from '../types'
 import { getColorNames, resolveColor } from '../utils'
 
-export function shadowColor(options: WemePresetOptions): Rule[] {
+export function shadowColor(options: WemePresetResolvedOptions): Rule[] {
   return [
     // region Colors
     [
@@ -23,7 +23,7 @@ export function shadowColor(options: WemePresetOptions): Rule[] {
   ]
 }
 
-export function textShadowColor(options: WemePresetOptions): Rule[] {
+export function textShadowColor(options: WemePresetResolvedOptions): Rule[] {
   return [
     // region Colors
     [

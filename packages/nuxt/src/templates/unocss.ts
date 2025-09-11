@@ -1,19 +1,13 @@
 import type { NuxtTemplate } from 'nuxt/schema'
-import type { WemeThemeDefinition } from '../runtime/types'
+import type { WemeTheme } from '../runtime/types'
 
 export function createUnoCssConfig(
-  prefix: string,
-  reset: boolean,
-  background: { light: string, dark: string },
+  variablePrefix: string,
   accentColors?: Record<string, string>,
   neutralColors?: Record<string, string>,
-  themes?: WemeThemeDefinition[],
+  themes?: WemeTheme[],
+  cssVars?: Record<string, any>,
 ): NuxtTemplate {
-  // TODO: Support CSS variables
-  // ?1. run cli add component
-  // ?2. write css vars to component.json from registry.json
-  // ?3. read and generate uno.config.ts
-
   return {
     filename: 'uno.config.ts',
     getContents() {
@@ -21,23 +15,26 @@ export function createUnoCssConfig(
 import { defineConfig, presetWind4, transformerVariantGroup } from 'unocss'
 import { presetWemeUI } from '@weme-ui/unocss-preset'
 
+const accentColors = ${JSON.stringify(accentColors || {}, null, 2)}
+
+const neutralColors = ${JSON.stringify(neutralColors || {}, null, 2)}
+
+const themes = ${JSON.stringify(themes || [], null, 2)}
+
+const cssVars = ${JSON.stringify(cssVars || {}, null, 2)}
+
 export default defineConfig({
   presets: [
     presetWind4({
       arbitraryVariants: true,
-      preflights: {
-        reset: ${JSON.stringify(reset)},
-      },
     }),
 
     presetWemeUI({
-      prefix: ${JSON.stringify(prefix)},
-      reset: ${JSON.stringify(reset)},
-      background: ${JSON.stringify(background, null, 2)},
-      accentColors: ${JSON.stringify(accentColors || {}, null, 2)},
-      neutralColors: ${JSON.stringify(neutralColors || {}, null, 2)},
-      injectDefaultThemes: ${themes && themes.length ? 'false' : 'true'},
-      themes: ${JSON.stringify(themes || [], null, 2)},
+      variablePrefix: '${variablePrefix}',
+      accentColors,
+      neutralColors,
+      themes,
+      cssVars,
     }),
   ],
 

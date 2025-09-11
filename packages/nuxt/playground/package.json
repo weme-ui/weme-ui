@@ -8,6 +8,12 @@
     "generate": "nuxi generate"
   },
   "dependencies": {
+    "@weme-ui/unocss-preset": "workspace:*",
     "nuxt": "catalog:nuxt"
+  },
+  "devDependencies": {
+    "@nuxt/icon": "catalog:dev",
+    "@unocss/nuxt": "catalog:dev",
+    "@vueuse/nuxt": "catalog:dev"
   }
 }

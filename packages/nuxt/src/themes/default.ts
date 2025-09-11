@@ -1,29 +1,28 @@
-import type { WemeThemeDefinition } from '../runtime/types'
+import type { WemeTheme } from '../runtime/types'
 
 export default {
-  id: 'default',
-  name: 'Default',
-  appearance: 'light',
+  id: 'ROOT',
+  name: 'ROOT',
+  priority: 1000,
   translucent: true,
   radius: '0.25rem',
   colors: {
-    accent: '#1d2129',
-    neutral: '#86909c',
-    info: 'blue',
+    accent: 'gunmetal',
+    neutral: 'iron',
+    info: 'ocean',
     success: 'grass',
     warning: 'orange',
     error: 'red',
   },
   tokens: {
     foreground: {
-      dimmed: 'color.neutral.5',
       muted: 'color.neutral.7',
       toned: 'color.neutral.9',
       default: 'color.neutral.11',
       highlighted: 'color.neutral.12',
     },
     background: {
-      default: '#f2f3f5',
+      default: 'color.neutral.1',
       dimmed: 'color.neutral.2',
       muted: 'color.neutral.3',
       elevated: 'color.neutral.4',
@@ -32,9 +31,6 @@ export default {
       default: 'color.neutral.5',
       elevated: 'color.neutral.6',
     },
-    ring: {
-      default: 'color.neutral.5',
-      elevated: 'color.neutral.6',
-    },
+    ring: '$border.default',
   },
-} satisfies WemeThemeDefinition
+} satisfies WemeTheme

@@ -1,4 +1,5 @@
 export type {
   WemeTheme,
-  WemeThemeDefinition,
+  WemeThemeColors,
+  WemeThemeTokens,
 } from '@weme-ui/unocss-preset'

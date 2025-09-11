@@ -1,6 +1,10 @@
 export default defineNuxtConfig({
   modules: [
     '../src/module',
+
+    '@nuxt/icon',
+    '@vueuse/nuxt',
+    '@unocss/nuxt',
   ],
 
   devtools: {

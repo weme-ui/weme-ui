@@ -1,26 +1,21 @@
-import type { ColorName, StateName, VariantName, VariantNameMap } from '#build/weme/styles'
+import type { ColorName, TypeName } from '#build/weme/styles'
 import { colorStyles } from '#build/weme/styles'
 
 /**
  * Create color variant classes
  */
-export function createColorVariantClasses({
-  color,
-  variant,
-  states,
-  slot = '',
-}: {
+export function createColorVariantClasses({ type, color, variant, slot = '' }: {
+  type: TypeName
   color: ColorName
-  variant: VariantName
-  states: StateName | StateName[]
+  variant: string
   slot?: string
 }) {
-  const colorVariant = colorStyles[color].filter(v => v.variant === variant)
-
-  const classes = colorVariant
-    .filter(v => (Array.isArray(states) ? states : [states]).includes(v.state))
+  const classes = colorStyles[color]
+    .filter(
+      v => v.variant === variant && v.type === type,
+    )
     .map(v => v.class)
-    .filter(Boolean)
+    .join(' ')
 
   return slot === ''
     ? classes
@@ -32,14 +27,14 @@ export function createColorVariantClasses({
  *
  * @example
  * ```
- * import { createColorVariants } from '#weme/weme.style'
+ * import { createColorVariants } from '#weme/utils/styles'
  * import { createVariants } from '../../utils'
  *
  * createVariants({
  *   variants: {
  *     color: createColorVariants({
+ *       type: 'button',
  *       variant: 'solid',
- *       states: 'normal', // Multiple states can be specified as ['normal', 'hover', 'active']
  *       slot: 'base', // Optional
  *     }),
  *   }
@@ -50,9 +45,9 @@ export function createColorVariantClasses({
  * createVariants({
  *   variants: {
  *     color: createColorVariants({
+ *       type: 'button',
  *       variant: 'solid',
  *       defaults: '', // Required
- *       states: 'normal', // Required
  *       slot: 'base', // Optional
  *     }),
  *   }
@@ -64,13 +59,13 @@ export function createColorVariantClasses({
  * ```
  */
 export function createColorVariants({
-  variant = 'solid',
-  states = 'normal',
+  type,
   defaults,
+  variant = 'solid',
   slot = '',
 }: {
-  variant?: VariantName
-  states?: StateName | StateName[]
+  type: TypeName
+  variant?: string
   defaults?: string
   slot?: string
 }) {
@@ -83,7 +78,7 @@ export function createColorVariants({
         : createColorVariantClasses({
             color: color as ColorName,
             variant,
-            states,
+            type,
             slot,
           }),
     }), {} as Record<ColorName, any>)
@@ -93,13 +88,13 @@ export function createColorVariants({
  * Create color compound variants for all color classes
  */
 export function createColorCompoundVariants({
+  type,
   variants,
-  states,
   slot = '',
   extra,
 }: {
-  variants: VariantName | VariantName[] | VariantNameMap
-  states: StateName | StateName[]
+  type: TypeName
+  variants: string | string[] | Record<string, string>
   slot?: string
   extra?: Record<string, any>
 }) {
@@ -112,7 +107,7 @@ export function createColorCompoundVariants({
           color,
           variant: alias,
           ...extra,
-          class: createColorVariantClasses({ color: color as ColorName, variant, states, slot }),
+          class: createColorVariantClasses({ color: color as ColorName, variant, type, slot }),
         })
       })
     }
@@ -124,7 +119,7 @@ export function createColorCompoundVariants({
           color,
           variant,
           ...extra,
-          class: createColorVariantClasses({ color: color as ColorName, variant, states, slot }),
+          class: createColorVariantClasses({ color: color as ColorName, variant, type, slot }),
         })
       })
     }

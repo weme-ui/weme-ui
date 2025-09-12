@@ -58,13 +58,8 @@ export function createColorVariantClasses({ type, color, variant, slot = '' }: {
  * { accent: '', neutral: '', info: '', success: '', warning: '', error: '' }
  * ```
  */
-export function createColorVariants({
-  type,
-  defaults,
-  variant = 'solid',
-  slot = '',
-}: {
-  type: TypeName
+export function createColorVariants({ type = 'static', defaults, variant = 'solid', slot = '' }: {
+  type?: TypeName
   variant?: string
   defaults?: string
   slot?: string
@@ -87,12 +82,7 @@ export function createColorVariants({
 /**
  * Create color compound variants for all color classes
  */
-export function createColorCompoundVariants({
-  type,
-  variants,
-  slot = '',
-  extra,
-}: {
+export function createColorCompoundVariants({ type, variants, slot = '', extra }: {
   type: TypeName
   variants: string | string[] | Record<string, string>
   slot?: string

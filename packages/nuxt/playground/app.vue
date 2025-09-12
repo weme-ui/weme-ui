@@ -2,34 +2,34 @@
 import { createColorCompoundVariants, createColorVariants } from '#weme/utils/styles'
 
 const variants = createColorVariants({
-  type: 'btn',
+  type: 'static',
   variant: 'solid',
 })
 
 const withSlot = createColorVariants({
-  type: 'btn',
+  type: 'static',
   variant: 'solid',
   slot: 'base',
 })
 
 const withPlaceholder = createColorVariants({
-  type: 'btn',
+  type: 'static',
   variant: 'solid',
   defaults: '',
 })
 
 const compounds = createColorCompoundVariants({
-  type: 'btn',
+  type: 'static',
   variants: ['solid', 'soft'],
 })
 
 const withAlias = createColorCompoundVariants({
-  type: 'btn',
+  type: 'static',
   variants: { primary: 'solid', secondary: 'soft' },
 })
 
 const withExtends = createColorCompoundVariants({
-  type: 'btn',
+  type: 'static',
   variants: { primary: 'solid', secondary: 'soft' },
   extra: { size: 'lg' },
 })

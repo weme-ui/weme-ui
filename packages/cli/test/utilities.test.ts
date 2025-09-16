@@ -11,11 +11,6 @@ describe('utilities', () => {
       args.type = 'test'
     })
 
-    expect(args).toMatchInlineSnapshot(`
-      {
-        "cwd": "/Users/xinxuan/workspace/private/@weme-ui/weme-ui/test",
-        "type": "test",
-      }
-    `)
+    expect(args.type).toBe('test')
   })
 })

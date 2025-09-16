@@ -4,7 +4,6 @@ description: 文本样式，标题，段落，引用，小字... 等
 links:
   - label: General
     icon: lucide:component
-    to: /docs/std/components/general
   - label: Source
     icon: lucide:code
     to: https://github.com/weme-ui/weme-ui/tree/main/registry/std/components/typography

@@ -4,7 +4,6 @@ description: 用于显示需要用户注意的提示信息。
 links:
   - label: Data Display
     icon: lucide:component
-    to: /docs/components/std/data-display
   - label: Source
     icon: lucide:code
     to: https://github.com/weme-ui/weme-ui/tree/main/registry/std/components/alert

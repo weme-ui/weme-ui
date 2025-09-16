@@ -4,7 +4,6 @@ description: 显示徽章或看起来像徽章的组件。
 links:
   - label: Data Display
     icon: lucide:component
-    to: /docs/std/components/data-display
   - label: Source
     icon: lucide:code
     to: https://github.com/weme-ui/weme-ui/tree/main/registry/std/components/badge

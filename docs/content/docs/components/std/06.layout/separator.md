@@ -4,7 +4,6 @@ description: 用于视觉或语义上分隔内容的组件。
 links:
   - label: Layout
     icon: lucide:component
-    to: /docs/std/components/layout
   - label: Source
     icon: lucide:code
     to: https://github.com/weme-ui/weme-ui/tree/main/registry/std/components/separator

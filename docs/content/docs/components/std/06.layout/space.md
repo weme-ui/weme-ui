@@ -4,7 +4,6 @@ description: 设置组件之间的间距和分隔符。
 links:
   - label: Layout
     icon: lucide:component
-    to: /docs/std/components/layout
   - label: Source
     icon: lucide:code
     to: https://github.com/weme-ui/weme-ui/tree/main/registry/std/components/space

@@ -4,7 +4,6 @@ description: 显示按钮或看起来像按钮的组件。
 links:
   - label: General
     icon: lucide:component
-    to: /docs/std/components/general
   - label: Source
     icon: lucide:code
     to: https://github.com/weme-ui/weme-ui/tree/main/registry/std/components/button

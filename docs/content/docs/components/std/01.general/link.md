@@ -4,7 +4,6 @@ description: 链接组件，基于 NuxtLink 封装，支持自定义样式。
 links:
   - label: General
     icon: lucide:component
-    to: /docs/std/components/general
   - label: Source
     icon: lucide:code
     to: https://github.com/weme-ui/weme-ui/tree/main/registry/std/components/link

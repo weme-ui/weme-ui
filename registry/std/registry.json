@@ -262,7 +262,7 @@
       "name": "card",
       "type": "component",
       "title": "Card",
-      "description": "The card component.",
+      "description": "Displays a card with header, content, and footer.",
       "categories": [
         "data-display"
       ],
@@ -286,29 +286,6 @@
           "fg": "color.neutral.11"
         }
       }
-    },
-    {
-      "name": "icon-box1",
-      "type": "component",
-      "title": "icon-box1",
-      "description": "The icon-box1 component.",
-      "categories": [
-        "general"
-      ],
-      "files": [
-        {
-          "type": "component",
-          "path": "components/icon-box1/icon-box1.vue"
-        },
-        {
-          "type": "type",
-          "path": "components/icon-box1/icon-box1.props.ts"
-        },
-        {
-          "type": "style",
-          "path": "components/icon-box1/icon-box1.style.ts"
-        }
-      ]
     }
   ]
 }

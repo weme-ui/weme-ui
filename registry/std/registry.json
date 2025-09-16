@@ -266,6 +266,9 @@
       "categories": [
         "data-display"
       ],
+      "registryDependencies": [
+        "icon"
+      ],
       "files": [
         {
           "type": "component",
@@ -286,6 +289,44 @@
           "fg": "color.neutral.11"
         }
       }
+    },
+    {
+      "name": "avatar",
+      "type": "component",
+      "title": "Avatar",
+      "description": "An image element with a fallback for representing the user.",
+      "categories": [
+        "data-display"
+      ],
+      "registryDependencies": [
+        "icon"
+      ],
+      "files": [
+        {
+          "type": "component",
+          "path": "components/avatar/avatar.vue"
+        },
+        {
+          "type": "type",
+          "path": "components/avatar/avatar.props.ts"
+        },
+        {
+          "type": "style",
+          "path": "components/avatar/avatar.style.ts"
+        },
+        {
+          "type": "component",
+          "path": "components/avatar/avatar-group.vue"
+        },
+        {
+          "type": "type",
+          "path": "components/avatar/avatar-group.props.ts"
+        },
+        {
+          "type": "style",
+          "path": "components/avatar/avatar-group.style.ts"
+        }
+      ]
     }
   ]
 }

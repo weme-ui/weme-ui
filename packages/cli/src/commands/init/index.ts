@@ -1,13 +1,9 @@
-import { cwd, exit } from 'node:process'
+import { cwd } from 'node:process'
 import { defineCommand } from 'citty'
+import { titleCase } from 'scule'
+import { TEMPLATE_REPO } from '../../constants'
 import { consola } from '../../utils/consola'
-import { downloadRemoteTemplate } from '../../utils/template'
 import { resolveCommandArgs } from '../../utils/utilities'
-import { initializeComponent } from './component'
-import { initializeProject } from './project'
-import { initializeRegistry } from './registry'
-import { initializeRepository } from './repository'
-import { initializeTheme } from './theme'
 
 export default defineCommand({
   meta: {
@@ -16,155 +12,80 @@ export default defineCommand({
   },
 
   args: {
-    'name': {
+    name: {
       type: 'positional',
-      description: 'Name of the project/registry/repository.',
-      valueHint: 'name',
+      description: 'Name of initialization target.',
     },
-    'provider': {
+    template: {
       type: 'string',
-      description: 'Provider of the registry.',
-      valueHint: 'github|cdn|local|remote',
-      default: 'github',
+      description: 'Source template repository.',
+      valueHint: 'template',
+      default: TEMPLATE_REPO,
     },
-    'repos': {
-      type: 'string',
-      description: 'The repos to fetch the components from.',
-      valueHint: 'repo,repo',
-      default: '@weme-ui/weme-ui',
+    project: {
+      alias: 'p',
+      type: 'boolean',
+      description: 'Initialize a project.',
+      default: false,
     },
-    'template': {
-      type: 'string',
-      description: 'Template repository.',
-      valueHint: 'github:username/repo',
+    registry: {
+      alias: 'r',
+      type: 'boolean',
+      description: 'Initialize a registry.',
+      default: false,
     },
-    'type': {
-      type: 'string',
-      description: 'Initialize type.',
-      valueHint: 'project|repository|registry|component|theme',
+    component: {
+      alias: 'c',
+      type: 'boolean',
+      description: 'Initialize a component.',
+      default: false,
     },
-    'prefix': {
-      type: 'string',
-      description: 'Prefix for css variables.',
-      valueHint: 'string',
-      default: 'ui',
-    },
-    'backgrounds': {
-      type: 'string',
-      description: 'Background color.',
-      valueHint: 'light,dark',
-      default: '#fff,#111',
-    },
-    'components-path': {
-      type: 'string',
-      description: 'Path for components.',
-      valueHint: 'path',
-      default: '~/components',
-    },
-    'composables-path': {
-      type: 'string',
-      description: 'Path for composables.',
-      valueHint: 'path',
-      default: '~/composables',
-    },
-    'layouts-path': {
-      type: 'string',
-      description: 'Path for layouts.',
-      valueHint: 'path',
-      default: '~/layouts',
-    },
-    'themes-path': {
-      type: 'string',
-      description: 'Path for themes.',
-      valueHint: 'path',
-      default: '~/themes',
-    },
-    'plugins-path': {
-      type: 'string',
-      description: 'Path for plugins.',
-      valueHint: 'path',
-      default: '~/plugins',
-    },
-    'utils-path': {
-      type: 'string',
-      description: 'Path for utils.',
-      valueHint: 'path',
-      default: '~/utils',
-    },
-    'types-path': {
-      type: 'string',
-      description: 'Path for types.',
-      valueHint: 'path',
-      default: '~/types',
-    },
-    'cwd': {
+    cwd: {
       type: 'string',
       description: 'Change working directory.',
       valueHint: 'path',
       default: cwd(),
     },
-    'force': {
+    force: {
+      alias: 'f',
       type: 'boolean',
       description: 'Overwrite existing files.',
       default: false,
-      alias: 'f',
     },
   },
 
   async setup({ args }) {
-    consola.info('Initialize Weme UI')
+    await resolveCommandArgs(args, (args) => {
+      if (args.project || args.p)
+        args.type = 'project'
+      else if (args.registry || args.r)
+        args.type = 'registry'
+      else if (args.component || args.c)
+        args.type = 'component'
+      else
+        args.type = 'project'
 
-    if (!args.type) {
-      const type = await consola.prompt('What do you want to initialize?', {
-        type: 'select',
-        required: true,
-        options: [
-          { label: 'Project', value: 'project' },
-          { label: 'Repository', value: 'repository' },
-          { label: 'Registry', value: 'registry' },
-          { label: 'Component', value: 'component' },
-          { label: 'Theme', value: 'theme' },
-        ],
-        initial: 'project',
-        cancel: 'undefined',
-      })
+      ;[
+        'project',
+        'registry',
+        'component',
+        'p',
+        'r',
+        'c',
+      ].forEach(k => delete args[k])
+    })
 
-      if (type === undefined)
-        exit(0)
+    consola.info('Initialize `Weme UI %s`', titleCase(args.type as string))
 
-      console.log('')
-
-      args.type = type
-    }
-
-    const resolvedArgs = resolveCommandArgs(args)
-
-    if (resolvedArgs.template && !resolvedArgs.template.startsWith('/'))
-      resolvedArgs.template = await downloadRemoteTemplate(resolvedArgs)
-
-    switch (resolvedArgs.type) {
+    switch (args.type) {
       case 'project':
-        await initializeProject(resolvedArgs)
+        await import('./project').then(r => r.default(args))
         break
-
-      case 'repository':
-        await initializeRepository(resolvedArgs)
-        break
-
       case 'registry':
-        await initializeRegistry(resolvedArgs)
+        await import('./registry').then(r => r.default(args))
         break
-
       case 'component':
-        await initializeComponent(resolvedArgs)
-        break
-
-      case 'theme':
-        await initializeTheme(resolvedArgs)
-        break
-
-      default:
-        consola.error(`Type \`${resolvedArgs.type}\` is not implemented!`)
+        await import('./component').then(r => r.default(args))
         break
     }
   },

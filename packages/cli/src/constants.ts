@@ -1,11 +1,11 @@
-import { fileURLToPath } from 'node:url'
-import { dirname, resolve } from 'pathe'
+import { cwd } from 'node:process'
+import { resolve } from 'pathe'
 
-export const MANIFEST_FILE = 'manifest.json'
-export const CONFIG_FILE = 'weme.config.json'
+export const DEFAULT_REPO = '@weme-ui/weme-ui'
+export const DEFAULT_REGISTRY = 'weme-ui/std'
+
+export const CACHE_PATH = resolve(cwd(), '.weme')
 export const TEMPLATE_REPO = '@weme-ui/templates'
 
-export const CLI_PATH = resolve(
-  dirname(fileURLToPath(import.meta.url)),
-  '..',
-)
+export const REGISTRY_SCHEMA = 'https://weme-ui.github.io/schema/registry.json'
+export const PROJECT_SCHEMA = 'https://weme-ui.github.io/schema/project.json'

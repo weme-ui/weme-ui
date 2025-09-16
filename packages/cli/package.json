@@ -2,7 +2,7 @@
   "name": "@weme-ui/weme-ui",
   "type": "module",
   "version": "0.0.0",
-  "packageManager": "pnpm@10.15.0",
+  "packageManager": "pnpm@10.16.1",
   "description": "Re-usable UI components with Reka UI and UnoCSS.",
   "author": "Allen Luo <luoyi@mouji.net>",
   "license": "MIT",
@@ -16,14 +16,13 @@
     "url": "https://github.com/weme-ui/weme-ui/issues"
   },
   "keywords": [
+    "weme-ui",
+    "unocss",
     "ui-components",
     "re-usable-ui-components",
     "unocss-ui-components",
     "reka-ui-components",
-    "weme-ui-components",
-    "unocss",
-    "reka-ui",
-    "weme-ui"
+    "weme-ui-components"
   ],
   "sideEffects": false,
   "exports": {
@@ -57,11 +56,13 @@
     "typecheck": "tsgo --noEmit"
   },
   "dependencies": {
+    "@weme-ui/schema": "catalog:dev",
     "citty": "catalog:utils",
     "consola": "catalog:utils",
     "debug": "catalog:utils",
     "diff": "catalog:utils",
     "execa": "catalog:utils",
+    "fast-glob": "catalog:utils",
     "giget": "catalog:utils",
     "handlebars": "catalog:utils",
     "mkdirp": "catalog:utils",

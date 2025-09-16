@@ -1,86 +1,108 @@
-import type { RegistryItemFileSchema, RegistryItemSchema, RegistrySchema } from '../../schemas/registry'
 import { exit } from 'node:process'
 import createDebugger from 'debug'
-import { resolve } from 'pathe'
-import { kebabCase, pascalCase, titleCase } from 'scule'
-import { registrySchema } from '../../schemas/registry'
-import { consola } from '../../utils/consola'
-import { writeFile } from '../../utils/file'
-import { existsComponent, existsRegistry } from '../../utils/repository'
-import { compile, renderTemplates } from '../../utils/template'
-import { loadJson } from '../../utils/utilities'
-import { normalizeOptions } from './options'
+import { join, resolve } from 'pathe'
+import {
+  confirm,
+  consola,
+  selectPrompt,
+  textPrompt,
+} from '../../utils/consola'
+import { fs } from '../../utils/fs'
+import {
+  appendRegistryItem,
+  appendRegistryItemFiles,
+  existsRegistryConfig,
+  existsRegistryItem,
+  existsRegistryItemFile,
+  getRegistryInfo,
+  getRegistryItem,
+  listRegistries,
+} from '../../utils/schema'
 
 const debug = createDebugger('init:component')
 
-export async function initializeComponent(args: Record<string, any>) {
+export default async function (args: Record<string, any>) {
+  const { name } = args
+
+  args.name = name.toLowerCase()
+
   debug('Args:', args)
 
-  const [registry, name] = args.name.split('/')
+  if (name.includes('/')) {
+    const [registry, component] = name.toLowerCase().split('/')
 
-  args.name = name ? kebabCase(name) : undefined
-  args.registry = kebabCase(registry)
-
-  const data = await resolveData(args)
-
-  debug('Resolved args:', data)
-
-  await initialized(data)
-}
-
-async function resolveData(args: Record<string, any>) {
-  const options = await normalizeOptions(args)
-  const isExistsRegistry = existsRegistry(args.registry, options.cwd)
-
-  if (!isExistsRegistry) {
-    consola.error(`Registry \`${args.registry}\` not found.`)
-    exit(0)
+    args.registry = registry
+    args.name = component
   }
+  else {
+    const registries = await listRegistries(args.cwd)
 
-  else if (isExistsRegistry && !options.name) {
-    options.name = await consola.prompt('What is the name of the component?', {
-      type: 'text',
-      cancel: 'undefined',
-    })
-
-    if (!options.name)
+    if (registries.length === 0) {
+      consola.error('No registry found.')
+      consola.info('Try `pnpm dlx @weme-ui/weme-ui init --help` for more information.')
       exit(0)
+    }
+
+    args.registry = await selectPrompt(
+      'What is the registry of the component?',
+      registries,
+    )
   }
 
-  else if (!options.force && existsComponent(options.registry, options.name, options.cwd)) {
-    consola.error(`Component \`${options.name}\` already exists.`)
-    consola.info('Try `pnpm dlx @weme-ui/weme-ui init --help` for more information.')
+  debug('Registry:', args.registry)
 
+  if (!existsRegistryConfig(args.registry, args.cwd)) {
+    consola.error(`Registry \`%s\` is not found.`, args.registry)
+    consola.info('Try `pnpm dlx @weme-ui/weme-ui init --help` for more information.')
     exit(0)
   }
 
-  if (options.name.includes('-')) {
-    const parentName = options.name.split('-').shift()
+  args.meta = getRegistryInfo(args.registry, args.cwd)
+  args.dest = resolve(args.cwd, args.meta.directory, 'components')
 
-    if (existsComponent(options.registry, parentName, options.cwd)) {
-      const inside = await consola.prompt(
-        `Component \`${parentName}\` already exists. Do you want to create the component inside it?`,
-        {
-          type: 'confirm',
-          initial: false,
-          cancel: 'undefined',
+  debug('Meta:', args.meta)
+
+  if (args.name.includes('-')) {
+    const parentName = args.name.split('-').shift()
+
+    if (existsRegistryItem(args.registry, parentName, args.cwd)) {
+      await confirm(
+        `Found closest component \`${parentName}\`. Do you want to create the component inside it?`,
+        () => {
+          args.parent = parentName
+          args.inside = true
+          args.category = getRegistryItem(args.registry, args.parent, args.cwd)?.categories?.[0] || ''
         },
       )
 
-      if (inside === undefined)
+      if (
+        args.parent
+        && args.inside
+        && existsRegistryItemFile(
+          args.registry,
+          args.parent,
+          `components/${args.parent}/${args.name}.vue`,
+          args.cwd,
+        )
+      ) {
+        consola.error(`Component \`%s\` already exists.`, args.name)
+        consola.info('Try `pnpm dlx @weme-ui/weme-ui init --help` for more information.')
         exit(0)
-
-      if (inside) {
-        options.parent = parentName
-        options.inside = inside
       }
     }
   }
+  else {
+    if (!args.force && existsRegistryItem(args.registry, args.name, args.cwd)) {
+      consola.error(`Component \`%s\` already exists.`, args.name)
+      consola.info('Try `pnpm dlx @weme-ui/weme-ui init --help` for more information.')
+      exit(0)
+    }
+  }
 
-  if (!options.inside) {
-    options.category = await consola.prompt('What is the category of the component?', {
-      type: 'select',
-      options: [
+  if (!args.inside) {
+    const category = await selectPrompt(
+      'What is the category of the component?',
+      [
         { label: 'General', value: 'general' },
         { label: 'Layout', value: 'layout' },
         { label: 'Data Display', value: 'data-display' },
@@ -90,182 +112,107 @@ async function resolveData(args: Record<string, any>) {
         { label: 'Other', value: 'other' },
         { label: 'Custom', value: 'custom' },
       ],
-      cancel: 'undefined',
-    })
+    )
 
-    if (options.category === 'custom') {
-      options.category = await consola.prompt('What is the name of the category?', {
-        type: 'text',
-        cancel: 'undefined',
-      })
-    }
-
-    if (options.category === undefined)
-      exit(0)
+    args.dest = join(args.dest, args.name)
+    args.category = category === 'custom'
+      ? await textPrompt('What is the name of the category?')
+      : category
+  }
+  else {
+    args.dest = join(args.dest, args.parent)
   }
 
-  return options
+  debug('Dest:', args.dest)
+  debug('Inside:', args.inside)
+  debug('Category:', args.category)
+
+  consola.log('')
+
+  await createFiles(args)
+
+  if (!args.force) {
+    await confirm(
+      'Do you want to create a documentation for the component?',
+      () => createDocs(args),
+    )
+  }
+  else {
+    createDocs(args)
+  }
+
+  if (!args.force) {
+    await confirm(
+      'Do you want to create a test for the component?',
+      () => createTests(),
+    )
+  }
+  else {
+    createTests()
+  }
 }
 
-async function initialized(data: Record<string, any>) {
-  consola.start('Initializing component')
+/**
+ * Create component files.
+ */
+async function createFiles(args: Record<string, any>) {
+  consola.start('Generating component files')
 
-  const src = resolve(data.template, 'component')
-  const dest = resolve(data.cwd, 'registry', data.registry, 'components', data.inside ? data.parent : data.name)
-
-  const templates = [
+  const templates = await fs.writeTemplates([
     '{{ name }}.vue.hbs',
     '{{ name }}.props.ts.hbs',
     '{{ name }}.style.ts.hbs',
-  ].reduce((acc, tpl) => {
-    acc.push({
-      src: tpl,
-      dest: tpl.replace('.hbs', ''),
-    })
-    return acc
-  }, [] as { src: string, dest: string }[])
+  ], args)
 
-  await renderTemplates({ src, dest, templates, data })
-  await updateRegistryJson(data, templates)
+  const files = templates.map(
+    t => join('components', args.inside ? args.parent : args.name, t.dest),
+  )
 
-  if (!data.force && await consola.prompt('Do you want to create a test for the component?', {
-    type: 'confirm',
-    initial: false,
-  })) {
-    const tests = [
-      '{{ name }}.test.ts.hbs',
-    ].reduce((acc, tpl) => {
-      acc.push({
-        src: tpl,
-        dest: tpl.replace('.hbs', ''),
-      })
-      return acc
-    }, [] as { src: string, dest: string }[])
+  if (args.inside) {
+    await appendRegistryItemFiles(
+      args.registry,
+      args.parent,
+      files,
+      args.cwd,
+    )
 
-    await renderTemplates({ src, dest, templates: tests, data })
+    debug('Append Files:', args.parent, files)
+  }
+  else {
+    await appendRegistryItem(
+      args.registry,
+      args.name,
+      'component',
+      args.category,
+      files,
+      args.cwd,
+    )
 
-    console.log('')
+    debug('Append Item:', args.name, args.category, files)
   }
 
-  if (!data.force && await consola.prompt('Do you want to create a documentation for the component?', {
-    type: 'confirm',
-    initial: false,
-  })) {
-    const docs = [
-      '{{ name }}.md.hbs',
-    ].reduce((acc, tpl) => {
-      acc.push({
-        src: tpl,
-        dest: tpl.replace('.hbs', ''),
-      })
-      return acc
-    }, [] as { src: string, dest: string }[])
-
-    await renderTemplates({
-      src,
-      data,
-      templates: docs,
-      dest: resolve(data.cwd, 'docs', 'content', 'docs', data.registry, 'components', data.category),
-    })
-  }
-
-  console.log('')
-  consola.success('Component initialized!')
+  consola.success('Component files generated!')
 }
 
-async function updateRegistryJson(
-  data: Record<string, any>,
-  templates: { src: string, dest: string }[],
-) {
-  consola.start('Updating `registry.json`')
+/**
+ * Create component documentation.
+ */
+async function createDocs(args: Record<string, any>) {
+  consola.start('Generating component documentation')
 
-  const registryJson = loadJson<RegistrySchema>(
-    'registry.json',
-    resolve(data.cwd, 'registry', data.registry),
-  )
-
-  debug('[Registry]', 'Loaded Registry Json:', resolve(data.cwd, 'registry', data.registry), JSON.stringify(registryJson))
-
-  if (!registryJson) {
-    consola.error('Failed to load `registry.json`')
-    exit(1)
-  }
-
-  const resolvedName = data.inside ? data.parent : data.name
-
-  debug('[Registry]', 'Inside:', !!data.inside, 'Parent:', data.parent || '-', 'Name:', data.name, 'Resolved Name:', resolvedName)
-
-  const registryItems: RegistryItemSchema[] = registryJson?.items || []
-  const registryItem: RegistryItemSchema = registryItems.find(item => item.name === resolvedName) || {
-    name: resolvedName,
-    type: 'component',
-    title: titleCase(resolvedName),
-    description: `The ${resolvedName} component.`,
-    author: data.author,
-    categories: [data.category],
-    files: [],
-  }
-
-  debug('[Registry]', `Loaded ${registryItems.length} registry items`)
-  debug('[Registry]', `Check Registry Item: ${resolvedName}`, `(${registryItems.find(item => item.name === resolvedName) ? 'Found' : 'Not Found'})`)
-
-  templates.forEach((tpl) => {
-    const file = {
-      path: compile(`components/${resolvedName}/${tpl.dest}`, data),
-      type: tpl.dest.endsWith('.vue')
-        ? 'component'
-        : tpl.dest.endsWith('.props.ts')
-          ? 'type'
-          : 'style',
-    } satisfies RegistryItemFileSchema
-
-    if (registryItem.files.find(f => f.path === file.path) === undefined)
-      registryItem.files.push(file)
+  await fs.writeTemplates([
+    '{{ name }}.md.hbs',
+  ], {
+    ...args,
+    dest: resolve(args.cwd, 'docs', 'content', 'docs', 'components', args.registry, args.category),
   })
 
-  debug('[Registry]', 'Created Registry Item Files:', JSON.stringify(registryItem.files))
+  consola.success('Component documentation generated!')
+}
 
-  if (await consola.prompt('Do you want to add dependencies to the registry item?', {
-    type: 'confirm',
-    initial: false,
-  })) {
-    const registryDependencies = await consola.prompt('What are the dependencies of the registry item?', {
-      type: 'multiselect',
-      options: registryItems
-        .filter(item => item.name !== resolvedName)
-        .map(item => ({ label: pascalCase(item.name), value: item.name })),
-      cancel: 'undefined',
-    })
-
-    debug('[Registry]', 'Registry Dependencies:', registryDependencies)
-
-    if (registryDependencies && registryDependencies.length > 0) {
-      registryItem.registryDependencies = registryItem.registryDependencies || []
-
-      registryDependencies.forEach((dep) => {
-        if (registryItem.registryDependencies!.find(d => d === dep as unknown as string) === undefined)
-          registryItem.registryDependencies!.push(dep as unknown as string)
-      })
-    }
-  }
-
-  if (registryItems.find(item => item.name === resolvedName) === undefined)
-    registryItems.push(registryItem)
-
-  debug('[Registry]', 'Updated Registry Items:', JSON.stringify(registryItems))
-
-  const result = registrySchema.safeParse(registryJson)
-
-  if (!result.success) {
-    consola.error(result.error.message)
-    exit(1)
-  }
-
-  await writeFile(
-    resolve(data.cwd, 'registry', data.registry, 'registry.json'),
-    JSON.stringify(registryJson, null, 2),
-    { flag: 'w', quiet: true },
-  )
-
-  consola.success('Updated `registry.json`!')
+/**
+ * Create component tests.
+ */
+async function createTests() {
+  consola.warn('`Create component tests`, Not implemented yet.')
 }

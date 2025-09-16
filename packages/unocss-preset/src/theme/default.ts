@@ -1,5 +1,5 @@
 import type { Theme, WemePresetResolvedOptions } from '../types'
-import { animate } from './animate'
+import { animation } from './animation'
 import { font, leading, text } from './font'
 import { radius, spacing } from './misc'
 import { breakpoint, verticalBreakpoint } from './size'
@@ -12,7 +12,7 @@ export function theme(options: WemePresetResolvedOptions): Theme {
     spacing,
     breakpoint,
     verticalBreakpoint,
-    animate,
+    animation,
 
     radius: radius(options.variablePrefix),
   }

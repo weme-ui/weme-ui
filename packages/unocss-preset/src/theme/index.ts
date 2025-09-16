@@ -1,4 +1,4 @@
-export * from './animate'
+export * from './animation'
 export * from './default'
 export * from './font'
 export * from './misc'

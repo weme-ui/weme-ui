@@ -4,6 +4,7 @@ import { exit } from 'node:process'
 import { registrySchema } from '@weme-ui/schema'
 import createDebugger from 'debug'
 import { resolve } from 'pathe'
+import { titleCase } from 'scule'
 import { REGISTRY_SCHEMA } from '../../constants'
 import { consola } from '../consola'
 import { fs } from '../fs'
@@ -120,7 +121,7 @@ export async function appendRegistryItem(
     registries[registry]!.items.push({
       name: itemName,
       type: itemType,
-      title: itemName,
+      title: titleCase(itemName),
       description: `The ${itemName} component.`,
       categories: [itemCategory],
       files: [],

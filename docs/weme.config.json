@@ -1,7 +1,12 @@
 {
   "$schema": "https://weme-ui.github.io/schema/project.json",
+  "provider": "github",
   "repos": [
-    "@weme-ui/weme-ui"
+    {
+      "repo": "@weme-ui/weme-ui",
+      "registry": "weme-ui/std",
+      "prefix": "ui"
+    }
   ],
   "paths": {
     "components": "~/components",
@@ -11,5 +16,11 @@
     "plugins": "~/plugins",
     "utils": "~/utils",
     "types": "~/types"
+  },
+  "unocss": {
+    "cssVars": {
+      "card-background": "color.neutral.1",
+      "card-foreground": "color.neutral.11"
+    }
   }
 }

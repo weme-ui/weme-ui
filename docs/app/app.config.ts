@@ -1,16 +1,14 @@
 export default defineAppConfig({
-  docafe: {
-    site: {
-      title: 'Re-usable UI components with Reka UI and UnoCSS',
-      titleTemplate: '%s - Weme UI',
-      description: 'Re-usable UI components with Reka UI and UnoCSS.',
-      lang: 'en-US',
-    },
+  docs: {
+    title: 'Weme UI - Re-usable UI components with Reka UI and UnoCSS',
+    titleTemplate: '%s - Weme UI',
+    description: 'Re-usable UI components with Reka UI and UnoCSS.',
+    lang: 'en-US',
 
     header: {
       name: 'Weme UI',
       logo: 'weme:logo',
-      nav: [
+      navs: [
         {
           label: 'Docs',
           children: [
@@ -18,25 +16,37 @@ export default defineAppConfig({
               icon: 'lucide:rocket',
               label: 'Getting Started',
               description: 'Learn how to get started.',
-              to: '/docs/std/get-started/installation',
+              to: '/docs/get-started',
             },
             {
               icon: 'lucide:book-open',
               label: 'Guide',
               description: 'Learn how Weme UI works.',
-              to: '/docs/std/guide',
+              to: '/docs/guide',
             },
             {
               icon: 'lucide:component',
               label: 'Components',
               description: 'Explore all components.',
-              to: '/docs/std/components',
+              to: '/docs/components',
             },
             {
               icon: 'lucide:code',
               label: 'API',
               description: 'Explore all composables, utilities.',
-              to: '/docs/std/api',
+              to: '/docs/api',
+            },
+            {
+              icon: 'logos:nuxt-icon',
+              label: 'Nuxt Module',
+              description: 'Nuxt Module for Weme UI.',
+              to: '/docs/essentials/nuxt-module',
+            },
+            {
+              icon: 'logos:unocss',
+              label: 'UnoCSS Preset',
+              description: 'UnoCSS Preset for Weme UI.',
+              to: '/docs/essentials/unocss-preset',
             },
           ],
         },
@@ -47,36 +57,19 @@ export default defineAppConfig({
               icon: 'lucide:layout-template',
               label: 'Layouts',
               description: 'Explore the layouts.',
-              to: '/layouts',
+              to: '/templates/layouts',
             },
             {
               icon: 'lucide:blocks',
               label: 'Blocks',
               description: 'Explore the blocks.',
-              to: '/blocks',
+              to: '/templates/blocks',
             },
             {
               icon: 'lucide:swatch-book',
               label: 'Themes',
               description: 'Explore the themes.',
-              to: '/themes',
-            },
-          ],
-        },
-        {
-          label: 'Resources',
-          children: [
-            {
-              icon: 'simple-icons:nuxt',
-              label: 'Nuxt Module',
-              description: 'Nuxt Module for Weme UI.',
-              to: '/resources/nuxt-module',
-            },
-            {
-              icon: 'simple-icons:unocss',
-              label: 'UnoCSS Preset',
-              description: 'UnoCSS Preset for Weme UI.',
-              to: '/resources/unocss-preset',
+              to: '/templates/themes',
             },
           ],
         },
@@ -127,6 +120,7 @@ export default defineAppConfig({
     },
 
     footer: {
+      copyright: 'Published under the MIT License.',
       links: [
         {
           label: 'Roadmap',
@@ -141,7 +135,7 @@ export default defineAppConfig({
 
     outline: {
       title: '大纲',
-      extends: {
+      community: {
         title: '社区支持',
         links: [
           {
@@ -160,6 +154,24 @@ export default defineAppConfig({
           },
         ],
       },
+    },
+
+    github: {
+      repo: 'weme-ui/weme-ui',
+    },
+
+    fileIcons: {
+      'catppuccin:bash': ['shell', 'sh', 'bash', 'zsh'],
+      'catppuccin:markdown': ['md', 'markdown', 'mdc'],
+      'catppuccin:vue': ['vue'],
+      'catppuccin:typescript': ['ts', 'tsx'],
+      'catppuccin:javascript': ['js', 'jsx'],
+      'catppuccin:html': ['html'],
+      'catppuccin:css': ['css'],
+      'catppuccin:json': ['json', 'jsonc'],
+      'catppuccin:yaml': ['yaml', 'yml'],
+      'catppuccin:go': ['go'],
+      'catppuccin:prisma': ['prisma'],
     },
   },
 })

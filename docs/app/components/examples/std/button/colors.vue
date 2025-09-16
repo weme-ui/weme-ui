@@ -9,9 +9,7 @@ const colors = ['accent', 'neutral', 'info', 'success', 'warning', 'error'] as c
   <div class="grid-(~ cols-6) gap-6">
     <template v-for="variant in variants" :key="variant">
       <div v-for="color in colors" :key="color" class="p-2 rounded-lg" :class="variant === 'inverse' && 'bg-neutral-12'">
-        <Button :color="color" :variant="variant" icon="user">
-          Button
-        </Button>
+        <Button :color="color" :variant="variant" icon="user" text="Button" />
       </div>
     </template>
   </div>

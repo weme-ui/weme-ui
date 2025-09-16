@@ -1,4 +1,5 @@
 import type { WemePresetResolvedOptions } from '../types'
+import { parseColor } from './color'
 
 const variablesAbbrMap: Record<string, string> = {
   background: 'bg',
@@ -29,15 +30,21 @@ const variablesPropertyMap: Record<string, string[]> = {
 
 export function resolveCssVar(property: string, args: string, options: WemePresetResolvedOptions) {
   const suffixes = variablesPropertyMap[property] ?? []
+  const { color, opacity } = parseColor(args)
+
   const variable = Object
     .keys(options.cssVars)
     .find((k) => {
-      return suffixes.some(s => k === `${args}-${s}`)
+      return suffixes.some(s => k === `${color}-${s}`)
     })
 
   if (variable) {
+    const cssVar = `var(${getCssVarName(variable, options.variablePrefix)})`
+
     return {
-      [property]: `var(${getCssVarName(variable, options.variablePrefix)})`,
+      [property]: opacity !== undefined
+        ? `color-mix(in oklab, ${cssVar} ${opacity}%, transparent)`
+        : cssVar,
     }
   }
 }

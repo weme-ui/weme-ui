@@ -22,8 +22,8 @@ export const useKbdStyle = createVariants({
   },
   compoundVariants: [
     ...createColorCompoundVariants({
+      type: 'static',
       variants: ['solid', 'soft', 'surface', 'outline', 'inverse'],
-      states: 'normal',
     }),
 
     { variant: ['surface', 'outline'], class: 'ring-inset' },

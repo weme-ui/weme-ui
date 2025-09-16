@@ -37,15 +37,16 @@ export const useBadgeStyle = createVariants({
   compoundVariants: [
     // Static
     ...createColorCompoundVariants({
+      type: 'static',
       variants: ['solid', 'soft', 'surface', 'outline', 'inverse'],
-      states: 'normal',
       slot: 'base',
+      extra: { clickable: false },
     }),
 
     // Clickable
     ...createColorCompoundVariants({
+      type: 'click',
       variants: ['solid', 'soft', 'surface', 'outline', 'inverse'],
-      states: ['hover', 'active'],
       slot: 'base',
       extra: { clickable: true },
     }),

@@ -40,8 +40,8 @@ export const useButtonStyle = createVariants({
   },
   compoundVariants: [
     ...createColorCompoundVariants({
+      type: 'click',
       variants: ['solid', 'soft', 'surface', 'outline', 'ghost', 'link', 'inverse'],
-      states: ['normal', 'hover', 'active'],
       slot: 'base',
     }),
 
@@ -57,6 +57,9 @@ export const useButtonStyle = createVariants({
     variant: 'solid',
     size: 'md',
     radius: 'sm',
+    loading: false,
+    disabled: false,
+    square: false,
   },
 })
 

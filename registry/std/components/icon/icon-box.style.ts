@@ -28,8 +28,8 @@ export const useIconBoxStyle = createVariants({
   },
   compoundVariants: [
     ...createColorCompoundVariants({
+      type: 'static',
       variants: ['solid', 'soft', 'surface', 'outline', 'inverse'],
-      states: 'normal',
       slot: 'base',
     }),
   ],

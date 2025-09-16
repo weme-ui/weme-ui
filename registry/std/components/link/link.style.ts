@@ -5,7 +5,7 @@ import { createVariants } from '~/utils/styles'
 export const useLinkStyle = createVariants({
   base: 'flex-(inline y-center) underline-offset-6 gap-1.5',
   variants: {
-    color: createColorVariants({ variant: 'link', states: ['normal', 'hover', 'active'] }),
+    color: createColorVariants({ variant: 'link', type: 'click' }),
     disabled: {
       true: 'is-disabled',
     },

@@ -1,7 +1,7 @@
 {
   "$schema": "https://weme-ui.github.io/schema/registry.json",
-  "name": "@weme-ui/std",
-  "description": "Weme UI for Std components registry.",
+  "name": "weme-ui/std",
+  "description": "The standard components for Weme UI.",
   "version": "0.0.0",
   "prefix": "ui",
   "directory": "registry/std",
@@ -11,7 +11,7 @@
       "Allen Luo <luoyi@mouji.net>"
     ],
     "homepage": "https://github.com/weme-ui/weme-ui",
-    "repository": "https://github.com/weme-ui/weme-ui.git",
+    "repository": "https://github.com/weme-ui/weme-ui",
     "bugs": "https://github.com/weme-ui/weme-ui/issues"
   },
   "dependencies": [
@@ -20,6 +20,8 @@
     "tailwind-variants"
   ],
   "devDependencies": [
+    "@nuxt/icon",
+    "@unocss/nuxt",
     "@vueuse/core",
     "@weme-ui/nuxt",
     "@weme-ui/unocss-preset",
@@ -33,34 +35,29 @@
       "type": "component",
       "title": "Icon",
       "description": "A component to display any icon from Iconify.",
-      "author": "Allen Luo <luoyi@mouji.net>",
       "categories": [
         "general"
       ],
       "files": [
         {
-          "path": "components/icon/icon.vue",
-          "type": "component"
+          "type": "component",
+          "path": "components/icon/icon.vue"
         },
         {
-          "path": "components/icon/icon.props.ts",
-          "type": "type"
+          "type": "type",
+          "path": "components/icon/icon.props.ts"
         },
         {
-          "path": "components/icon/icon-box.vue",
-          "type": "component"
+          "type": "component",
+          "path": "components/icon/icon-box.vue"
         },
         {
-          "path": "components/icon/icon-box.props.ts",
-          "type": "type"
+          "type": "type",
+          "path": "components/icon/icon-box.props.ts"
         },
         {
-          "path": "components/icon/icon-box.style.ts",
-          "type": "style"
-        },
-        {
-          "path": "utils/styles.ts",
-          "type": "util"
+          "type": "style",
+          "path": "components/icon/icon-box.style.ts"
         }
       ]
     },
@@ -69,26 +66,21 @@
       "type": "component",
       "title": "Typography",
       "description": "Styles for headings, paragraphs, text... etc.",
-      "author": "Allen Luo <luoyi@mouji.net>",
       "categories": [
         "general"
       ],
       "files": [
         {
-          "path": "components/typography/typography.vue",
-          "type": "component"
+          "type": "component",
+          "path": "components/typography/typography.vue"
         },
         {
-          "path": "components/typography/typography.props.ts",
-          "type": "type"
+          "type": "type",
+          "path": "components/typography/typography.props.ts"
         },
         {
-          "path": "components/typography/typography.style.ts",
-          "type": "style"
-        },
-        {
-          "path": "utils/styles.ts",
-          "type": "util"
+          "type": "style",
+          "path": "components/typography/typography.style.ts"
         }
       ]
     },
@@ -97,7 +89,6 @@
       "type": "component",
       "title": "Button",
       "description": "Displays a button or a component that looks like a button.",
-      "author": "Allen Luo <luoyi@mouji.net>",
       "categories": [
         "general"
       ],
@@ -106,20 +97,16 @@
       ],
       "files": [
         {
-          "path": "components/button/button.vue",
-          "type": "component"
+          "type": "component",
+          "path": "components/button/button.vue"
         },
         {
-          "path": "components/button/button.props.ts",
-          "type": "type"
+          "type": "type",
+          "path": "components/button/button.props.ts"
         },
         {
-          "path": "components/button/button.style.ts",
-          "type": "style"
-        },
-        {
-          "path": "utils/styles.ts",
-          "type": "util"
+          "type": "style",
+          "path": "components/button/button.style.ts"
         }
       ]
     },
@@ -128,26 +115,21 @@
       "type": "component",
       "title": "Link",
       "description": "A wrapper around with extra <NuxtLink /> props.",
-      "author": "Allen Luo <luoyi@mouji.net>",
       "categories": [
         "general"
       ],
       "files": [
         {
-          "path": "components/link/link.vue",
-          "type": "component"
+          "type": "component",
+          "path": "components/link/link.vue"
         },
         {
-          "path": "components/link/link.props.ts",
-          "type": "type"
+          "type": "type",
+          "path": "components/link/link.props.ts"
         },
         {
-          "path": "components/link/link.style.ts",
-          "type": "style"
-        },
-        {
-          "path": "utils/styles.ts",
-          "type": "util"
+          "type": "style",
+          "path": "components/link/link.style.ts"
         }
       ]
     },
@@ -156,30 +138,25 @@
       "type": "component",
       "title": "Kbd",
       "description": "A kbd element to display a keyboard key.",
-      "author": "Allen Luo <luoyi@mouji.net>",
       "categories": [
         "data-display"
       ],
       "files": [
         {
-          "path": "components/kbd/kbd.vue",
-          "type": "component"
+          "type": "component",
+          "path": "components/kbd/kbd.vue"
         },
         {
-          "path": "components/kbd/kbd.props.ts",
-          "type": "type"
+          "type": "type",
+          "path": "components/kbd/kbd.props.ts"
         },
         {
-          "path": "components/kbd/kbd.style.ts",
-          "type": "style"
+          "type": "style",
+          "path": "components/kbd/kbd.style.ts"
         },
         {
-          "path": "composables/use-kbd.ts",
-          "type": "composable"
-        },
-        {
-          "path": "utils/styles.ts",
-          "type": "util"
+          "type": "composable",
+          "path": "composables/use-kbd.ts"
         }
       ]
     },
@@ -188,7 +165,6 @@
       "type": "component",
       "title": "Badge",
       "description": "Displays a badge or a component that looks like a badge.",
-      "author": "Allen Luo <luoyi@mouji.net>",
       "categories": [
         "data-display"
       ],
@@ -197,20 +173,16 @@
       ],
       "files": [
         {
-          "path": "components/badge/badge.vue",
-          "type": "component"
+          "type": "component",
+          "path": "components/badge/badge.vue"
         },
         {
-          "path": "components/badge/badge.props.ts",
-          "type": "type"
+          "type": "type",
+          "path": "components/badge/badge.props.ts"
         },
         {
-          "path": "components/badge/badge.style.ts",
-          "type": "style"
-        },
-        {
-          "path": "utils/styles.ts",
-          "type": "util"
+          "type": "style",
+          "path": "components/badge/badge.style.ts"
         }
       ]
     },
@@ -219,7 +191,6 @@
       "type": "component",
       "title": "Alert",
       "description": "Displays a callout for user attention.",
-      "author": "Allen Luo <luoyi@mouji.net>",
       "categories": [
         "data-display"
       ],
@@ -228,20 +199,16 @@
       ],
       "files": [
         {
-          "path": "components/alert/alert.vue",
-          "type": "component"
+          "type": "component",
+          "path": "components/alert/alert.vue"
         },
         {
-          "path": "components/alert/alert.props.ts",
-          "type": "type"
+          "type": "type",
+          "path": "components/alert/alert.props.ts"
         },
         {
-          "path": "components/alert/alert.style.ts",
-          "type": "style"
-        },
-        {
-          "path": "utils/styles.ts",
-          "type": "util"
+          "type": "style",
+          "path": "components/alert/alert.style.ts"
         }
       ]
     },
@@ -250,26 +217,21 @@
       "type": "component",
       "title": "Separator",
       "description": "Visually or semantically separates content.",
-      "author": "Allen Luo <luoyi@mouji.net>",
       "categories": [
         "layout"
       ],
       "files": [
         {
-          "path": "components/separator/separator.vue",
-          "type": "component"
+          "type": "component",
+          "path": "components/separator/separator.vue"
         },
         {
-          "path": "components/separator/separator.props.ts",
-          "type": "type"
+          "type": "type",
+          "path": "components/separator/separator.props.ts"
         },
         {
-          "path": "components/separator/separator.style.ts",
-          "type": "style"
-        },
-        {
-          "path": "utils/styles.ts",
-          "type": "util"
+          "type": "style",
+          "path": "components/separator/separator.style.ts"
         }
       ]
     },
@@ -278,30 +240,73 @@
       "type": "component",
       "title": "Space",
       "description": "Set the spacing and separators between components.",
-      "author": "Allen Luo <luoyi@mouji.net>",
       "categories": [
         "layout"
       ],
       "files": [
         {
-          "path": "components/space/space.vue",
-          "type": "component"
+          "type": "component",
+          "path": "components/space/space.vue"
         },
         {
-          "path": "components/space/space.props.ts",
-          "type": "type"
+          "type": "type",
+          "path": "components/space/space.props.ts"
         },
         {
-          "path": "components/space/space.style.ts",
-          "type": "style"
+          "type": "style",
+          "path": "components/space/space.style.ts"
+        }
+      ]
+    },
+    {
+      "name": "card",
+      "type": "component",
+      "title": "Card",
+      "description": "The card component.",
+      "categories": [
+        "data-display"
+      ],
+      "files": [
+        {
+          "type": "component",
+          "path": "components/card/card.vue"
         },
         {
-          "path": "utils/slots.ts",
-          "type": "util"
+          "type": "type",
+          "path": "components/card/card.props.ts"
         },
         {
-          "path": "utils/styles.ts",
-          "type": "util"
+          "type": "style",
+          "path": "components/card/card.style.ts"
+        }
+      ],
+      "cssVars": {
+        "card": {
+          "bg": "color.neutral.1",
+          "fg": "color.neutral.11"
+        }
+      }
+    },
+    {
+      "name": "icon-box1",
+      "type": "component",
+      "title": "icon-box1",
+      "description": "The icon-box1 component.",
+      "categories": [
+        "general"
+      ],
+      "files": [
+        {
+          "type": "component",
+          "path": "components/icon-box1/icon-box1.vue"
+        },
+        {
+          "type": "type",
+          "path": "components/icon-box1/icon-box1.props.ts"
+        },
+        {
+          "type": "style",
+          "path": "components/icon-box1/icon-box1.style.ts"
         }
       ]
     }

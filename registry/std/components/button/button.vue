@@ -24,12 +24,13 @@ const isLoading = computed(() => !!props.loading || loadingState.value)
 const isDisabled = computed(() => !!props.disabled || isLoading.value)
 
 const delegated = reactivePick(props, 'as', 'asChild', 'type')
+const slots = useSlots()
 
 const ui = computed(() => useButtonStyle({
   ...props,
   loading: isLoading.value,
   disabled: isDisabled.value,
-  square: (!!props.icon && !props.text) || props.square,
+  square: (!(props.text || slots.default?.()) && !!props.icon) || props.square,
 }))
 
 async function onClick(event: MouseEvent) {

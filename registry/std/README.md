@@ -34,8 +34,8 @@ pnpm dlx @weme-ui/weme-ui add <component-name>
 
 [MIT][license-href] License © 2025 [weme-ui][github-href]
 
-[npm-version-src]: https://img.shields.io/npm/v/@weme-ui/weme-ui?style=flat&colorA=1d2129&colorB=1d2129
+[npm-version-src]: https://img.shields.io/npm/v/@weme-ui/weme-ui?style=flat&colorA=1d2129&colorB=4CBBA5
 [npm-version-href]: https://npmjs.com/package/@weme-ui/weme-ui
-[license-src]: https://img.shields.io/github/license/@weme-ui/weme-ui.svg?style=flat&colorA=1d2129&colorB=1d2129
+[license-src]: https://img.shields.io/github/license/weme-ui/weme-ui.svg?style=flat&colorA=1d2129&colorB=4CBBA5
 [license-href]: https://github.com/weme-ui/weme-ui/blob/main/LICENSE
 [github-href]: https://github.com/weme-ui/weme-ui

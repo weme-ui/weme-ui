@@ -327,6 +327,29 @@
           "path": "components/avatar/avatar-group.style.ts"
         }
       ]
+    },
+    {
+      "name": "scroll-area",
+      "type": "component",
+      "title": "Scroll Area",
+      "description": "Augments native scroll functionality for custom, cross-browser styling.",
+      "categories": [
+        "other"
+      ],
+      "files": [
+        {
+          "type": "component",
+          "path": "components/scroll-area/scroll-area.vue"
+        },
+        {
+          "type": "type",
+          "path": "components/scroll-area/scroll-area.props.ts"
+        },
+        {
+          "type": "style",
+          "path": "components/scroll-area/scroll-area.style.ts"
+        }
+      ]
     }
   ]
 }

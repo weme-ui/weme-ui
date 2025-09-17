@@ -19,6 +19,7 @@ const variablesPropertyMap: Record<string, string[]> = {
   // Color
   'color': ['foreground', 'fg'],
   'background-color': ['background', 'bg'],
+  'fill': ['background', 'bg'],
 
   // Border
   'border-width': ['border'],

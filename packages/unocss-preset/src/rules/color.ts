@@ -152,6 +152,15 @@ export function fillColor(options: WemePresetResolvedOptions): Rule[] {
       },
     ],
     // endregion
+
+    // region Css Variables
+    [
+      /^fill-(.+)$/,
+      ([, c]) => {
+        return resolveCssVar('fill', c, options)
+      },
+    ],
+    // endregion
   ]
 }
 

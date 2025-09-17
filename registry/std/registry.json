@@ -445,6 +445,38 @@
           "path": "components/collapsible/collapsible.style.ts"
         }
       ]
+    },
+    {
+      "name": "tooltip",
+      "type": "component",
+      "title": "Tooltip",
+      "description": "A popup that displays information related to an element when the element receives keyboard focus or the mouse hovers over it.",
+      "categories": [
+        "data-display"
+      ],
+      "registryDependencies": [
+        "icon"
+      ],
+      "files": [
+        {
+          "type": "component",
+          "path": "components/tooltip/tooltip.vue"
+        },
+        {
+          "type": "type",
+          "path": "components/tooltip/tooltip.props.ts"
+        },
+        {
+          "type": "style",
+          "path": "components/tooltip/tooltip.style.ts"
+        }
+      ],
+      "cssVars": {
+        "tooltip": {
+          "bg": "color.neutral.11",
+          "fg": "color.neutral.1"
+        }
+      }
     }
   ]
 }

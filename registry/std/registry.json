@@ -376,6 +376,29 @@
           "path": "components/breadcrumb/breadcrumb.style.ts"
         }
       ]
+    },
+    {
+      "name": "skeleton",
+      "type": "component",
+      "title": "Skeleton",
+      "description": "Use to show a placeholder while content is loading.",
+      "categories": [
+        "feedback"
+      ],
+      "files": [
+        {
+          "type": "component",
+          "path": "components/skeleton/skeleton.vue"
+        },
+        {
+          "type": "type",
+          "path": "components/skeleton/skeleton.props.ts"
+        },
+        {
+          "type": "style",
+          "path": "components/skeleton/skeleton.style.ts"
+        }
+      ]
     }
   ]
 }

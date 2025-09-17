@@ -399,6 +399,29 @@
           "path": "components/skeleton/skeleton.style.ts"
         }
       ]
+    },
+    {
+      "name": "chip",
+      "type": "component",
+      "title": "Chip",
+      "description": "An indicator of a numeric value or a state.",
+      "categories": [
+        "data-display"
+      ],
+      "files": [
+        {
+          "type": "component",
+          "path": "components/chip/chip.vue"
+        },
+        {
+          "type": "type",
+          "path": "components/chip/chip.props.ts"
+        },
+        {
+          "type": "style",
+          "path": "components/chip/chip.style.ts"
+        }
+      ]
     }
   ]
 }

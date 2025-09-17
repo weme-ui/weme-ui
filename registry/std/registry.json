@@ -350,6 +350,32 @@
           "path": "components/scroll-area/scroll-area.style.ts"
         }
       ]
+    },
+    {
+      "name": "breadcrumb",
+      "type": "component",
+      "title": "Breadcrumb",
+      "description": "Displays the path to the current resource using a hierarchy of links.",
+      "categories": [
+        "navigation"
+      ],
+      "registryDependencies": [
+        "icon"
+      ],
+      "files": [
+        {
+          "type": "component",
+          "path": "components/breadcrumb/breadcrumb.vue"
+        },
+        {
+          "type": "type",
+          "path": "components/breadcrumb/breadcrumb.props.ts"
+        },
+        {
+          "type": "style",
+          "path": "components/breadcrumb/breadcrumb.style.ts"
+        }
+      ]
     }
   ]
 }

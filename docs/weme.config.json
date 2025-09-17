@@ -19,8 +19,10 @@
   },
   "unocss": {
     "cssVars": {
-      "card-background": "color.neutral.1",
-      "card-foreground": "color.neutral.11"
+      "card-bg": "color.neutral.1",
+      "card-fg": "color.neutral.11",
+      "tooltip-bg": "color.neutral.11",
+      "tooltip-fg": "color.neutral.1"
     }
   }
 }

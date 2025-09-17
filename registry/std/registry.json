@@ -477,6 +477,37 @@
           "fg": "color.neutral.1"
         }
       }
+    },
+    {
+      "name": "popover",
+      "type": "component",
+      "title": "Popover",
+      "description": "Displays rich content in a portal, triggered by a button.",
+      "categories": [
+        "feedback"
+      ],
+      "registryDependencies": [
+        "icon"
+      ],
+      "files": [
+        {
+          "type": "component",
+          "path": "components/popover/popover.vue"
+        },
+        {
+          "type": "type",
+          "path": "components/popover/popover.props.ts"
+        },
+        {
+          "type": "style",
+          "path": "components/popover/popover.style.ts"
+        }
+      ],
+      "cssVars": {
+        "popover": {
+          "bg": "color.neutral.1"
+        }
+      }
     }
   ]
 }

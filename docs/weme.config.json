@@ -22,7 +22,8 @@
       "card-bg": "color.neutral.1",
       "card-fg": "color.neutral.11",
       "tooltip-bg": "color.neutral.11",
-      "tooltip-fg": "color.neutral.1"
+      "tooltip-fg": "color.neutral.1",
+      "popover-bg": "color.neutral.1"
     }
   }
 }

@@ -35,7 +35,7 @@ export const useIconBoxStyle = createVariants({
   ],
   defaultVariants: {
     color: 'accent',
-    variant: 'solid',
+    variant: 'soft',
     radius: 'sm',
     size: 'md',
   },

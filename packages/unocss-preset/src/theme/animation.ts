@@ -27,4 +27,9 @@ export const animation = {
     // Marquee
     'marquee': 'linear',
   },
+
+  counts: {
+    // Marquee
+    marquee: 'infinite',
+  },
 } satisfies Theme['animation']

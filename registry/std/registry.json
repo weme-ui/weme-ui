@@ -422,6 +422,29 @@
           "path": "components/chip/chip.style.ts"
         }
       ]
+    },
+    {
+      "name": "collapsible",
+      "type": "component",
+      "title": "Collapsible",
+      "description": "An interactive component which expands/collapses a panel.",
+      "categories": [
+        "data-display"
+      ],
+      "files": [
+        {
+          "type": "component",
+          "path": "components/collapsible/collapsible.vue"
+        },
+        {
+          "type": "type",
+          "path": "components/collapsible/collapsible.props.ts"
+        },
+        {
+          "type": "style",
+          "path": "components/collapsible/collapsible.style.ts"
+        }
+      ]
     }
   ]
 }

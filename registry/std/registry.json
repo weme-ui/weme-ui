@@ -508,6 +508,34 @@
           "bg": "color.neutral.1"
         }
       }
+    },
+    {
+      "name": "hover-card",
+      "type": "component",
+      "title": "Hover Card",
+      "description": "For sighted users to preview content available behind a link.",
+      "categories": [
+        "feedback"
+      ],
+      "files": [
+        {
+          "type": "component",
+          "path": "components/hover-card/hover-card.vue"
+        },
+        {
+          "type": "type",
+          "path": "components/hover-card/hover-card.props.ts"
+        },
+        {
+          "type": "style",
+          "path": "components/hover-card/hover-card.style.ts"
+        }
+      ],
+      "cssVars": {
+        "popover": {
+          "bg": "color.neutral.1"
+        }
+      }
     }
   ]
 }

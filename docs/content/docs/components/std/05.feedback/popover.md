@@ -1,5 +1,5 @@
 ---
-description: Weme UI std component Popover
+description: 在弹出层中显示丰富的内容，由按钮触发。
 
 links:
   - label: Feedback

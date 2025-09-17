@@ -7,7 +7,7 @@ export const useBreadcrumbStyle = createVariants({
     item: 'flex-(~ center)',
     icon: 'c-toned mr-1',
     label: 'text-sm',
-    separator: 'flex-(~ center) px-2.5 c-toned',
+    separator: 'flex-(~ center) px-4 c-toned',
   },
   variants: {
     latest: {

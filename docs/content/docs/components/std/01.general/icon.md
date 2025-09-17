@@ -182,7 +182,7 @@ data:
       - surface
       - outline
       - inverse
-    default: solid
+    default: soft
     description: 图标样式
   - name: radius
     type:

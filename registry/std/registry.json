@@ -536,6 +536,34 @@
           "bg": "color.neutral.1"
         }
       }
+    },
+    {
+      "name": "pop-confirm",
+      "type": "component",
+      "title": "Pop Confirm",
+      "description": "Click on the button element to pop up a bubble-like confirmation box.",
+      "categories": [
+        "feedback"
+      ],
+      "registryDependencies": [
+        "button",
+        "icon",
+        "popover"
+      ],
+      "files": [
+        {
+          "type": "component",
+          "path": "components/pop-confirm/pop-confirm.vue"
+        },
+        {
+          "type": "type",
+          "path": "components/pop-confirm/pop-confirm.props.ts"
+        },
+        {
+          "type": "style",
+          "path": "components/pop-confirm/pop-confirm.style.ts"
+        }
+      ]
     }
   ]
 }

@@ -18,7 +18,7 @@ catalogs:
     taze: ^19.6.0
     tsdown: ^0.15.2
     typescript: ^5.9.2
-    vite: ^7.1.5
+    vite: ^7.1.6
   dev:
     '@nuxt/devtools': ^2.6.3
     '@nuxt/icon': ^2.0.0

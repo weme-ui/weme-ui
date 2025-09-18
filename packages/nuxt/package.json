@@ -2,7 +2,7 @@
   "name": "@weme-ui/nuxt",
   "type": "module",
   "version": "0.0.0",
-  "packageManager": "pnpm@10.16.1",
+  "packageManager": "pnpm@10.17.0",
   "description": "Weme UI - Nuxt module.",
   "author": "Allen Luo <luoyi@mouji.net>",
   "license": "MIT",

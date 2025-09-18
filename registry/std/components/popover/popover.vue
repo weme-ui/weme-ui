@@ -13,7 +13,7 @@ defineOptions({
 
 const props = withDefaults(defineProps<PopoverProps>(), {
   side: 'bottom',
-  radius: 'md',
+  radius: 'lg',
   translucent: false,
   closable: false,
   showArrow: false,
@@ -21,13 +21,13 @@ const props = withDefaults(defineProps<PopoverProps>(), {
 
 const emits = defineEmits<PopoverEmits>()
 
-const delegated = reactiveOmit(props, 'class', 'ui', 'side', 'radius', 'translucent', 'portal', 'content', 'asChild')
+const delegated = reactiveOmit(props, 'class', 'ui', 'side', 'radius', 'translucent', 'portalProps', 'contentProps', 'asChild')
 const forwarded = useForwardPropsEmits(delegated, emits)
 
 const contentProps = computed(() => ({
-  ...props.content,
+  ...props.contentProps,
   side: props.side,
-  sideOffset: props.content?.sideOffset ?? 6,
+  sideOffset: props.contentProps?.sideOffset ?? 6,
 }))
 
 const config = useAppConfig()
@@ -44,7 +44,7 @@ const ui = computed(() => usePopoverStyle({
       <slot name="trigger" :open="open" />
     </PopoverTrigger>
 
-    <PopoverPortal v-bind="portal">
+    <PopoverPortal v-bind="portalProps">
       <PopoverContent v-bind="contentProps" :class="cn(ui.base(), props.class, props.ui?.base)">
         <slot />
 
@@ -52,7 +52,7 @@ const ui = computed(() => usePopoverStyle({
           <Icon name="close" />
         </PopoverClose>
 
-        <PopoverArrow v-if="showArrow" :class="cn(ui.arrow(), props.ui?.arrow)" />
+        <PopoverArrow v-if="showArrow" :class="cn(ui.arrow(), props.ui?.arrow)" rounded />
       </PopoverContent>
     </PopoverPortal>
   </PopoverRoot>

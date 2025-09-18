@@ -7,8 +7,8 @@ export type PopoverContentProps = Omit<RekaPopoverContentProps, 'side' | 'asChil
 export interface PopoverProps extends PopoverRootProps {
   side?: PopoverStyleProps['side']
   radius?: PopoverStyleProps['radius']
-  portal?: PopoverPortalProps
-  content?: PopoverContentProps
+  portalProps?: PopoverPortalProps
+  contentProps?: PopoverContentProps
   translucent?: boolean
   asChild?: boolean
   closable?: boolean

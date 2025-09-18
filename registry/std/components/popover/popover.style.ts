@@ -3,10 +3,10 @@ import { createVariants } from '~/utils/styles'
 
 export const usePopoverStyle = createVariants({
   slots: {
-    base: 'px-6 py-4.5 shadow-lg transition state-open:z-popup',
+    base: 'px-4 py-4.5 shadow-sm b-(~ default) will-change-[transform,opacity]',
     trigger: '',
     close: '',
-    arrow: '',
+    arrow: 'stroke-default',
   },
 
   variants: {
@@ -31,7 +31,7 @@ export const usePopoverStyle = createVariants({
 
   defaultVariants: {
     side: 'bottom',
-    radius: 'md',
+    radius: 'lg',
     translucent: false,
   },
 })

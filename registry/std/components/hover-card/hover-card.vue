@@ -8,7 +8,7 @@ import { useHoverCardStyle } from './hover-card.style'
 
 const props = withDefaults(defineProps<HoverCardProps>(), {
   side: 'bottom',
-  radius: 'md',
+  radius: 'lg',
   translucent: false,
   showArrow: false,
 })

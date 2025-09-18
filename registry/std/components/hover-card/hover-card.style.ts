@@ -3,9 +3,9 @@ import { createVariants } from '~/utils/styles'
 
 export const useHoverCardStyle = createVariants({
   slots: {
-    base: 'px-6 py-4.5 shadow-sm transition state-open:z-popup',
+    base: 'px-4 py-4.5 shadow-sm b-(~ default) will-change-[transform,opacity]',
     trigger: '',
-    arrow: '',
+    arrow: 'stroke-default',
   },
 
   variants: {
@@ -30,7 +30,7 @@ export const useHoverCardStyle = createVariants({
 
   defaultVariants: {
     side: 'bottom',
-    radius: 'md',
+    radius: 'lg',
     translucent: false,
   },
 })

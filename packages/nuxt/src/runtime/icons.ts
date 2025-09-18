@@ -20,11 +20,11 @@ export const WemeIcons = {
   refresh: 'lucide:refresh-cw',
 
   // State
-  info: 'lucide:info',
-  success: 'lucide:circle-check',
-  warning: 'lucide:triangle-alert',
-  error: 'lucide:circle-x',
-  help: 'i-lucide-circle-help',
+  info: 'mingcute:information-fill',
+  success: 'mingcute:check-circle-fill',
+  warning: 'mingcute:alert-fill',
+  error: 'mingcute:close-circle-fill',
+  help: 'mingcute:question-fill',
 
   // Other
   external: 'lucide:arrow-up-right',

@@ -4,7 +4,10 @@ import { useAppConfig } from '#app'
 import { reactiveOmit } from '@vueuse/core'
 import { computed } from 'vue'
 
-const props = defineProps<IconProps>()
+const props = withDefaults(defineProps<IconProps>(), {
+  mode: 'svg',
+})
+
 const delegated = reactiveOmit(props, 'name')
 
 const resolvedIcon = computed(() => {

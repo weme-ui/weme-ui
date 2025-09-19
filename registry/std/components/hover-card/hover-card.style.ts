@@ -3,7 +3,7 @@ import { createVariants } from '~/utils/styles'
 
 export const useHoverCardStyle = createVariants({
   slots: {
-    base: 'px-4 py-4.5 shadow-sm b-(~ default) will-change-[transform,opacity]',
+    base: 'px-4 py-4.5 shadow-xs b-(~ default) will-change-[transform,opacity]',
     trigger: '',
     arrow: 'stroke-default',
   },

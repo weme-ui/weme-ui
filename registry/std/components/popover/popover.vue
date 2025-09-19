@@ -30,11 +30,9 @@ const contentProps = computed(() => ({
   sideOffset: props.contentProps?.sideOffset ?? 6,
 }))
 
-const config = useAppConfig()
-
 const ui = computed(() => usePopoverStyle({
   ...props,
-  translucent: props.translucent ? !!props.translucent : config.weme.translucent,
+  translucent: !!props.translucent,
 }))
 </script>
 

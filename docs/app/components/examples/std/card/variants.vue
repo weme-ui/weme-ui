@@ -3,7 +3,7 @@ import Card from '@registry/std/components/card/card.vue'
 </script>
 
 <template>
-  <Card icon="info" title="Title" description="Description" variant="wrapped">
+  <Card icon="info" title="Title" description="Description" variant="clean">
     This is the content.
 
     <template #action>

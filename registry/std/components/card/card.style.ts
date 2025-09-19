@@ -15,11 +15,11 @@ export const useCardStyle = createVariants({
 
   variants: {
     variant: {
-      normal: 'bg-card',
-      wrapped: {
-        base: 'p-1.5 bg-neutral-4',
+      normal: {
+        base: 'p-1.5 bg-elevated',
         wrapper: 'bg-card shadow-xs',
       },
+      clean: 'bg-card',
     },
     radius: {
       none: '',
@@ -46,13 +46,13 @@ export const useCardStyle = createVariants({
   },
 
   compoundVariants: [
-    { variant: 'normal', translucent: true, class: { base: 'bg-card/70' } },
-    { variant: 'wrapped', translucent: true, class: { base: 'bg-neutral-4/70' } },
+    { variant: 'clean', translucent: true, class: { base: 'bg-card/70' } },
+    { variant: 'normal', translucent: true, class: { base: 'bg-neutral-4/70' } },
 
   ],
 
   defaultVariants: {
-    variant: 'normal',
+    variant: 'clean',
     radius: 'lg',
     bordered: false,
     translucent: false,

@@ -624,6 +624,32 @@
           "path": "components/empty/empty.style.ts"
         }
       ]
+    },
+    {
+      "name": "result",
+      "type": "component",
+      "title": "Result",
+      "description": "Displays the result of an operation, which can display a title, description, image, and operation button.",
+      "categories": [
+        "feedback"
+      ],
+      "registryDependencies": [
+        "icon"
+      ],
+      "files": [
+        {
+          "type": "component",
+          "path": "components/result/result.vue"
+        },
+        {
+          "type": "type",
+          "path": "components/result/result.props.ts"
+        },
+        {
+          "type": "style",
+          "path": "components/result/result.style.ts"
+        }
+      ]
     }
   ]
 }

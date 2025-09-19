@@ -47,6 +47,11 @@ export default defineNuxtModule<WemeNuxtOptions>({
               dir: resolver.resolve('runtime/assets/icon'),
               normalizeIconName: false,
             },
+            {
+              prefix: 'weme',
+              dir: resolver.resolve('runtime/assets/empty'),
+              normalizeIconName: false,
+            },
           ],
         },
       },

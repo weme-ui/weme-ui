@@ -564,6 +564,40 @@
           "path": "components/pop-confirm/pop-confirm.style.ts"
         }
       ]
+    },
+    {
+      "name": "modal",
+      "type": "component",
+      "title": "Modal",
+      "description": "A window overlaid on either the primary window or another dialog window, rendering the content underneath inert.",
+      "categories": [
+        "feedback"
+      ],
+      "registryDependencies": [
+        "icon",
+        "scroll-area"
+      ],
+      "files": [
+        {
+          "type": "component",
+          "path": "components/modal/modal.vue"
+        },
+        {
+          "type": "type",
+          "path": "components/modal/modal.props.ts"
+        },
+        {
+          "type": "style",
+          "path": "components/modal/modal.style.ts"
+        }
+      ],
+      "cssVars": {
+        "modal": {
+          "bg": "color.neutral.1",
+          "width": "24rem",
+          "height": "12rem"
+        }
+      }
     }
   ]
 }

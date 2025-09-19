@@ -598,6 +598,32 @@
           "height": "12rem"
         }
       }
+    },
+    {
+      "name": "empty",
+      "type": "component",
+      "title": "Empty",
+      "description": "A default state that is rendered when there is no corresponding data content.",
+      "categories": [
+        "data-display"
+      ],
+      "registryDependencies": [
+        "icon"
+      ],
+      "files": [
+        {
+          "type": "component",
+          "path": "components/empty/empty.vue"
+        },
+        {
+          "type": "type",
+          "path": "components/empty/empty.props.ts"
+        },
+        {
+          "type": "style",
+          "path": "components/empty/empty.style.ts"
+        }
+      ]
     }
   ]
 }

@@ -27,7 +27,9 @@ import Modal from '@registry/std/components/modal/modal.vue'
       <Button icon="lucide:circle" />
 
       <template #content>
-        This is the content.
+        <div class="flex-(~ center)">
+          <UiIcon name="weme:empty" class="size-32" />
+        </div>
       </template>
 
       <template #footer="{ close }">

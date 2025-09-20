@@ -29,7 +29,8 @@
       "modal-height": "12rem",
       "toast-bg": "color.neutral.1",
       "toast-ring": "color.neutral.1",
-      "toast-width": "24rem"
+      "toast-width": "24rem",
+      "accordion-bg": "color.neutral.1"
     }
   }
 }

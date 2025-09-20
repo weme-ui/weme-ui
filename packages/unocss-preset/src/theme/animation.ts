@@ -26,6 +26,10 @@ export const animation = {
     'toast-right': '{0%{transform:translateX(0) translateY(var(--translate))}100%{transform:translateX(100%) translateY(var(--translate))}}',
     'toast-up': '{0%{transform:translateX(var(--translate)) translateY(0)}100% {transform:translateX(var(--translate)) translateY(-100%)}}',
     'toast-down': '{0%{transform:translateX(var(--translate)) translateY(0)}100%{transform:translateX(var(--translate)) translateY(100%)}}',
+
+    // Accordion
+    'accordion-open': '{0%{height:0}100%{height:var(--reka-accordion-content-height)}}',
+    'accordion-close': '{0%{height:var(--reka-accordion-content-height)}100%{height:0}}',
   },
 
   durations: {
@@ -53,6 +57,10 @@ export const animation = {
     'toast-right': '0.2s',
     'toast-up': '0.2s',
     'toast-down': '0.2s',
+
+    // Accordion
+    'accordion-open': '0.2s',
+    'accordion-close': '0.2s',
   },
 
   timingFns: {
@@ -80,6 +88,10 @@ export const animation = {
     'toast-right': 'ease-out',
     'toast-up': 'ease-out',
     'toast-down': 'ease-out',
+
+    // Accordion
+    'accordion-open': 'ease-out',
+    'accordion-close': 'ease-out',
   },
 
   counts: {

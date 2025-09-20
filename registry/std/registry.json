@@ -731,6 +731,49 @@
           "bg": "color.neutral.1"
         }
       }
+    },
+    {
+      "name": "tabs",
+      "type": "component",
+      "title": "Tabs",
+      "description": "A set of layered sections of content—known as tab panels—that are displayed one at a time.",
+      "categories": [
+        "data-display"
+      ],
+      "registryDependencies": [
+        "icon"
+      ],
+      "files": [
+        {
+          "type": "component",
+          "path": "components/tabs/tabs.vue"
+        },
+        {
+          "type": "type",
+          "path": "components/tabs/tabs.props.ts"
+        },
+        {
+          "type": "style",
+          "path": "components/tabs/tabs.style.ts"
+        },
+        {
+          "type": "component",
+          "path": "components/tabs/tabs-content.vue"
+        },
+        {
+          "type": "type",
+          "path": "components/tabs/tabs-content.props.ts"
+        },
+        {
+          "type": "style",
+          "path": "components/tabs/tabs-content.style.ts"
+        }
+      ],
+      "cssVars": {
+        "tabs": {
+          "bg": "color.neutral.1"
+        }
+      }
     }
   ]
 }

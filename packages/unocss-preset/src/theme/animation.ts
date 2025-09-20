@@ -18,6 +18,14 @@ export const animation = {
     'popup-out-bottom': '{from{opacity:1;transform:translate3d(0,0,0)}to{opacity:0;transform:translate3d(0,2%,0)}}',
     'popup-out-left': '{from{opacity:1;transform:translate3d(0,0,0)}to{opacity:0;transform:translate3d(-2%,0,0)}}',
     'popup-out-right': '{from{opacity:1;transform:translate3d(0,0,0)}to{opacity:0;transform:translate3d(2%,0,0)}}',
+
+    // Toast
+    'toast-close': '{0%{transform:var(--transform)}100%{transform:translateY(calc((var(--offset)-var(--height))*var(--translate-factor)))}}',
+    'toast-collapse': '{0%{transform:var(--transform)}100%{transform:translateY(calc((var(--before)-var(--height))*var(--gap))) scale(var(--scale))}}',
+    'toast-left': '{0%{transform:translateX(0) translateY(var(--translate))}100%{transform:translateX(-100%) translateY(var(--translate))}}',
+    'toast-right': '{0%{transform:translateX(0) translateY(var(--translate))}100%{transform:translateX(100%) translateY(var(--translate))}}',
+    'toast-up': '{0%{transform:translateX(var(--translate)) translateY(0)}100% {transform:translateX(var(--translate)) translateY(-100%)}}',
+    'toast-down': '{0%{transform:translateX(var(--translate)) translateY(0)}100%{transform:translateX(var(--translate)) translateY(100%)}}',
   },
 
   durations: {
@@ -37,6 +45,14 @@ export const animation = {
     'popup-out-bottom': '0.1s',
     'popup-out-left': '0.1s',
     'popup-out-right': '0.1s',
+
+    // Toast
+    'toast-close': '0.2s',
+    'toast-collapse': '0.2s',
+    'toast-left': '0.2s',
+    'toast-right': '0.2s',
+    'toast-up': '0.2s',
+    'toast-down': '0.2s',
   },
 
   timingFns: {
@@ -56,6 +72,14 @@ export const animation = {
     'popup-out-bottom': 'ease-out',
     'popup-out-left': 'ease-out',
     'popup-out-right': 'ease-out',
+
+    // Toast
+    'toast-close': 'ease-in-out',
+    'toast-collapse': 'ease-in-out',
+    'toast-left': 'ease-out',
+    'toast-right': 'ease-out',
+    'toast-up': 'ease-out',
+    'toast-down': 'ease-out',
   },
 
   counts: {

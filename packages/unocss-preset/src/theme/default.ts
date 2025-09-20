@@ -2,7 +2,7 @@ import type { Theme, WemePresetResolvedOptions } from '../types'
 import { animation } from './animation'
 import { font, leading, text } from './font'
 import { radius, spacing } from './misc'
-import { breakpoint, verticalBreakpoint } from './size'
+import { breakpoint, container, verticalBreakpoint } from './size'
 
 export function theme(options: WemePresetResolvedOptions): Theme {
   return {
@@ -13,6 +13,7 @@ export function theme(options: WemePresetResolvedOptions): Theme {
     breakpoint,
     verticalBreakpoint,
     animation,
+    container,
 
     radius: radius(options.variablePrefix),
   }

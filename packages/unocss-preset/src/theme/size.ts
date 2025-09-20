@@ -9,3 +9,7 @@ export const breakpoint = {
 } satisfies Theme['breakpoint']
 
 export const verticalBreakpoint = { ...breakpoint } satisfies Theme['breakpoint']
+
+export const container = {
+  toast: 'var(--toast-height)',
+} satisfies Theme['container']

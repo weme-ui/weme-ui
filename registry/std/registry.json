@@ -650,6 +650,56 @@
           "path": "components/result/result.style.ts"
         }
       ]
+    },
+    {
+      "name": "toast",
+      "type": "component",
+      "title": "Toast",
+      "description": "A succinct message that is displayed temporarily.",
+      "categories": [
+        "feedback"
+      ],
+      "registryDependencies": [
+        "button",
+        "icon"
+      ],
+      "files": [
+        {
+          "type": "component",
+          "path": "components/toast/toast.vue"
+        },
+        {
+          "type": "type",
+          "path": "components/toast/toast.props.ts"
+        },
+        {
+          "type": "style",
+          "path": "components/toast/toast.style.ts"
+        },
+        {
+          "type": "component",
+          "path": "components/toast/toast-provider.vue"
+        },
+        {
+          "type": "type",
+          "path": "components/toast/toast-provider.props.ts"
+        },
+        {
+          "type": "style",
+          "path": "components/toast/toast-provider.style.ts"
+        },
+        {
+          "type": "composable",
+          "path": "composables/use-toast.ts"
+        }
+      ],
+      "cssVars": {
+        "toast": {
+          "bg": "color.neutral.1",
+          "ring": "color.neutral.1",
+          "width": "24rem"
+        }
+      }
     }
   ]
 }

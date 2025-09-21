@@ -4,7 +4,7 @@ import Tabs from '@registry/std/components/tabs/tabs.vue'
 </script>
 
 <template>
-  <Tabs default-value="tab-1" radius="lg">
+  <Tabs default-value="tab-1" radius="full">
     <TabsContent icon="info" value="tab-1" title="Tab 1">
       Content 1
     </TabsContent>

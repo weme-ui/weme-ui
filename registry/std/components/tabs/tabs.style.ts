@@ -28,10 +28,10 @@ export const useTabsStyle = createVariants({
       right: { indicator: 'h-$reka-tabs-indicator-size' },
     },
     size: {
-      xs: { trigger: 'px-3 py-1.5 text-xs gap-x-1', content: 'p-3 text-xs' },
-      sm: { trigger: 'px-3.5 py-2 text-sm gap-x-1.5', content: 'p-3.5 text-sm' },
-      md: { trigger: 'px-4.5 py-2.5 text-base gap-x-2', content: 'p-4.5 text-base' },
-      lg: { trigger: 'px-6.5 py-2.5 text-lg gap-x-2.5', content: 'p-6.5 text-lg' },
+      xs: { trigger: 'px-2 py-0.5 text-xs gap-x-1', content: 'p-3 text-xs' },
+      sm: { trigger: 'px-3 py-0.5 text-sm gap-x-1.5', content: 'p-3.5 text-sm' },
+      md: { trigger: 'px-4 py-1 text-base gap-x-2', content: 'p-4.5 text-base' },
+      lg: { trigger: 'px-5 py-1.75 text-lg gap-x-2', content: 'p-6.5 text-lg' },
     },
     radius: { none: '', sm: '', md: '', lg: '', xl: '', full: '' },
     animate: {
@@ -68,10 +68,10 @@ export const useTabsStyle = createVariants({
     { variant: ['card'], side: 'left', class: { content: 'b-(~ default)' } },
     { variant: ['card'], side: 'right', class: { content: 'b-(~ default)' } },
 
-    { variant: ['card', 'capsule', 'normal'], size: 'xs', class: { indicator: 'h-7' } },
-    { variant: ['card', 'capsule', 'normal'], size: 'sm', class: { indicator: 'h-9' } },
-    { variant: ['card', 'capsule', 'normal'], size: 'md', class: { indicator: 'h-11' } },
-    { variant: ['card', 'capsule', 'normal'], size: 'lg', class: { indicator: 'h-11.5' } },
+    { variant: ['card', 'capsule', 'normal'], size: 'xs', class: { indicator: 'h-5' } },
+    { variant: ['card', 'capsule', 'normal'], size: 'sm', class: { indicator: 'h-6' } },
+    { variant: ['card', 'capsule', 'normal'], size: 'md', class: { indicator: 'h-8' } },
+    { variant: ['card', 'capsule', 'normal'], size: 'lg', class: { indicator: 'h-10' } },
 
     { variant: ['normal'], radius: 'sm', class: { indicator: 'rounded-sm' } },
     { variant: ['normal'], radius: 'md', class: { indicator: 'rounded-sm' } },

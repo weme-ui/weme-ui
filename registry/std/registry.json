@@ -818,6 +818,29 @@
           "bg": "color.neutral.1"
         }
       }
+    },
+    {
+      "name": "overflow-list",
+      "type": "component",
+      "title": "Overflow List",
+      "description": "A container component that hides sub-components that exceed the number limit.",
+      "categories": [
+        "other"
+      ],
+      "files": [
+        {
+          "type": "component",
+          "path": "components/overflow-list/overflow-list.vue"
+        },
+        {
+          "type": "type",
+          "path": "components/overflow-list/overflow-list.props.ts"
+        },
+        {
+          "type": "style",
+          "path": "components/overflow-list/overflow-list.style.ts"
+        }
+      ]
     }
   ]
 }

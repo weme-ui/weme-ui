@@ -841,6 +841,32 @@
           "path": "components/overflow-list/overflow-list.style.ts"
         }
       ]
+    },
+    {
+      "name": "spinner",
+      "type": "component",
+      "title": "Spinner",
+      "description": "Displays an animated loading indicator.",
+      "categories": [
+        "feedback"
+      ],
+      "registryDependencies": [
+        "icon"
+      ],
+      "files": [
+        {
+          "type": "component",
+          "path": "components/spinner/spinner.vue"
+        },
+        {
+          "type": "type",
+          "path": "components/spinner/spinner.props.ts"
+        },
+        {
+          "type": "style",
+          "path": "components/spinner/spinner.style.ts"
+        }
+      ]
     }
   ]
 }

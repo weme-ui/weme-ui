@@ -7,7 +7,7 @@ import { cn } from '~/utils/styles'
 import { useOverflowListStyle } from './overflow-list.style'
 
 const props = defineProps<OverflowListProps>()
-const delegated = reactiveOmit(props, 'class', 'ui')
+const delegated = reactiveOmit(props, 'class', 'ui', 'max', 'gap')
 
 const slots = useSlots()
 const children = slots.default?.()

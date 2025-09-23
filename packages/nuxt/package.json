@@ -57,6 +57,8 @@
     "@iconify-json/mingcute": "catalog:icon",
     "@nuxt/devtools": "catalog:dev",
     "@nuxt/icon": "catalog:dev",
+    "@nuxt/image": "catalog:dev",
+    "@nuxt/kit": "catalog:dev",
     "@nuxt/module-builder": "catalog:nuxt",
     "@nuxt/schema": "catalog:nuxt",
     "@types/node": "catalog:build",

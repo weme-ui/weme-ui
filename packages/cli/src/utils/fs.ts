@@ -88,9 +88,7 @@ export const fs = {
       flag: 'w',
     })
 
-    if (!force) {
-      consola.success(`${isExists ? 'Overwrote' : 'Created'} file \`${relative(cwd, fullPath)}\`.`)
-    }
+    consola.success(`${isExists ? 'Overwrote' : 'Created'} file \`${relative(cwd, fullPath)}\`.`)
   },
 
   /**

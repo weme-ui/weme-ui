@@ -56,7 +56,7 @@ data:
     description: 默认插槽
   - name: overflow
     description: 超出数量插槽
-    payload: 
+    payload:
       - "(number: number) => void"
 ---
 ::

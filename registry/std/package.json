@@ -35,6 +35,8 @@
     "typecheck": "vue-tsc --noEmit"
   },
   "peerDependencies": {
+    "@nuxt/icon": "catalog:dev",
+    "@nuxt/image": "catalog:dev",
     "@vueuse/core": "catalog:dev",
     "clsx": "catalog:dev",
     "nuxt": "catalog:nuxt",

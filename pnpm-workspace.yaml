@@ -22,6 +22,8 @@ catalogs:
   dev:
     '@nuxt/devtools': ^2.6.5
     '@nuxt/icon': ^2.0.0
+    '@nuxt/image': ^1.11.0
+    '@nuxt/kit': 4.0.3
     '@radix-ui/colors': ^3.0.0
     '@unocss/nuxt': ^66.5.2
     '@unocss/rule-utils': ^66.5.2
@@ -92,5 +94,6 @@ onlyBuiltDependencies:
   - '@parcel/watcher'
   - better-sqlite3
   - esbuild
+  - sharp
   - simple-git-hooks
   - vue-demi

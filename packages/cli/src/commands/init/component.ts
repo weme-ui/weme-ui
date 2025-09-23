@@ -176,6 +176,8 @@ async function createFiles(args: Record<string, any>) {
       args.cwd,
     )
 
+    await appendComponentTypes(args.registry, args.parent, files, args.cwd)
+
     debug('Append Files:', args.parent, files)
   }
   else {
@@ -187,11 +189,39 @@ async function createFiles(args: Record<string, any>) {
       files,
       args.cwd,
     )
+    await appendComponentTypes(args.registry, args.name, files, args.cwd)
 
     debug('Append Item:', args.name, args.category, files)
   }
 
   consola.success('Component files generated!')
+}
+
+async function appendComponentTypes(registry: string, name: string, files: string[], cwd: string = '') {
+  debug('Append types:', registry, name, files)
+
+  const typeFile = join(cwd, 'registry', registry, 'types', 'components.ts')
+  const types = files.filter(f => f.endsWith('.props.ts'))
+
+  if (types.length > 0) {
+    const componentTypes = (fs.read(typeFile) || '').split('\n')
+
+    for (const type of types) {
+      const importStatement = `export * from '~/components/${name}/${type.replace('.props.ts', '')}.props'`
+
+      if (componentTypes.includes(importStatement))
+        continue
+
+      componentTypes.push(importStatement)
+    }
+
+    fs.write({
+      path: typeFile,
+      content: `${componentTypes.sort().join('\n')}\n`,
+      cwd,
+      force: true,
+    })
+  }
 }
 
 /**

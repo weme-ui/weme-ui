@@ -774,6 +774,50 @@
           "bg": "color.neutral.1"
         }
       }
+    },
+    {
+      "name": "dropdown",
+      "type": "component",
+      "title": "Dropdown",
+      "description": "Displays a menu to the user — such as a set of actions or functions — triggered by a button.",
+      "categories": [
+        "navigation"
+      ],
+      "registryDependencies": [
+        "icon",
+        "kbd"
+      ],
+      "files": [
+        {
+          "type": "component",
+          "path": "components/dropdown/dropdown.vue"
+        },
+        {
+          "type": "type",
+          "path": "components/dropdown/dropdown.props.ts"
+        },
+        {
+          "type": "style",
+          "path": "components/dropdown/dropdown.style.ts"
+        },
+        {
+          "type": "component",
+          "path": "components/dropdown/dropdown-content.vue"
+        },
+        {
+          "type": "type",
+          "path": "components/dropdown/dropdown-content.props.ts"
+        },
+        {
+          "type": "style",
+          "path": "components/dropdown/dropdown-content.style.ts"
+        }
+      ],
+      "cssVars": {
+        "dropdown": {
+          "bg": "color.neutral.1"
+        }
+      }
     }
   ]
 }

@@ -893,6 +893,29 @@
           "path": "components/pagination/pagination.style.ts"
         }
       ]
+    },
+    {
+      "name": "progress",
+      "type": "component",
+      "title": "Progress",
+      "description": "Displays an indicator showing the completion progress of a task, typically displayed as a progress bar.",
+      "categories": [
+        "feedback"
+      ],
+      "files": [
+        {
+          "type": "component",
+          "path": "components/progress/progress.vue"
+        },
+        {
+          "type": "type",
+          "path": "components/progress/progress.props.ts"
+        },
+        {
+          "type": "style",
+          "path": "components/progress/progress.style.ts"
+        }
+      ]
     }
   ]
 }

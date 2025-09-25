@@ -30,6 +30,10 @@ export const animation = {
     // Accordion
     'accordion-open': '{0%{height:0}100%{height:var(--reka-accordion-content-height)}}',
     'accordion-close': '{0%{height:var(--reka-accordion-content-height)}100%{height:0}}',
+
+    // Progress
+    'progress-stripe': '{0%{background-position:0 0}100%{background-position:30px 30px}}',
+    'progress-swing': '{0%,100%{width:50%;transform:translate(-25%)}50%{transform:translate(125%)}}',
   },
 
   durations: {
@@ -61,6 +65,10 @@ export const animation = {
     // Accordion
     'accordion-open': '0.2s',
     'accordion-close': '0.2s',
+
+    // Progress
+    'progress-stripe': '2s',
+    'progress-swing': '3s',
   },
 
   timingFns: {
@@ -92,10 +100,18 @@ export const animation = {
     // Accordion
     'accordion-open': 'ease-out',
     'accordion-close': 'ease-out',
+
+    // Progress
+    'progress-stripe': 'linear',
+    'progress-swing': 'ease-in-out',
   },
 
   counts: {
     // Marquee
-    marquee: 'infinite',
+    'marquee': 'infinite',
+
+    // Progress
+    'progress-stripe': 'infinite',
+    'progress-swing': 'infinite',
   },
 } satisfies Theme['animation']

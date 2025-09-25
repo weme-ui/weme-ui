@@ -217,7 +217,7 @@ async function appendComponentTypes(registry: string, name: string, files: strin
 
     fs.write({
       path: typeFile,
-      content: `${componentTypes.sort().filter(Boolean).join('\n')}\n`,
+      content: `${componentTypes.sort().filter(Boolean).join('\n')}`,
       cwd,
       force: true,
     })

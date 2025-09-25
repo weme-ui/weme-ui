@@ -867,6 +867,32 @@
           "path": "components/spinner/spinner.style.ts"
         }
       ]
+    },
+    {
+      "name": "pagination",
+      "type": "component",
+      "title": "Pagination",
+      "description": "Displays data in paged format and provides navigation between pages.",
+      "categories": [
+        "navigation"
+      ],
+      "registryDependencies": [
+        "icon"
+      ],
+      "files": [
+        {
+          "type": "component",
+          "path": "components/pagination/pagination.vue"
+        },
+        {
+          "type": "type",
+          "path": "components/pagination/pagination.props.ts"
+        },
+        {
+          "type": "style",
+          "path": "components/pagination/pagination.style.ts"
+        }
+      ]
     }
   ]
 }

@@ -916,6 +916,33 @@
           "path": "components/progress/progress.style.ts"
         }
       ]
+    },
+    {
+      "name": "timeline",
+      "type": "component",
+      "title": "Timeline",
+      "description": "A component that displays a sequence of events with dates, titles, icons.",
+      "categories": [
+        "data-display"
+      ],
+      "registryDependencies": [
+        "icon",
+        "separator"
+      ],
+      "files": [
+        {
+          "type": "component",
+          "path": "components/timeline/timeline.vue"
+        },
+        {
+          "type": "type",
+          "path": "components/timeline/timeline.props.ts"
+        },
+        {
+          "type": "style",
+          "path": "components/timeline/timeline.style.ts"
+        }
+      ]
     }
   ]
 }

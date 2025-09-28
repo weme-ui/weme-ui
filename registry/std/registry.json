@@ -943,6 +943,32 @@
           "path": "components/timeline/timeline.style.ts"
         }
       ]
+    },
+    {
+      "name": "stepper",
+      "type": "component",
+      "title": "Stepper",
+      "description": "A set of steps that are used to indicate progress through a multi-step process.",
+      "categories": [
+        "navigation"
+      ],
+      "registryDependencies": [
+        "icon"
+      ],
+      "files": [
+        {
+          "type": "component",
+          "path": "components/stepper/stepper.vue"
+        },
+        {
+          "type": "type",
+          "path": "components/stepper/stepper.props.ts"
+        },
+        {
+          "type": "style",
+          "path": "components/stepper/stepper.style.ts"
+        }
+      ]
     }
   ]
 }

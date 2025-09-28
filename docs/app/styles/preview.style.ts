@@ -13,7 +13,7 @@ export const usePreviewStyle = createVariants({
         preview: 'flex-row',
       },
       horizontal: {
-        preview: 'flex-col items-stretch',
+        preview: 'flex-col items-stretch gap-8',
       },
     },
     inverse: {

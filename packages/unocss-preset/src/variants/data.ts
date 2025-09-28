@@ -5,7 +5,7 @@ const alignAttributes = ['start', 'end', 'center']
 const motionAttributes = ['to-start', 'to-end', 'from-start', 'from-end']
 const orientationAttributes = ['vertical', 'horizontal']
 const sideAttributes = ['left', 'right', 'top', 'bottom']
-const stateAttributes = ['open', 'closed', 'checked', 'unchecked', 'indeterminate', 'complete', 'indeterminate', 'loading', 'on', 'off', 'active', 'inactive', 'visible', 'hidden', 'drag', 'hover', 'inactive']
+const stateAttributes = ['open', 'closed', 'checked', 'unchecked', 'indeterminate', 'completed', 'indeterminate', 'loading', 'on', 'off', 'active', 'inactive', 'visible', 'hidden', 'drag', 'hover']
 const swipeAttributes = ['start', 'move', 'cancel', 'end']
 const swipeDirectionAttributes = ['left', 'right', 'up', 'down']
 

@@ -969,6 +969,32 @@
           "path": "components/stepper/stepper.style.ts"
         }
       ]
+    },
+    {
+      "name": "switch",
+      "type": "component",
+      "title": "Switch",
+      "description": "A control that allows the user to toggle between checked and not checked.",
+      "categories": [
+        "form"
+      ],
+      "registryDependencies": [
+        "icon"
+      ],
+      "files": [
+        {
+          "type": "component",
+          "path": "components/switch/switch.vue"
+        },
+        {
+          "type": "type",
+          "path": "components/switch/switch.props.ts"
+        },
+        {
+          "type": "style",
+          "path": "components/switch/switch.style.ts"
+        }
+      ]
     }
   ]
 }

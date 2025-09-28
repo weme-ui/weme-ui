@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import type { StepperItem } from '@registry/std/components/stepper/stepper.props'
 import Stepper from '@registry/std/components/stepper/stepper.vue'
+import Switch from '@registry/std/components/switch/switch.vue'
 import { useTemplateRef } from 'vue'
 
 const steps: StepperItem[] = [
@@ -22,14 +23,19 @@ const steps: StepperItem[] = [
 ] as const
 
 const current = ref(1)
-const orientation = ref<'horizontal' | 'vertical'>('vertical')
+const isHorizontal = ref(false)
 const stepperRef = useTemplateRef('stepper')
 </script>
 
 <template>
   <div class="flex-(~ col) gap-8">
-    <div class="flex" :class="{ 'flex-col gap-8': orientation === 'horizontal', 'flex-row gap-12': orientation === 'vertical' }">
-      <Stepper ref="stepper" v-model="current" :orientation="orientation" :steps="steps" />
+    <div class="flex-(~ y-center) justify-end gap-3" :class="{ 'text-highlighted': isHorizontal }">
+      <Switch v-model="isHorizontal" />
+      Horizontal
+    </div>
+
+    <div class="flex" :class="{ 'flex-col gap-8': isHorizontal, 'flex-row gap-12': !isHorizontal }">
+      <Stepper ref="stepper" v-model="current" :orientation="isHorizontal ? 'horizontal' : 'vertical'" :steps="steps" />
 
       <div class="flex-(~ 1 center) p-6 rounded-lg b-(~ dashed default) bg-dimmed">
         <p>

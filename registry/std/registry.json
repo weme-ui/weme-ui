@@ -1033,6 +1033,29 @@
           "path": "components/toggle/toggle-group.style.ts"
         }
       ]
+    },
+    {
+      "name": "data-list",
+      "type": "component",
+      "title": "Data List",
+      "description": "Displays metadata as a list of key-value pairs.",
+      "categories": [
+        "data-display"
+      ],
+      "files": [
+        {
+          "type": "component",
+          "path": "components/data-list/data-list.vue"
+        },
+        {
+          "type": "type",
+          "path": "components/data-list/data-list.props.ts"
+        },
+        {
+          "type": "style",
+          "path": "components/data-list/data-list.style.ts"
+        }
+      ]
     }
   ]
 }

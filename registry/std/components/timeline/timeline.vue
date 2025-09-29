@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import type { TimelineProps } from './timeline.props'
+import type { IconBoxProps } from '~/types'
 import { reactivePick } from '@vueuse/core'
 import { defu } from 'defu'
 import { Primitive } from 'reka-ui'
@@ -30,13 +31,10 @@ const iconProps = computed(() => defu(
   {
     color: props.color,
     size: props.size,
-  },
-  {
     variant: 'soft',
     radius: 'full',
-    size: 'md',
   },
-))
+)) as ComputedRef<Partial<IconBoxProps>>
 
 const ui = computed(() => useTimelineStyle({
   ...props,

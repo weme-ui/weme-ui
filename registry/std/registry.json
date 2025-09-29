@@ -995,6 +995,44 @@
           "path": "components/switch/switch.style.ts"
         }
       ]
+    },
+    {
+      "name": "toggle",
+      "type": "component",
+      "title": "Toggle",
+      "description": "A two-state button that can be either on or off.",
+      "categories": [
+        "form"
+      ],
+      "registryDependencies": [
+        "icon"
+      ],
+      "files": [
+        {
+          "type": "component",
+          "path": "components/toggle/toggle.vue"
+        },
+        {
+          "type": "type",
+          "path": "components/toggle/toggle.props.ts"
+        },
+        {
+          "type": "style",
+          "path": "components/toggle/toggle.style.ts"
+        },
+        {
+          "type": "component",
+          "path": "components/toggle/toggle-group.vue"
+        },
+        {
+          "type": "type",
+          "path": "components/toggle/toggle-group.props.ts"
+        },
+        {
+          "type": "style",
+          "path": "components/toggle/toggle-group.style.ts"
+        }
+      ]
     }
   ]
 }

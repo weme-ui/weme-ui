@@ -1,5 +1,5 @@
 ---
-description: Weme UI std component Input
+description: 显示表单输入字段或看起来像输入字段的组件。
 
 links:
   - label: Form

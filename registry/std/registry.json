@@ -1056,6 +1056,91 @@
           "path": "components/data-list/data-list.style.ts"
         }
       ]
+    },
+    {
+      "name": "label",
+      "type": "component",
+      "title": "Label",
+      "description": "Renders an accessible label associated with controls.",
+      "categories": [
+        "form"
+      ],
+      "files": [
+        {
+          "type": "component",
+          "path": "components/label/label.vue"
+        },
+        {
+          "type": "type",
+          "path": "components/label/label.props.ts"
+        },
+        {
+          "type": "style",
+          "path": "components/label/label.style.ts"
+        }
+      ]
+    },
+    {
+      "name": "input",
+      "type": "component",
+      "title": "Input",
+      "description": "Displays a form input field or a component that looks like an input field.",
+      "categories": [
+        "form"
+      ],
+      "registryDependencies": [
+        "icon"
+      ],
+      "files": [
+        {
+          "type": "component",
+          "path": "components/input/input.vue"
+        },
+        {
+          "type": "type",
+          "path": "components/input/input.props.ts"
+        },
+        {
+          "type": "style",
+          "path": "components/input/input.style.ts"
+        },
+        {
+          "type": "component",
+          "path": "components/input/input-password.vue"
+        },
+        {
+          "type": "type",
+          "path": "components/input/input-password.props.ts"
+        },
+        {
+          "type": "style",
+          "path": "components/input/input-password.style.ts"
+        },
+        {
+          "type": "component",
+          "path": "components/input/input-pin.vue"
+        },
+        {
+          "type": "type",
+          "path": "components/input/input-pin.props.ts"
+        },
+        {
+          "type": "style",
+          "path": "components/input/input-pin.style.ts"
+        },
+        {
+          "type": "component",
+          "path": "components/input/input-number.vue"
+        },
+        {
+          "type": "type",
+          "path": "components/input/input-number.props.ts"
+        },
+        {
+          "type": "style",
+          "path": "components/input/input-number.style.ts"
+        }
+      ]
     }
   ]
 }

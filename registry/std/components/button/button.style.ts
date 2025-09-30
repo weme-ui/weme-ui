@@ -35,7 +35,7 @@ export const useButtonStyle = createVariants({
       true: 'is-disabled',
     },
     square: {
-      true: '',
+      true: 'p-0',
     },
   },
   compoundVariants: [

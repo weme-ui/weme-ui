@@ -168,6 +168,18 @@ data:
 ```
 ::
 
+### 仅图标
+
+::preview
+#preview
+:ExamplesStdButtonIcon
+
+#code
+```vue inset
+<UiButton icon="user" />
+```
+::
+
 ### 圆角
 
 ::preview

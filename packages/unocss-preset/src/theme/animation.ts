@@ -9,6 +9,10 @@ export const animation = {
     // Marquee
     'marquee': '{0%{transform:translate(-100%) skew(-15deg)}100%{transform:translate(100%) skew(-15deg)}}',
 
+    // Scale
+    'scale-in': '{0%{transform:scale(0.95);opacity:0}100%{transform:scale(1);opacity:1}}',
+    'scale-out': '{0%{transform:scale(1);opacity:1}100%{transform:scale(0.95);opacity:0}}',
+
     // Popup
     'popup-top': '{from{opacity:0;transform:translate3d(0,5%,0)}to{opacity:1;transform:translate3d(0,0,0)}}',
     'popup-bottom': '{from{opacity:0;transform:translate3d(0,-5%,0)}to{opacity:1;transform:translate3d(0,0,0)}}',
@@ -44,6 +48,10 @@ export const animation = {
     // Marquee
     'marquee': '2s',
 
+    // Scale
+    'scale-in': '0.1s',
+    'scale-out': '0.1s',
+
     // Popup
     'popup-top': '0.15s',
     'popup-bottom': '0.15s',
@@ -78,6 +86,10 @@ export const animation = {
 
     // Marquee
     'marquee': 'linear',
+
+    // Scale
+    'scale-in': 'ease-out',
+    'scale-out': 'ease-in',
 
     // Popup
     'popup-top': 'cubic-bezier(0.16, 1, 0.3, 1)',

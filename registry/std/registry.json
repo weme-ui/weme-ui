@@ -1141,6 +1141,36 @@
           "path": "components/input/input-number.style.ts"
         }
       ]
+    },
+    {
+      "name": "select",
+      "type": "component",
+      "title": "Select",
+      "description": "Displays a list of options for the user to pick from - triggered by a button.",
+      "categories": [
+        "form"
+      ],
+      "registryDependencies": [
+        "avatar",
+        "chip",
+        "empty",
+        "icon",
+        "scroll-area"
+      ],
+      "files": [
+        {
+          "type": "component",
+          "path": "components/select/select.vue"
+        },
+        {
+          "type": "type",
+          "path": "components/select/select.props.ts"
+        },
+        {
+          "type": "style",
+          "path": "components/select/select.style.ts"
+        }
+      ]
     }
   ]
 }

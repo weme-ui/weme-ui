@@ -1171,6 +1171,29 @@
           "path": "components/select/select.style.ts"
         }
       ]
+    },
+    {
+      "name": "textarea",
+      "type": "component",
+      "title": "Textarea",
+      "description": "Displays a form textarea field or a component that looks like a textarea field.",
+      "categories": [
+        "form"
+      ],
+      "files": [
+        {
+          "type": "component",
+          "path": "components/textarea/textarea.vue"
+        },
+        {
+          "type": "type",
+          "path": "components/textarea/textarea.props.ts"
+        },
+        {
+          "type": "style",
+          "path": "components/textarea/textarea.style.ts"
+        }
+      ]
     }
   ]
 }

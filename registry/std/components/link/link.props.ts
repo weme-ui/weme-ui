@@ -1,7 +1,6 @@
-import type { NuxtLinkProps } from 'nuxt/app'
 import type { LinkStyleProps } from './link.style'
 
-export interface LinkProps extends NuxtLinkProps {
+export interface LinkProps {
   text?: string
   color?: LinkStyleProps['color']
   disabled?: boolean

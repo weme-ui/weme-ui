@@ -8,7 +8,7 @@ catalogs:
     '@commitlint/cli': ^20.1.0
     '@commitlint/config-conventional': ^20.0.0
     '@types/node': 24.0.15
-    '@typescript/native-preview': ^7.0.0-dev.20251008.1
+    '@typescript/native-preview': ^7.0.0-dev.20251009.1
     bumpp: ^10.3.1
     commitizen: ^4.3.1
     conventional-changelog: ^7.1.1
@@ -65,7 +65,7 @@ catalogs:
   testing:
     '@nuxt/test-utils': ^3.19.2
     '@vue/test-utils': ^2.4.6
-    happy-dom: ^19.0.2
+    happy-dom: ^20.0.0
     playwright-core: ^1.56.0
     vitest: ^3.2.4
   utils:

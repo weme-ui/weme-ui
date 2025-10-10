@@ -2,7 +2,7 @@
   "name": "@weme-ui/colors",
   "type": "module",
   "version": "0.0.0",
-  "packageManager": "pnpm@10.17.1",
+  "packageManager": "pnpm@10.18.1",
   "description": "Weme UI - Colors",
   "author": "Allen Luo <luoyi@mouji.net>",
   "license": "MIT",

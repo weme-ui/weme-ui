@@ -11,7 +11,7 @@ const value = ref('item-1')
 </script>
 
 <template>
-  <RadioGroup v-model="value" variant="card" size="md" radius="lg" indicator="end" align="center" color="info" :items="items" fill>
+  <RadioGroup v-model="value" variant="table" size="md" radius="lg" indicator="end" align="center" color="accent" :items="items" fill>
     <template #leading="{ item, checked }">
       <div class="p-2 rounded-full b-(~ default)">
         <AppIcon :name="checked ? item.activeIcon : item.icon" />

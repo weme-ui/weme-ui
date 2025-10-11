@@ -1194,6 +1194,29 @@
           "path": "components/textarea/textarea.style.ts"
         }
       ]
+    },
+    {
+      "name": "radio-group",
+      "type": "component",
+      "title": "Radio Group",
+      "description": "A set of checkable buttons—known as radio buttons—where no more than one of the buttons can be checked at a time.",
+      "categories": [
+        "form"
+      ],
+      "files": [
+        {
+          "type": "component",
+          "path": "components/radio-group/radio-group.vue"
+        },
+        {
+          "type": "type",
+          "path": "components/radio-group/radio-group.props.ts"
+        },
+        {
+          "type": "style",
+          "path": "components/radio-group/radio-group.style.ts"
+        }
+      ]
     }
   ]
 }

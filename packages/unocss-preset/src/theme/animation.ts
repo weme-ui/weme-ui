@@ -12,6 +12,8 @@ export const animation = {
     // Scale
     'scale-in': '{0%{transform:scale(0.95);opacity:0}100%{transform:scale(1);opacity:1}}',
     'scale-out': '{0%{transform:scale(1);opacity:1}100%{transform:scale(0.95);opacity:0}}',
+    'scale-in-big': '{0%{transform:scale(0.1)}100%{transform:scale(1)}}',
+    'scale-out-big': '{0%{transform:scale(1)}100%{transform:scale(0.1)}}',
 
     // Popup
     'popup-top': '{from{opacity:0;transform:translate3d(0,5%,0)}to{opacity:1;transform:translate3d(0,0,0)}}',
@@ -51,6 +53,8 @@ export const animation = {
     // Scale
     'scale-in': '0.1s',
     'scale-out': '0.1s',
+    'scale-in-big': '0.15s',
+    'scale-out-big': '0.15s',
 
     // Popup
     'popup-top': '0.15s',
@@ -90,6 +94,8 @@ export const animation = {
     // Scale
     'scale-in': 'ease-out',
     'scale-out': 'ease-in',
+    'scale-in-big': 'ease-out',
+    'scale-out-big': 'ease-in',
 
     // Popup
     'popup-top': 'cubic-bezier(0.16, 1, 0.3, 1)',

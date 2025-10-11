@@ -10,7 +10,7 @@ export const useRadioGroupStyle = createVariants({
     wrapper: 'flex-(~ 1 col) text-left',
     label: 'text-highlighted leading-none group-state-checked:font-semibold',
     description: 'text-toned group-state-checked:text-highlighted',
-    indicatorWrapper: 'flex-(~ center) bg-elevated rounded-full',
+    indicatorWrapper: 'flex-(~ center) bg-elevated rounded-full group-hover:group-state-unchecked:bg-neutral-5',
     indicator: [
       'relative rounded-full transition-transform animate-scale-in-big',
       'after:(block content-[""] rounded-full size-full shadow-md)',
@@ -28,7 +28,7 @@ export const useRadioGroupStyle = createVariants({
     },
     variant: {
       normal: '',
-      card: { item: 'b-(~ default)' },
+      card: { item: 'b-(~ default) hover:state-unchecked:b-elevated' },
       table: { item: 'b-(~ default) state-checked:z-1' },
       capsule: { base: 'bg-elevated p-1', item: 'state-checked:shadow-sm' },
     },
@@ -116,12 +116,12 @@ export const useRadioGroupStyle = createVariants({
     { variant: 'capsule', color: 'warning', class: { item: 'state-checked:bg-warning-1' } },
     { variant: 'capsule', color: 'error', class: { item: 'state-checked:bg-error-1' } },
 
-    { variant: ['card', 'table'], color: 'accent', class: { item: 'state-checked:(b-accent ring-2 ring-accent-4)' } },
-    { variant: ['card', 'table'], color: 'neutral', class: { item: 'state-checked:(b-neutral ring-2 ring-neutral-4)' } },
-    { variant: ['card', 'table'], color: 'info', class: { item: 'state-checked:(b-info ring-2 ring-info-4)' } },
-    { variant: ['card', 'table'], color: 'success', class: { item: 'state-checked:(b-success ring-2 ring-success-4)' } },
-    { variant: ['card', 'table'], color: 'warning', class: { item: 'state-checked:(b-warning ring-2 ring-warning-4)' } },
-    { variant: ['card', 'table'], color: 'error', class: { item: 'state-checked:(b-error ring-2 ring-error-4)' } },
+    { variant: ['card', 'table'], color: 'accent', class: { item: 'state-checked:(b-accent ring-2 ring-accent-4) hover:state-unchecked:bg-accent-3' } },
+    { variant: ['card', 'table'], color: 'neutral', class: { item: 'state-checked:(b-neutral ring-2 ring-neutral-4) hover:state-unchecked:bg-neutral-3' } },
+    { variant: ['card', 'table'], color: 'info', class: { item: 'state-checked:(b-info ring-2 ring-info-4) hover:state-unchecked:bg-info-3' } },
+    { variant: ['card', 'table'], color: 'success', class: { item: 'state-checked:(b-success ring-2 ring-success-4) hover:state-unchecked:bg-success-3' } },
+    { variant: ['card', 'table'], color: 'warning', class: { item: 'state-checked:(b-warning ring-2 ring-warning-4) hover:state-unchecked:bg-warning-3' } },
+    { variant: ['card', 'table'], color: 'error', class: { item: 'state-checked:(b-error ring-2 ring-error-4) hover:state-unchecked:bg-error-3' } },
 
     { variant: ['card', 'table', 'capsule'], size: 'sm', class: { item: 'px-3 py-2.5' } },
     { variant: ['card', 'table', 'capsule'], size: 'md', class: { item: 'px-4 py-3' } },

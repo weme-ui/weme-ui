@@ -43,7 +43,7 @@ const indicator = computed(() =>
   <RadioGroupRoot
     v-bind="forwarded"
     :class="ui.base({ class: cn(props.class, props.ui?.base) })"
-    @update:model-value="$emit('change', $event)"
+    @update:model-value="emits('change', $event)"
   >
     <template v-for="item in items" :key="item.id">
       <RadioGroupItem v-slot="{ checked }" v-bind="item" :class="ui.item({ class: props.ui?.item })">

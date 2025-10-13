@@ -1,12 +1,8 @@
 <script lang="ts" setup>
-import ToastProvider from '@registry/std/components/toast/toast-provider.vue'
-
 const { add } = useToast()
 </script>
 
 <template>
-  <ToastProvider />
-
   <div class="grid-(~ cols-6) gap-4">
     <UiButton
       variant="soft"

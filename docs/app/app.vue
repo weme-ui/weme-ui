@@ -1,4 +1,6 @@
 <script lang="ts" setup>
+import App from '@registry/std/components/app/app.vue'
+
 const route = useRoute()
 const pageId = computed(() => normalizePath('page', route.path))
 
@@ -17,12 +19,12 @@ provide('navigation', navigation)
 </script>
 
 <template>
-  <Html>
+  <App :toaster="{ side: 'top-right' }">
     <NuxtLoadingIndicator color="var(--accent)" />
     <NuxtLayout>
       <NuxtPage />
     </NuxtLayout>
-  </Html>
+  </App>
 </template>
 
 <style>

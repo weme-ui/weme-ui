@@ -57,6 +57,8 @@ function onUpdateOpen(value: boolean, id: string | number) {
 
 <template>
   <ToastProvider v-bind="forwarded" :swipe-direction="swipeDirection">
+    <slot />
+
     <Toast
       v-for="(toast, index) in toasts"
       v-bind="toast"

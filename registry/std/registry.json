@@ -1255,6 +1255,58 @@
           "path": "components/checkbox/checkbox-group.style.ts"
         }
       ]
+    },
+    {
+      "name": "slider",
+      "type": "component",
+      "title": "Slider",
+      "description": "An input where the user selects a value from within a given range.",
+      "categories": [
+        "form"
+      ],
+      "registryDependencies": [
+        "tooltip"
+      ],
+      "files": [
+        {
+          "type": "component",
+          "path": "components/slider/slider.vue"
+        },
+        {
+          "type": "type",
+          "path": "components/slider/slider.props.ts"
+        },
+        {
+          "type": "style",
+          "path": "components/slider/slider.style.ts"
+        }
+      ]
+    },
+    {
+      "name": "app",
+      "type": "component",
+      "title": "App",
+      "description": "Wraps your app to provide global configurations and more.",
+      "categories": [
+        "other"
+      ],
+      "registryDependencies": [
+        "toast"
+      ],
+      "files": [
+        {
+          "type": "component",
+          "path": "components/app/app.vue"
+        },
+        {
+          "type": "type",
+          "path": "components/app/app.props.ts"
+        },
+        {
+          "type": "style",
+          "path": "components/app/app.style.ts"
+        }
+      ]
     }
   ]
 }

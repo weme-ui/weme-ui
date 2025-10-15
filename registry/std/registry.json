@@ -21,6 +21,7 @@
   ],
   "devDependencies": [
     "@nuxt/icon",
+    "@internationalized/date",
     "@unocss/nuxt",
     "@vueuse/core",
     "@weme-ui/nuxt",
@@ -1305,6 +1306,32 @@
         {
           "type": "style",
           "path": "components/app/app.style.ts"
+        }
+      ]
+    },
+    {
+      "name": "calendar",
+      "type": "component",
+      "title": "Calendar",
+      "description": "A date field component that allows users to enter and edit date.",
+      "categories": [
+        "data-display"
+      ],
+      "registryDependencies": [
+        "button"
+      ],
+      "files": [
+        {
+          "type": "component",
+          "path": "components/calendar/calendar.vue"
+        },
+        {
+          "type": "type",
+          "path": "components/calendar/calendar.props.ts"
+        },
+        {
+          "type": "style",
+          "path": "components/calendar/calendar.style.ts"
         }
       ]
     }

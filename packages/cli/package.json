@@ -2,7 +2,7 @@
   "name": "@weme-ui/weme-ui",
   "type": "module",
   "version": "0.0.0",
-  "packageManager": "pnpm@10.18.2",
+  "packageManager": "pnpm@10.18.3",
   "description": "Re-usable UI components with Reka UI and UnoCSS.",
   "author": "Allen Luo <luoyi@mouji.net>",
   "license": "MIT",

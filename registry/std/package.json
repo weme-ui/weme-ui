@@ -3,7 +3,7 @@
   "type": "module",
   "version": "0.0.0",
   "private": true,
-  "packageManager": "pnpm@10.18.2",
+  "packageManager": "pnpm@10.18.3",
   "description": "Weme UI Std components registry.",
   "author": "Allen Luo <luoyi@mouji.net>",
   "license": "MIT",
@@ -48,6 +48,7 @@
   },
   "devDependencies": {
     "@iconify-json/lucide": "catalog:icon",
+    "@internationalized/date": "catalog:dev",
     "@nuxt/test-utils": "catalog:testing",
     "@vue/test-utils": "catalog:testing",
     "@vueuse/core": "catalog:dev",

@@ -10,6 +10,7 @@ export const WemeIcons = {
   left: 'lucide:chevron-left',
 
   // Operation
+  calendar: 'lucide:calendar',
   select: 'lucide:chevrons-up-down',
   check: 'lucide:check',
   close: 'lucide:x',

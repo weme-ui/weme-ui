@@ -1334,6 +1334,33 @@
           "path": "components/calendar/calendar.style.ts"
         }
       ]
+    },
+    {
+      "name": "date-picker",
+      "type": "component",
+      "title": "Date Picker",
+      "description": "A date picker component with range and presets.",
+      "categories": [
+        "form"
+      ],
+      "registryDependencies": [
+        "calendar",
+        "input"
+      ],
+      "files": [
+        {
+          "type": "component",
+          "path": "components/date-picker/date-picker.vue"
+        },
+        {
+          "type": "type",
+          "path": "components/date-picker/date-picker.props.ts"
+        },
+        {
+          "type": "style",
+          "path": "components/date-picker/date-picker.style.ts"
+        }
+      ]
     }
   ]
 }

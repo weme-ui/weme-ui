@@ -40,10 +40,10 @@ export async function resolveOptions(options: WemeNuxtOptions, nuxt: Nuxt, resol
 
   if (options.imports?.themes) {
     const resolvedDir = [...new Set(options.imports.themes?.filter(Boolean).map(dir => resolver.resolve(dir)))]
-    const { default: fg } = await import('fast-glob')
+    const { glob } = await import('tinyglobby')
 
     for (const dir of resolvedDir) {
-      const files = await fg([`${dir}/*.ts`])
+      const files = await glob([`${dir}/*.ts`])
 
       for (const file of files) {
         const module = await import(file)

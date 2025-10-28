@@ -2,7 +2,7 @@
   "name": "@weme-ui/weme-ui",
   "type": "module",
   "version": "0.0.0",
-  "packageManager": "pnpm@10.18.3",
+  "packageManager": "pnpm@10.19.0",
   "description": "Re-usable UI components with Reka UI and UnoCSS.",
   "author": "Allen Luo <luoyi@mouji.net>",
   "license": "MIT",
@@ -17,12 +17,10 @@
   },
   "keywords": [
     "weme-ui",
-    "unocss",
+    "reusable",
     "ui-components",
-    "re-usable-ui-components",
-    "unocss-ui-components",
-    "reka-ui-components",
-    "weme-ui-components"
+    "reka-ui",
+    "unocss"
   ],
   "sideEffects": false,
   "exports": {
@@ -56,23 +54,27 @@
     "typecheck": "tsgo --noEmit"
   },
   "dependencies": {
+    "@clack/prompts": "catalog:utils",
     "@weme-ui/schema": "catalog:dev",
+    "chalk": "catalog:utils",
     "citty": "catalog:utils",
-    "consola": "catalog:utils",
+    "columnify": "catalog:utils",
     "debug": "catalog:utils",
-    "diff": "catalog:utils",
-    "execa": "catalog:utils",
-    "fast-glob": "catalog:utils",
-    "giget": "catalog:utils",
     "handlebars": "catalog:utils",
+    "make-fetch-happen": "catalog:utils",
     "mkdirp": "catalog:utils",
     "nypm": "catalog:utils",
+    "ora": "catalog:utils",
     "pathe": "catalog:utils",
     "pkg-types": "catalog:utils",
     "scule": "catalog:utils",
+    "tinyexec": "catalog:utils",
+    "tinyglobby": "catalog:utils",
     "zod": "catalog:utils"
   },
   "devDependencies": {
+    "@types/columnify": "catalog:utils",
+    "@types/make-fetch-happen": "catalog:utils",
     "@types/node": "catalog:build",
     "bumpp": "catalog:build",
     "tsdown": "catalog:build",

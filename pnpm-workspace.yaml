@@ -5,91 +5,96 @@ packages:
 
 catalogs:
   build:
+    '@changesets/cli': ^2.29.7
     '@commitlint/cli': ^20.1.0
     '@commitlint/config-conventional': ^20.0.0
     '@types/node': 24.0.15
-    '@typescript/native-preview': ^7.0.0-dev.20251014.1
+    '@typescript/native-preview': ^7.0.0-dev.20251027.1
     bumpp: ^10.3.1
     commitizen: ^4.3.1
     conventional-changelog: ^7.1.1
     cz-git: ^1.12.0
     czg: ^1.12.0
     simple-git-hooks: ^2.13.1
-    taze: ^19.7.0
-    tsdown: ^0.15.7
+    taze: ^19.8.1
+    tsdown: ^0.15.11
     typescript: ^5.9.3
-    vite: ^7.1.10
+    vite: ^7.1.12
   dev:
     '@internationalized/date': ^3.10.0
-    '@nuxt/devtools': ^2.6.5
-    '@nuxt/icon': ^2.0.0
+    '@nuxt/devtools': ^3.0.0
+    '@nuxt/icon': ^2.1.0
     '@nuxt/image': ^1.11.0
     '@nuxt/kit': 4.0.3
     '@radix-ui/colors': ^3.0.0
     '@unocss/nuxt': ^66.5.4
     '@unocss/rule-utils': ^66.5.4
-    '@vueuse/core': ^13.9.0
-    '@vueuse/nuxt': ^13.9.0
-    '@weme-ui/schema': ^0.1.5
+    '@vueuse/core': ^14.0.0
+    '@vueuse/nuxt': ^14.0.0
+    '@weme-ui/schema': ^0.2.7
     bezier-easing: ^2.1.0
     clsx: ^2.1.1
     colorjs.io: ^0.5.2
     defu: ^6.1.4
-    motion-v: ^1.7.2
-    reka-ui: ^2.5.1
+    motion-v: ^1.7.4
+    reka-ui: ^2.6.0
     tailwind-merge: ^3.3.1
     tailwind-variants: ^3.1.1
     ufo: ^1.6.1
     unocss: ^66.5.4
-    vite-plugin-vue-devtools: ^8.0.2
+    vite-plugin-vue-devtools: ^8.0.3
   docs:
     '@nuxt/content': ^3.7.1
-    '@nuxtjs/i18n': ^10.1.1
+    '@nuxtjs/i18n': ^10.1.2
     better-sqlite3: ^12.4.1
   icon:
     '@iconify-json/catppuccin': ^1.2.17
-    '@iconify-json/logos': ^1.2.9
-    '@iconify-json/lucide': ^1.2.69
+    '@iconify-json/logos': ^1.2.10
+    '@iconify-json/lucide': ^1.2.71
     '@iconify-json/mingcute': ^1.2.5
-    '@iconify-json/simple-icons': ^1.2.54
+    '@iconify-json/simple-icons': ^1.2.56
   lint:
-    '@antfu/eslint-config': ^6.0.0
-    eslint: ^9.37.0
-    eslint-plugin-pnpm: ^1.2.0
+    '@antfu/eslint-config': ^6.1.0
+    eslint: ^9.38.0
+    eslint-plugin-pnpm: ^1.3.0
     jsonc-eslint-parser: ^2.4.1
-    lint-staged: ^16.2.4
+    lint-staged: ^16.2.6
     yaml-eslint-parser: ^1.3.0
   nuxt:
     '@nuxt/module-builder': ^1.0.2
-    '@nuxt/schema': ^4.1.3
-    nuxt: ^4.1.3
+    '@nuxt/schema': ^4.2.0
+    nuxt: ^4.2.0
   testing:
-    '@nuxt/test-utils': ^3.19.2
+    '@nuxt/test-utils': ^3.20.1
     '@vue/test-utils': ^2.4.6
-    happy-dom: ^20.0.1
-    playwright-core: ^1.56.0
-    vitest: ^3.2.4
+    happy-dom: ^20.0.8
+    playwright-core: ^1.56.1
+    vitest: ^4.0.4
   utils:
+    '@clack/prompts': ^0.11.0
+    '@types/columnify': ^1.5.4
+    '@types/make-fetch-happen': ^10.0.4
+    chalk: ^5.6.2
     citty: ^0.1.6
-    consola: ^3.4.2
+    columnify: ^1.6.0
     debug: ^4.4.3
-    diff: ^8.0.2
     esno: ^4.8.0
-    execa: ^9.6.0
-    fast-glob: ^3.3.3
-    giget: ^2.0.0
     handlebars: ^4.7.8
+    make-fetch-happen: ^15.0.2
     mkdirp: ^3.0.1
     nypm: ^0.6.2
+    ora: ^9.0.0
     pathe: 2.0.3
     pkg-types: ^2.3.0
     scule: ^1.3.0
+    tinyexec: ^1.0.1
+    tinyglobby: ^0.2.15
     zod: ^4.1.12
   vue:
     '@vitejs/plugin-vue': ^6.0.1
     vue: ^3.5.22
-    vue-router: ^4.6.0
-    vue-tsc: ^3.1.1
+    vue-router: ^4.6.3
+    vue-tsc: ^3.1.2
 
 onlyBuiltDependencies:
   - '@parcel/watcher'

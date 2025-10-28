@@ -3,14 +3,15 @@
   "type": "module",
   "version": "0.0.0",
   "private": true,
-  "packageManager": "pnpm@10.18.3",
+  "packageManager": "pnpm@10.19.0",
   "description": "Weme UI Std components registry.",
   "author": "Allen Luo <luoyi@mouji.net>",
   "license": "MIT",
   "homepage": "https://github.com/weme-ui/weme-ui",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/weme-ui/weme-ui.git"
+    "url": "git+https://github.com/weme-ui/weme-ui.git",
+    "directory": "registry/std"
   },
   "bugs": {
     "url": "https://github.com/weme-ui/weme-ui/issues"

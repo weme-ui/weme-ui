@@ -12,33 +12,44 @@
     ],
     "homepage": "https://github.com/weme-ui/weme-ui",
     "repository": "https://github.com/weme-ui/weme-ui",
-    "bugs": "https://github.com/weme-ui/weme-ui/issues"
+    "bugs": "https://github.com/weme-ui/weme-ui/issues",
+    "tags": [
+      "weme-ui"
+    ]
   },
-  "dependencies": [
-    "clsx",
-    "tailwind-merge",
-    "tailwind-variants"
-  ],
-  "devDependencies": [
-    "@nuxt/icon",
-    "@internationalized/date",
-    "@unocss/nuxt",
-    "@vueuse/core",
-    "@weme-ui/nuxt",
-    "@weme-ui/unocss-preset",
-    "reka-ui",
-    "unocss",
-    "vue"
-  ],
   "items": [
+    {
+      "name": "#init",
+      "type": "init",
+      "title": "Init",
+      "description": "Init dependencies and utils for Weme UI.",
+      "dependencies": [
+        "clsx",
+        "tailwind-merge",
+        "tailwind-variants"
+      ],
+      "devDependencies": [
+        "@nuxt/icon",
+        "@internationalized/date",
+        "@unocss/nuxt",
+        "@vueuse/core",
+        "@weme-ui/nuxt",
+        "@weme-ui/unocss-preset",
+        "reka-ui",
+        "unocss",
+        "vue"
+      ],
+      "files": [
+        { "type": "util", "path": "utils/styles.ts" },
+        { "type": "util", "path": "utils/props.ts" },
+        { "type": "util", "path": "utils/slots.ts" }
+      ]
+    },
     {
       "name": "icon",
       "type": "component",
       "title": "Icon",
       "description": "A component to display any icon from Iconify.",
-      "categories": [
-        "general"
-      ],
       "files": [
         {
           "type": "component",
@@ -67,9 +78,6 @@
       "type": "component",
       "title": "Typography",
       "description": "Styles for headings, paragraphs, text... etc.",
-      "categories": [
-        "general"
-      ],
       "files": [
         {
           "type": "component",
@@ -90,9 +98,6 @@
       "type": "component",
       "title": "Button",
       "description": "Displays a button or a component that looks like a button.",
-      "categories": [
-        "general"
-      ],
       "registryDependencies": [
         "icon"
       ],
@@ -116,9 +121,6 @@
       "type": "component",
       "title": "Link",
       "description": "A wrapper around with extra <NuxtLink /> props.",
-      "categories": [
-        "general"
-      ],
       "files": [
         {
           "type": "component",
@@ -139,9 +141,6 @@
       "type": "component",
       "title": "Kbd",
       "description": "A kbd element to display a keyboard key.",
-      "categories": [
-        "data-display"
-      ],
       "files": [
         {
           "type": "component",
@@ -166,9 +165,6 @@
       "type": "component",
       "title": "Badge",
       "description": "Displays a badge or a component that looks like a badge.",
-      "categories": [
-        "data-display"
-      ],
       "registryDependencies": [
         "icon"
       ],
@@ -192,9 +188,6 @@
       "type": "component",
       "title": "Alert",
       "description": "Displays a callout for user attention.",
-      "categories": [
-        "data-display"
-      ],
       "registryDependencies": [
         "icon"
       ],
@@ -218,9 +211,6 @@
       "type": "component",
       "title": "Separator",
       "description": "Visually or semantically separates content.",
-      "categories": [
-        "layout"
-      ],
       "files": [
         {
           "type": "component",
@@ -241,9 +231,6 @@
       "type": "component",
       "title": "Space",
       "description": "Set the spacing and separators between components.",
-      "categories": [
-        "layout"
-      ],
       "files": [
         {
           "type": "component",
@@ -264,9 +251,6 @@
       "type": "component",
       "title": "Card",
       "description": "Displays a card with header, content, and footer.",
-      "categories": [
-        "data-display"
-      ],
       "registryDependencies": [
         "icon"
       ],
@@ -296,9 +280,6 @@
       "type": "component",
       "title": "Avatar",
       "description": "An image element with a fallback for representing the user.",
-      "categories": [
-        "data-display"
-      ],
       "registryDependencies": [
         "icon"
       ],
@@ -334,9 +315,6 @@
       "type": "component",
       "title": "Scroll Area",
       "description": "Augments native scroll functionality for custom, cross-browser styling.",
-      "categories": [
-        "other"
-      ],
       "files": [
         {
           "type": "component",
@@ -357,9 +335,6 @@
       "type": "component",
       "title": "Breadcrumb",
       "description": "Displays the path to the current resource using a hierarchy of links.",
-      "categories": [
-        "navigation"
-      ],
       "registryDependencies": [
         "icon"
       ],
@@ -383,9 +358,6 @@
       "type": "component",
       "title": "Skeleton",
       "description": "Use to show a placeholder while content is loading.",
-      "categories": [
-        "feedback"
-      ],
       "files": [
         {
           "type": "component",
@@ -406,9 +378,6 @@
       "type": "component",
       "title": "Chip",
       "description": "An indicator of a numeric value or a state.",
-      "categories": [
-        "data-display"
-      ],
       "files": [
         {
           "type": "component",
@@ -429,9 +398,6 @@
       "type": "component",
       "title": "Collapsible",
       "description": "An interactive component which expands/collapses a panel.",
-      "categories": [
-        "data-display"
-      ],
       "files": [
         {
           "type": "component",
@@ -452,9 +418,6 @@
       "type": "component",
       "title": "Tooltip",
       "description": "A popup that displays information related to an element when the element receives keyboard focus or the mouse hovers over it.",
-      "categories": [
-        "data-display"
-      ],
       "registryDependencies": [
         "icon"
       ],
@@ -484,9 +447,6 @@
       "type": "component",
       "title": "Popover",
       "description": "Displays rich content in a portal, triggered by a button.",
-      "categories": [
-        "feedback"
-      ],
       "registryDependencies": [
         "icon"
       ],
@@ -515,9 +475,6 @@
       "type": "component",
       "title": "Hover Card",
       "description": "For sighted users to preview content available behind a link.",
-      "categories": [
-        "feedback"
-      ],
       "files": [
         {
           "type": "component",
@@ -543,9 +500,6 @@
       "type": "component",
       "title": "Pop Confirm",
       "description": "Click on the button element to pop up a bubble-like confirmation box.",
-      "categories": [
-        "feedback"
-      ],
       "registryDependencies": [
         "button",
         "icon",
@@ -571,9 +525,6 @@
       "type": "component",
       "title": "Modal",
       "description": "A window overlaid on either the primary window or another dialog window, rendering the content underneath inert.",
-      "categories": [
-        "feedback"
-      ],
       "registryDependencies": [
         "icon",
         "scroll-area"
@@ -605,9 +556,6 @@
       "type": "component",
       "title": "Empty",
       "description": "A default state that is rendered when there is no corresponding data content.",
-      "categories": [
-        "data-display"
-      ],
       "registryDependencies": [
         "icon"
       ],
@@ -631,9 +579,6 @@
       "type": "component",
       "title": "Result",
       "description": "Displays the result of an operation, which can display a title, description, image, and operation button.",
-      "categories": [
-        "feedback"
-      ],
       "registryDependencies": [
         "icon"
       ],
@@ -657,9 +602,6 @@
       "type": "component",
       "title": "Toast",
       "description": "A succinct message that is displayed temporarily.",
-      "categories": [
-        "feedback"
-      ],
       "registryDependencies": [
         "button",
         "icon"
@@ -707,9 +649,6 @@
       "type": "component",
       "title": "Accordion",
       "description": "A vertically stacked set of interactive headings that each reveal an associated section of content.",
-      "categories": [
-        "data-display"
-      ],
       "registryDependencies": [
         "icon"
       ],
@@ -738,9 +677,6 @@
       "type": "component",
       "title": "Tabs",
       "description": "A set of layered sections of content—known as tab panels—that are displayed one at a time.",
-      "categories": [
-        "data-display"
-      ],
       "registryDependencies": [
         "icon"
       ],
@@ -781,9 +717,6 @@
       "type": "component",
       "title": "Dropdown",
       "description": "Displays a menu to the user — such as a set of actions or functions — triggered by a button.",
-      "categories": [
-        "navigation"
-      ],
       "registryDependencies": [
         "icon",
         "kbd"
@@ -825,9 +758,6 @@
       "type": "component",
       "title": "Overflow List",
       "description": "A container component that hides sub-components that exceed the number limit.",
-      "categories": [
-        "other"
-      ],
       "files": [
         {
           "type": "component",
@@ -848,9 +778,6 @@
       "type": "component",
       "title": "Spinner",
       "description": "Displays an animated loading indicator.",
-      "categories": [
-        "feedback"
-      ],
       "registryDependencies": [
         "icon"
       ],
@@ -874,9 +801,6 @@
       "type": "component",
       "title": "Pagination",
       "description": "Displays data in paged format and provides navigation between pages.",
-      "categories": [
-        "navigation"
-      ],
       "registryDependencies": [
         "icon"
       ],
@@ -900,9 +824,6 @@
       "type": "component",
       "title": "Progress",
       "description": "Displays an indicator showing the completion progress of a task, typically displayed as a progress bar.",
-      "categories": [
-        "feedback"
-      ],
       "files": [
         {
           "type": "component",
@@ -923,9 +844,6 @@
       "type": "component",
       "title": "Timeline",
       "description": "A component that displays a sequence of events with dates, titles, icons.",
-      "categories": [
-        "data-display"
-      ],
       "registryDependencies": [
         "icon",
         "separator"
@@ -950,9 +868,6 @@
       "type": "component",
       "title": "Stepper",
       "description": "A set of steps that are used to indicate progress through a multi-step process.",
-      "categories": [
-        "navigation"
-      ],
       "registryDependencies": [
         "icon"
       ],
@@ -976,9 +891,6 @@
       "type": "component",
       "title": "Switch",
       "description": "A control that allows the user to toggle between checked and not checked.",
-      "categories": [
-        "form"
-      ],
       "registryDependencies": [
         "icon"
       ],
@@ -1002,9 +914,6 @@
       "type": "component",
       "title": "Toggle",
       "description": "A two-state button that can be either on or off.",
-      "categories": [
-        "form"
-      ],
       "registryDependencies": [
         "icon"
       ],
@@ -1040,9 +949,6 @@
       "type": "component",
       "title": "Data List",
       "description": "Displays metadata as a list of key-value pairs.",
-      "categories": [
-        "data-display"
-      ],
       "files": [
         {
           "type": "component",
@@ -1063,9 +969,6 @@
       "type": "component",
       "title": "Label",
       "description": "Renders an accessible label associated with controls.",
-      "categories": [
-        "form"
-      ],
       "files": [
         {
           "type": "component",
@@ -1086,9 +989,6 @@
       "type": "component",
       "title": "Input",
       "description": "Displays a form input field or a component that looks like an input field.",
-      "categories": [
-        "form"
-      ],
       "registryDependencies": [
         "icon"
       ],
@@ -1148,9 +1048,6 @@
       "type": "component",
       "title": "Select",
       "description": "Displays a list of options for the user to pick from - triggered by a button.",
-      "categories": [
-        "form"
-      ],
       "registryDependencies": [
         "avatar",
         "chip",
@@ -1178,9 +1075,6 @@
       "type": "component",
       "title": "Textarea",
       "description": "Displays a form textarea field or a component that looks like a textarea field.",
-      "categories": [
-        "form"
-      ],
       "files": [
         {
           "type": "component",
@@ -1201,9 +1095,6 @@
       "type": "component",
       "title": "Radio Group",
       "description": "A set of checkable buttons—known as radio buttons—where no more than one of the buttons can be checked at a time.",
-      "categories": [
-        "form"
-      ],
       "files": [
         {
           "type": "component",
@@ -1224,9 +1115,6 @@
       "type": "component",
       "title": "Checkbox",
       "description": "A control that allows the user to toggle between checked and not checked.",
-      "categories": [
-        "form"
-      ],
       "registryDependencies": [
         "icon"
       ],
@@ -1262,9 +1150,6 @@
       "type": "component",
       "title": "Slider",
       "description": "An input where the user selects a value from within a given range.",
-      "categories": [
-        "form"
-      ],
       "registryDependencies": [
         "tooltip"
       ],
@@ -1288,9 +1173,6 @@
       "type": "component",
       "title": "App",
       "description": "Wraps your app to provide global configurations and more.",
-      "categories": [
-        "other"
-      ],
       "registryDependencies": [
         "toast"
       ],
@@ -1314,9 +1196,6 @@
       "type": "component",
       "title": "Calendar",
       "description": "A date field component that allows users to enter and edit date.",
-      "categories": [
-        "data-display"
-      ],
       "registryDependencies": [
         "button"
       ],
@@ -1340,9 +1219,6 @@
       "type": "component",
       "title": "Date Picker",
       "description": "A date picker component with range and presets.",
-      "categories": [
-        "form"
-      ],
       "registryDependencies": [
         "calendar",
         "input"

@@ -3,7 +3,7 @@
     "name": "weme-ui/std",
     "description": "The standard components for Weme UI.",
     "version": "0.0.0",
-    "directory": "std",
+    "directory": "registry/std",
     "prefix": "ui",
     "access": "public",
     "items": {

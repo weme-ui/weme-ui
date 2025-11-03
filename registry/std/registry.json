@@ -28,15 +28,7 @@
         "tailwind-variants"
       ],
       "devDependencies": [
-        "@nuxt/icon",
-        "@internationalized/date",
-        "@unocss/nuxt",
-        "@vueuse/core",
-        "@weme-ui/nuxt",
-        "@weme-ui/unocss-preset",
-        "reka-ui",
-        "unocss",
-        "vue"
+        "reka-ui"
       ],
       "files": [
         { "type": "util", "path": "utils/styles.ts" },

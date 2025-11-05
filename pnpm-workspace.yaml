@@ -5,24 +5,23 @@ packages:
 
 catalogs:
   build:
-    '@changesets/cli': ^2.29.7
     '@commitlint/cli': ^20.1.0
     '@commitlint/config-conventional': ^20.0.0
     '@types/node': 24.0.15
-    '@typescript/native-preview': ^7.0.0-dev.20251027.1
+    '@typescript/native-preview': ^7.0.0-dev.20251104.1
     bumpp: ^10.3.1
     commitizen: ^4.3.1
     conventional-changelog: ^7.1.1
     cz-git: ^1.12.0
     czg: ^1.12.0
     simple-git-hooks: ^2.13.1
-    taze: ^19.8.1
-    tsdown: ^0.15.11
+    taze: ^19.9.0
+    tsdown: ^0.16.0
     typescript: ^5.9.3
     vite: ^7.1.12
   dev:
     '@internationalized/date': ^3.10.0
-    '@nuxt/devtools': ^3.0.0
+    '@nuxt/devtools': ^3.0.1
     '@nuxt/icon': ^2.1.0
     '@nuxt/image': ^1.11.0
     '@nuxt/kit': 4.0.3
@@ -31,7 +30,7 @@ catalogs:
     '@unocss/rule-utils': ^66.5.4
     '@vueuse/core': ^14.0.0
     '@vueuse/nuxt': ^14.0.0
-    '@weme-ui/schema': ^0.2.7
+    '@weme-ui/schema': ^0.4.3
     bezier-easing: ^2.1.0
     clsx: ^2.1.1
     colorjs.io: ^0.5.2
@@ -44,18 +43,18 @@ catalogs:
     unocss: ^66.5.4
     vite-plugin-vue-devtools: ^8.0.3
   docs:
-    '@nuxt/content': ^3.7.1
-    '@nuxtjs/i18n': ^10.1.2
+    '@nuxt/content': ^3.8.0
+    '@nuxtjs/i18n': ^10.2.0
     better-sqlite3: ^12.4.1
   icon:
     '@iconify-json/catppuccin': ^1.2.17
     '@iconify-json/logos': ^1.2.10
-    '@iconify-json/lucide': ^1.2.71
+    '@iconify-json/lucide': ^1.2.72
     '@iconify-json/mingcute': ^1.2.5
-    '@iconify-json/simple-icons': ^1.2.56
+    '@iconify-json/simple-icons': ^1.2.57
   lint:
-    '@antfu/eslint-config': ^6.1.0
-    eslint: ^9.38.0
+    '@antfu/eslint-config': ^6.2.0
+    eslint: ^9.39.1
     eslint-plugin-pnpm: ^1.3.0
     jsonc-eslint-parser: ^2.4.1
     lint-staged: ^16.2.6
@@ -67,9 +66,9 @@ catalogs:
   testing:
     '@nuxt/test-utils': ^3.20.1
     '@vue/test-utils': ^2.4.6
-    happy-dom: ^20.0.8
+    happy-dom: ^20.0.10
     playwright-core: ^1.56.1
-    vitest: ^4.0.4
+    vitest: ^4.0.7
   utils:
     '@clack/prompts': ^0.11.0
     '@types/columnify': ^1.5.4
@@ -87,14 +86,14 @@ catalogs:
     pathe: 2.0.3
     pkg-types: ^2.3.0
     scule: ^1.3.0
-    tinyexec: ^1.0.1
+    tinyexec: ^1.0.2
     tinyglobby: ^0.2.15
     zod: ^4.1.12
   vue:
     '@vitejs/plugin-vue': ^6.0.1
     vue: ^3.5.22
     vue-router: ^4.6.3
-    vue-tsc: ^3.1.2
+    vue-tsc: ^3.1.3
 
 onlyBuiltDependencies:
   - '@parcel/watcher'

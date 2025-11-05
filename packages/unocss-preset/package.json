@@ -2,7 +2,7 @@
   "name": "@weme-ui/unocss-preset",
   "type": "module",
   "version": "0.0.0",
-  "packageManager": "pnpm@10.19.0",
+  "packageManager": "pnpm@10.20.0",
   "description": "Weme UI - UnoCSS Preset",
   "author": "Allen Luo <luoyi@mouji.net>",
   "license": "MIT",
@@ -48,7 +48,8 @@
     "prepublishOnly": "pnpm run build",
     "test": "vitest",
     "typecheck": "tsgo --noEmit",
-    "play": "vite playground"
+    "play": "vite playground",
+    "release": "pnpm build && bumpp"
   },
   "peerDependencies": {
     "@radix-ui/colors": "catalog:dev",

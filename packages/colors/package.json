@@ -2,7 +2,7 @@
   "name": "@weme-ui/colors",
   "type": "module",
   "version": "0.0.0",
-  "packageManager": "pnpm@10.19.0",
+  "packageManager": "pnpm@10.20.0",
   "description": "Weme UI - Colors",
   "author": "Allen Luo <luoyi@mouji.net>",
   "license": "MIT",
@@ -48,7 +48,8 @@
     "dev:prepare": "pnpm run build",
     "prepublishOnly": "pnpm run build",
     "test": "vitest",
-    "typecheck": "tsgo --noEmit"
+    "typecheck": "tsgo --noEmit",
+    "release": "pnpm build && bumpp"
   },
   "peerDependencies": {
     "@radix-ui/colors": "catalog:dev",

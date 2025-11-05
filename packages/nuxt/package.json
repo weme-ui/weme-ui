@@ -2,7 +2,7 @@
   "name": "@weme-ui/nuxt",
   "type": "module",
   "version": "0.0.0",
-  "packageManager": "pnpm@10.19.0",
+  "packageManager": "pnpm@10.20.0",
   "description": "Weme UI - Nuxt module.",
   "author": "Allen Luo <luoyi@mouji.net>",
   "license": "MIT",
@@ -40,7 +40,8 @@
     "dev:prepare": "pnpm run build --stub && nuxt-module-build prepare && nuxi prepare playground",
     "prepack": "pnpm run build",
     "prepublishOnly": "pnpm run build",
-    "typecheck": "vue-tsc --noEmit"
+    "typecheck": "vue-tsc --noEmit",
+    "release": "pnpm build && bumpp"
   },
   "peerDependencies": {
     "defu": "catalog:dev",

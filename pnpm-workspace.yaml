@@ -8,7 +8,7 @@ catalogs:
     '@commitlint/cli': ^20.1.0
     '@commitlint/config-conventional': ^20.0.0
     '@types/node': 24.0.15
-    '@typescript/native-preview': ^7.0.0-dev.20251104.1
+    '@typescript/native-preview': ^7.0.0-dev.20251106.1
     bumpp: ^10.3.1
     commitizen: ^4.3.1
     conventional-changelog: ^7.1.1
@@ -18,12 +18,12 @@ catalogs:
     taze: ^19.9.0
     tsdown: ^0.16.0
     typescript: ^5.9.3
-    vite: ^7.1.12
+    vite: ^7.2.1
   dev:
     '@internationalized/date': ^3.10.0
     '@nuxt/devtools': ^3.0.1
     '@nuxt/icon': ^2.1.0
-    '@nuxt/image': ^1.11.0
+    '@nuxt/image': ^2.0.0
     '@nuxt/kit': 4.0.3
     '@radix-ui/colors': ^3.0.0
     '@unocss/nuxt': ^66.5.4
@@ -91,7 +91,7 @@ catalogs:
     zod: ^4.1.12
   vue:
     '@vitejs/plugin-vue': ^6.0.1
-    vue: ^3.5.22
+    vue: ^3.5.23
     vue-router: ^4.6.3
     vue-tsc: ^3.1.3
 

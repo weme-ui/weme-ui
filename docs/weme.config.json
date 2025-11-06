@@ -1,21 +1,15 @@
 {
   "$schema": "https://weme-ui.github.io/schema/project.json",
-  "provider": "github",
   "repos": [
     {
-      "repo": "@weme-ui/weme-ui",
+      "repo": "https://github.com/weme-ui/weme-ui",
       "registry": "weme-ui/std",
-      "prefix": "ui"
+      "prefix": "ui",
+      "default": true
     }
   ],
   "paths": {
-    "components": "~/components",
-    "composables": "~/composables",
-    "layouts": "~/layouts",
-    "themes": "~/themes",
-    "plugins": "~/plugins",
-    "utils": "~/utils",
-    "types": "~/types"
+    "components": "~/components"
   },
   "unocss": {
     "cssVars": {

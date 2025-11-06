@@ -23,12 +23,18 @@
       "title": "Init",
       "description": "Init dependencies and utils for Weme UI.",
       "dependencies": [
+        "@vueuse/core",
         "clsx",
         "tailwind-merge",
         "tailwind-variants"
       ],
       "devDependencies": [
-        "reka-ui"
+        "reka-ui",
+        "unocss",
+        "typescript",
+        "vue",
+        "nuxt",
+        "vue-router"
       ],
       "files": [
         { "type": "util", "path": "utils/styles.ts" },

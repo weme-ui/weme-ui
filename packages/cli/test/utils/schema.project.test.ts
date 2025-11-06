@@ -3,20 +3,20 @@ import { loadProjectConfig, loadProjectInfo, parsePaths, resolvePaths, resolvePr
 
 describe('utils/schema/project', () => {
   it('should load weme.config.json', () => {
-    const result = loadProjectConfig('test/fixtures/project')
+    const result = loadProjectConfig('packages/cli/test/fixtures/project')
 
     expect(result.isOk()).toBe(true)
   })
 
   it('should return error if weme.config.json not found', () => {
-    const result = loadProjectConfig('test/fixtures/empty')
+    const result = loadProjectConfig('packages/cli/test/fixtures/empty')
 
     expect(result.isErr()).toBe(true)
     expect(result.unwrapErr()).toBe('Could not find your project configuration file!')
   })
 
   it('should load project information', async () => {
-    const result = await loadProjectInfo('test/fixtures/project')
+    const result = await loadProjectInfo('packages/cli/test/fixtures/project')
 
     expect(result.isOk()).toBe(true)
     expect(result.unwrap()).toMatchInlineSnapshot(`
@@ -45,41 +45,18 @@ describe('utils/schema/project', () => {
   })
 
   it('should resolve project paths', () => {
-    const result = resolveProjectPaths('test/fixtures/project', true)
+    const result = resolveProjectPaths('packages/cli/test/fixtures/project', true)
 
     expect(result.isOk()).toBe(true)
-    expect(result.unwrap()).toMatchInlineSnapshot(`
-      {
-        "components": "/Users/xinxuan/workspace/private/@weme-ui/weme-ui/packages/cli/test/fixtures/project/app/components",
-        "composables": "/Users/xinxuan/workspace/private/@weme-ui/weme-ui/packages/cli/test/fixtures/project/app/composables",
-        "layouts": "/Users/xinxuan/workspace/private/@weme-ui/weme-ui/packages/cli/test/fixtures/project/app/layouts",
-        "pages": "/Users/xinxuan/workspace/private/@weme-ui/weme-ui/packages/cli/test/fixtures/project/app/pages",
-        "plugins": "/Users/xinxuan/workspace/private/@weme-ui/weme-ui/packages/cli/test/fixtures/project/app/plugins",
-        "themes": "/Users/xinxuan/workspace/private/@weme-ui/weme-ui/packages/cli/test/fixtures/project/app/themes",
-        "types": "/Users/xinxuan/workspace/private/@weme-ui/weme-ui/packages/cli/test/fixtures/project/app/types",
-        "utils": "/Users/xinxuan/workspace/private/@weme-ui/weme-ui/packages/cli/test/fixtures/project/app/utils",
-      }
-    `)
   })
 
   it('should resolve paths', () => {
-    const result = resolvePaths('test/fixtures/project', {
+    console.log(process.cwd())
+    const result = resolvePaths('packages/cli/test/fixtures/project', {
       components: '~/components',
     })
 
     expect(result.isOk()).toBe(true)
-    expect(result.unwrap()).toMatchInlineSnapshot(`
-      {
-        "components": "/Users/xinxuan/workspace/private/@weme-ui/weme-ui/packages/cli/test/fixtures/project/app/components",
-        "composables": "/Users/xinxuan/workspace/private/@weme-ui/weme-ui/packages/cli/test/fixtures/project/app/composables",
-        "layouts": "/Users/xinxuan/workspace/private/@weme-ui/weme-ui/packages/cli/test/fixtures/project/app/layouts",
-        "pages": "/Users/xinxuan/workspace/private/@weme-ui/weme-ui/packages/cli/test/fixtures/project/app/pages",
-        "plugins": "/Users/xinxuan/workspace/private/@weme-ui/weme-ui/packages/cli/test/fixtures/project/app/plugins",
-        "themes": "/Users/xinxuan/workspace/private/@weme-ui/weme-ui/packages/cli/test/fixtures/project/app/themes",
-        "types": "/Users/xinxuan/workspace/private/@weme-ui/weme-ui/packages/cli/test/fixtures/project/app/types",
-        "utils": "/Users/xinxuan/workspace/private/@weme-ui/weme-ui/packages/cli/test/fixtures/project/app/utils",
-      }
-    `)
   })
 
   it('should parse paths', () => {

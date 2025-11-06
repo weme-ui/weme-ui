@@ -1,92 +1,66 @@
 import { cwd } from 'node:process'
 import { defineCommand } from 'citty'
-import { titleCase } from 'scule'
-import { TEMPLATE_REPO } from '../../constants'
-import { consola } from '../../utils/consola'
-import { resolveCommandArgs } from '../../utils/utilities'
 
+/**
+ * Usage
+ *
+ * - **Initialize a new project**:
+ *    - ```weme-ui init```
+ *
+ * - **Initialize a new project with default registry**:
+ *    - ```weme-ui init weme-ui/plus --repo https://github.com/weme-ui/weme-ui```
+ *
+ * - **Initialize a new registry**:
+ *    - ```weme-ui init weme-ui/plus --registry```
+ *
+ * - **Generate component skeleton**:
+ *    - ```weme-ui init button --component```
+ */
 export default defineCommand({
   meta: {
     name: 'init',
-    description: 'Initialize Weme UI in your project.',
+    description: 'Initialize a registry or project with Weme UI.',
   },
 
   args: {
     name: {
       type: 'positional',
-      description: 'Name of initialization target.',
+      required: false,
+      description: 'Name of the scoped registry. (i.e. `weme-ui/std`)',
     },
-    template: {
+    repo: {
       type: 'string',
-      description: 'Source template repository.',
-      valueHint: 'template',
-      default: TEMPLATE_REPO,
-    },
-    project: {
-      alias: 'p',
-      type: 'boolean',
-      description: 'Initialize a project.',
-      default: false,
-    },
-    registry: {
-      alias: 'r',
-      type: 'boolean',
-      description: 'Initialize a registry.',
-      default: false,
-    },
-    component: {
-      alias: 'c',
-      type: 'boolean',
-      description: 'Initialize a component.',
-      default: false,
+      description: 'Change repository of the registry.',
+      valueHint: 'STRING',
     },
     cwd: {
       type: 'string',
       description: 'Change working directory.',
-      valueHint: 'path',
+      valueHint: 'PATH',
       default: cwd(),
     },
-    force: {
-      alias: 'f',
+    registry: {
       type: 'boolean',
-      description: 'Overwrite existing files.',
+      description: 'Initialize a registry.',
+      alias: 'r',
+      default: false,
+    },
+    component: {
+      type: 'boolean',
+      description: 'Generate a component skeleton in your registry.',
+      alias: 'c',
       default: false,
     },
   },
 
   async setup({ args }) {
-    await resolveCommandArgs(args, (args) => {
-      if (args.project || args.p)
-        args.type = 'project'
-      else if (args.registry || args.r)
-        args.type = 'registry'
-      else if (args.component || args.c)
-        args.type = 'component'
-      else
-        args.type = 'project'
+    args.cwd = args.cwd || cwd()
 
-      ;[
-        'project',
-        'registry',
-        'component',
-        'p',
-        'r',
-        'c',
-      ].forEach(k => delete args[k])
-    })
-
-    consola.info('Initialize `Weme UI %s`', titleCase(args.type as string))
-
-    switch (args.type) {
-      case 'project':
-        await import('./project').then(r => r.default(args))
-        break
-      case 'registry':
-        await import('./registry').then(r => r.default(args))
-        break
-      case 'component':
-        await import('./component').then(r => r.default(args))
-        break
+    if (args.registry) {
+      await import('./registry').then(r => r.default(args))
+    }
+    else {
+      await import('./project').then(r => r.default(args))
     }
   },
 })

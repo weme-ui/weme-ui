@@ -1,3 +1,3 @@
 export default async function (args: Record<string, any>) {
-  console.log('Add registry', args)
+  console.log('Adding registry items', args)
 }

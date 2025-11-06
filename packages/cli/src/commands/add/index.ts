@@ -1,67 +1,54 @@
 import { cwd } from 'node:process'
 import { defineCommand } from 'citty'
-import { titleCase } from 'scule'
-import { DEFAULT_REGISTRY, DEFAULT_REPO } from '../../constants'
-import { consola } from '../../utils/consola'
-import { resolveCommandArgs } from '../../utils/utilities'
 
+/**
+ * Usage
+ *
+ * - **Interactive add items**:
+ *    - ```weme-ui add```
+ *
+ * - **Add items from registry**:
+ *    - ```weme-ui add --registry weme-ui/std button```
+ *
+ * - **Add items from registry with repo**:
+ *     - ```weme-ui add --registry weme-ui/std --repo https://github.com/weme-ui/weme-ui button```
+ */
 export default defineCommand({
   meta: {
     name: 'add',
-    description: 'Add a registry item to your project.',
+    description: 'Add items to your project from a registry.',
   },
 
   args: {
     names: {
       type: 'positional',
-      required: true,
-      description: 'Name(s) of add target. Multiple names can be separated by `comma`.',
+      required: false,
+      description: 'Name(s) of add items. Multiple names can be separated by `comma`.',
     },
     registry: {
       type: 'string',
       description: 'Name of the registry.',
-      default: DEFAULT_REGISTRY,
-      valueHint: 'registry',
+      valueHint: 'STRING',
     },
     repo: {
       type: 'string',
       description: 'Repository of the registry.',
-      default: DEFAULT_REPO,
-      valueHint: 'repo',
+      valueHint: 'STRING',
     },
     cwd: {
       type: 'string',
       description: 'Change working directory.',
-      valueHint: 'path',
+      valueHint: 'PATH',
       default: cwd(),
-    },
-    force: {
-      type: 'boolean',
-      description: 'Overwrite existing files.',
-      alias: 'f',
-      default: false,
     },
   },
 
   async setup({ args }) {
-    await resolveCommandArgs(args, (args) => {
-      if (args.repo === '@weme-ui/weme-ui') {
-        args.type = 'registry-item'
-      }
-      else {
-        args.type = 'registry'
-      }
-    })
-
-    consola.info('`Add Weme UI %s To Project`', titleCase(args.type as string))
-
-    switch (args.type) {
-      case 'registry':
-        await import('./registry').then(r => r.default(args))
-        break
-      case 'registry-item':
-        await import('./registry-item').then(r => r.default(args))
-        break
+    if ((args.registry || args.repo) && !args.names) {
+      await import('./registry').then(r => r.default(args))
+    }
+    else {
+      await import('./registry-item').then(r => r.default(args))
     }
   },
 })

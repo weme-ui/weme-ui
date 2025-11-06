@@ -1,0 +1,36 @@
+{
+  "name": "test",
+  "type": "module",
+  "version": "1.0.0",
+  "packageManager": "pnpm@10.18.3",
+  "description": "The test project for Weme UI.",
+  "author": "Allen Luo <luoyi@mouji.net>",
+  "license": "MIT",
+  "scripts": {
+    "dev": "nuxt dev",
+    "dev:prepare": "nuxt prepare",
+    "build": "nuxt build",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview"
+  },
+  "dependencies": {
+    "clsx": "catalog:dev",
+    "motion-v": "catalog:dev",
+    "reka-ui": "catalog:dev",
+    "tailwind-merge": "catalog:dev",
+    "tailwind-variants": "catalog:dev"
+  },
+  "devDependencies": {
+    "@unocss/nuxt": "catalog:dev",
+    "@vueuse/core": "catalog:dev",
+    "@vueuse/nuxt": "catalog:dev",
+    "@weme-ui/colors": "workspace:*",
+    "@weme-ui/nuxt": "workspace:*",
+    "@weme-ui/unocss-preset": "workspace:*",
+    "defu": "catalog:dev",
+    "nuxt": "catalog:nuxt",
+    "typescript": "catalog:build",
+    "unocss": "catalog:dev",
+    "vue": "catalog:vue"
+  }
+}

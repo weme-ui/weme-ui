@@ -1,0 +1,14 @@
+{
+  "$schema": "https://weme-ui.github.io/schema/project.json",
+  "repos": [
+    {
+      "repo": "https://github.com/weme-ui/weme-ui",
+      "registry": "weme-ui/std",
+      "prefix": "ui",
+      "default": true
+    }
+  ],
+  "paths": {
+    "components": "~/components"
+  }
+}

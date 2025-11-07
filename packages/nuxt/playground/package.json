@@ -9,7 +9,7 @@
   },
   "dependencies": {
     "@weme-ui/unocss-preset": "workspace:*",
-    "nuxt": "catalog:nuxt"
+    "nuxt": "catalog:dev"
   },
   "devDependencies": {
     "@nuxt/icon": "catalog:dev",

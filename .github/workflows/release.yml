@@ -42,4 +42,3 @@ jobs:
         run: pnpm -r publish --access public --no-git-checks --provenance
         env:
           NPM_CONFIG_PROVENANCE: true
-

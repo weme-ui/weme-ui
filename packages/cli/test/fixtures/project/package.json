@@ -14,23 +14,23 @@
     "preview": "nuxt preview"
   },
   "dependencies": {
-    "clsx": "catalog:dev",
-    "motion-v": "catalog:dev",
-    "reka-ui": "catalog:dev",
-    "tailwind-merge": "catalog:dev",
-    "tailwind-variants": "catalog:dev"
+    "clsx": "catalog:registry",
+    "motion-v": "catalog:registry",
+    "reka-ui": "catalog:registry",
+    "tailwind-merge": "catalog:registry",
+    "tailwind-variants": "catalog:registry"
   },
   "devDependencies": {
     "@unocss/nuxt": "catalog:dev",
-    "@vueuse/core": "catalog:dev",
+    "@vueuse/core": "catalog:registry",
     "@vueuse/nuxt": "catalog:dev",
     "@weme-ui/colors": "workspace:*",
     "@weme-ui/nuxt": "workspace:*",
     "@weme-ui/unocss-preset": "workspace:*",
     "defu": "catalog:dev",
-    "nuxt": "catalog:nuxt",
+    "nuxt": "catalog:dev",
     "typescript": "catalog:build",
     "unocss": "catalog:dev",
-    "vue": "catalog:vue"
+    "vue": "catalog:dev"
   }
 }

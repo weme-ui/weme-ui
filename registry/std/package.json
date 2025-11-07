@@ -1,7 +1,7 @@
 {
   "name": "@weme-ui/std",
   "type": "module",
-  "version": "0.1.1-beta.3",
+  "version": "0.1.1-beta.4",
   "private": true,
   "packageManager": "pnpm@10.20.0",
   "description": "Weme UI Std components registry.",

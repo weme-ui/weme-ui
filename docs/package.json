@@ -1,7 +1,7 @@
 {
   "name": "docs",
   "type": "module",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "packageManager": "pnpm@10.20.0",
   "description": "The documentation for Weme UI.",
   "author": "Allen Luo <luoyi@mouji.net>",
@@ -22,7 +22,6 @@
   "scripts": {
     "dev": "nuxt dev",
     "dev:prepare": "nuxt prepare",
-    "build": "nuxt build",
     "generate": "nuxt generate",
     "preview": "nuxt preview"
   },

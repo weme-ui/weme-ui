@@ -49,7 +49,7 @@
   },
   "dependencies": {
     "@weme-ui/colors": "workspace:*",
-    "@weme-ui/schema": "catalog:dev",
+    "@weme-ui/schema": "workspace:*",
     "@weme-ui/unocss-preset": "workspace:*",
     "unocss": "catalog:dev"
   },

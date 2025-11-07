@@ -55,7 +55,7 @@
   },
   "dependencies": {
     "@clack/prompts": "catalog:utils",
-    "@weme-ui/schema": "catalog:dev",
+    "@weme-ui/schema": "workspace:*",
     "chalk": "catalog:utils",
     "citty": "catalog:utils",
     "columnify": "catalog:utils",

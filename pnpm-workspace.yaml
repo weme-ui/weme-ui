@@ -39,7 +39,6 @@ catalogs:
     '@unocss/rule-utils': ^66.5.4
     '@vitejs/plugin-vue': ^6.0.1
     '@vueuse/nuxt': ^14.0.0
-    '@weme-ui/schema': ^0.4.3
     bezier-easing: ^2.1.0
     colorjs.io: ^0.5.2
     defu: ^6.1.4

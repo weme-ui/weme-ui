@@ -54,9 +54,6 @@
   "peerDependencies": {
     "@radix-ui/colors": "catalog:dev",
     "@unocss/rule-utils": "catalog:dev",
-    "@weme-ui/colors": "workspace:*",
-    "@weme-ui/schema": "catalog:dev",
-    "bezier-easing": "catalog:dev",
     "colorjs.io": "catalog:dev",
     "defu": "catalog:dev",
     "unocss": "catalog:dev"
@@ -68,7 +65,7 @@
     "@vitejs/plugin-vue": "catalog:dev",
     "@vueuse/core": "catalog:registry",
     "@weme-ui/colors": "workspace:*",
-    "@weme-ui/schema": "catalog:dev",
+    "@weme-ui/schema": "workspace:*",
     "bezier-easing": "catalog:dev",
     "bumpp": "catalog:build",
     "colorjs.io": "catalog:dev",

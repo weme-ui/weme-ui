@@ -19,7 +19,7 @@
     "pnpm": ">=10.13.0"
   },
   "scripts": {
-    "build": "premove packages/*/dist && pnpm -r dev:prepare && pnpm --filter @weme-ui/* build",
+    "build": "premove packages/*/dist && pnpm dev:prepare && pnpm --filter @weme-ui/* build",
     "dev": "pnpm dev:prepare && pnpm -C docs dev",
     "dev:prepare": "pnpm -r dev:prepare",
     "lint": "eslint .",

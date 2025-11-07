@@ -2,6 +2,7 @@
   "name": "docs",
   "type": "module",
   "version": "0.1.1-beta.5",
+  "private": true,
   "packageManager": "pnpm@10.20.0",
   "description": "The documentation for Weme UI.",
   "author": "Allen Luo <luoyi@mouji.net>",

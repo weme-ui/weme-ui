@@ -33,6 +33,9 @@ catalogs:
     czg:
       specifier: ^1.12.0
       version: 1.12.0
+    esno:
+      specifier: ^4.8.0
+      version: 4.8.0
     simple-git-hooks:
       specifier: ^2.13.1
       version: 2.13.1
@@ -49,9 +52,6 @@ catalogs:
       specifier: ^7.2.1
       version: 7.2.1
   dev:
-    '@internationalized/date':
-      specifier: ^3.10.0
-      version: 3.10.0
     '@nuxt/devtools':
       specifier: ^3.0.1
       version: 3.0.1
@@ -64,6 +64,12 @@ catalogs:
     '@nuxt/kit':
       specifier: 4.0.3
       version: 4.0.3
+    '@nuxt/module-builder':
+      specifier: ^1.0.2
+      version: 1.0.2
+    '@nuxt/schema':
+      specifier: ^4.2.1
+      version: 4.2.1
     '@radix-ui/colors':
       specifier: ^3.0.0
       version: 3.0.0
@@ -73,9 +79,9 @@ catalogs:
     '@unocss/rule-utils':
       specifier: ^66.5.4
       version: 66.5.4
-    '@vueuse/core':
-      specifier: ^14.0.0
-      version: 14.0.0
+    '@vitejs/plugin-vue':
+      specifier: ^6.0.1
+      version: 6.0.1
     '@vueuse/nuxt':
       specifier: ^14.0.0
       version: 14.0.0
@@ -85,27 +91,15 @@ catalogs:
     bezier-easing:
       specifier: ^2.1.0
       version: 2.1.0
-    clsx:
-      specifier: ^2.1.1
-      version: 2.1.1
     colorjs.io:
       specifier: ^0.5.2
       version: 0.5.2
     defu:
       specifier: ^6.1.4
       version: 6.1.4
-    motion-v:
-      specifier: ^1.7.4
-      version: 1.7.4
-    reka-ui:
-      specifier: ^2.6.0
-      version: 2.6.0
-    tailwind-merge:
-      specifier: ^3.3.1
-      version: 3.3.1
-    tailwind-variants:
-      specifier: ^3.1.1
-      version: 3.1.1
+    nuxt:
+      specifier: ^4.2.1
+      version: 4.2.1
     ufo:
       specifier: ^1.6.1
       version: 1.6.1
@@ -115,6 +109,15 @@ catalogs:
     vite-plugin-vue-devtools:
       specifier: ^8.0.3
       version: 8.0.3
+    vue:
+      specifier: ^3.5.23
+      version: 3.5.23
+    vue-router:
+      specifier: ^4.6.3
+      version: 4.6.3
+    vue-tsc:
+      specifier: ^3.1.3
+      version: 3.1.3
   docs:
     '@nuxt/content':
       specifier: ^3.8.0
@@ -125,7 +128,7 @@ catalogs:
     better-sqlite3:
       specifier: ^12.4.1
       version: 12.4.1
-  icon:
+  registry:
     '@iconify-json/catppuccin':
       specifier: ^1.2.17
       version: 1.2.17
@@ -141,35 +144,27 @@ catalogs:
     '@iconify-json/simple-icons':
       specifier: ^1.2.57
       version: 1.2.57
-  lint:
-    '@antfu/eslint-config':
-      specifier: ^6.2.0
-      version: 6.2.0
-    eslint:
-      specifier: ^9.39.1
-      version: 9.39.1
-    eslint-plugin-pnpm:
-      specifier: ^1.3.0
-      version: 1.3.0
-    jsonc-eslint-parser:
-      specifier: ^2.4.1
-      version: 2.4.1
-    lint-staged:
-      specifier: ^16.2.6
-      version: 16.2.6
-    yaml-eslint-parser:
-      specifier: ^1.3.0
-      version: 1.3.0
-  nuxt:
-    '@nuxt/module-builder':
-      specifier: ^1.0.2
-      version: 1.0.2
-    '@nuxt/schema':
-      specifier: ^4.2.1
-      version: 4.2.1
-    nuxt:
-      specifier: ^4.2.1
-      version: 4.2.1
+    '@internationalized/date':
+      specifier: ^3.10.0
+      version: 3.10.0
+    '@vueuse/core':
+      specifier: ^14.0.0
+      version: 14.0.0
+    clsx:
+      specifier: ^2.1.1
+      version: 2.1.1
+    motion-v:
+      specifier: ^1.7.4
+      version: 1.7.4
+    reka-ui:
+      specifier: ^2.6.0
+      version: 2.6.0
+    tailwind-merge:
+      specifier: ^3.3.1
+      version: 3.3.1
+    tailwind-variants:
+      specifier: ^3.1.1
+      version: 3.1.1
   testing:
     '@nuxt/test-utils':
       specifier: ^3.20.1
@@ -187,6 +182,9 @@ catalogs:
       specifier: ^4.0.7
       version: 4.0.7
   utils:
+    '@antfu/eslint-config':
+      specifier: ^6.2.0
+      version: 6.2.0
     '@clack/prompts':
       specifier: ^0.11.0
       version: 0.11.0
@@ -208,12 +206,21 @@ catalogs:
     debug:
       specifier: ^4.4.3
       version: 4.4.3
-    esno:
-      specifier: ^4.8.0
-      version: 4.8.0
+    eslint:
+      specifier: ^9.39.1
+      version: 9.39.1
+    eslint-plugin-pnpm:
+      specifier: ^1.3.0
+      version: 1.3.0
     handlebars:
       specifier: ^4.7.8
       version: 4.7.8
+    jsonc-eslint-parser:
+      specifier: ^2.4.1
+      version: 2.4.1
+    lint-staged:
+      specifier: ^16.2.6
+      version: 16.2.6
     make-fetch-happen:
       specifier: ^15.0.2
       version: 15.0.2
@@ -232,6 +239,9 @@ catalogs:
     pkg-types:
       specifier: ^2.3.0
       version: 2.3.0
+    premove:
+      specifier: ^4.0.0
+      version: 4.0.0
     scule:
       specifier: ^1.3.0
       version: 1.3.0
@@ -241,29 +251,19 @@ catalogs:
     tinyglobby:
       specifier: ^0.2.15
       version: 0.2.15
+    yaml-eslint-parser:
+      specifier: ^1.3.0
+      version: 1.3.0
     zod:
       specifier: ^4.1.12
       version: 4.1.12
-  vue:
-    '@vitejs/plugin-vue':
-      specifier: ^6.0.1
-      version: 6.0.1
-    vue:
-      specifier: ^3.5.23
-      version: 3.5.23
-    vue-router:
-      specifier: ^4.6.3
-      version: 4.6.3
-    vue-tsc:
-      specifier: ^3.1.3
-      version: 3.1.3
 
 importers:
 
   .:
     devDependencies:
       '@antfu/eslint-config':
-        specifier: catalog:lint
+        specifier: catalog:utils
         version: 6.2.0(@vue/compiler-sfc@3.5.23)(eslint@9.39.1(jiti@2.6.1))(typescript@5.9.3)(vitest@4.0.7(@types/debug@4.1.12)(@types/node@24.3.1)(happy-dom@20.0.10)(jiti@2.6.1)(terser@5.44.0)(tsx@4.20.5)(yaml@2.8.1))
       '@commitlint/cli':
         specifier: catalog:build
@@ -293,17 +293,20 @@ importers:
         specifier: catalog:build
         version: 1.12.0
       eslint:
-        specifier: catalog:lint
+        specifier: catalog:utils
         version: 9.39.1(jiti@2.6.1)
       eslint-plugin-pnpm:
-        specifier: catalog:lint
+        specifier: catalog:utils
         version: 1.3.0(eslint@9.39.1(jiti@2.6.1))
       jsonc-eslint-parser:
-        specifier: catalog:lint
+        specifier: catalog:utils
         version: 2.4.1
       lint-staged:
-        specifier: catalog:lint
+        specifier: catalog:utils
         version: 16.2.6
+      premove:
+        specifier: catalog:utils
+        version: 4.0.0
       simple-git-hooks:
         specifier: catalog:build
         version: 2.13.1
@@ -314,41 +317,41 @@ importers:
         specifier: catalog:build
         version: 5.9.3
       yaml-eslint-parser:
-        specifier: catalog:lint
+        specifier: catalog:utils
         version: 1.3.0
 
   docs:
     dependencies:
       clsx:
-        specifier: catalog:dev
+        specifier: catalog:registry
         version: 2.1.1
       motion-v:
-        specifier: catalog:dev
+        specifier: catalog:registry
         version: 1.7.4(@vueuse/core@14.0.0(vue@3.5.23(typescript@5.9.3)))(vue@3.5.23(typescript@5.9.3))
       reka-ui:
-        specifier: catalog:dev
+        specifier: catalog:registry
         version: 2.6.0(typescript@5.9.3)(vue@3.5.23(typescript@5.9.3))
       tailwind-merge:
-        specifier: catalog:dev
+        specifier: catalog:registry
         version: 3.3.1
       tailwind-variants:
-        specifier: catalog:dev
+        specifier: catalog:registry
         version: 3.1.1(tailwind-merge@3.3.1)(tailwindcss@4.1.13)
     devDependencies:
       '@iconify-json/catppuccin':
-        specifier: catalog:icon
+        specifier: catalog:registry
         version: 1.2.17
       '@iconify-json/logos':
-        specifier: catalog:icon
+        specifier: catalog:registry
         version: 1.2.10
       '@iconify-json/lucide':
-        specifier: catalog:icon
+        specifier: catalog:registry
         version: 1.2.72
       '@iconify-json/mingcute':
-        specifier: catalog:icon
+        specifier: catalog:registry
         version: 1.2.5
       '@iconify-json/simple-icons':
-        specifier: catalog:icon
+        specifier: catalog:registry
         version: 1.2.57
       '@nuxt/content':
         specifier: catalog:docs
@@ -363,7 +366,7 @@ importers:
         specifier: catalog:dev
         version: 66.5.4(magicast@0.5.0)(postcss@8.5.6)(vite@7.2.1(@types/node@24.3.1)(jiti@2.6.1)(terser@5.44.0)(tsx@4.20.5)(yaml@2.8.1))(webpack@5.101.3)
       '@vueuse/core':
-        specifier: catalog:dev
+        specifier: catalog:registry
         version: 14.0.0(vue@3.5.23(typescript@5.9.3))
       '@vueuse/nuxt':
         specifier: catalog:dev
@@ -384,7 +387,7 @@ importers:
         specifier: catalog:dev
         version: 6.1.4
       nuxt:
-        specifier: catalog:nuxt
+        specifier: catalog:dev
         version: 4.2.1(@parcel/watcher@2.5.1)(@types/node@24.3.1)(@vue/compiler-sfc@3.5.23)(better-sqlite3@12.4.1)(db0@0.3.4(better-sqlite3@12.4.1))(encoding@0.1.13)(eslint@9.39.1(jiti@2.6.1))(ioredis@5.8.2)(magicast@0.5.0)(meow@13.2.0)(optionator@0.9.4)(rolldown@1.0.0-beta.46)(rollup@4.52.5)(terser@5.44.0)(tsx@4.20.5)(typescript@5.9.3)(vite@7.2.1(@types/node@24.3.1)(jiti@2.6.1)(terser@5.44.0)(tsx@4.20.5)(yaml@2.8.1))(vue-tsc@3.1.3(typescript@5.9.3))(yaml@2.8.1)
       typescript:
         specifier: catalog:build
@@ -396,7 +399,7 @@ importers:
         specifier: catalog:dev
         version: 66.5.4(@unocss/webpack@66.5.4(webpack@5.101.3))(postcss@8.5.6)(vite@7.2.1(@types/node@24.3.1)(jiti@2.6.1)(terser@5.44.0)(tsx@4.20.5)(yaml@2.8.1))
       vue:
-        specifier: catalog:vue
+        specifier: catalog:dev
         version: 3.5.23(typescript@5.9.3)
 
   packages/cli:
@@ -518,10 +521,10 @@ importers:
         version: 66.5.4(@unocss/webpack@66.5.4(webpack@5.101.3(esbuild@0.25.12)))(postcss@8.5.6)(vite@7.2.1(@types/node@24.0.15)(jiti@2.6.1)(terser@5.44.0)(tsx@4.20.5)(yaml@2.8.1))
     devDependencies:
       '@iconify-json/lucide':
-        specifier: catalog:icon
+        specifier: catalog:registry
         version: 1.2.72
       '@iconify-json/mingcute':
-        specifier: catalog:icon
+        specifier: catalog:registry
         version: 1.2.5
       '@nuxt/devtools':
         specifier: catalog:dev
@@ -536,10 +539,10 @@ importers:
         specifier: catalog:dev
         version: 4.0.3(magicast@0.3.5)
       '@nuxt/module-builder':
-        specifier: catalog:nuxt
+        specifier: catalog:dev
         version: 1.0.2(@nuxt/cli@3.30.0(magicast@0.3.5))(@vue/compiler-core@3.5.23)(esbuild@0.25.12)(typescript@5.9.3)(vue-tsc@3.1.3(typescript@5.9.3))(vue@3.5.23(typescript@5.9.3))
       '@nuxt/schema':
-        specifier: catalog:nuxt
+        specifier: catalog:dev
         version: 4.2.1
       '@types/node':
         specifier: catalog:build
@@ -554,7 +557,7 @@ importers:
         specifier: catalog:dev
         version: 6.1.4
       nuxt:
-        specifier: catalog:nuxt
+        specifier: catalog:dev
         version: 4.2.1(@parcel/watcher@2.5.1)(@types/node@24.0.15)(@vue/compiler-sfc@3.5.23)(better-sqlite3@12.4.1)(db0@0.3.4(better-sqlite3@12.4.1))(encoding@0.1.13)(eslint@9.39.1(jiti@2.6.1))(ioredis@5.8.2)(magicast@0.3.5)(meow@13.2.0)(optionator@0.9.4)(rolldown@1.0.0-beta.46)(rollup@4.52.5)(terser@5.44.0)(tsx@4.20.5)(typescript@5.9.3)(vite@7.2.1(@types/node@24.0.15)(jiti@2.6.1)(terser@5.44.0)(tsx@4.20.5)(yaml@2.8.1))(vue-tsc@3.1.3(typescript@5.9.3))(yaml@2.8.1)
       tinyglobby:
         specifier: catalog:utils
@@ -563,7 +566,7 @@ importers:
         specifier: catalog:build
         version: 5.9.3
       vue-tsc:
-        specifier: catalog:vue
+        specifier: catalog:dev
         version: 3.1.3(typescript@5.9.3)
 
   packages/unocss-preset:
@@ -578,10 +581,10 @@ importers:
         specifier: catalog:dev
         version: 66.5.4
       '@vitejs/plugin-vue':
-        specifier: catalog:vue
+        specifier: catalog:dev
         version: 6.0.1(vite@7.2.1(@types/node@24.0.15)(jiti@2.6.1)(terser@5.44.0)(tsx@4.20.5)(yaml@2.8.1))(vue@3.5.23(typescript@5.9.3))
       '@vueuse/core':
-        specifier: catalog:dev
+        specifier: catalog:registry
         version: 14.0.0(vue@3.5.23(typescript@5.9.3))
       '@weme-ui/colors':
         specifier: workspace:*
@@ -602,10 +605,10 @@ importers:
         specifier: catalog:dev
         version: 6.1.4
       esno:
-        specifier: catalog:utils
+        specifier: catalog:build
         version: 4.8.0
       reka-ui:
-        specifier: catalog:dev
+        specifier: catalog:registry
         version: 2.6.0(typescript@5.9.3)(vue@3.5.23(typescript@5.9.3))
       tsdown:
         specifier: catalog:build
@@ -626,10 +629,10 @@ importers:
         specifier: catalog:testing
         version: 4.0.7(@types/debug@4.1.12)(@types/node@24.0.15)(happy-dom@20.0.10)(jiti@2.6.1)(terser@5.44.0)(tsx@4.20.5)(yaml@2.8.1)
       vue:
-        specifier: catalog:vue
+        specifier: catalog:dev
         version: 3.5.23(typescript@5.9.3)
       vue-router:
-        specifier: catalog:vue
+        specifier: catalog:dev
         version: 4.6.3(vue@3.5.23(typescript@5.9.3))
 
   registry/std:
@@ -642,10 +645,10 @@ importers:
         version: 2.0.0(db0@0.3.4(better-sqlite3@12.4.1))(ioredis@5.8.2)(magicast@0.3.5)
     devDependencies:
       '@iconify-json/lucide':
-        specifier: catalog:icon
+        specifier: catalog:registry
         version: 1.2.72
       '@internationalized/date':
-        specifier: catalog:dev
+        specifier: catalog:registry
         version: 3.10.0
       '@nuxt/test-utils':
         specifier: catalog:testing
@@ -654,7 +657,7 @@ importers:
         specifier: catalog:testing
         version: 2.4.6
       '@vueuse/core':
-        specifier: catalog:dev
+        specifier: catalog:registry
         version: 14.0.0(vue@3.5.23(typescript@5.9.3))
       '@weme-ui/nuxt':
         specifier: workspace:*
@@ -663,34 +666,34 @@ importers:
         specifier: workspace:*
         version: link:../../packages/unocss-preset
       clsx:
-        specifier: catalog:dev
+        specifier: catalog:registry
         version: 2.1.1
       happy-dom:
         specifier: catalog:testing
         version: 20.0.10
       nuxt:
-        specifier: catalog:nuxt
+        specifier: catalog:dev
         version: 4.2.1(@parcel/watcher@2.5.1)(@types/node@24.3.1)(@vue/compiler-sfc@3.5.23)(better-sqlite3@12.4.1)(db0@0.3.4(better-sqlite3@12.4.1))(encoding@0.1.13)(eslint@9.39.1(jiti@2.6.1))(ioredis@5.8.2)(magicast@0.3.5)(meow@13.2.0)(optionator@0.9.4)(rolldown@1.0.0-beta.46)(rollup@4.52.5)(terser@5.44.0)(tsx@4.20.5)(typescript@5.9.3)(vite@7.2.1(@types/node@24.3.1)(jiti@2.6.1)(terser@5.44.0)(tsx@4.20.5)(yaml@2.8.1))(vue-tsc@3.1.3(typescript@5.9.3))(yaml@2.8.1)
       playwright-core:
         specifier: catalog:testing
         version: 1.56.1
       reka-ui:
-        specifier: catalog:dev
+        specifier: catalog:registry
         version: 2.6.0(typescript@5.9.3)(vue@3.5.23(typescript@5.9.3))
       tailwind-merge:
-        specifier: catalog:dev
+        specifier: catalog:registry
         version: 3.3.1
       tailwind-variants:
-        specifier: catalog:dev
+        specifier: catalog:registry
         version: 3.1.1(tailwind-merge@3.3.1)(tailwindcss@4.1.13)
       unocss:
         specifier: catalog:dev
         version: 66.5.4(@unocss/webpack@66.5.4(webpack@5.101.3))(postcss@8.5.6)(vite@7.2.1(@types/node@24.3.1)(jiti@2.6.1)(terser@5.44.0)(tsx@4.20.5)(yaml@2.8.1))
       vue:
-        specifier: catalog:vue
+        specifier: catalog:dev
         version: 3.5.23(typescript@5.9.3)
       vue-tsc:
-        specifier: catalog:vue
+        specifier: catalog:dev
         version: 3.1.3(typescript@5.9.3)
 
 packages:
@@ -2455,9 +2458,6 @@ packages:
   '@poppinss/colors@4.1.5':
     resolution: {integrity: sha512-FvdDqtcRCtz6hThExcFOgW0cWX+xwSMWcRuQe5ZEb2m7cVQOAVZOIMt+/v9RxGiD9/OY16qJBXK4CVKWAPalBw==}
 
-  '@poppinss/dumper@0.6.4':
-    resolution: {integrity: sha512-iG0TIdqv8xJ3Lt9O8DrPRxw1MRLjNpoqiSGU03P/wNLP/s0ra0udPJ1J2Tx5M0J3H/cVyEgpbn8xUKRY9j59kQ==}
-
   '@poppinss/dumper@0.6.5':
     resolution: {integrity: sha512-NBdYIb90J7LfOI32dOewKI1r7wnkiH6m920puQ3qHUeZkxNkQiFnXVWoE6YtFSv6QOiPPf7ys6i+HWWecDz7sw==}
 
@@ -2600,15 +2600,6 @@ packages:
     engines: {node: '>=14.0.0'}
     peerDependencies:
       rollup: ^2.78.0||^3.0.0||^4.0.0
-    peerDependenciesMeta:
-      rollup:
-        optional: true
-
-  '@rollup/plugin-replace@6.0.2':
-    resolution: {integrity: sha512-7QaYCf8bqF04dOy7w/eHmJeNExxTYwvKAmlSAH/EaWWUzbT0h5sbF6bktFoX/0F/0qwng5/dWFMyf3gzaM8DsQ==}
-    engines: {node: '>=14.0.0'}
-    peerDependencies:
-      rollup: ^1.20.0||^2.0.0||^3.0.0||^4.0.0
     peerDependenciesMeta:
       rollup:
         optional: true
@@ -2812,9 +2803,6 @@ packages:
 
   '@speed-highlight/core@1.2.12':
     resolution: {integrity: sha512-uilwrK0Ygyri5dToHYdZSjcvpS2ZwX0w5aSt3GCEN9hrjxWCoeV4Z2DTXuxjwbntaLQIEEAlCeNQss5SoHvAEA==}
-
-  '@speed-highlight/core@1.2.7':
-    resolution: {integrity: sha512-0dxmVj4gxg3Jg879kvFS/msl4s9F3T9UXC1InxgOf7t5NvcPD97u/WTA5vL/IxWHMn7qSxBozqrnnE2wvl1m8g==}
 
   '@sqlite.org/sqlite-wasm@3.50.4-build1':
     resolution: {integrity: sha512-Qig2Wso7gPkU1PtXwFzndh+CTRzrIFxVGqv6eCetjU7YqxlHItj+GvQYwYTppCRgAPawtRN/4AJcEgB9xDHGug==}
@@ -3956,10 +3944,6 @@ packages:
   cookie-es@2.0.0:
     resolution: {integrity: sha512-RAj4E421UYRgqokKUmotqAwuplYw15qtdXfY+hGzgCJ/MBjCVZcSoHK/kH9kocfjRjcDME7IiDWR/1WX1TM2Pg==}
 
-  cookie@1.0.2:
-    resolution: {integrity: sha512-9Kr/j4O16ISv8zBBhJoi4bXOYNTkFLOqSL3UDB0njXxCXNezjeyVrJyGOWtgfs/q2km1gwBcfH8q1yEGoMYunA==}
-    engines: {node: '>=18'}
-
   copy-anything@3.0.5:
     resolution: {integrity: sha512-yCEafptTtb4bk7GLEQoM8KVJpxAfdBJYaXyzQEgQQQgYrZiDp8SJmGKlYza6CYjEDNstAdNdKA3UuoULlEbS6w==}
     engines: {node: '>=12.13'}
@@ -4045,20 +4029,8 @@ packages:
     peerDependencies:
       postcss: ^8.4.32
 
-  cssnano-preset-default@7.0.9:
-    resolution: {integrity: sha512-tCD6AAFgYBOVpMBX41KjbvRh9c2uUjLXRyV7KHSIrwHiq5Z9o0TFfUCoM3TwVrRsRteN3sVXGNvjVNxYzkpTsA==}
-    engines: {node: ^18.12.0 || ^20.9.0 || >=22.0}
-    peerDependencies:
-      postcss: ^8.4.32
-
   cssnano-utils@5.0.1:
     resolution: {integrity: sha512-ZIP71eQgG9JwjVZsTPSqhc6GHgEr53uJ7tK5///VfyWj6Xp2DBmixWHqJgPno+PqATzn48pL42ww9x5SSGmhZg==}
-    engines: {node: ^18.12.0 || ^20.9.0 || >=22.0}
-    peerDependencies:
-      postcss: ^8.4.32
-
-  cssnano@7.1.1:
-    resolution: {integrity: sha512-fm4D8ti0dQmFPeF8DXSAA//btEmqCOgAc/9Oa3C1LW94h5usNrJEfrON7b4FkPZgnDEn6OUs5NdxiJZmAtGOpQ==}
     engines: {node: ^18.12.0 || ^20.9.0 || >=22.0}
     peerDependencies:
       postcss: ^8.4.32
@@ -6311,32 +6283,14 @@ packages:
     peerDependencies:
       postcss: ^8.4.38
 
-  postcss-colormin@7.0.4:
-    resolution: {integrity: sha512-ziQuVzQZBROpKpfeDwmrG+Vvlr0YWmY/ZAk99XD+mGEBuEojoFekL41NCsdhyNUtZI7DPOoIWIR7vQQK9xwluw==}
-    engines: {node: ^18.12.0 || ^20.9.0 || >=22.0}
-    peerDependencies:
-      postcss: ^8.4.32
-
   postcss-colormin@7.0.5:
     resolution: {integrity: sha512-ekIBP/nwzRWhEMmIxHHbXHcMdzd1HIUzBECaj5KEdLz9DVP2HzT065sEhvOx1dkLjYW7jyD0CngThx6bpFi2fA==}
     engines: {node: ^18.12.0 || ^20.9.0 || >=22.0}
     peerDependencies:
       postcss: ^8.4.32
 
-  postcss-convert-values@7.0.7:
-    resolution: {integrity: sha512-HR9DZLN04Xbe6xugRH6lS4ZQH2zm/bFh/ZyRkpedZozhvh+awAfbA0P36InO4fZfDhvYfNJeNvlTf1sjwGbw/A==}
-    engines: {node: ^18.12.0 || ^20.9.0 || >=22.0}
-    peerDependencies:
-      postcss: ^8.4.32
-
   postcss-convert-values@7.0.8:
     resolution: {integrity: sha512-+XNKuPfkHTCEo499VzLMYn94TiL3r9YqRE3Ty+jP7UX4qjewUONey1t7CG21lrlTLN07GtGM8MqFVp86D4uKJg==}
-    engines: {node: ^18.12.0 || ^20.9.0 || >=22.0}
-    peerDependencies:
-      postcss: ^8.4.32
-
-  postcss-discard-comments@7.0.4:
-    resolution: {integrity: sha512-6tCUoql/ipWwKtVP/xYiFf1U9QgJ0PUvxN7pTcsQ8Ns3Fnwq1pU5D5s1MhT/XySeLq6GXNvn37U46Ded0TckWg==}
     engines: {node: ^18.12.0 || ^20.9.0 || >=22.0}
     peerDependencies:
       postcss: ^8.4.32
@@ -6371,12 +6325,6 @@ packages:
     peerDependencies:
       postcss: ^8.4.32
 
-  postcss-merge-rules@7.0.6:
-    resolution: {integrity: sha512-2jIPT4Tzs8K87tvgCpSukRQ2jjd+hH6Bb8rEEOUDmmhOeTcqDg5fEFK8uKIu+Pvc3//sm3Uu6FRqfyv7YF7+BQ==}
-    engines: {node: ^18.12.0 || ^20.9.0 || >=22.0}
-    peerDependencies:
-      postcss: ^8.4.32
-
   postcss-merge-rules@7.0.7:
     resolution: {integrity: sha512-njWJrd/Ms6XViwowaaCc+/vqhPG3SmXn725AGrnl+BgTuRPEacjiLEaGq16J6XirMJbtKkTwnt67SS+e2WGoew==}
     engines: {node: ^18.12.0 || ^20.9.0 || >=22.0}
@@ -6391,12 +6339,6 @@ packages:
 
   postcss-minify-gradients@7.0.1:
     resolution: {integrity: sha512-X9JjaysZJwlqNkJbUDgOclyG3jZEpAMOfof6PUZjPnPrePnPG62pS17CjdM32uT1Uq1jFvNSff9l7kNbmMSL2A==}
-    engines: {node: ^18.12.0 || ^20.9.0 || >=22.0}
-    peerDependencies:
-      postcss: ^8.4.32
-
-  postcss-minify-params@7.0.4:
-    resolution: {integrity: sha512-3OqqUddfH8c2e7M35W6zIwv7jssM/3miF9cbCSb1iJiWvtguQjlxZGIHK9JRmc8XAKmE2PFGtHSM7g/VcW97sw==}
     engines: {node: ^18.12.0 || ^20.9.0 || >=22.0}
     peerDependencies:
       postcss: ^8.4.32
@@ -6455,12 +6397,6 @@ packages:
     peerDependencies:
       postcss: ^8.4.32
 
-  postcss-normalize-unicode@7.0.4:
-    resolution: {integrity: sha512-LvIURTi1sQoZqj8mEIE8R15yvM+OhbR1avynMtI9bUzj5gGKR/gfZFd8O7VMj0QgJaIFzxDwxGl/ASMYAkqO8g==}
-    engines: {node: ^18.12.0 || ^20.9.0 || >=22.0}
-    peerDependencies:
-      postcss: ^8.4.32
-
   postcss-normalize-unicode@7.0.5:
     resolution: {integrity: sha512-X6BBwiRxVaFHrb2WyBMddIeB5HBjJcAaUHyhLrM2FsxSq5TFqcHSsK7Zu1otag+o0ZphQGJewGH1tAyrD0zX1Q==}
     engines: {node: ^18.12.0 || ^20.9.0 || >=22.0}
@@ -6481,12 +6417,6 @@ packages:
 
   postcss-ordered-values@7.0.2:
     resolution: {integrity: sha512-AMJjt1ECBffF7CEON/Y0rekRLS6KsePU6PRP08UqYW4UGFRnTXNrByUzYK1h8AC7UWTZdQ9O3Oq9kFIhm0SFEw==}
-    engines: {node: ^18.12.0 || ^20.9.0 || >=22.0}
-    peerDependencies:
-      postcss: ^8.4.32
-
-  postcss-reduce-initial@7.0.4:
-    resolution: {integrity: sha512-rdIC9IlMBn7zJo6puim58Xd++0HdbvHeHaPgXsimMfG1ijC5A9ULvNLSE0rUKVJOvNMcwewW4Ga21ngyJjY/+Q==}
     engines: {node: ^18.12.0 || ^20.9.0 || >=22.0}
     peerDependencies:
       postcss: ^8.4.32
@@ -6538,6 +6468,11 @@ packages:
   prelude-ls@1.2.1:
     resolution: {integrity: sha512-vkcDPrRZo1QZLbn5RLGPpg/WmIQ65qoWWhcGKf/b5eplkkarX0m9z8ppCat4mlOqUsWpyNuYgO3VRyrYHSzX5g==}
     engines: {node: '>= 0.8.0'}
+
+  premove@4.0.0:
+    resolution: {integrity: sha512-zim/Hr4+FVdCIM7zL9b9Z0Wfd5Ya3mnKtiuDv7L5lzYzanSq6cOcVJ7EFcgK4I0pt28l8H0jX/x3nyog380XgQ==}
+    engines: {node: '>=6'}
+    hasBin: true
 
   prettier@3.6.2:
     resolution: {integrity: sha512-I7AIg5boAr5R0FFtJ6rCfD+LFsWHp81dolrFD8S79U9tb8Az2nGrJncnMSnys+bpQJfRUzqs9hnA81OAA3hCuQ==}
@@ -8147,9 +8082,6 @@ packages:
 
   youch-core@0.3.3:
     resolution: {integrity: sha512-ho7XuGjLaJ2hWHoK8yFnsUGy2Y5uDpqSTq1FkHLK4/oqKtyUU1AFbOOxY4IpC9f0fTLjwYbslUz0Po5BpD1wrA==}
-
-  youch@4.1.0-beta.11:
-    resolution: {integrity: sha512-sQi6PERyO/mT8w564ojOVeAlYTtVQmC2GaktQAf+IdI75/GKIggosBuvyVXvEV+FATAT6RbLdIjFoiIId4ozoQ==}
 
   youch@4.1.0-beta.12:
     resolution: {integrity: sha512-X+AQ2EdigcZb2h1XQmBMm19TrrfKXxEXWpnf8ThbARwiiSf/pA7MvRTCj5VHCI9z3vjJBsDeqWWyvaI9Bfp9Pg==}
@@ -10654,12 +10586,6 @@ snapshots:
     dependencies:
       kleur: 4.1.5
 
-  '@poppinss/dumper@0.6.4':
-    dependencies:
-      '@poppinss/colors': 4.1.5
-      '@sindresorhus/is': 7.0.2
-      supports-color: 10.2.2
-
   '@poppinss/dumper@0.6.5':
     dependencies:
       '@poppinss/colors': 4.1.5
@@ -10759,13 +10685,6 @@ snapshots:
       deepmerge: 4.3.1
       is-module: 1.0.0
       resolve: 1.22.10
-    optionalDependencies:
-      rollup: 4.52.5
-
-  '@rollup/plugin-replace@6.0.2(rollup@4.52.5)':
-    dependencies:
-      '@rollup/pluginutils': 5.3.0(rollup@4.52.5)
-      magic-string: 0.30.21
     optionalDependencies:
       rollup: 4.52.5
 
@@ -10924,8 +10843,6 @@ snapshots:
   '@socket.io/component-emitter@3.1.2': {}
 
   '@speed-highlight/core@1.2.12': {}
-
-  '@speed-highlight/core@1.2.7': {}
 
   '@sqlite.org/sqlite-wasm@3.50.4-build1': {}
 
@@ -12503,8 +12420,6 @@ snapshots:
 
   cookie-es@2.0.0: {}
 
-  cookie@1.0.2: {}
-
   copy-anything@3.0.5:
     dependencies:
       is-what: 4.1.16
@@ -12617,48 +12532,8 @@ snapshots:
       postcss-svgo: 7.1.0(postcss@8.5.6)
       postcss-unique-selectors: 7.0.4(postcss@8.5.6)
 
-  cssnano-preset-default@7.0.9(postcss@8.5.6):
-    dependencies:
-      browserslist: 4.27.0
-      css-declaration-sorter: 7.2.0(postcss@8.5.6)
-      cssnano-utils: 5.0.1(postcss@8.5.6)
-      postcss: 8.5.6
-      postcss-calc: 10.1.1(postcss@8.5.6)
-      postcss-colormin: 7.0.4(postcss@8.5.6)
-      postcss-convert-values: 7.0.7(postcss@8.5.6)
-      postcss-discard-comments: 7.0.4(postcss@8.5.6)
-      postcss-discard-duplicates: 7.0.2(postcss@8.5.6)
-      postcss-discard-empty: 7.0.1(postcss@8.5.6)
-      postcss-discard-overridden: 7.0.1(postcss@8.5.6)
-      postcss-merge-longhand: 7.0.5(postcss@8.5.6)
-      postcss-merge-rules: 7.0.6(postcss@8.5.6)
-      postcss-minify-font-values: 7.0.1(postcss@8.5.6)
-      postcss-minify-gradients: 7.0.1(postcss@8.5.6)
-      postcss-minify-params: 7.0.4(postcss@8.5.6)
-      postcss-minify-selectors: 7.0.5(postcss@8.5.6)
-      postcss-normalize-charset: 7.0.1(postcss@8.5.6)
-      postcss-normalize-display-values: 7.0.1(postcss@8.5.6)
-      postcss-normalize-positions: 7.0.1(postcss@8.5.6)
-      postcss-normalize-repeat-style: 7.0.1(postcss@8.5.6)
-      postcss-normalize-string: 7.0.1(postcss@8.5.6)
-      postcss-normalize-timing-functions: 7.0.1(postcss@8.5.6)
-      postcss-normalize-unicode: 7.0.4(postcss@8.5.6)
-      postcss-normalize-url: 7.0.1(postcss@8.5.6)
-      postcss-normalize-whitespace: 7.0.1(postcss@8.5.6)
-      postcss-ordered-values: 7.0.2(postcss@8.5.6)
-      postcss-reduce-initial: 7.0.4(postcss@8.5.6)
-      postcss-reduce-transforms: 7.0.1(postcss@8.5.6)
-      postcss-svgo: 7.1.0(postcss@8.5.6)
-      postcss-unique-selectors: 7.0.4(postcss@8.5.6)
-
   cssnano-utils@5.0.1(postcss@8.5.6):
     dependencies:
-      postcss: 8.5.6
-
-  cssnano@7.1.1(postcss@8.5.6):
-    dependencies:
-      cssnano-preset-default: 7.0.9(postcss@8.5.6)
-      lilconfig: 3.1.3
       postcss: 8.5.6
 
   cssnano@7.1.2(postcss@8.5.6):
@@ -14799,9 +14674,9 @@ snapshots:
     dependencies:
       autoprefixer: 10.4.21(postcss@8.5.6)
       citty: 0.1.6
-      cssnano: 7.1.1(postcss@8.5.6)
+      cssnano: 7.1.2(postcss@8.5.6)
       defu: 6.1.4
-      esbuild: 0.25.11
+      esbuild: 0.25.12
       jiti: 1.21.7
       mlly: 1.8.0
       pathe: 2.0.3
@@ -14879,7 +14754,7 @@ snapshots:
       '@rollup/plugin-inject': 5.0.5(rollup@4.52.5)
       '@rollup/plugin-json': 6.1.0(rollup@4.52.5)
       '@rollup/plugin-node-resolve': 16.0.3(rollup@4.52.5)
-      '@rollup/plugin-replace': 6.0.2(rollup@4.52.5)
+      '@rollup/plugin-replace': 6.0.3(rollup@4.52.5)
       '@rollup/plugin-terser': 0.4.4(rollup@4.52.5)
       '@vercel/nft': 0.30.3(encoding@0.1.13)(rollup@4.52.5)
       archiver: 7.0.1
@@ -14896,7 +14771,7 @@ snapshots:
       defu: 6.1.4
       destr: 2.0.5
       dot-prop: 10.1.0
-      esbuild: 0.25.11
+      esbuild: 0.25.12
       escape-string-regexp: 5.0.0
       etag: 1.8.1
       exsolve: 1.0.7
@@ -14941,7 +14816,7 @@ snapshots:
       unstorage: 1.17.2(db0@0.3.4(better-sqlite3@12.4.1))(ioredis@5.8.2)
       untyped: 2.0.0
       unwasm: 0.3.11
-      youch: 4.1.0-beta.11
+      youch: 4.1.0-beta.12
       youch-core: 0.3.3
     transitivePeerDependencies:
       - '@azure/app-configuration'
@@ -15034,7 +14909,7 @@ snapshots:
 
   nuxt-component-meta@https://pkg.pr.new/nuxt-component-meta@e3eb2c4(magicast@0.5.0):
     dependencies:
-      '@nuxt/kit': 4.2.0(magicast@0.5.0)
+      '@nuxt/kit': 4.2.1(magicast@0.5.0)
       citty: 0.1.6
       json-schema-to-zod: 2.6.1
       mlly: 1.8.0
@@ -15757,14 +15632,6 @@ snapshots:
       postcss-selector-parser: 7.1.0
       postcss-value-parser: 4.2.0
 
-  postcss-colormin@7.0.4(postcss@8.5.6):
-    dependencies:
-      browserslist: 4.27.0
-      caniuse-api: 3.0.0
-      colord: 2.9.3
-      postcss: 8.5.6
-      postcss-value-parser: 4.2.0
-
   postcss-colormin@7.0.5(postcss@8.5.6):
     dependencies:
       browserslist: 4.27.0
@@ -15773,22 +15640,11 @@ snapshots:
       postcss: 8.5.6
       postcss-value-parser: 4.2.0
 
-  postcss-convert-values@7.0.7(postcss@8.5.6):
-    dependencies:
-      browserslist: 4.27.0
-      postcss: 8.5.6
-      postcss-value-parser: 4.2.0
-
   postcss-convert-values@7.0.8(postcss@8.5.6):
     dependencies:
       browserslist: 4.27.0
       postcss: 8.5.6
       postcss-value-parser: 4.2.0
-
-  postcss-discard-comments@7.0.4(postcss@8.5.6):
-    dependencies:
-      postcss: 8.5.6
-      postcss-selector-parser: 7.1.0
 
   postcss-discard-comments@7.0.5(postcss@8.5.6):
     dependencies:
@@ -15813,14 +15669,6 @@ snapshots:
       postcss-value-parser: 4.2.0
       stylehacks: 7.0.6(postcss@8.5.6)
 
-  postcss-merge-rules@7.0.6(postcss@8.5.6):
-    dependencies:
-      browserslist: 4.27.0
-      caniuse-api: 3.0.0
-      cssnano-utils: 5.0.1(postcss@8.5.6)
-      postcss: 8.5.6
-      postcss-selector-parser: 7.1.0
-
   postcss-merge-rules@7.0.7(postcss@8.5.6):
     dependencies:
       browserslist: 4.27.0
@@ -15837,13 +15685,6 @@ snapshots:
   postcss-minify-gradients@7.0.1(postcss@8.5.6):
     dependencies:
       colord: 2.9.3
-      cssnano-utils: 5.0.1(postcss@8.5.6)
-      postcss: 8.5.6
-      postcss-value-parser: 4.2.0
-
-  postcss-minify-params@7.0.4(postcss@8.5.6):
-    dependencies:
-      browserslist: 4.27.0
       cssnano-utils: 5.0.1(postcss@8.5.6)
       postcss: 8.5.6
       postcss-value-parser: 4.2.0
@@ -15895,12 +15736,6 @@ snapshots:
       postcss: 8.5.6
       postcss-value-parser: 4.2.0
 
-  postcss-normalize-unicode@7.0.4(postcss@8.5.6):
-    dependencies:
-      browserslist: 4.27.0
-      postcss: 8.5.6
-      postcss-value-parser: 4.2.0
-
   postcss-normalize-unicode@7.0.5(postcss@8.5.6):
     dependencies:
       browserslist: 4.27.0
@@ -15922,12 +15757,6 @@ snapshots:
       cssnano-utils: 5.0.1(postcss@8.5.6)
       postcss: 8.5.6
       postcss-value-parser: 4.2.0
-
-  postcss-reduce-initial@7.0.4(postcss@8.5.6):
-    dependencies:
-      browserslist: 4.27.0
-      caniuse-api: 3.0.0
-      postcss: 8.5.6
 
   postcss-reduce-initial@7.0.5(postcss@8.5.6):
     dependencies:
@@ -15985,6 +15814,8 @@ snapshots:
       tunnel-agent: 0.6.0
 
   prelude-ls@1.2.1: {}
+
+  premove@4.0.0: {}
 
   prettier@3.6.2: {}
 
@@ -16956,7 +16787,7 @@ snapshots:
 
   tsx@4.20.5:
     dependencies:
-      esbuild: 0.25.11
+      esbuild: 0.25.12
       get-tsconfig: 4.13.0
     optionalDependencies:
       fsevents: 2.3.3
@@ -16992,12 +16823,12 @@ snapshots:
       '@rollup/plugin-commonjs': 28.0.9(rollup@4.52.5)
       '@rollup/plugin-json': 6.1.0(rollup@4.52.5)
       '@rollup/plugin-node-resolve': 16.0.3(rollup@4.52.5)
-      '@rollup/plugin-replace': 6.0.2(rollup@4.52.5)
+      '@rollup/plugin-replace': 6.0.3(rollup@4.52.5)
       '@rollup/pluginutils': 5.3.0(rollup@4.52.5)
       citty: 0.1.6
       consola: 3.4.2
       defu: 6.1.4
-      esbuild: 0.25.11
+      esbuild: 0.25.12
       fix-dts-default-cjs-exports: 1.0.1
       hookable: 5.5.3
       jiti: 2.6.1
@@ -18032,14 +17863,6 @@ snapshots:
     dependencies:
       '@poppinss/exception': 1.2.2
       error-stack-parser-es: 1.0.5
-
-  youch@4.1.0-beta.11:
-    dependencies:
-      '@poppinss/colors': 4.1.5
-      '@poppinss/dumper': 0.6.4
-      '@speed-highlight/core': 1.2.7
-      cookie: 1.0.2
-      youch-core: 0.3.3
 
   youch@4.1.0-beta.12:
     dependencies:

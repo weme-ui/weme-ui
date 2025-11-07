@@ -27,33 +27,33 @@
     "preview": "nuxt preview"
   },
   "dependencies": {
-    "clsx": "catalog:dev",
-    "motion-v": "catalog:dev",
-    "reka-ui": "catalog:dev",
-    "tailwind-merge": "catalog:dev",
-    "tailwind-variants": "catalog:dev"
+    "clsx": "catalog:registry",
+    "motion-v": "catalog:registry",
+    "reka-ui": "catalog:registry",
+    "tailwind-merge": "catalog:registry",
+    "tailwind-variants": "catalog:registry"
   },
   "devDependencies": {
-    "@iconify-json/catppuccin": "catalog:icon",
-    "@iconify-json/logos": "catalog:icon",
-    "@iconify-json/lucide": "catalog:icon",
-    "@iconify-json/mingcute": "catalog:icon",
-    "@iconify-json/simple-icons": "catalog:icon",
+    "@iconify-json/catppuccin": "catalog:registry",
+    "@iconify-json/logos": "catalog:registry",
+    "@iconify-json/lucide": "catalog:registry",
+    "@iconify-json/mingcute": "catalog:registry",
+    "@iconify-json/simple-icons": "catalog:registry",
     "@nuxt/content": "catalog:docs",
     "@nuxt/icon": "catalog:dev",
     "@nuxtjs/i18n": "catalog:docs",
     "@unocss/nuxt": "catalog:dev",
-    "@vueuse/core": "catalog:dev",
+    "@vueuse/core": "catalog:registry",
     "@vueuse/nuxt": "catalog:dev",
     "@weme-ui/colors": "workspace:*",
     "@weme-ui/nuxt": "workspace:*",
     "@weme-ui/unocss-preset": "workspace:*",
     "better-sqlite3": "catalog:docs",
     "defu": "catalog:dev",
-    "nuxt": "catalog:nuxt",
+    "nuxt": "catalog:dev",
     "typescript": "catalog:build",
     "ufo": "catalog:dev",
     "unocss": "catalog:dev",
-    "vue": "catalog:vue"
+    "vue": "catalog:dev"
   }
 }

@@ -54,22 +54,22 @@
     "unocss": "catalog:dev"
   },
   "devDependencies": {
-    "@iconify-json/lucide": "catalog:icon",
-    "@iconify-json/mingcute": "catalog:icon",
+    "@iconify-json/lucide": "catalog:registry",
+    "@iconify-json/mingcute": "catalog:registry",
     "@nuxt/devtools": "catalog:dev",
     "@nuxt/icon": "catalog:dev",
     "@nuxt/image": "catalog:dev",
     "@nuxt/kit": "catalog:dev",
-    "@nuxt/module-builder": "catalog:nuxt",
-    "@nuxt/schema": "catalog:nuxt",
+    "@nuxt/module-builder": "catalog:dev",
+    "@nuxt/schema": "catalog:dev",
     "@types/node": "catalog:build",
     "@unocss/nuxt": "catalog:dev",
     "@vueuse/nuxt": "catalog:dev",
     "defu": "catalog:dev",
-    "nuxt": "catalog:nuxt",
+    "nuxt": "catalog:dev",
     "tinyglobby": "catalog:utils",
     "typescript": "catalog:build",
     "unocss": "catalog:dev",
-    "vue-tsc": "catalog:vue"
+    "vue-tsc": "catalog:dev"
   }
 }

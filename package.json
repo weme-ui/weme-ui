@@ -32,7 +32,7 @@
     "commit": "czg"
   },
   "devDependencies": {
-    "@antfu/eslint-config": "catalog:lint",
+    "@antfu/eslint-config": "catalog:utils",
     "@commitlint/cli": "catalog:build",
     "@commitlint/config-conventional": "catalog:build",
     "@typescript/native-preview": "catalog:build",
@@ -42,14 +42,15 @@
     "conventional-changelog": "catalog:build",
     "cz-git": "catalog:build",
     "czg": "catalog:build",
-    "eslint": "catalog:lint",
-    "eslint-plugin-pnpm": "catalog:lint",
-    "jsonc-eslint-parser": "catalog:lint",
-    "lint-staged": "catalog:lint",
+    "eslint": "catalog:utils",
+    "eslint-plugin-pnpm": "catalog:utils",
+    "jsonc-eslint-parser": "catalog:utils",
+    "lint-staged": "catalog:utils",
+    "premove": "catalog:utils",
     "simple-git-hooks": "catalog:build",
     "taze": "catalog:build",
     "typescript": "catalog:build",
-    "yaml-eslint-parser": "catalog:lint"
+    "yaml-eslint-parser": "catalog:utils"
   },
   "simple-git-hooks": {
     "pre-commit": "lint-staged"

@@ -1,7 +1,7 @@
 {
   "name": "@weme-ui/unocss-preset",
   "type": "module",
-  "version": "0.1.1",
+  "version": "0.1.2-beta.1",
   "packageManager": "pnpm@10.20.0",
   "description": "Weme UI - UnoCSS Preset",
   "author": "Allen Luo <luoyi@mouji.net>",

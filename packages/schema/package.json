@@ -1,0 +1,68 @@
+{
+  "name": "@weme-ui/schema",
+  "type": "module",
+  "version": "0.4.3",
+  "packageManager": "pnpm@10.20.0",
+  "author": "Allen Luo <luoyi@mouji.net>",
+  "license": "MIT",
+  "homepage": "https://weme-ui.github.io/schema",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/weme-ui/weme-ui.git",
+    "directory": "packages/schema"
+  },
+  "bugs": {
+    "url": "https://github.com/weme-ui/schema/issues"
+  },
+  "sideEffects": false,
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.mts",
+      "import": "./dist/index.mjs"
+    }
+  },
+  "main": "./dist/index.mjs",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.mts",
+  "typesVersions": {
+    "*": {
+      "*": [
+        "./dist/*",
+        "./dist/index.d.mts"
+      ]
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "engines": {
+    "node": ">=22.14.0",
+    "pnpm": ">=10.13.0"
+  },
+  "scripts": {
+    "build": "tsdown",
+    "dev": "tsdown --watch",
+    "test": "vitest",
+    "prepublishOnly": "pnpm build",
+    "release": "pnpm build && bumpp"
+  },
+  "dependencies": {
+    "mkdirp": "catalog:utils",
+    "pathe": "catalog:utils",
+    "scule": "catalog:utils",
+    "zod": "catalog:utils"
+  },
+  "devDependencies": {
+    "@antfu/eslint-config": "catalog:build",
+    "@types/node": "catalog:build",
+    "@typescript/native-preview": "catalog:build",
+    "bumpp": "catalog:build",
+    "eslint": "catalog:build",
+    "lint-staged": "catalog:build",
+    "pkg-types": "catalog:utils",
+    "simple-git-hooks": "catalog:build",
+    "tsdown": "catalog:build",
+    "typescript": "catalog:build",
+    "vitest": "catalog:testing"
+  }
+}

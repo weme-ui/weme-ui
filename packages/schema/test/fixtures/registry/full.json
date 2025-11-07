@@ -1,0 +1,125 @@
+{
+  "$schema": "https://weme-ui.github.io/schema/registry.json",
+  "name": "weme-ui/full",
+  "description": "The basic test registry for Weme UI.",
+  "version": "1.0.0",
+  "prefix": "ui",
+  "directory": "test/fixtures/registry/full",
+  "access": "public",
+  "meta": {
+    "authors": ["Allen Luo"],
+    "homepage": "https://weme-ui.github.io/schema",
+    "repository": "https://github.com/weme-ui/schema",
+    "bugs": "https://github.com/weme-ui/schema/issues",
+    "tags": ["weme-ui", "schema"]
+  },
+  "items": [
+    {
+      "name": "#init",
+      "type": "init",
+      "title": "Init",
+      "description": "Init dependencies and utils for Weme UI.",
+      "dependencies": [
+        "clsx",
+        "tailwind-merge",
+        "tailwind-variants"
+      ],
+      "devDependencies": [
+        "@nuxt/icon",
+        "@internationalized/date",
+        "@unocss/nuxt",
+        "@vueuse/core",
+        "@weme-ui/nuxt",
+        "@weme-ui/unocss-preset",
+        "reka-ui",
+        "unocss",
+        "vue"
+      ],
+      "files": [
+        { "type": "util", "path": "utils/styles.ts" },
+        { "type": "util", "path": "utils/props.ts" },
+        { "type": "util", "path": "utils/slots.ts" }
+      ]
+    },
+    {
+      "name": "icon",
+      "type": "component",
+      "title": "Icon",
+      "description": "A component to display any icon from Iconify.",
+      "files": [
+        {
+          "type": "component",
+          "path": "components/icon/icon.vue"
+        },
+        {
+          "type": "type",
+          "path": "components/icon/icon.props.ts"
+        },
+        {
+          "type": "component",
+          "path": "components/icon/icon-box.vue"
+        },
+        {
+          "type": "type",
+          "path": "components/icon/icon-box.props.ts"
+        },
+        {
+          "type": "style",
+          "path": "components/icon/icon-box.style.ts"
+        }
+      ]
+    },
+    {
+      "name": "button",
+      "type": "component",
+      "title": "Button",
+      "description": "Displays a button or a component that looks like a button.",
+      "registryDependencies": [
+        "icon"
+      ],
+      "files": [
+        {
+          "type": "component",
+          "path": "components/button/button.vue"
+        },
+        {
+          "type": "type",
+          "path": "components/button/button.props.ts"
+        },
+        {
+          "type": "style",
+          "path": "components/button/button.style.ts"
+        }
+      ]
+    },
+    {
+      "name": "card",
+      "type": "component",
+      "title": "Card",
+      "description": "Displays a card with header, content, and footer.",
+      "registryDependencies": [
+        "icon"
+      ],
+      "files": [
+        {
+          "type": "component",
+          "path": "components/card/card.vue"
+        },
+        {
+          "type": "type",
+          "path": "components/card/card.props.ts"
+        },
+        {
+          "type": "style",
+          "path": "components/card/card.style.ts"
+        }
+      ],
+      "cssVars": {
+        "card": {
+          "bg": "color.neutral.1",
+          "fg": "color.neutral.11"
+        }
+      }
+    }
+  ]
+}

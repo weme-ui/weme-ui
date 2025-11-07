@@ -1,0 +1,33 @@
+{
+  "$schema": "https://weme-ui.github.io/schema/registry.json",
+  "name": "weme-ui/basic",
+  "items": [
+    {
+      "name": "#init",
+      "type": "init",
+      "title": "Init",
+      "description": "Init dependencies and utils for Weme UI.",
+      "dependencies": [
+        "clsx",
+        "tailwind-merge",
+        "tailwind-variants"
+      ],
+      "devDependencies": [
+        "@nuxt/icon",
+        "@internationalized/date",
+        "@unocss/nuxt",
+        "@vueuse/core",
+        "@weme-ui/nuxt",
+        "@weme-ui/unocss-preset",
+        "reka-ui",
+        "unocss",
+        "vue"
+      ],
+      "files": [
+        { "type": "util", "path": "utils/styles.ts" },
+        { "type": "util", "path": "utils/props.ts" },
+        { "type": "util", "path": "utils/slots.ts" }
+      ]
+    }
+  ]
+}

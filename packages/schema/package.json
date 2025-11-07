@@ -3,6 +3,7 @@
   "type": "module",
   "version": "0.1.1",
   "packageManager": "pnpm@10.20.0",
+  "description": "JSON Schemas utilities for Weme UI.",
   "author": "Allen Luo <luoyi@mouji.net>",
   "license": "MIT",
   "homepage": "https://weme-ui.github.io/schema",

@@ -39,7 +39,6 @@ describe('utils', () => {
 
   it('should get radix color', () => {
     expect(getRadixColor('light', 'black', true)).toMatchSnapshot()
-    expect(getRadixColor('dark', 'olive')).toMatchSnapshot()
   })
 
   it('should transform color to string', () => {

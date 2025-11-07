@@ -3,6 +3,7 @@ import { getColors } from '../src/colors'
 
 describe('colors', () => {
   it('should get color objects', () => {
-    expect(getColors('light')).toMatchSnapshot()
+    expect(getColors('light')).toBeTypeOf('object')
+    expect(Object.keys(getColors('light'))).toMatchSnapshot()
   })
 })

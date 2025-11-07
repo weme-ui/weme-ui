@@ -25,6 +25,7 @@
     "lint": "eslint .",
     "test": "vitest",
     "typecheck": "pnpm -r typecheck",
+    "prepublishOnly": "pnpm build",
     "release": "bumpp -r --excute=\"pnpm i\"",
     "changelog": "changelogen --output CHANGELOG.md",
     "taze": "taze major -I -r",

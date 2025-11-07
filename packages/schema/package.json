@@ -12,7 +12,7 @@
     "directory": "packages/schema"
   },
   "bugs": {
-    "url": "https://github.com/weme-ui/schema/issues"
+    "url": "https://github.com/weme-ui/weme-ui/issues"
   },
   "sideEffects": false,
   "exports": {

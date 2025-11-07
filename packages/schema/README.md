@@ -8,7 +8,7 @@
 [![npm version][npm-version-src]][npm-version-href]
 [![License][license-src]][license-href]
 
-JSON Schemas for Weme UI. 
+JSON Schemas for Weme UI.
 
 - 📖 [Documentation](https://github.com/weme-ui/schema/blob/main/docs/README.md).
 

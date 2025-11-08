@@ -19,14 +19,15 @@
     "pnpm": ">=10.13.0"
   },
   "scripts": {
-    "build": "pnpm build:clean && pnpm dev:prepare && pnpm --filter @weme-ui/* build && weme-ui build",
+    "build": "pnpm build:clean && pnpm dev:prepare && pnpm --filter @weme-ui/* build && pnpm build:registry",
     "build:clean": "premove docs/.nuxt packages/*/dist packages/*/.nuxt",
+    "build:registry": "weme-ui build",
     "dev": "pnpm -C docs dev",
     "dev:prepare": "pnpm -r dev:prepare",
     "lint": "eslint .",
     "test": "vitest",
     "typecheck": "pnpm -r typecheck",
-    "release": "bumpp -r --execute=\"pnpm i && pnpm registry:build\"",
+    "release": "bumpp -r --execute=\"pnpm build:registry\"",
     "changelog": "changelogen --output CHANGELOG.md",
     "prepublishOnly": "pnpm build",
     "taze": "taze major -I -r",

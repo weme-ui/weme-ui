@@ -2,7 +2,7 @@
   "$schema": "https://weme-ui.github.io/schema/registry.schema.json",
   "name": "weme-ui/std",
   "description": "The standard components for Weme UI.",
-  "version": "0.1.2-beta.2",
+  "version": "0.1.2-beta.4",
   "prefix": "ui",
   "access": "public",
   "meta": {

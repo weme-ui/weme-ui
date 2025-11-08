@@ -21,7 +21,7 @@
   "scripts": {
     "build": "pnpm build:clean && pnpm dev:prepare && pnpm --filter @weme-ui/* build",
     "build:clean": "premove docs/.nuxt packages/*/dist packages/*/.nuxt",
-    "build:registry": "pnpm dlx @weme-ui/weme-ui build",
+    "build:registry": "pnpm dlx @weme-ui/weme-ui build && git add . && git commit -m 'chore: build registry'",
     "dev": "pnpm -C docs dev",
     "dev:prepare": "pnpm -r dev:prepare",
     "lint": "eslint .",

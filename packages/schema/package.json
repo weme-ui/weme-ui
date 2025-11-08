@@ -44,7 +44,8 @@
     "build": "tsdown",
     "dev": "tsdown --watch",
     "dev:prepare": "pnpm build",
-    "test": "vitest"
+    "test": "vitest",
+    "postinstall": "pnpm build"
   },
   "dependencies": {
     "mkdirp": "catalog:utils",

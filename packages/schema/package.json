@@ -44,9 +44,7 @@
     "build": "tsdown",
     "dev": "tsdown --watch",
     "dev:prepare": "pnpm build",
-    "test": "vitest",
-    "prepublishOnly": "pnpm build",
-    "release": "pnpm build && bumpp"
+    "test": "vitest"
   },
   "dependencies": {
     "mkdirp": "catalog:utils",

@@ -198,6 +198,9 @@
       "type": "component",
       "title": "Alert",
       "description": "Displays a callout for user attention.",
+      "dependencies": [
+        "motion-v"
+      ],
       "registryDependencies": [
         "icon"
       ],

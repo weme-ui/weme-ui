@@ -29,8 +29,8 @@
     "typecheck": "pnpm -r typecheck",
     "release": "bumpp -r --execute=\"pnpm i\"",
     "changelog": "changelogen --output CHANGELOG.md",
-    "version": "pnpm build:registry",
-    "prepublishOnly": "pnpm build && pnpm changelog",
+    "version": "pnpm changelog && pnpm build:registry",
+    "prepublishOnly": "pnpm build",
     "taze": "taze major -I -r",
     "commit": "czg"
   },

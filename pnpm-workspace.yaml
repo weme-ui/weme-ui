@@ -43,7 +43,6 @@ catalogs:
     colorjs.io: ^0.5.2
     defu: ^6.1.4
     nuxt: ^4.2.1
-    ufo: ^1.6.1
     unocss: ^66.5.5
     vite-plugin-vue-devtools: ^8.0.3
     vue: ^3.5.24
@@ -54,13 +53,13 @@ catalogs:
     '@nuxtjs/i18n': ^10.2.0
     better-sqlite3: ^12.4.1
   registry:
-    '@iconify-json/catppuccin': ^1.2.17
-    '@iconify-json/logos': ^1.2.10
     '@iconify-json/lucide': ^1.2.72
     '@iconify-json/mingcute': ^1.2.5
-    '@iconify-json/simple-icons': ^1.2.57
     '@internationalized/date': ^3.10.0
     '@vueuse/core': ^14.0.0
+    '@weme-ui/colors': 0.1.4-beta.1
+    '@weme-ui/nuxt': 0.1.4-beta.1
+    '@weme-ui/unocss-preset': 0.1.4-beta.1
     clsx: ^2.1.1
     motion-v: ^1.7.4
     reka-ui: ^2.6.0

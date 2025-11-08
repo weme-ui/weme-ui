@@ -27,6 +27,7 @@
     "lint": "eslint .",
     "test": "vitest",
     "typecheck": "pnpm -r typecheck",
+    "cli": "weme-ui",
     "release": "bumpp -r --execute=\"pnpm i\"",
     "changelog": "changelogen --output CHANGELOG.md",
     "version": "pnpm build:registry",

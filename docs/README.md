@@ -1,18 +1,94 @@
 <p align="center">
   <img align="center" src="https://raw.githubusercontent.com/moujinet/assets/main/weme-ui/png/circle-128.png" height="128" />
   <h1 align="center">
-    Weme UI <sup style="color: #4CBBA5">docs</sup>
+    Weme UI <sup style="color: #4CBBA5">Starter</sup>
   </h1>
 </p>
 
 [![npm version][npm-version-src]][npm-version-href]
 [![License][license-src]][license-href]
 
-<p align="center">
-  The documentation for Weme UI.
-</p>
+A default starter template for Weme UI.
 
 ---
+
+## Setup
+
+Make sure to install dependencies:
+
+```bash
+# npm
+npm install
+
+# pnpm
+pnpm install
+
+# yarn
+yarn install
+
+# bun
+bun install
+```
+
+## Development Server
+
+Start the development server on `http://localhost:3000`:
+
+```bash
+# npm
+npm run dev
+
+# pnpm
+pnpm dev
+
+# yarn
+yarn dev
+
+# bun
+bun run dev
+```
+
+## Production
+
+<details>
+  <summary>
+    Build the application for production
+  </summary>
+
+```bash
+# npm
+npm run build
+
+# pnpm
+pnpm build
+
+# yarn
+yarn build
+
+# bun
+bun run build
+```
+</details>
+
+<details>
+  <summary>
+    Locally preview production build
+  </summary>
+
+```bash
+# npm
+npm run preview
+
+# pnpm
+pnpm preview
+
+# yarn
+yarn preview
+
+# bun
+bun run preview
+```
+</details>
 
 ## License
 

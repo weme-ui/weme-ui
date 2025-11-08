@@ -16,9 +16,8 @@ const props = withDefaults(defineProps<BadgeProps>(), {
   variant: 'soft',
   size: 'sm',
   radius: 'sm',
-  square: false,
   disabled: false,
-  removable: false,
+  closable: false,
   clickable: false,
 })
 
@@ -28,14 +27,14 @@ const tag = computed(() => props.href ? 'a' : 'span')
 
 const ui = computed(() => useBadgeStyle({
   ...props,
-  square: (!!props.icon && !props.text) || props.square,
+  square: !!props.icon && !props.text,
   disabled: !!props.disabled,
-  removable: !!props.removable,
+  closable: !!props.closable,
   clickable: !!props.href || props.clickable,
 }))
 
-function onRemove() {
-  emits('remove')
+function onClose() {
+  emits('close')
 }
 </script>
 
@@ -51,8 +50,10 @@ function onRemove() {
 
     <slot>{{ text }}</slot>
 
-    <button v-if="removable" :class="cn(ui.remove(), props.ui?.remove)" @click="onRemove">
-      <Icon name="close" />
+    <button v-if="closable" :class="cn(ui.close(), props.ui?.close)" @click="onClose">
+      <slot name="close">
+        <Icon name="close" />
+      </slot>
     </button>
   </Primitive>
 </template>

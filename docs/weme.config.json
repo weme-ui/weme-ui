@@ -2,31 +2,27 @@
   "$schema": "https://weme-ui.github.io/schema/project.schema.json",
   "repos": [
     {
-      "repo": "https://github.com/weme-ui/weme-ui",
+      "repo": "weme-ui/weme-ui",
       "registry": "weme-ui/std",
-      "prefix": "ui",
-      "default": true
+      "default": false,
+      "prefix": "ui"
     }
   ],
   "paths": {
-    "components": "~/components"
+    "components": "~/components",
+    "composables": "~/composables",
+    "layouts": "~/layouts",
+    "pages": "~/pages",
+    "plugins": "~/plugins",
+    "themes": "~/themes",
+    "types": "~/types",
+    "utils": "~/utils"
   },
   "unocss": {
+    "variablePrefix": "ui",
     "cssVars": {
-      "card-bg": "color.neutral.1",
-      "card-fg": "color.neutral.11",
       "tooltip-bg": "color.neutral.11",
-      "tooltip-fg": "color.neutral.1",
-      "popover-bg": "color.neutral.1",
-      "modal-bg": "color.neutral.1",
-      "modal-width": "24rem",
-      "modal-height": "12rem",
-      "toast-bg": "color.neutral.1",
-      "toast-ring": "color.neutral.1",
-      "toast-width": "24rem",
-      "accordion-bg": "color.neutral.1",
-      "tabs-bg": "color.neutral.1",
-      "dropdown-bg": "color.neutral.1"
+      "tooltip-fg": "color.neutral.1"
     }
   }
 }

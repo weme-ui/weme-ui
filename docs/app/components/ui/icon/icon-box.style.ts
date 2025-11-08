@@ -8,7 +8,7 @@ export const useIconBoxStyle = createVariants({
     icon: '',
   },
   variants: {
-    color: createColorVariants({ type: 'static', defaults: '' }),
+    color: createColorVariants({ defaults: '' }),
     variant: { solid: '', soft: '', surface: '', outline: '', inverse: '' },
     radius: {
       none: '',
@@ -28,14 +28,14 @@ export const useIconBoxStyle = createVariants({
   },
   compoundVariants: [
     ...createColorCompoundVariants({
-      variants: ['solid', 'soft', 'surface', 'outline', 'inverse'],
       type: 'static',
+      variants: ['solid', 'soft', 'surface', 'outline', 'inverse'],
       slot: 'base',
     }),
   ],
   defaultVariants: {
     color: 'accent',
-    variant: 'solid',
+    variant: 'soft',
     radius: 'sm',
     size: 'md',
   },

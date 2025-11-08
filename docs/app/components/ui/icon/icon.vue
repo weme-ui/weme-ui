@@ -1,12 +1,13 @@
 <script lang="ts" setup>
 import type { IconProps } from './icon.props'
-import { useAppConfig } from '#app'
+import { useAppConfig } from '#imports'
 import { reactiveOmit } from '@vueuse/core'
 import { computed } from 'vue'
 
 const props = withDefaults(defineProps<IconProps>(), {
   mode: 'svg',
 })
+
 const delegated = reactiveOmit(props, 'name')
 
 const resolvedIcon = computed(() => {

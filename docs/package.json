@@ -1,59 +1,35 @@
 {
   "name": "docs",
   "type": "module",
-  "version": "0.1.4-beta.1",
   "private": true,
-  "packageManager": "pnpm@10.20.0",
-  "description": "The documentation for Weme UI.",
-  "author": "Allen Luo <luoyi@mouji.net>",
-  "license": "MIT",
-  "homepage": "https://github.com/weme-ui/weme-ui#readme",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/weme-ui/weme-ui.git",
-    "directory": "docs"
-  },
-  "bugs": {
-    "url": "https://github.com/weme-ui/weme-ui/issues"
-  },
-  "keywords": [
-    "weme-ui",
-    "weme-ui-docs"
-  ],
   "scripts": {
+    "build": "nuxt build",
     "dev": "nuxt dev",
     "dev:prepare": "nuxt prepare",
     "generate": "nuxt generate",
-    "preview": "nuxt preview"
+    "preview": "nuxt preview",
+    "postinstall": "nuxt prepare"
   },
   "dependencies": {
+    "@vueuse/core": "catalog:registry",
     "clsx": "catalog:registry",
     "motion-v": "catalog:registry",
+    "nuxt": "catalog:dev",
     "reka-ui": "catalog:registry",
     "tailwind-merge": "catalog:registry",
-    "tailwind-variants": "catalog:registry"
+    "tailwind-variants": "catalog:registry",
+    "vue": "catalog:dev",
+    "vue-router": "catalog:dev"
   },
   "devDependencies": {
-    "@iconify-json/catppuccin": "catalog:registry",
-    "@iconify-json/logos": "catalog:registry",
-    "@iconify-json/lucide": "catalog:registry",
-    "@iconify-json/mingcute": "catalog:registry",
-    "@iconify-json/simple-icons": "catalog:registry",
     "@nuxt/content": "catalog:docs",
-    "@nuxt/icon": "catalog:dev",
     "@nuxtjs/i18n": "catalog:docs",
-    "@unocss/nuxt": "catalog:dev",
-    "@vueuse/core": "catalog:registry",
-    "@vueuse/nuxt": "catalog:dev",
-    "@weme-ui/colors": "workspace:*",
-    "@weme-ui/nuxt": "workspace:*",
-    "@weme-ui/unocss-preset": "workspace:*",
+    "@weme-ui/colors": "catalog:registry",
+    "@weme-ui/nuxt": "catalog:registry",
+    "@weme-ui/unocss-preset": "catalog:registry",
     "better-sqlite3": "catalog:docs",
     "defu": "catalog:dev",
-    "nuxt": "catalog:dev",
     "typescript": "catalog:build",
-    "ufo": "catalog:dev",
-    "unocss": "catalog:dev",
-    "vue": "catalog:dev"
+    "unocss": "catalog:dev"
   }
 }

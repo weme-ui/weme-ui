@@ -11,14 +11,13 @@ export interface BadgeProps extends PrimitiveProps {
   variant?: BadgeStyleProps['variant']
   size?: BadgeStyleProps['size']
   radius?: BadgeStyleProps['radius']
-  square?: boolean
   disabled?: boolean
-  removable?: boolean
+  closable?: boolean
   clickable?: boolean
   class?: any
   ui?: Partial<BadgeStyleSlots>
 }
 
 export interface BadgeEmits {
-  (e: 'remove'): void
+  (e: 'close'): void
 }

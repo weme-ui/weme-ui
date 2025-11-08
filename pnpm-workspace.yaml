@@ -91,10 +91,6 @@ catalogs:
     tinyexec: ^1.0.2
     tinyglobby: ^0.2.15
     zod: ^4.1.12
-  conflicts_dev_:
-    unocss: ''
-  conflicts_dev_c:
-    unocss: c
 
 onlyBuiltDependencies:
   - '@parcel/watcher'

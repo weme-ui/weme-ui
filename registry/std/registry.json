@@ -1,8 +1,8 @@
 {
-  "$schema": "https://weme-ui.github.io/schema/registry.json",
+  "$schema": "https://weme-ui.github.io/schema/registry.schema.json",
   "name": "weme-ui/std",
   "description": "The standard components for Weme UI.",
-  "version": "0.0.0",
+  "version": "0.1.2-beta.1",
   "prefix": "ui",
   "access": "public",
   "meta": {
@@ -24,22 +24,35 @@
       "description": "Init dependencies and utils for Weme UI.",
       "dependencies": [
         "@vueuse/core",
+        "reka-ui",
         "clsx",
         "tailwind-merge",
-        "tailwind-variants"
-      ],
-      "devDependencies": [
-        "reka-ui",
-        "unocss",
-        "typescript",
+        "tailwind-variants",
         "vue",
         "nuxt",
         "vue-router"
       ],
+      "devDependencies": [
+        "@weme-ui/colors",
+        "@weme-ui/nuxt",
+        "@weme-ui/unocss-preset",
+        "defu",
+        "unocss",
+        "typescript"
+      ],
       "files": [
-        { "type": "util", "path": "utils/styles.ts" },
-        { "type": "util", "path": "utils/props.ts" },
-        { "type": "util", "path": "utils/slots.ts" }
+        {
+          "type": "util",
+          "path": "utils/styles.ts"
+        },
+        {
+          "type": "util",
+          "path": "utils/props.ts"
+        },
+        {
+          "type": "util",
+          "path": "utils/slots.ts"
+        }
       ]
     },
     {

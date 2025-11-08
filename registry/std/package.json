@@ -32,7 +32,7 @@
     "radix-colors-components"
   ],
   "scripts": {
-    "dev:prepare": "nuxi prepare",
+    "dev:prepare": "nuxt prepare",
     "typecheck": "vue-tsc --noEmit"
   },
   "peerDependencies": {

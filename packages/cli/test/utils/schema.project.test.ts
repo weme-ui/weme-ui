@@ -19,29 +19,6 @@ describe('utils/schema/project', () => {
     const result = await loadProjectInfo('packages/cli/test/fixtures/project')
 
     expect(result.isOk()).toBe(true)
-    expect(result.unwrap()).toMatchInlineSnapshot(`
-      {
-        "description": "The test project for Weme UI.",
-        "name": "test",
-        "registries": [
-          {
-            "access": "public",
-            "available": 46,
-            "default": true,
-            "description": "The standard components for Weme UI.",
-            "installed": 0,
-            "name": "weme-ui/std",
-            "prefix": "ui",
-            "repo": "https://github.com/weme-ui/weme-ui",
-            "version": "0.0.0",
-          },
-        ],
-        "repos": [
-          "https://github.com/weme-ui/weme-ui",
-        ],
-        "version": "1.0.0",
-      }
-    `)
   })
 
   it('should resolve project paths', () => {

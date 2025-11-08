@@ -28,17 +28,21 @@ describe('utils/schema/registry', () => {
         "cssVars": {},
         "dependencies": [
           "@vueuse/core",
+          "reka-ui",
           "clsx",
           "tailwind-merge",
           "tailwind-variants",
-        ],
-        "devDependencies": [
-          "reka-ui",
-          "unocss",
-          "typescript",
           "vue",
           "nuxt",
           "vue-router",
+        ],
+        "devDependencies": [
+          "@weme-ui/colors",
+          "@weme-ui/nuxt",
+          "@weme-ui/unocss-preset",
+          "defu",
+          "unocss",
+          "typescript",
         ],
         "files": [
           {

@@ -168,6 +168,9 @@ catalogs:
     clsx:
       specifier: ^2.1.1
       version: 2.1.1
+    motion-v:
+      specifier: ^1.7.4
+      version: 1.7.4
     reka-ui:
       specifier: ^2.6.0
       version: 2.6.0
@@ -320,7 +323,7 @@ importers:
         specifier: catalog:registry
         version: 2.1.1
       motion-v:
-        specifier: ^1.7.4
+        specifier: catalog:registry
         version: 1.7.4(@vueuse/core@14.0.0(vue@3.5.24(typescript@5.9.3)))(vue@3.5.24(typescript@5.9.3))
       nuxt:
         specifier: catalog:dev

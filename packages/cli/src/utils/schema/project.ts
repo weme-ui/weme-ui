@@ -422,6 +422,49 @@ export async function installRegistryItems(
           p.log.warn('File type is not supported yet.')
           break
       }
+
+      // Update types
+      if (file.type === 'type') {
+        if (!fs.existsSync(paths.unwrap().types))
+          fs.mkdirSync(paths.unwrap().types, { recursive: true })
+
+        if (!fs.existsSync(path.join(paths.unwrap().types, 'index.ts'))) {
+          fs.writeFileSync(
+            path.join(paths.unwrap().types, 'index.ts'),
+            'export * from \'./components\'\n',
+            {
+              encoding: 'utf8',
+              flag: 'w',
+            },
+          )
+        }
+
+        const typePath = path.join(paths.unwrap().types, 'components.ts')
+        const newLine = `export * from '${file.path.replace('components', path.join(project.paths.components, prefix)).replace('.ts', '')}'`
+        const lines: string[] = []
+
+        if (fs.existsSync(typePath)) {
+          const content = fs.readFileSync(typePath, 'utf8')
+
+          if (content) {
+            lines.push(
+              ...content.split('\n'),
+            )
+          }
+        }
+
+        if (!lines.includes(newLine))
+          lines.push(newLine)
+
+        fs.writeFileSync(
+          typePath,
+          `${lines.filter(Boolean).sort((a, b) => a.localeCompare(b)).join('\n')}\n`,
+          {
+            encoding: 'utf8',
+            flag: 'w',
+          },
+        )
+      }
     }))
 
     spinner.stop('Registry item files created!')

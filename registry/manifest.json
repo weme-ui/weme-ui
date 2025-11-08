@@ -2,7 +2,7 @@
   {
     "name": "weme-ui/std",
     "description": "The standard components for Weme UI.",
-    "version": "0.1.2-beta.4",
+    "version": "0.1.2-beta.5",
     "directory": "registry/std",
     "prefix": "ui",
     "access": "public",
@@ -13,6 +13,6 @@
       "blocks": 0,
       "pages": 0
     },
-    "updated": "2025-11-08T02:39:06.799Z"
+    "updated": "2025-11-08T02:42:06.446Z"
   }
 ]

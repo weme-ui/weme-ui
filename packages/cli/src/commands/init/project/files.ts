@@ -17,6 +17,7 @@ export async function createFiles(ctx: InitProjectContext) {
       'package.json',
       'tsconfig.json',
       '.gitignore',
+      'uno.config.ts',
       'README.md',
     ].map(async (file) => {
       spinner.message(`Generating ${chalk.cyan(file)}...`)

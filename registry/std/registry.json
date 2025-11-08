@@ -713,10 +713,6 @@
         {
           "type": "type",
           "path": "components/tabs/tabs-content.props.ts"
-        },
-        {
-          "type": "style",
-          "path": "components/tabs/tabs-content.style.ts"
         }
       ],
       "cssVars": {
@@ -754,10 +750,6 @@
         {
           "type": "type",
           "path": "components/dropdown/dropdown-content.props.ts"
-        },
-        {
-          "type": "style",
-          "path": "components/dropdown/dropdown-content.style.ts"
         }
       ],
       "cssVars": {
@@ -1197,10 +1189,6 @@
         {
           "type": "type",
           "path": "components/app/app.props.ts"
-        },
-        {
-          "type": "style",
-          "path": "components/app/app.style.ts"
         }
       ]
     },

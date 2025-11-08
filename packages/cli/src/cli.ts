@@ -13,5 +13,6 @@ export const cli = defineCommand({
     init: () => import('./commands/init').then(r => r.default),
     info: () => import('./commands/info').then(r => r.default),
     build: () => import('./commands/build').then(r => r.default),
+    verify: () => import('./commands/verify').then(r => r.default),
   },
 })

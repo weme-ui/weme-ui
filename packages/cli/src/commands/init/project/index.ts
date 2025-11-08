@@ -29,5 +29,10 @@ export default async function (args: Record<string, any>) {
     p.log.error('Failed to create project configuration file.')
   }
 
+  p.note([
+    `1. Add components to your project: ${chalk.cyan('pnpm dlx @weme-ui/weme-ui add <component-name>')}`,
+    `2. Start development server: ${chalk.cyan('pnpm dev')}`,
+  ].join('\n'), 'Next?')
+
   p.outro('🥤 All done!')
 }

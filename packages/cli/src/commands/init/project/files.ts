@@ -62,9 +62,14 @@ export async function createNuxtConfig(ctx: InitProjectContext) {
   await runStep(`Generating ${chalk.cyan('nuxt.config.ts')}...`, async (spinner) => {
     const lines: string[] = [
       'export default defineNuxtConfig({',
+      '  modules: [',
+      '    \'@weme-ui/nuxt\',',
+      '  ],',
+      '',
       '  devtools: {',
       '    enabled: true,',
       '  },',
+      '',
       `  compatibilityDate: ${JSON.stringify(new Date().toISOString().slice(0, 10))},`,
       '})',
     ]

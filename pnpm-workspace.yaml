@@ -9,7 +9,7 @@ catalogs:
     '@commitlint/cli': ^20.1.0
     '@commitlint/config-conventional': ^20.0.0
     '@types/node': 24.0.15
-    '@typescript/native-preview': ^7.0.0-dev.20251107.1
+    '@typescript/native-preview': ^7.0.0-dev.20251108.1
     bumpp: ^10.3.1
     changelogen: ^0.6.2
     commitizen: ^4.3.1
@@ -61,7 +61,7 @@ catalogs:
     '@weme-ui/nuxt': 0.1.4-beta.1
     '@weme-ui/unocss-preset': 0.1.4-beta.1
     clsx: ^2.1.1
-    motion-v: ^1.7.4
+    motion-v: 1.7.4
     reka-ui: ^2.6.0
     tailwind-merge: ^3.3.1
     tailwind-variants: ^3.1.1

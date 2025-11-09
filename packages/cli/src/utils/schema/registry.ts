@@ -243,25 +243,48 @@ export async function fetchRegistryItems(
       exit(0)
     }
 
-    const items = normalizeRegistryItems(
-      registryConfig.unwrap().items.filter((item) => {
-        if (options?.type && item.type !== options.type) {
-          return false
-        }
+    const registryItems = registryConfig.unwrap().items
 
-        if (options?.name) {
-          return Array.isArray(options.name)
-            ? options.name.includes(item.name)
-            : item.name === options.name
-        }
+    const matched = registryItems.filter((item) => {
+      if (options?.type && item.type !== options.type) {
+        return false
+      }
 
-        return true
-      }),
-    )
+      if (options?.name) {
+        return Array.isArray(options.name)
+          ? options.name.includes(item.name)
+          : item.name === options.name
+      }
+
+      return true
+    })
+
+    if (matched.length === 0) {
+      return {
+        dependencies: [],
+        devDependencies: [],
+        files: [],
+        cssVars: {},
+      }
+    }
+
+    const items = matched.reduce((acc, item) => {
+      acc.push(item)
+
+      if (item.registryDependencies) {
+        registryItems.forEach((i) => {
+          if (item.registryDependencies!.includes(i.name)) {
+            acc.push(i)
+          }
+        })
+      }
+
+      return acc
+    }, [] as RegistryItem[])
 
     spinner.stop('Registry items fetched.')
 
-    return items
+    return normalizeRegistryItems(items)
   })
 }
 

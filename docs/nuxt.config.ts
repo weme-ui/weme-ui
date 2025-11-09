@@ -11,6 +11,10 @@ export default defineNuxtConfig({
     },
   ],
 
+  experimental: {
+    normalizeComponentNames: false,
+  },
+
   devtools: {
     enabled: true,
   },

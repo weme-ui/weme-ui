@@ -21,6 +21,9 @@
   "unocss": {
     "variablePrefix": "ui",
     "cssVars": {
+      "toast-bg": "color.neutral.1",
+      "toast-ring": "color.neutral.1",
+      "toast-width": "24rem",
       "tooltip-bg": "color.neutral.11",
       "tooltip-fg": "color.neutral.1"
     }

@@ -7,11 +7,9 @@
     "dev": "nuxt dev",
     "dev:prepare": "nuxt prepare",
     "generate": "nuxt generate",
-    "preview": "nuxt preview",
-    "postinstall": "nuxt prepare"
+    "preview": "nuxt preview"
   },
   "dependencies": {
-    "@vueuse/core": "catalog:registry",
     "clsx": "catalog:registry",
     "motion-v": "catalog:registry",
     "nuxt": "catalog:dev",
@@ -24,9 +22,9 @@
   "devDependencies": {
     "@nuxt/content": "catalog:docs",
     "@nuxtjs/i18n": "catalog:docs",
-    "@weme-ui/colors": "catalog:registry",
-    "@weme-ui/nuxt": "catalog:registry",
-    "@weme-ui/unocss-preset": "catalog:registry",
+    "@weme-ui/colors": "workspace:*",
+    "@weme-ui/nuxt": "workspace:*",
+    "@weme-ui/unocss-preset": "workspace:*",
     "better-sqlite3": "catalog:docs",
     "defu": "catalog:dev",
     "typescript": "catalog:build",

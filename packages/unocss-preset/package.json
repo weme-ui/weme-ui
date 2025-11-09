@@ -48,8 +48,7 @@
     "prepublishOnly": "pnpm run build",
     "test": "vitest",
     "typecheck": "tsgo --noEmit",
-    "play": "vite playground",
-    "release": "pnpm build && bumpp"
+    "play": "vite playground"
   },
   "peerDependencies": {
     "@radix-ui/colors": "catalog:dev",

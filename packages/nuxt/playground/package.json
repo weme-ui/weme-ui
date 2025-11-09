@@ -10,10 +10,5 @@
   "dependencies": {
     "@weme-ui/unocss-preset": "workspace:*",
     "nuxt": "catalog:dev"
-  },
-  "devDependencies": {
-    "@nuxt/icon": "catalog:dev",
-    "@unocss/nuxt": "catalog:dev",
-    "@vueuse/nuxt": "catalog:dev"
   }
 }

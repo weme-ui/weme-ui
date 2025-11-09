@@ -40,8 +40,7 @@
     "dev:prepare": "nuxt-module-build prepare && nuxt prepare playground && pnpm build",
     "prepack": "pnpm run build",
     "prepublishOnly": "pnpm run build",
-    "typecheck": "vue-tsc --noEmit",
-    "release": "pnpm build && bumpp"
+    "typecheck": "vue-tsc --noEmit"
   },
   "peerDependencies": {
     "defu": "catalog:dev",
@@ -64,7 +63,6 @@
     "@nuxt/schema": "catalog:dev",
     "@types/node": "catalog:build",
     "@unocss/nuxt": "catalog:dev",
-    "@vueuse/nuxt": "catalog:dev",
     "defu": "catalog:dev",
     "nuxt": "catalog:dev",
     "tinyglobby": "catalog:utils",

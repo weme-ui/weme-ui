@@ -38,7 +38,6 @@ catalogs:
     '@unocss/nuxt': ^66.5.5
     '@unocss/rule-utils': ^66.5.5
     '@vitejs/plugin-vue': ^6.0.1
-    '@vueuse/nuxt': ^14.0.0
     bezier-easing: ^2.1.0
     colorjs.io: ^0.5.2
     defu: ^6.1.4
@@ -57,9 +56,6 @@ catalogs:
     '@iconify-json/mingcute': ^1.2.5
     '@internationalized/date': ^3.10.0
     '@vueuse/core': ^14.0.0
-    '@weme-ui/colors': 0.1.4-beta.1
-    '@weme-ui/nuxt': 0.1.4-beta.1
-    '@weme-ui/unocss-preset': 0.1.4-beta.1
     clsx: ^2.1.1
     motion-v: 1.7.4
     reka-ui: ^2.6.0
@@ -93,6 +89,7 @@ catalogs:
 
 onlyBuiltDependencies:
   - '@parcel/watcher'
+  - '@weme-ui/schema'
   - better-sqlite3
   - esbuild
   - sharp

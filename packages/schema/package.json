@@ -44,8 +44,7 @@
     "build": "tsdown",
     "dev": "tsdown --watch",
     "dev:prepare": "pnpm build",
-    "test": "vitest",
-    "postinstall": "pnpm build"
+    "test": "vitest"
   },
   "dependencies": {
     "mkdirp": "catalog:utils",
@@ -57,11 +56,7 @@
     "@antfu/eslint-config": "catalog:build",
     "@types/node": "catalog:build",
     "@typescript/native-preview": "catalog:build",
-    "bumpp": "catalog:build",
-    "eslint": "catalog:build",
-    "lint-staged": "catalog:build",
     "pkg-types": "catalog:utils",
-    "simple-git-hooks": "catalog:build",
     "tsdown": "catalog:build",
     "typescript": "catalog:build",
     "vitest": "catalog:testing"

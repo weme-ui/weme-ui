@@ -23,7 +23,6 @@
   "devDependencies": {
     "@unocss/nuxt": "catalog:dev",
     "@vueuse/core": "catalog:registry",
-    "@vueuse/nuxt": "catalog:dev",
     "@weme-ui/colors": "workspace:*",
     "@weme-ui/nuxt": "workspace:*",
     "@weme-ui/unocss-preset": "workspace:*",

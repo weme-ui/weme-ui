@@ -48,8 +48,7 @@
     "dev:prepare": "pnpm run build",
     "prepublishOnly": "pnpm run build",
     "test": "vitest",
-    "typecheck": "tsgo --noEmit",
-    "release": "pnpm build && bumpp"
+    "typecheck": "tsgo --noEmit"
   },
   "peerDependencies": {
     "@radix-ui/colors": "catalog:dev",
@@ -60,7 +59,6 @@
     "@radix-ui/colors": "catalog:dev",
     "@types/node": "catalog:build",
     "bezier-easing": "catalog:dev",
-    "bumpp": "catalog:build",
     "colorjs.io": "catalog:dev",
     "tsdown": "catalog:build",
     "typescript": "catalog:build",

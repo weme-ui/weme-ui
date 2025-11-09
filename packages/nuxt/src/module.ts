@@ -54,10 +54,6 @@ export default defineNuxtModule<WemeNuxtOptions>({
       }
     }
 
-    await registerModule('@vueuse/nuxt', 'vueuse', {
-      autoImports: true,
-    })
-
     await registerModule('@unocss/nuxt', 'unocss', {
       components: false,
       safelist: [

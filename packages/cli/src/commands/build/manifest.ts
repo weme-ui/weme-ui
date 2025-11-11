@@ -38,6 +38,7 @@ async function loadRegistries(cwd: string): Promise<ManifestSchema[]> {
 
       if (config.isOk()) {
         const result = manifestSchema.safeParse({
+          id: config.unwrap().id,
           name: config.unwrap().name,
           description: config.unwrap().description,
           version: pkg.unwrap().version || '0.0.0',

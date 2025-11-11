@@ -9,7 +9,7 @@ catalogs:
     '@commitlint/cli': ^20.1.0
     '@commitlint/config-conventional': ^20.0.0
     '@types/node': 24.0.15
-    '@typescript/native-preview': ^7.0.0-dev.20251109.1
+    '@typescript/native-preview': ^7.0.0-dev.20251110.1
     bumpp: ^10.3.1
     changelogen: ^0.6.2
     commitizen: ^4.3.1

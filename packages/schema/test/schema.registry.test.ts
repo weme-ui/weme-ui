@@ -5,6 +5,7 @@ describe('registry schema', () => {
   it('should validate', () => {
     const result = registrySchema.safeParse({
       $schema: 'https://weme-ui.github.io/schema/registry.json',
+      id: 'std',
       name: 'weme-ui/std',
       items: [
         {
@@ -31,6 +32,7 @@ describe('registry schema', () => {
       {
         "$schema": "https://weme-ui.github.io/schema/registry.json",
         "access": "public",
+        "id": "std",
         "items": [
           {
             "files": [
@@ -58,8 +60,9 @@ describe('registry schema', () => {
     expect(result.success).toBe(true)
     expect(result.data).toMatchInlineSnapshot(`
       {
-        "$schema": "https://weme-ui.github.io/schema/registry.json",
+        "$schema": "https://weme-ui.github.io/schema/registry.schema.json",
         "access": "public",
+        "id": "basic",
         "items": [
           {
             "dependencies": [
@@ -112,9 +115,10 @@ describe('registry schema', () => {
     expect(result.success).toBe(true)
     expect(result.data).toMatchInlineSnapshot(`
       {
-        "$schema": "https://weme-ui.github.io/schema/registry.json",
+        "$schema": "https://weme-ui.github.io/schema/registry.schema.json",
         "access": "public",
         "description": "The basic test registry for Weme UI.",
+        "id": "full",
         "items": [
           {
             "dependencies": [

@@ -1,6 +1,7 @@
 import { z } from 'zod'
 
 export const manifestSchema = z.strictObject({
+  id: z.string().trim(),
   name: z.string().trim(),
   description: z.string().trim().optional(),
   version: z.string().trim().optional(),

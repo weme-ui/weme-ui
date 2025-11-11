@@ -1,5 +1,6 @@
 {
-  "$schema": "https://weme-ui.github.io/schema/registry.json",
+  "$schema": "https://weme-ui.github.io/schema/registry.schema.json",
+  "id": "basic",
   "name": "weme-ui/basic",
   "items": [
     {

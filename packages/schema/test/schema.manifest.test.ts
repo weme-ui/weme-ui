@@ -4,6 +4,7 @@ import { manifestSchema } from '../src/schema'
 describe('manifest schema', () => {
   it('should validate', () => {
     const result = manifestSchema.safeParse({
+      id: 'std',
       name: 'weme-ui/std',
       directory: 'weme-ui/std',
       items: {
@@ -21,6 +22,7 @@ describe('manifest schema', () => {
       {
         "access": "public",
         "directory": "weme-ui/std",
+        "id": "std",
         "items": {
           "blocks": 0,
           "components": 1,
@@ -47,6 +49,7 @@ describe('manifest schema', () => {
           "access": "public",
           "description": "The standard components for Weme UI.",
           "directory": "std",
+          "id": "std",
           "items": {
             "blocks": 0,
             "components": 46,

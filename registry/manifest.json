@@ -1,5 +1,6 @@
 [
   {
+    "id": "std",
     "name": "weme-ui/std",
     "description": "The standard components for Weme UI.",
     "version": "0.1.4",
@@ -13,6 +14,6 @@
       "blocks": 0,
       "pages": 0
     },
-    "updated": "2025-11-08T09:28:36.253Z"
+    "updated": "2025-11-11T02:04:27.201Z"
   }
 ]

@@ -21,6 +21,8 @@
   "unocss": {
     "variablePrefix": "ui",
     "cssVars": {
+      "tabs-bg": "color.neutral.1",
+      "accordion-bg": "color.neutral.1",
       "toast-bg": "color.neutral.1",
       "toast-ring": "color.neutral.1",
       "toast-width": "24rem",

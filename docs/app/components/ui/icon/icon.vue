@@ -5,7 +5,7 @@ import { reactiveOmit } from '@vueuse/core'
 import { computed } from 'vue'
 
 const props = withDefaults(defineProps<IconProps>(), {
-  mode: 'svg',
+  mode: 'css',
 })
 
 const delegated = reactiveOmit(props, 'name')

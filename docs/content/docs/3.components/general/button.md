@@ -41,17 +41,17 @@ yarn @weme-ui/weme-ui add button
 ---
 data:
   - name: as
-    type: 
+    type:
       - string
     default: button
     description: 指定根元素的标签名。
   - name: asChild
-    type: 
+    type:
       - boolean
     default: false
     description: 是否将 `props` 传递给子元素而不是根元素。
   - name: type
-    type: 
+    type:
       - string
     default: button
     description: 指定按钮的类型。
@@ -63,7 +63,7 @@ data:
 ---
 data:
   - name: click
-    payload: 
+    payload:
       - "[event: MouseEvent]"
     description: 按钮的文本内容。
 ---
@@ -73,7 +73,7 @@ data:
 ---
 data:
   - name: default
-    payload: 
+    payload:
       - string
     description: 按钮的文本内容。
 ---
@@ -83,7 +83,7 @@ data:
 ---
 data:
   - name: data-state
-    value: 
+    value:
       - open
       - closed
     description: 按钮的文本内容。
@@ -93,8 +93,8 @@ data:
 ::css-table
 ---
 data:
-  - name: --ui-card-bg 
-    value: 
+  - name: --ui-card-bg
+    value:
       - "#fff"
     description: 按钮的文本内容。
 ---

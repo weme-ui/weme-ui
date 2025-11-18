@@ -16,10 +16,10 @@
     "reka-ui": "catalog:registry",
     "tailwind-merge": "catalog:registry",
     "tailwind-variants": "catalog:registry",
-    "vue": "catalog:dev",
-    "vue-router": "catalog:dev"
+    "vue": "catalog:dev"
   },
   "devDependencies": {
+    "@iconify-json/simple-icons": "catalog:docs",
     "@nuxt/content": "catalog:docs",
     "@nuxtjs/i18n": "catalog:docs",
     "@weme-ui/colors": "workspace:*",

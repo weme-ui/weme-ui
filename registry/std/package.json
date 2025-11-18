@@ -3,7 +3,7 @@
   "type": "module",
   "version": "0.1.4",
   "private": true,
-  "packageManager": "pnpm@10.21.0",
+  "packageManager": "pnpm@10.22.0",
   "description": "Weme UI Std components registry.",
   "author": "Allen Luo <luoyi@mouji.net>",
   "license": "MIT",

@@ -25,15 +25,6 @@ export async function resolveOptions(options: WemeNuxtOptions, nuxt: Nuxt, resol
   // variablePrefix
   options.variablePrefix = options.variablePrefix || 'ui'
 
-  // Colors
-  options.accentColors = defu(options.accentColors, {
-    gunmetal: '#1d2129',
-    ocean: '#05f',
-  })
-  options.neutralColors = defu(options.neutralColors, {
-    iron: '#86909c',
-  })
-
   // Themes
   options.themes = options.themes || []
   options.themes.push(defaultTheme)

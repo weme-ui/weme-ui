@@ -1,5 +1,5 @@
 export type {
-  WemeTheme,
-  WemeThemeColors,
-  WemeThemeTokens,
+  WemePresetTheme as WemeTheme,
+  WemePresetThemeColors as WemeThemeColors,
+  WemePresetThemeTokens as WemeThemeTokens,
 } from '@weme-ui/unocss-preset'

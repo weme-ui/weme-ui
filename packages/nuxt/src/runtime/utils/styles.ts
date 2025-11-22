@@ -58,7 +58,7 @@ export function createColorVariantClasses({ type, color, variant, slot = '' }: {
  * { accent: '', neutral: '', info: '', success: '', warning: '', error: '' }
  * ```
  */
-export function createColorVariants({ type = 'static', defaults, variant = 'solid', slot = '' }: {
+export function createColorVariants({ type = 'box', defaults, variant = 'solid', slot = '' }: {
   type?: TypeName
   variant?: string
   defaults?: string

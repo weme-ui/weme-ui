@@ -32,8 +32,8 @@ export const useChipStyle = createVariants({
 
   compoundVariants: [
     ...createColorCompoundVariants({
-      type: 'static',
-      variants: { normal: 'solid', icon: 'link', dotted: 'solid' },
+      type: 'box',
+      variants: { normal: 'solid', icon: 'plain', dotted: 'solid' },
       slot: 'chip',
     }),
 
@@ -46,7 +46,7 @@ export const useChipStyle = createVariants({
   ],
 
   defaultVariants: {
-    color: 'accent',
+    color: 'primary',
     variant: 'normal',
     position: 'tr',
     standalone: false,

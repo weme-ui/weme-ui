@@ -9,7 +9,7 @@ defineOptions({
 })
 
 const props = withDefaults(defineProps<LinkProps>(), {
-  color: 'accent',
+  color: 'primary',
   ariaCurrentValue: 'page',
   activeClass: '',
   inactiveClass: '',

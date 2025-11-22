@@ -11,7 +11,7 @@ defineOptions({
 })
 
 const props = withDefaults(defineProps<AlertProps>(), {
-  color: 'accent',
+  color: 'primary',
   variant: 'soft',
   radius: 'lg',
   clickable: false,

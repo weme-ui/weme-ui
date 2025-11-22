@@ -22,14 +22,14 @@ export const useKbdStyle = createVariants({
   },
   compoundVariants: [
     ...createColorCompoundVariants({
-      type: 'static',
+      type: 'box',
       variants: ['solid', 'soft', 'surface', 'outline', 'inverse'],
     }),
 
     { variant: ['surface', 'outline'], class: 'ring-inset' },
   ],
   defaultVariants: {
-    color: 'accent',
+    color: 'primary',
     variant: 'soft',
     size: 'md',
     radius: 'sm',

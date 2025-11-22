@@ -50,7 +50,7 @@ export const useTimelineStyle = createVariants({
   ],
 
   defaultVariants: {
-    color: 'accent',
+    color: 'primary',
     orientation: 'vertical',
     size: 'md',
   },

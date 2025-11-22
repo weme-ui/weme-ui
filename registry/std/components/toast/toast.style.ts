@@ -42,23 +42,25 @@ export const useToastStyle = createVariants({
   },
 
   compoundVariants: [
-    { color: 'accent', inverse: false, class: { base: 'ring-accent', icon: 'c-accent' } },
+    { color: 'primary', inverse: false, class: { base: 'ring-primary', icon: 'c-primary' } },
+    { color: 'secondary', inverse: false, class: { base: 'ring-secondary', icon: 'c-secondary' } },
     { color: 'neutral', inverse: false, class: { base: 'ring-neutral', icon: 'c-neutral' } },
     { color: 'info', inverse: false, class: { base: 'ring-info', icon: 'c-info' } },
     { color: 'success', inverse: false, class: { base: 'ring-success', icon: 'c-success' } },
     { color: 'warning', inverse: false, class: { base: 'ring-warning', icon: 'c-warning' } },
-    { color: 'error', inverse: false, class: { base: 'ring-error', icon: 'c-error' } },
+    { color: 'danger', inverse: false, class: { base: 'ring-danger', icon: 'c-danger' } },
 
-    { color: 'accent', inverse: true, class: { base: 'bg-accent c-accent-1' } },
+    { color: 'primary', inverse: true, class: { base: 'bg-primary c-primary-1' } },
+    { color: 'secondary', inverse: true, class: { base: 'bg-secondary c-secondary-1' } },
     { color: 'neutral', inverse: true, class: { base: 'bg-neutral c-neutral-1' } },
     { color: 'info', inverse: true, class: { base: 'bg-info c-info-1' } },
     { color: 'success', inverse: true, class: { base: 'bg-success c-success-1' } },
     { color: 'warning', inverse: true, class: { base: 'bg-warning c-warning-1' } },
-    { color: 'error', inverse: true, class: { base: 'bg-error c-error-1' } },
+    { color: 'danger', inverse: true, class: { base: 'bg-danger c-danger-1' } },
   ],
 
   defaultVariants: {
-    color: 'accent',
+    color: 'primary',
     radius: 'lg',
     orientation: 'horizontal',
     inverse: false,

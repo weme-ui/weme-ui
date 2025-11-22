@@ -7,7 +7,7 @@ import { cn } from '~/utils/styles'
 import { useChipStyle } from './chip.style'
 
 const props = withDefaults(defineProps<ChipProps>(), {
-  color: 'accent',
+  color: 'primary',
   variant: 'normal',
   position: 'tr',
   standalone: false,

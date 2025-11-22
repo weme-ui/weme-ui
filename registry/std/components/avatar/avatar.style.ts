@@ -34,14 +34,14 @@ export const useAvatarStyle = createVariants({
 
   compoundVariants: [
     ...createColorCompoundVariants({
-      type: 'static',
+      type: 'box',
       variants: ['solid', 'soft', 'surface', 'outline', 'inverse'],
       slot: 'base',
     }),
   ],
 
   defaultVariants: {
-    color: 'accent',
+    color: 'primary',
     variant: 'soft',
     size: 'md',
     radius: 'full',

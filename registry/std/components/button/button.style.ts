@@ -10,7 +10,7 @@ export const useButtonStyle = createVariants({
   },
   variants: {
     color: createColorVariants({ defaults: '' }),
-    variant: { solid: '', soft: '', surface: '', outline: '', ghost: '', link: '', inverse: '' },
+    variant: { solid: '', soft: '', surface: '', outline: '', ghost: '', plain: '', inverse: '' },
     size: {
       xs: { base: 'text-xs gap-1 h-5 px-1.5 leading-none', icon: 'size-3' },
       sm: { base: 'text-xs gap-1 h-6 px-2.5', icon: 'size-3' },
@@ -40,8 +40,8 @@ export const useButtonStyle = createVariants({
   },
   compoundVariants: [
     ...createColorCompoundVariants({
-      type: 'click',
-      variants: ['solid', 'soft', 'surface', 'outline', 'ghost', 'link', 'inverse'],
+      type: 'box',
+      variants: ['solid', 'soft', 'surface', 'outline', 'ghost', 'plain', 'inverse'],
       slot: 'base',
     }),
 
@@ -53,7 +53,7 @@ export const useButtonStyle = createVariants({
     { square: true, size: 'xl', class: { base: 'w-12' } },
   ],
   defaultVariants: {
-    color: 'accent',
+    color: 'primary',
     variant: 'solid',
     size: 'md',
     radius: 'sm',

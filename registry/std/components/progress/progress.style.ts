@@ -13,7 +13,7 @@ export const useProgressStyle = createVariants({
   },
 
   variants: {
-    color: createColorVariants({ type: 'static', slot: 'indicator' }),
+    color: createColorVariants({ type: 'box', slot: 'indicator' }),
     animate: {
       none: '',
       swing: { indicator: 'state-loading:animate-progress-swing' },
@@ -54,7 +54,7 @@ export const useProgressStyle = createVariants({
   ],
 
   defaultVariants: {
-    color: 'accent',
+    color: 'primary',
     animate: 'none',
     radius: 'xl',
     size: 'md',

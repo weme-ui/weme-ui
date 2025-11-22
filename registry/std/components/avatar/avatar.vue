@@ -12,7 +12,7 @@ defineOptions({
 })
 
 const props = withDefaults(defineProps<AvatarProps>(), {
-  color: 'accent',
+  color: 'primary',
   variant: 'soft',
   size: 'md',
   radius: 'full',

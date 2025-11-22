@@ -7,7 +7,7 @@ import { cn } from '~/utils/styles'
 import { useProgressStyle } from './progress.style'
 
 const props = withDefaults(defineProps<ProgressProps>(), {
-  color: 'accent',
+  color: 'primary',
   animate: 'none',
   radius: 'xl',
   size: 'md',

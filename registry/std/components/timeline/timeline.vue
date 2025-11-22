@@ -12,7 +12,7 @@ import Separator from '../separator/separator.vue'
 import { useTimelineStyle } from './timeline.style'
 
 const props = withDefaults(defineProps<TimelineProps>(), {
-  color: 'accent',
+  color: 'primary',
   orientation: 'vertical',
   size: 'md',
   reverse: false,

@@ -4,7 +4,7 @@ import type { PopConfirmStyleSlots } from './pop-confirm.style'
 export interface PopConfirmProps extends Omit<PopoverProps, 'ui' | 'closable'> {
   content: string
   icon?: string
-  type?: 'info' | 'success' | 'warning' | 'error'
+  type?: 'info' | 'success' | 'warning' | 'danger'
   okButtonText?: string
   cancelButtonText?: string
   loading?: boolean

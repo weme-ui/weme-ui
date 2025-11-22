@@ -3,12 +3,19 @@ import Example from '@/components/example.vue'
 import Preview from '@/components/preview.vue'
 
 const colors = [
-  { name: 'Accent', scales: ['bg-accent-1', 'bg-accent-2', 'bg-accent-3', 'bg-accent-4', 'bg-accent-5', 'bg-accent-6', 'bg-accent-7', 'bg-accent-8', 'bg-accent-9', 'bg-accent-10', 'bg-accent-11', 'bg-accent-12'] },
+  { name: 'Primary', scales: ['bg-primary-1', 'bg-primary-2', 'bg-primary-3', 'bg-primary-4', 'bg-primary-5', 'bg-primary-6', 'bg-primary-7', 'bg-primary-8', 'bg-primary-9', 'bg-primary-10', 'bg-primary-11', 'bg-primary-12'] },
+  { name: 'Secondary', scales: ['bg-secondary-1', 'bg-secondary-2', 'bg-secondary-3', 'bg-secondary-4', 'bg-secondary-5', 'bg-secondary-6', 'bg-secondary-7', 'bg-secondary-8', 'bg-secondary-9', 'bg-secondary-10', 'bg-secondary-11', 'bg-secondary-12'] },
   { name: 'Neutral', scales: ['bg-neutral-1', 'bg-neutral-2', 'bg-neutral-3', 'bg-neutral-4', 'bg-neutral-5', 'bg-neutral-6', 'bg-neutral-7', 'bg-neutral-8', 'bg-neutral-9', 'bg-neutral-10', 'bg-neutral-11', 'bg-neutral-12'] },
   { name: 'Info', scales: ['bg-info-1', 'bg-info-2', 'bg-info-3', 'bg-info-4', 'bg-info-5', 'bg-info-6', 'bg-info-7', 'bg-info-8', 'bg-info-9', 'bg-info-10', 'bg-info-11', 'bg-info-12'] },
   { name: 'Success', scales: ['bg-success-1', 'bg-success-2', 'bg-success-3', 'bg-success-4', 'bg-success-5', 'bg-success-6', 'bg-success-7', 'bg-success-8', 'bg-success-9', 'bg-success-10', 'bg-success-11', 'bg-success-12'] },
   { name: 'Warning', scales: ['bg-warning-1', 'bg-warning-2', 'bg-warning-3', 'bg-warning-4', 'bg-warning-5', 'bg-warning-6', 'bg-warning-7', 'bg-warning-8', 'bg-warning-9', 'bg-warning-10', 'bg-warning-11', 'bg-warning-12'] },
-  { name: 'Error', scales: ['bg-error-1', 'bg-error-2', 'bg-error-3', 'bg-error-4', 'bg-error-5', 'bg-error-6', 'bg-error-7', 'bg-error-8', 'bg-error-9', 'bg-error-10', 'bg-error-11', 'bg-error-12'] },
+  { name: 'Danger', scales: ['bg-danger-1', 'bg-danger-2', 'bg-danger-3', 'bg-danger-4', 'bg-danger-5', 'bg-danger-6', 'bg-danger-7', 'bg-danger-8', 'bg-danger-9', 'bg-danger-10', 'bg-danger-11', 'bg-danger-12'] },
+] as const
+
+const wemeColors = [
+  { name: 'Gunmetal', scales: ['bg-gunmetal-1', 'bg-gunmetal-2', 'bg-gunmetal-3', 'bg-gunmetal-4', 'bg-gunmetal-5', 'bg-gunmetal-6', 'bg-gunmetal-7', 'bg-gunmetal-8', 'bg-gunmetal-9', 'bg-gunmetal-10', 'bg-gunmetal-11', 'bg-gunmetal-12'] },
+  { name: 'Iron', scales: ['bg-iron-1', 'bg-iron-2', 'bg-iron-3', 'bg-iron-4', 'bg-iron-5', 'bg-iron-6', 'bg-iron-7', 'bg-iron-8', 'bg-iron-9', 'bg-iron-10', 'bg-iron-11', 'bg-iron-12'] },
+  { name: 'Ocean', scales: ['bg-ocean-1', 'bg-ocean-2', 'bg-ocean-3', 'bg-ocean-4', 'bg-ocean-5', 'bg-ocean-6', 'bg-ocean-7', 'bg-ocean-8', 'bg-ocean-9', 'bg-ocean-10', 'bg-ocean-11', 'bg-ocean-12'] },
 ] as const
 
 const radixColors = [
@@ -44,13 +51,27 @@ const radixColors = [
   { name: 'Mint', scales: ['bg-mint-1', 'bg-mint-2', 'bg-mint-3', 'bg-mint-4', 'bg-mint-5', 'bg-mint-6', 'bg-mint-7', 'bg-mint-8', 'bg-mint-9', 'bg-mint-10', 'bg-mint-11', 'bg-mint-12'] },
   { name: 'Sky', scales: ['bg-sky-1', 'bg-sky-2', 'bg-sky-3', 'bg-sky-4', 'bg-sky-5', 'bg-sky-6', 'bg-sky-7', 'bg-sky-8', 'bg-sky-9', 'bg-sky-10', 'bg-sky-11', 'bg-sky-12'] },
   { name: 'Black', scales: ['bg-black-1', 'bg-black-2', 'bg-black-3', 'bg-black-4', 'bg-black-5', 'bg-black-6', 'bg-black-7', 'bg-black-8', 'bg-black-9', 'bg-black-10', 'bg-black-11', 'bg-black-12'] },
-  { name: 'White', scales: ['bg-white', 'bg-white-2', 'bg-white-3', 'bg-white-4', 'bg-white-5', 'bg-white-6', 'bg-white-7', 'bg-white-8', 'bg-white-9', 'bg-white-10', 'bg-white-11', 'bg-white-12'] },
+  { name: 'White', scales: ['bg-white-1', 'bg-white-2', 'bg-white-3', 'bg-white-4', 'bg-white-5', 'bg-white-6', 'bg-white-7', 'bg-white-8', 'bg-white-9', 'bg-white-10', 'bg-white-11', 'bg-white-12'] },
 ] as const
 </script>
 
 <template>
-  <Example name="Colors" description="Discover special theme colors." class="grid-(~ cols-3) gap-6">
+  <Example name="Theme Colors" description="Discover special theme colors." class="grid-(~ cols-3) gap-6">
     <Preview v-for="color in colors" :key="color.name" :name="color.name" class="flex bg-muted p-1 rounded-lg">
+      <div class="flex-(~ 1) rounded-md overflow-hidden">
+        <div v-for="(scale, index) in color.scales" :key="scale" class="flex-1">
+          <div :class="scale" class="flex-(~ center) h-8 text-(xs center)">
+            <span :class="index > 6 ? 'text-neutral-1' : ''">
+              {{ index + 1 }}
+            </span>
+          </div>
+        </div>
+      </div>
+    </Preview>
+  </Example>
+
+  <Example name="Weme Colors" description="Discover all weme colors." class="grid-(~ cols-3) gap-6">
+    <Preview v-for="color in wemeColors" :key="color.name" :name="color.name" class="flex bg-muted p-1 rounded-lg">
       <div class="flex-(~ 1) rounded-md overflow-hidden">
         <div v-for="(scale, index) in color.scales" :key="scale" class="flex-1">
           <div :class="scale" class="flex-(~ center) h-8 text-(xs center)">

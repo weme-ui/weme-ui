@@ -1,35 +1,54 @@
 import type { Rule, WemePresetResolvedOptions } from '../types'
-import { bgGradientColor } from './background'
-import { borderColor, borderSize, strokeColor, textStrokeColor } from './border'
-import { accentColor, bgColor, fgColor, fillColor } from './color'
-import { textDecorationColor } from './decoration'
-import { divideColor } from './divide'
-import { outlineColor } from './outline'
-import { placeholderColor } from './placeholder'
-import { ringColor } from './ring'
-import { shadowColor, textShadowColor } from './shadow'
-import { boxSize } from './size'
+import { borderColors, borderSizes, divideColor } from './border'
+import { accentColors, bgColors, caretColors, decorationColors, fgColors, placeholderColors } from './color'
+import { gradientColors } from './gradient'
+import { outlineColors } from './outline'
+import { ringColors } from './ring'
+import { shadowColors, textShadowColors } from './shadow'
+import { boxSizes } from './size'
+import { fillColor, strokeColor } from './svg'
 
 export function rules(options: WemePresetResolvedOptions): Rule[] {
   return [
-    bgColor(options),
-    bgGradientColor(options),
-    fgColor(options),
-    accentColor(options),
-    borderColor(options),
+    // region Colors
+    bgColors(options),
+    fgColors(options),
+    decorationColors(options),
+    accentColors(options),
+    caretColors(options),
+    placeholderColors(options),
+    // endregion
+
+    // region Gradient
+    gradientColors(options),
+    // endregion
+
+    // region Border
+    borderColors(options),
+    borderSizes(options),
     divideColor(options),
-    outlineColor(options),
-    ringColor(options),
-    shadowColor(options),
-    textShadowColor(options),
+    // endregion
+
+    // region Outline
+    outlineColors(options),
+    // endregion
+
+    // region Ring
+    ringColors(options),
+    // endregion
+
+    // region Shadow
+    shadowColors(options),
+    textShadowColors(options),
+    // endregion
+
+    // region SVG
     fillColor(options),
     strokeColor(options),
-    textStrokeColor(options),
-    textDecorationColor(options),
-    placeholderColor(options),
+    // endregion
 
-    // Css Variables
-    borderSize(options),
-    boxSize(options),
+    // region Size
+    boxSizes(options),
+    // endregion
   ].flat()
 }

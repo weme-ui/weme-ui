@@ -1,31 +1,37 @@
-import type { WemeColors, WemePresetOptions, WemePresetResolvedOptions, WemeTheme } from './types'
-import RadixColors from './colors'
-import { trackColorScales } from './utils'
-import { transformColors } from './utils/color'
+import type { InlineCssVars } from '@weme-ui/schema'
+import type { WemePresetColors, WemePresetOptions, WemePresetResolvedOptions, WemePresetTheme, WemePresetThemeDefinition } from './types'
+import defu from 'defu'
+import AllColors from './colors'
+import { PRIORITY, THEME } from './defaults'
+import { trackColor, transformColors } from './utils'
 
-export function resolveOptions(_options: WemePresetOptions): WemePresetResolvedOptions {
+export function resolveOptions(options: WemePresetOptions): WemePresetResolvedOptions {
+  const {
+    accentColors,
+    neutralColors,
+  } = options
+
+  const colors = resolveColors(accentColors, neutralColors)
+  const themes = resolveThemes(options.themes || [])
+  const cssVars = resolveCssVars(options.cssVars)
+
   return {
-    variablePrefix: _options.variablePrefix || 'ui',
-    colors: resolveColors(_options.accentColors, _options.neutralColors),
-    themes: resolveThemes(_options.themes),
-    cssVars: resolveCssVars(_options.cssVars),
+    variablePrefix: options.variablePrefix ? options.variablePrefix.toLowerCase() : 'ui',
+    colors,
+    themes,
+    cssVars,
   }
 }
 
-function resolveColors(
-  accentColors?: Record<string, string>,
-  neutralColors?: Record<string, string>,
-) {
-  const colors: WemeColors = RadixColors
+function resolveColors(accentColors?: Record<string, string>, neutralColors?: Record<string, string>) {
+  const colors: WemePresetColors = AllColors
 
-  // Custom Accent Colors
   if (accentColors && Object.keys(accentColors).length > 0) {
     Object.entries(accentColors).forEach(([name, color]) => {
       colors[name] = transformColors(color)
     })
   }
 
-  // Custom Neutral Colors
   if (neutralColors && Object.keys(neutralColors).length > 0) {
     Object.entries(neutralColors).forEach(([name, color]) => {
       colors[name] = transformColors(color, true)
@@ -35,49 +41,61 @@ function resolveColors(
   return colors
 }
 
-function resolveThemes(themes?: WemeTheme[]): WemeTheme[] {
-  const resolved: WemeTheme[] = [
-    ...(themes || []),
-  ]
+function resolveThemes(themes: WemePresetThemeDefinition[]) {
+  const resolved: WemePresetTheme[] = [...themes]
+    .map((theme) => {
+      theme.id = theme.id ?? THEME.id
+      theme.name = theme.name ?? THEME.name
+      theme.priority = theme.priority ?? theme.id === THEME.id ? THEME.priority : PRIORITY
+      theme.appearance = theme.appearance ?? THEME.appearance
+      theme.radius = theme.radius ?? THEME.radius
+      theme.colors = defu(theme.colors ?? {}, THEME.colors)
+      theme.tokens = defu(theme.tokens ?? {}, THEME.tokens)
 
-  // Track colors
+      return theme as WemePresetTheme
+    })
+    .filter((theme, index, self) => {
+      const foundIndex = self.findIndex(t => t.id === theme.id)
+      return index === foundIndex
+    })
+    .sort((a, b) => b.priority - a.priority)
+
   resolved.forEach((theme) => {
-    if (theme.colors) {
-      Object.entries(theme.colors).forEach(([, color]) => {
+    Object.entries(theme.colors)
+      .forEach(([, color]) => {
         if (
           !color.startsWith('#')
           && !color.startsWith('rgb(')
-          && !color.startsWith('hsl(')
-          && !color.startsWith('lch(')
-          && !color.startsWith('oklch(')
+          && !color.startsWith('rgba(')
+          && !color.startsWith('var(')
         ) {
-          trackColorScales(color)
+          for (let i = 1; i <= 12; i++) {
+            trackColor(color, i)
+          }
         }
       })
-    }
   })
 
   return resolved
 }
 
-function resolveCssVars(_cssVars?: WemePresetOptions['cssVars']): WemePresetResolvedOptions['cssVars'] {
-  if (!_cssVars)
-    return {}
+function resolveCssVars(cssVars?: WemePresetOptions['cssVars']) {
+  const resolved: InlineCssVars = {}
 
-  const cssVars: WemePresetResolvedOptions['cssVars'] = {}
+  if (cssVars && Object.keys(cssVars).length > 0) {
+    Object.entries(cssVars).forEach(([name, value]) => {
+      if (typeof value === 'string') {
+        resolved[name] = value
+        return
+      }
 
-  Object.entries(_cssVars).forEach(([name, value]) => {
-    if (typeof value === 'string') {
-      cssVars[name] = value
-      return
-    }
+      Object.entries(value as Record<string, string>)
+        .forEach(([subName, subValue]) => {
+          if (typeof subValue === 'string')
+            resolved[`${name}-${subName}`] = subValue
+        })
+    })
+  }
 
-    Object.entries(value as Record<string, string>)
-      .forEach(([subName, subValue]) => {
-        if (typeof subValue === 'string')
-          cssVars[`${name}-${subName}`] = subValue
-      })
-  })
-
-  return cssVars
+  return resolved
 }

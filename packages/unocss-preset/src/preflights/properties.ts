@@ -1,7 +1,7 @@
 import type { Preflight } from '../types'
 import { trackedProperties } from '../utils'
 
-export function preflightProperties(): Preflight | undefined {
+export function properties(): Preflight | undefined {
   return {
     layer: 'properties',
     getCSS() {

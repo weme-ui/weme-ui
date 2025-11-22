@@ -9,7 +9,7 @@ const stateAttributes = ['open', 'closed', 'checked', 'unchecked', 'indeterminat
 const swipeAttributes = ['start', 'move', 'cancel', 'end']
 const swipeDirectionAttributes = ['left', 'right', 'up', 'down']
 
-export const variantRekaDataAttribute: Variant[] = [
+export const dataAttribute: Variant[] = [
   // Align
   ...createDataVariants('align', alignAttributes),
   ...createDataVariants('align', alignAttributes, 'group'),
@@ -18,6 +18,7 @@ export const variantRekaDataAttribute: Variant[] = [
   ...createDataVariants('align', alignAttributes, 'parent'),
   ...createDataVariants('align', alignAttributes, 'has'),
   ...createDataVariants('align', alignAttributes, 'in'),
+  ...createDataVariants('align', alignAttributes, 'not'),
 
   // Motion
   ...createDataVariants('motion', motionAttributes),
@@ -27,6 +28,7 @@ export const variantRekaDataAttribute: Variant[] = [
   ...createDataVariants('motion', motionAttributes, 'parent'),
   ...createDataVariants('motion', motionAttributes, 'has'),
   ...createDataVariants('motion', motionAttributes, 'in'),
+  ...createDataVariants('motion', motionAttributes, 'not'),
 
   // Orientation
   ...createDataVariants('orientation', orientationAttributes),
@@ -36,6 +38,7 @@ export const variantRekaDataAttribute: Variant[] = [
   ...createDataVariants('orientation', orientationAttributes, 'parent'),
   ...createDataVariants('orientation', orientationAttributes, 'has'),
   ...createDataVariants('orientation', orientationAttributes, 'in'),
+  ...createDataVariants('orientation', orientationAttributes, 'not'),
 
   // Side
   ...createDataVariants('side', sideAttributes),
@@ -45,6 +48,7 @@ export const variantRekaDataAttribute: Variant[] = [
   ...createDataVariants('side', sideAttributes, 'parent'),
   ...createDataVariants('side', sideAttributes, 'has'),
   ...createDataVariants('side', sideAttributes, 'in'),
+  ...createDataVariants('side', sideAttributes, 'not'),
 
   // State
   ...createDataVariants('state', stateAttributes),
@@ -54,6 +58,7 @@ export const variantRekaDataAttribute: Variant[] = [
   ...createDataVariants('state', stateAttributes, 'parent'),
   ...createDataVariants('state', stateAttributes, 'has'),
   ...createDataVariants('state', stateAttributes, 'in'),
+  ...createDataVariants('state', stateAttributes, 'not'),
 
   // Swipe
   ...createDataVariants('swipe', swipeAttributes),
@@ -63,6 +68,7 @@ export const variantRekaDataAttribute: Variant[] = [
   ...createDataVariants('swipe', swipeAttributes, 'parent'),
   ...createDataVariants('swipe', swipeAttributes, 'has'),
   ...createDataVariants('swipe', swipeAttributes, 'in'),
+  ...createDataVariants('swipe', swipeAttributes, 'not'),
 
   // Swipe direction
   ...createDataVariants('swipe-direction', swipeDirectionAttributes),
@@ -72,6 +78,7 @@ export const variantRekaDataAttribute: Variant[] = [
   ...createDataVariants('swipe-direction', swipeDirectionAttributes, 'parent'),
   ...createDataVariants('swipe-direction', swipeDirectionAttributes, 'has'),
   ...createDataVariants('swipe-direction', swipeDirectionAttributes, 'in'),
+  ...createDataVariants('swipe-direction', swipeDirectionAttributes, 'not'),
 ]
 
 function createDataVariants(name: string, attributes: string[], tagName: string = ''): Variant[] {
@@ -96,6 +103,7 @@ function createDataVariants(name: string, attributes: string[], tagName: string 
             parent: `:where(*[data-${dataAttribute}] > &)`,
             has: `&:has(*[data-${dataAttribute}])`,
             in: `:where(*[data-${dataAttribute}]) &`,
+            not: `:not([data-${dataAttribute}])`,
           }
 
           return tagName === ''

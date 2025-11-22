@@ -1,5 +1,5 @@
 import type { Rule, WemePresetResolvedOptions } from '../types'
-import { getColorNames, resolveColor, trackProperty } from '../utils'
+import { resolveColor, trackProperty } from '../utils'
 
 const properties = {
   'gradient-position': trackProperty('--un-gradient-position'),
@@ -13,13 +13,12 @@ const properties = {
   'gradient-to-position': trackProperty('--un-gradient-to-position', { syntax: '<length-percentage>', initialValue: '100%' }),
 }
 
-export function bgGradientColor(options: WemePresetResolvedOptions): Rule[] {
+export function gradientColors(options: WemePresetResolvedOptions): Rule[] {
   return [
-    // region Colors
     [
       /^(from|via|to|stops)-(.+)$/,
       function* ([, p, c]) {
-        const result = resolveColor(`--un-gradient-${p}`, c, getColorNames(options))
+        const result = resolveColor(`--un-gradient-${p}`, 'bg', c, options)
 
         if (result) {
           switch (p) {
@@ -61,6 +60,5 @@ export function bgGradientColor(options: WemePresetResolvedOptions): Rule[] {
         ],
       },
     ],
-    // endregion
   ]
 }

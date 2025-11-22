@@ -40,22 +40,38 @@ export const routes: RouteRecordRaw[] = [
     },
     component: () => import('./pages/theme/color.vue'),
   },
+  {
+    path: '/theme/typography',
+    meta: {
+      category: 'Theme',
+      title: 'Typography',
+    },
+    component: () => import('./pages/theme/typography.vue'),
+  },
+  {
+    path: '/theme/color-rules',
+    meta: {
+      category: 'Theme',
+      title: 'Color Rules',
+    },
+    component: () => import('./pages/theme/color-rules.vue'),
+  },
 
   // Utils
   {
-    path: '/utils/clickable',
+    path: '/utils/button',
     meta: {
       category: 'Utils',
-      title: 'Clickable',
+      title: 'Button',
     },
-    component: () => import('./pages/utils/clickable.vue'),
+    component: () => import('./pages/utils/btn.vue'),
   },
   {
-    path: '/utils/static',
+    path: '/utils/box',
     meta: {
       category: 'Utils',
-      title: 'Static',
+      title: 'Box',
     },
-    component: () => import('./pages/utils/static.vue'),
+    component: () => import('./pages/utils/box.vue'),
   },
 ]

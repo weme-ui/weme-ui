@@ -1,4 +1,4 @@
-import type { CSSObjectInput } from '@unocss/core'
+import type { CSSObjectInput } from 'unocss'
 import { symbols } from '@unocss/core'
 
 // region Tracking Colors
@@ -9,12 +9,6 @@ export function trackColor(color: string, scale: number) {
 
   if (!trackedColors.has(key))
     trackedColors.add(key)
-}
-
-export function trackColorScales(color: string) {
-  for (let scale = 1; scale <= 12; scale++) {
-    trackColor(color, scale)
-  }
 }
 // endregion
 

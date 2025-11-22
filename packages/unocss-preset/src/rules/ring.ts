@@ -1,44 +1,34 @@
 import type { Rule, WemePresetResolvedOptions } from '../types'
-import { getColorNames, getCssVarName, resolveColor } from '../utils'
+import { resolveColor } from '../utils'
 
-export function ringColor(options: WemePresetResolvedOptions): Rule[] {
+export function ringColors(options: WemePresetResolvedOptions): Rule[] {
   return [
-    // region Colors
     [
       /^ring-(.+)$/,
       ([, c]) => {
-        return resolveColor('--un-ring-color', c, getColorNames(options))
+        return resolveColor('--un-ring-color', 'bg', c, options)
       },
-      { autocomplete: 'ring-<color>' },
+      {
+        autocomplete: [
+          'ring-<color>',
+          'ring-<color>-<scale>',
+          'ring-<color>-<scale>/<percent>',
+        ],
+      },
     ],
 
     [
       /^inset-ring-(.+)$/,
       ([, c]) => {
-        return resolveColor('--un-inset-ring-color', c, getColorNames(options))
+        return resolveColor('--un-inset-ring-color', 'bg', c, options)
       },
-      { autocomplete: 'inset-ring-<color>' },
-    ],
-    // endregion
-
-    // region Theme tokens
-    [
-      /^ring-(default)$/,
-      ([, c]) => {
-        return {
-          '--un-ring-color': `var(${getCssVarName(`ring-${c}`, options.variablePrefix)})`,
-        }
+      {
+        autocomplete: [
+          'inset-ring-<color>',
+          'inset-ring-<color>-<scale>',
+          'inset-ring-<color>-<scale>/<percent>',
+        ],
       },
     ],
-
-    [
-      /^inset-ring-(default)$/,
-      ([, c]) => {
-        return {
-          '--un-inset-ring-color': `var(${getCssVarName(`ring-${c}`, options.variablePrefix)})`,
-        }
-      },
-    ],
-    // endregion
   ]
 }

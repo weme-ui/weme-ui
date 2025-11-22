@@ -1,204 +1,115 @@
 import type { Rule, WemePresetResolvedOptions } from '../types'
-import { getColorNames, getCssVarName, resolveColor, resolveCssVar } from '../utils'
+import { resolveColor } from '../utils'
 
-export function bgColor(options: WemePresetResolvedOptions): Rule[] {
+export function fgColors(options: WemePresetResolvedOptions): Rule[] {
   return [
-    // region Colors
-    [
-      /^bg-(.+)$/,
-      ([, c]) => {
-        return resolveColor('background-color', c, getColorNames(options))
-      },
-      {
-        autocomplete: [
-          `bg-<color>`,
-          `bg-<color>-<scale>`,
-          `bg-<color>-<scale>/<percent>`,
-        ],
-      },
-    ],
-    // endregion
-
-    // region Theme tokens
-    [
-      /^bg-(default|dimmed|muted|elevated)$/,
-      ([, c]) => {
-        return {
-          'background-color': `var(${getCssVarName(`bg-${c}`, options.variablePrefix)})`,
-        }
-      },
-      {
-        autocomplete: [
-          'bg-(default|dimmed|muted|elevated)',
-        ],
-      },
-    ],
-
-    [
-      /^bg-(border|border-elevated)$/,
-      ([, c]) => {
-        return {
-          'background-color': `var(${getCssVarName(`border-${c === 'border' ? 'default' : c}`, options.variablePrefix)})`,
-        }
-      },
-      {
-        autocomplete: [
-          'bg-(border|border-elevated)',
-        ],
-      },
-    ],
-    // endregion
-
-    // region Css Variables
-    [
-      /^bg-(.+)$/,
-      ([, c]) => {
-        return resolveCssVar('background-color', c, options)
-      },
-    ],
-    // endregion
-  ]
-}
-
-export function fgColor(options: WemePresetResolvedOptions): Rule[] {
-  return [
-    // region Colors
     [
       /^(?:text|color|c)-(.+)$/,
       ([, c]) => {
-        return resolveColor('color', c, getColorNames(options))
+        return resolveColor('color', 'fg', c, options)
       },
       {
         autocomplete: [
-          `(text|color|c)-<color>`,
-          `(text|color|c)-<color>-<scale>`,
-          `(text|color|c)-<color>-<scale>/<percent>`,
+          '(text|color|c)-<color>',
+          '(text|color|c)-<color>-<scale>',
+          '(text|color|c)-<color>-<scale>/<percent>',
         ],
       },
     ],
-    // endregion
-
-    // region Theme tokens
-    [
-      /^(?:text|color|c)-(dimmed|muted|toned|default|highlighted)$/,
-      ([, c]) => {
-        return {
-          color: `var(${getCssVarName(`fg-${c}`, options.variablePrefix)})`,
-        }
-      },
-      {
-        autocomplete: [
-          '(text|color|c)-(dimmed|muted|toned|default|highlighted)',
-        ],
-      },
-    ],
-    // endregion
-
-    // region Css Variables
-    [
-      /^(?:text|color|c)-(.+)$/,
-      ([, c]) => {
-        return resolveCssVar('color', c, options)
-      },
-    ],
-    // endregion
   ]
 }
 
-export function fillColor(options: WemePresetResolvedOptions): Rule[] {
+export function bgColors(options: WemePresetResolvedOptions): Rule[] {
   return [
-    // region Colors
     [
-      /^fill-(.+)$/,
+      /^bg-(.+)$/,
       ([, c]) => {
-        return resolveColor('fill', c, getColorNames(options))
+        return resolveColor('background-color', 'bg', c, options)
       },
       {
         autocomplete: [
-          'fill-<color>',
-          'fill-<color>-<scale>',
-          'fill-<color>-<scale>/<percent>',
+          'bg-<color>',
+          'bg-<color>-<scale>',
+          'bg-<color>-<scale>/<percent>',
         ],
       },
     ],
-    // endregion
-
-    // region Theme tokens
-    [
-      /^fill-(default|dimmed|muted|elevated)$/,
-      ([, c]) => {
-        return {
-          fill: `var(${getCssVarName(`bg-${c}`, options.variablePrefix)})`,
-        }
-      },
-      {
-        autocomplete: [
-          'fill-(default|dimmed|muted|elevated)',
-        ],
-      },
-    ],
-
-    [
-      /^fill-(border|border-elevated)$/,
-      ([, c]) => {
-        return {
-          fill: `var(${getCssVarName(`border-${c === 'border' ? 'default' : c}`, options.variablePrefix)})`,
-        }
-      },
-      {
-        autocomplete: [
-          'fill-(border|border-elevated)',
-        ],
-      },
-    ],
-    // endregion
-
-    // region Css Variables
-    [
-      /^fill-(.+)$/,
-      ([, c]) => {
-        return resolveCssVar('fill', c, options)
-      },
-    ],
-    // endregion
   ]
 }
 
-export function accentColor(options: WemePresetResolvedOptions): Rule[] {
+export function decorationColors(options: WemePresetResolvedOptions): Rule[] {
   return [
-    // region Colors
+    [
+      /^(?:underline|decoration)-(.+)$/,
+      ([, c]) => {
+        const result = resolveColor('text-decoration-color', 'fg', c, options)
+
+        if (result) {
+          result['-webkit-text-decoration-color'] = result['text-decoration-color']
+          return result
+        }
+      },
+      {
+        autocomplete: [
+          '(underline|decoration)-<color>',
+          '(underline|decoration)-<color>-<scale>',
+          '(underline|decoration)-<color>-<scale>/<percent>',
+        ],
+      },
+    ],
+  ]
+}
+
+export function accentColors(options: WemePresetResolvedOptions): Rule[] {
+  return [
     [
       /^accent-(.+)$/,
       ([, c]) => {
-        const result = resolveColor('accent', c, getColorNames(options))
-
-        if (result) {
-          result['accent-color'] = result.accent
-        }
-
-        return result
-      },
-      { autocomplete: 'accent-<color>' },
-    ],
-    // endregion
-
-    // region Theme tokens
-    [
-      /^accent-(dimmed|muted|toned|default|highlighted)$/,
-      ([, c]) => {
-        const accent = `var(${getCssVarName(`fg-${c}`, options.variablePrefix)})`
-
-        return {
-          accent,
-          'accent-color': `var(${getCssVarName(`fg-${c}`, options.variablePrefix)})`,
-        }
+        return resolveColor('accent-color', 'fg', c, options)
       },
       {
         autocomplete: [
-          'accent-(dimmed|muted|toned|default|highlighted)',
+          'accent-<color>',
+          'accent-<color>-<scale>',
+          'accent-<color>-<scale>/<percent>',
         ],
       },
     ],
-    // endregion
+  ]
+}
+
+export function caretColors(options: WemePresetResolvedOptions): Rule[] {
+  return [
+    [
+      /^caret-(.+)$/,
+      ([, c]) => {
+        return resolveColor('caret-color', 'fg', c, options)
+      },
+      {
+        autocomplete: [
+          'caret-<color>',
+          'caret-<color>-<scale>',
+          'caret-<color>-<scale>/<percent>',
+        ],
+      },
+    ],
+  ]
+}
+
+export function placeholderColors(options: WemePresetResolvedOptions): Rule[] {
+  return [
+    [
+      /^placeholder-(.+)$/,
+      ([, c]) => {
+        return resolveColor('placeholder-color', 'fg', c, options)
+      },
+      {
+        autocomplete: [
+          'placeholder-<color>',
+          'placeholder-<color>-<scale>',
+          'placeholder-<color>-<scale>/<percent>',
+        ],
+      },
+    ],
   ]
 }

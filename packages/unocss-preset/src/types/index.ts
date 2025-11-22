@@ -1,5 +1,2 @@
-export * from './colors'
-export * from './options'
-export * from './theme'
+export * from './preset'
 export * from './unocss'
-export * from './utils'

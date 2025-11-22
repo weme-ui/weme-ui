@@ -1,45 +1,44 @@
-import type { WemeTheme } from './types'
+import type { WemePresetTheme, WemePresetThemeColorNames } from './types'
 
-export const defaultThemeColors = [
-  'accent',
-  'neutral',
-  'info',
-  'success',
-  'warning',
-  'error',
-]
+export const BG_WHITE = '#fff'
+export const BG_BLACK = '#111'
 
-export const defaultTheme: WemeTheme = {
+export const THEME: WemePresetTheme = {
   id: 'ROOT',
   name: 'ROOT',
   priority: 1000,
-  translucent: false,
   radius: '0.25rem',
+  appearance: 'light',
   colors: {
-    accent: 'indigo',
-    neutral: 'gray',
+    primary: 'gunmetal',
+    secondary: 'ocean',
+    neutral: 'iron',
     info: 'blue',
-    success: 'grass',
+    success: 'green',
     warning: 'orange',
-    error: 'red',
+    danger: 'ruby',
   },
   tokens: {
     foreground: {
-      muted: 'color.neutral.7',
-      toned: 'color.neutral.9',
-      default: 'color.neutral.11',
-      highlighted: 'color.neutral.12',
+      muted: 'neutral.7',
+      toned: 'neutral.9',
+      default: 'neutral.11',
+      highlighted: 'neutral.12',
     },
     background: {
-      default: 'color.neutral.1',
-      dimmed: 'color.neutral.2',
-      muted: 'color.neutral.3',
-      elevated: 'color.neutral.4',
+      default: 'neutral.1',
+      dimmed: 'neutral.2',
+      muted: 'neutral.3',
+      elevated: 'neutral.4',
     },
     border: {
-      default: 'color.neutral.5',
-      elevated: 'color.neutral.6',
+      default: 'neutral.5',
+      elevated: 'neutral.6',
     },
     ring: '$border.default',
   },
 }
+
+export const PRIORITY = 1
+
+export const THEME_COLORS = Object.keys(THEME.colors) as WemePresetThemeColorNames[]

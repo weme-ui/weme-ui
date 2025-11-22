@@ -1,9 +1,8 @@
-import type { Preflight } from '../types'
+import type { Preflight, WemePresetResolvedOptions } from '../types'
 import { minifyCss } from '../utils'
 
 const resetCSS = `
-html,
-:host {
+html {
   text-size-adjust: 100%;
   scroll-behavior: smooth;
   overflow-wrap: break-word;
@@ -38,19 +37,22 @@ body {
 }
 
 ::-moz-selection {
-  background: color-mix(in oklch, var(--accent-9) 20%, transparent);
+  background: color-mix(in oklch, var(--primary-9) 20%, transparent);
 }
 
 ::selection {
-  background: color-mix(in oklch, var(--accent-9) 20%, transparent);
+  background: color-mix(in oklch, var(--primary-9) 20%, transparent);
 }
 `
 
-export function preflightReset(prefix: string): Preflight {
+export function reset(options: WemePresetResolvedOptions): Preflight {
   return {
     layer: 'base',
-    getCSS() {
-      return minifyCss(resetCSS.replace(/ui/g, prefix))
+    getCSS({ generator }) {
+      return minifyCss(
+        resetCSS.replace(/ui/g, options.variablePrefix),
+        generator.config.envMode === 'dev',
+      )
     },
   }
 }

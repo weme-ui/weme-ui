@@ -1,6 +1,6 @@
 import type { Variant } from '../types'
-import { variantRekaDataAttribute } from './data'
+import { dataAttribute } from './data-attribute'
 
 export const variants: Variant[] = [
-  ...variantRekaDataAttribute,
+  ...dataAttribute,
 ]

@@ -1,6 +1,6 @@
 import type { Shortcuts } from '../types'
 
-export const utilsShortcuts = [
+export const utils = [
   // Utils
   {
     'abs': 'absolute',
@@ -24,6 +24,5 @@ export const utilsShortcuts = [
     'z-tooltip': 'z-40',
     'z-popup': 'z-30',
     'z-overlay': 'z-20',
-    'z-affix': 'z-10',
   },
 ] satisfies Shortcuts

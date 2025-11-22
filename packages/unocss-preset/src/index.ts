@@ -8,8 +8,8 @@ import { theme } from './theme'
 import { getColorNames } from './utils'
 import { variants } from './variants'
 
-export const presetWemeUI = definePreset((_options: WemePresetOptions = {}) => {
-  const options = resolveOptions(_options)
+export const presetWemeUI = definePreset((userOptions: WemePresetOptions = {}) => {
+  const options = resolveOptions(userOptions)
 
   return {
     name: '@weme-ui/unocss-preset',
@@ -19,15 +19,14 @@ export const presetWemeUI = definePreset((_options: WemePresetOptions = {}) => {
     theme: theme(options),
     variants,
     shorthands: {
-      color: `(${getColorNames(options).join('|')})`,
+      color: `(${getColorNames(options.colors).join('|')})`,
       scale: `(${Array.from({ length: 11 }, (_, i) => i + 1).join('|')})`,
     },
     options,
   }
 })
 
-export { defaultThemeColors as colors } from './defaults'
-export { variantsMap } from './shortcuts/variants'
+export { THEME_COLORS } from './defaults'
 
-export { WemePresetOptions }
-export * from './types/theme'
+export type { WemePresetOptions } from './types'
+export type { WemePresetTheme, WemePresetThemeColorNames, WemePresetThemeColors, WemePresetThemeTokens } from './types'

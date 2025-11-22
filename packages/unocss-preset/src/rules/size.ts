@@ -1,41 +1,47 @@
 import type { Rule, WemePresetResolvedOptions } from '../types'
-import { resolveCssVar } from '../utils'
+import { resolveColor } from '../utils'
 
-export function boxSize(options: WemePresetResolvedOptions): Rule[] {
+export function boxSizes(options: WemePresetResolvedOptions): Rule[] {
   return [
-    // region Css Variables
     [
       /^size-(min-|max-)?(.+)$/,
       ([, m, c]) => {
-        const width = resolveCssVar('width', c, options)
-        const height = resolveCssVar('height', c, options)
+        const width = resolveColor('width', '', c, options)
+        const height = resolveColor('height', '', c, options)
 
         if (width && height) {
           if (m === 'min-') {
             return { 'min-width': width.width, 'min-height': height.height }
           }
 
-          else if (m === 'max-') {
+          if (m === 'max-') {
             return { 'max-width': width.width, 'max-height': height.height }
           }
 
-          return { 'min-width': width.width, 'min-height': height.height }
+          return { width: width.width, height: height.height }
         }
+      },
+      {
+        autocomplete: [
+          'size-<value>',
+          'size-min-<value>',
+          'size-max-<value>',
+        ],
       },
     ],
 
     [
       /^(?:size-)?(min-|max-)?([wh])-?(.+)$/,
       ([, m, w, c]) => {
-        const width = resolveCssVar('width', c, options)
-        const height = resolveCssVar('height', c, options)
+        const width = resolveColor('width', '', c, options)
+        const height = resolveColor('height', '', c, options)
 
         if (w === 'w' && width) {
           if (m === 'min-') {
             return { 'min-width': width.width }
           }
 
-          else if (m === 'max-') {
+          if (m === 'max-') {
             return { 'max-width': width.width }
           }
 
@@ -47,14 +53,20 @@ export function boxSize(options: WemePresetResolvedOptions): Rule[] {
             return { 'min-height': height.height }
           }
 
-          else if (m === 'max-') {
+          if (m === 'max-') {
             return { 'max-height': height.height }
           }
 
           return { height: height.height }
         }
       },
+      {
+        autocomplete: [
+          '(size|min|max)-<value>',
+          '(size|min|max)-w-<value>',
+          '(size|min|max)-h-<value>',
+        ],
+      },
     ],
-    // endregion
   ]
 }

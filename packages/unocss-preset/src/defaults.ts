@@ -42,3 +42,8 @@ export const THEME: WemePresetTheme = {
 export const PRIORITY = 1
 
 export const THEME_COLORS = Object.keys(THEME.colors) as WemePresetThemeColorNames[]
+
+export const VARIANT_MAP: Record<string, string[]> = {
+  btn: ['solid', 'soft', 'surface', 'outline', 'ghost', 'plain', 'inverse'],
+  box: ['solid', 'soft', 'surface', 'outline', 'inverse'],
+}

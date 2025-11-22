@@ -76,18 +76,6 @@ export default defineNuxtModule<WemeNuxtOptions>({
     await registerModule('@nuxt/icon', 'icon', {
       componentName: 'UseIcon',
       cssLayer: 'components',
-      customCollections: [
-        {
-          prefix: 'weme',
-          dir: resolver.resolve('runtime/assets/icon'),
-          normalizeIconName: false,
-        },
-        {
-          prefix: 'weme',
-          dir: resolver.resolve('runtime/assets/empty'),
-          normalizeIconName: false,
-        },
-      ],
     })
 
     // Plugins

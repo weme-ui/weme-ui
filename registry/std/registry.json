@@ -3,7 +3,7 @@
   "id": "std",
   "name": "weme-ui/std",
   "description": "The standard components for Weme UI.",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "prefix": "ui",
   "access": "public",
   "meta": {

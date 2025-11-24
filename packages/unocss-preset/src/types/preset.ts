@@ -1,6 +1,6 @@
-import type { ColorAppearance } from '@weme-ui/colors'
 import type { InlineCssVars, NestedCssVars } from '@weme-ui/schema'
 import type { PartialDeep } from 'type-fest'
+import type { WemeColorMode } from './color'
 
 export interface WemePresetOptions {
   /**
@@ -79,7 +79,7 @@ export interface WemePresetTheme {
   name: string
   priority: number
   radius: string
-  appearance: ColorAppearance
+  appearance: WemeColorMode
   colors: WemePresetThemeColors
   tokens: WemePresetThemeTokens
 }

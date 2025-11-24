@@ -26,7 +26,7 @@ export const presetWemeUI = definePreset((userOptions: WemePresetOptions = {}) =
   }
 })
 
-export { THEME_COLORS, VARIANT_MAP } from './defaults'
+export { COLOR_NAMES, GRAY_COLOR_NAMES, THEME_COLORS, VARIANT_MAP } from './defaults'
 
 export type { WemePresetOptions } from './types'
 export type { WemePresetThemeDefinition as WemePresetTheme, WemePresetThemeColorNames, WemePresetThemeColors, WemePresetThemeTokens } from './types'

@@ -2,34 +2,34 @@
 import { createColorCompoundVariants, createColorVariants } from '#weme/utils/styles'
 
 const variants = createColorVariants({
-  type: 'static',
+  type: 'box',
   variant: 'solid',
 })
 
 const withSlot = createColorVariants({
-  type: 'static',
+  type: 'box',
   variant: 'solid',
   slot: 'base',
 })
 
 const withPlaceholder = createColorVariants({
-  type: 'static',
+  type: 'box',
   variant: 'solid',
   defaults: '',
 })
 
 const compounds = createColorCompoundVariants({
-  type: 'static',
+  type: 'box',
   variants: ['solid', 'soft'],
 })
 
 const withAlias = createColorCompoundVariants({
-  type: 'static',
+  type: 'box',
   variants: { primary: 'solid', secondary: 'soft' },
 })
 
 const withExtends = createColorCompoundVariants({
-  type: 'static',
+  type: 'box',
   variants: { primary: 'solid', secondary: 'soft' },
   extra: { size: 'lg' },
 })
@@ -41,49 +41,49 @@ const withExtends = createColorCompoundVariants({
       <summary class="py-4">
         Color variants
       </summary>
-      <pre class="p-6 static-accent rounded-lg"><code>{{ variants }}</code></pre>
+      <pre class="p-6 box-primary rounded-lg"><code>{{ variants }}</code></pre>
     </details>
 
     <details>
       <summary class="py-4">
         Color variants with slot
       </summary>
-      <pre class="p-6 static-accent rounded-lg"><code>{{ withSlot }}</code></pre>
+      <pre class="p-6 box-primary rounded-lg"><code>{{ withSlot }}</code></pre>
     </details>
 
     <details>
       <summary class="py-4">
         Color variants with placeholder
       </summary>
-      <pre class="p-6 static-accent rounded-lg"><code>{{ withPlaceholder }}</code></pre>
+      <pre class="p-6 box-primary rounded-lg"><code>{{ withPlaceholder }}</code></pre>
     </details>
 
     <details>
       <summary class="py-4">
         Color compound variants
       </summary>
-      <pre class="p-6 static-accent rounded-lg"><code>{{ compounds }}</code></pre>
+      <pre class="p-6 box-primary rounded-lg"><code>{{ compounds }}</code></pre>
     </details>
 
     <details>
       <summary class="py-4">
         Color compound variants with alias
       </summary>
-      <pre class="p-6 static-accent rounded-lg"><code>{{ withAlias }}</code></pre>
+      <pre class="p-6 box-primary rounded-lg"><code>{{ withAlias }}</code></pre>
     </details>
 
     <details>
       <summary class="py-4">
         Color compound variants with extends
       </summary>
-      <pre class="p-6 static-accent rounded-lg"><code>{{ withExtends }}</code></pre>
+      <pre class="p-6 box-primary rounded-lg"><code>{{ withExtends }}</code></pre>
     </details>
 
     <details>
       <summary class="py-4">
         Icons
       </summary>
-      <div class="p-6 static-accent rounded-lg">
+      <div class="p-6 box-primary rounded-lg">
         <UseIcon name="weme:logo" class="size-10" mode="svg" />
       </div>
     </details>

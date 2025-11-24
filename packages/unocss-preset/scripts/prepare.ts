@@ -1,6 +1,6 @@
 import { writeFile } from 'node:fs'
-import { getColorNames, transformColor } from '@weme-ui/colors'
-import { BG_BLACK, BG_WHITE } from '../src/defaults'
+import { transformColor } from '../src/colors/transformer'
+import { ALL_COLOR_NAMES } from '../src/defaults'
 
 const wemeColors: Record<string, string> = {
   ocean: '#05f',
@@ -11,7 +11,9 @@ const wemeColors: Record<string, string> = {
 const neutralColors = ['iron']
 
 const colorNames = [
-  ...getColorNames(),
+  'black',
+  'white',
+  ...ALL_COLOR_NAMES,
   ...Object.keys(wemeColors),
 ]
 
@@ -33,24 +35,22 @@ function prepareWemeColors() {
     content.push(`  ${name}: {`)
     // Light
     content.push('    light: {')
-    transformColor({
+    transformColor(
       color,
-      isNeutral: neutralColors.includes(name),
-      appearance: 'light',
-      background: BG_WHITE,
-    }).forEach((c, i) => {
+      'light',
+      neutralColors.includes(name),
+    ).forEach((c, i) => {
       content.push(`      ${i + 1}: '${c}',`)
     })
     content.push('    },')
 
     // Dark
     content.push('    dark: {')
-    transformColor({
-      color: invertBlackWhite(color),
-      isNeutral: neutralColors.includes(name),
-      appearance: 'dark',
-      background: BG_BLACK,
-    }).forEach((c, i) => {
+    transformColor(
+      invertBlackWhite(color),
+      'dark',
+      neutralColors.includes(name),
+    ).forEach((c, i) => {
       content.push(`      ${i + 1}: '${c}',`)
     })
     content.push('    },')

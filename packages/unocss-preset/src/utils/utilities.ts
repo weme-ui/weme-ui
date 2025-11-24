@@ -1,13 +1,12 @@
-import type { ColorAppearance } from '@weme-ui/colors'
-import type { WemePresetColors, WemePresetColorScales } from '../types'
-import { transformColor } from '@weme-ui/colors'
-import { BG_BLACK, BG_WHITE, THEME_COLORS } from '../defaults'
+import type { WemeColorMode, WemePresetColors, WemePresetColorScales } from '../types'
+import { transformColor } from '../colors/transformer'
+import { THEME_COLORS } from '../defaults'
 
 /**
  * Transform color to color scales.
  */
 export function transformColors(color: string, isNeutral?: boolean): WemePresetColors[string] {
-  const appearances: ColorAppearance[] = ['light', 'dark']
+  const appearances: WemeColorMode[] = ['light', 'dark']
 
   return appearances.reduce((acc, appearance) => {
     if (appearance === 'dark') {
@@ -17,12 +16,7 @@ export function transformColors(color: string, isNeutral?: boolean): WemePresetC
         color = 'black'
     }
 
-    const result = transformColor({
-      color,
-      appearance,
-      isNeutral,
-      background: appearance === 'light' ? BG_WHITE : BG_BLACK,
-    })
+    const result = transformColor(color, appearance, isNeutral)
 
     acc[appearance] = Object.fromEntries(
       result.map((c, i) => [i + 1, c]),

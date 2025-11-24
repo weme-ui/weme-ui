@@ -47,7 +47,6 @@
     "tinyglobby": "catalog:utils"
   },
   "dependencies": {
-    "@weme-ui/colors": "workspace:*",
     "@weme-ui/schema": "workspace:*",
     "@weme-ui/unocss-preset": "workspace:*",
     "unocss": "catalog:dev"

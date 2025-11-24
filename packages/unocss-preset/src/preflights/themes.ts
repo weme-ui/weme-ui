@@ -1,5 +1,5 @@
 import type { Preflight, WemePresetResolvedOptions, WemePresetTheme } from '../types'
-import { transformColor } from '@weme-ui/colors'
+import { transformColor } from '../colors/transformer'
 import { THEME } from '../defaults'
 import { cssVarName, minifyCss, resolveTokenValue } from '../utils'
 
@@ -40,7 +40,7 @@ function processThemeColors(theme: WemePresetTheme) {
       || color.startsWith('lch(')
       || color.startsWith('oklch(')
     ) {
-      transformColor({ color, appearance: theme.appearance }).forEach((c, i) => {
+      transformColor(color, theme.appearance).forEach((c, i) => {
         cssVars.push(`--${name}-${i + 1}: var(--custom-${name}-${i + 1}, ${c});`)
       })
     }

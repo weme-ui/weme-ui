@@ -1,7 +1,7 @@
 import type { WemePresetTheme, WemePresetThemeColorNames } from './types'
 
-export const BG_WHITE = '#fff'
-export const BG_BLACK = '#111'
+export const BG_LIGHT = '#fff'
+export const BG_DARK = '#111'
 
 export const THEME: WemePresetTheme = {
   id: 'ROOT',
@@ -47,3 +47,7 @@ export const VARIANT_MAP: Record<string, string[]> = {
   btn: ['solid', 'soft', 'surface', 'outline', 'ghost', 'plain', 'inverse'],
   box: ['solid', 'soft', 'surface', 'outline', 'inverse'],
 }
+
+export const COLOR_NAMES = ['tomato', 'red', 'ruby', 'crimson', 'pink', 'plum', 'purple', 'violet', 'iris', 'indigo', 'blue', 'cyan', 'teal', 'jade', 'green', 'grass', 'bronze', 'gold', 'brown', 'orange', 'sky', 'mint', 'lime', 'yellow', 'amber'] as const
+export const GRAY_COLOR_NAMES = ['gray', 'mauve', 'slate', 'sage', 'olive', 'sand'] as const
+export const ALL_COLOR_NAMES = [...GRAY_COLOR_NAMES, ...COLOR_NAMES] as const

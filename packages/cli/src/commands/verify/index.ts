@@ -5,7 +5,8 @@ import chalk from 'chalk'
 import { defineCommand } from 'citty'
 import path from 'pathe'
 import { glob } from 'tinyglobby'
-import { loadRegistryConfig, REGISTRY_DIRNAME } from '../../utils/schema/registry'
+import { REGISTRY_DIRNAME } from '../../constants'
+import { loadRegistryConfig } from '../../utils/schema/registry'
 
 /**
  * Usage

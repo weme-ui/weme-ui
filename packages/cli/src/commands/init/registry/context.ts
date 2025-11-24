@@ -2,7 +2,7 @@ import { existsSync } from 'node:fs'
 import { exit } from 'node:process'
 import * as p from '@clack/prompts'
 import path from 'pathe'
-import { REGISTRY_DIRNAME } from '../../../utils/schema/registry'
+import { REGISTRY_DIRNAME } from '../../../constants'
 
 export interface InitRegistryContext {
   name: string

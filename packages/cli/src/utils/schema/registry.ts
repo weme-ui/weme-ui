@@ -6,11 +6,11 @@ import * as p from '@clack/prompts'
 import { MANIFEST_FILE_NAME, manifestSchema, REGISTRY_FILE_NAME, registrySchema } from '@weme-ui/schema'
 import chalk from 'chalk'
 import path from 'pathe'
+import { glob } from 'tinyglobby'
+import { REGISTRY_DIRNAME } from '../../constants'
 import { fetchJSON } from '../fetch'
 import { Err, Ok } from '../result'
 import { runStep } from '../utilities'
-
-export const REGISTRY_DIRNAME = 'registry'
 
 export interface NormalizedRegistryItems {
   dependencies: string[]
@@ -286,6 +286,105 @@ export async function fetchRegistryItems(
 
     return normalizeRegistryItems(items)
   })
+}
+
+/**
+ * Select local registry.
+ *
+ * @example
+ * ```ts
+ * const registry = await selectLocalRegistry(process.cwd())
+ *
+ * if (registry.isErr()) {
+ *   console.error(registry.unwrapErr())
+ *   return
+ * }
+ *
+ * console.log(registry.unwrap())
+ * ```
+ * @param cwd - Current working directory
+ * @return {Promise<string>}
+ */
+export async function selectLocalRegistry(cwd: string): Promise<string> {
+  return await runStep('Fetching local registry...', async (spinner) => {
+    const registries = await glob([`*`], {
+      cwd: path.resolve(cwd, REGISTRY_DIRNAME),
+      absolute: false,
+      onlyDirectories: true,
+      ignore: ['**/node_modules/**'],
+    })
+
+    if (registries.length === 0) {
+      spinner.stop('No registries found.', 1)
+      exit(0)
+    }
+
+    spinner.stop('Local registry fetched.')
+
+    const registry = await p.select({
+      message: 'What is the default registry?',
+      options: registries.map(r => ({
+        label: r.replace('/', ''),
+        value: r.replace('/', ''),
+      })),
+      initialValue: registries[0],
+    })
+
+    if (p.isCancel(registry)) {
+      p.cancel('Operation cancelled.')
+      exit(0)
+    }
+
+    return registry
+  })
+}
+
+/**
+ * Load local registry items.
+ *
+ * @param cwd - Current working directory
+ * @param registryDir - Registry directory
+ * @param options - Options
+ * @param options.name - Registry item name
+ * @param options.type - Registry item type
+ * @return {Result<RegistryItem[], string>}
+ */
+export function loadLocalRegistryItems(
+  cwd: string,
+  registryDir: string,
+  options?: {
+    name?: string | string[]
+    type?: RegistryItemType
+  },
+): Result<RegistryItem[], string> {
+  try {
+    const registryConfig = loadRegistryConfig(path.resolve(cwd, REGISTRY_DIRNAME, registryDir))
+
+    if (registryConfig.isErr()) {
+      return Err(registryConfig.unwrapErr())
+    }
+
+    const registryItems = registryConfig.unwrap().items
+
+    const matched = registryItems.filter((item) => {
+      if (options?.type && item.type !== options.type) {
+        return false
+      }
+
+      if (options?.name) {
+        return Array.isArray(options.name)
+          ? options.name.includes(item.name)
+          : item.name === options.name
+      }
+
+      return true
+    })
+
+    return Ok(matched)
+  }
+  catch (e: any) {
+    return Err(e.message)
+  }
 }
 
 /**

@@ -5,8 +5,9 @@ import { DEFAULT_REGISTRY_PREFIX, MANIFEST_FILE_NAME, manifestSchema, REGISTRY_F
 import chalk from 'chalk'
 import path from 'pathe'
 import { glob } from 'tinyglobby'
+import { REGISTRY_DIRNAME } from '../../constants'
 import { loadPackageJson } from '../../utils/schema/package'
-import { loadRegistryConfig, REGISTRY_DIRNAME } from '../../utils/schema/registry'
+import { loadRegistryConfig } from '../../utils/schema/registry'
 
 export default async function (args: Record<string, any>) {
   p.intro(chalk.bold.blue('✨ Building Weme UI Repository'))

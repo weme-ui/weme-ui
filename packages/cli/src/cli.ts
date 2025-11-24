@@ -1,11 +1,11 @@
 import { defineCommand } from 'citty'
-import { description, version } from '../package.json'
+import { CLI_DESCRIPTION, CLI_NAME, CLI_VERSION } from './constants'
 
 export const cli = defineCommand({
   meta: {
-    name: 'weme-ui',
-    version,
-    description,
+    name: CLI_NAME,
+    version: CLI_VERSION,
+    description: CLI_DESCRIPTION,
   },
 
   subCommands: {

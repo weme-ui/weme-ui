@@ -59,6 +59,9 @@ export default defineCommand({
     if (args.registry) {
       await import('./registry').then(r => r.default(args))
     }
+    else if (args.component) {
+      await import('./component').then(r => r.default(args))
+    }
     else {
       await import('./project').then(r => r.default(args))
     }

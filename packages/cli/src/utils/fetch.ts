@@ -1,7 +1,8 @@
 import makeFetch from 'make-fetch-happen'
+import { CLI_CACHE_DIR } from '../constants'
 
 const fetch = makeFetch.defaults({
-  cachePath: '.weme',
+  cachePath: CLI_CACHE_DIR,
 })
 
 export async function fetchJSON<T>(url: string) {

@@ -37,6 +37,7 @@ describe('registry schema', () => {
           {
             "files": [
               {
+                "hash": "",
                 "path": "path",
                 "target": "target",
                 "type": "file",
@@ -84,14 +85,17 @@ describe('registry schema', () => {
             ],
             "files": [
               {
+                "hash": "",
                 "path": "utils/styles.ts",
                 "type": "util",
               },
               {
+                "hash": "",
                 "path": "utils/props.ts",
                 "type": "util",
               },
               {
+                "hash": "",
                 "path": "utils/slots.ts",
                 "type": "util",
               },
@@ -140,14 +144,17 @@ describe('registry schema', () => {
             ],
             "files": [
               {
+                "hash": "",
                 "path": "utils/styles.ts",
                 "type": "util",
               },
               {
+                "hash": "",
                 "path": "utils/props.ts",
                 "type": "util",
               },
               {
+                "hash": "",
                 "path": "utils/slots.ts",
                 "type": "util",
               },
@@ -160,22 +167,27 @@ describe('registry schema', () => {
             "description": "A component to display any icon from Iconify.",
             "files": [
               {
+                "hash": "",
                 "path": "components/icon/icon.vue",
                 "type": "component",
               },
               {
+                "hash": "",
                 "path": "components/icon/icon.props.ts",
                 "type": "type",
               },
               {
+                "hash": "",
                 "path": "components/icon/icon-box.vue",
                 "type": "component",
               },
               {
+                "hash": "",
                 "path": "components/icon/icon-box.props.ts",
                 "type": "type",
               },
               {
+                "hash": "",
                 "path": "components/icon/icon-box.style.ts",
                 "type": "style",
               },
@@ -188,14 +200,17 @@ describe('registry schema', () => {
             "description": "Displays a button or a component that looks like a button.",
             "files": [
               {
+                "hash": "",
                 "path": "components/button/button.vue",
                 "type": "component",
               },
               {
+                "hash": "",
                 "path": "components/button/button.props.ts",
                 "type": "type",
               },
               {
+                "hash": "",
                 "path": "components/button/button.style.ts",
                 "type": "style",
               },
@@ -217,14 +232,17 @@ describe('registry schema', () => {
             "description": "Displays a card with header, content, and footer.",
             "files": [
               {
+                "hash": "",
                 "path": "components/card/card.vue",
                 "type": "component",
               },
               {
+                "hash": "",
                 "path": "components/card/card.props.ts",
                 "type": "type",
               },
               {
+                "hash": "",
                 "path": "components/card/card.style.ts",
                 "type": "style",
               },

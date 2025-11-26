@@ -10,11 +10,13 @@ export const registryItemFile = z.discriminatedUnion('type', [
     type: z.enum(['file']),
     path: z.string().trim(),
     target: z.string().trim(),
+    hash: z.string().trim().default(''),
   }),
   z.object({
     type: registryItemFileType.exclude(['file']),
     path: z.string().trim(),
     target: z.string().trim().optional(),
+    hash: z.string().trim().default(''),
   }),
 ])
 

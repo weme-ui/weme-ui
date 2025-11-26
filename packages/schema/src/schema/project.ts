@@ -50,6 +50,62 @@ export const projectPaths = z.strictObject({
 
 export const projectUnoCssColors = z.record(z.string().trim(), z.string().trim())
 
+export const projectUnoCss = z.object({
+  /**
+   * Prefix for the CSS variables.
+   *
+   * @default 'ui'
+   */
+  variablePrefix: z.string().toLowerCase().trim().default('ui').optional(),
+
+  /**
+   * Custom accent colors for the project.
+   *
+   * @example
+   * ```json
+   * {
+   *   "accentColors": {
+   *     "ocean": "#0072e6"
+   *   }
+   * }
+   * ```
+   */
+  accentColors: projectUnoCssColors.optional(),
+
+  /**
+   * Custom neutral colors for the project.
+   *
+   * @example
+   * ```json
+   * {
+   *   "neutralColors": {
+   *     "grey": "#f1f5f9"
+   *   }
+   * }
+   * ```
+   */
+  neutralColors: projectUnoCssColors.optional(),
+
+  /**
+   * Custom CSS variables for the project.
+   *
+   * @example
+   *
+   * `--${unocss.prefix}-component-property`: `value`;
+   *
+   * ```json
+   * {
+   *   "cssVars": {
+   *     "component": {
+   *       "property": "value"
+   *     }
+   *   }
+   * }
+   * ```
+   */
+  cssVars: inlineCssVars.optional(),
+})
+
 export const projectSchema = z.strictObject({
   /**
    * Schema URL.
@@ -100,61 +156,7 @@ export const projectSchema = z.strictObject({
   /**
    * UnoCSS Preset options.
    */
-  unocss: z.object({
-    /**
-     * Prefix for the CSS variables.
-     *
-     * @default 'ui'
-     */
-    variablePrefix: z.string().toLowerCase().trim().default('ui').optional(),
-
-    /**
-     * Custom accent colors for the project.
-     *
-     * @example
-     * ```json
-     * {
-     *   "accentColors": {
-     *     "ocean": "#0072e6"
-     *   }
-     * }
-     * ```
-     */
-    accentColors: projectUnoCssColors.optional(),
-
-    /**
-     * Custom neutral colors for the project.
-     *
-     * @example
-     * ```json
-     * {
-     *   "neutralColors": {
-     *     "grey": "#f1f5f9"
-     *   }
-     * }
-     * ```
-     */
-    neutralColors: projectUnoCssColors.optional(),
-
-    /**
-     * Custom CSS variables for the project.
-     *
-     * @example
-     *
-     * `--${unocss.prefix}-component-property`: `value`;
-     *
-     * ```json
-     * {
-     *   "cssVars": {
-     *     "component": {
-     *       "property": "value"
-     *     }
-     *   }
-     * }
-     * ```
-     */
-    cssVars: inlineCssVars.optional(),
-  }).optional(),
+  unocss: projectUnoCss.optional(),
 })
 
 export type ProjectSchema = z.infer<typeof projectSchema>

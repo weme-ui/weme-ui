@@ -1,13 +1,14 @@
 import { z } from 'zod'
+import { registryAccess } from './registry'
 
-export const manifestSchema = z.strictObject({
+export const repositorySchema = z.strictObject({
   id: z.string().trim(),
   name: z.string().trim(),
   description: z.string().trim().optional(),
   version: z.string().trim().optional(),
   directory: z.string().trim(),
   prefix: z.string().trim().default('ui'),
-  access: z.enum(['public', 'private']).default('public'),
+  access: registryAccess.default('public'),
   items: z.strictObject({
     components: z.number(),
     layouts: z.number(),
@@ -18,4 +19,4 @@ export const manifestSchema = z.strictObject({
   updated: z.string().trim(),
 })
 
-export type ManifestSchema = z.infer<typeof manifestSchema>
+export type RepositorySchema = z.infer<typeof repositorySchema>

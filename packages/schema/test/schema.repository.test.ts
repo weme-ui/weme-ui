@@ -1,9 +1,9 @@
 import { describe, expect, it } from 'vitest'
-import { manifestSchema } from '../src/schema'
+import { repositorySchema } from '../src/schema'
 
-describe('manifest schema', () => {
+describe('repository schema', () => {
   it('should validate', () => {
-    const result = manifestSchema.safeParse({
+    const result = repositorySchema.safeParse({
       id: 'std',
       name: 'weme-ui/std',
       directory: 'weme-ui/std',
@@ -38,9 +38,9 @@ describe('manifest schema', () => {
   })
 
   it('should validate basic', async () => {
-    const json = await import('./fixtures/manifest/base.json').then(r => r.default)
+    const json = await import('./fixtures/repository/base.json').then(r => r.default)
 
-    const result = manifestSchema.array().safeParse(json)
+    const result = repositorySchema.array().safeParse(json)
 
     expect(result.success).toBe(true)
     expect(result.data).toMatchInlineSnapshot(`

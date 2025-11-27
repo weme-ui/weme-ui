@@ -1,0 +1,21 @@
+{
+  "$schema": "https://weme-ui.github.io/schema/repository.schema.json",
+  "name": "weme-ui",
+  "owner": "weme-ui",
+  "version": "0.0.0",
+  "registries": [
+    {
+      "name": "weme-ui/test",
+      "description": "The test registry for Weme UI.",
+      "prefix": "ui",
+      "statistics": {
+        "components": 1,
+        "layouts": 0,
+        "themes": 0,
+        "blocks": 0,
+        "pages": 0
+      }
+    }
+  ],
+  "updated": "2025-08-16T10:00:00Z"
+}

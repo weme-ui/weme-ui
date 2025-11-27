@@ -1,0 +1,35 @@
+{
+  "$schema": "https://weme-ui.github.io/schema/project.schema.json",
+  "repos": [
+    {
+      "registry": "weme-ui/weme-ui/test",
+      "prefix": "ui",
+      "version": "0.0.0",
+      "default": true
+    }
+  ],
+  "paths": {
+    "components": "~/components"
+  },
+  "unocss": {
+    "variablePrefix": "ui",
+    "accentColors": {
+      "ocean": "blue"
+    },
+    "neutralColors": {
+      "gunmetal": "gray"
+    },
+    "cssVars": {
+      "card-bg": "color.neutral.1",
+      "card-fg": "color.neutral.11"
+    }
+  },
+  "items": {
+    "weme-ui/weme-ui/test": [
+      {
+        "type": "component",
+        "path": "~/components/ui/badge"
+      }
+    ]
+  }
+}

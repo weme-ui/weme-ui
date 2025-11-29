@@ -39,12 +39,15 @@ describe('project schema v2', () => {
       {
         "$schema": "https://weme-ui.github.io/schema/project.schema.json",
         "items": {
-          "weme-ui/weme-ui/test": [
-            {
-              "path": "~/components/ui/badge",
-              "type": "component",
-            },
-          ],
+          "https://github.com/weme-ui/weme-ui": {
+            "weme-ui/test": [
+              {
+                "name": "badge",
+                "path": "~/components/ui/badge",
+                "type": "component",
+              },
+            ],
+          },
         },
         "paths": {
           "components": "~/components",
@@ -60,7 +63,8 @@ describe('project schema v2', () => {
           {
             "default": true,
             "prefix": "ui",
-            "registry": "weme-ui/weme-ui/test",
+            "registry": "weme-ui/test",
+            "repo": "https://github.com/weme-ui/weme-ui",
             "version": "0.0.0",
           },
         ],
@@ -89,7 +93,7 @@ describe('project schema v2', () => {
       },
       repos: [
         {
-          registry: 'weme-ui/std',
+          registry: 'std',
         },
       ],
     })
@@ -97,7 +101,7 @@ describe('project schema v2', () => {
     expect(result.success).toBe(false)
   })
 
-  it('should invalidate with invalid item registry name', () => {
+  it('should invalidate with invalid item repository name', () => {
     const result = ProjectSchema.safeParse({
       $schema: 'https://weme-ui.github.io/schema/project.schema.json',
       paths: {
@@ -109,6 +113,27 @@ describe('project schema v2', () => {
       },
     })
 
+    expect(result.error).toMatchInlineSnapshot(`
+      [ZodError: [
+        {
+          "code": "invalid_key",
+          "origin": "record",
+          "issues": [
+            {
+              "code": "invalid_format",
+              "format": "url",
+              "path": [],
+              "message": "Invalid URL"
+            }
+          ],
+          "path": [
+            "items",
+            "weme-ui/std"
+          ],
+          "message": "Invalid key in record"
+        }
+      ]]
+    `)
     expect(result.success).toBe(false)
   })
 })

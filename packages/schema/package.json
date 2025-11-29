@@ -42,6 +42,7 @@
   },
   "scripts": {
     "build": "tsdown",
+    "build:json": "esno ./src/output.ts",
     "dev": "tsdown --watch",
     "dev:prepare": "pnpm build",
     "test": "vitest"

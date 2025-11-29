@@ -1,27 +1,23 @@
 import { z } from 'zod'
-import { inlineCssVars } from './shared'
+import { RegistryItemType, RegistryName } from './registry'
+import { InlineCssVar } from './shared'
 
-export const projectRepo = z.strictObject({
+export const ProjectRepoURL = z.url()
+
+export const ProjectRegistry = z.object({
   /**
    * Repository name.
    *
    * @example 'https://github.com/weme-ui/weme-ui'
    */
-  repo: z.string().trim(),
+  repo: ProjectRepoURL.trim().default('https://github.com/weme-ui/weme-ui').optional(),
 
   /**
-   * Registry name.
+   * Name of the registry.
    *
-   * @example 'weme-ui/std'
+   * @example `<repo>/<scope>`: 'weme-ui/std'
    */
-  registry: z.string().toLowerCase().trim(),
-
-  /**
-   * Whether to use this registry as the default one.
-   *
-   * @default false
-   */
-  default: z.boolean().default(false).optional(),
+  registry: RegistryName,
 
   /**
    * Prefix for the registry item's files.
@@ -32,12 +28,21 @@ export const projectRepo = z.strictObject({
   prefix: z.string().toLowerCase().trim().default('ui').optional(),
 
   /**
-   * License for the private registry.
+   * Whether to use this registry as the default one.
+   *
+   * @default false
    */
-  license: z.string().trim().optional(),
+  default: z.boolean().default(false).optional(),
+
+  /**
+   * Version of the repository.
+   *
+   * @example `1.0.0`
+   */
+  version: z.string().trim().default('latest').optional(),
 })
 
-export const projectPaths = z.strictObject({
+export const ProjectPaths = z.object({
   components: z.string().trim().default('~/components'),
   composables: z.string().trim().default('~/composables').optional(),
   layouts: z.string().trim().default('~/layouts').optional(),
@@ -48,15 +53,15 @@ export const projectPaths = z.strictObject({
   utils: z.string().trim().default('~/utils').optional(),
 })
 
-export const projectUnoCssColors = z.record(z.string().trim(), z.string().trim())
+export const ProjectCustomColor = z.record(z.string().lowercase().trim(), z.string().lowercase().trim())
 
-export const projectUnoCss = z.object({
+export const ProjectUnoCss = z.object({
   /**
    * Prefix for the CSS variables.
    *
    * @default 'ui'
    */
-  variablePrefix: z.string().toLowerCase().trim().default('ui').optional(),
+  variablePrefix: z.string().lowercase().trim().default('ui').optional(),
 
   /**
    * Custom accent colors for the project.
@@ -70,7 +75,7 @@ export const projectUnoCss = z.object({
    * }
    * ```
    */
-  accentColors: projectUnoCssColors.optional(),
+  accentColors: ProjectCustomColor.optional(),
 
   /**
    * Custom neutral colors for the project.
@@ -84,7 +89,7 @@ export const projectUnoCss = z.object({
    * }
    * ```
    */
-  neutralColors: projectUnoCssColors.optional(),
+  neutralColors: ProjectCustomColor.optional(),
 
   /**
    * Custom CSS variables for the project.
@@ -103,10 +108,35 @@ export const projectUnoCss = z.object({
    * }
    * ```
    */
-  cssVars: inlineCssVars.optional(),
+  cssVars: InlineCssVar.optional(),
 })
 
-export const projectSchema = z.strictObject({
+export const ProjectItem = z.object({
+  /**
+   * Name of the item.
+   */
+  name: z.string().lowercase().trim(),
+
+  /**
+   * Type of the item.
+   *
+   * - component
+   * - layout
+   * - theme
+   * - block
+   * - page
+   */
+  type: RegistryItemType,
+
+  /**
+   * Path of the item.
+   *
+   * @example `~/components/<prefix>/<name>`
+   */
+  path: z.string().trim(),
+})
+
+export const ProjectSchema = z.object({
   /**
    * Schema URL.
    */
@@ -120,15 +150,17 @@ export const projectSchema = z.strictObject({
    * {
    *   "repos": [
    *     {
-   *       "repo": "@weme-ui/weme-ui",
+   *       "repo": "https://github.com/weme-ui/weme-ui",
    *       "registry": "weme-ui/std",
-   *       "prefix": "ui"
+   *       "prefix": "ui",
+   *       "version": "1.0.0",
+   *       "default": true
    *     }
    *   ]
    * }
    * ```
    */
-  repos: z.array(projectRepo),
+  repos: z.array(ProjectRegistry),
 
   /**
    * Paths for the project.
@@ -151,15 +183,43 @@ export const projectSchema = z.strictObject({
    * }
    * ```
    */
-  paths: projectPaths,
+  paths: ProjectPaths,
 
   /**
    * UnoCSS Preset options.
    */
-  unocss: projectUnoCss.optional(),
+  unocss: ProjectUnoCss.optional(),
+
+  /**
+   * Installed items.
+   *
+   * @example
+   * ```json
+   * {
+   *   "items": {
+   *     "https://github.com/weme-ui/weme-ui": {
+   *       "weme-ui/std": [
+   *         {
+   *           "name": "badge",
+   *           "type": "component",
+   *           "path": "~/components/ui/badge"
+   *         }
+   *       ]
+   *     }
+   *   }
+   * }
+   * ```
+   */
+  items: z.record(
+    ProjectRepoURL.trim(),
+    z.record(RegistryName, z.array(ProjectItem)),
+  )
+    .optional(),
 })
 
-export type ProjectSchema = z.infer<typeof projectSchema>
-export type ProjectRepo = z.infer<typeof projectRepo>
-export type ProjectPaths = z.infer<typeof projectPaths>
-export type ProjectUnoCssColors = z.infer<typeof projectUnoCssColors>
+export type IProject = z.infer<typeof ProjectSchema>
+export type IProjectRegistry = z.infer<typeof ProjectRegistry>
+export type IProjectRepoURL = z.infer<typeof ProjectRepoURL>
+export type IProjectPaths = z.infer<typeof ProjectPaths>
+export type IProjectUnoCss = z.infer<typeof ProjectUnoCss>
+export type IProjectItem = z.infer<typeof ProjectItem>

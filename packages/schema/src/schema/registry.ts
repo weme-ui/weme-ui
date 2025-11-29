@@ -1,30 +1,30 @@
 import { z } from 'zod'
-import { nestedCssVars } from './shared'
+import { NestedCssVar } from './shared'
 
-export const registryAccess = z.enum(['public', 'private'])
-export const registryItemType = z.enum(['component', 'layout', 'theme', 'block', 'page', 'init'])
-export const registryItemFileType = z.enum(['component', 'composable', 'plugin', 'util', 'style', 'type', 'file'])
+export const RegistryItemType = z.enum(['component', 'layout', 'theme', 'block', 'page', 'init'])
+export const RegistryItemFileType = z.enum(['component', 'composable', 'plugin', 'util', 'style', 'type', 'file'])
 
-export const registryItemFile = z.discriminatedUnion('type', [
+export const RegistryItemFile = z.discriminatedUnion('type', [
   z.object({
     type: z.enum(['file']),
     path: z.string().trim(),
     target: z.string().trim(),
     hash: z.string().trim().default(''),
   }),
+
   z.object({
-    type: registryItemFileType.exclude(['file']),
+    type: RegistryItemFileType.exclude(['file']),
     path: z.string().trim(),
     target: z.string().trim().optional(),
     hash: z.string().trim().default(''),
   }),
 ])
 
-export const registryItem = z.object({
+export const RegistryItem = z.object({
   /**
    * Name of the item.
    */
-  name: z.string().trim(),
+  name: z.string().lowercase().trim(),
 
   /**
    * Type of the item.
@@ -36,7 +36,7 @@ export const registryItem = z.object({
    * - page
    * - init
    */
-  type: registryItemType,
+  type: RegistryItemType,
 
   /**
    * Title of the item.
@@ -66,29 +66,32 @@ export const registryItem = z.object({
   /**
    * Files of the item.
    */
-  files: z.array(registryItemFile),
+  files: z.array(RegistryItemFile),
 
   /**
    * CSS variables of the item.
    */
-  cssVars: nestedCssVars.optional(),
+  cssVars: NestedCssVar.optional(),
 })
 
-export const registrySchema = z.object({
+export const RegistryName = z.templateLiteral([
+  z.string().lowercase().trim(),
+  '/',
+  z.string().lowercase().trim(),
+])
+
+export const RegistrySchema = z.object({
   /**
    * Schema URL.
    */
   $schema: z.url().trim(),
 
   /**
-   * ID of the registry.s
-   */
-  id: z.string().trim(),
-
-  /**
    * Name of the registry.
+   *
+   * @example `<repo>/<scope>`: 'weme-ui/std'
    */
-  name: z.string().trim(),
+  name: RegistryName,
 
   /**
    * Description of the registry.
@@ -103,41 +106,17 @@ export const registrySchema = z.object({
   /**
    * Default prefix for added items of the registry.
    */
-  prefix: z.string().trim().default('ui').optional(),
-
-  /**
-   * Access level of the registry.
-   *
-   * @default 'public'
-   */
-  access: registryAccess.default('public').optional(),
-
-  /**
-   * Metadata of the registry.
-   *
-   * - authors: Array of authors
-   * - homepage: Homepage of the registry
-   * - repository: Repository URL of the registry
-   * - bugs: Bugs page of the registry
-   * - tags: Array of tags
-   */
-  meta: z.object({
-    authors: z.array(z.string().trim()),
-    homepage: z.url().trim(),
-    repository: z.url().trim(),
-    bugs: z.url().trim(),
-    tags: z.array(z.string().trim()),
-  }).partial().optional(),
+  prefix: z.string().lowercase().trim().default('ui').optional(),
 
   /**
    * Items in the registry.
    */
-  items: z.array(registryItem),
+  items: z.array(RegistryItem),
 })
 
-export type RegistrySchema = z.infer<typeof registrySchema>
-export type RegistryItem = z.infer<typeof registryItem>
-export type RegistryItemFile = z.infer<typeof registryItemFile>
-export type RegistryAccess = z.infer<typeof registryAccess>
-export type RegistryItemType = z.infer<typeof registryItemType>
-export type RegistryItemFileType = z.infer<typeof registryItemFileType>
+export type IRegistry = z.infer<typeof RegistrySchema>
+export type IRegistryName = z.infer<typeof RegistryName>
+export type IRegistryItem = z.infer<typeof RegistryItem>
+export type IRegistryItemType = z.infer<typeof RegistryItemType>
+export type IRegistryItemFile = z.infer<typeof RegistryItemFile>
+export type IRegistryItemFileType = z.infer<typeof RegistryItemFileType>

@@ -2,7 +2,8 @@
   "$schema": "https://weme-ui.github.io/schema/project.schema.json",
   "repos": [
     {
-      "registry": "weme-ui/weme-ui/test",
+      "repo": "https://github.com/weme-ui/weme-ui",
+      "registry": "weme-ui/test",
       "prefix": "ui",
       "version": "0.0.0",
       "default": true
@@ -25,11 +26,14 @@
     }
   },
   "items": {
-    "weme-ui/weme-ui/test": [
-      {
-        "type": "component",
-        "path": "~/components/ui/badge"
-      }
-    ]
+    "https://github.com/weme-ui/weme-ui": {
+      "weme-ui/test": [
+        {
+          "name": "badge",
+          "type": "component",
+          "path": "~/components/ui/badge"
+        }
+      ]
+    }
   }
 }

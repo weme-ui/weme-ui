@@ -1,4 +1,4 @@
-import type { InlineCssVars } from '@weme-ui/schema'
+import type { IInlineCssVar } from '@weme-ui/schema'
 import type { WemePresetColors, WemePresetOptions, WemePresetResolvedOptions, WemePresetTheme, WemePresetThemeDefinition } from './types'
 import defu from 'defu'
 import AllColors from './colors'
@@ -80,7 +80,7 @@ function resolveThemes(themes: WemePresetThemeDefinition[]) {
 }
 
 function resolveCssVars(cssVars?: WemePresetOptions['cssVars']) {
-  const resolved: InlineCssVars = {}
+  const resolved: IInlineCssVar = {}
 
   if (cssVars && Object.keys(cssVars).length > 0) {
     Object.entries(cssVars).forEach(([name, value]) => {

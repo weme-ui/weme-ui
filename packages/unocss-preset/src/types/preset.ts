@@ -1,4 +1,4 @@
-import type { InlineCssVars, NestedCssVars } from '@weme-ui/schema'
+import type { IInlineCssVar, INestedCssVar } from '@weme-ui/schema'
 import type { PartialDeep } from 'type-fest'
 import type { WemeColorMode } from './color'
 
@@ -26,7 +26,7 @@ export interface WemePresetOptions {
   /**
    * Custom CSS variables.
    */
-  cssVars?: NestedCssVars | InlineCssVars
+  cssVars?: INestedCssVar | IInlineCssVar
 }
 
 export interface WemePresetResolvedOptions {
@@ -51,7 +51,7 @@ export interface WemePresetResolvedOptions {
   /**
    * Custom CSS variables.
    */
-  cssVars: InlineCssVars
+  cssVars: IInlineCssVar
 }
 
 export interface WemePresetColorScales {

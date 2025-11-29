@@ -40,7 +40,7 @@ export const useButtonStyle = createVariants({
   },
   compoundVariants: [
     ...createColorCompoundVariants({
-      type: 'box',
+      type: 'btn',
       variants: ['solid', 'soft', 'surface', 'outline', 'ghost', 'plain', 'inverse'],
       slot: 'base',
     }),

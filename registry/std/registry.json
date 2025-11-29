@@ -1,22 +1,9 @@
 {
   "$schema": "https://weme-ui.github.io/schema/registry.schema.json",
-  "id": "std",
   "name": "weme-ui/std",
   "description": "The standard components for Weme UI.",
   "version": "0.1.5",
   "prefix": "ui",
-  "access": "public",
-  "meta": {
-    "authors": [
-      "Allen Luo <luoyi@mouji.net>"
-    ],
-    "homepage": "https://github.com/weme-ui/weme-ui",
-    "repository": "https://github.com/weme-ui/weme-ui",
-    "bugs": "https://github.com/weme-ui/weme-ui/issues",
-    "tags": [
-      "weme-ui"
-    ]
-  },
   "items": [
     {
       "name": "#init",
@@ -44,15 +31,18 @@
       "files": [
         {
           "type": "util",
-          "path": "utils/styles.ts"
+          "path": "utils/styles.ts",
+          "hash": "3975a0ea465ea931c4f5fd90af0e62b6"
         },
         {
           "type": "util",
-          "path": "utils/props.ts"
+          "path": "utils/props.ts",
+          "hash": "23177f90701087234a5c6a5d5d137758"
         },
         {
           "type": "util",
-          "path": "utils/slots.ts"
+          "path": "utils/slots.ts",
+          "hash": "8ea3c19f1067925ad64d06accfc995ef"
         }
       ]
     },
@@ -64,23 +54,28 @@
       "files": [
         {
           "type": "component",
-          "path": "components/icon/icon.vue"
+          "path": "components/icon/icon.vue",
+          "hash": "064b76e3b2e53ab06424143a384de2b4"
         },
         {
           "type": "type",
-          "path": "components/icon/icon.props.ts"
+          "path": "components/icon/icon.props.ts",
+          "hash": "e230b252a021a95d534281c51b86007d"
         },
         {
           "type": "component",
-          "path": "components/icon/icon-box.vue"
+          "path": "components/icon/icon-box.vue",
+          "hash": "b5965a0dfed911b03a96299d8444946f"
         },
         {
           "type": "type",
-          "path": "components/icon/icon-box.props.ts"
+          "path": "components/icon/icon-box.props.ts",
+          "hash": "72283e52dc6ebe9573c8421d729e5668"
         },
         {
           "type": "style",
-          "path": "components/icon/icon-box.style.ts"
+          "path": "components/icon/icon-box.style.ts",
+          "hash": "53405973ce8d1d3f9cbc67bf2573ce6b"
         }
       ]
     },
@@ -92,15 +87,18 @@
       "files": [
         {
           "type": "component",
-          "path": "components/typography/typography.vue"
+          "path": "components/typography/typography.vue",
+          "hash": "f51fe76de750cdb8de5777501dd445f8"
         },
         {
           "type": "type",
-          "path": "components/typography/typography.props.ts"
+          "path": "components/typography/typography.props.ts",
+          "hash": "2799395a5e0bc302232e1a825ecacf8e"
         },
         {
           "type": "style",
-          "path": "components/typography/typography.style.ts"
+          "path": "components/typography/typography.style.ts",
+          "hash": "6d9f6d1e6816c2b17ba9a326da2d59ed"
         }
       ]
     },
@@ -115,15 +113,18 @@
       "files": [
         {
           "type": "component",
-          "path": "components/button/button.vue"
+          "path": "components/button/button.vue",
+          "hash": "d15cea6ed5c3d5c30c89db0214300315"
         },
         {
           "type": "type",
-          "path": "components/button/button.props.ts"
+          "path": "components/button/button.props.ts",
+          "hash": "a51b412cc3606e9f1e18e60854b82746"
         },
         {
           "type": "style",
-          "path": "components/button/button.style.ts"
+          "path": "components/button/button.style.ts",
+          "hash": "a02b9846298ca0e5c73bcc24a02a7ea6"
         }
       ]
     },
@@ -135,15 +136,18 @@
       "files": [
         {
           "type": "component",
-          "path": "components/link/link.vue"
+          "path": "components/link/link.vue",
+          "hash": "76c1a46c5f53076878b3969df3232f01"
         },
         {
           "type": "type",
-          "path": "components/link/link.props.ts"
+          "path": "components/link/link.props.ts",
+          "hash": "94fbb1e3803cc1ba4a7f8b5166a76420"
         },
         {
           "type": "style",
-          "path": "components/link/link.style.ts"
+          "path": "components/link/link.style.ts",
+          "hash": "652c9d383513ab288f1107d3a3b8ac5e"
         }
       ]
     },
@@ -155,19 +159,23 @@
       "files": [
         {
           "type": "component",
-          "path": "components/kbd/kbd.vue"
+          "path": "components/kbd/kbd.vue",
+          "hash": "16ccc812dc3b19e082e55bbe6d967edf"
         },
         {
           "type": "type",
-          "path": "components/kbd/kbd.props.ts"
+          "path": "components/kbd/kbd.props.ts",
+          "hash": "0529c27ece0395be203d0f7f2287ed99"
         },
         {
           "type": "style",
-          "path": "components/kbd/kbd.style.ts"
+          "path": "components/kbd/kbd.style.ts",
+          "hash": "1b15063de631543707bf123b3a5c073d"
         },
         {
           "type": "composable",
-          "path": "composables/use-kbd.ts"
+          "path": "composables/use-kbd.ts",
+          "hash": "aa621d2d154764797a31432d1493ca22"
         }
       ]
     },
@@ -182,15 +190,18 @@
       "files": [
         {
           "type": "component",
-          "path": "components/badge/badge.vue"
+          "path": "components/badge/badge.vue",
+          "hash": "1d464a611b8bc7881052ca5b71329370"
         },
         {
           "type": "type",
-          "path": "components/badge/badge.props.ts"
+          "path": "components/badge/badge.props.ts",
+          "hash": "27e9a17f036cdf97b12a12ce2f841988"
         },
         {
           "type": "style",
-          "path": "components/badge/badge.style.ts"
+          "path": "components/badge/badge.style.ts",
+          "hash": "dfa5e3ab2388d26f3ee07dead7fc3eb7"
         }
       ]
     },
@@ -208,15 +219,18 @@
       "files": [
         {
           "type": "component",
-          "path": "components/alert/alert.vue"
+          "path": "components/alert/alert.vue",
+          "hash": "3fe5a0f21a56ad0acdb6ba3b593065c1"
         },
         {
           "type": "type",
-          "path": "components/alert/alert.props.ts"
+          "path": "components/alert/alert.props.ts",
+          "hash": "d6dbcc932763be245cc9c873aa1d6738"
         },
         {
           "type": "style",
-          "path": "components/alert/alert.style.ts"
+          "path": "components/alert/alert.style.ts",
+          "hash": "8d85cef3a65f8fc1bf3c09cc0bf46be9"
         }
       ]
     },
@@ -228,15 +242,18 @@
       "files": [
         {
           "type": "component",
-          "path": "components/separator/separator.vue"
+          "path": "components/separator/separator.vue",
+          "hash": "94970fe29b3bb036a004bf4030dba933"
         },
         {
           "type": "type",
-          "path": "components/separator/separator.props.ts"
+          "path": "components/separator/separator.props.ts",
+          "hash": "c46b5c53482d3c7f8e271ff746ca8214"
         },
         {
           "type": "style",
-          "path": "components/separator/separator.style.ts"
+          "path": "components/separator/separator.style.ts",
+          "hash": "cc7bf4bd4974a9ee442858496a23bef9"
         }
       ]
     },
@@ -248,15 +265,18 @@
       "files": [
         {
           "type": "component",
-          "path": "components/space/space.vue"
+          "path": "components/space/space.vue",
+          "hash": "b63d0e792b98438508f9e98fa5d9021f"
         },
         {
           "type": "type",
-          "path": "components/space/space.props.ts"
+          "path": "components/space/space.props.ts",
+          "hash": "70c1b7bc48a87964c249748e77c34eed"
         },
         {
           "type": "style",
-          "path": "components/space/space.style.ts"
+          "path": "components/space/space.style.ts",
+          "hash": "6ea5a68f297ea779fb2bbab3b381d09d"
         }
       ]
     },
@@ -271,15 +291,18 @@
       "files": [
         {
           "type": "component",
-          "path": "components/card/card.vue"
+          "path": "components/card/card.vue",
+          "hash": "0cbad2cf9175b6a528132ba175c259b6"
         },
         {
           "type": "type",
-          "path": "components/card/card.props.ts"
+          "path": "components/card/card.props.ts",
+          "hash": "8a900c2e067f82e1ec4db27b9d3d8f1b"
         },
         {
           "type": "style",
-          "path": "components/card/card.style.ts"
+          "path": "components/card/card.style.ts",
+          "hash": "487b671ac2db62463191d521b0b5aa36"
         }
       ],
       "cssVars": {
@@ -300,27 +323,33 @@
       "files": [
         {
           "type": "component",
-          "path": "components/avatar/avatar.vue"
+          "path": "components/avatar/avatar.vue",
+          "hash": "f12518e51a23194789af5ed3d4121de1"
         },
         {
           "type": "type",
-          "path": "components/avatar/avatar.props.ts"
+          "path": "components/avatar/avatar.props.ts",
+          "hash": "3c28cc4170b32f14d3505c44c2fe6693"
         },
         {
           "type": "style",
-          "path": "components/avatar/avatar.style.ts"
+          "path": "components/avatar/avatar.style.ts",
+          "hash": "f00a69a3a51db401cba77be2a4c9fb8c"
         },
         {
           "type": "component",
-          "path": "components/avatar/avatar-group.vue"
+          "path": "components/avatar/avatar-group.vue",
+          "hash": "027fb92d6768be1388c95a23f1af8eb0"
         },
         {
           "type": "type",
-          "path": "components/avatar/avatar-group.props.ts"
+          "path": "components/avatar/avatar-group.props.ts",
+          "hash": "3703265b50bfe5cf4a1e53befd61aca6"
         },
         {
           "type": "style",
-          "path": "components/avatar/avatar-group.style.ts"
+          "path": "components/avatar/avatar-group.style.ts",
+          "hash": "8b82b06bc1d61e4158f20c3a8fa9072c"
         }
       ]
     },
@@ -332,15 +361,18 @@
       "files": [
         {
           "type": "component",
-          "path": "components/scroll-area/scroll-area.vue"
+          "path": "components/scroll-area/scroll-area.vue",
+          "hash": "e61f157d1ddd6e02586a240c0e3a0898"
         },
         {
           "type": "type",
-          "path": "components/scroll-area/scroll-area.props.ts"
+          "path": "components/scroll-area/scroll-area.props.ts",
+          "hash": "10055d6390ef82e0c1f88f22c44f167a"
         },
         {
           "type": "style",
-          "path": "components/scroll-area/scroll-area.style.ts"
+          "path": "components/scroll-area/scroll-area.style.ts",
+          "hash": "a2da98770a186ac251a68e35fe11e7f9"
         }
       ]
     },
@@ -355,15 +387,18 @@
       "files": [
         {
           "type": "component",
-          "path": "components/breadcrumb/breadcrumb.vue"
+          "path": "components/breadcrumb/breadcrumb.vue",
+          "hash": "dfd2755e842ce7410df224d3bf268878"
         },
         {
           "type": "type",
-          "path": "components/breadcrumb/breadcrumb.props.ts"
+          "path": "components/breadcrumb/breadcrumb.props.ts",
+          "hash": "f01097713dbcf8055c557bf672be6342"
         },
         {
           "type": "style",
-          "path": "components/breadcrumb/breadcrumb.style.ts"
+          "path": "components/breadcrumb/breadcrumb.style.ts",
+          "hash": "3e3ddb57cdc5b94e64f2b35df2af0e6b"
         }
       ]
     },
@@ -375,15 +410,18 @@
       "files": [
         {
           "type": "component",
-          "path": "components/skeleton/skeleton.vue"
+          "path": "components/skeleton/skeleton.vue",
+          "hash": "8c904baf40b7c5d0b2852c6dcc3c287b"
         },
         {
           "type": "type",
-          "path": "components/skeleton/skeleton.props.ts"
+          "path": "components/skeleton/skeleton.props.ts",
+          "hash": "3ac97c96f4616cbd1c49de5e67a20649"
         },
         {
           "type": "style",
-          "path": "components/skeleton/skeleton.style.ts"
+          "path": "components/skeleton/skeleton.style.ts",
+          "hash": "05c2326c391e434fe4b064398fed1529"
         }
       ]
     },
@@ -395,15 +433,18 @@
       "files": [
         {
           "type": "component",
-          "path": "components/chip/chip.vue"
+          "path": "components/chip/chip.vue",
+          "hash": "f9127b786e569aad3acfe36d76dea623"
         },
         {
           "type": "type",
-          "path": "components/chip/chip.props.ts"
+          "path": "components/chip/chip.props.ts",
+          "hash": "8263cd68ce801170af076cd0298284ed"
         },
         {
           "type": "style",
-          "path": "components/chip/chip.style.ts"
+          "path": "components/chip/chip.style.ts",
+          "hash": "9d35864267eca6aa12cab723af170e25"
         }
       ]
     },
@@ -415,15 +456,18 @@
       "files": [
         {
           "type": "component",
-          "path": "components/collapsible/collapsible.vue"
+          "path": "components/collapsible/collapsible.vue",
+          "hash": "496270c224ce8f718c8383094ef551d8"
         },
         {
           "type": "type",
-          "path": "components/collapsible/collapsible.props.ts"
+          "path": "components/collapsible/collapsible.props.ts",
+          "hash": "4f8828ead42d7170e5d386a6ba5b2268"
         },
         {
           "type": "style",
-          "path": "components/collapsible/collapsible.style.ts"
+          "path": "components/collapsible/collapsible.style.ts",
+          "hash": "1c80ea55f53d4f9807d9367e8e2ff894"
         }
       ]
     },
@@ -438,15 +482,18 @@
       "files": [
         {
           "type": "component",
-          "path": "components/tooltip/tooltip.vue"
+          "path": "components/tooltip/tooltip.vue",
+          "hash": "e5806ba5d6979f75583a820cb2f657b5"
         },
         {
           "type": "type",
-          "path": "components/tooltip/tooltip.props.ts"
+          "path": "components/tooltip/tooltip.props.ts",
+          "hash": "c5af7c065b6f5a4c12eb7d3c53f5f1e8"
         },
         {
           "type": "style",
-          "path": "components/tooltip/tooltip.style.ts"
+          "path": "components/tooltip/tooltip.style.ts",
+          "hash": "fc563d550f9c933c24c291bda7210d3e"
         }
       ],
       "cssVars": {
@@ -467,15 +514,18 @@
       "files": [
         {
           "type": "component",
-          "path": "components/popover/popover.vue"
+          "path": "components/popover/popover.vue",
+          "hash": "04d64b6fe752bdbb684ca6a7d92d2d7e"
         },
         {
           "type": "type",
-          "path": "components/popover/popover.props.ts"
+          "path": "components/popover/popover.props.ts",
+          "hash": "39c5c6231c3587be1da49bef80c21089"
         },
         {
           "type": "style",
-          "path": "components/popover/popover.style.ts"
+          "path": "components/popover/popover.style.ts",
+          "hash": "1d564aec1b9b5ceecfb6a2a55a091a1c"
         }
       ],
       "cssVars": {
@@ -492,15 +542,18 @@
       "files": [
         {
           "type": "component",
-          "path": "components/hover-card/hover-card.vue"
+          "path": "components/hover-card/hover-card.vue",
+          "hash": "33b7a75d868e5ad428838468731f3f3b"
         },
         {
           "type": "type",
-          "path": "components/hover-card/hover-card.props.ts"
+          "path": "components/hover-card/hover-card.props.ts",
+          "hash": "6edc6b8f1dbb1b5ec35ee183ecdbf4a8"
         },
         {
           "type": "style",
-          "path": "components/hover-card/hover-card.style.ts"
+          "path": "components/hover-card/hover-card.style.ts",
+          "hash": "b7b15ff69efb1b03dcd078311467c1da"
         }
       ],
       "cssVars": {
@@ -522,15 +575,18 @@
       "files": [
         {
           "type": "component",
-          "path": "components/pop-confirm/pop-confirm.vue"
+          "path": "components/pop-confirm/pop-confirm.vue",
+          "hash": "e1f94ad186c16799498a162e90fb18ee"
         },
         {
           "type": "type",
-          "path": "components/pop-confirm/pop-confirm.props.ts"
+          "path": "components/pop-confirm/pop-confirm.props.ts",
+          "hash": "f3a98a91233d9f2b6c19897e0e47cb3a"
         },
         {
           "type": "style",
-          "path": "components/pop-confirm/pop-confirm.style.ts"
+          "path": "components/pop-confirm/pop-confirm.style.ts",
+          "hash": "62d77a86117a8047cc3152001c0ad7ef"
         }
       ]
     },
@@ -546,15 +602,18 @@
       "files": [
         {
           "type": "component",
-          "path": "components/modal/modal.vue"
+          "path": "components/modal/modal.vue",
+          "hash": "2ae7de0f9b72976377bc1c9812f9c59f"
         },
         {
           "type": "type",
-          "path": "components/modal/modal.props.ts"
+          "path": "components/modal/modal.props.ts",
+          "hash": "eee1a220552060015410867aead0a85e"
         },
         {
           "type": "style",
-          "path": "components/modal/modal.style.ts"
+          "path": "components/modal/modal.style.ts",
+          "hash": "3309cc8d7e708bfad9e82c1874b1d2f9"
         }
       ],
       "cssVars": {
@@ -576,15 +635,18 @@
       "files": [
         {
           "type": "component",
-          "path": "components/empty/empty.vue"
+          "path": "components/empty/empty.vue",
+          "hash": "69c5cc635a5a77285b1702c2c31376fd"
         },
         {
           "type": "type",
-          "path": "components/empty/empty.props.ts"
+          "path": "components/empty/empty.props.ts",
+          "hash": "42c4481677cecc4f2c002c6141562c5f"
         },
         {
           "type": "style",
-          "path": "components/empty/empty.style.ts"
+          "path": "components/empty/empty.style.ts",
+          "hash": "056aee350ed0c4996a4d1d96a57175de"
         }
       ]
     },
@@ -599,15 +661,18 @@
       "files": [
         {
           "type": "component",
-          "path": "components/result/result.vue"
+          "path": "components/result/result.vue",
+          "hash": "875230b625d5e746ab28ee53c35ea6d9"
         },
         {
           "type": "type",
-          "path": "components/result/result.props.ts"
+          "path": "components/result/result.props.ts",
+          "hash": "eb957827c2ea3d71dc4b06eef280f900"
         },
         {
           "type": "style",
-          "path": "components/result/result.style.ts"
+          "path": "components/result/result.style.ts",
+          "hash": "fb05b3e87aa7c6a2b10b3fd30c58b51f"
         }
       ]
     },
@@ -623,31 +688,38 @@
       "files": [
         {
           "type": "component",
-          "path": "components/toast/toast.vue"
+          "path": "components/toast/toast.vue",
+          "hash": "ea8ddb1a112ede981acbdbf0e6d138cb"
         },
         {
           "type": "type",
-          "path": "components/toast/toast.props.ts"
+          "path": "components/toast/toast.props.ts",
+          "hash": "074ff51c9a0b84bf831d35c6dcdb4584"
         },
         {
           "type": "style",
-          "path": "components/toast/toast.style.ts"
+          "path": "components/toast/toast.style.ts",
+          "hash": "221123944fea9eea6d418ff0e26c9d4d"
         },
         {
           "type": "component",
-          "path": "components/toast/toast-provider.vue"
+          "path": "components/toast/toast-provider.vue",
+          "hash": "dfb990e4b233932470bd7ee9a75896d0"
         },
         {
           "type": "type",
-          "path": "components/toast/toast-provider.props.ts"
+          "path": "components/toast/toast-provider.props.ts",
+          "hash": "f12ea358c336a20e2cff6c67c45127a7"
         },
         {
           "type": "style",
-          "path": "components/toast/toast-provider.style.ts"
+          "path": "components/toast/toast-provider.style.ts",
+          "hash": "dddda15eb3e908dcd760def73adeea45"
         },
         {
           "type": "composable",
-          "path": "composables/use-toast.ts"
+          "path": "composables/use-toast.ts",
+          "hash": "842b4250b61a5cdf16e4bc87f6237189"
         }
       ],
       "cssVars": {
@@ -669,15 +741,18 @@
       "files": [
         {
           "type": "component",
-          "path": "components/accordion/accordion.vue"
+          "path": "components/accordion/accordion.vue",
+          "hash": "cddfa9e95389b564233bd82e81deb36a"
         },
         {
           "type": "type",
-          "path": "components/accordion/accordion.props.ts"
+          "path": "components/accordion/accordion.props.ts",
+          "hash": "36c1ddbf66f6a39d324da0a6b0fd3817"
         },
         {
           "type": "style",
-          "path": "components/accordion/accordion.style.ts"
+          "path": "components/accordion/accordion.style.ts",
+          "hash": "3ad83af8814f8bb4ad82b3c8cd217df0"
         }
       ],
       "cssVars": {
@@ -697,23 +772,28 @@
       "files": [
         {
           "type": "component",
-          "path": "components/tabs/tabs.vue"
+          "path": "components/tabs/tabs.vue",
+          "hash": "89e8ac46d9726c0e6c50477f0b9b9aff"
         },
         {
           "type": "type",
-          "path": "components/tabs/tabs.props.ts"
+          "path": "components/tabs/tabs.props.ts",
+          "hash": "890da3928059eb299e7b7c95699dc4a9"
         },
         {
           "type": "style",
-          "path": "components/tabs/tabs.style.ts"
+          "path": "components/tabs/tabs.style.ts",
+          "hash": "a139312c500e85c14c07151a1068a163"
         },
         {
           "type": "component",
-          "path": "components/tabs/tabs-content.vue"
+          "path": "components/tabs/tabs-content.vue",
+          "hash": "90ee5f738152f61fc5ba026446100623"
         },
         {
           "type": "type",
-          "path": "components/tabs/tabs-content.props.ts"
+          "path": "components/tabs/tabs-content.props.ts",
+          "hash": "bf969da3441ec87842ad91311355a4b4"
         }
       ],
       "cssVars": {
@@ -734,23 +814,28 @@
       "files": [
         {
           "type": "component",
-          "path": "components/dropdown/dropdown.vue"
+          "path": "components/dropdown/dropdown.vue",
+          "hash": "c6ff86a3e24ac0b10d6b67efdd31d294"
         },
         {
           "type": "type",
-          "path": "components/dropdown/dropdown.props.ts"
+          "path": "components/dropdown/dropdown.props.ts",
+          "hash": "1514ff3686ce14f6631f731eb1d593f1"
         },
         {
           "type": "style",
-          "path": "components/dropdown/dropdown.style.ts"
+          "path": "components/dropdown/dropdown.style.ts",
+          "hash": "e916af365cfdfe92006f74198782e76f"
         },
         {
           "type": "component",
-          "path": "components/dropdown/dropdown-content.vue"
+          "path": "components/dropdown/dropdown-content.vue",
+          "hash": "2326eaa84e10a766d9720ac50c3ab535"
         },
         {
           "type": "type",
-          "path": "components/dropdown/dropdown-content.props.ts"
+          "path": "components/dropdown/dropdown-content.props.ts",
+          "hash": "1e7c7ae7f124b31decea3a2761d357e8"
         }
       ],
       "cssVars": {
@@ -767,15 +852,18 @@
       "files": [
         {
           "type": "component",
-          "path": "components/overflow-list/overflow-list.vue"
+          "path": "components/overflow-list/overflow-list.vue",
+          "hash": "c351fa5f38c2abc2cbe8fd888ebe8c1b"
         },
         {
           "type": "type",
-          "path": "components/overflow-list/overflow-list.props.ts"
+          "path": "components/overflow-list/overflow-list.props.ts",
+          "hash": "b0c4e64711d668eb393e5d3b85509fdd"
         },
         {
           "type": "style",
-          "path": "components/overflow-list/overflow-list.style.ts"
+          "path": "components/overflow-list/overflow-list.style.ts",
+          "hash": "971a53ba77b889e29b91d1998197949c"
         }
       ]
     },
@@ -790,15 +878,18 @@
       "files": [
         {
           "type": "component",
-          "path": "components/spinner/spinner.vue"
+          "path": "components/spinner/spinner.vue",
+          "hash": "999277981f74d8bf8720d1f22b7c81b0"
         },
         {
           "type": "type",
-          "path": "components/spinner/spinner.props.ts"
+          "path": "components/spinner/spinner.props.ts",
+          "hash": "d2e6b279ee510d7e8400dc4847dd5d6a"
         },
         {
           "type": "style",
-          "path": "components/spinner/spinner.style.ts"
+          "path": "components/spinner/spinner.style.ts",
+          "hash": "28a666ddc0916c579fa6344d76f8f94a"
         }
       ]
     },
@@ -813,15 +904,18 @@
       "files": [
         {
           "type": "component",
-          "path": "components/pagination/pagination.vue"
+          "path": "components/pagination/pagination.vue",
+          "hash": "ef7c9b9f96b37808e32aaaceda0c3539"
         },
         {
           "type": "type",
-          "path": "components/pagination/pagination.props.ts"
+          "path": "components/pagination/pagination.props.ts",
+          "hash": "553581df92d223ec02698ac7d8154a01"
         },
         {
           "type": "style",
-          "path": "components/pagination/pagination.style.ts"
+          "path": "components/pagination/pagination.style.ts",
+          "hash": "ab5bd950c939d7f393d7284782c8621b"
         }
       ]
     },
@@ -833,15 +927,18 @@
       "files": [
         {
           "type": "component",
-          "path": "components/progress/progress.vue"
+          "path": "components/progress/progress.vue",
+          "hash": "56af021b41fa9c3ff062ee43d6c76d8f"
         },
         {
           "type": "type",
-          "path": "components/progress/progress.props.ts"
+          "path": "components/progress/progress.props.ts",
+          "hash": "66eabe907dd14687f2cc4ba7570f2269"
         },
         {
           "type": "style",
-          "path": "components/progress/progress.style.ts"
+          "path": "components/progress/progress.style.ts",
+          "hash": "df5c4e591174944a813d33535134a1d7"
         }
       ]
     },
@@ -857,15 +954,18 @@
       "files": [
         {
           "type": "component",
-          "path": "components/timeline/timeline.vue"
+          "path": "components/timeline/timeline.vue",
+          "hash": "a4d0d1ce71f1ef2d5ab327cea80d0bf7"
         },
         {
           "type": "type",
-          "path": "components/timeline/timeline.props.ts"
+          "path": "components/timeline/timeline.props.ts",
+          "hash": "926cf591675eaf32591fd6277e6c88e8"
         },
         {
           "type": "style",
-          "path": "components/timeline/timeline.style.ts"
+          "path": "components/timeline/timeline.style.ts",
+          "hash": "9075adf83230bd44a41d6555b57cf18d"
         }
       ]
     },
@@ -880,15 +980,18 @@
       "files": [
         {
           "type": "component",
-          "path": "components/stepper/stepper.vue"
+          "path": "components/stepper/stepper.vue",
+          "hash": "8362b14a9fcb281a13930e019dce5a85"
         },
         {
           "type": "type",
-          "path": "components/stepper/stepper.props.ts"
+          "path": "components/stepper/stepper.props.ts",
+          "hash": "00c2d55c91bf78fa5663d201b1508d47"
         },
         {
           "type": "style",
-          "path": "components/stepper/stepper.style.ts"
+          "path": "components/stepper/stepper.style.ts",
+          "hash": "7bcbf673aac7247ba84ff68c67221c88"
         }
       ]
     },
@@ -903,15 +1006,18 @@
       "files": [
         {
           "type": "component",
-          "path": "components/switch/switch.vue"
+          "path": "components/switch/switch.vue",
+          "hash": "d25923a8de57e691c06e69283dd807aa"
         },
         {
           "type": "type",
-          "path": "components/switch/switch.props.ts"
+          "path": "components/switch/switch.props.ts",
+          "hash": "016beb8a34571f9e7af9449b0ec17dcf"
         },
         {
           "type": "style",
-          "path": "components/switch/switch.style.ts"
+          "path": "components/switch/switch.style.ts",
+          "hash": "1b9d8e41dbd74391f3dc6930a7d19293"
         }
       ]
     },
@@ -926,27 +1032,33 @@
       "files": [
         {
           "type": "component",
-          "path": "components/toggle/toggle.vue"
+          "path": "components/toggle/toggle.vue",
+          "hash": "c301ab5fc24be627279424d9450a03be"
         },
         {
           "type": "type",
-          "path": "components/toggle/toggle.props.ts"
+          "path": "components/toggle/toggle.props.ts",
+          "hash": "b6645f513831200e25ba979414266c50"
         },
         {
           "type": "style",
-          "path": "components/toggle/toggle.style.ts"
+          "path": "components/toggle/toggle.style.ts",
+          "hash": "b9778f345af9e67a4fe6edcd736fe4d6"
         },
         {
           "type": "component",
-          "path": "components/toggle/toggle-group.vue"
+          "path": "components/toggle/toggle-group.vue",
+          "hash": "e5cc43dd1cefd50e92c62cffd1c903c9"
         },
         {
           "type": "type",
-          "path": "components/toggle/toggle-group.props.ts"
+          "path": "components/toggle/toggle-group.props.ts",
+          "hash": "44cff8eb2b33f9814c77a4b05947220e"
         },
         {
           "type": "style",
-          "path": "components/toggle/toggle-group.style.ts"
+          "path": "components/toggle/toggle-group.style.ts",
+          "hash": "e2fa337a002108ca37b9bcc3bf321e2a"
         }
       ]
     },
@@ -958,15 +1070,18 @@
       "files": [
         {
           "type": "component",
-          "path": "components/data-list/data-list.vue"
+          "path": "components/data-list/data-list.vue",
+          "hash": "27d9b620fa5b7a34e0f138a2c3d6b4bb"
         },
         {
           "type": "type",
-          "path": "components/data-list/data-list.props.ts"
+          "path": "components/data-list/data-list.props.ts",
+          "hash": "da422f31fa50884645b1c4f0ba9189af"
         },
         {
           "type": "style",
-          "path": "components/data-list/data-list.style.ts"
+          "path": "components/data-list/data-list.style.ts",
+          "hash": "94a0bf9d7f543afdbd6c017957d55444"
         }
       ]
     },
@@ -978,15 +1093,18 @@
       "files": [
         {
           "type": "component",
-          "path": "components/label/label.vue"
+          "path": "components/label/label.vue",
+          "hash": "61610eaf5bd1ab889d38ff2b633b9129"
         },
         {
           "type": "type",
-          "path": "components/label/label.props.ts"
+          "path": "components/label/label.props.ts",
+          "hash": "931738e2722335b99ad491432eadbfe9"
         },
         {
           "type": "style",
-          "path": "components/label/label.style.ts"
+          "path": "components/label/label.style.ts",
+          "hash": "ef593b079c62fc94b93e283a4ffd8ac6"
         }
       ]
     },
@@ -1001,51 +1119,63 @@
       "files": [
         {
           "type": "component",
-          "path": "components/input/input.vue"
+          "path": "components/input/input.vue",
+          "hash": "9f6ce4b4e990069b9233a6cf704d285f"
         },
         {
           "type": "type",
-          "path": "components/input/input.props.ts"
+          "path": "components/input/input.props.ts",
+          "hash": "dbf7cc99beff7da1373fc0536eef4a0b"
         },
         {
           "type": "style",
-          "path": "components/input/input.style.ts"
+          "path": "components/input/input.style.ts",
+          "hash": "f602330cb76173b99611baad69b733ba"
         },
         {
           "type": "component",
-          "path": "components/input/input-password.vue"
+          "path": "components/input/input-password.vue",
+          "hash": "c89188ea0bd3cc19545171ae7f8c9ed7"
         },
         {
           "type": "type",
-          "path": "components/input/input-password.props.ts"
+          "path": "components/input/input-password.props.ts",
+          "hash": "d2fcb640f70a39e39b71e798f928c31e"
         },
         {
           "type": "style",
-          "path": "components/input/input-password.style.ts"
+          "path": "components/input/input-password.style.ts",
+          "hash": "5c142c8a338335d53c4425836d273e71"
         },
         {
           "type": "component",
-          "path": "components/input/input-pin.vue"
+          "path": "components/input/input-pin.vue",
+          "hash": "47df554e26ce65889dba8eb1f8634134"
         },
         {
           "type": "type",
-          "path": "components/input/input-pin.props.ts"
+          "path": "components/input/input-pin.props.ts",
+          "hash": "4b429bea40437db8fdd9d2ef99dd9f14"
         },
         {
           "type": "style",
-          "path": "components/input/input-pin.style.ts"
+          "path": "components/input/input-pin.style.ts",
+          "hash": "da1b639a18bab5a4bdb7207c9e87a66f"
         },
         {
           "type": "component",
-          "path": "components/input/input-number.vue"
+          "path": "components/input/input-number.vue",
+          "hash": "c0ef7bb5c02549f96c3148c1bb00e246"
         },
         {
           "type": "type",
-          "path": "components/input/input-number.props.ts"
+          "path": "components/input/input-number.props.ts",
+          "hash": "c1c073cef7df6b120986cdbfff2c7467"
         },
         {
           "type": "style",
-          "path": "components/input/input-number.style.ts"
+          "path": "components/input/input-number.style.ts",
+          "hash": "31c4cd13cff982ff143b3e15df27da59"
         }
       ]
     },
@@ -1064,15 +1194,18 @@
       "files": [
         {
           "type": "component",
-          "path": "components/select/select.vue"
+          "path": "components/select/select.vue",
+          "hash": "2cfe6c0f45a14949dcb1b2c8d7578227"
         },
         {
           "type": "type",
-          "path": "components/select/select.props.ts"
+          "path": "components/select/select.props.ts",
+          "hash": "a5cf3f147ea89560ae6ce556ac7b8b30"
         },
         {
           "type": "style",
-          "path": "components/select/select.style.ts"
+          "path": "components/select/select.style.ts",
+          "hash": "fbf5081d0d9758796724db0b9770748e"
         }
       ]
     },
@@ -1084,15 +1217,18 @@
       "files": [
         {
           "type": "component",
-          "path": "components/textarea/textarea.vue"
+          "path": "components/textarea/textarea.vue",
+          "hash": "1f03f9d36c459370f6aa66aa5818962a"
         },
         {
           "type": "type",
-          "path": "components/textarea/textarea.props.ts"
+          "path": "components/textarea/textarea.props.ts",
+          "hash": "7ffcca4b974e95438cbb87564a28ceb5"
         },
         {
           "type": "style",
-          "path": "components/textarea/textarea.style.ts"
+          "path": "components/textarea/textarea.style.ts",
+          "hash": "9988938b3c84510c1f4b73368cc7019b"
         }
       ]
     },
@@ -1104,15 +1240,18 @@
       "files": [
         {
           "type": "component",
-          "path": "components/radio-group/radio-group.vue"
+          "path": "components/radio-group/radio-group.vue",
+          "hash": "128130ff54e247c9aaa0775d0db939a4"
         },
         {
           "type": "type",
-          "path": "components/radio-group/radio-group.props.ts"
+          "path": "components/radio-group/radio-group.props.ts",
+          "hash": "cbc0e79fcaf6aa8003f9a116ca10222a"
         },
         {
           "type": "style",
-          "path": "components/radio-group/radio-group.style.ts"
+          "path": "components/radio-group/radio-group.style.ts",
+          "hash": "73c72f8b694836117a2019587579e2b3"
         }
       ]
     },
@@ -1127,27 +1266,33 @@
       "files": [
         {
           "type": "component",
-          "path": "components/checkbox/checkbox.vue"
+          "path": "components/checkbox/checkbox.vue",
+          "hash": "6ee42581eb0366674c66c7e22332b3b2"
         },
         {
           "type": "type",
-          "path": "components/checkbox/checkbox.props.ts"
+          "path": "components/checkbox/checkbox.props.ts",
+          "hash": "c07225103f259eddc09d7aa9c33ee6e6"
         },
         {
           "type": "style",
-          "path": "components/checkbox/checkbox.style.ts"
+          "path": "components/checkbox/checkbox.style.ts",
+          "hash": "354dbc5b7d54b4b43e8ebdddbec439a5"
         },
         {
           "type": "component",
-          "path": "components/checkbox/checkbox-group.vue"
+          "path": "components/checkbox/checkbox-group.vue",
+          "hash": "d0f4cc8fb47ab864c9203ed3e1a353cb"
         },
         {
           "type": "type",
-          "path": "components/checkbox/checkbox-group.props.ts"
+          "path": "components/checkbox/checkbox-group.props.ts",
+          "hash": "a7870fe30eec8acc62e7b289e729288b"
         },
         {
           "type": "style",
-          "path": "components/checkbox/checkbox-group.style.ts"
+          "path": "components/checkbox/checkbox-group.style.ts",
+          "hash": "f9bdbc0a92e4b1466a3fef2948bbb6f5"
         }
       ]
     },
@@ -1162,15 +1307,18 @@
       "files": [
         {
           "type": "component",
-          "path": "components/slider/slider.vue"
+          "path": "components/slider/slider.vue",
+          "hash": "6dffe4bd0262a6c84c09d1cbd446bc7a"
         },
         {
           "type": "type",
-          "path": "components/slider/slider.props.ts"
+          "path": "components/slider/slider.props.ts",
+          "hash": "c9d6214a2fea5669c6a39cd981283bc0"
         },
         {
           "type": "style",
-          "path": "components/slider/slider.style.ts"
+          "path": "components/slider/slider.style.ts",
+          "hash": "a97d5a108862c2f350135fb3851f7a66"
         }
       ]
     },
@@ -1185,11 +1333,13 @@
       "files": [
         {
           "type": "component",
-          "path": "components/app/app.vue"
+          "path": "components/app/app.vue",
+          "hash": "19140f3fe3ccb8afce8674a60b8015c7"
         },
         {
           "type": "type",
-          "path": "components/app/app.props.ts"
+          "path": "components/app/app.props.ts",
+          "hash": "9616e2fce64c818d9a599e43a5a75db4"
         }
       ]
     },
@@ -1204,15 +1354,18 @@
       "files": [
         {
           "type": "component",
-          "path": "components/calendar/calendar.vue"
+          "path": "components/calendar/calendar.vue",
+          "hash": "8a75961db9e6cdbb4be1acc01d97a70a"
         },
         {
           "type": "type",
-          "path": "components/calendar/calendar.props.ts"
+          "path": "components/calendar/calendar.props.ts",
+          "hash": "4ae13766181332a3053c75a2730da728"
         },
         {
           "type": "style",
-          "path": "components/calendar/calendar.style.ts"
+          "path": "components/calendar/calendar.style.ts",
+          "hash": "50860a4bcc3d1fe622d3a855e38eb9fc"
         }
       ]
     },
@@ -1228,15 +1381,18 @@
       "files": [
         {
           "type": "component",
-          "path": "components/date-picker/date-picker.vue"
+          "path": "components/date-picker/date-picker.vue",
+          "hash": "48589ab2ab698807f5518c6c8f83fec4"
         },
         {
           "type": "type",
-          "path": "components/date-picker/date-picker.props.ts"
+          "path": "components/date-picker/date-picker.props.ts",
+          "hash": "1936505c23a93b850373f89bbf166669"
         },
         {
           "type": "style",
-          "path": "components/date-picker/date-picker.style.ts"
+          "path": "components/date-picker/date-picker.style.ts",
+          "hash": "a67a1fb2bf000f643854d974fa8a9d02"
         }
       ]
     }

@@ -1,0 +1,47 @@
+{
+  "name": "@weme-ui/plus",
+  "type": "module",
+  "version": "0.0.0",
+  "private": true,
+  "packageManager": "pnpm@10.24.0",
+  "description": "The plus components for Weme UI",
+  "author": "Allen Luo <luoyi@mouji.net>",
+  "license": "MIT",
+  "homepage": "https://github.com/weme-ui/weme-ui",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/weme-ui/weme-ui.git"
+  },
+  "bugs": {
+    "url": "https://github.com/weme-ui/weme-ui/issues"
+  },
+  "keywords": [
+    "vue",
+    "nuxt",
+    "unocss",
+    "reka-ui",
+    "radix-colors",
+    "weme-ui",
+    "weme-ui-registry",
+    "reka-ui-components",
+    "unocss-ui-components",
+    "weme-ui/plus"
+  ],
+  "scripts": {
+    "dev:prepare": "nuxi prepare",
+    "typecheck": "vue-tsc --noEmit"
+  },
+  "dependencies": {
+    "@vueuse/core": "catalog:registry",
+    "@weme-ui/nuxt": "workspace:*",
+    "@weme-ui/unocss-preset": "workspace:*",
+    "clsx": "catalog:registry",
+    "nuxt": "catalog:dev",
+    "reka-ui": "catalog:registry",
+    "tailwind-merge": "catalog:registry",
+    "tailwind-variants": "catalog:registry",
+    "unocss": "catalog:dev",
+    "vue": "catalog:dev",
+    "vue-router": "catalog:dev"
+  }
+}

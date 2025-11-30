@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { RepositorySchema } from '../src/v2'
+import { RepositorySchema } from '../src/schema'
 
 describe('repository schema v2', () => {
   it('should validate', () => {

@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { RegistrySchema } from '../src/v2'
+import { RegistrySchema } from '../src/schema'
 
 describe('registry schema v2', () => {
   it('should validate', () => {

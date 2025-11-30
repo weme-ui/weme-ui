@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { ProjectSchema } from '../src/v2'
+import { ProjectSchema } from '../src/schema'
 
 describe('project schema v2', () => {
   it('should validate', () => {

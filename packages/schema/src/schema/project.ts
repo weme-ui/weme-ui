@@ -2,7 +2,7 @@ import { z } from 'zod'
 import { RegistryItemType, RegistryName } from './registry'
 import { InlineCssVar } from './shared'
 
-export const ProjectRepoURL = z.url()
+export const ProjectRepoURL = z.httpUrl()
 
 export const ProjectRegistry = z.object({
   /**
@@ -53,7 +53,10 @@ export const ProjectPaths = z.object({
   utils: z.string().trim().default('~/utils').optional(),
 })
 
-export const ProjectCustomColor = z.record(z.string().lowercase().trim(), z.string().lowercase().trim())
+export const ProjectCustomColor = z.record(
+  z.string().lowercase().trim(),
+  z.string().lowercase().trim(),
+)
 
 export const ProjectUnoCss = z.object({
   /**
@@ -218,8 +221,9 @@ export const ProjectSchema = z.object({
 })
 
 export type IProject = z.infer<typeof ProjectSchema>
-export type IProjectRegistry = z.infer<typeof ProjectRegistry>
 export type IProjectRepoURL = z.infer<typeof ProjectRepoURL>
 export type IProjectPaths = z.infer<typeof ProjectPaths>
+export type IProjectCustomColor = z.infer<typeof ProjectCustomColor>
 export type IProjectUnoCss = z.infer<typeof ProjectUnoCss>
+export type IProjectRegistry = z.infer<typeof ProjectRegistry>
 export type IProjectItem = z.infer<typeof ProjectItem>

@@ -25,18 +25,13 @@ export const RepositoryRegistryInfo = z.object({
   /**
    * Default prefix for added items of the registry.
    */
-  prefix: z.string().trim().default('ui').optional(),
+  prefix: z.string().lowercase().trim().default('ui').optional(),
 
   /**
    * Statistics of the registry
    */
   statistics: RepositoryRegistryStatistics,
 })
-
-export const RepositoryName = z.stringFormat(
-  'repository-name',
-  val => !val.includes('/'),
-)
 
 export const RepositorySchema = z.object({
   /**
@@ -49,21 +44,21 @@ export const RepositorySchema = z.object({
    *
    * @example 'weme-ui'
    */
-  name: RepositoryName.lowercase().trim(),
+  name: z.string().lowercase().trim(),
 
   /**
    * Owner of the repository.
    *
    * @example 'weme-ui'
    */
-  owner: RepositoryName.lowercase().trim(),
+  owner: z.string().lowercase().trim(),
 
   /**
    * Version of the repository.
    *
    * @example `1.0.0`
    */
-  version: z.string().trim().optional(),
+  version: z.string().trim(),
 
   /**
    * Registry information list of the repository.
@@ -77,6 +72,5 @@ export const RepositorySchema = z.object({
 })
 
 export type IRepository = z.infer<typeof RepositorySchema>
-export type IRepositoryName = z.infer<typeof RepositoryName>
 export type IRepositoryRegistryInfo = z.infer<typeof RepositoryRegistryInfo>
 export type IRepositoryRegistryStatistics = z.infer<typeof RepositoryRegistryStatistics>

@@ -7,6 +7,7 @@ describe('repository schema v2', () => {
       $schema: 'https://weme-ui.github.io/schema/repository.schema.json',
       name: 'weme-ui',
       owner: 'weme-ui',
+      version: '0.0.0',
       registries: [],
       updated: '2025-08-16T10:00:00Z',
     })
@@ -19,6 +20,7 @@ describe('repository schema v2', () => {
         "owner": "weme-ui",
         "registries": [],
         "updated": "2025-08-16T10:00:00Z",
+        "version": "0.0.0",
       }
     `)
   })

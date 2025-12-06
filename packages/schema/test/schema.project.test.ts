@@ -65,7 +65,6 @@ describe('project schema v2', () => {
             "prefix": "ui",
             "registry": "weme-ui/test",
             "repo": "https://github.com/weme-ui/weme-ui",
-            "version": "0.0.0",
           },
         ],
         "unocss": {

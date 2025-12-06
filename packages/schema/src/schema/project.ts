@@ -33,13 +33,6 @@ export const ProjectRegistry = z.object({
    * @default false
    */
   default: z.boolean().default(false).optional(),
-
-  /**
-   * Version of the repository.
-   *
-   * @example `1.0.0`
-   */
-  version: z.string().trim().default('latest').optional(),
 })
 
 export const ProjectPaths = z.object({

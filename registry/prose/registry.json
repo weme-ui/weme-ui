@@ -1,0 +1,260 @@
+{
+  "$schema": "https://weme-ui.github.io/schema/registry.schema.json",
+  "name": "weme-ui/prose",
+  "description": "The registry for Weme UI.",
+  "version": "0.1.5",
+  "prefix": "prose",
+  "items": [
+    {
+      "name": "#init",
+      "type": "init",
+      "title": "Init",
+      "description": "Init dependencies and utils for Weme UI.",
+      "dependencies": [
+        "@vueuse/core",
+        "clsx",
+        "reka-ui",
+        "tailwind-merge",
+        "tailwind-variants"
+      ],
+      "devDependencies": [
+        "@weme-ui/nuxt",
+        "@weme-ui/unocss-preset",
+        "nuxt",
+        "unocss",
+        "vue-tsc",
+        "vue"
+      ],
+      "files": [
+        {
+          "type": "util",
+          "path": "utils/styles.ts",
+          "hash": "3975a0ea465ea931c4f5fd90af0e62b6"
+        },
+        {
+          "type": "util",
+          "path": "utils/props.ts",
+          "hash": "23177f90701087234a5c6a5d5d137758"
+        },
+        {
+          "type": "util",
+          "path": "utils/slots.ts",
+          "hash": "8ea3c19f1067925ad64d06accfc995ef"
+        }
+      ]
+    },
+    {
+      "name": "heading",
+      "type": "component",
+      "title": "Heading",
+      "description": "Used to render semantic HTML heading elements.",
+      "files": [
+        {
+          "type": "type",
+          "path": "components/heading/heading.props.ts",
+          "hash": "8b59cb7305a31aff94aaf2a1b58d0fec"
+        },
+        {
+          "type": "component",
+          "path": "components/heading/heading.vue",
+          "hash": "0d572b3daf98fe0705877928cac68264"
+        },
+        {
+          "type": "style",
+          "path": "components/heading/heading.style.ts",
+          "hash": "24b18274fe340147fb71836d1e1eeaf9"
+        }
+      ]
+    },
+    {
+      "name": "em",
+      "type": "component",
+      "title": "Em",
+      "description": "Used to mark text for emphasis.",
+      "files": [
+        {
+          "type": "style",
+          "path": "components/em/em.style.ts",
+          "hash": "7f5f561f478926566d78dafad8c84161"
+        },
+        {
+          "type": "component",
+          "path": "components/em/em.vue",
+          "hash": "cb5fdc0f558e798dd47f24d399a890a0"
+        },
+        {
+          "type": "type",
+          "path": "components/em/em.props.ts",
+          "hash": "aec4c468c2623ff0b3a082eda6312662"
+        }
+      ]
+    },
+    {
+      "name": "text",
+      "type": "component",
+      "title": "Text",
+      "description": "Used to render text and paragraphs within an interface.",
+      "files": [
+        {
+          "type": "component",
+          "path": "components/text/text.vue",
+          "hash": "fa9b3a2950f94ca453edfdbad4fb00cb"
+        },
+        {
+          "type": "type",
+          "path": "components/text/text.props.ts",
+          "hash": "8dc5d17ead589b7288e6bb25bc624154"
+        },
+        {
+          "type": "style",
+          "path": "components/text/text.style.ts",
+          "hash": "72ce96358c5463f75b11322eea29deb9"
+        }
+      ]
+    },
+    {
+      "name": "mark",
+      "type": "component",
+      "title": "Mark",
+      "description": "Used to mark text for emphasis.",
+      "files": [
+        {
+          "type": "type",
+          "path": "components/mark/mark.props.ts",
+          "hash": "f3267524da95e1e0e8229c061ee480b6"
+        },
+        {
+          "type": "component",
+          "path": "components/mark/mark.vue",
+          "hash": "1559d22e52e8e81e48cff639a37d5f61"
+        },
+        {
+          "type": "style",
+          "path": "components/mark/mark.style.ts",
+          "hash": "c1afc86de626140493af1044fc1c8d21"
+        }
+      ]
+    },
+    {
+      "name": "blockquote",
+      "type": "component",
+      "title": "Blockquote",
+      "description": "Used to quote text content from an external source.",
+      "files": [
+        {
+          "type": "type",
+          "path": "components/blockquote/blockquote.props.ts",
+          "hash": "96277aad69fb79fc03e26729402780f5"
+        },
+        {
+          "type": "component",
+          "path": "components/blockquote/blockquote.vue",
+          "hash": "78a9f06bd7ef3658176f7404aea4c4f5"
+        },
+        {
+          "type": "style",
+          "path": "components/blockquote/blockquote.style.ts",
+          "hash": "cf696a3b7650d1d63f152b5a0101c28d"
+        }
+      ]
+    },
+    {
+      "name": "code",
+      "type": "component",
+      "title": "Code",
+      "description": "Used to display inline code.",
+      "files": [
+        {
+          "type": "component",
+          "path": "components/code/code.vue",
+          "hash": "48fafe00cf2917c78240666d31b8f210"
+        },
+        {
+          "type": "type",
+          "path": "components/code/code.props.ts",
+          "hash": "d5a01631d2499662cb7a005356c70b9e"
+        },
+        {
+          "type": "style",
+          "path": "components/code/code.style.ts",
+          "hash": "8a34aa035c792a93fd1617ae341317b3"
+        }
+      ]
+    },
+    {
+      "name": "list",
+      "type": "component",
+      "title": "List",
+      "description": "Used to display a list of items.",
+      "files": [
+        {
+          "type": "type",
+          "path": "components/list/list.props.ts",
+          "hash": "b5185b367926c0670b99d5ba7279f2ad"
+        },
+        {
+          "type": "component",
+          "path": "components/list/list.vue",
+          "hash": "980391d9dd13bba5c1b5021e4517a63e"
+        },
+        {
+          "type": "style",
+          "path": "components/list/list.style.ts",
+          "hash": "1f678fd8030b7180e402a1de00dec1fa"
+        }
+      ]
+    },
+    {
+      "name": "link",
+      "type": "component",
+      "title": "Link",
+      "description": "Used to provide accessible navigation.",
+      "files": [
+        {
+          "type": "component",
+          "path": "components/link/link.vue",
+          "hash": "9ee82c74d5cc589b01bcac10d31524cf"
+        },
+        {
+          "type": "type",
+          "path": "components/link/link.props.ts",
+          "hash": "570265470caf9af33689ff0fcf1998ff"
+        },
+        {
+          "type": "style",
+          "path": "components/link/link.style.ts",
+          "hash": "ccb91a439d8230d7dacc0608e55268f1"
+        }
+      ]
+    },
+    {
+      "name": "highlight",
+      "type": "component",
+      "title": "Highlight",
+      "description": "Used to highlight substrings of a text.",
+      "dependencies": [
+        "@zag-js/highlight-word"
+      ],
+      "registryDependencies": [
+        "mark"
+      ],
+      "files": [
+        {
+          "type": "type",
+          "path": "components/highlight/highlight.props.ts",
+          "hash": "a5a496780977dea15e5004e62c3dc013"
+        },
+        {
+          "type": "component",
+          "path": "components/highlight/highlight.vue",
+          "hash": "5305a6f56de6b8b2101bcdcd76dd5130"
+        },
+        {
+          "type": "util",
+          "path": "composables/use-highlight.ts",
+          "hash": "b342212b84fb53aa0af501191617d678"
+        }
+      ]
+    }
+  ]
+}

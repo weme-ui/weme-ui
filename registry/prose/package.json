@@ -1,0 +1,43 @@
+{
+  "name": "@weme-ui/prose",
+  "type": "module",
+  "version": "0.1.5",
+  "private": true,
+  "packageManager": "pnpm@10.25.0",
+  "description": "The registry for Weme UI.",
+  "license": "MIT",
+  "keywords": [
+    "vue",
+    "nuxt",
+    "unocss",
+    "reka-ui",
+    "radix-colors",
+    "weme-ui",
+    "weme-ui-registry",
+    "reka-ui-components",
+    "unocss-ui-components",
+    "weme-ui/prose"
+  ],
+  "scripts": {
+    "dev": "nuxt dev playground",
+    "dev:prepare": "nuxt prepare && nuxt prepare playground",
+    "typecheck": "vue-tsc --noEmit"
+  },
+  "dependencies": {
+    "@vueuse/core": "catalog:",
+    "@zag-js/highlight-word": "catalog:",
+    "clsx": "catalog:",
+    "reka-ui": "catalog:",
+    "tailwind-merge": "catalog:",
+    "tailwind-variants": "catalog:"
+  },
+  "devDependencies": {
+    "@weme-ui/nuxt": "workspace:*",
+    "@weme-ui/unocss-preset": "workspace:*",
+    "nuxt": "catalog:",
+    "unocss": "catalog:",
+    "vue": "catalog:",
+    "vue-router": "catalog:",
+    "vue-tsc": "catalog:"
+  }
+}

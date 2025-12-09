@@ -1,0 +1,30 @@
+<script lang="ts" setup>
+import type { ListProps } from './list.props'
+import { reactivePick } from '@vueuse/core'
+import { Primitive } from 'reka-ui'
+import { computed } from 'vue'
+import { cn } from '~/utils/styles'
+import { useListStyle } from './list.style'
+
+const props = withDefaults(defineProps<ListProps>(), {
+  as: 'ul',
+  variant: 'marker',
+  align: 'start',
+})
+
+const delegated = reactivePick(props, 'as', 'asChild')
+const ui = computed(() => useListStyle(props))
+</script>
+
+<template>
+  <Primitive v-bind="delegated" :class="cn(ui.base(), props.ui?.base, props.class)">
+    <li v-for="(item, index) in items" :key="index" :class="cn(ui.item(), item.ui?.item)">
+      <span v-if="item.indicator" :class="cn(ui.indicator(), item.ui?.indicator)">
+        <slot name="indicator" v-bind="{ item, index }" />
+      </span>
+      <slot v-bind="{ item, index }">
+        {{ item.text }}
+      </slot>
+    </li>
+  </Primitive>
+</template>

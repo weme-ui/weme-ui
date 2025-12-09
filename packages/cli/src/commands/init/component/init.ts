@@ -3,6 +3,7 @@ import fs from 'node:fs'
 import { exit } from 'node:process'
 import { REGISTRY_FILE_NAME, RegistrySchema } from '@weme-ui/schema'
 import path from 'pathe'
+import clone from 'rfdc'
 import { titleCase } from 'scule'
 import SparkMD5 from 'spark-md5'
 import { REGISTRY_DIRNAME } from '../../../constants'
@@ -130,9 +131,12 @@ export default async function (args: Record<string, any>) {
         const registry = new LocalRegistry(ctx.cwd, ctx.scope)
         const schema = await registry.schema()
 
+        if (schema.isErr())
+          throw new Error(schema.error)
+
         const resolvedName = ctx.asChild ? ctx.parent : ctx.name
 
-        const items: IRegistryItem[] = schema.isOk() ? schema.value.items : []
+        const items: IRegistryItem[] = schema.value.items || []
         const item: IRegistryItem = items.find(i => i.name === resolvedName) || {
           name: resolvedName,
           type: 'component',
@@ -145,7 +149,10 @@ export default async function (args: Record<string, any>) {
         if (!items.find(i => i.name === resolvedName))
           items.push(item)
 
-        const result = RegistrySchema.safeParse(schema)
+        const data = clone()(schema.value)
+        data.items = items
+
+        const result = RegistrySchema.safeParse(data)
         if (!result.success) {
           throw new Error(result.error.message)
         }

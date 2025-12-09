@@ -65,14 +65,14 @@ export default async function (args: Record<string, any>) {
   // Step 2. Install dependencies.
   await runStep('Installing dependencies...', async (spinner) => {
     try {
-      await addDependency(['@vueuse/core', 'reka-ui', 'clsx', 'tailwind-merge', 'tailwind-variants', 'vue', 'nuxt', 'vue-router'], {
+      await addDependency(['@vueuse/core', 'reka-ui', 'clsx', 'tailwind-merge', 'tailwind-variants'], {
         cwd: basePath,
         silent: true,
       })
 
       spinner.text = 'Installing development dependencies.'
 
-      await addDependency(['@unocss/nuxt', '@weme-ui/nuxt', '@weme-ui/unocss-preset'], {
+      await addDependency(['@weme-ui/nuxt', '@weme-ui/unocss-preset', 'vue', 'nuxt', 'vue-router', 'unocss', 'vue-tsc'], {
         cwd: basePath,
         dev: true,
         silent: true,

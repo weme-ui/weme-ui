@@ -3,7 +3,7 @@
   "type": "module",
   "version": "0.0.0",
   "private": true,
-  "packageManager": "pnpm@10.24.0",
+  "packageManager": "pnpm@10.25.0",
   "description": "The plus components for Weme UI",
   "author": "Allen Luo <luoyi@mouji.net>",
   "license": "MIT",

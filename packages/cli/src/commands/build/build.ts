@@ -107,17 +107,18 @@ export default async function (args: Record<string, any>) {
 
       const data = clone()(schema.value)
 
-      const isUpdated = data.registries.some(
-        (reg) => {
-          const re = registries.find(r => r.name === reg.name)
+      const isUpdated = data.registries.length !== registries.length
+        || data.registries.some(
+          (reg) => {
+            const re = registries.find(r => r.name === reg.name)
 
-          if (re && JSON.stringify(re) !== JSON.stringify(reg)) {
-            return true
-          }
+            if (re && JSON.stringify(re) !== JSON.stringify(reg)) {
+              return true
+            }
 
-          return false
-        },
-      )
+            return false
+          },
+        )
 
       if (isUpdated) {
         const pkg = readFileSync(path.join(args.cwd, 'package.json'), 'utf-8')

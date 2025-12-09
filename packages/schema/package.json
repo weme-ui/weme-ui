@@ -48,18 +48,18 @@
     "test": "vitest"
   },
   "dependencies": {
-    "mkdirp": "catalog:utils",
-    "pathe": "catalog:utils",
-    "scule": "catalog:utils",
-    "zod": "catalog:utils"
+    "mkdirp": "catalog:",
+    "pathe": "catalog:",
+    "scule": "catalog:",
+    "zod": "catalog:"
   },
   "devDependencies": {
-    "@antfu/eslint-config": "catalog:build",
-    "@types/node": "catalog:build",
-    "@typescript/native-preview": "catalog:build",
-    "pkg-types": "catalog:utils",
-    "tsdown": "catalog:build",
-    "typescript": "catalog:build",
-    "vitest": "catalog:testing"
+    "@antfu/eslint-config": "catalog:",
+    "@types/node": "catalog:",
+    "@typescript/native-preview": "catalog:",
+    "pkg-types": "catalog:",
+    "tsdown": "catalog:",
+    "typescript": "catalog:",
+    "vitest": "catalog:"
   }
 }

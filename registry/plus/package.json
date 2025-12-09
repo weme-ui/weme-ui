@@ -32,16 +32,16 @@
     "typecheck": "vue-tsc --noEmit"
   },
   "dependencies": {
-    "@vueuse/core": "catalog:registry",
+    "@vueuse/core": "catalog:",
     "@weme-ui/nuxt": "workspace:*",
     "@weme-ui/unocss-preset": "workspace:*",
-    "clsx": "catalog:registry",
-    "nuxt": "catalog:dev",
-    "reka-ui": "catalog:registry",
-    "tailwind-merge": "catalog:registry",
-    "tailwind-variants": "catalog:registry",
-    "unocss": "catalog:dev",
-    "vue": "catalog:dev",
-    "vue-router": "catalog:dev"
+    "clsx": "catalog:",
+    "nuxt": "catalog:",
+    "reka-ui": "catalog:",
+    "tailwind-merge": "catalog:",
+    "tailwind-variants": "catalog:",
+    "unocss": "catalog:",
+    "vue": "catalog:",
+    "vue-router": "catalog:"
   }
 }

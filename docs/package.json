@@ -12,23 +12,23 @@
     "preview": "nuxt preview"
   },
   "dependencies": {
-    "clsx": "catalog:registry",
-    "motion-v": "catalog:registry",
-    "nuxt": "catalog:dev",
-    "reka-ui": "catalog:registry",
-    "tailwind-merge": "catalog:registry",
-    "tailwind-variants": "catalog:registry",
-    "vue": "catalog:dev"
+    "clsx": "catalog:",
+    "motion-v": "catalog:",
+    "nuxt": "catalog:",
+    "reka-ui": "catalog:",
+    "tailwind-merge": "catalog:",
+    "tailwind-variants": "catalog:",
+    "vue": "catalog:"
   },
   "devDependencies": {
-    "@iconify-json/simple-icons": "catalog:docs",
-    "@nuxt/content": "catalog:docs",
-    "@nuxtjs/i18n": "catalog:docs",
+    "@iconify-json/simple-icons": "catalog:",
+    "@nuxt/content": "catalog:",
+    "@nuxtjs/i18n": "catalog:",
     "@weme-ui/nuxt": "workspace:*",
     "@weme-ui/unocss-preset": "workspace:*",
-    "better-sqlite3": "catalog:docs",
-    "defu": "catalog:dev",
-    "typescript": "catalog:build",
-    "unocss": "catalog:dev"
+    "better-sqlite3": "catalog:",
+    "defu": "catalog:",
+    "typescript": "catalog:",
+    "unocss": "catalog:"
   }
 }

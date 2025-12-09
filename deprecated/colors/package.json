@@ -51,17 +51,17 @@
     "typecheck": "tsgo --noEmit"
   },
   "peerDependencies": {
-    "@radix-ui/colors": "catalog:dev",
-    "bezier-easing": "catalog:dev",
-    "colorjs.io": "catalog:dev"
+    "@radix-ui/colors": "catalog:",
+    "bezier-easing": "catalog:",
+    "colorjs.io": "catalog:"
   },
   "devDependencies": {
-    "@radix-ui/colors": "catalog:dev",
-    "@types/node": "catalog:build",
-    "bezier-easing": "catalog:dev",
-    "colorjs.io": "catalog:dev",
-    "tsdown": "catalog:build",
-    "typescript": "catalog:build",
-    "vitest": "catalog:testing"
+    "@radix-ui/colors": "catalog:",
+    "@types/node": "catalog:",
+    "bezier-easing": "catalog:",
+    "colorjs.io": "catalog:",
+    "tsdown": "catalog:",
+    "typescript": "catalog:",
+    "vitest": "catalog:"
   }
 }

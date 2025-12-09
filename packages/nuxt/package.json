@@ -43,30 +43,30 @@
     "typecheck": "vue-tsc --noEmit"
   },
   "peerDependencies": {
-    "defu": "catalog:dev",
-    "tinyglobby": "catalog:utils"
+    "defu": "catalog:",
+    "tinyglobby": "catalog:"
   },
   "dependencies": {
     "@weme-ui/schema": "workspace:*",
     "@weme-ui/unocss-preset": "workspace:*",
-    "unocss": "catalog:dev"
+    "unocss": "catalog:"
   },
   "devDependencies": {
-    "@iconify-json/lucide": "catalog:registry",
-    "@iconify-json/mingcute": "catalog:registry",
-    "@nuxt/devtools": "catalog:dev",
-    "@nuxt/icon": "catalog:dev",
-    "@nuxt/image": "catalog:dev",
-    "@nuxt/kit": "catalog:dev",
-    "@nuxt/module-builder": "catalog:dev",
-    "@nuxt/schema": "catalog:dev",
-    "@types/node": "catalog:build",
-    "@unocss/nuxt": "catalog:dev",
-    "defu": "catalog:dev",
-    "nuxt": "catalog:dev",
-    "tinyglobby": "catalog:utils",
-    "typescript": "catalog:build",
-    "unocss": "catalog:dev",
-    "vue-tsc": "catalog:dev"
+    "@iconify-json/lucide": "catalog:",
+    "@iconify-json/mingcute": "catalog:",
+    "@nuxt/devtools": "catalog:",
+    "@nuxt/icon": "catalog:",
+    "@nuxt/image": "catalog:",
+    "@nuxt/kit": "catalog:",
+    "@nuxt/module-builder": "catalog:",
+    "@nuxt/schema": "catalog:",
+    "@types/node": "catalog:",
+    "@unocss/nuxt": "catalog:",
+    "defu": "catalog:",
+    "nuxt": "catalog:",
+    "tinyglobby": "catalog:",
+    "typescript": "catalog:",
+    "unocss": "catalog:",
+    "vue-tsc": "catalog:"
   }
 }

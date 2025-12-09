@@ -2,6 +2,10 @@ catalogMode: prefer
 cleanupUnusedCatalogs: true
 shellEmulator: true
 trustPolicy: no-downgrade
+trustPolicyExclude:
+  - chokidar@4.0.3
+  - undici-types@6.21.0
+  - semver@6.3.1
 
 packages:
   - docs
@@ -89,7 +93,6 @@ catalog:
   ufo: ^1.6.1
   unocss: ^66.5.10
   vite: ^7.2.7
-  vite-plugin-vue-devtools: ^8.0.5
   vitest: ^4.0.15
   vue: ^3.5.25
   vue-router: ^4.6.3

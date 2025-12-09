@@ -2,19 +2,19 @@
   "name": "test",
   "type": "module",
   "dependencies": {
-    "clsx": "catalog:registry",
-    "motion-v": "catalog:registry",
-    "reka-ui": "catalog:registry",
-    "tailwind-merge": "catalog:registry",
-    "tailwind-variants": "catalog:registry"
+    "clsx": "catalog:",
+    "motion-v": "catalog:",
+    "reka-ui": "catalog:",
+    "tailwind-merge": "catalog:",
+    "tailwind-variants": "catalog:"
   },
   "devDependencies": {
-    "@unocss/nuxt": "catalog:dev",
-    "@vueuse/core": "catalog:registry",
-    "defu": "catalog:dev",
-    "nuxt": "catalog:dev",
-    "typescript": "catalog:build",
-    "unocss": "catalog:dev",
-    "vue": "catalog:dev"
+    "@unocss/nuxt": "catalog:",
+    "@vueuse/core": "catalog:",
+    "defu": "catalog:",
+    "nuxt": "catalog:",
+    "typescript": "catalog:",
+    "unocss": "catalog:",
+    "vue": "catalog:"
   }
 }

@@ -1,0 +1,66 @@
+{
+  "$schema": "https://weme-ui.github.io/schema/registry.schema.json",
+  "name": "weme-ui/test",
+  "description": "The test registry for Weme UI.",
+  "version": "0.0.0",
+  "prefix": "ui",
+  "items": [
+    {
+      "name": "#init",
+      "type": "init",
+      "title": "Init",
+      "description": "Init dependencies and utils for Weme UI.",
+      "devDependencies": [
+        "@vueuse/core",
+        "@weme-ui/nuxt",
+        "@weme-ui/unocss-preset",
+        "clsx",
+        "nuxt",
+        "reka-ui",
+        "tailwind-merge",
+        "tailwind-variants",
+        "unocss",
+        "vue-tsc",
+        "vue"
+      ],
+      "files": [
+        {
+          "type": "util",
+          "path": "utils/styles.ts",
+          "hash": "3975a0ea465ea931c4f5fd90af0e62b6"
+        },
+        {
+          "type": "util",
+          "path": "utils/props.ts",
+          "hash": "23177f90701087234a5c6a5d5d137758"
+        },
+        {
+          "type": "util",
+          "path": "utils/slots.ts",
+          "hash": "8ea3c19f1067925ad64d06accfc995ef"
+        }
+      ]
+    },
+    {
+      "name": "foo",
+      "type": "component",
+      "registryDependencies": [
+        "bar"
+      ],
+      "files": [
+        { "type": "component", "path": "components/foo/foo.vue", "hash": "2e263fe10fe7096bcb5ae6d65da824cf" },
+        { "type": "style", "path": "components/foo/foo.style.ts", "hash": "05ee549683e6b74fa895589fef109da3" },
+        { "type": "type", "path": "components/foo/foo.props.ts", "hash": "d8d8d5474490c6962bccb30990cfe333" }
+      ]
+    },
+    {
+      "name": "bar",
+      "type": "component",
+      "files": [
+        { "type": "component", "path": "components/bar/bar.vue", "hash": "a4059e51618cbca9a9d833b7b0e7fc42" },
+        { "type": "style", "path": "components/bar/bar.style.ts", "hash": "4b41e122d240bbf06c7dbf441b1f06ac" },
+        { "type": "type", "path": "components/bar/bar.props.ts", "hash": "bf74dab6ed812e66ad88c263ec72ec65" }
+      ]
+    }
+  ]
+}

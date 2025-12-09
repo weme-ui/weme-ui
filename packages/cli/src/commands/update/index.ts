@@ -1,26 +1,15 @@
 import { cwd } from 'node:process'
 import { defineCommand } from 'citty'
 import { createContext } from './context'
-import { install } from './install'
+import { update } from './update'
 
 export default defineCommand({
   meta: {
-    name: 'add',
-    description: 'Add items to your project from a registry.',
+    name: 'update',
+    description: ' Update items interactively.',
   },
 
   args: {
-    items: {
-      type: 'positional',
-      description: 'Name of the items to add.',
-      valueHint: 'REGISTRY/ITEM',
-      required: false,
-    },
-    repo: {
-      type: 'string',
-      description: 'Repository of the registry.',
-      valueHint: 'URL',
-    },
     cwd: {
       type: 'string',
       description: 'Change working directory.',
@@ -33,7 +22,7 @@ export default defineCommand({
     const ctx = await createContext(args)
 
     for (const [name, items] of Object.entries(ctx.items)) {
-      await install(name, items, ctx.cwd)
+      await update(name, items, ctx.cwd)
     }
   },
 })

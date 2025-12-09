@@ -3,6 +3,9 @@ import { description, version } from '../package.json'
 export const CLI_NAME = 'weme-ui'
 export const CLI_VERSION = version
 export const CLI_DESCRIPTION = description
+export const CLI_CACHE_DIR = '.weme'
+
+export const REGISTRY_DIRNAME = 'registry'
 
 export const COMPONENT_CATEGORIES = [
   'general',
@@ -15,7 +18,3 @@ export const COMPONENT_CATEGORIES = [
   'feedback',
   'utilities',
 ] as const
-
-export const CLI_CACHE_DIR = '.weme'
-
-export const REGISTRY_DIRNAME = 'registry'

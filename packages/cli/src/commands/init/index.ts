@@ -1,43 +1,22 @@
 import { cwd } from 'node:process'
 import { defineCommand } from 'citty'
 
-/**
- * Usage
- *
- * - **Initialize a new project**:
- *    - ```weme-ui init```
- *
- * - **Initialize a new project with default registry**:
- *    - ```weme-ui init weme-ui/plus --repo https://github.com/weme-ui/weme-ui```
- *
- * - **Initialize a new registry**:
- *    - ```weme-ui init weme-ui/plus --registry```
- *
- * - **Generate component skeleton**:
- *    - ```weme-ui init button --component```
- */
 export default defineCommand({
   meta: {
     name: 'init',
-    description: 'Initialize a registry or project with Weme UI.',
+    description: 'Initialize a registry or project.',
   },
 
   args: {
-    name: {
+    cwd: {
       type: 'positional',
-      required: false,
-      description: 'Name of the scoped registry. (i.e. `weme-ui/std`)',
+      description: 'Change working directory.',
+      default: cwd(),
     },
     repo: {
       type: 'string',
       description: 'Change repository of the registry.',
       valueHint: 'STRING',
-    },
-    cwd: {
-      type: 'string',
-      description: 'Change working directory.',
-      valueHint: 'PATH',
-      default: cwd(),
     },
     registry: {
       type: 'boolean',
@@ -54,16 +33,14 @@ export default defineCommand({
   },
 
   async setup({ args }) {
-    args.cwd = args.cwd || cwd()
-
     if (args.registry) {
-      await import('./registry').then(r => r.default(args))
+      await import('./registry/init').then(r => r.default(args))
     }
     else if (args.component) {
-      await import('./component').then(r => r.default(args))
+      await import('./component/init').then(r => r.default(args))
     }
     else {
-      await import('./project').then(r => r.default(args))
+      await import('./project/init').then(r => r.default(args))
     }
   },
 })

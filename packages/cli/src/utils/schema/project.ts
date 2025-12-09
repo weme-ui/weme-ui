@@ -1,512 +1,347 @@
-import type { InlineCssVars, ProjectPaths, ProjectSchema, RegistryItemType } from '@weme-ui/schema'
-import type { Result } from '../result'
-import fs from 'node:fs'
-import * as p from '@clack/prompts'
-import { PROJECT_FILE_NAME, projectPaths, projectSchema } from '@weme-ui/schema'
-import { defu } from 'defu'
-import ora from 'ora'
+import type { IProject, IProjectPaths, IProjectRegistry, IRegistryName } from '@weme-ui/schema'
+import type { Result } from 'neverthrow'
+import type { IProjectGroupedItems, IProjectNormalizedItem, IProjectResolvedItem, IProjectResolvedItemFile, IRemoteURI } from '../../types'
+import fs from 'node:fs/promises'
+import { PROJECT_FILE_NAME, ProjectSchema } from '@weme-ui/schema'
+import { err, ok } from 'neverthrow'
 import path from 'pathe'
+import SparkMD5 from 'spark-md5'
 import { glob } from 'tinyglobby'
-import { fetchURL, getGithubRepoName } from '../fetch'
-import { Err, Ok } from '../result'
-import { runStep } from '../utilities'
-import { installDependencies, loadPackageJson } from './package'
-import { fetchManifestConfig, fetchRegistryItems } from './registry'
+import { RemoteRegistry } from './remote/registry'
+import { resolveGroupNameWithRepo } from './utils'
 
-export interface ProjectInfo {
-  name: string
-  description: string
-  version: string
-  repos: string[]
-  registries: {
-    name: string
-    repo: string
-    version: string
-    description: string
-    prefix: string
-    access: string
-    default: boolean
-    available: number
-    installed: number
-  }[]
-}
+export class Project {
+  private cwd: string
+  private config?: IProject
 
-/**
- * Load `weme.config.json` from current working directory.
- *
- * @example
- * ```ts
- * const config = loadProjectConfig(process.cwd())
- *
- * if (config.isErr()) {
- *   console.error(config.unwrapErr())
- *   return
- * }
- *
- * console.log(config.unwrap().name)
- * ```
- *
- * @param cwd - Current working directory
- * @return {Result<ProjectSchema, string>}
- */
-export function loadProjectConfig(cwd: string): Result<ProjectSchema, string> {
-  const configPath = path.join(cwd, PROJECT_FILE_NAME)
-
-  if (!fs.existsSync(configPath)) {
-    return Err('Could not find your project configuration file!')
+  constructor(cwd: string) {
+    this.cwd = path.resolve(cwd)
   }
 
-  try {
-    const json = JSON.parse(fs.readFileSync(configPath, 'utf8').toString())
-    const config = projectSchema.safeParse(json)
+  async schema(): Promise<Result<IProject, string>> {
+    if (!this.config) {
+      try {
+        const content = await fs.readFile(this.withRootPath(PROJECT_FILE_NAME), 'utf-8')
+        if (!content)
+          return err('Project config is empty')
 
-    if (!config.success) {
-      return Err(config.error.message)
-    }
+        const json = JSON.parse(content)
+        const schema = ProjectSchema.safeParse(json)
 
-    return Ok(config.data)
-  }
-  catch (e: any) {
-    return Err(e.message)
-  }
-}
+        if (!schema.success)
+          return err(schema.error.message)
 
-/**
- * Load project information from current working directory.
- *
- * @example
- * ```ts
- * const info = await loadProjectInfo(process.cwd())
- *
- * if (info.isErr()) {
- *   console.error(info.unwrapErr())
- *   return
- * }
- *
- * console.log(info.unwrap().name)
- * ```
- *
- * @param cwd - Current working directory
- * @return {Promise<Result<ProjectInfo, string>>}
- */
-export async function loadProjectInfo(cwd: string): Promise<Result<ProjectInfo, string>> {
-  const spinner = ora().start('Fetching project information...')
-
-  try {
-    const pkg = loadPackageJson(cwd)
-    const config = loadProjectConfig(cwd)
-
-    if (pkg.isErr() || config.isErr()) {
-      return Err('Could not find your project configuration file!')
-    }
-
-    const repos = config.unwrap().repos || []
-    const paths = resolvePaths(cwd, config.unwrap().paths)
-
-    if (paths.isErr()) {
-      return Err(paths.unwrapErr())
-    }
-
-    const registries = await Promise.all(repos.map(async (r) => {
-      const manifest = await fetchManifestConfig(r.repo)
-
-      if (manifest.isErr()) {
-        throw new Error(manifest.unwrapErr())
+        this.config = schema.data
       }
-
-      const registry = manifest.unwrap().find(m => m.name === r.registry)
-
-      if (!registry) {
-        throw new Error(`${r.registry} not found.`)
-      }
-
-      const installed = await glob(`**/*.vue`, {
-        cwd: path.join(paths.unwrap().components, r.prefix || 'ui'),
-        absolute: false,
-        onlyFiles: true,
-      }).then(
-        files => files.length,
-      )
-
-      return {
-        name: r.registry,
-        repo: r.repo,
-        version: registry.version || '0.0.0',
-        description: registry.description || '',
-        prefix: r.prefix || registry.prefix,
-        access: registry.access,
-        default: !!r.default,
-        available: Object.entries(registry.items).reduce(
-          (acc, [,count]) => acc + count,
-          0,
-        ),
-        installed,
-      } satisfies ProjectInfo['registries'][number]
-    }))
-
-    return Ok({
-      name: pkg.unwrap().name || '',
-      description: pkg.unwrap().description || '',
-      version: pkg.unwrap().version || '0.0.0',
-      repos: repos.map(r => r.repo),
-      registries,
-    })
-  }
-  catch (e: any) {
-    spinner.stop()
-    return Err(e.message)
-  }
-  finally {
-    spinner.stop()
-  }
-}
-
-/**
- * Update `weme.config.json` from current working directory.
- *
- * @example
- * ```ts
- * await updateProjectConfig(process.cwd(), project, {
- *   repo: {
- *     repo: 'https://github.com/weme-ui/weme-ui',
- *     registry: 'weme-ui/std',
- *     prefix: 'ui',
- *     default: true,
- *   },
- *   cssVars: {
- *     colors: {
- *       primary: 'blue',
- *     },
- *   },
- * })
- * ```
- *
- * @param cwd - Current working directory
- * @param project - Project configuration
- * @param updates - Updates to apply
- * @param updates.repo - Repository configuration to update
- * @param updates.cssVars - CSS variables to update
- */
-export async function updateProjectConfig(
-  cwd: string,
-  project: ProjectSchema,
-  updates: {
-    repo?: ProjectSchema['repos'][number]
-    cssVars?: InlineCssVars
-  },
-) {
-  await runStep('Updating project configuration...', async (spinner) => {
-    if (
-      updates.repo
-      && project.repos.findIndex(
-        r => r.repo === updates.repo?.repo
-          && r.registry === updates.repo?.registry,
-      ) === -1
-    ) {
-      project.repos.push(updates.repo)
-
-      if (updates.repo.default) {
-        project.repos.forEach((repo) => {
-          repo.default = repo.registry === updates.repo?.registry
-        })
+      catch (e: any) {
+        return err(`Failed to fetch project schema: ${e.message}`)
       }
     }
 
-    if (updates.cssVars) {
-      project.unocss = project.unocss || {}
-      project.unocss.cssVars = defu(project.unocss.cssVars || {}, updates.cssVars)
-    }
+    return ok(this.config)
+  }
 
-    fs.writeFileSync(
-      path.join(cwd, PROJECT_FILE_NAME),
-      `${JSON.stringify(project, null, 2)}\n`,
-      {
-        encoding: 'utf8',
-        flag: 'w',
+  async registries(): Promise<Required<IProjectRegistry>[]> {
+    const schema = await this.schema()
+
+    if (schema.isOk())
+      return schema.value.repos as Required<IProjectRegistry>[]
+
+    return []
+  }
+
+  async hasRegistry(repoURL: IRemoteURI, registryName: IRegistryName): Promise<boolean> {
+    const registries = await this.registries()
+
+    return registries.some(
+      r => r.repo === repoURL && r.registry === registryName,
+    )
+  }
+
+  async items(): Promise<IProjectResolvedItem[]> {
+    const schema = await this.schema()
+
+    if (schema.isErr())
+      return []
+
+    const flatten: IProjectResolvedItem[] = []
+
+    await Promise.all(Object.entries(schema.value.items || {}).map(
+      async ([repo, registries]) => {
+        await Promise.all(Object.entries(registries).map(
+          async ([registry, items]) => {
+            await Promise.all(items.map(
+              async (i) => {
+                const item = {
+                  ...i,
+                  repo: repo as IRemoteURI,
+                  registry: registry as IRegistryName,
+                  prefix: path.basename(path.dirname(i.path)),
+                  files: [],
+                } as IProjectResolvedItem
+
+                const basePath = this.withRootPath(i.path)
+
+                const files = await glob(['*'], {
+                  cwd: basePath,
+                  absolute: false,
+                  onlyFiles: true,
+                })
+
+                await Promise.all(files.map(
+                  async (f) => {
+                    const filePath = path.join(basePath, f)
+                    const content = await fs.readFile(filePath, 'utf-8')
+                    const hash = SparkMD5.hash(content)
+                    const type = f.endsWith('.vue')
+                      ? 'component'
+                      : f.endsWith('.props.ts')
+                        ? 'type'
+                        : f.endsWith('.style.ts')
+                          ? 'style'
+                          : 'file'
+
+                    item.files.push({
+                      type,
+                      path: filePath,
+                      hash,
+                      content,
+                      target: type === 'file' ? filePath : undefined,
+                    } as IProjectResolvedItemFile)
+                  },
+                ))
+
+                flatten.push(item)
+              },
+            ))
+          },
+        ))
       },
+    ))
+
+    return flatten
+  }
+
+  async hasItem(repoURL: IRemoteURI, registryName: IRegistryName, name: string): Promise<boolean> {
+    const items = await this.items()
+
+    return items.some(
+      i => i.repo === repoURL
+        && i.registry === registryName
+        && i.name === name,
+    )
+  }
+
+  async getItem(repoURL: IRemoteURI, registryName: IRegistryName, name: string): Promise<IProjectResolvedItem | undefined> {
+    const items = await this.items()
+
+    return items.find(
+      i => i.repo === repoURL
+        && i.registry === registryName
+        && i.name === name,
+    )
+  }
+
+  groupItemsByRegistry(items: IProjectResolvedItem[]): IProjectGroupedItems {
+    return items.reduce(
+      (acc, item) => {
+        const name = resolveGroupNameWithRepo(
+          item.repo,
+          item.registry,
+        )
+
+        if (!acc[name])
+          acc[name] = []
+
+        acc[name].push(item)
+        return acc
+      },
+      {} as IProjectGroupedItems,
+    )
+  }
+
+  async groupItemsByState(items: IProjectResolvedItem[]) {
+    const newItems: IProjectResolvedItem[] = []
+    const updateItems: IProjectResolvedItem[] = []
+    const skippedItems: IProjectResolvedItem[] = []
+
+    await Promise.all(items.map(
+      async (item) => {
+        const exists = await this.getItem(
+          item.repo,
+          item.registry,
+          item.name,
+        )
+
+        if (!exists && !newItems.includes(item)) {
+          newItems.push(item)
+        }
+        else {
+          await Promise.all(item.files.map(
+            async (file) => {
+              if (exists) {
+                if (exists.files.find(
+                  f => f.path === file.path && f.hash === file.hash,
+                )) {
+                  if (!skippedItems.includes(item))
+                    skippedItems.push(item)
+                }
+                else {
+                  if (!updateItems.includes(item))
+                    updateItems.push(item)
+                }
+              }
+            },
+          ))
+        }
+      },
+    ))
+
+    return {
+      newItems,
+      updateItems,
+      skippedItems,
+    }
+  }
+
+  async normalizeItemNames(itemNameStr: string): Promise<IProjectNormalizedItem[]> {
+    const registries = await this.registries()
+
+    const splitNames = itemNameStr
+      .split(',')
+      .map(i => i.trim())
+      .filter(Boolean)
+
+    return splitNames.reduce(
+      (acc, name) => {
+        const defaultRegistry = registries.find(r => r.default)
+        const parts = name.split('/')
+          .map(p => p.trim())
+          .filter(Boolean)
+
+        const item = {} as IProjectNormalizedItem
+
+        if (parts.length === 1) {
+          if (!defaultRegistry) {
+            throw new Error('No default registry found')
+          }
+
+          item.name = parts[0]
+          item.repo = defaultRegistry.repo as IRemoteURI
+          item.registry = defaultRegistry.registry
+          item.prefix = defaultRegistry.prefix
+        }
+
+        if (parts.length === 2) {
+          const registry = registries.find(r => r.registry.endsWith(`/${parts[0]}`))
+
+          if (!registry) {
+            throw new Error(`Registry ${parts[0]} not found`)
+          }
+
+          item.name = parts[1]
+          item.repo = registry.repo as IRemoteURI
+          item.registry = registry.registry
+          item.prefix = registry.prefix
+        }
+
+        if (parts.length === 3) {
+          const registry = registries.find(r => r.registry === `${parts[0]}/${parts[1]}`)
+
+          if (!registry) {
+            throw new Error(`Registry ${parts[0]}/${parts[1]} not found`)
+          }
+
+          item.name = parts[2]
+          item.repo = registry.repo as IRemoteURI
+          item.registry = registry.registry
+          item.prefix = registry.prefix
+        }
+
+        if (!acc.some(
+          i => i.name === item.name
+            && i.repo === item.repo
+            && i.registry === item.registry,
+        )) {
+          acc.push(item)
+        }
+
+        return acc
+      },
+      [] as IProjectNormalizedItem[],
+    )
+  }
+
+  async paths(): Promise<Required<IProjectPaths> | undefined> {
+    const schema = await this.schema()
+
+    if (schema.isOk()) {
+      return Object.entries(schema.value.paths).reduce(
+        (acc, [key, value]) => {
+          acc[key as keyof IProjectPaths] = this.withRootPath(value)
+          return acc
+        },
+        {} as Required<IProjectPaths>,
+      )
+    }
+  }
+
+  async withRegistryPath(repoURL: IRemoteURI, registryName: IRegistryName, name: string): Promise<string> {
+    const paths = await this.paths()
+    if (!paths)
+      return ''
+
+    const basePath = Object.entries(paths).reduce(
+      (acc, [key, value]) => {
+        if (name.startsWith(key) && value)
+          acc = [key, value]
+
+        return acc
+      },
+      [] as string[],
     )
 
-    spinner.stop('Project configuration updated!')
-  })
-}
+    const registries = await this.registries()
+    const registry = registries.find(
+      r => r.repo === repoURL && r.registry === registryName,
+    )
+    if (!registry)
+      return ''
 
-/**
- * Parse project paths.
- *
- * @example
- * ```ts
- * const paths = parsePaths(project.paths)
- *
- * if (paths.isErr()) {
- *   console.error(paths.unwrapErr())
- *   return
- * }
- *
- * console.log(paths.unwrap().components)
- * ```
- *
- * @param paths - Project paths
- * @return {Result<Required<ProjectPaths>, string>}
- */
-export function parsePaths(paths: ProjectPaths): Result<Required<ProjectPaths>, string> {
-  const result = projectPaths.safeParse(paths)
-
-  if (!result.success) {
-    return Err(result.error.message)
+    return path.join(
+      basePath[1],
+      registry.prefix,
+      name.replace(basePath[0], ''),
+    )
   }
 
-  return Ok(result.data as Required<ProjectPaths>)
-}
+  async withoutRegistryPath(item: IProjectResolvedItem): Promise<string> {
+    const basePath = await this.withRegistryPath(
+      item.repo,
+      item.registry,
+      item.files[0].path,
+    )
 
-/**
- * Resolve project paths.
- *
- * @example
- * ```ts
- * const paths = resolvePaths(process.cwd(), project.paths)
- *
- * if (paths.isErr()) {
- *   console.error(paths.unwrapErr())
- *   return
- * }
- *
- * console.log(paths.unwrap().components)
- * ```
- *
- * @param cwd - Current working directory
- * @param paths - Project paths
- * @return {Result<Required<ProjectPaths>, string>}
- */
-export function resolvePaths(cwd: string, paths: ProjectPaths): Result<Required<ProjectPaths>, string> {
-  const resolved = parsePaths(paths)
-
-  if (resolved.isErr()) {
-    return Err(resolved.unwrapErr())
+    return path.dirname(basePath.replace(path.join(this.cwd, 'app'), '~'))
   }
 
-  return Ok(
-    Object.entries(resolved.unwrap())
-      .reduce((acc, [key, value]) => {
-        acc[key as keyof ProjectPaths] = path.resolve(cwd, value.replace('~', 'app'))
-        return acc
-      }, {} as Required<ProjectPaths>),
-  )
-}
-
-/**
- * Resolve project paths.
- *
- * @example
- * ```ts
- * const paths = resolveProjectPaths(process.cwd())
- *
- * if (paths.isErr()) {
- *   console.error(paths.unwrapErr())
- *   return
- * }
- *
- * console.log(paths.unwrap().components)
- * ```
- *
- * @param cwd - Current working directory
- * @param resolved - Resolve paths
- * @return {Result<Required<ProjectPaths>, string>}
- */
-export function resolveProjectPaths(cwd: string, resolved = false): Result<Required<ProjectPaths>, string> {
-  const project = loadProjectConfig(cwd)
-
-  if (project.isErr()) {
-    return Err(project.unwrapErr())
+  async exists(): Promise<boolean> {
+    return await fs.access(this.withRootPath(PROJECT_FILE_NAME))
+      .then(() => true)
+      .catch(() => false)
   }
 
-  return Ok(
-    resolved
-      ? resolvePaths(cwd, project.unwrap().paths).unwrap()
-      : project.unwrap().paths as Required<ProjectPaths>,
-  )
-}
-
-/**
- * Install registry items.
- *
- * @example
- * ```ts
- * await installRegistryItems(
- *   process.cwd(),
- *   'weme-ui/weme-ui',
- *   'weme-ui/std',
- *   { name: 'button' },
- * )
- * ```
- *
- * @param cwd - Current working directory
- * @param repo - Repository name
- * @param registryName - Registry name
- * @param project - Project configuration
- * @param options - Options
- * @param options.name - Registry item name
- * @param options.type - Registry item type
- */
-export async function installRegistryItems(
-  cwd: string,
-  repo: string,
-  registryName: string,
-  project: ProjectSchema,
-  options?: {
-    name?: string | string[]
-    type?: RegistryItemType
-  },
-) {
-  const manifest = await fetchManifestConfig(repo)
-
-  if (manifest.isErr()) {
-    p.log.error(manifest.unwrapErr())
-    return
+  useRegistry(repoURL: IRemoteURI, registryName: IRegistryName): RemoteRegistry {
+    return RemoteRegistry.create(repoURL, registryName)
   }
 
-  const registry = manifest.unwrap().find(r => r.name === registryName)
-
-  if (!registry) {
-    p.log.error('Registry not found.')
-    return
+  withRootPath(...args: string[]): string {
+    return path.join(
+      this.cwd,
+      ...args.map(
+        // TODO: process nuxt version, currently we only support v4
+        p => p.replace('~', 'app'),
+      ),
+    )
   }
-
-  const { dependencies, devDependencies, files, cssVars } = await fetchRegistryItems(
-    repo,
-    registry.name,
-    options,
-  )
-
-  await runStep('Creating registry item files...', async (spinner) => {
-    const paths = resolvePaths(cwd, project.paths)
-
-    if (paths.isErr()) {
-      p.log.error(paths.unwrapErr())
-      return
-    }
-
-    const prefix = project.repos.find(r => r.registry === registry.name)!.prefix || 'ui'
-
-    await Promise.all(files.map(async (file) => {
-      spinner.message(`Creating ${file.path}...`)
-
-      const content = await fetchURL(
-        `https://raw.githubusercontent.com/${getGithubRepoName(repo)}/refs/heads/main/${registry.directory}/${file.path}`,
-      )
-
-      if (!content) {
-        p.log.error(`Failed to fetch ${file.path}.`)
-        return
-      }
-
-      switch (file.type) {
-        case 'component':
-        case 'type':
-        case 'style':
-          createFile(content, file.path.replace('components', path.join(paths.unwrap().components, prefix)))
-          break
-
-        case 'composable':
-          createFile(content, file.path.replace('composables', paths.unwrap().composables))
-          break
-
-        case 'plugin':
-          createFile(content, file.path.replace('plugins', paths.unwrap().plugins))
-          break
-
-        case 'util':
-          createFile(content, file.path.replace('utils', paths.unwrap().utils))
-          break
-
-        case 'file':
-          p.log.warn('File type is not supported yet.')
-          break
-      }
-
-      // Update types
-      if (file.type === 'type') {
-        if (!fs.existsSync(paths.unwrap().types))
-          fs.mkdirSync(paths.unwrap().types, { recursive: true })
-
-        if (!fs.existsSync(path.join(paths.unwrap().types, 'index.ts'))) {
-          fs.writeFileSync(
-            path.join(paths.unwrap().types, 'index.ts'),
-            'export * from \'./components\'\n',
-            {
-              encoding: 'utf8',
-              flag: 'w',
-            },
-          )
-        }
-
-        const typePath = path.join(paths.unwrap().types, 'components.ts')
-        const newLine = `export * from '${file.path.replace('components', path.join(project.paths.components, prefix)).replace('.ts', '')}'`
-        const lines: string[] = []
-
-        if (fs.existsSync(typePath)) {
-          const content = fs.readFileSync(typePath, 'utf8')
-
-          if (content) {
-            lines.push(
-              ...content.split('\n'),
-            )
-          }
-        }
-
-        if (!lines.includes(newLine))
-          lines.push(newLine)
-
-        fs.writeFileSync(
-          typePath,
-          `${lines.filter(Boolean).sort((a, b) => a.localeCompare(b)).join('\n')}\n`,
-          {
-            encoding: 'utf8',
-            flag: 'w',
-          },
-        )
-      }
-    }))
-
-    spinner.stop('Registry item files created!')
-  })
-
-  await runStep('Installing dependencies...', async (spinner) => {
-    await installDependencies({
-      dependencies,
-      devDependencies,
-    }, { cwd })
-
-    spinner.stop('Dependencies installed!')
-  })
-
-  await updateProjectConfig(cwd, project, { cssVars })
-}
-
-/**
- * Create file.
- *
- * @example
- * ```ts
- * createFile(content, 'components/ui/button.vue')
- * ```
- *
- * @param content - File content
- * @param dest - File destination
- */
-function createFile(content: string, dest: string) {
-  if (!content)
-    return
-
-  if (fs.existsSync(dest))
-    return
-
-  const dirname = path.dirname(dest)
-
-  if (!fs.existsSync(dirname))
-    fs.mkdirSync(dirname, { recursive: true })
-
-  fs.writeFileSync(dest, content, {
-    encoding: 'utf8',
-    flag: 'w',
-  })
 }

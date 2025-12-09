@@ -1,100 +1,93 @@
-import { existsSync } from 'node:fs'
+import type { PackageJson } from 'pkg-types'
+import { existsSync, readFileSync } from 'node:fs'
 import { exit } from 'node:process'
-import * as p from '@clack/prompts'
+import { confirm, input } from '@inquirer/prompts'
+import { DEFAULT_REGISTRY_PREFIX } from '@weme-ui/schema'
 import path from 'pathe'
 import { REGISTRY_DIRNAME } from '../../../constants'
+import consola from '../../../utils/consola'
 
-export interface InitRegistryContext {
+export interface IInitRegistryContext {
   name: string
   description: string
   version: string
-  directory: string
+  scope: string
   prefix: string
-  access: string
-  author: string
-  homepage: string
-  github: string
+  initItems: boolean
   cwd: string
 }
 
-export async function createContext(args: Record<string, any>): Promise<InitRegistryContext> {
-  args.cwd = path.resolve(args.cwd)
+export async function createContext(args: Record<string, any>): Promise<IInitRegistryContext> {
+  try {
+    const context: IInitRegistryContext = {
+      name: '',
+      description: 'The registry for Weme UI.',
+      version: '',
+      scope: '',
+      prefix: '',
+      initItems: true,
+      cwd: path.resolve(args.cwd),
+    }
 
-  const answers = await p.group({
-    name: async () => {
-      if (args.name)
-        return args.name.trim().toLowerCase()
-
-      return p.text({
-        message: 'What is the name of the registry?',
-        placeholder: 'weme-ui/std',
-        defaultValue: args.name?.trim().toLowerCase(),
-        validate: (value: string) => {
-          if (!value)
-            return 'Name is required'
-
-          if (value.includes(' '))
-            return 'Name should not contain spaces'
-
-          if (!value.includes('/'))
-            return 'Name should contain slashes, e.g. weme-ui/std'
-
-          if (existsSync(path.join(args.cwd, value)))
-            return 'Registry already exists'
-        },
-      })
-    },
-    description: () => p.text({
-      message: 'What is the description of the registry?',
-      placeholder: 'The standard components for Weme UI.',
-      defaultValue: '',
-    }),
-    version: () => p.text({
-      message: 'What is the version of the registry?',
-      placeholder: '0.0.0',
-      validate: (value: string) => {
+    context.scope = await input({
+      message: 'Enter the scope of the registry:',
+      default: context.scope,
+      required: true,
+      validate: (value) => {
         if (!value)
-          return 'Version is required'
-      },
-    }),
-    prefix: () => p.text({
-      message: 'What is the prefix of the registry?',
-      placeholder: 'ui',
-      defaultValue: 'ui',
-    }),
-    access: () => p.select({
-      message: 'Which access do you want to use?',
-      options: [
-        { label: 'Public', value: 'public' },
-        { label: 'Private', value: 'private' },
-      ],
-      initialValue: 'public',
-    }),
-    author: () => p.text({
-      message: 'What is the author of the registry?',
-      placeholder: 'Allen Luo <luoyi@mouji.net>',
-      defaultValue: '',
-    }),
-    homepage: () => p.text({
-      message: 'What is the homepage of the registry?',
-      placeholder: 'https://github.com/weme-ui/weme-ui',
-      defaultValue: '',
-    }),
-    github: () => p.text({
-      message: 'What is the github of the registry?',
-      placeholder: 'https://github.com/weme-ui/weme-ui',
-      defaultValue: '',
-    }),
-  }, {
-    onCancel: () => {
-      p.cancel('Operation cancelled.')
-      exit(0)
-    },
-  })
+          return 'Scope is required'
 
-  return {
-    ...answers,
-    directory: path.join(REGISTRY_DIRNAME, answers.name.split('/')[1]),
-    cwd: args.cwd,
+        if (existsSync(path.join(context.cwd, REGISTRY_DIRNAME, value)))
+          return `Scope ${value} already exists`
+
+        return true
+      },
+    }, {
+      clearPromptOnDone: true,
+    })
+
+    context.prefix = await input({
+      message: 'Enter the prefix of the registry:',
+      default: DEFAULT_REGISTRY_PREFIX,
+      required: true,
+      validate: (value) => {
+        if (!value)
+          return 'Prefix is required'
+
+        return true
+      },
+    }, {
+      clearPromptOnDone: true,
+    })
+
+    context.initItems = await confirm({
+      message: 'Do you want to add init items?',
+      default: context.initItems,
+    }, {
+      clearPromptOnDone: true,
+    })
+
+    const pkg = readFileSync(path.join(context.cwd, 'package.json'), 'utf-8')
+
+    if (!pkg) {
+      throw new Error('Package.json not found')
+    }
+
+    const pkgJson = JSON.parse(pkg) as PackageJson
+
+    context.name = `${pkgJson.name}/${context.scope}`
+    context.version = pkgJson.version || context.version
+
+    return context
+  }
+  catch (e: any) {
+    if (e instanceof Error && e.name === 'ExitPromptError') {
+      consola.error('Operation cancelled')
+    }
+    else {
+      consola.error(e.message)
+    }
+
+    exit(0)
   }
 }

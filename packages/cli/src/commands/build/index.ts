@@ -4,19 +4,18 @@ import { defineCommand } from 'citty'
 export default defineCommand({
   meta: {
     name: 'build',
-    description: 'Build your repository.',
+    description: 'Build repository.',
   },
 
   args: {
     cwd: {
-      type: 'string',
+      type: 'positional',
       description: 'Change working directory.',
-      valueHint: 'PATH',
       default: cwd(),
     },
   },
 
   async setup({ args }) {
-    await import('./manifest').then(r => r.default(args))
+    await import('./build').then(r => r.default(args))
   },
 })

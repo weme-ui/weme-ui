@@ -8,7 +8,7 @@ defineProps<{
 </script>
 
 <template>
-  <aside class="w-65 flex-(~ col) gap-y-6 b-(r default) py-6 pr-6">
+  <aside class="sticky top-16 shrink-0 h-[calc(100vh-4rem-1px)] w-65 flex-(~ col) gap-y-6 b-(r default) py-6 pr-6">
     <template v-if="sections">
       <DocNavigationSections :sections="sections" />
       <UiSeparator variant="dotted" />

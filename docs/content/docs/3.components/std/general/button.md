@@ -56,6 +56,9 @@ data:
     default: button
     description: 指定按钮的类型。
   - name: text
+    type:
+      - string
+    description: 按钮的文本内容。
 ---
 ::
 

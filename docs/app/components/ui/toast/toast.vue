@@ -9,7 +9,7 @@ import Icon from '../icon/icon.vue'
 import { useToastStyle } from './toast.style'
 
 const props = withDefaults(defineProps<ToastProps>(), {
-  color: 'accent',
+  color: 'primary',
   orientation: 'vertical',
   radius: 'lg',
   closable: true,

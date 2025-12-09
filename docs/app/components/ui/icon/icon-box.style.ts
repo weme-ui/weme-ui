@@ -28,13 +28,13 @@ export const useIconBoxStyle = createVariants({
   },
   compoundVariants: [
     ...createColorCompoundVariants({
-      type: 'static',
+      type: 'box',
       variants: ['solid', 'soft', 'surface', 'outline', 'inverse'],
       slot: 'base',
     }),
   ],
   defaultVariants: {
-    color: 'accent',
+    color: 'primary',
     variant: 'soft',
     radius: 'sm',
     size: 'md',

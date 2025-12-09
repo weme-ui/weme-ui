@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import type { AppProps } from './app.props'
 import { reactiveOmit } from '@vueuse/core'
-import { ConfigProvider, TooltipProvider, useForwardProps } from 'reka-ui'
+import { ConfigProvider, TooltipProvider } from 'reka-ui'
 import { toRef, useId } from 'vue'
 import ToastProvider from '../toast/toast-provider.vue'
 
@@ -10,7 +10,7 @@ const props = withDefaults(defineProps<AppProps>(), {
   toaster: null,
 })
 
-const configProviderProps = useForwardProps(reactiveOmit(props, 'tooltip', 'toaster'))
+const configProviderProps = reactiveOmit(props, 'tooltip', 'toaster')
 const tooltipProviderProps = toRef(() => props.tooltip)
 const toastProviderProps = toRef(() => props.toaster)
 </script>

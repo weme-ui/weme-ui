@@ -30,7 +30,7 @@ const { copy } = useClipboard()
     <UiButton
       icon="lucide:copy"
       color="neutral"
-      variant="link"
+      variant="plain"
       :class="ui.copy()"
       @click="copy(code || '')"
     />
@@ -47,6 +47,6 @@ const { copy } = useClipboard()
 .shiki span.line.highlight {
   margin: 0 -16px;
   padding: 0 16px;
-  background-color: color-mix(in oklab, var(--accent-8) 30%, transparent);
+  background-color: color-mix(in oklab, var(--primary-8) 30%, transparent);
 }
 </style>

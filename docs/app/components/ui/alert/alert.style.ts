@@ -34,7 +34,7 @@ export const useAlertStyle = createVariants({
   },
   compoundVariants: [
     ...createColorCompoundVariants({
-      type: 'static',
+      type: 'box',
       variants: ['solid', 'soft', 'surface', 'outline', 'inverse'],
       slot: 'base',
       extra: { clickable: false },
@@ -42,14 +42,14 @@ export const useAlertStyle = createVariants({
 
     // Clickable
     ...createColorCompoundVariants({
-      type: 'click',
+      type: 'btn',
       variants: ['solid', 'soft', 'surface', 'outline', 'inverse'],
       slot: 'base',
       extra: { clickable: true },
     }),
   ],
   defaultVariants: {
-    color: 'accent',
+    color: 'primary',
     variant: 'soft',
     radius: 'lg',
     inline: false,

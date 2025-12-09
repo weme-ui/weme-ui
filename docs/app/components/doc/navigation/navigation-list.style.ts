@@ -20,9 +20,9 @@ export const useNavigationListStyle = createVariants({
 
     active: {
       true: {
-        item: 'bg-accent-3',
-        itemIcon: 'c-accent',
-        itemTitle: 'c-accent',
+        item: 'bg-primary-3',
+        itemIcon: 'c-primary',
+        itemTitle: 'c-primary',
       },
       false: {
         itemIcon: 'c-muted',

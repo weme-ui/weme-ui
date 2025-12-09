@@ -13,7 +13,7 @@ const navs = useFooter()
         <li v-for="item in navs" :key="item.label" class="flex-(inline y-center) gap-x-2">
           <UiLink :to="item.to" :target="item.target" :rel="item.rel" color="neutral">
             {{ item.label }}
-            <ProseIcon v-if="item.target === '_blank'" name="external" class="size-3.5 c-accent-8" />
+            <ProseIcon v-if="item.target === '_blank'" name="external" class="size-3.5 c-neutral-8" />
           </UiLink>
         </li>
       </ul>

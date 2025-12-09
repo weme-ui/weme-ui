@@ -2,10 +2,11 @@
   "$schema": "https://weme-ui.github.io/schema/project.schema.json",
   "repos": [
     {
-      "repo": "weme-ui/weme-ui",
+      "repo": "https://github.com/weme-ui/weme-ui",
       "registry": "weme-ui/std",
-      "default": false,
-      "prefix": "ui"
+      "prefix": "ui",
+      "default": true,
+      "version": "0.1.5"
     }
   ],
   "paths": {
@@ -21,13 +22,96 @@
   "unocss": {
     "variablePrefix": "ui",
     "cssVars": {
-      "tabs-bg": "color.neutral.1",
       "accordion-bg": "color.neutral.1",
+      "card-bg": "color.neutral.1",
+      "card-fg": "color.neutral.11",
+      "tabs-bg": "color.neutral.1",
       "toast-bg": "color.neutral.1",
       "toast-ring": "color.neutral.1",
       "toast-width": "24rem",
       "tooltip-bg": "color.neutral.11",
       "tooltip-fg": "color.neutral.1"
+    }
+  },
+  "items": {
+    "https://github.com/weme-ui/weme-ui": {
+      "weme-ui/std": [
+        {
+          "name": "accordion",
+          "type": "component",
+          "path": "~/components/ui/accordion"
+        },
+        {
+          "name": "alert",
+          "type": "component",
+          "path": "~/components/ui/alert"
+        },
+        {
+          "name": "app",
+          "type": "component",
+          "path": "~/components/ui/app"
+        },
+        {
+          "name": "badge",
+          "type": "component",
+          "path": "~/components/ui/badge"
+        },
+        {
+          "name": "button",
+          "type": "component",
+          "path": "~/components/ui/button"
+        },
+        {
+          "name": "collapsible",
+          "type": "component",
+          "path": "~/components/ui/collapsible"
+        },
+        {
+          "name": "icon",
+          "type": "component",
+          "path": "~/components/ui/icon"
+        },
+        {
+          "name": "kbd",
+          "type": "component",
+          "path": "~/components/ui/kbd"
+        },
+        {
+          "name": "link",
+          "type": "component",
+          "path": "~/components/ui/link"
+        },
+        {
+          "name": "separator",
+          "type": "component",
+          "path": "~/components/ui/separator"
+        },
+        {
+          "name": "toast",
+          "type": "component",
+          "path": "~/components/ui/toast"
+        },
+        {
+          "name": "tooltip",
+          "type": "component",
+          "path": "~/components/ui/tooltip"
+        },
+        {
+          "name": "typography",
+          "type": "component",
+          "path": "~/components/ui/typography"
+        },
+        {
+          "name": "card",
+          "type": "component",
+          "path": "~/components/ui/card"
+        },
+        {
+          "name": "space",
+          "type": "component",
+          "path": "~/components/ui/space"
+        }
+      ]
     }
   }
 }

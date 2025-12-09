@@ -12,7 +12,7 @@ defineOptions({
 })
 
 const props = withDefaults(defineProps<BadgeProps>(), {
-  color: 'accent',
+  color: 'primary',
   variant: 'soft',
   size: 'sm',
   radius: 'sm',

@@ -37,7 +37,7 @@ export const useBadgeStyle = createVariants({
   compoundVariants: [
     // Static
     ...createColorCompoundVariants({
-      type: 'static',
+      type: 'box',
       variants: ['solid', 'soft', 'surface', 'outline', 'inverse'],
       slot: 'base',
       extra: { clickable: false },
@@ -45,7 +45,7 @@ export const useBadgeStyle = createVariants({
 
     // Clickable
     ...createColorCompoundVariants({
-      type: 'click',
+      type: 'btn',
       variants: ['solid', 'soft', 'surface', 'outline', 'inverse'],
       slot: 'base',
       extra: { clickable: true },
@@ -64,7 +64,7 @@ export const useBadgeStyle = createVariants({
     { closable: true, size: 'lg', class: { close: 'before:size-7' } },
   ],
   defaultVariants: {
-    color: 'accent',
+    color: 'primary',
     variant: 'soft',
     size: 'sm',
     radius: 'sm',

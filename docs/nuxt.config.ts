@@ -77,6 +77,7 @@ export default defineNuxtConfig({
         '@vue/devtools-kit',
         '@vueuse/core',
         '@nuxt/content/utils',
+        'remark-emoji',
       ],
     },
   },

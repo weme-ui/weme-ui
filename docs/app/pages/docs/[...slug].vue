@@ -45,7 +45,7 @@ const communityLinks = computed(() => [{
           {{ page.title }}
         </h1>
 
-        <MDC v-if="page.description" :value="page.description" class="text-3.5 c-toned" unwrap="p" tag="p" />
+        <MDC v-if="page.description" :value="page.description" class="text-3.5 c-toned" unwrap="p" tag="p" :cache-key="`${route.path}-description`" />
       </div>
 
       <ul v-if="page.links && page.links.length" class="flex-(~ y-center) gap-x-2">

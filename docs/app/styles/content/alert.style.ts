@@ -6,12 +6,19 @@ export const useAlertStyle = createVariants({
 
   variants: {
     color: {
-      accent: {
+      primary: {
         wrapper: [
-          '[&_code]:(text-accent b-accent-7 bg-accent-4)',
-          '[&_table>thead]:bg-accent-4 [&_table>thead>tr>th]:c-accent [&_table>tbody>tr>td]:b-accent-4',
+          '[&_code]:(text-primary b-primary-7 bg-primary-4)',
+          '[&_table>thead]:bg-primary-4 [&_table>thead>tr>th]:c-primary [&_table>tbody>tr>td]:b-primary-4',
         ],
-        externalIcon: 'c-accent',
+        externalIcon: 'c-primary',
+      },
+      secondary: {
+        wrapper: [
+          '[&_code]:(text-secondary b-secondary-7 bg-secondary-4)',
+          '[&_table>thead]:bg-secondary-4 [&_table>thead>tr>th]:c-secondary [&_table>tbody>tr>td]:b-secondary-4',
+        ],
+        externalIcon: 'c-secondary',
       },
       neutral: {
         wrapper: [
@@ -41,17 +48,17 @@ export const useAlertStyle = createVariants({
         ],
         externalIcon: 'c-warning',
       },
-      error: {
+      danger: {
         wrapper: [
-          '[&_code]:(text-error b-error-7 bg-error-4)',
-          '[&_table>thead]:bg-error-4 [&_table>thead>tr>th]:c-error [&_table>tbody>tr>td]:b-error-4',
+          '[&_code]:(text-danger b-danger-7 bg-danger-4)',
+          '[&_table>thead]:bg-danger-4 [&_table>thead>tr>th]:c-danger [&_table>tbody>tr>td]:b-danger-4',
         ],
-        externalIcon: 'c-error',
+        externalIcon: 'c-danger',
       },
     },
   },
 
   defaultVariants: {
-    color: 'accent',
+    color: 'primary',
   },
 })

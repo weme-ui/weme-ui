@@ -10,7 +10,7 @@ import { useButtonStyle } from './button.style'
 const props = withDefaults(defineProps<ButtonProps>(), {
   as: 'button',
   type: 'button',
-  color: 'accent',
+  color: 'primary',
   variant: 'solid',
   size: 'md',
   radius: 'sm',

@@ -12,7 +12,7 @@ defineProps<{
   <ProseTable>
     <ProseThead>
       <ProseTr>
-        <ProseTh width="20%">
+        <ProseTh width="30%">
           <span class="flex-(~ y-center) gap-x-2">
             <ProseIcon name="lucide:square-dashed-mouse-pointer" /> 事件
           </span>
@@ -24,7 +24,9 @@ defineProps<{
     <tbody>
       <ProseTr v-for="(row, index) of data" :key="index">
         <ProseTd>
-          <ProseCode>{{ row.name }}</ProseCode>
+          <ProseCode class="bg-primary-3">
+            {{ row.name }}
+          </ProseCode>
         </ProseTd>
 
         <ProseTd>
@@ -34,7 +36,9 @@ defineProps<{
             </ProseCode>
           </div>
 
-          <MDC v-if="row.description" :value="row.description" unwrap="p" tag="p" class="text-sm" />
+          <ClientOnly>
+            <MDC v-if="row.description" :value="row.description" unwrap="p" tag="p" class="text-sm" />
+          </ClientOnly>
         </ProseTd>
       </ProseTr>
     </tbody>

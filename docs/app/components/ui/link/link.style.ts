@@ -5,13 +5,13 @@ import { createVariants } from '~/utils/styles'
 export const useLinkStyle = createVariants({
   base: 'flex-(inline y-center) underline-offset-6 gap-1.5',
   variants: {
-    color: createColorVariants({ variant: 'link', type: 'click' }),
+    color: createColorVariants({ variant: 'plain', type: 'btn' }),
     disabled: {
       true: 'is-disabled',
     },
   },
   defaultVariants: {
-    color: 'accent',
+    color: 'primary',
   },
 })
 

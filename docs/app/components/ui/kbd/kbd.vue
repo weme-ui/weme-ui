@@ -8,7 +8,7 @@ import { useKbdStyle } from './kbd.style'
 
 const props = withDefaults(defineProps<KbdProps>(), {
   as: 'kbd',
-  color: 'accent',
+  color: 'primary',
   variant: 'soft',
   size: 'md',
   radius: 'sm',

@@ -7,7 +7,7 @@ import { useIconBoxStyle } from './icon-box.style'
 import Icon from './icon.vue'
 
 const props = withDefaults(defineProps<IconBoxProps>(), {
-  color: 'accent',
+  color: 'primary',
   variant: 'soft',
   radius: 'sm',
   size: 'md',

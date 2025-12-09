@@ -1,9 +1,6 @@
 ---
 title: 组件概览
 description: 组件属性参数及使用说明
-navigation:
-  icon: lucide:component
-  title: 组件概览
 ---
 
 ::card-group

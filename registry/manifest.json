@@ -9,7 +9,7 @@
       "description": "The plus components for Weme UI",
       "prefix": "ui",
       "statistics": {
-        "components": 1,
+        "components": 2,
         "layouts": 0,
         "themes": 0,
         "blocks": 0,
@@ -17,11 +17,11 @@
       }
     },
     {
-      "name": "weme-ui/std",
-      "description": "The standard components for Weme UI.",
-      "prefix": "ui",
+      "name": "weme-ui/prose",
+      "description": "The registry for Weme UI.",
+      "prefix": "prose",
       "statistics": {
-        "components": 46,
+        "components": 9,
         "layouts": 0,
         "themes": 0,
         "blocks": 0,
@@ -29,5 +29,5 @@
       }
     }
   ],
-  "updated": "2025-11-29T10:38:32.166Z"
+  "updated": "2025-12-10T01:29:24.734Z"
 }

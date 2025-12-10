@@ -24,17 +24,17 @@
     "typecheck": "vue-tsc --noEmit"
   },
   "dependencies": {
-    "@vueuse/core": "catalog:",
-    "@zag-js/highlight-word": "catalog:",
-    "clsx": "catalog:",
-    "reka-ui": "catalog:",
-    "tailwind-merge": "catalog:",
-    "tailwind-variants": "catalog:"
+    "@zag-js/highlight-word": "catalog:"
   },
   "devDependencies": {
+    "@vueuse/core": "catalog:",
     "@weme-ui/nuxt": "workspace:*",
     "@weme-ui/unocss-preset": "workspace:*",
+    "clsx": "catalog:",
     "nuxt": "catalog:",
+    "reka-ui": "catalog:",
+    "tailwind-merge": "catalog:",
+    "tailwind-variants": "catalog:",
     "unocss": "catalog:",
     "vue": "catalog:",
     "vue-router": "catalog:",

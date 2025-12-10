@@ -14,7 +14,6 @@
 
 ## 特性
 
-- 🌈 [Colors](https://github.com/weme-ui/weme-ui/packages/colors) - 基于 Radix Colors 并支持自定义颜色。
 - 🎨 [UnoCSS Preset](https://github.com/weme-ui/weme-ui/packages/unocss-preset) - 提供 UnoCSS Preset 来简化样式编写。
 - ⚒️ [CLI 工具](https://github.com/weme-ui/weme-ui/packages/cli) - 提供 CLI 工具来初始化项目，添加组件，创建主题等。
 

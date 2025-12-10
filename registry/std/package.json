@@ -1,17 +1,16 @@
 {
   "name": "@weme-ui/std",
   "type": "module",
-  "version": "0.1.5",
+  "version": "0.0.0",
   "private": true,
   "packageManager": "pnpm@10.25.0",
-  "description": "Weme UI Std components registry.",
+  "description": "The standard components for Weme UI",
   "author": "Allen Luo <luoyi@mouji.net>",
   "license": "MIT",
   "homepage": "https://github.com/weme-ui/weme-ui",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/weme-ui/weme-ui.git",
-    "directory": "registry/std"
+    "url": "git+https://github.com/weme-ui/weme-ui.git"
   },
   "bugs": {
     "url": "https://github.com/weme-ui/weme-ui/issues"
@@ -24,46 +23,27 @@
     "radix-colors",
     "weme-ui",
     "weme-ui-registry",
-    "weme-ui-std",
-    "vue-components",
-    "nuxt-components",
     "reka-ui-components",
     "unocss-ui-components",
-    "radix-colors-components"
+    "weme-ui/std"
   ],
   "scripts": {
-    "dev:prepare": "nuxt prepare",
+    "dev": "nuxt dev playground",
+    "dev:prepare": "nuxt prepare && nuxt prepare playground",
     "typecheck": "vue-tsc --noEmit"
   },
-  "peerDependencies": {
-    "@nuxt/icon": "catalog:",
-    "@nuxt/image": "catalog:",
-    "@vueuse/core": "catalog:",
-    "clsx": "catalog:",
-    "nuxt": "catalog:",
-    "reka-ui": "catalog:",
-    "tailwind-merge": "catalog:",
-    "tailwind-variants": "catalog:",
-    "unocss": "catalog:",
-    "vue": "catalog:"
-  },
   "devDependencies": {
-    "@iconify-json/lucide": "catalog:",
-    "@internationalized/date": "catalog:",
-    "@nuxt/test-utils": "catalog:",
-    "@vue/test-utils": "catalog:",
     "@vueuse/core": "catalog:",
     "@weme-ui/nuxt": "workspace:*",
     "@weme-ui/unocss-preset": "workspace:*",
     "clsx": "catalog:",
-    "happy-dom": "catalog:",
     "nuxt": "catalog:",
-    "playwright-core": "catalog:",
     "reka-ui": "catalog:",
     "tailwind-merge": "catalog:",
     "tailwind-variants": "catalog:",
     "unocss": "catalog:",
     "vue": "catalog:",
+    "vue-router": "catalog:",
     "vue-tsc": "catalog:"
   }
 }

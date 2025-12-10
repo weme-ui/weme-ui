@@ -16,16 +16,10 @@
 
 ## 如何开始
 
-### 初始化
-
-```bash
-pnpm dlx @weme-ui/weme-ui init --repos @weme-ui/std
-```
-
 ### 添加组件
 
 ```bash
-pnpm dlx @weme-ui/weme-ui add <component-name>
+pnpm dlx @weme-ui/weme-ui add weme-ui/std/<name>
 ```
 
 ---
@@ -38,4 +32,4 @@ pnpm dlx @weme-ui/weme-ui add <component-name>
 [npm-version-href]: https://npmjs.com/package/@weme-ui/weme-ui
 [license-src]: https://img.shields.io/github/license/weme-ui/weme-ui.svg?style=flat&colorA=1d2129&colorB=4CBBA5
 [license-href]: https://github.com/weme-ui/weme-ui/blob/main/LICENSE
-[github-href]: https://github.com/weme-ui/weme-ui
+[github-href]: https://github.com/weme-ui/weme-ui/

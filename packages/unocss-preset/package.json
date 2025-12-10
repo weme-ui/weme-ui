@@ -52,6 +52,7 @@
   },
   "peerDependencies": {
     "@radix-ui/colors": "catalog:",
+    "@unocss/core": "catalog:",
     "@unocss/rule-utils": "catalog:",
     "bezier-easing": "catalog:",
     "colorjs.io": "catalog:",
@@ -61,6 +62,7 @@
   "devDependencies": {
     "@radix-ui/colors": "catalog:",
     "@types/node": "catalog:",
+    "@unocss/core": "catalog:",
     "@unocss/rule-utils": "catalog:",
     "@vitejs/plugin-vue": "catalog:",
     "@vueuse/core": "catalog:",

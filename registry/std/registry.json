@@ -47,32 +47,17 @@
       "name": "icon",
       "type": "component",
       "title": "Icon",
-      "description": "A component to display any icon from Iconify.",
+      "description": "Used to display an svg icon from Iconify.",
       "files": [
         {
           "type": "component",
           "path": "components/icon/icon.vue",
-          "hash": "50a2396eb59eefa23ef95e5cf32f2c4b"
+          "hash": "2f36a8f3028ad542002d2a70fa99a70a"
         },
         {
           "type": "type",
           "path": "components/icon/icon.props.ts",
-          "hash": "7a3cb22087eb623522f328b8fa048869"
-        },
-        {
-          "type": "component",
-          "path": "components/icon/icon-box.vue",
-          "hash": "4fc24c641bed727713a0eba69ef141e5"
-        },
-        {
-          "type": "type",
-          "path": "components/icon/icon-box.props.ts",
-          "hash": "beaa69a31b453aacf2e645896f1531ca"
-        },
-        {
-          "type": "style",
-          "path": "components/icon/icon-box.style.ts",
-          "hash": "4171e6057adc188c2c762741e15a72a8"
+          "hash": "e230b252a021a95d534281c51b86007d"
         }
       ]
     }

@@ -10,7 +10,7 @@ export default defineNuxtConfig({
     dirs: [
       '~/components',
       {
-        prefix: 'Prose',
+        prefix: 'Ui',
         path: fileURLToPath(new URL('./../components', import.meta.url)),
         pathPrefix: false,
         extensions: ['.vue'],

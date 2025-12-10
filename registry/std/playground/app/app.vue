@@ -27,7 +27,7 @@ const config = useRuntimeConfig()
         </div>
       </div>
 
-      <div class="flex-(~ col) gap-y-8 py-20">
+      <div class="flex-(~ col) gap-y-8 py-20 text-highlighted">
         <NuxtPage />
       </div>
 

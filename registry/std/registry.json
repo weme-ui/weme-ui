@@ -60,6 +60,32 @@
           "hash": "e230b252a021a95d534281c51b86007d"
         }
       ]
+    },
+    {
+      "name": "icon-box",
+      "type": "component",
+      "title": "Icon Box",
+      "description": "Used to display an icon with a colorful box.",
+      "registryDependencies": [
+        "icon"
+      ],
+      "files": [
+        {
+          "type": "type",
+          "path": "components/icon-box/icon-box.props.ts",
+          "hash": "beaa69a31b453aacf2e645896f1531ca"
+        },
+        {
+          "type": "style",
+          "path": "components/icon-box/icon-box.style.ts",
+          "hash": "4171e6057adc188c2c762741e15a72a8"
+        },
+        {
+          "type": "component",
+          "path": "components/icon-box/icon-box.vue",
+          "hash": "4fc24c641bed727713a0eba69ef141e5"
+        }
+      ]
     }
   ]
 }

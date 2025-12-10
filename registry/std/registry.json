@@ -162,6 +162,55 @@
           "hash": "ebbd4d02b41b91ea483f8b865acf2b55"
         }
       ]
+    },
+    {
+      "name": "button-group",
+      "type": "component",
+      "title": "Button Group",
+      "description": "Used to group buttons together.",
+      "registryDependencies": [
+        "button"
+      ],
+      "files": [
+        {
+          "type": "type",
+          "path": "components/button-group/button-group.props.ts",
+          "hash": "6a500f48b16e2d661f7de42189b84c62"
+        },
+        {
+          "type": "style",
+          "path": "components/button-group/button-group.style.ts",
+          "hash": "42ff20fcfdf86352e907ca7922039a90"
+        },
+        {
+          "type": "component",
+          "path": "components/button-group/button-group.vue",
+          "hash": "64592f0c83af24c5c0ab91aa5a72736d"
+        }
+      ]
+    },
+    {
+      "name": "group",
+      "type": "component",
+      "title": "Group",
+      "description": "Used to group and attach elements together.",
+      "files": [
+        {
+          "type": "component",
+          "path": "components/group/group.vue",
+          "hash": "efa01331bc5115ba22b7a26f55fde1f2"
+        },
+        {
+          "type": "type",
+          "path": "components/group/group.props.ts",
+          "hash": "6c1bc55d75c6a6dbd59fdea5fa3c2334"
+        },
+        {
+          "type": "style",
+          "path": "components/group/group.style.ts",
+          "hash": "6c75bf5aace215700ba57a852c5c6124"
+        }
+      ]
     }
   ]
 }

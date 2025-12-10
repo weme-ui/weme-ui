@@ -1,4 +1,6 @@
+export * from '~/components/button-group/button-group.props'
 export * from '~/components/button/button.props'
+export * from '~/components/group/group.props'
 export * from '~/components/icon-box/icon-box.props'
 export * from '~/components/icon-button/icon-button.props'
 export * from '~/components/icon/icon.props'

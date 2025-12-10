@@ -1,7 +1,7 @@
 {
   "$schema": "https://weme-ui.github.io/schema/registry.schema.json",
   "name": "weme-ui/prose",
-  "description": "The registry for Weme UI.",
+  "description": "The prose components for Weme UI",
   "version": "0.1.5",
   "prefix": "prose",
   "items": [

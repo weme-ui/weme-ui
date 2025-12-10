@@ -4,7 +4,7 @@
   "version": "0.1.5",
   "private": true,
   "packageManager": "pnpm@10.25.0",
-  "description": "The registry for Weme UI.",
+  "description": "The prose components for Weme UI",
   "license": "MIT",
   "keywords": [
     "vue",

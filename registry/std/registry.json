@@ -115,6 +115,9 @@
       "type": "component",
       "title": "Button",
       "description": "Used to trigger an action or event.",
+      "registryDependencies": [
+        "icon"
+      ],
       "files": [
         {
           "type": "component",

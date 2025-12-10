@@ -28,6 +28,3 @@ dist
 
 # Temp
 .weme
-
-# Playground
-registry/std/playground/app/pages/play.vue

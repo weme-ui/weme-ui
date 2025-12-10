@@ -4,13 +4,15 @@ import { useAppConfig } from '#imports'
 import { reactiveOmit } from '@vueuse/core'
 import { computed } from 'vue'
 
-const props = defineProps<IconProps>()
-const delegated = reactiveOmit(props, 'name', 'class')
-const icons = useAppConfig().weme.icons
+const props = withDefaults(defineProps<IconProps>(), {
+  mode: 'css',
+})
 
+const delegated = reactiveOmit(props, 'name', 'class')
+const wemeIcons = useAppConfig().weme.icons
 const iconName = computed(() => {
-  if (Object.keys(icons).includes(props.name))
-    return icons[props.name as any as keyof typeof icons] as string
+  if (Object.keys(wemeIcons).includes(props.name))
+    return wemeIcons[props.name as any as keyof typeof wemeIcons] as string
 
   return props.name
 })

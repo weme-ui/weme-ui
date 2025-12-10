@@ -25,11 +25,16 @@ pnpm dlx @weme-ui/weme-ui add <name>
 ## 组件列表
 
 - General
-  - `button`
-  - `icon`
-  - `icon-box`
+  - [x] `button-group`
+  - [x] `button`
+  - [x] `icon-box`
+  - [x] `icon-button`
+  - [x] `icon`
 - Layout
-  - `scroll-area`
+  - [x] `group`
+  - [x] `scroll-area`
+  - [x] `separator`
+  - [x] `stack`
 
 ---
 

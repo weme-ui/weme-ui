@@ -211,6 +211,52 @@
           "hash": "6c75bf5aace215700ba57a852c5c6124"
         }
       ]
+    },
+    {
+      "name": "stack",
+      "type": "component",
+      "title": "Stack",
+      "description": "Used to layout its children in a vertical or horizontal stack.",
+      "files": [
+        {
+          "type": "type",
+          "path": "components/stack/stack.props.ts",
+          "hash": "6f72b1871fd8ebc6dfd06da43d0fb2cd"
+        },
+        {
+          "type": "component",
+          "path": "components/stack/stack.vue",
+          "hash": "e0382f6a55c40a416e932b219f03032a"
+        },
+        {
+          "type": "style",
+          "path": "components/stack/stack.style.ts",
+          "hash": "19830d0fd40a70478bb28ee8cfdf69c4"
+        }
+      ]
+    },
+    {
+      "name": "separator",
+      "type": "component",
+      "title": "Separator",
+      "description": "Used to visually separate content.",
+      "files": [
+        {
+          "type": "component",
+          "path": "components/separator/separator.vue",
+          "hash": "cb1241953292531c8b01a74625996b7c"
+        },
+        {
+          "type": "style",
+          "path": "components/separator/separator.style.ts",
+          "hash": "f2f8751540bde2df74ea0b26102b4b2c"
+        },
+        {
+          "type": "type",
+          "path": "components/separator/separator.props.ts",
+          "hash": "9439a19c23b89be6b22cdef44fc17568"
+        }
+      ]
     }
   ]
 }

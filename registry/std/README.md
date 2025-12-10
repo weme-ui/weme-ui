@@ -25,6 +25,7 @@ pnpm dlx @weme-ui/weme-ui add <name>
 ## 组件列表
 
 - General
+  - `button`
   - `icon`
   - `icon-box`
 - Layout

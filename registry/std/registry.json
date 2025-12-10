@@ -109,6 +109,29 @@
           "hash": "a1dfa4490f742a385233b1253652bd0a"
         }
       ]
+    },
+    {
+      "name": "button",
+      "type": "component",
+      "title": "Button",
+      "description": "Used to trigger an action or event.",
+      "files": [
+        {
+          "type": "component",
+          "path": "components/button/button.vue",
+          "hash": "3228afbd785b6c42d6d00bf3808de2bb"
+        },
+        {
+          "type": "type",
+          "path": "components/button/button.props.ts",
+          "hash": "0095e1ec3a1784a4658f898346c8e43d"
+        },
+        {
+          "type": "style",
+          "path": "components/button/button.style.ts",
+          "hash": "d7f99ca12461b1578284a9cff23982a8"
+        }
+      ]
     }
   ]
 }

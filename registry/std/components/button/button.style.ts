@@ -1,0 +1,53 @@
+import type { VariantProps } from '~/utils/styles'
+import { createColorCompoundVariants, createColorVariants } from '#weme/utils/styles'
+import { createVariants } from '~/utils/styles'
+
+export const useButtonStyle = createVariants({
+  slots: {
+    base: 'flex-(inline center) cursor-default font-medium select-none transition-colors',
+    icon: '',
+    loading: 'animate-spin',
+  },
+
+  variants: {
+    color: createColorVariants({ defaults: '' }),
+    variant: { solid: '', soft: '', surface: '', outline: '', ghost: '', plain: '', inverse: '' },
+    size: {
+      xs: { base: 'text-xs gap-1 h-5 px-1.5 leading-none', icon: 'size-3' },
+      sm: { base: 'text-xs gap-1 h-6 px-2.5', icon: 'size-3' },
+      md: { base: 'text-sm gap-1.5 h-8 px-3', icon: 'size-3.5' },
+      lg: { base: 'text-base gap-2 h-10 px-4', icon: 'size-4' },
+      xl: { base: 'text-lg gap-2.5 h-12 px-5', icon: 'size-4.5' },
+    },
+    radius: {
+      none: '',
+      sm: 'rounded-sm',
+      md: 'rounded-md',
+      lg: 'rounded-lg',
+      xl: 'rounded-xl',
+      full: 'rounded-full',
+    },
+    disabled: {
+      true: 'is-disabled',
+    },
+  },
+
+  compoundVariants: [
+    ...createColorCompoundVariants({
+      type: 'btn',
+      variants: ['solid', 'soft', 'surface', 'outline', 'ghost', 'plain', 'inverse'],
+      slot: 'base',
+    }),
+  ],
+
+  defaultVariants: {
+    color: 'primary',
+    variant: 'solid',
+    size: 'md',
+    radius: 'sm',
+    disabled: false,
+  },
+})
+
+export type ButtonStyleSlots = typeof useButtonStyle['slots']
+export type ButtonStyleProps = VariantProps<typeof useButtonStyle>

@@ -135,6 +135,33 @@
           "hash": "d7f99ca12461b1578284a9cff23982a8"
         }
       ]
+    },
+    {
+      "name": "icon-button",
+      "type": "component",
+      "title": "Icon Button",
+      "description": "Used to render an icon within a button.",
+      "registryDependencies": [
+        "icon",
+        "button"
+      ],
+      "files": [
+        {
+          "type": "style",
+          "path": "components/icon-button/icon-button.style.ts",
+          "hash": "338f6e851fddb7839a5a3e671497f4c8"
+        },
+        {
+          "type": "component",
+          "path": "components/icon-button/icon-button.vue",
+          "hash": "185c1ac14bc3ca2b40c0304dcd7cb94a"
+        },
+        {
+          "type": "type",
+          "path": "components/icon-button/icon-button.props.ts",
+          "hash": "ebbd4d02b41b91ea483f8b865acf2b55"
+        }
+      ]
     }
   ]
 }

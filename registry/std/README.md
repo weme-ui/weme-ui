@@ -19,8 +19,16 @@
 ### 添加组件
 
 ```bash
-pnpm dlx @weme-ui/weme-ui add weme-ui/std/<name>
+pnpm dlx @weme-ui/weme-ui add <name>
 ```
+
+## 组件列表
+
+- General
+  - `icon`
+  - `icon-box`
+- Layout
+  - `scroll-area`
 
 ---
 

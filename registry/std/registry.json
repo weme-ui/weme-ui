@@ -73,17 +73,40 @@
         {
           "type": "type",
           "path": "components/icon-box/icon-box.props.ts",
-          "hash": "beaa69a31b453aacf2e645896f1531ca"
+          "hash": "638ed56dd3081ea7f8976016fb9df46a"
         },
         {
           "type": "style",
           "path": "components/icon-box/icon-box.style.ts",
-          "hash": "4171e6057adc188c2c762741e15a72a8"
+          "hash": "360697426d5df67614451ff2a52b489d"
         },
         {
           "type": "component",
           "path": "components/icon-box/icon-box.vue",
-          "hash": "4fc24c641bed727713a0eba69ef141e5"
+          "hash": "a9cfd4e04054965fd1924835195c2600"
+        }
+      ]
+    },
+    {
+      "name": "scroll-area",
+      "type": "component",
+      "title": "Scroll Area",
+      "description": "Used to create a scrollable area with custom styled scrollbars.",
+      "files": [
+        {
+          "type": "style",
+          "path": "components/scroll-area/scroll-area.style.ts",
+          "hash": "9fba8fa1a8004205877af33e14e1a205"
+        },
+        {
+          "type": "component",
+          "path": "components/scroll-area/scroll-area.vue",
+          "hash": "650333e3ae9dc7196ef0c070c992e0a7"
+        },
+        {
+          "type": "type",
+          "path": "components/scroll-area/scroll-area.props.ts",
+          "hash": "a1dfa4490f742a385233b1253652bd0a"
         }
       ]
     }

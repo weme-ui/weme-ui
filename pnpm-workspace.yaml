@@ -1,3 +1,12 @@
+catalogMode: prefer
+cleanupUnusedCatalogs: true
+shellEmulator: true
+trustPolicy: no-downgrade
+trustPolicyExclude:
+  - chokidar@4.0.3
+  - undici-types@6.21.0
+  - semver@6.3.1
+
 packages:
   - docs
   - registry/*
@@ -19,14 +28,14 @@ catalog:
   '@nuxt/image': ^2.0.0
   '@nuxt/kit': 4.0.3
   '@nuxt/module-builder': ^1.0.2
-  '@nuxt/schema': ^4.2.1
+  '@nuxt/schema': ^4.2.2
   '@nuxtjs/i18n': ^10.2.1
   '@radix-ui/colors': ^3.0.0
   '@types/columnify': ^1.5.4
   '@types/make-fetch-happen': ^10.0.4
   '@types/node': 24.0.15
   '@types/spark-md5': ^3.0.5
-  '@typescript/native-preview': ^7.0.0-dev.20251208.1
+  '@typescript/native-preview': ^7.0.0-dev.20251209.1
   '@unocss/nuxt': ^66.5.10
   '@unocss/rule-utils': ^66.5.10
   '@vitejs/plugin-vue': ^6.0.2
@@ -58,7 +67,7 @@ catalog:
   mkdirp: ^3.0.1
   motion-v: 1.7.4
   neverthrow: ^8.2.0
-  nuxt: ^4.2.1
+  nuxt: ^4.2.2
   nypm: ^0.6.2
   ora: ^9.0.0
   pathe: 2.0.3
@@ -87,10 +96,6 @@ catalog:
   yaml-eslint-parser: ^1.3.2
   zod: ^4.1.13
 
-catalogMode: prefer
-
-cleanupUnusedCatalogs: true
-
 onlyBuiltDependencies:
   - '@parcel/watcher'
   - '@weme-ui/schema'
@@ -99,12 +104,3 @@ onlyBuiltDependencies:
   - sharp
   - simple-git-hooks
   - vue-demi
-
-shellEmulator: true
-
-trustPolicy: no-downgrade
-
-trustPolicyExclude:
-  - chokidar@4.0.3
-  - undici-types@6.21.0
-  - semver@6.3.1

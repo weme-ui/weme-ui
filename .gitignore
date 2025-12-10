@@ -30,4 +30,4 @@ dist
 .weme
 
 # Playground
-registry/**/playground/app/pages/play.vue
+registry/std/playground/app/pages/play.vue

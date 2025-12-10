@@ -257,6 +257,29 @@
           "hash": "9439a19c23b89be6b22cdef44fc17568"
         }
       ]
+    },
+    {
+      "name": "overflow",
+      "type": "component",
+      "title": "Overflow",
+      "description": "",
+      "files": [
+        {
+          "type": "type",
+          "path": "components/overflow/overflow.props.ts",
+          "hash": "37930a8b4188e4f4aadb29858ece8bfb"
+        },
+        {
+          "type": "component",
+          "path": "components/overflow/overflow.vue",
+          "hash": "d889a73ada843e848902a53aa01e278d"
+        },
+        {
+          "type": "style",
+          "path": "components/overflow/overflow.style.ts",
+          "hash": "9a9afd81956741d4b07fda7c3d1d6f89"
+        }
+      ]
     }
   ]
 }

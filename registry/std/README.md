@@ -35,6 +35,7 @@ pnpm dlx @weme-ui/weme-ui add <name>
   - [x] `scroll-area`
   - [x] `separator`
   - [x] `stack`
+  - [x] `overflow`
 
 ---
 

@@ -41,6 +41,7 @@ catalog:
   '@unocss/rule-utils': ^66.5.10
   '@vitejs/plugin-vue': ^6.0.2
   '@vueuse/core': ^14.1.0
+  '@vueuse/shared': ^14.1.0
   '@zag-js/highlight-word': ^1.31.1
   better-sqlite3: ^12.5.0
   bezier-easing: ^2.1.0

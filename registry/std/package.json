@@ -34,6 +34,7 @@
   },
   "devDependencies": {
     "@vueuse/core": "catalog:",
+    "@vueuse/shared": "catalog:",
     "@weme-ui/nuxt": "workspace:*",
     "@weme-ui/unocss-preset": "workspace:*",
     "clsx": "catalog:",

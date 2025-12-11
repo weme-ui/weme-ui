@@ -36,6 +36,9 @@ pnpm dlx @weme-ui/weme-ui add <name>
   - [x] `separator`
   - [x] `stack`
   - [x] `overflow`
+- Data Display
+  - [x] `avatar`
+  - [ ] `avatar-group`
 
 ---
 

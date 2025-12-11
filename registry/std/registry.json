@@ -280,6 +280,29 @@
           "hash": "9a9afd81956741d4b07fda7c3d1d6f89"
         }
       ]
+    },
+    {
+      "name": "avatar",
+      "type": "component",
+      "title": "Avatar",
+      "description": "Used to represent user profile picture or initials.",
+      "files": [
+        {
+          "type": "style",
+          "path": "components/avatar/avatar.style.ts",
+          "hash": "029a1fbdc2239e25f9f0092e8e634762"
+        },
+        {
+          "type": "component",
+          "path": "components/avatar/avatar.vue",
+          "hash": "708598a0abbf2dab4fee6ac554140d17"
+        },
+        {
+          "type": "type",
+          "path": "components/avatar/avatar.props.ts",
+          "hash": "305f927b05a39dede46c153d849d7a84"
+        }
+      ]
     }
   ]
 }

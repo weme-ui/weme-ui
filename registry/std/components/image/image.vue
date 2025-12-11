@@ -10,12 +10,12 @@ import { useImageStyle } from './image.style'
 
 const props = withDefaults(defineProps<ImageProps>(), {
   as: 'img',
-  fit: 'none',
+  fit: 'contain',
   radius: 'none',
 })
 
 const emits = defineEmits<ImageEmits>()
-const delegated = reactivePick(props, 'as', 'asChild', 'width', 'height', 'alt', 'referrerPolicy')
+const delegated = reactivePick(props, 'as', 'asChild', 'width', 'height', 'alt', 'referrerPolicy', 'loading')
 const ui = computed(() => useImageStyle(props))
 
 const showFallback = ref(props.fallbackDelayMs === undefined && !!props.fallbackSrc)

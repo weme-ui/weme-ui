@@ -26,7 +26,7 @@ export const useImageStyle = createVariants({
   },
 
   defaultVariants: {
-    fit: 'none',
+    fit: 'contain',
     radius: 'none',
   },
 })

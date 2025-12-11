@@ -393,17 +393,17 @@
         {
           "type": "component",
           "path": "components/image/image.vue",
-          "hash": "41333dd69d5a568c59dc697cc36ebf4d"
+          "hash": "205be2af5e929552eb318221b9a62602"
         },
         {
           "type": "style",
           "path": "components/image/image.style.ts",
-          "hash": "7031a3aee2f6ebc0b2835a62c3803ef1"
+          "hash": "0fc34256e3f51436db8538929789344e"
         },
         {
           "type": "type",
           "path": "components/image/image.props.ts",
-          "hash": "c5dfce9aaf789fc17e26104c55dc09cd"
+          "hash": "5c454c05c58389195f0d96b1df3951e8"
         },
         {
           "type": "composable",

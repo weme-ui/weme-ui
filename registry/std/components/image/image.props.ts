@@ -10,6 +10,7 @@ export interface ImageProps extends PrimitiveProps {
   width?: string
   height?: string
   alt?: string
+  loading?: ImgHTMLAttributes['loading']
   referrerPolicy?: ImgHTMLAttributes['referrerpolicy']
   crossOrigin?: ImgHTMLAttributes['crossorigin']
   fit?: ImageStyleProps['fit']

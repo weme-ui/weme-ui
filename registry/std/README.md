@@ -38,7 +38,8 @@ pnpm dlx @weme-ui/weme-ui add <name>
   - [x] `overflow`
 - Data Display
   - [x] `avatar`
-  - [ ] `avatar-group`
+  - [x] `avatar-group`
+  - [ ] `badge`
 
 ---
 

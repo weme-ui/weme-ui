@@ -39,7 +39,8 @@ pnpm dlx @weme-ui/weme-ui add <name>
 - Data Display
   - [x] `avatar`
   - [x] `avatar-group`
-  - [ ] `badge`
+  - [x] `badge`
+  - [x] `card`
 
 ---
 

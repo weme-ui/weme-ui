@@ -21,7 +21,7 @@
       "description": "The standard components for Weme UI",
       "prefix": "ui",
       "statistics": {
-        "components": 13,
+        "components": 14,
         "layouts": 0,
         "themes": 0,
         "blocks": 0,
@@ -29,5 +29,5 @@
       }
     }
   ],
-  "updated": "2025-12-11T02:22:33.197Z"
+  "updated": "2025-12-11T05:49:50.596Z"
 }

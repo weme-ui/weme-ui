@@ -349,6 +349,37 @@
           "hash": "ea14ce5f18837b5eded09be278baeaac"
         }
       ]
+    },
+    {
+      "name": "card",
+      "type": "component",
+      "title": "Card",
+      "description": "Used to display content related to a single subject.",
+      "registryDependencies": [
+        "icon"
+      ],
+      "files": [
+        {
+          "type": "component",
+          "path": "components/card/card.vue",
+          "hash": "6ad2550242912df25c87571df562603b"
+        },
+        {
+          "type": "style",
+          "path": "components/card/card.style.ts",
+          "hash": "f72e0f925aaba61dec1a7b81573ab61f"
+        },
+        {
+          "type": "type",
+          "path": "components/card/card.props.ts",
+          "hash": "dcecff1a18b24366ea1f9568ef912bc2"
+        }
+      ],
+      "cssVars": {
+        "card": {
+          "bg": "white.12"
+        }
+      }
     }
   ]
 }

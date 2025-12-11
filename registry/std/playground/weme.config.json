@@ -1,0 +1,20 @@
+{
+  "$schema": "https://weme-ui.github.io/schema/project.schema.json",
+  "repos": [
+    {
+      "repo": "https://github.com/weme-ui/weme-ui",
+      "registry": "weme-ui/std",
+      "prefix": "ui",
+      "default": true,
+      "version": "0.1.5"
+    }
+  ],
+  "paths": {
+    "components": "~/components",
+    "composables": "~/composables"
+
+  },
+  "unocss": {
+    "cssVars": { "card-bg": "white.12" }
+  }
+}

@@ -303,6 +303,29 @@
           "hash": "305f927b05a39dede46c153d849d7a84"
         }
       ]
+    },
+    {
+      "name": "avatar-group",
+      "type": "component",
+      "title": "Avatar Group",
+      "description": "",
+      "files": [
+        {
+          "type": "style",
+          "path": "components/avatar-group/avatar-group.style.ts",
+          "hash": "0a7b61bf3231fe3a9ce342616614e56c"
+        },
+        {
+          "type": "type",
+          "path": "components/avatar-group/avatar-group.props.ts",
+          "hash": "4d14eb2a587d2d925ca5b1f96e6f79b3"
+        },
+        {
+          "type": "component",
+          "path": "components/avatar-group/avatar-group.vue",
+          "hash": "3375c2137ab3f9aa0ca9c5c0cf64c331"
+        }
+      ]
     }
   ]
 }

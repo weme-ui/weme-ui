@@ -1,3 +1,4 @@
+export * from '~/components/avatar-group/avatar-group.props'
 export * from '~/components/avatar/avatar.props'
 export * from '~/components/button-group/button-group.props'
 export * from '~/components/button/button.props'

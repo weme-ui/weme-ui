@@ -50,5 +50,7 @@ watchEffect((onCleanup) => {
     v-bind="delegated"
     :src="showFallback && imageLoadingStatus !== 'loaded' ? fallbackSrc : src"
     :class="cn(ui.base(), props.ui?.base, props.class)"
-  />
+  >
+    <slot />
+  </Primitive>
 </template>

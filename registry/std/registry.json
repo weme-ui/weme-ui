@@ -380,6 +380,37 @@
           "bg": "white.12"
         }
       }
+    },
+    {
+      "name": "image",
+      "type": "component",
+      "title": "Image",
+      "description": "Used to display images.",
+      "dependencies": [
+        "@vueuse/shared"
+      ],
+      "files": [
+        {
+          "type": "component",
+          "path": "components/image/image.vue",
+          "hash": "41333dd69d5a568c59dc697cc36ebf4d"
+        },
+        {
+          "type": "style",
+          "path": "components/image/image.style.ts",
+          "hash": "7031a3aee2f6ebc0b2835a62c3803ef1"
+        },
+        {
+          "type": "type",
+          "path": "components/image/image.props.ts",
+          "hash": "c5dfce9aaf789fc17e26104c55dc09cd"
+        },
+        {
+          "type": "composable",
+          "path": "composables/use-image-loading-status.ts",
+          "hash": "2abe5af4148b978d989640ada60cd131"
+        }
+      ]
     }
   ]
 }

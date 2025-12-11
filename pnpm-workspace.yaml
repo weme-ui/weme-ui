@@ -18,7 +18,7 @@ catalog:
   '@clack/prompts': ^0.11.0
   '@commitlint/cli': ^20.2.0
   '@commitlint/config-conventional': ^20.2.0
-  '@iconify-json/lucide': ^1.2.79
+  '@iconify-json/lucide': ^1.2.80
   '@iconify-json/mingcute': ^1.2.5
   '@iconify-json/simple-icons': ^1.2.62
   '@inquirer/prompts': ^8.0.2

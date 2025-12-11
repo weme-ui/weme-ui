@@ -91,8 +91,8 @@ catalogs:
       specifier: ^14.1.0
       version: 14.1.0
     '@zag-js/highlight-word':
-      specifier: ^1.31.0
-      version: 1.31.0
+      specifier: ^1.31.1
+      version: 1.31.1
     better-sqlite3:
       specifier: ^12.5.0
       version: 12.5.0
@@ -644,7 +644,7 @@ importers:
     dependencies:
       '@zag-js/highlight-word':
         specifier: 'catalog:'
-        version: 1.31.0
+        version: 1.31.1
     devDependencies:
       '@vueuse/core':
         specifier: 'catalog:'
@@ -3557,8 +3557,8 @@ packages:
   '@xtuc/long@4.2.2':
     resolution: {integrity: sha512-NuHqBY1PB/D8xU6s/thBgOAiAP7HOYDQ32+BFZILJ8ivkUkAHQnWfn6WhL79Owj1qmUnoN/YPhktdIoucipkAQ==}
 
-  '@zag-js/highlight-word@1.31.0':
-    resolution: {integrity: sha512-A0B8oF8XkrmVipQr/zNuWM3f7asTPQ8Gl8SErzCtbzqJeYgZY3xgMHqLfHZWEDwp/UgQjWytYPVNC9RiLX5oLw==}
+  '@zag-js/highlight-word@1.31.1':
+    resolution: {integrity: sha512-nQw7t8LgWXW+6Z5E/p6T+OST0DDXp35mrFCzrkJL54aVTZ3GuLyIP2p0/HGQr2hE/KKLbZEs5i6UcXF84tiI4g==}
 
   JSONStream@1.3.5:
     resolution: {integrity: sha512-E+iruNOY8VV9s4JEbe1aNEm6MiszPRr/UfcHMz0TQh1BXSxHK+ASV1R6W4HpjBhSeS+54PIsAMCBmwD06LLsqQ==}
@@ -11583,7 +11583,7 @@ snapshots:
 
   '@xtuc/long@4.2.2': {}
 
-  '@zag-js/highlight-word@1.31.0': {}
+  '@zag-js/highlight-word@1.31.1': {}
 
   JSONStream@1.3.5:
     dependencies:

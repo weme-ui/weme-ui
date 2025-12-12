@@ -595,6 +595,29 @@
       ]
     },
     {
+      "name": "skeleton",
+      "type": "component",
+      "title": "Skeleton",
+      "description": "Used to render a placeholder while the content is loading.",
+      "files": [
+        {
+          "type": "component",
+          "path": "components/skeleton/skeleton.vue",
+          "hash": "1c5c92a983adee548c95ee4c93bdb736"
+        },
+        {
+          "type": "type",
+          "path": "components/skeleton/skeleton.props.ts",
+          "hash": "191b5701bb9041f5f8fa9c2ebe0cd37e"
+        },
+        {
+          "type": "style",
+          "path": "components/skeleton/skeleton.style.ts",
+          "hash": "55fe5d4fc81a1724a721bb886430d307"
+        }
+      ]
+    },
+    {
       "name": "stack",
       "type": "component",
       "title": "Stack",

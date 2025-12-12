@@ -43,7 +43,7 @@ pnpm dlx @weme-ui/weme-ui add <name>
   - [x] `stack`
 - Feedback
   - [x] `alert`
-  - [ ] `progress`
+  - [x] `progress`
   - [x] `result`
   - [ ] `skeleton`
   - [ ] `spinner`

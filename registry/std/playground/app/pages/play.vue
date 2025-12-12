@@ -1,9 +1,14 @@
 <script lang="ts" setup>
-const value = ref(80)
 </script>
 
 <template>
   <Container name="PLAY YOUR CODE HERE" description="🐗 Hakuna matata">
-    <UiProgress v-model="value" size="sm" label="Progress" class="w-100" />
+    <UiStack orientation="horizontal" class="gap-4">
+      <UiSkeleton variant="circle" class="size-16" />
+      <UiStack class="w-60">
+        <UiSkeleton variant="text" class="w-1/2" />
+        <UiSkeleton variant="text" :lines="2" />
+      </UiStack>
+    </UiStack>
   </Container>
 </template>

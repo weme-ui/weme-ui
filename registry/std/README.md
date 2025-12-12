@@ -31,21 +31,26 @@ pnpm dlx @weme-ui/weme-ui add <name>
   - [x] `icon-button`
   - [x] `icon`
 - Layout
+  - [x] `aspect-ratio`
+  - [x] `float`
   - [x] `group`
+  - [x] `overflow`
   - [x] `scroll-area`
   - [x] `separator`
   - [x] `stack`
-  - [x] `overflow`
-  - [ ] `float`
 - Data Display
-  - [x] `avatar`
   - [x] `avatar-group`
+  - [x] `avatar`
   - [x] `badge`
   - [x] `card`
-  - [x] `image`
   - [x] `image-preview`
+  - [x] `image`
 - Overlays
   - [x] `overlay`
+
+## 组合式 API
+
+- [x] `useImageLoadingStatus`
 
 ---
 

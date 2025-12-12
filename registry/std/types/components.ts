@@ -1,3 +1,4 @@
+export * from '~/components/aspect-ratio/aspect-ratio.props'
 export * from '~/components/avatar-group/avatar-group.props'
 export * from '~/components/avatar/avatar.props'
 export * from '~/components/badge/badge.props'

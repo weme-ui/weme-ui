@@ -44,6 +44,228 @@
       ]
     },
     {
+      "name": "aspect-ratio",
+      "type": "component",
+      "title": "Aspect Ratio",
+      "description": "Maintain a consistent aspect ratio for embedding videos, images, maps, etc.",
+      "files": [
+        {
+          "type": "type",
+          "path": "components/aspect-ratio/aspect-ratio.props.ts",
+          "hash": "f3bef89497e1a2dc84fee7289577fb00"
+        },
+        {
+          "type": "component",
+          "path": "components/aspect-ratio/aspect-ratio.vue",
+          "hash": "d0877a01d9afd8e3f8c2a7530523c249"
+        }
+      ]
+    },
+    {
+      "name": "avatar",
+      "type": "component",
+      "title": "Avatar",
+      "description": "Used to represent user profile picture or initials.",
+      "files": [
+        {
+          "type": "style",
+          "path": "components/avatar/avatar.style.ts",
+          "hash": "029a1fbdc2239e25f9f0092e8e634762"
+        },
+        {
+          "type": "component",
+          "path": "components/avatar/avatar.vue",
+          "hash": "708598a0abbf2dab4fee6ac554140d17"
+        },
+        {
+          "type": "type",
+          "path": "components/avatar/avatar.props.ts",
+          "hash": "305f927b05a39dede46c153d849d7a84"
+        }
+      ]
+    },
+    {
+      "name": "avatar-group",
+      "type": "component",
+      "title": "Avatar Group",
+      "description": "Used to display a group of avatars.",
+      "registryDependencies": [
+        "avatar"
+      ],
+      "files": [
+        {
+          "type": "style",
+          "path": "components/avatar-group/avatar-group.style.ts",
+          "hash": "0a7b61bf3231fe3a9ce342616614e56c"
+        },
+        {
+          "type": "type",
+          "path": "components/avatar-group/avatar-group.props.ts",
+          "hash": "4d14eb2a587d2d925ca5b1f96e6f79b3"
+        },
+        {
+          "type": "component",
+          "path": "components/avatar-group/avatar-group.vue",
+          "hash": "3375c2137ab3f9aa0ca9c5c0cf64c331"
+        }
+      ]
+    },
+    {
+      "name": "badge",
+      "type": "component",
+      "title": "Badge",
+      "description": "Used to highlight an item's status for quick recognition.",
+      "registryDependencies": [
+        "icon"
+      ],
+      "files": [
+        {
+          "type": "style",
+          "path": "components/badge/badge.style.ts",
+          "hash": "9f2af2a8fe3925b1e6efa7d4bdb2c8f3"
+        },
+        {
+          "type": "component",
+          "path": "components/badge/badge.vue",
+          "hash": "e302b50835169958b85ddcb5efbbeba1"
+        },
+        {
+          "type": "type",
+          "path": "components/badge/badge.props.ts",
+          "hash": "ea14ce5f18837b5eded09be278baeaac"
+        }
+      ]
+    },
+    {
+      "name": "button",
+      "type": "component",
+      "title": "Button",
+      "description": "Used to trigger an action or event.",
+      "registryDependencies": [
+        "icon"
+      ],
+      "files": [
+        {
+          "type": "component",
+          "path": "components/button/button.vue",
+          "hash": "3228afbd785b6c42d6d00bf3808de2bb"
+        },
+        {
+          "type": "type",
+          "path": "components/button/button.props.ts",
+          "hash": "0095e1ec3a1784a4658f898346c8e43d"
+        },
+        {
+          "type": "style",
+          "path": "components/button/button.style.ts",
+          "hash": "d7f99ca12461b1578284a9cff23982a8"
+        }
+      ]
+    },
+    {
+      "name": "button-group",
+      "type": "component",
+      "title": "Button Group",
+      "description": "Used to group buttons together.",
+      "registryDependencies": [
+        "button"
+      ],
+      "files": [
+        {
+          "type": "type",
+          "path": "components/button-group/button-group.props.ts",
+          "hash": "6a500f48b16e2d661f7de42189b84c62"
+        },
+        {
+          "type": "style",
+          "path": "components/button-group/button-group.style.ts",
+          "hash": "42ff20fcfdf86352e907ca7922039a90"
+        },
+        {
+          "type": "component",
+          "path": "components/button-group/button-group.vue",
+          "hash": "64592f0c83af24c5c0ab91aa5a72736d"
+        }
+      ]
+    },
+    {
+      "name": "card",
+      "type": "component",
+      "title": "Card",
+      "description": "Used to display content related to a single subject.",
+      "registryDependencies": [
+        "icon"
+      ],
+      "files": [
+        {
+          "type": "component",
+          "path": "components/card/card.vue",
+          "hash": "6ad2550242912df25c87571df562603b"
+        },
+        {
+          "type": "style",
+          "path": "components/card/card.style.ts",
+          "hash": "f72e0f925aaba61dec1a7b81573ab61f"
+        },
+        {
+          "type": "type",
+          "path": "components/card/card.props.ts",
+          "hash": "dcecff1a18b24366ea1f9568ef912bc2"
+        }
+      ],
+      "cssVars": {
+        "card": {
+          "bg": "white.12"
+        }
+      }
+    },
+    {
+      "name": "float",
+      "type": "component",
+      "title": "Float",
+      "description": "Used to anchor an element to the edge of a container.",
+      "files": [
+        {
+          "type": "component",
+          "path": "components/float/float.vue",
+          "hash": "29604f313ff0d0035dd7785eadd7d7de"
+        },
+        {
+          "type": "style",
+          "path": "components/float/float.style.ts",
+          "hash": "9429a00c7c8c3ede7b19a04cae6c00d5"
+        },
+        {
+          "type": "type",
+          "path": "components/float/float.props.ts",
+          "hash": "22daea66cabc4870119250094a0cb89e"
+        }
+      ]
+    },
+    {
+      "name": "group",
+      "type": "component",
+      "title": "Group",
+      "description": "Used to group and attach elements together.",
+      "files": [
+        {
+          "type": "component",
+          "path": "components/group/group.vue",
+          "hash": "efa01331bc5115ba22b7a26f55fde1f2"
+        },
+        {
+          "type": "type",
+          "path": "components/group/group.props.ts",
+          "hash": "6c1bc55d75c6a6dbd59fdea5fa3c2334"
+        },
+        {
+          "type": "style",
+          "path": "components/group/group.style.ts",
+          "hash": "6c75bf5aace215700ba57a852c5c6124"
+        }
+      ]
+    },
+    {
       "name": "icon",
       "type": "component",
       "title": "Icon",
@@ -88,55 +310,6 @@
       ]
     },
     {
-      "name": "scroll-area",
-      "type": "component",
-      "title": "Scroll Area",
-      "description": "Used to create a scrollable area with custom styled scrollbars.",
-      "files": [
-        {
-          "type": "style",
-          "path": "components/scroll-area/scroll-area.style.ts",
-          "hash": "9fba8fa1a8004205877af33e14e1a205"
-        },
-        {
-          "type": "component",
-          "path": "components/scroll-area/scroll-area.vue",
-          "hash": "650333e3ae9dc7196ef0c070c992e0a7"
-        },
-        {
-          "type": "type",
-          "path": "components/scroll-area/scroll-area.props.ts",
-          "hash": "a1dfa4490f742a385233b1253652bd0a"
-        }
-      ]
-    },
-    {
-      "name": "button",
-      "type": "component",
-      "title": "Button",
-      "description": "Used to trigger an action or event.",
-      "registryDependencies": [
-        "icon"
-      ],
-      "files": [
-        {
-          "type": "component",
-          "path": "components/button/button.vue",
-          "hash": "3228afbd785b6c42d6d00bf3808de2bb"
-        },
-        {
-          "type": "type",
-          "path": "components/button/button.props.ts",
-          "hash": "0095e1ec3a1784a4658f898346c8e43d"
-        },
-        {
-          "type": "style",
-          "path": "components/button/button.style.ts",
-          "hash": "d7f99ca12461b1578284a9cff23982a8"
-        }
-      ]
-    },
-    {
       "name": "icon-button",
       "type": "component",
       "title": "Icon Button",
@@ -162,224 +335,6 @@
           "hash": "ebbd4d02b41b91ea483f8b865acf2b55"
         }
       ]
-    },
-    {
-      "name": "button-group",
-      "type": "component",
-      "title": "Button Group",
-      "description": "Used to group buttons together.",
-      "registryDependencies": [
-        "button"
-      ],
-      "files": [
-        {
-          "type": "type",
-          "path": "components/button-group/button-group.props.ts",
-          "hash": "6a500f48b16e2d661f7de42189b84c62"
-        },
-        {
-          "type": "style",
-          "path": "components/button-group/button-group.style.ts",
-          "hash": "42ff20fcfdf86352e907ca7922039a90"
-        },
-        {
-          "type": "component",
-          "path": "components/button-group/button-group.vue",
-          "hash": "64592f0c83af24c5c0ab91aa5a72736d"
-        }
-      ]
-    },
-    {
-      "name": "group",
-      "type": "component",
-      "title": "Group",
-      "description": "Used to group and attach elements together.",
-      "files": [
-        {
-          "type": "component",
-          "path": "components/group/group.vue",
-          "hash": "efa01331bc5115ba22b7a26f55fde1f2"
-        },
-        {
-          "type": "type",
-          "path": "components/group/group.props.ts",
-          "hash": "6c1bc55d75c6a6dbd59fdea5fa3c2334"
-        },
-        {
-          "type": "style",
-          "path": "components/group/group.style.ts",
-          "hash": "6c75bf5aace215700ba57a852c5c6124"
-        }
-      ]
-    },
-    {
-      "name": "stack",
-      "type": "component",
-      "title": "Stack",
-      "description": "Used to layout its children in a vertical or horizontal stack.",
-      "files": [
-        {
-          "type": "type",
-          "path": "components/stack/stack.props.ts",
-          "hash": "6f72b1871fd8ebc6dfd06da43d0fb2cd"
-        },
-        {
-          "type": "component",
-          "path": "components/stack/stack.vue",
-          "hash": "e0382f6a55c40a416e932b219f03032a"
-        },
-        {
-          "type": "style",
-          "path": "components/stack/stack.style.ts",
-          "hash": "19830d0fd40a70478bb28ee8cfdf69c4"
-        }
-      ]
-    },
-    {
-      "name": "separator",
-      "type": "component",
-      "title": "Separator",
-      "description": "Used to visually separate content.",
-      "files": [
-        {
-          "type": "component",
-          "path": "components/separator/separator.vue",
-          "hash": "cb1241953292531c8b01a74625996b7c"
-        },
-        {
-          "type": "style",
-          "path": "components/separator/separator.style.ts",
-          "hash": "f2f8751540bde2df74ea0b26102b4b2c"
-        },
-        {
-          "type": "type",
-          "path": "components/separator/separator.props.ts",
-          "hash": "9439a19c23b89be6b22cdef44fc17568"
-        }
-      ]
-    },
-    {
-      "name": "overflow",
-      "type": "component",
-      "title": "Overflow",
-      "description": "",
-      "files": [
-        {
-          "type": "type",
-          "path": "components/overflow/overflow.props.ts",
-          "hash": "37930a8b4188e4f4aadb29858ece8bfb"
-        },
-        {
-          "type": "component",
-          "path": "components/overflow/overflow.vue",
-          "hash": "d889a73ada843e848902a53aa01e278d"
-        },
-        {
-          "type": "style",
-          "path": "components/overflow/overflow.style.ts",
-          "hash": "9a9afd81956741d4b07fda7c3d1d6f89"
-        }
-      ]
-    },
-    {
-      "name": "avatar",
-      "type": "component",
-      "title": "Avatar",
-      "description": "Used to represent user profile picture or initials.",
-      "files": [
-        {
-          "type": "style",
-          "path": "components/avatar/avatar.style.ts",
-          "hash": "029a1fbdc2239e25f9f0092e8e634762"
-        },
-        {
-          "type": "component",
-          "path": "components/avatar/avatar.vue",
-          "hash": "708598a0abbf2dab4fee6ac554140d17"
-        },
-        {
-          "type": "type",
-          "path": "components/avatar/avatar.props.ts",
-          "hash": "305f927b05a39dede46c153d849d7a84"
-        }
-      ]
-    },
-    {
-      "name": "avatar-group",
-      "type": "component",
-      "title": "Avatar Group",
-      "description": "",
-      "files": [
-        {
-          "type": "style",
-          "path": "components/avatar-group/avatar-group.style.ts",
-          "hash": "0a7b61bf3231fe3a9ce342616614e56c"
-        },
-        {
-          "type": "type",
-          "path": "components/avatar-group/avatar-group.props.ts",
-          "hash": "4d14eb2a587d2d925ca5b1f96e6f79b3"
-        },
-        {
-          "type": "component",
-          "path": "components/avatar-group/avatar-group.vue",
-          "hash": "3375c2137ab3f9aa0ca9c5c0cf64c331"
-        }
-      ]
-    },
-    {
-      "name": "badge",
-      "type": "component",
-      "title": "Badge",
-      "description": "Used to highlight an item's status for quick recognition.",
-      "files": [
-        {
-          "type": "style",
-          "path": "components/badge/badge.style.ts",
-          "hash": "9f2af2a8fe3925b1e6efa7d4bdb2c8f3"
-        },
-        {
-          "type": "component",
-          "path": "components/badge/badge.vue",
-          "hash": "e302b50835169958b85ddcb5efbbeba1"
-        },
-        {
-          "type": "type",
-          "path": "components/badge/badge.props.ts",
-          "hash": "ea14ce5f18837b5eded09be278baeaac"
-        }
-      ]
-    },
-    {
-      "name": "card",
-      "type": "component",
-      "title": "Card",
-      "description": "Used to display content related to a single subject.",
-      "registryDependencies": [
-        "icon"
-      ],
-      "files": [
-        {
-          "type": "component",
-          "path": "components/card/card.vue",
-          "hash": "6ad2550242912df25c87571df562603b"
-        },
-        {
-          "type": "style",
-          "path": "components/card/card.style.ts",
-          "hash": "f72e0f925aaba61dec1a7b81573ab61f"
-        },
-        {
-          "type": "type",
-          "path": "components/card/card.props.ts",
-          "hash": "dcecff1a18b24366ea1f9568ef912bc2"
-        }
-      ],
-      "cssVars": {
-        "card": {
-          "bg": "white.12"
-        }
-      }
     },
     {
       "name": "image",
@@ -440,6 +395,29 @@
       ]
     },
     {
+      "name": "overflow",
+      "type": "component",
+      "title": "Overflow",
+      "description": "Used to control the overflow behavior of its children.",
+      "files": [
+        {
+          "type": "type",
+          "path": "components/overflow/overflow.props.ts",
+          "hash": "37930a8b4188e4f4aadb29858ece8bfb"
+        },
+        {
+          "type": "component",
+          "path": "components/overflow/overflow.vue",
+          "hash": "d889a73ada843e848902a53aa01e278d"
+        },
+        {
+          "type": "style",
+          "path": "components/overflow/overflow.style.ts",
+          "hash": "9a9afd81956741d4b07fda7c3d1d6f89"
+        }
+      ]
+    },
+    {
       "name": "overlay",
       "type": "component",
       "title": "Overlay",
@@ -468,25 +446,71 @@
       }
     },
     {
-      "name": "float",
+      "name": "scroll-area",
       "type": "component",
-      "title": "Float",
-      "description": "",
+      "title": "Scroll Area",
+      "description": "Used to create a scrollable area with custom styled scrollbars.",
       "files": [
         {
-          "type": "component",
-          "path": "components/float/float.vue",
-          "hash": "29604f313ff0d0035dd7785eadd7d7de"
+          "type": "style",
+          "path": "components/scroll-area/scroll-area.style.ts",
+          "hash": "9fba8fa1a8004205877af33e14e1a205"
         },
         {
-          "type": "style",
-          "path": "components/float/float.style.ts",
-          "hash": "9429a00c7c8c3ede7b19a04cae6c00d5"
+          "type": "component",
+          "path": "components/scroll-area/scroll-area.vue",
+          "hash": "650333e3ae9dc7196ef0c070c992e0a7"
         },
         {
           "type": "type",
-          "path": "components/float/float.props.ts",
-          "hash": "22daea66cabc4870119250094a0cb89e"
+          "path": "components/scroll-area/scroll-area.props.ts",
+          "hash": "a1dfa4490f742a385233b1253652bd0a"
+        }
+      ]
+    },
+    {
+      "name": "separator",
+      "type": "component",
+      "title": "Separator",
+      "description": "Used to visually separate content.",
+      "files": [
+        {
+          "type": "component",
+          "path": "components/separator/separator.vue",
+          "hash": "cb1241953292531c8b01a74625996b7c"
+        },
+        {
+          "type": "style",
+          "path": "components/separator/separator.style.ts",
+          "hash": "f2f8751540bde2df74ea0b26102b4b2c"
+        },
+        {
+          "type": "type",
+          "path": "components/separator/separator.props.ts",
+          "hash": "9439a19c23b89be6b22cdef44fc17568"
+        }
+      ]
+    },
+    {
+      "name": "stack",
+      "type": "component",
+      "title": "Stack",
+      "description": "Used to layout its children in a vertical or horizontal stack.",
+      "files": [
+        {
+          "type": "type",
+          "path": "components/stack/stack.props.ts",
+          "hash": "6f72b1871fd8ebc6dfd06da43d0fb2cd"
+        },
+        {
+          "type": "component",
+          "path": "components/stack/stack.vue",
+          "hash": "e0382f6a55c40a416e932b219f03032a"
+        },
+        {
+          "type": "style",
+          "path": "components/stack/stack.style.ts",
+          "hash": "19830d0fd40a70478bb28ee8cfdf69c4"
         }
       ]
     }

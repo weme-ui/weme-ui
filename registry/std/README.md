@@ -36,7 +36,7 @@ pnpm dlx @weme-ui/weme-ui add <name>
   - [x] `separator`
   - [x] `stack`
   - [x] `overflow`
-  - [x] `overlay`
+  - [ ] `float`
 - Data Display
   - [x] `avatar`
   - [x] `avatar-group`
@@ -44,6 +44,8 @@ pnpm dlx @weme-ui/weme-ui add <name>
   - [x] `card`
   - [x] `image`
   - [x] `image-preview`
+- Overlays
+  - [x] `overlay`
 
 ---
 

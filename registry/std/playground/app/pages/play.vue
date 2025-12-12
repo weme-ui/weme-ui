@@ -3,10 +3,10 @@
 
 <template>
   <Container name="PLAY YOUR CODE HERE" description="🐗 Hakuna matata">
-    <UiImagePreview src="https://picsum.photos/200/200">
-      <template #placeholder>
-        <UiIcon name="loading" class="animate-spin" />
-      </template>
-    </UiImagePreview>
+    <div class="size-20 rounded-md bg-primary-3 relative">
+      <UiFloat placement="top-end">
+        <div class="p-2 rounded-full bg-danger" />
+      </UiFloat>
+    </div>
   </Container>
 </template>

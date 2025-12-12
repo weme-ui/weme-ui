@@ -466,6 +466,29 @@
           "bg": "black.11"
         }
       }
+    },
+    {
+      "name": "float",
+      "type": "component",
+      "title": "Float",
+      "description": "",
+      "files": [
+        {
+          "type": "component",
+          "path": "components/float/float.vue",
+          "hash": "29604f313ff0d0035dd7785eadd7d7de"
+        },
+        {
+          "type": "style",
+          "path": "components/float/float.style.ts",
+          "hash": "9429a00c7c8c3ede7b19a04cae6c00d5"
+        },
+        {
+          "type": "type",
+          "path": "components/float/float.props.ts",
+          "hash": "22daea66cabc4870119250094a0cb89e"
+        }
+      ]
     }
   ]
 }

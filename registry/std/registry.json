@@ -500,6 +500,29 @@
       }
     },
     {
+      "name": "progress",
+      "type": "component",
+      "title": "Progress",
+      "description": "Used to display the progress status for a task.",
+      "files": [
+        {
+          "type": "component",
+          "path": "components/progress/progress.vue",
+          "hash": "a4e485546291bb08d939e0cebcbf0a38"
+        },
+        {
+          "type": "style",
+          "path": "components/progress/progress.style.ts",
+          "hash": "06e83c3a501c90ddc447884b8e71846f"
+        },
+        {
+          "type": "type",
+          "path": "components/progress/progress.props.ts",
+          "hash": "36d7a3a3cbfc62474b3ee9aeeffb4bc7"
+        }
+      ]
+    },
+    {
       "name": "result",
       "type": "component",
       "title": "Result",

@@ -47,7 +47,7 @@ pnpm dlx @weme-ui/weme-ui add <name>
   - [x] `result`
   - [x] `skeleton`
   - [x] `spinner`
-  - [ ] `status`
+  - [x] `status`
   - [ ] `toast`
 - Collections
   - [ ] `combobox`

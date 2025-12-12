@@ -621,7 +621,11 @@
       "name": "spinner",
       "type": "component",
       "title": "Spinner",
-      "description": "",
+      "description": "Used to provide a visual cue that an action is processing",
+      "registryDependencies": [
+        "icon",
+        "overlay"
+      ],
       "files": [
         {
           "type": "style",
@@ -660,6 +664,29 @@
           "type": "style",
           "path": "components/stack/stack.style.ts",
           "hash": "19830d0fd40a70478bb28ee8cfdf69c4"
+        }
+      ]
+    },
+    {
+      "name": "status",
+      "type": "component",
+      "title": "Status",
+      "description": "Used to indicate the status of a process or state.",
+      "files": [
+        {
+          "type": "style",
+          "path": "components/status/status.style.ts",
+          "hash": "111c300582344d58135ca881aa7b977f"
+        },
+        {
+          "type": "type",
+          "path": "components/status/status.props.ts",
+          "hash": "d792af9a36266d2b152ddd3fe045a52b"
+        },
+        {
+          "type": "component",
+          "path": "components/status/status.vue",
+          "hash": "76070ea1c8b8e58954f63b216eb65e36"
         }
       ]
     }

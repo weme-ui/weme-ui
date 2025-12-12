@@ -1,7 +1,7 @@
 import type { VariantProps } from '~/utils/styles'
 import { createVariants } from '~/utils/styles'
 
-export const useEmptyStateStyle = createVariants({
+export const useResultStyle = createVariants({
   slots: {
     base: 'flex-(~ col y-center)',
     indicator: '',
@@ -22,5 +22,5 @@ export const useEmptyStateStyle = createVariants({
   },
 })
 
-export type EmptyStateStyleSlots = typeof useEmptyStateStyle['slots']
-export type EmptyStateStyleProps = VariantProps<typeof useEmptyStateStyle>
+export type ResultStyleSlots = typeof useResultStyle['slots']
+export type ResultStyleProps = VariantProps<typeof useResultStyle>

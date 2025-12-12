@@ -1,15 +1,15 @@
 <script lang="ts" setup>
-import type { EmptyStateProps } from './empty-state.props'
+import type { ResultProps } from './result.props'
 import { reactivePick } from '@vueuse/core'
 import { Primitive } from 'reka-ui'
 import { computed } from 'vue'
 import { cn } from '~/utils/styles'
 import Icon from '../icon/icon.vue'
-import { useEmptyStateStyle } from './empty-state.style'
+import { useResultStyle } from './result.style'
 
-const props = withDefaults(defineProps<EmptyStateProps>(), { size: 'md' })
+const props = withDefaults(defineProps<ResultProps>(), { size: 'md' })
 const delegated = reactivePick(props, 'as', 'asChild')
-const ui = computed(() => useEmptyStateStyle(props))
+const ui = computed(() => useResultStyle(props))
 </script>
 
 <template>

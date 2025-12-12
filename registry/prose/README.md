@@ -22,6 +22,22 @@
 pnpm dlx @weme-ui/weme-ui add weme-ui/prose/<name>
 ```
 
+## 组件列表
+
+- [x] `blockquote`
+- [x] `code`
+- [x] `em`
+- [x] `heading`
+- [x] `highlight`
+- [x] `link`
+- [x] `list`
+- [x] `mark`
+- [x] `text`
+
+## 组合式 API
+
+- [x] `useHighlight`
+
 ---
 
 ## 许可证

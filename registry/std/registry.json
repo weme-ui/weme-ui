@@ -490,7 +490,7 @@
         {
           "type": "style",
           "path": "components/overlay/overlay.style.ts",
-          "hash": "ee56df3ec956ba0a1207e8311539a846"
+          "hash": "c23bcf57ab59fa5058d7f97040391608"
         }
       ],
       "cssVars": {
@@ -614,6 +614,29 @@
           "type": "style",
           "path": "components/skeleton/skeleton.style.ts",
           "hash": "55fe5d4fc81a1724a721bb886430d307"
+        }
+      ]
+    },
+    {
+      "name": "spinner",
+      "type": "component",
+      "title": "Spinner",
+      "description": "",
+      "files": [
+        {
+          "type": "style",
+          "path": "components/spinner/spinner.style.ts",
+          "hash": "d65a2d643ecbe47bd17f662b1772b5ea"
+        },
+        {
+          "type": "type",
+          "path": "components/spinner/spinner.props.ts",
+          "hash": "24e1f72bdfbb9cf5c3f3582ca29723a4"
+        },
+        {
+          "type": "component",
+          "path": "components/spinner/spinner.vue",
+          "hash": "442608007235f85e458b24ef459179b1"
         }
       ]
     },

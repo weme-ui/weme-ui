@@ -5,18 +5,6 @@
   "version": "0.1.5",
   "registries": [
     {
-      "name": "weme-ui/std",
-      "description": "The standard components for Weme UI",
-      "prefix": "ui",
-      "statistics": {
-        "components": 24,
-        "layouts": 0,
-        "themes": 0,
-        "blocks": 0,
-        "pages": 0
-      }
-    },
-    {
       "name": "weme-ui/prose",
       "description": "The prose components for Weme UI",
       "prefix": "prose",
@@ -27,7 +15,19 @@
         "blocks": 0,
         "pages": 0
       }
+    },
+    {
+      "name": "weme-ui/std",
+      "description": "The standard components for Weme UI",
+      "prefix": "ui",
+      "statistics": {
+        "components": 25,
+        "layouts": 0,
+        "themes": 0,
+        "blocks": 0,
+        "pages": 0
+      }
     }
   ],
-  "updated": "2025-12-12T09:11:06.003Z"
+  "updated": "2025-12-12T11:50:41.628Z"
 }

@@ -45,8 +45,8 @@ pnpm dlx @weme-ui/weme-ui add <name>
   - [x] `alert`
   - [x] `progress`
   - [x] `result`
-  - [ ] `skeleton`
-  - [ ] `spinner`
+  - [x] `skeleton`
+  - [x] `spinner`
   - [ ] `status`
   - [ ] `toast`
 - Collections

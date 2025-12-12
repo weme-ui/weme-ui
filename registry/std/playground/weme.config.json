@@ -12,9 +12,11 @@
   "paths": {
     "components": "~/components",
     "composables": "~/composables"
-
   },
   "unocss": {
-    "cssVars": { "card-bg": "white.12" }
+    "cssVars": {
+      "card-bg": "white.12",
+      "overlay-bg": "black.11"
+    }
   }
 }

@@ -411,6 +411,61 @@
           "hash": "2abe5af4148b978d989640ada60cd131"
         }
       ]
+    },
+    {
+      "name": "image-preview",
+      "type": "component",
+      "title": "Image Preview",
+      "description": "Used to preview images.",
+      "registryDependencies": [
+        "image",
+        "overlay"
+      ],
+      "files": [
+        {
+          "type": "component",
+          "path": "components/image-preview/image-preview.vue",
+          "hash": "8bb22e9683804adcbc7ec46c2769fedd"
+        },
+        {
+          "type": "type",
+          "path": "components/image-preview/image-preview.props.ts",
+          "hash": "d4f0fd12831abfc12b04c21c3f216ee1"
+        },
+        {
+          "type": "style",
+          "path": "components/image-preview/image-preview.style.ts",
+          "hash": "cda103cd7a1450263b0b3567da96f2f8"
+        }
+      ]
+    },
+    {
+      "name": "overlay",
+      "type": "component",
+      "title": "Overlay",
+      "description": "Used to display content on top of other content.",
+      "files": [
+        {
+          "type": "type",
+          "path": "components/overlay/overlay.props.ts",
+          "hash": "2da2271bb6f69f53229dfe207ae82ecc"
+        },
+        {
+          "type": "component",
+          "path": "components/overlay/overlay.vue",
+          "hash": "ce4508518daebece2e2b4ef1acf3a788"
+        },
+        {
+          "type": "style",
+          "path": "components/overlay/overlay.style.ts",
+          "hash": "ee56df3ec956ba0a1207e8311539a846"
+        }
+      ],
+      "cssVars": {
+        "overlay": {
+          "bg": "black.11"
+        }
+      }
     }
   ]
 }

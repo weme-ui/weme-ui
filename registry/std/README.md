@@ -36,12 +36,14 @@ pnpm dlx @weme-ui/weme-ui add <name>
   - [x] `separator`
   - [x] `stack`
   - [x] `overflow`
+  - [x] `overlay`
 - Data Display
   - [x] `avatar`
   - [x] `avatar-group`
   - [x] `badge`
   - [x] `card`
-  - [ ] `image`
+  - [x] `image`
+  - [x] `image-preview`
 
 ---
 

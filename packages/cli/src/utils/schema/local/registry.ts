@@ -47,23 +47,25 @@ export class LocalRegistry {
     if (schema.isErr())
       return []
 
-    return Promise.all(schema.value.items.map(
-      async (item) => {
-        return {
-          ...item,
-          files: await Promise.all(item.files.map(
-            async (file) => {
-              const content = readFileSync(this.withScopePath(file.path), 'utf-8')
-              const hash = SparkMD5.hash(content)
-              return {
-                ...file,
-                hash,
-              }
-            },
-          )),
-        }
-      },
-    ))
+    return Promise.all(schema.value.items
+      .sort((a, b) => a.name.localeCompare(b.name))
+      .map(
+        async (item) => {
+          return {
+            ...item,
+            files: await Promise.all(item.files.map(
+              async (file) => {
+                const content = readFileSync(this.withScopePath(file.path), 'utf-8')
+                const hash = SparkMD5.hash(content)
+                return {
+                  ...file,
+                  hash,
+                }
+              },
+            )),
+          }
+        },
+      ))
   }
 
   async hasItem(name: string, parent?: string): Promise<boolean> {

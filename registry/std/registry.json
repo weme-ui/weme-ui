@@ -246,6 +246,32 @@
       }
     },
     {
+      "name": "empty-state",
+      "type": "component",
+      "title": "Empty State",
+      "description": "Used to indicate when a resource is empty or unavailable.",
+      "registryDependencies": [
+        "icon"
+      ],
+      "files": [
+        {
+          "type": "component",
+          "path": "components/empty-state/empty-state.vue",
+          "hash": "f8d646dc10816ab7bb557b29184d25b6"
+        },
+        {
+          "type": "type",
+          "path": "components/empty-state/empty-state.props.ts",
+          "hash": "b158ffa91cb36a1333362e4915e9bbce"
+        },
+        {
+          "type": "style",
+          "path": "components/empty-state/empty-state.style.ts",
+          "hash": "57a4ea75c341e5ceaa2d15f7bf90f923"
+        }
+      ]
+    },
+    {
       "name": "float",
       "type": "component",
       "title": "Float",

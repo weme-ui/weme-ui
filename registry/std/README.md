@@ -40,6 +40,7 @@ pnpm dlx @weme-ui/weme-ui add <name>
   - [x] `stack`
 - Feedback
   - [x] `alert`
+  - [x] `empty-state`
 - Data Display
   - [x] `avatar-group`
   - [x] `avatar`

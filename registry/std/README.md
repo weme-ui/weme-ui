@@ -25,11 +25,14 @@ pnpm dlx @weme-ui/weme-ui add <name>
 ## 组件列表
 
 - General
+  - [ ] `app`
+  - [ ] `theme`
   - [x] `button-group`
   - [x] `button`
   - [x] `icon-box`
   - [x] `icon-button`
   - [x] `icon`
+  - [x] `kbd`
 - Layout
   - [x] `aspect-ratio`
   - [x] `float`
@@ -40,7 +43,17 @@ pnpm dlx @weme-ui/weme-ui add <name>
   - [x] `stack`
 - Feedback
   - [x] `alert`
-  - [x] `empty-state`
+  - [ ] `progress`
+  - [x] `result`
+  - [ ] `skeleton`
+  - [ ] `spinner`
+  - [ ] `status`
+  - [ ] `toast`
+- Collections
+  - [ ] `combobox`
+  - [ ] `listbox`
+  - [ ] `select`
+  - [ ] `tree`
 - Data Display
   - [x] `avatar-group`
   - [x] `avatar`
@@ -48,12 +61,43 @@ pnpm dlx @weme-ui/weme-ui add <name>
   - [x] `card`
   - [x] `image-preview`
   - [x] `image`
+  - [ ] `chipboard`
+  - [ ] `data-list`
+  - [ ] `stat`
+  - [ ] `table`
+  - [ ] `tag`
+  - [ ] `comment`
+  - [ ] `timeline`
+- Disclosure
+  - [ ] `accordion`
+  - [ ] `breadcrumb`
+  - [ ] `carousel`
+  - [ ] `collapsible`
+  - [ ] `pagination`
+  - [ ] `steps`
+  - [ ] `tabs`
 - Overlays
+  - [ ] `action-sheet`
+  - [ ] `dropdown`
+  - [ ] `hover-card`
+  - [ ] `modal`
+  - [ ] `pop-confirm`
+  - [ ] `popover`
+  - [ ] `tooltip`
   - [x] `overlay`
+- Others
+  - [ ] `affix`
+  - [ ] `anchor`
+  - [ ] `back-top`
+  - [ ] `countdown`
+  - [ ] `count-to`
+  - [ ] `qr-code`
+  - [ ] `watermark`
+  - [ ] `marquee`
 
 ## 组合式 API
 
-- [x] `useImageLoadingStatus`
+- [x] `useImageLoadingStatus` includes `UiImage`
 
 ---
 

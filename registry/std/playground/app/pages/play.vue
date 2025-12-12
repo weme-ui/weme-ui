@@ -3,13 +3,9 @@
 
 <template>
   <Container name="PLAY YOUR CODE HERE" description="🐗 Hakuna matata">
-    <UiEmptyState icon="solar:bag-3-bold-duotone" title="Hello World" description="This is a description." size="md" :ui="{ indicator: 'c-secondary size-16' }">
-      <UiButtonGroup color="secondary" class="mt-4">
-        <UiButton variant="solid">
-          Apply
-        </UiButton>
-        <UiButton>Cancel</UiButton>
-      </UiButtonGroup>
-    </UiEmptyState>
+    <UiGroup gap="xs">
+      <UiKbd value="meta" variant="outline" size="sm" />
+      <UiKbd value="/" variant="outline" size="sm" />
+    </UiGroup>
   </Container>
 </template>

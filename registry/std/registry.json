@@ -421,6 +421,34 @@
       ]
     },
     {
+      "name": "kbd",
+      "type": "component",
+      "title": "Kbd",
+      "description": "Used to show key combinations for an action.",
+      "files": [
+        {
+          "type": "style",
+          "path": "components/kbd/kbd.style.ts",
+          "hash": "8b1ac887ebf9e7f01204cc5dd04cde43"
+        },
+        {
+          "type": "component",
+          "path": "components/kbd/kbd.vue",
+          "hash": "5a74b3ed46ac2f3edc96bf6b3ee24b03"
+        },
+        {
+          "type": "type",
+          "path": "components/kbd/kbd.props.ts",
+          "hash": "a1ffe5e367eb24ce7b8002f55e520957"
+        },
+        {
+          "type": "composable",
+          "path": "composables/use-kbd.ts",
+          "hash": "aa621d2d154764797a31432d1493ca22"
+        }
+      ]
+    },
+    {
       "name": "overflow",
       "type": "component",
       "title": "Overflow",

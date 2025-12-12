@@ -44,6 +44,32 @@
       ]
     },
     {
+      "name": "alert",
+      "type": "component",
+      "title": "Alert",
+      "description": "Used to communicate a state that affects a system, feature or page.",
+      "registryDependencies": [
+        "icon"
+      ],
+      "files": [
+        {
+          "type": "style",
+          "path": "components/alert/alert.style.ts",
+          "hash": "57f733480c029bb6f712b29021b452d9"
+        },
+        {
+          "type": "type",
+          "path": "components/alert/alert.props.ts",
+          "hash": "99a801596d9e1796514296f58c407a44"
+        },
+        {
+          "type": "component",
+          "path": "components/alert/alert.vue",
+          "hash": "fa8c0bcc03086abd31b08cad4a54a075"
+        }
+      ]
+    },
+    {
       "name": "aspect-ratio",
       "type": "component",
       "title": "Aspect Ratio",

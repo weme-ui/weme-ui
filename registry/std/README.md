@@ -38,6 +38,8 @@ pnpm dlx @weme-ui/weme-ui add <name>
   - [x] `scroll-area`
   - [x] `separator`
   - [x] `stack`
+- Feedback
+  - [x] `alert`
 - Data Display
   - [x] `avatar-group`
   - [x] `avatar`

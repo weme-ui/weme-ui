@@ -246,6 +246,28 @@
       }
     },
     {
+      "name": "chipboard",
+      "type": "component",
+      "title": "Chipboard",
+      "description": "Used to copy text to the clipboard.",
+      "registryDependencies": [
+        "button",
+        "icon-button"
+      ],
+      "files": [
+        {
+          "type": "type",
+          "path": "components/chipboard/chipboard.props.ts",
+          "hash": "b1fd79bcbeb7cf74aeab9432f694cbe8"
+        },
+        {
+          "type": "component",
+          "path": "components/chipboard/chipboard.vue",
+          "hash": "7b43571c4fa961bc26c9d6b7fb16270c"
+        }
+      ]
+    },
+    {
       "name": "float",
       "type": "component",
       "title": "Float",

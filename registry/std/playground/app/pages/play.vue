@@ -3,6 +3,6 @@
 
 <template>
   <Container name="PLAY YOUR CODE HERE" description="🐗 Hakuna matata">
-    <UiStatus color="info" label="Info" size="xs" animate />
+    <UiChipboard copy-text="Copy" copied-text="Copied" value="The quick brown fox jumps over the lazy fox." />
   </Container>
 </template>

@@ -8,6 +8,8 @@ export const WemeIcons = {
   right: 'lucide:chevron-right',
   down: 'lucide:chevron-down',
   left: 'lucide:chevron-left',
+  trendUp: 'lucide:trending-up',
+  trendDown: 'lucide:trending-down',
 
   // Operation
   calendar: 'lucide:calendar',

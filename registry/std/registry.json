@@ -268,6 +268,29 @@
       ]
     },
     {
+      "name": "data-list",
+      "type": "component",
+      "title": "Data List",
+      "description": "Used to display a list of similar data items.",
+      "files": [
+        {
+          "type": "component",
+          "path": "components/data-list/data-list.vue",
+          "hash": "ed8a89a47c2f680d95d3bd8a8de74ab7"
+        },
+        {
+          "type": "type",
+          "path": "components/data-list/data-list.props.ts",
+          "hash": "0a5c29a6f3ba452b8c42b1c460d937fe"
+        },
+        {
+          "type": "style",
+          "path": "components/data-list/data-list.style.ts",
+          "hash": "477351f59d17ecd8db9e0b2418b549df"
+        }
+      ]
+    },
+    {
       "name": "float",
       "type": "component",
       "title": "Float",

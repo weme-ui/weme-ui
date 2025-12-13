@@ -708,7 +708,30 @@
         {
           "type": "style",
           "path": "components/stack/stack.style.ts",
-          "hash": "19830d0fd40a70478bb28ee8cfdf69c4"
+          "hash": "ec62525c7bd133a0d95825208f6b9cda"
+        }
+      ]
+    },
+    {
+      "name": "stat",
+      "type": "component",
+      "title": "Stat",
+      "description": "",
+      "files": [
+        {
+          "type": "style",
+          "path": "components/stat/stat.style.ts",
+          "hash": "2f469ab83ca2062bc967f4c8c8c4f829"
+        },
+        {
+          "type": "component",
+          "path": "components/stat/stat.vue",
+          "hash": "05bfba7f5a71856a391d69d028773b3d"
+        },
+        {
+          "type": "type",
+          "path": "components/stat/stat.props.ts",
+          "hash": "f11fbf5a9b5897461e55816b26208227"
         }
       ]
     },

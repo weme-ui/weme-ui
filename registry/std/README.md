@@ -63,7 +63,7 @@ pnpm dlx @weme-ui/weme-ui add <name>
   - [x] `image`
   - [x] `chipboard`
   - [x] `data-list`
-  - [ ] `stat`
+  - [x] `stat`
   - [ ] `table`
   - [ ] `tag`
   - [ ] `comment`

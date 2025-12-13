@@ -1,15 +1,13 @@
 <script lang="ts" setup>
-import type { DataListItem } from '../../../components/data-list/data-list.props'
-
-const data: DataListItem[] = [
-  { label: 'Name', value: 'John Doe' },
-  { label: 'Email', value: 'john.doe@example.com' },
-  { label: 'Phone', value: '123-456-7890' },
-]
 </script>
 
 <template>
   <Container name="PLAY YOUR CODE HERE" description="🐗 Hakuna matata">
-    <UiDataList :items="data" orientation="vertical" size="md" />
+    <UiCard size="sm">
+      <UiStack orientation="horizontal">
+        <UiStat class="w-60" size="sm" trend="up" label="Total Sales" value="1,234" description="Last 30 days" indicator-value="10%" />
+        <UiIcon name="solar:bag-smile-bold-duotone" class="size-5 c-ruby" />
+      </UiStack>
+    </UiCard>
   </Container>
 </template>

@@ -9,7 +9,6 @@ export interface StatProps extends PrimitiveProps {
   indicatorValue?: string
   trendUpIcon?: string
   trendDownIcon?: string
-  color?: StatStyleProps['color']
   trend?: StatStyleProps['trend']
   size?: StatStyleProps['size']
   class?: any

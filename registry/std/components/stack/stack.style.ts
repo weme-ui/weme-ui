@@ -4,7 +4,7 @@ import { createVariants } from '~/utils/styles'
 export const useStackStyle = createVariants({
   slots: {
     base: 'flex gap-2',
-    item: 'self-stretch',
+    item: '',
     separator: '',
   },
 

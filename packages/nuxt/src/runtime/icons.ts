@@ -11,6 +11,7 @@ export const WemeIcons = {
 
   // Operation
   calendar: 'lucide:calendar',
+  copy: 'lucide:copy',
   select: 'lucide:chevrons-up-down',
   check: 'lucide:check',
   close: 'lucide:x',

@@ -52,7 +52,7 @@ pnpm dlx @weme-ui/weme-ui add <name>
 - Collections
   - [ ] `combobox`
   - [ ] `listbox`
-  - [ ] `select`
+  - [ ] `picker`
   - [ ] `tree`
 - Data Display
   - [x] `avatar-group`
@@ -64,6 +64,7 @@ pnpm dlx @weme-ui/weme-ui add <name>
   - [x] `chipboard`
   - [x] `data-list`
   - [x] `stat`
+  - [x] `item`
   - [ ] `table`
   - [ ] `tag`
   - [ ] `comment`
@@ -76,6 +77,33 @@ pnpm dlx @weme-ui/weme-ui add <name>
   - [ ] `pagination`
   - [ ] `steps`
   - [ ] `tabs`
+- Forms
+  - [ ] `form`
+  - [ ] `field`
+  - [ ] `checkbox`
+  - [ ] `checkbox-card`
+  - [ ] `radio-group`
+  - [ ] `radio-card`
+  - [ ] `editable`
+  - [ ] `file-upload`
+  - [ ] `color-picker`
+  - [ ] `color-swatch`
+  - [ ] `input`
+  - [ ] `number-input`
+  - [ ] `password-input`
+  - [ ] `pin-input`
+  - [ ] `tags-input`
+  - [ ] `rating`
+  - [ ] `segmented-control`
+  - [ ] `select`
+  - [ ] `slider`
+  - [ ] `textarea`
+  - [ ] `switch`
+  - [ ] `toggle`
+  - [ ] `toggle-group`
+  - [ ] `date-picker`
+  - [ ] `time-picker`
+  - [ ] `mention`
 - Overlays
   - [ ] `action-sheet`
   - [ ] `dropdown`
@@ -84,6 +112,7 @@ pnpm dlx @weme-ui/weme-ui add <name>
   - [ ] `pop-confirm`
   - [ ] `popover`
   - [ ] `tooltip`
+  - [ ] `tooltip-button`
   - [x] `overlay`
 - Others
   - [ ] `affix`
@@ -94,10 +123,16 @@ pnpm dlx @weme-ui/weme-ui add <name>
   - [ ] `qr-code`
   - [ ] `watermark`
   - [ ] `marquee`
+  - [ ] `floating-panel`
+  - [ ] `timer`
+  - [ ] `signature`
+  - [ ] `tour`
+  - [ ] `splitter`
 
 ## 组合式 API
 
 - [x] `useImageLoadingStatus` includes `UiImage`
+- [x] `useKbd` includes `UiKbd`
 
 ---
 

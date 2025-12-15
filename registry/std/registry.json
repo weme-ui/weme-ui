@@ -376,7 +376,7 @@
         {
           "type": "component",
           "path": "components/icon-box/icon-box.vue",
-          "hash": "a9cfd4e04054965fd1924835195c2600"
+          "hash": "2225d5cfbe1c5f285d336818ba20c19e"
         }
       ]
     },
@@ -466,6 +466,33 @@
       ]
     },
     {
+      "name": "item",
+      "type": "component",
+      "title": "Item",
+      "description": "Used to display any content.",
+      "registryDependencies": [
+        "icon",
+        "link-overlay"
+      ],
+      "files": [
+        {
+          "type": "component",
+          "path": "components/item/item.vue",
+          "hash": "a06f4410274f7436e30d6588d6a4306f"
+        },
+        {
+          "type": "style",
+          "path": "components/item/item.style.ts",
+          "hash": "14082e157b795fa050c43673fa0fd01d"
+        },
+        {
+          "type": "type",
+          "path": "components/item/item.props.ts",
+          "hash": "c9cd077f4d2e6812a9c0d2fbd0be0ac5"
+        }
+      ]
+    },
+    {
       "name": "kbd",
       "type": "component",
       "title": "Kbd",
@@ -490,6 +517,29 @@
           "type": "composable",
           "path": "composables/use-kbd.ts",
           "hash": "aa621d2d154764797a31432d1493ca22"
+        }
+      ]
+    },
+    {
+      "name": "link-overlay",
+      "type": "component",
+      "title": "Link Overlay",
+      "description": "Used to stretch a link over a container.",
+      "files": [
+        {
+          "type": "type",
+          "path": "components/link-overlay/link-overlay.props.ts",
+          "hash": "1f71afb56c7f9c26f6518bbf7cd7296a"
+        },
+        {
+          "type": "style",
+          "path": "components/link-overlay/link-overlay.style.ts",
+          "hash": "2ab7cf17fb6b2ac9432f26964ba3471f"
+        },
+        {
+          "type": "component",
+          "path": "components/link-overlay/link-overlay.vue",
+          "hash": "9b001cc3a498adb8b17c090ddfcbab0c"
         }
       ]
     },
@@ -716,7 +766,10 @@
       "name": "stat",
       "type": "component",
       "title": "Stat",
-      "description": "",
+      "description": "Used to display a statistic with a title and value.",
+      "registryDependencies": [
+        "icon"
+      ],
       "files": [
         {
           "type": "style",
@@ -731,7 +784,7 @@
         {
           "type": "type",
           "path": "components/stat/stat.props.ts",
-          "hash": "f11fbf5a9b5897461e55816b26208227"
+          "hash": "15efbfbe96816238c55c08c6a41d82f8"
         }
       ]
     },

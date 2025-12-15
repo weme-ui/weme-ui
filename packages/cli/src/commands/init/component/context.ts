@@ -114,7 +114,7 @@ export async function createContext(args: Record<string, any>) {
           })
 
           if (context.asChild) {
-            if (await registry.hasItem(name, context.name)) {
+            if (await registry.hasItem(context.name, name)) {
               throw new Error(`Component ${context.name} already exists`)
             }
 

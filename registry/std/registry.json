@@ -253,7 +253,6 @@
       "title": "Chipboard",
       "description": "Used to copy text to the clipboard.",
       "registryDependencies": [
-        "button",
         "icon-button"
       ],
       "files": [
@@ -388,7 +387,6 @@
       "title": "Icon Button",
       "description": "Used to render an icon within a button.",
       "registryDependencies": [
-        "icon",
         "button"
       ],
       "files": [
@@ -810,6 +808,32 @@
           "type": "component",
           "path": "components/status/status.vue",
           "hash": "76070ea1c8b8e58954f63b216eb65e36"
+        }
+      ]
+    },
+    {
+      "name": "tag",
+      "type": "component",
+      "title": "Tag",
+      "description": "Used for categorizing or labeling content.",
+      "registryDependencies": [
+        "icon"
+      ],
+      "files": [
+        {
+          "type": "style",
+          "path": "components/tag/tag.style.ts",
+          "hash": "3c9b0a63bcc5bf1676a2d421a69eb21c"
+        },
+        {
+          "type": "component",
+          "path": "components/tag/tag.vue",
+          "hash": "9be65215b2aff661bd75f6feb44f9968"
+        },
+        {
+          "type": "type",
+          "path": "components/tag/tag.props.ts",
+          "hash": "34dc59a64971452a355b4d9908f99b88"
         }
       ]
     }

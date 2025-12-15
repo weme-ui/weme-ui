@@ -269,6 +269,33 @@
       ]
     },
     {
+      "name": "comment",
+      "type": "component",
+      "title": "Comment",
+      "description": "Used to display a comment.",
+      "registryDependencies": [
+        "avatar",
+        "button"
+      ],
+      "files": [
+        {
+          "type": "component",
+          "path": "components/comment/comment.vue",
+          "hash": "14a51f5db201ffb3c33ea1a851afec5b"
+        },
+        {
+          "type": "type",
+          "path": "components/comment/comment.props.ts",
+          "hash": "5e8324d1da2f0c7317b50ad3ff61db1d"
+        },
+        {
+          "type": "style",
+          "path": "components/comment/comment.style.ts",
+          "hash": "92ac5d2600eb00b603c5d6d7e6d5a744"
+        }
+      ]
+    },
+    {
       "name": "data-list",
       "type": "component",
       "title": "Data List",

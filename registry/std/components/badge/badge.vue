@@ -1,10 +1,10 @@
 <script lang="ts" setup>
 import type { BadgeProps } from './badge.props'
-import { reactivePick } from '@vueuse/core'
 import { Primitive } from 'reka-ui'
 import { computed } from 'vue'
 import { cn } from '~/utils/styles'
 import Icon from '../icon/icon.vue'
+import LinkOverlay from '../link-overlay/link-overlay.vue'
 import { useBadgeStyle } from './badge.style'
 
 defineOptions({
@@ -20,20 +20,21 @@ const props = withDefaults(defineProps<BadgeProps>(), {
   clickable: false,
 })
 
-const delegated = reactivePick(props, 'href', 'target', 'rel')
-const tag = computed(() => props.href ? 'a' : 'span')
+const clickable = computed(() => !!props.href)
+
 const ui = computed(() => useBadgeStyle({
   ...props,
   disabled: toBoolValue(props.disabled),
-  clickable: toBoolValue(props.clickable),
+  clickable: clickable.value,
 }))
 </script>
 
 <template>
-  <Primitive v-bind="delegated" :as="tag" :class="cn(ui.base(), props.ui?.base, props.class)">
+  <Primitive :as="as" :as-child="asChild" :class="cn(ui.base(), props.ui?.base, props.class)">
     <slot v-if="$slots.icon || icon" name="icon">
       <Icon v-if="icon" :name="icon" :class="cn(ui.icon(), props.ui?.icon)" />
     </slot>
     <slot>{{ label }}</slot>
+    <LinkOverlay v-if="clickable && !disabled" :href="href" :target="target" :rel="rel" />
   </Primitive>
 </template>

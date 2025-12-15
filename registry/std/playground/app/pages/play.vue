@@ -3,8 +3,6 @@
 
 <template>
   <Container name="PLAY YOUR CODE HERE" description="🐗 Hakuna matata">
-    <UiStack class="w-120">
-      <UiAlert status="info" title="Info" content="This is an info alert." href="https://github.com" />
-    </UiStack>
+    <UiBadge icon="left" label="Badge" href="https://github.com" />
   </Container>
 </template>

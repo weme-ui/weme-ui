@@ -143,23 +143,24 @@
       "title": "Badge",
       "description": "Used to highlight an item's status for quick recognition.",
       "registryDependencies": [
-        "icon"
+        "icon",
+        "link-overlay"
       ],
       "files": [
         {
           "type": "style",
           "path": "components/badge/badge.style.ts",
-          "hash": "9f2af2a8fe3925b1e6efa7d4bdb2c8f3"
+          "hash": "948eb9129cbdd1df097f62866465c904"
         },
         {
           "type": "component",
           "path": "components/badge/badge.vue",
-          "hash": "e302b50835169958b85ddcb5efbbeba1"
+          "hash": "9cd2aca60562c2cc84aaaccef292c56c"
         },
         {
           "type": "type",
           "path": "components/badge/badge.props.ts",
-          "hash": "ea14ce5f18837b5eded09be278baeaac"
+          "hash": "2f7e951478ada2affa511a5391836cc9"
         }
       ]
     },

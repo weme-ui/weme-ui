@@ -12,7 +12,6 @@ export interface BadgeProps extends PrimitiveProps {
   size?: BadgeStyleProps['size']
   radius?: BadgeStyleProps['radius']
   disabled?: boolean
-  clickable?: boolean
   class?: any
   ui?: Partial<BadgeStyleSlots>
 }

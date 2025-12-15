@@ -12,10 +12,10 @@ export const useBadgeStyle = createVariants({
     color: createColorVariants({ defaults: '' }),
     variant: { solid: '', soft: '', surface: '', outline: '', inverse: '' },
     size: {
-      xs: { base: 'text-xs gap-1 h-5 px-1.5 leading-none', icon: 'size-3' },
-      sm: { base: 'text-xs gap-1 h-6 px-2.5', icon: 'size-3' },
-      md: { base: 'text-sm gap-1.5 h-8 px-3', icon: 'size-3.5' },
-      lg: { base: 'text-base gap-2 h-10 px-4', icon: 'size-4' },
+      xs: { base: 'text-xs h-5 px-1.5 leading-none', icon: 'size-3 mr-1' },
+      sm: { base: 'text-xs h-6 px-2.5', icon: 'size-3 mr-1' },
+      md: { base: 'text-sm h-8 px-3', icon: 'size-3.5 mr-1.5' },
+      lg: { base: 'text-base h-10 px-4', icon: 'size-4 mr-2' },
     },
     radius: {
       none: '',
@@ -29,7 +29,7 @@ export const useBadgeStyle = createVariants({
       true: 'is-disabled',
     },
     clickable: {
-      true: 'cursor-pointer',
+      true: 'relative cursor-pointer',
     },
   },
 

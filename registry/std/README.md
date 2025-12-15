@@ -68,7 +68,7 @@ pnpm dlx @weme-ui/weme-ui add <name>
   - [ ] `table`
   - [x] `tag`
   - [ ] `comment`
-  - [ ] `timeline`
+  - [x] `timeline`
 - Disclosure
   - [ ] `accordion`
   - [ ] `breadcrumb`

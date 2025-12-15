@@ -836,6 +836,33 @@
           "hash": "34dc59a64971452a355b4d9908f99b88"
         }
       ]
+    },
+    {
+      "name": "timeline",
+      "type": "component",
+      "title": "Timeline",
+      "description": "Used to display a list of events in chronological order.",
+      "registryDependencies": [
+        "icon",
+        "avatar"
+      ],
+      "files": [
+        {
+          "type": "component",
+          "path": "components/timeline/timeline.vue",
+          "hash": "bc3a157bfafcbc18bcf1ba05927656a9"
+        },
+        {
+          "type": "type",
+          "path": "components/timeline/timeline.props.ts",
+          "hash": "d397fd5c4c39dff625f227e041288d34"
+        },
+        {
+          "type": "style",
+          "path": "components/timeline/timeline.style.ts",
+          "hash": "cecfc24b65b0b677ffdc9bf3d2fe6a35"
+        }
+      ]
     }
   ]
 }

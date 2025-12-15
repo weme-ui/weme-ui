@@ -49,7 +49,8 @@
       "title": "Alert",
       "description": "Used to communicate a state that affects a system, feature or page.",
       "registryDependencies": [
-        "icon"
+        "icon",
+        "link-overlay"
       ],
       "files": [
         {
@@ -65,7 +66,7 @@
         {
           "type": "component",
           "path": "components/alert/alert.vue",
-          "hash": "fa8c0bcc03086abd31b08cad4a54a075"
+          "hash": "3594daa0ae218b2692ba3323a703f5b2"
         }
       ]
     },

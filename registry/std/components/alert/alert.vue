@@ -4,6 +4,7 @@ import { Presence, Primitive } from 'reka-ui'
 import { computed, watch } from 'vue'
 import { cn } from '~/utils/styles'
 import Icon from '../icon/icon.vue'
+import LinkOverlay from '../link-overlay/link-overlay.vue'
 import { useAlertStyle } from './alert.style'
 
 const props = withDefaults(defineProps<AlertProps>(), {
@@ -18,7 +19,6 @@ const emits = defineEmits<AlertEmits>()
 const visible = defineModel<boolean>({ default: true })
 const slots = useSlots()
 
-const as = computed(() => props.href ? 'a' : 'div')
 const clickable = computed(() => !!props.href || props.clickable)
 const resolvedIcon = computed(() => props.status && !props.icon ? props.status : props.icon)
 const resolvedColor = computed(() => props.status ? props.status as AlertProps['color'] : props.color)
@@ -45,7 +45,7 @@ watch(
 
 <template>
   <Presence v-if="visible" :present="visible">
-    <Primitive :as="as" :href="href" :target="target" :rel="rel" :class="cn(ui.base(), props.ui?.base, props.class)">
+    <Primitive :as="as" :class="cn(ui.base(), props.ui?.base, props.class)">
       <slot v-if="$slots.icon || resolvedIcon" name="icon">
         <Icon v-if="resolvedIcon" :name="resolvedIcon" :class="cn(ui.icon(), props.ui?.icon)" />
       </slot>
@@ -76,6 +76,7 @@ watch(
           <Icon name="close" />
         </slot>
       </button>
+      <LinkOverlay v-if="href" :href="href" :target="target" :rel="rel" />
     </Primitive>
   </Presence>
 </template>

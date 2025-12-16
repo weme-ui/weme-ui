@@ -9,6 +9,9 @@ const stateAttributes = ['open', 'closed', 'checked', 'unchecked', 'indeterminat
 const swipeAttributes = ['start', 'move', 'cancel', 'end']
 const swipeDirectionAttributes = ['left', 'right', 'up', 'down']
 
+// Extends
+const orderAttributes = ['first', 'last', 'middle']
+
 export const dataAttribute: Variant[] = [
   // Align
   ...createDataVariants('align', alignAttributes),
@@ -79,6 +82,16 @@ export const dataAttribute: Variant[] = [
   ...createDataVariants('swipe-direction', swipeDirectionAttributes, 'has'),
   ...createDataVariants('swipe-direction', swipeDirectionAttributes, 'in'),
   ...createDataVariants('swipe-direction', swipeDirectionAttributes, 'not'),
+
+  // Order
+  ...createDataVariants('order', orderAttributes),
+  ...createDataVariants('order', orderAttributes, 'group'),
+  ...createDataVariants('order', orderAttributes, 'peer'),
+  ...createDataVariants('order', orderAttributes, 'previous'),
+  ...createDataVariants('order', orderAttributes, 'parent'),
+  ...createDataVariants('order', orderAttributes, 'has'),
+  ...createDataVariants('order', orderAttributes, 'in'),
+  ...createDataVariants('order', orderAttributes, 'not'),
 ]
 
 function createDataVariants(name: string, attributes: string[], tagName: string = ''): Variant[] {

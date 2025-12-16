@@ -1,4 +1,6 @@
 <script lang="ts" setup>
+import { useToast } from '~/composables/use-toast'
+
 const { add } = useToast()
 
 function addToast() {

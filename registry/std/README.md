@@ -47,7 +47,6 @@ pnpm dlx @weme-ui/weme-ui add <name>
   - [x] `result`
   - [x] `skeleton`
   - [x] `spinner`
-  - [x] `status`
   - [ ] `toast`
 - Collections
   - [ ] `combobox`
@@ -59,15 +58,16 @@ pnpm dlx @weme-ui/weme-ui add <name>
   - [x] `avatar`
   - [x] `badge`
   - [x] `card`
+  - [x] `chipboard`
+  - [x] `comment`
+  - [x] `data-list`
   - [x] `image-preview`
   - [x] `image`
-  - [x] `chipboard`
-  - [x] `data-list`
-  - [x] `stat`
   - [x] `item`
-  - [ ] `table`
+  - [x] `stat`
+  - [x] `status`
+  - [x] `table`
   - [x] `tag`
-  - [x] `comment`
   - [x] `timeline`
 - Disclosure
   - [ ] `accordion`
@@ -78,32 +78,32 @@ pnpm dlx @weme-ui/weme-ui add <name>
   - [ ] `steps`
   - [ ] `tabs`
 - Forms
-  - [ ] `form`
-  - [ ] `field`
-  - [ ] `checkbox`
   - [ ] `checkbox-card`
-  - [ ] `radio-group`
-  - [ ] `radio-card`
-  - [ ] `editable`
-  - [ ] `file-upload`
+  - [ ] `checkbox`
   - [ ] `color-picker`
   - [ ] `color-swatch`
+  - [ ] `date-picker`
+  - [ ] `editable`
+  - [ ] `field`
+  - [ ] `file-upload`
+  - [ ] `form`
   - [ ] `input`
+  - [ ] `mention`
   - [ ] `number-input`
   - [ ] `password-input`
   - [ ] `pin-input`
-  - [ ] `tags-input`
+  - [ ] `radio-card`
+  - [ ] `radio-group`
   - [ ] `rating`
   - [ ] `segmented-control`
   - [ ] `select`
   - [ ] `slider`
-  - [ ] `textarea`
   - [ ] `switch`
-  - [ ] `toggle`
-  - [ ] `toggle-group`
-  - [ ] `date-picker`
+  - [ ] `tags-input`
+  - [ ] `textarea`
   - [ ] `time-picker`
-  - [ ] `mention`
+  - [ ] `toggle-group`
+  - [ ] `toggle`
 - Overlays
   - [ ] `action-sheet`
   - [ ] `dropdown`
@@ -111,23 +111,23 @@ pnpm dlx @weme-ui/weme-ui add <name>
   - [ ] `modal`
   - [ ] `pop-confirm`
   - [ ] `popover`
-  - [ ] `tooltip`
   - [ ] `tooltip-button`
+  - [ ] `tooltip`
   - [x] `overlay`
 - Others
   - [ ] `affix`
   - [ ] `anchor`
   - [ ] `back-top`
-  - [ ] `countdown`
   - [ ] `count-to`
-  - [ ] `qr-code`
-  - [ ] `watermark`
-  - [ ] `marquee`
+  - [ ] `countdown`
   - [ ] `floating-panel`
-  - [ ] `timer`
+  - [ ] `marquee`
+  - [ ] `qr-code`
   - [ ] `signature`
-  - [ ] `tour`
   - [ ] `splitter`
+  - [ ] `timer`
+  - [ ] `tour`
+  - [ ] `watermark`
 
 ## 组合式 API
 

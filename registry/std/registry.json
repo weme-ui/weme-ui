@@ -34,12 +34,38 @@
         {
           "type": "util",
           "path": "utils/props.ts",
-          "hash": "23177f90701087234a5c6a5d5d137758"
+          "hash": "4d7b45e3cd4d9892447304567f388a05"
         },
         {
           "type": "util",
           "path": "utils/slots.ts",
           "hash": "8ea3c19f1067925ad64d06accfc995ef"
+        },
+        {
+          "type": "composable",
+          "path": "composables/define-locale.ts",
+          "hash": "c6f0a1880990fe68808766585362d420"
+        },
+        {
+          "type": "composable",
+          "path": "composables/use-locale.ts",
+          "hash": "e9536bbc01ec37e27078453b030401a5"
+        },
+        {
+          "type": "util",
+          "path": "utils/locale.ts",
+          "hash": "d912db46ff3f19eb4c688bd1afe3f33c"
+        },
+        {
+          "type": "type",
+          "path": "types/locale.ts",
+          "hash": "21677a64a0b9c920ee068cd8e2c0b919"
+        },
+        {
+          "type": "file",
+          "path": "locales/en.ts",
+          "target": "~/locales/en.ts",
+          "hash": "01ea7a6ac95c979054882d1489a1524e"
         }
       ]
     },
@@ -66,7 +92,7 @@
         {
           "type": "component",
           "path": "components/alert/alert.vue",
-          "hash": "3594daa0ae218b2692ba3323a703f5b2"
+          "hash": "64e201088591b6425665a05e3141ab5b"
         }
       ]
     },
@@ -439,14 +465,11 @@
       "type": "component",
       "title": "Image",
       "description": "Used to display images.",
-      "dependencies": [
-        "@vueuse/shared"
-      ],
       "files": [
         {
           "type": "component",
           "path": "components/image/image.vue",
-          "hash": "205be2af5e929552eb318221b9a62602"
+          "hash": "2d271f98893f709ed78ffec2c15b7135"
         },
         {
           "type": "style",
@@ -461,7 +484,7 @@
         {
           "type": "composable",
           "path": "composables/use-image-loading-status.ts",
-          "hash": "2abe5af4148b978d989640ada60cd131"
+          "hash": "4e95a8304f78bd311d08e86fcfa49eaf"
         }
       ]
     },
@@ -839,6 +862,35 @@
       ]
     },
     {
+      "name": "table",
+      "type": "component",
+      "title": "Table",
+      "description": "Used to display data in a tabular format.",
+      "dependencies": [
+        "@tanstack/vue-table"
+      ],
+      "registryDependencies": [
+        "icon"
+      ],
+      "files": [
+        {
+          "type": "type",
+          "path": "components/table/table.props.ts",
+          "hash": "6b85f6296a7a7817b8a34f953a8fadd8"
+        },
+        {
+          "type": "component",
+          "path": "components/table/table.vue",
+          "hash": "9ff27d3331b4efe67d6326bf79b25a64"
+        },
+        {
+          "type": "style",
+          "path": "components/table/table.style.ts",
+          "hash": "8579a0556a59962cef07a399d88e60e0"
+        }
+      ]
+    },
+    {
       "name": "tag",
       "type": "component",
       "title": "Tag",
@@ -855,7 +907,7 @@
         {
           "type": "component",
           "path": "components/tag/tag.vue",
-          "hash": "9be65215b2aff661bd75f6feb44f9968"
+          "hash": "49c4bb0021fba68d792386b89d4278a7"
         },
         {
           "type": "type",

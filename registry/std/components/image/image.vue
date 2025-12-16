@@ -1,7 +1,6 @@
 <script lang="ts" setup>
 import type { ImageEmits, ImageProps } from './image.props'
 import { reactivePick } from '@vueuse/core'
-import { isClient } from '@vueuse/shared'
 import { Primitive } from 'reka-ui'
 import { computed, toRefs } from 'vue'
 import { useImageLoadingStatus } from '~/composables/use-image-loading-status'
@@ -33,7 +32,7 @@ watch(
 )
 
 watchEffect((onCleanup) => {
-  if (props.fallbackSrc && props.fallbackDelayMs && isClient) {
+  if (props.fallbackSrc && props.fallbackDelayMs && import.meta.client) {
     const timerId = window.setTimeout(() => {
       showFallback.value = true
     }, props.fallbackDelayMs)

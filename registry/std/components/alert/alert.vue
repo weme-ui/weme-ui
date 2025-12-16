@@ -2,6 +2,7 @@
 import type { AlertEmits, AlertProps } from './alert.props'
 import { Presence, Primitive } from 'reka-ui'
 import { computed, watch } from 'vue'
+import { useLocale } from '~/composables/use-locale'
 import { cn } from '~/utils/styles'
 import Icon from '../icon/icon.vue'
 import LinkOverlay from '../link-overlay/link-overlay.vue'
@@ -22,6 +23,8 @@ const slots = useSlots()
 const clickable = computed(() => !!props.href || props.clickable)
 const resolvedIcon = computed(() => props.status && !props.icon ? props.status : props.icon)
 const resolvedColor = computed(() => props.status ? props.status as AlertProps['color'] : props.color)
+
+const { t } = useLocale()
 
 const ui = computed(() => useAlertStyle({
   ...props,
@@ -71,7 +74,7 @@ watch(
         </div>
       </slot>
 
-      <button v-if="closable" :class="cn(ui.close(), props.ui?.close)" @click="onClose">
+      <button v-if="closable" :aria-label="t('alert.close')" :class="cn(ui.close(), props.ui?.close)" @click="onClose">
         <slot name="close">
           <Icon name="close" />
         </slot>

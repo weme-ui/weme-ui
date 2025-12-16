@@ -16,7 +16,8 @@
   "unocss": {
     "cssVars": {
       "card-bg": "white.12",
-      "overlay-bg": "black.11"
+      "overlay-bg": "black.11",
+      "item-group-bg": "white.12"
     }
   }
 }

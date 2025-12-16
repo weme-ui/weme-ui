@@ -528,19 +528,50 @@
         {
           "type": "component",
           "path": "components/item/item.vue",
-          "hash": "a06f4410274f7436e30d6588d6a4306f"
+          "hash": "6bbcb2c519c3a1051340d1873477796f"
         },
         {
           "type": "style",
           "path": "components/item/item.style.ts",
-          "hash": "14082e157b795fa050c43673fa0fd01d"
+          "hash": "c307217af611a375cfc71689aa7a88af"
         },
         {
           "type": "type",
           "path": "components/item/item.props.ts",
-          "hash": "c9cd077f4d2e6812a9c0d2fbd0be0ac5"
+          "hash": "e11dc2299b80b5fdb04e7137061821c2"
         }
       ]
+    },
+    {
+      "name": "item-group",
+      "type": "component",
+      "title": "Item Group",
+      "description": "Used to group a list of items.",
+      "registryDependencies": [
+        "item"
+      ],
+      "files": [
+        {
+          "type": "component",
+          "path": "components/item-group/item-group.vue",
+          "hash": "9dc5acfcdc0fe946cf43162c51b4d0d7"
+        },
+        {
+          "type": "style",
+          "path": "components/item-group/item-group.style.ts",
+          "hash": "c9d36f7030a1a992d5fae2e64e2922f9"
+        },
+        {
+          "type": "type",
+          "path": "components/item-group/item-group.props.ts",
+          "hash": "b3a689a0929872cc1d57caf2bc4386af"
+        }
+      ],
+      "cssVars": {
+        "item-group": {
+          "bg": "white.12"
+        }
+      }
     },
     {
       "name": "kbd",

@@ -63,12 +63,13 @@ pnpm dlx @weme-ui/weme-ui add <name>
   - [x] `data-list`
   - [x] `image-preview`
   - [x] `image`
+  - [x] `item-group`
   - [x] `item`
   - [x] `stat`
   - [x] `status`
-  - [x] `table`
   - [x] `tag`
   - [x] `timeline`
+  - [ ] `table` // 稍后实现
 - Disclosure
   - [ ] `accordion`
   - [ ] `breadcrumb`

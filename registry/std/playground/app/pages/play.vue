@@ -1,25 +1,16 @@
 <script lang="ts" setup>
-import { useToast } from '~/composables/use-toast'
+import type { BreadcrumbItem } from '../../../components/breadcrumb/breadcrumb.props'
 
-const { add } = useToast()
-
-function addToast() {
-  add({
-    variant: 'outline',
-    color: 'secondary',
-    icon: 'loading',
-    title: 'Uploading file...',
-    description: 'This may take a while.',
-    closable: true,
-    loading: true,
-  })
-}
+const items: BreadcrumbItem[] = [
+  { icon: 'lucide:house', label: 'Home', to: '/', disabled: true },
+  { label: 'Components', to: '/' },
+  { label: 'Disclosure' },
+  { label: 'Breadcrumb' },
+]
 </script>
 
 <template>
   <Container name="PLAY YOUR CODE HERE" description="🐗 Hakuna matata">
-    <UiButton @click="addToast">
-      Add Toast
-    </UiButton>
+    <UiBreadcrumb :items size="md" />
   </Container>
 </template>

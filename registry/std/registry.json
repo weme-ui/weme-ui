@@ -191,6 +191,32 @@
       ]
     },
     {
+      "name": "breadcrumb",
+      "type": "component",
+      "title": "Breadcrumb",
+      "description": "Used to display a page's location within a site's hierarchical structure.",
+      "registryDependencies": [
+        "icon"
+      ],
+      "files": [
+        {
+          "type": "component",
+          "path": "components/breadcrumb/breadcrumb.vue",
+          "hash": "ddec68a76e7e61968ff4aa1a446c63c9"
+        },
+        {
+          "type": "type",
+          "path": "components/breadcrumb/breadcrumb.props.ts",
+          "hash": "5f8db72e54e652e5a6add6380a09682c"
+        },
+        {
+          "type": "style",
+          "path": "components/breadcrumb/breadcrumb.style.ts",
+          "hash": "7805c7335f291c4b60872191310998c2"
+        }
+      ]
+    },
+    {
       "name": "button",
       "type": "component",
       "title": "Button",

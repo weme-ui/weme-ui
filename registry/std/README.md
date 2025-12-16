@@ -72,7 +72,7 @@ pnpm dlx @weme-ui/weme-ui add <name>
   - [ ] `table` // 稍后实现
 - Disclosure
   - [ ] `accordion`
-  - [ ] `breadcrumb`
+  - [x] `breadcrumb`
   - [ ] `carousel`
   - [ ] `collapsible`
   - [ ] `pagination`

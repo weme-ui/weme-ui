@@ -3,6 +3,7 @@ import type { TagEmits, TagProps } from './tag.props'
 import { reactivePick } from '@vueuse/core'
 import { Presence, Primitive, useForwardPropsEmits } from 'reka-ui'
 import { computed } from 'vue'
+import { useLocale } from '~/composables/use-locale'
 import { toBoolValue } from '~/utils/props'
 import { cn } from '~/utils/styles'
 import Icon from '../icon/icon.vue'
@@ -23,6 +24,8 @@ const delegated = reactivePick(props, 'as', 'asChild')
 const forwarded = useForwardPropsEmits(delegated, emits)
 const visible = defineModel<boolean>({ default: true })
 
+const { t } = useLocale()
+
 const ui = computed(() => useTagStyle({
   ...props,
   disabled: toBoolValue(props.disabled),
@@ -40,7 +43,7 @@ function onClose() {
       <span :class="cn(ui.label(), props.ui?.label)">
         <slot>{{ label }}</slot>
       </span>
-      <button v-if="closable" :class="cn(ui.close(), props.ui?.close)" @click="onClose">
+      <button v-if="closable" :aria-label="t('tag.close')" :class="cn(ui.close(), props.ui?.close)" @click="onClose">
         <slot name="close">
           <Icon :name="closeIcon" />
         </slot>

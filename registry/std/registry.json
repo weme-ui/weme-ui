@@ -973,6 +973,58 @@
           "hash": "cecfc24b65b0b677ffdc9bf3d2fe6a35"
         }
       ]
+    },
+    {
+      "name": "toast",
+      "type": "component",
+      "title": "Toast",
+      "description": "Used to display a temporary message to the user.",
+      "registryDependencies": [
+        "button",
+        "icon"
+      ],
+      "files": [
+        {
+          "type": "component",
+          "path": "components/toast/toast.vue",
+          "hash": "0f17bf6dd349741d1f916ecfe44e3d47"
+        },
+        {
+          "type": "type",
+          "path": "components/toast/toast.props.ts",
+          "hash": "ad435012e8dbfa8f01ee007330ac69cc"
+        },
+        {
+          "type": "style",
+          "path": "components/toast/toast.style.ts",
+          "hash": "0cd61d7b7ade42a51eae3276168227c5"
+        },
+        {
+          "type": "style",
+          "path": "components/toast/toast-provider.style.ts",
+          "hash": "dddda15eb3e908dcd760def73adeea45"
+        },
+        {
+          "type": "component",
+          "path": "components/toast/toast-provider.vue",
+          "hash": "28d51af284bec0f63c2a02b15148ee97"
+        },
+        {
+          "type": "type",
+          "path": "components/toast/toast-provider.props.ts",
+          "hash": "521e8a7e102c43cdd454843d78fd0af5"
+        },
+        {
+          "type": "composable",
+          "path": "composables/use-toast.ts",
+          "hash": "a9e88324f1ea327eaf3dc374f649ed4f"
+        }
+      ],
+      "cssVars": {
+        "toast": {
+          "width": "24rem"
+        }
+      }
     }
   ]
 }

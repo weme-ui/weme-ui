@@ -17,7 +17,8 @@
     "cssVars": {
       "card-bg": "white.12",
       "overlay-bg": "black.11",
-      "item-group-bg": "white.12"
+      "item-group-bg": "white.12",
+      "toast-width": "24rem"
     }
   }
 }

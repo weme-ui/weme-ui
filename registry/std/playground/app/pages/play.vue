@@ -1,28 +1,23 @@
 <script lang="ts" setup>
+const { add } = useToast()
+
+function addToast() {
+  add({
+    variant: 'outline',
+    color: 'secondary',
+    icon: 'loading',
+    title: 'Uploading file...',
+    description: 'This may take a while.',
+    closable: true,
+    loading: true,
+  })
+}
 </script>
 
 <template>
   <Container name="PLAY YOUR CODE HERE" description="🐗 Hakuna matata">
-    <UiItemGroup title="Profile" class="w-100">
-      <template #actions>
-        <UiIconButton icon="plus" variant="ghost" size="xs" radius="full" />
-        <UiIconButton icon="refresh" variant="ghost" size="xs" radius="full" />
-      </template>
-
-      <UiItem label="Username" description="This is a description.">
-        Allen luo
-      </UiItem>
-      <UiItem label="Username" description="This is a description.">
-        Allen luo
-      </UiItem>
-      <UiItem label="Username" description="This is a description.">
-        Allen luo
-        <UiIconButton size="sm" variant="soft" icon="lucide:pencil" />
-      </UiItem>
-
-      <template #footer>
-        * This is a footer.
-      </template>
-    </UiItemGroup>
+    <UiButton @click="addToast">
+      Add Toast
+    </UiButton>
   </Container>
 </template>

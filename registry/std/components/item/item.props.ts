@@ -18,6 +18,8 @@ export interface ItemProps extends PrimitiveProps {
   radius?: ItemStyleProps['radius']
   loading?: boolean
   disabled?: boolean
+  clickable?: boolean
+  showArrow?: boolean
   class?: any
   ui?: Partial<ItemStyleSlots>
 }

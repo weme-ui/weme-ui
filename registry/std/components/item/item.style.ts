@@ -4,9 +4,10 @@ import { createVariants } from '~/utils/styles'
 
 export const useItemStyle = createVariants({
   slots: {
-    base: 'relative flex-(~ y-center) transition-colors',
+    base: 'relative transition-colors',
+    item: 'flex-(~ y-center) py-3',
     indicator: 'shrink-0',
-    wrapper: 'flex-1',
+    wrapper: 'flex-1 select-none',
     label: 'font-medium text-highlighted',
     description: 'text-toned ',
     content: 'flex-(~ y-center)',
@@ -16,6 +17,7 @@ export const useItemStyle = createVariants({
     color: createColorVariants({ defaults: '' }),
     variant: {
       plain: '',
+      underline: { item: 'b-(b default)' },
       outline: { base: 'b-(~ default)' },
     },
     align: {
@@ -24,9 +26,9 @@ export const useItemStyle = createVariants({
       end: { base: 'items-end' },
     },
     size: {
-      sm: { base: 'p-3', indicator: 'size-3 mr-2', label: 'text-xs', description: 'text-xs', content: 'text-xs gap-2' },
-      md: { base: 'px-4 py-3', indicator: 'size-3.5 mr-3', label: 'text-sm', description: 'text-sm', content: 'text-sm gap-2' },
-      lg: { base: 'px-5 py-3', indicator: 'size-4 mr-3', label: 'text-base', description: 'text-sm', content: 'text-sm gap-3' },
+      sm: { base: 'px-3', indicator: 'size-3 mr-2', label: 'text-xs', description: 'text-xs', content: 'text-xs gap-2' },
+      md: { base: 'px-4', indicator: 'size-3.5 mr-3', label: 'text-sm', description: 'text-sm', content: 'text-sm gap-2' },
+      lg: { base: 'px-5', indicator: 'size-4 mr-3', label: 'text-base', description: 'text-sm', content: 'text-sm gap-3' },
     },
     radius: {
       none: '',
@@ -42,13 +44,13 @@ export const useItemStyle = createVariants({
   },
 
   compoundVariants: [
-    { color: 'primary', variant: 'plain', clickable: true, class: { base: 'hover:bg-primary-3' } },
-    { color: 'secondary', variant: 'plain', clickable: true, class: { base: 'hover:bg-secondary-3' } },
-    { color: 'neutral', variant: 'plain', clickable: true, class: { base: 'hover:bg-neutral-3' } },
-    { color: 'info', variant: 'plain', clickable: true, class: { base: 'hover:bg-info-3' } },
-    { color: 'success', variant: 'plain', clickable: true, class: { base: 'hover:bg-success-3' } },
-    { color: 'warning', variant: 'plain', clickable: true, class: { base: 'hover:bg-warning-3' } },
-    { color: 'danger', variant: 'plain', clickable: true, class: { base: 'hover:bg-danger-3' } },
+    { color: 'primary', variant: ['plain', 'underline'], clickable: true, class: { base: 'hover:bg-primary-3 active:bg-primary-4' } },
+    { color: 'secondary', variant: ['plain', 'underline'], clickable: true, class: { base: 'hover:bg-secondary-3 active:bg-secondary-4' } },
+    { color: 'neutral', variant: ['plain', 'underline'], clickable: true, class: { base: 'hover:bg-neutral-3 active:bg-neutral-4' } },
+    { color: 'info', variant: ['plain', 'underline'], clickable: true, class: { base: 'hover:bg-info-3 active:bg-info-4' } },
+    { color: 'success', variant: ['plain', 'underline'], clickable: true, class: { base: 'hover:bg-success-3 active:bg-success-4' } },
+    { color: 'warning', variant: ['plain', 'underline'], clickable: true, class: { base: 'hover:bg-warning-3 active:bg-warning-4' } },
+    { color: 'danger', variant: ['plain', 'underline'], clickable: true, class: { base: 'hover:bg-danger-3 active:bg-danger-4' } },
 
     { color: 'primary', variant: 'outline', clickable: true, class: { base: 'hover:(b-primary-8 outline-3 outline-primary/5)' } },
     { color: 'secondary', variant: 'outline', clickable: true, class: { base: 'hover:(b-secondary-8 outline-3 outline-secondary/5)' } },
@@ -69,8 +71,8 @@ export const useItemStyle = createVariants({
 
   defaultVariants: {
     color: 'primary',
-    variant: 'outline',
-    align: 'start',
+    variant: 'plain',
+    align: 'center',
     size: 'md',
     radius: 'lg',
   },

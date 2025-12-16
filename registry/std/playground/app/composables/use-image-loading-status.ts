@@ -1,5 +1,4 @@
 import type { ImgHTMLAttributes, Ref } from 'vue'
-import { isClient } from '@vueuse/shared'
 import { computed, onMounted, onUnmounted, ref, watchEffect } from 'vue'
 
 export type ImageLoadingStatus = 'idle' | 'loading' | 'error' | 'loaded'
@@ -17,7 +16,7 @@ export function useImageLoadingStatus({ src, referrerPolicy, crossOrigin }: UseI
     if (!isMounted.value) {
       return null
     }
-    if (!imageRef.value && isClient) {
+    if (!imageRef.value && import.meta.client) {
       imageRef.value = new window.Image()
     }
     return imageRef.value

@@ -347,6 +347,29 @@
       ]
     },
     {
+      "name": "collapsible",
+      "type": "component",
+      "title": "Collapsible",
+      "description": "Used to expand and collapse additional content.",
+      "files": [
+        {
+          "type": "component",
+          "path": "components/collapsible/collapsible.vue",
+          "hash": "33f2f01e0fc7d99a19481556664fee1b"
+        },
+        {
+          "type": "style",
+          "path": "components/collapsible/collapsible.style.ts",
+          "hash": "9ebd3a0c43accb7b73df486560f0205f"
+        },
+        {
+          "type": "type",
+          "path": "components/collapsible/collapsible.props.ts",
+          "hash": "dffda6814b18dc11725ce9d0bcfdf982"
+        }
+      ]
+    },
+    {
       "name": "comment",
       "type": "component",
       "title": "Comment",

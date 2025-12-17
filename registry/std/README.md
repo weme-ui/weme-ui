@@ -74,7 +74,7 @@ pnpm dlx @weme-ui/weme-ui add <name>
   - [x] `accordion`
   - [x] `breadcrumb`
   - [ ] `carousel`
-  - [ ] `collapsible`
+  - [x] `collapsible`
   - [ ] `pagination`
   - [ ] `steps`
   - [ ] `tabs`

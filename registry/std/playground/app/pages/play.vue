@@ -7,10 +7,16 @@ const items: StepItem[] = [
   { title: 'Step 3', description: 'This is the third step.' },
 ]
 
+const actions = [
+  { icon: 'refresh', label: 'Reload' },
+]
+
 const stepper = useTemplateRef('stepper')
 </script>
 
 <template>
+  <UiBanner title="This is a banner." color="danger" variant="soft" :actions="actions" class="abs inset-0" closable />
+
   <Container name="PLAY YOUR CODE HERE" description="🐗 Hakuna matata">
     <div class="flex-(~ col) gap-10 w-260">
       <UiSteps ref="stepper" :items="items" orientation="vertical" size="sm" color="primary" variant="solid" />

@@ -217,6 +217,34 @@
       ]
     },
     {
+      "name": "banner",
+      "type": "component",
+      "title": "Banner",
+      "description": "Used to display a banner at the top of the page.",
+      "registryDependencies": [
+        "button",
+        "icon",
+        "link-overlay"
+      ],
+      "files": [
+        {
+          "type": "type",
+          "path": "components/banner/banner.props.ts",
+          "hash": "e8ee5e6a029f88b2e39e94941ca7093b"
+        },
+        {
+          "type": "style",
+          "path": "components/banner/banner.style.ts",
+          "hash": "f7a153b3b14d0a6d9002c6271ec2c5ea"
+        },
+        {
+          "type": "component",
+          "path": "components/banner/banner.vue",
+          "hash": "b16ff5b29c65abbc0c73e675c27c3d00"
+        }
+      ]
+    },
+    {
       "name": "breadcrumb",
       "type": "component",
       "title": "Breadcrumb",
@@ -695,7 +723,7 @@
         {
           "type": "component",
           "path": "components/link-overlay/link-overlay.vue",
-          "hash": "9b001cc3a498adb8b17c090ddfcbab0c"
+          "hash": "480dcfe66cafec08cffa1f47b82849cf"
         }
       ]
     },

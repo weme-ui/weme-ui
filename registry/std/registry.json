@@ -290,7 +290,7 @@
         {
           "type": "component",
           "path": "components/button-group/button-group.vue",
-          "hash": "64592f0c83af24c5c0ab91aa5a72736d"
+          "hash": "3ca2dff30b277d3bcdfd22d81b060dc6"
         }
       ]
     },
@@ -990,6 +990,32 @@
           "type": "component",
           "path": "components/status/status.vue",
           "hash": "76070ea1c8b8e58954f63b216eb65e36"
+        }
+      ]
+    },
+    {
+      "name": "steps",
+      "type": "component",
+      "title": "Steps",
+      "description": "Used to indicate progress through a multi-step process.",
+      "registryDependencies": [
+        "icon"
+      ],
+      "files": [
+        {
+          "type": "type",
+          "path": "components/steps/steps.props.ts",
+          "hash": "b814215f38bccae6b872ddc5e1a051b8"
+        },
+        {
+          "type": "style",
+          "path": "components/steps/steps.style.ts",
+          "hash": "9e012e17ef6c8a835d76393affd9b0ff"
+        },
+        {
+          "type": "component",
+          "path": "components/steps/steps.vue",
+          "hash": "6749b49dcf4e14c7d8750d6ef02b6f59"
         }
       ]
     },

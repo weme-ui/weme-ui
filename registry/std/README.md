@@ -76,7 +76,7 @@ pnpm dlx @weme-ui/weme-ui add <name>
   - [ ] `carousel`
   - [x] `collapsible`
   - [x] `pagination`
-  - [ ] `steps`
+  - [x] `steps`
   - [ ] `tabs`
 - Forms
   - [ ] `checkbox-card`

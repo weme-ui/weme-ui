@@ -36,7 +36,7 @@ const ui = computed(() => useButtonGroupStyle({
         :variant="child.props?.variant || variant"
         :size="size"
         :radius="radius"
-        :disabled="disabled"
+        :disabled="child.props?.disabled || disabled"
         :class="cn(ui.item(), props.ui?.item)"
         :data-order="index === 0
           ? 'first'

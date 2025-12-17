@@ -26,6 +26,13 @@ export default defineLocale<LocaleMessages>({
     modal: {
       close: '关闭',
     },
+    pagination: {
+      total: '共 {total} 条数据',
+      first: '首页',
+      prev: '上一页',
+      next: '下一页',
+      last: '末页',
+    },
     table: {
       noData: '暂无数据',
     },

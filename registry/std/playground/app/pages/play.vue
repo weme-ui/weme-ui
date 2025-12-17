@@ -3,14 +3,16 @@
 
 <template>
   <Container name="PLAY YOUR CODE HERE" description="🐗 Hakuna matata">
-    <UiCollapsible orientation="top" disabled>
-      <template #trigger="{ open }">
-        <button>{{ open ? 'Open' : 'Close' }}</button>
-      </template>
+    <div class="p-6 rounded-lg ">
+      <UiPagination class="w-200" :total="100" align="center" show-total show-more-controls>
+        <template #start>
+          Start
+        </template>
 
-      <template #default>
-        <div class="p-6 box-primary rounded-lg" />
-      </template>
-    </UiCollapsible>
+        <template #end>
+          End
+        </template>
+      </UiPagination>
+    </div>
   </Container>
 </template>

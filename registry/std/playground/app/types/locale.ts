@@ -20,6 +20,13 @@ export interface LocaleMessages {
   modal: {
     close: string
   }
+  pagination: {
+    total: string
+    first: string
+    prev: string
+    next: string
+    last: string
+  }
   table: {
     noData: string
   }

@@ -26,6 +26,13 @@ export default defineLocale<LocaleMessages>({
     modal: {
       close: 'Close',
     },
+    pagination: {
+      total: 'Total {total} items',
+      first: 'First',
+      prev: 'Previous',
+      next: 'Next',
+      last: 'Last',
+    },
     table: {
       noData: 'No data',
     },

@@ -59,13 +59,13 @@
         {
           "type": "type",
           "path": "types/locale.ts",
-          "hash": "21677a64a0b9c920ee068cd8e2c0b919"
+          "hash": "be917af88a8fec8a24551b3a1b9bca9f"
         },
         {
           "type": "file",
           "path": "locales/en.ts",
           "target": "~/locales/en.ts",
-          "hash": "01ea7a6ac95c979054882d1489a1524e"
+          "hash": "9a56f4f346082b1095cbc93917f5b871"
         }
       ]
     },
@@ -749,6 +749,32 @@
           "bg": "black.11"
         }
       }
+    },
+    {
+      "name": "pagination",
+      "type": "component",
+      "title": "Pagination",
+      "description": "Used to navigate through a series of pages.",
+      "registryDependencies": [
+        "icon"
+      ],
+      "files": [
+        {
+          "type": "type",
+          "path": "components/pagination/pagination.props.ts",
+          "hash": "88be9f88c8a04b80ecc33584ad1f6762"
+        },
+        {
+          "type": "component",
+          "path": "components/pagination/pagination.vue",
+          "hash": "46fb4e4529326bdb9dfcef6f9b59d645"
+        },
+        {
+          "type": "style",
+          "path": "components/pagination/pagination.style.ts",
+          "hash": "17c865045f39b1e94d76f06d7f8e2c50"
+        }
+      ]
     },
     {
       "name": "progress",

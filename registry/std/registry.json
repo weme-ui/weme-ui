@@ -70,6 +70,32 @@
       ]
     },
     {
+      "name": "accordion",
+      "type": "component",
+      "title": "Accordion",
+      "description": "Used to show and hide sections of related content on a page.",
+      "registryDependencies": [
+        "icon"
+      ],
+      "files": [
+        {
+          "type": "type",
+          "path": "components/accordion/accordion.props.ts",
+          "hash": "6e51fbc82691f21ea4d69f741989b6f8"
+        },
+        {
+          "type": "component",
+          "path": "components/accordion/accordion.vue",
+          "hash": "700198b7eb912f86fbd748a07dad2819"
+        },
+        {
+          "type": "style",
+          "path": "components/accordion/accordion.style.ts",
+          "hash": "810ae61e70eabe720d908dededd25bfd"
+        }
+      ]
+    },
+    {
       "name": "alert",
       "type": "component",
       "title": "Alert",

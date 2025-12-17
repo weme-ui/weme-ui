@@ -1,16 +1,30 @@
 <script lang="ts" setup>
-import type { BreadcrumbItem } from '../../../components/breadcrumb/breadcrumb.props'
+import type { AccordionItem } from '../../../components/accordion/accordion.props'
 
-const items: BreadcrumbItem[] = [
-  { icon: 'lucide:house', label: 'Home', to: '/', disabled: true },
-  { label: 'Components', to: '/' },
-  { label: 'Disclosure' },
-  { label: 'Breadcrumb' },
+const items: AccordionItem[] = [
+  {
+    icon: 'lucide:box',
+    title: 'Item 1',
+    description: 'Description 1',
+    content: 'Content 1',
+  },
+  {
+    icon: 'lucide:box',
+    title: 'Item 2',
+    description: 'Description 2',
+    content: 'Content 2',
+  },
+  {
+    icon: 'lucide:box',
+    title: 'Item 3',
+    description: 'Description 3',
+    content: 'Content 3',
+  },
 ]
 </script>
 
 <template>
   <Container name="PLAY YOUR CODE HERE" description="🐗 Hakuna matata">
-    <UiBreadcrumb :items size="md" />
+    <UiAccordion :items="items" variant="table" size="sm" color="secondary" class="w-100" />
   </Container>
 </template>

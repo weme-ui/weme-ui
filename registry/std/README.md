@@ -71,7 +71,7 @@ pnpm dlx @weme-ui/weme-ui add <name>
   - [x] `timeline`
   - [ ] `table` // 稍后实现
 - Disclosure
-  - [ ] `accordion`
+  - [x] `accordion`
   - [x] `breadcrumb`
   - [ ] `carousel`
   - [ ] `collapsible`

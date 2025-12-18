@@ -235,7 +235,7 @@
         {
           "type": "style",
           "path": "components/banner/banner.style.ts",
-          "hash": "f7a153b3b14d0a6d9002c6271ec2c5ea"
+          "hash": "dc1340856ea4976158eff87e2da326f4"
         },
         {
           "type": "component",
@@ -352,6 +352,39 @@
           "bg": "white.12"
         }
       }
+    },
+    {
+      "name": "carousel",
+      "type": "component",
+      "title": "Carousel",
+      "description": "Used to cycle through a series of visual content within a container.",
+      "dependencies": [
+        "embla-carousel",
+        "embla-carousel-vue",
+        "embla-carousel-fade",
+        "embla-carousel-autoplay",
+        "embla-carousel-wheel-gestures"
+      ],
+      "registryDependencies": [
+        "icon-button"
+      ],
+      "files": [
+        {
+          "type": "type",
+          "path": "components/carousel/carousel.props.ts",
+          "hash": "b6b8e84cf95b30789749c57baaee0508"
+        },
+        {
+          "type": "style",
+          "path": "components/carousel/carousel.style.ts",
+          "hash": "1f662cd8f1053eb778e8844145dbea0f"
+        },
+        {
+          "type": "component",
+          "path": "components/carousel/carousel.vue",
+          "hash": "94e9d911b70452664e38c3460582c4b3"
+        }
+      ]
     },
     {
       "name": "chipboard",

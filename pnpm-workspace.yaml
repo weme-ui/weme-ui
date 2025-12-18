@@ -58,6 +58,11 @@ catalog:
   debug: ^4.4.3
   defu: ^6.1.4
   diff: ^8.0.2
+  embla-carousel: ^8.6.0
+  embla-carousel-autoplay: ^8.6.0
+  embla-carousel-fade: ^8.6.0
+  embla-carousel-vue: ^8.6.0
+  embla-carousel-wheel-gestures: ^8.1.0
   eslint: ^9.39.2
   eslint-plugin-pnpm: ^1.4.3
   esno: ^4.8.0

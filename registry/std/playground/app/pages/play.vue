@@ -1,30 +1,24 @@
 <script lang="ts" setup>
-import type { StepItem } from '../../../components/steps/steps.props'
-
-const items: StepItem[] = [
-  { title: 'Step 1', description: 'This is the first step.' },
-  { title: 'Step 2', description: 'This is the second step.' },
-  { title: 'Step 3', description: 'This is the third step.' },
+const items = [
+  'https://picsum.photos/640/320?random=1',
+  'https://picsum.photos/640/320?random=2',
+  'https://picsum.photos/640/320?random=3',
+  'https://picsum.photos/640/320?random=4',
+  'https://picsum.photos/640/320?random=5',
+  'https://picsum.photos/640/320?random=6',
 ]
-
-const actions = [
-  { icon: 'refresh', label: 'Reload' },
-]
-
-const stepper = useTemplateRef('stepper')
 </script>
 
 <template>
-  <UiBanner title="This is a banner." color="danger" variant="soft" :actions="actions" class="fixed inset-0" closable />
-
   <Container name="PLAY YOUR CODE HERE" description="🐗 Hakuna matata">
-    <div class="flex-(~ col) gap-10 w-260">
-      <UiSteps ref="stepper" :items="items" orientation="vertical" size="sm" color="primary" variant="solid" />
+    <UiStack>
+      <UiCarousel v-slot="{ item }" :items="items" class="w-full max-w-xs mx-auto" autoplay fade show-arrows show-dots>
+        <UiImage :src="item" width="320" height="160" class="rounded-lg" />
+      </UiCarousel>
 
-      <UiButtonGroup>
-        <UiButton label="Prev" :disabled="!stepper?.hasPrev" @click="stepper?.prev()" />
-        <UiButton label="Next" :disabled="!stepper?.hasNext" @click="stepper?.next()" />
-      </UiButtonGroup>
-    </div>
+      <UiCarousel v-slot="{ item }" :items="items" :ui="{ container: 'h-[176px]' }" orientation="vertical" class="w-full max-w-xs mx-auto" autoplay wheel-gestures show-arrows show-dots>
+        <UiImage :src="item" width="320" height="160" class="rounded-lg" />
+      </UiCarousel>
+    </UiStack>
   </Container>
 </template>

@@ -36,7 +36,7 @@ catalog:
   '@types/make-fetch-happen': ^10.0.4
   '@types/node': 24.0.15
   '@types/spark-md5': ^3.0.5
-  '@typescript/native-preview': ^7.0.0-dev.20251215.1
+  '@typescript/native-preview': ^7.0.0-dev.20251217.1
   '@unocss/core': ^66.5.10
   '@unocss/nuxt': ^66.5.10
   '@unocss/rule-utils': ^66.5.10
@@ -85,13 +85,13 @@ catalog:
   taze: ^19.9.2
   tinyexec: ^1.0.2
   tinyglobby: ^0.2.15
-  tsdown: ^0.18.0
+  tsdown: ^0.18.1
   type-fest: ^5.3.1
   typescript: ^5.9.3
   ufo: ^1.6.1
   unocss: ^66.5.10
   vite: ^7.3.0
-  vitest: ^4.0.15
+  vitest: ^4.0.16
   vue: ^3.5.25
   vue-router: ^4.6.4
   vue-tsc: ^3.1.8

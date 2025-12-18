@@ -4,9 +4,9 @@ import { createVariants } from '~/utils/styles'
 
 export const useBannerStyle = createVariants({
   slots: {
-    base: 'banner relative w-full flex-(~ y-center) justify-between gap-3 py-1.5 z-tooltip transition-colors',
+    base: 'banner relative w-full flex-(~ y-center) justify-between gap-4 h-10 z-tooltip transition-colors',
     left: 'hidden lg:flex-1 lg:(flex items-center)',
-    center: 'flex-(~ y-center) gap-1.5 min-w-0',
+    center: 'flex-(~ y-center) gap-4 min-w-0',
     right: 'lg:flex-1 flex-(~ y-center) justify-end',
     icon: 'size-5 shrink-0',
     title: 'font-medium text-sm truncate',

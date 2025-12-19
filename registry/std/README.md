@@ -114,7 +114,7 @@ pnpm dlx @weme-ui/weme-ui add <name>
   - [ ] `pop-confirm`
   - [ ] `popover`
   - [ ] `tooltip-button`
-  - [ ] `tooltip`
+  - [x] `tooltip`
   - [x] `overlay`
 - Others
   - [ ] `affix`

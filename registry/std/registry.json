@@ -1252,6 +1252,38 @@
           "width": "24rem"
         }
       }
+    },
+    {
+      "name": "tooltip",
+      "type": "component",
+      "title": "Tooltip",
+      "description": "Used to display additional information when a user hovers over an element.",
+      "registryDependencies": [
+        "icon"
+      ],
+      "files": [
+        {
+          "type": "component",
+          "path": "components/tooltip/tooltip.vue",
+          "hash": "faf304378519d0ca4d0b19a93baae2ef"
+        },
+        {
+          "type": "type",
+          "path": "components/tooltip/tooltip.props.ts",
+          "hash": "424316e8df19a229f41cc3cc2b76e6b6"
+        },
+        {
+          "type": "style",
+          "path": "components/tooltip/tooltip.style.ts",
+          "hash": "4f15060601325f41987b737bb6d372ba"
+        }
+      ],
+      "cssVars": {
+        "tooltip": {
+          "bg": "primary.9",
+          "fg": "primary.1"
+        }
+      }
     }
   ]
 }

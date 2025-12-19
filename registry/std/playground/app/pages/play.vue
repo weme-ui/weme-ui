@@ -1,15 +1,13 @@
 <script lang="ts" setup>
-const items = Array.from({ length: 30 }, (_, i) => ({
-  id: i + 1,
-  title: `Item ${i + 1}`,
-  description: `Description for item ${i + 1}`,
-}))
+import { TooltipProvider } from 'reka-ui'
 </script>
 
 <template>
   <Container name="PLAY YOUR CODE HERE" description="🐗 Hakuna matata">
-    <UiScrollArea v-slot="{ item }" class="h-80 w-100" :items="items" virtualize>
-      <UiItem :label="item.title" :description="item.description" clickable />
-    </UiScrollArea>
+    <TooltipProvider>
+      <UiTooltip content="这是一条提示" arrow loading default-open>
+        <UiButton label="hover me" />
+      </UiTooltip>
+    </TooltipProvider>
   </Container>
 </template>

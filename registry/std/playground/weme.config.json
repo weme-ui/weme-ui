@@ -18,7 +18,9 @@
       "card-bg": "white.12",
       "overlay-bg": "black.11",
       "item-group-bg": "white.12",
-      "toast-width": "24rem"
+      "toast-width": "24rem",
+      "tooltip-bg": "primary.9",
+      "tooltip-fg": "primary.1"
     }
   }
 }

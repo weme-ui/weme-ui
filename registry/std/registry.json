@@ -838,6 +838,34 @@
       ]
     },
     {
+      "name": "popover",
+      "type": "component",
+      "title": "Popover",
+      "description": "Used to show detailed information inside a pop-up.",
+      "files": [
+        {
+          "type": "style",
+          "path": "components/popover/popover.style.ts",
+          "hash": "25ca5eaf2c23ebb5376c0e9f6e6ffc63"
+        },
+        {
+          "type": "component",
+          "path": "components/popover/popover.vue",
+          "hash": "e55733ab9ff2e325edd154676f43e108"
+        },
+        {
+          "type": "type",
+          "path": "components/popover/popover.props.ts",
+          "hash": "a1087f2cb68fda6e4eb61b7b6105a586"
+        }
+      ],
+      "cssVars": {
+        "popover": {
+          "bg": "neutral.1"
+        }
+      }
+    },
+    {
       "name": "progress",
       "type": "component",
       "title": "Progress",

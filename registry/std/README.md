@@ -112,7 +112,7 @@ pnpm dlx @weme-ui/weme-ui add <name>
   - [ ] `hover-card`
   - [ ] `modal`
   - [ ] `pop-confirm`
-  - [ ] `popover`
+  - [x] `popover`
   - [ ] `tooltip-button`
   - [x] `tooltip`
   - [x] `overlay`

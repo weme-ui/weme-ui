@@ -1,19 +1,15 @@
 <script lang="ts" setup>
+const items = Array.from({ length: 30 }, (_, i) => ({
+  id: i + 1,
+  title: `Item ${i + 1}`,
+  description: `Description for item ${i + 1}`,
+}))
 </script>
 
 <template>
   <Container name="PLAY YOUR CODE HERE" description="🐗 Hakuna matata">
-    <UiTabs variant="pill" side="left" size="md" radius="md" class="w-120 h-50">
-      <UiTabsContent icon="lucide:activity" title="Activity" value="1" active>
-        Tab 1
-      </UiTabsContent>
-      <UiTabsContent icon="lucide:axis-3d" title="Axis 3D" value="2">
-        Tab 2
-      </UiTabsContent>
-
-      <template #actions>
-        <UiIconButton icon="info" size="md" variant="plain" />
-      </template>
-    </UiTabs>
+    <UiScrollArea v-slot="{ item }" class="h-80 w-100" :items="items" virtualize>
+      <UiItem :label="item.title" :description="item.description" clickable />
+    </UiScrollArea>
   </Container>
 </template>

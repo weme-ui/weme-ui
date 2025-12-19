@@ -3,8 +3,8 @@ import { createVariants } from '~/utils/styles'
 
 export const useScrollAreaStyle = createVariants({
   slots: {
-    base: 'relative overflow-hidden',
-    viewport: 'size-full scroll-smooth rounded-inherit',
+    base: 'relative',
+    viewport: 'relative size-full scroll-smooth rounded-inherit',
     scrollbar: [
       'flex select-none touch-none bg-transparent',
       'state-visible:(animate-fade-in animate-duration-100 animate-ease-in-out)',
@@ -14,12 +14,13 @@ export const useScrollAreaStyle = createVariants({
       'relative z-1 flex-1 bg-border hover:bg-border-elevated',
       'before:(content-[""] abs abs-center size-full min-w-10 min-h-10 transform)',
     ],
+    item: '',
   },
 
   variants: {
     orientation: {
-      vertical: { scrollbar: 'flex-row' },
-      horizontal: { scrollbar: 'flex-col' },
+      vertical: { base: 'overflow-y-auto overflow-x-hidden', scrollbar: 'flex-row' },
+      horizontal: { base: 'overflow-x-auto overflow-y-hidden', scrollbar: 'flex-col' },
     },
     size: { xs: '', sm: '', md: '', lg: '' },
     radius: {

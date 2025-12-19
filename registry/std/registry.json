@@ -890,22 +890,25 @@
       "name": "scroll-area",
       "type": "component",
       "title": "Scroll Area",
-      "description": "Used to create a scrollable area with custom styled scrollbars.",
+      "description": "Used to create a scrollable area with virtualization support.",
+      "dependencies": [
+        "@tanstack/vue-virtual"
+      ],
       "files": [
         {
           "type": "style",
           "path": "components/scroll-area/scroll-area.style.ts",
-          "hash": "9fba8fa1a8004205877af33e14e1a205"
+          "hash": "f0547dfa6110069eeddb934c50bbbea2"
         },
         {
           "type": "component",
           "path": "components/scroll-area/scroll-area.vue",
-          "hash": "650333e3ae9dc7196ef0c070c992e0a7"
+          "hash": "cd981568b1904721782d58242287f026"
         },
         {
           "type": "type",
           "path": "components/scroll-area/scroll-area.props.ts",
-          "hash": "a1dfa4490f742a385233b1253652bd0a"
+          "hash": "49ef8dfeaef4b7fb718bb95b5f114a5f"
         }
       ]
     },

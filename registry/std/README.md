@@ -74,11 +74,11 @@ pnpm dlx @weme-ui/weme-ui add <name>
 - Disclosure
   - [x] `accordion`
   - [x] `breadcrumb`
-  - [ ] `carousel`
+  - [x] `carousel`
   - [x] `collapsible`
   - [x] `pagination`
   - [x] `steps`
-  - [ ] `tabs`
+  - [x] `tabs`
 - Forms
   - [ ] `checkbox-card`
   - [ ] `checkbox`

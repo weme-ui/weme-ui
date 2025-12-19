@@ -1110,6 +1110,42 @@
       ]
     },
     {
+      "name": "tabs",
+      "type": "component",
+      "title": "Tabs",
+      "description": "Used to display content in a tabbed interface.",
+      "registryDependencies": [
+        "icon"
+      ],
+      "files": [
+        {
+          "type": "component",
+          "path": "components/tabs/tabs.vue",
+          "hash": "d2538dfa3f4bfb9b6df2e9870be21b2c"
+        },
+        {
+          "type": "style",
+          "path": "components/tabs/tabs.style.ts",
+          "hash": "a0d97945203feb1f61cbaad49803b158"
+        },
+        {
+          "type": "type",
+          "path": "components/tabs/tabs.props.ts",
+          "hash": "d67f21158c49ace204706130ac70689f"
+        },
+        {
+          "type": "type",
+          "path": "components/tabs/tabs-content.props.ts",
+          "hash": "a1c4fe81a3339560ed8ebb0be6a606eb"
+        },
+        {
+          "type": "component",
+          "path": "components/tabs/tabs-content.vue",
+          "hash": "1a21374a59c16880a42e60cd90ae78f2"
+        }
+      ]
+    },
+    {
       "name": "tag",
       "type": "component",
       "title": "Tag",

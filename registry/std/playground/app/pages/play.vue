@@ -1,24 +1,19 @@
 <script lang="ts" setup>
-const items = [
-  'https://picsum.photos/640/320?random=1',
-  'https://picsum.photos/640/320?random=2',
-  'https://picsum.photos/640/320?random=3',
-  'https://picsum.photos/640/320?random=4',
-  'https://picsum.photos/640/320?random=5',
-  'https://picsum.photos/640/320?random=6',
-]
 </script>
 
 <template>
   <Container name="PLAY YOUR CODE HERE" description="🐗 Hakuna matata">
-    <UiStack>
-      <UiCarousel v-slot="{ item }" :items="items" class="w-full max-w-xs mx-auto" autoplay fade show-arrows show-dots>
-        <UiImage :src="item" width="320" height="160" class="rounded-lg" />
-      </UiCarousel>
+    <UiTabs variant="pill" side="left" size="md" radius="md" class="w-120 h-50">
+      <UiTabsContent icon="lucide:activity" title="Activity" value="1" active>
+        Tab 1
+      </UiTabsContent>
+      <UiTabsContent icon="lucide:axis-3d" title="Axis 3D" value="2">
+        Tab 2
+      </UiTabsContent>
 
-      <UiCarousel v-slot="{ item }" :items="items" :ui="{ container: 'h-[176px]' }" orientation="vertical" class="w-full max-w-xs mx-auto" autoplay wheel-gestures show-arrows show-dots>
-        <UiImage :src="item" width="320" height="160" class="rounded-lg" />
-      </UiCarousel>
-    </UiStack>
+      <template #actions>
+        <UiIconButton icon="info" size="md" variant="plain" />
+      </template>
+    </UiTabs>
   </Container>
 </template>

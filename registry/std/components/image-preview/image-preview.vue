@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import type { ImagePreviewEmits, ImagePreviewProps } from './image-preview.props'
-import { reactiveOmit } from '@vueuse/core'
+import { onKeyStroke, reactiveOmit } from '@vueuse/core'
 import { computed } from 'vue'
 import { cn } from '~/utils/styles'
 import Icon from '../icon/icon.vue'
@@ -17,6 +17,8 @@ const ui = computed(() => useImagePreviewStyle(props))
 
 const show = ref(false)
 const loaded = ref(false)
+
+onKeyStroke('Escape', onHidden)
 
 function onShow() {
   show.value = true

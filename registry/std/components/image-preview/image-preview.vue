@@ -10,9 +10,10 @@ import { useImagePreviewStyle } from './image-preview.style'
 
 const props = withDefaults(defineProps<ImagePreviewProps>(), {
   portal: 'body',
+  closeOnEscape: true,
 })
 const emits = defineEmits<ImagePreviewEmits>()
-const imageProps = reactiveOmit(props, 'previewSrc', 'placeholder', 'disabled', 'portal', 'class', 'ui')
+const imageProps = reactiveOmit(props, 'previewSrc', 'placeholder', 'disabled', 'closeOnEscape', 'portal', 'class', 'ui')
 const ui = computed(() => useImagePreviewStyle(props))
 
 const show = ref(false)

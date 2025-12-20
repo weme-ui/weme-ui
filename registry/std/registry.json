@@ -43,6 +43,11 @@
         },
         {
           "type": "composable",
+          "path": "composables/define-shortcuts.ts",
+          "hash": "31c62730953bf9d125bf8c86dd1b6125"
+        },
+        {
+          "type": "composable",
           "path": "composables/define-locale.ts",
           "hash": "c6f0a1880990fe68808766585362d420"
         },

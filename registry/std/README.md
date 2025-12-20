@@ -109,11 +109,10 @@ pnpm dlx @weme-ui/weme-ui add <name>
 - Overlays
   - [ ] `action-sheet`
   - [ ] `dropdown`
-  - [ ] `hover-card`
   - [ ] `modal`
   - [ ] `pop-confirm`
   - [x] `popover`
-  - [ ] `tooltip-button`
+  - [x] `tooltip-button`
   - [x] `tooltip`
   - [x] `overlay`
 - Others

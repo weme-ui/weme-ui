@@ -842,6 +842,9 @@
       "type": "component",
       "title": "Popover",
       "description": "Used to show detailed information inside a pop-up.",
+      "devDependencies": [
+        "defu"
+      ],
       "files": [
         {
           "type": "style",
@@ -1152,7 +1155,7 @@
         {
           "type": "component",
           "path": "components/tabs/tabs.vue",
-          "hash": "d2538dfa3f4bfb9b6df2e9870be21b2c"
+          "hash": "784c45dde5a4f13ce5d9dae8f9c1f48b"
         },
         {
           "type": "style",
@@ -1162,7 +1165,7 @@
         {
           "type": "type",
           "path": "components/tabs/tabs.props.ts",
-          "hash": "d67f21158c49ace204706130ac70689f"
+          "hash": "2c590e8e2ddc6292970bc5f5f74de38e"
         },
         {
           "type": "type",
@@ -1282,10 +1285,43 @@
       }
     },
     {
+      "name": "toggle-tooltip",
+      "type": "component",
+      "title": "Toggle Tooltip",
+      "description": "Looks like a tooltip, but works like a popover.",
+      "devDependencies": [
+        "defu"
+      ],
+      "registryDependencies": [
+        "icon",
+        "tooltip"
+      ],
+      "files": [
+        {
+          "type": "component",
+          "path": "components/toggle-tooltip/toggle-tooltip.vue",
+          "hash": "9b6cdac2bc05f75219a4a0a82f2aad23"
+        },
+        {
+          "type": "type",
+          "path": "components/toggle-tooltip/toggle-tooltip.props.ts",
+          "hash": "d40fbcaed55b52f89ba3c3a0de4edff8"
+        },
+        {
+          "type": "style",
+          "path": "components/toggle-tooltip/toggle-tooltip.style.ts",
+          "hash": "be1f69eded5a6a5c3a2709218790a009"
+        }
+      ]
+    },
+    {
       "name": "tooltip",
       "type": "component",
       "title": "Tooltip",
       "description": "Used to display additional information when a user hovers over an element.",
+      "devDependencies": [
+        "defu"
+      ],
       "registryDependencies": [
         "icon"
       ],
@@ -1293,17 +1329,17 @@
         {
           "type": "component",
           "path": "components/tooltip/tooltip.vue",
-          "hash": "faf304378519d0ca4d0b19a93baae2ef"
+          "hash": "743a1f47ee00c7122da949f2292bce1d"
         },
         {
           "type": "type",
           "path": "components/tooltip/tooltip.props.ts",
-          "hash": "424316e8df19a229f41cc3cc2b76e6b6"
+          "hash": "b8c489d4965d4168d755eff6398ff9aa"
         },
         {
           "type": "style",
           "path": "components/tooltip/tooltip.style.ts",
-          "hash": "4f15060601325f41987b737bb6d372ba"
+          "hash": "af84e7619870ef47586a6f8a544b94d9"
         }
       ],
       "cssVars": {

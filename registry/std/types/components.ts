@@ -1,4 +1,5 @@
 export * from '~/components/accordion/accordion.props'
+export * from '~/components/action-sheet/action-sheet.props'
 export * from '~/components/alert/alert.props'
 export * from '~/components/aspect-ratio/aspect-ratio.props'
 export * from '~/components/avatar-group/avatar-group.props'

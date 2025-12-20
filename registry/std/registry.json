@@ -101,6 +101,37 @@
       ]
     },
     {
+      "name": "action-sheet",
+      "type": "component",
+      "title": "Action Sheet",
+      "description": "Used to display a bottom action sheet with a set of actions.",
+      "registryDependencies": [
+        "button"
+      ],
+      "files": [
+        {
+          "type": "component",
+          "path": "components/action-sheet/action-sheet.vue",
+          "hash": "8a6795da6c167743576cc7997c5d7fc8"
+        },
+        {
+          "type": "type",
+          "path": "components/action-sheet/action-sheet.props.ts",
+          "hash": "6fffa82afe0d9be03dc33a0cd13f7edf"
+        },
+        {
+          "type": "style",
+          "path": "components/action-sheet/action-sheet.style.ts",
+          "hash": "7f92ad7d9a266c7c2b406d9b85135f38"
+        }
+      ],
+      "cssVars": {
+        "action-sheet": {
+          "bg": "neutral.1"
+        }
+      }
+    },
+    {
       "name": "alert",
       "type": "component",
       "title": "Alert",
@@ -635,6 +666,7 @@
       "title": "Image Preview",
       "description": "Used to preview images.",
       "registryDependencies": [
+        "icon",
         "image",
         "overlay"
       ],
@@ -642,17 +674,17 @@
         {
           "type": "component",
           "path": "components/image-preview/image-preview.vue",
-          "hash": "8bb22e9683804adcbc7ec46c2769fedd"
+          "hash": "709cbc0931354836c9a744e06bb2dc8c"
         },
         {
           "type": "type",
           "path": "components/image-preview/image-preview.props.ts",
-          "hash": "d4f0fd12831abfc12b04c21c3f216ee1"
+          "hash": "f54dcca4964c6b58ed095081c14ed9a1"
         },
         {
           "type": "style",
           "path": "components/image-preview/image-preview.style.ts",
-          "hash": "cda103cd7a1450263b0b3567da96f2f8"
+          "hash": "7dd74bb8bb0e2dd7ba664f4431c55c59"
         }
       ]
     },
@@ -797,17 +829,17 @@
         {
           "type": "type",
           "path": "components/overlay/overlay.props.ts",
-          "hash": "2da2271bb6f69f53229dfe207ae82ecc"
+          "hash": "6b29bba3fff3a6bfb73419d9bbabc32e"
         },
         {
           "type": "component",
           "path": "components/overlay/overlay.vue",
-          "hash": "ce4508518daebece2e2b4ef1acf3a788"
+          "hash": "adaa256e876d32cf770f3653ffaaa50d"
         },
         {
           "type": "style",
           "path": "components/overlay/overlay.style.ts",
-          "hash": "c23bcf57ab59fa5058d7f97040391608"
+          "hash": "6d0f304b63afccb4e3132802681c93b2"
         }
       ],
       "cssVars": {

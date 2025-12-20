@@ -3,11 +3,14 @@ import type { ImagePreviewEmits, ImagePreviewProps } from './image-preview.props
 import { reactiveOmit } from '@vueuse/core'
 import { computed } from 'vue'
 import { cn } from '~/utils/styles'
+import Icon from '../icon/icon.vue'
 import Image from '../image/image.vue'
 import Overlay from '../overlay/overlay.vue'
 import { useImagePreviewStyle } from './image-preview.style'
 
-const props = defineProps<ImagePreviewProps>()
+const props = withDefaults(defineProps<ImagePreviewProps>(), {
+  portal: 'body',
+})
 const emits = defineEmits<ImagePreviewEmits>()
 const imageProps = reactiveOmit(props, 'previewSrc', 'placeholder', 'disabled', 'portal', 'class', 'ui')
 const ui = computed(() => useImagePreviewStyle(props))
@@ -33,11 +36,14 @@ function onHidden() {
     <slot v-bind="{ ...imageProps }" />
   </Image>
 
-  <Overlay v-model="show" :to="portal" :disabled="disabled" :class="cn(ui.overlay(), props.ui?.overlay)" @click="onHidden">
-    <div :class="cn(ui.preview(), props.ui?.preview)">
+  <Teleport :to="portal" :disabled="disabled">
+    <div v-if="show" :class="cn(ui.preview(), props.ui?.preview)">
       <div v-show="!loaded" :class="cn(ui.previewPlaceholder(), props.ui?.previewPlaceholder)">
         <slot name="placeholder">
-          {{ placeholder }}
+          <template v-if="placeholder">
+            {{ placeholder }}
+          </template>
+          <Icon v-else name="loading" :class="cn(ui.loading(), props.ui?.loading)" />
         </slot>
       </div>
 
@@ -48,5 +54,6 @@ function onHidden() {
         @loading-status-change="(status) => loaded = status === 'loaded'"
       />
     </div>
-  </Overlay>
+    <Overlay v-model="show" :class="cn(ui.overlay(), props.ui?.overlay)" @click="onHidden" />
+  </Teleport>
 </template>

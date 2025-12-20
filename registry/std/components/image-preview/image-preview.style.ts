@@ -6,7 +6,8 @@ export const useImagePreviewStyle = createVariants({
     overlay: '',
     preview: 'abs-(~ center) z-tooltip',
     previewImage: '',
-    previewPlaceholder: 'flex-(~ center) bg-primary text-primary-1 px-6 py-3 rounded-lg',
+    previewPlaceholder: 'flex-(~ center) bg-primary text-primary-1 p-4 rounded-lg',
+    loading: 'size-5 animate-spin',
   },
 })
 

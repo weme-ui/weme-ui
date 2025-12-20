@@ -2,6 +2,7 @@
 import type { TooltipContentProps } from 'reka-ui'
 import type { TooltipEmits, TooltipProps } from './tooltip.props'
 import { reactivePick } from '@vueuse/core'
+import { defu } from 'defu'
 import { TooltipArrow, TooltipContent, TooltipPortal, TooltipRoot, TooltipTrigger, useForwardPropsEmits } from 'reka-ui'
 import { computed } from 'vue'
 import { cn } from '~/utils/styles'
@@ -16,19 +17,20 @@ const props = withDefaults(defineProps<TooltipProps>(), {
   side: 'top',
   radius: 'md',
   loading: false,
-  triggerProps: () => ({ asChild: true }),
-  contentProps: () => ({ sideOffset: 8, collisionPadding: 8 }),
 })
 
 const emits = defineEmits<TooltipEmits>()
 const delegated = reactivePick(props, 'defaultOpen', 'open', 'disabled', 'delayDuration', 'disableHoverableContent', 'disableClosingTrigger', 'ignoreNonKeyboardFocus')
 const forwarded = useForwardPropsEmits(delegated, emits)
 
+const triggerProps = toRef(() => props.trigger)
+const portalProps = toRef(() => props.portal)
+const contentProps = toRef(() => defu(props.content, { sideOffset: 8, collisionPadding: 8 }) as TooltipContentProps)
+
 const side = computed(() => {
   if (props.side.includes('-')) {
     return props.side.split('-')[0] as TooltipContentProps['side']
   }
-
   return props.side as TooltipContentProps['side']
 })
 
@@ -36,7 +38,6 @@ const align = computed(() => {
   if (props.side.includes('-')) {
     return props.side.split('-')[1] === 'left' ? 'end' : 'start'
   }
-
   return 'center'
 })
 
@@ -47,7 +48,7 @@ const ui = computed(() => useTooltipStyle({
 
 <template>
   <TooltipRoot v-slot="{ open }" v-bind="forwarded">
-    <TooltipTrigger v-bind="triggerProps" :class="cn(ui.base(), props.ui?.base, props.class)">
+    <TooltipTrigger v-bind="triggerProps" :class="cn(ui.trigger(), props.ui?.trigger, props.class)">
       <slot :open="open" />
     </TooltipTrigger>
 
@@ -60,8 +61,8 @@ const ui = computed(() => useTooltipStyle({
       >
         <div :class="cn(ui.contentWrapper(), props.ui?.contentWrapper)">
           <Icon v-if="loading" name="loading" :class="cn(ui.loading(), props.ui?.loading)" />
-          <slot name="content">
-            {{ content }}
+          <slot name="content" v-bind="{ open }">
+            {{ text }}
           </slot>
         </div>
 
@@ -69,6 +70,7 @@ const ui = computed(() => useTooltipStyle({
           v-if="!!arrow"
           v-bind="typeof arrow === 'object' ? arrow : undefined"
           :class="cn(ui.arrow(), props.ui?.arrow)"
+          :rounded="radius !== 'none'"
         />
       </TooltipContent>
     </TooltipPortal>

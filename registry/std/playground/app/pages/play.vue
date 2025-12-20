@@ -1,4 +1,7 @@
 <script lang="ts" setup>
+import { defineShortcuts } from '~/composables/define-shortcuts'
+import { useToast } from '~/composables/use-toast'
+
 const { add } = useToast()
 
 defineShortcuts({

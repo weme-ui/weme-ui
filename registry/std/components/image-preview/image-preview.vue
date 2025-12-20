@@ -18,7 +18,8 @@ const ui = computed(() => useImagePreviewStyle(props))
 const show = ref(false)
 const loaded = ref(false)
 
-onKeyStroke('Escape', onHidden)
+if (props.closeOnEscape)
+  onKeyStroke('Escape', onHidden)
 
 function onShow() {
   show.value = true

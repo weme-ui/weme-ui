@@ -5,6 +5,7 @@ export interface ImagePreviewProps extends ImageProps {
   previewSrc?: string
   placeholder?: string
   disabled?: boolean
+  closeOnEscape?: boolean
   portal?: string | HTMLElement
   class?: any
   ui?: Partial<ImagePreviewStyleSlots>

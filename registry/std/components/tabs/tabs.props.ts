@@ -7,9 +7,9 @@ export interface TabsProps extends TabsRootProps {
   size?: TabsStyleProps['size']
   radius?: TabsStyleProps['radius']
   animate?: boolean
-  listProps?: TabsListProps
-  triggerProps?: TabsTriggerProps
-  indicatorProps?: TabsIndicatorProps
+  list?: Omit<TabsListProps, 'as' | 'asChild'>
+  trigger?: Omit<TabsTriggerProps, 'as' | 'asChild'>
+  indicator?: Omit<TabsIndicatorProps, 'as' | 'asChild'>
   class?: any
   ui?: Partial<TabsStyleSlots>
 }

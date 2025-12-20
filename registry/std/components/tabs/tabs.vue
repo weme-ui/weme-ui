@@ -2,7 +2,7 @@
 import type { TabsEmits, TabsProps } from './tabs.props'
 import { createReusableTemplate, reactiveOmit } from '@vueuse/core'
 import { TabsIndicator, TabsList, TabsRoot, TabsTrigger, useForwardPropsEmits } from 'reka-ui'
-import { computed, useSlots } from 'vue'
+import { computed, toRef, useSlots } from 'vue'
 import { toBoolValue } from '~/utils/props'
 import { getChildrenSlots } from '~/utils/slots'
 import { cn } from '~/utils/styles'
@@ -22,8 +22,12 @@ const props = withDefaults(defineProps<TabsProps>(), {
 })
 
 const emits = defineEmits<TabsEmits>()
-const delegated = reactiveOmit(props, 'class', 'ui', 'variant', 'radius', 'size', 'side', 'animate', 'listProps', 'triggerProps', 'indicatorProps')
+const delegated = reactiveOmit(props, 'class', 'ui', 'variant', 'radius', 'size', 'side', 'animate', 'list', 'trigger', 'indicator')
 const forwarded = useForwardPropsEmits(delegated, emits)
+
+const listProps = toRef(() => props.list)
+const triggerProps = toRef(() => props.trigger)
+const indicatorProps = toRef(() => props.indicator)
 
 const orientation = computed(() =>
   props.side === 'top' || props.side === 'bottom'

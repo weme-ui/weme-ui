@@ -318,7 +318,7 @@
         {
           "type": "component",
           "path": "components/button/button.vue",
-          "hash": "3228afbd785b6c42d6d00bf3808de2bb"
+          "hash": "d68800dbac2a12bb925c9665761e4d73"
         },
         {
           "type": "type",
@@ -796,6 +796,43 @@
           "hash": "480dcfe66cafec08cffa1f47b82849cf"
         }
       ]
+    },
+    {
+      "name": "modal",
+      "type": "component",
+      "title": "Modal",
+      "description": "Used to display a dialog prompt.",
+      "devDependencies": [
+        "motion-v"
+      ],
+      "registryDependencies": [
+        "icon",
+        "overlay"
+      ],
+      "files": [
+        {
+          "type": "component",
+          "path": "components/modal/modal.vue",
+          "hash": "2b1727269a38e5c65d064a0479fd42cb"
+        },
+        {
+          "type": "type",
+          "path": "components/modal/modal.props.ts",
+          "hash": "9a598d243a301c7d1719ad93e53eb0db"
+        },
+        {
+          "type": "style",
+          "path": "components/modal/modal.style.ts",
+          "hash": "2a464ef86ba392743b26a0fd1960e7e0"
+        }
+      ],
+      "cssVars": {
+        "modal": {
+          "bg": "neutral.1",
+          "width": "24rem",
+          "height": "12rem"
+        }
+      }
     },
     {
       "name": "overflow",

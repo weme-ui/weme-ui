@@ -1,0 +1,105 @@
+<script lang="ts" setup>
+import type { DialogPortalProps } from 'reka-ui'
+import type { ModalEmits, ModalProps } from './modal.props'
+import { reactivePick } from '@vueuse/core'
+import { AnimatePresence, Motion } from 'motion-v'
+import { DialogClose, DialogContent, DialogDescription, DialogOverlay, DialogPortal, DialogRoot, DialogTitle, DialogTrigger, useForwardPropsEmits } from 'reka-ui'
+import { computed, toRef } from 'vue'
+import { toBoolValue } from '~/utils/props'
+import { cn } from '~/utils/styles'
+import Icon from '../icon/icon.vue'
+import { useModalMotions } from './modal.motions'
+import { useModalStyle } from './modal.style'
+
+defineOptions({
+  inheritAttrs: false,
+})
+
+const props = withDefaults(defineProps<ModalProps>(), {
+  variant: 'normal',
+  placement: 'center',
+  size: 'md',
+  radius: 'lg',
+  translucent: false,
+  overlay: true,
+  loadingIcon: 'loading',
+})
+
+const emits = defineEmits<ModalEmits>()
+const delegated = reactivePick(props, 'defaultOpen', 'modal', 'open')
+const forwarded = useForwardPropsEmits(delegated, emits)
+const motions = useModalMotions(props)
+
+const portalProps = toRef(() => props.portal)
+const overlayProps = toRef(() => props.overlay)
+const contentProps = toRef(() => props.content)
+
+const ui = computed(() => useModalStyle({
+  ...props,
+  translucent: toBoolValue(props.translucent),
+}))
+</script>
+
+<template>
+  <DialogRoot v-slot="{ open, close }" v-bind="forwarded">
+    <DialogTrigger :class="cn(ui.trigger(), props.ui?.trigger)" as-child>
+      <slot :open="open" />
+    </DialogTrigger>
+
+    <DialogPortal v-bind="typeof portal === 'string' ? { to: portal } : portalProps as DialogPortalProps">
+      <AnimatePresence>
+        <DialogOverlay
+          v-if="!!overlay"
+          v-bind="typeof overlayProps === 'object' ? overlayProps : undefined"
+          as-child
+        >
+          <Motion v-bind="motions.overlay" :class="cn(ui.overlay(), props.ui?.overlay)" />
+        </DialogOverlay>
+
+        <DialogContent v-bind="contentProps" as-child>
+          <Motion v-bind="motions.content as any" :class="cn(ui.base(), props.ui?.base, props.class)">
+            <div :class="cn(ui.wrapper(), props.ui?.wrapper)">
+              <header :class="cn((!!title || !!$slots.title) ? [ui.header(), props.ui?.header] : 'sr-only')">
+                <slot name="header" v-bind="{ open, close }">
+                  <div v-if="!!loading || !!icon || !!$slots.icon" :class="cn(ui.iconWrapper(), props.ui?.iconWrapper)">
+                    <slot name="icon" v-bind="{ open, loading }">
+                      <Icon v-if="!!loading" :name="loadingIcon" :class="cn(ui.loading(), props.ui?.loading)" />
+                      <Icon v-else-if="!!icon" :name="icon" :class="cn(ui.icon(), props.ui?.icon)" />
+                    </slot>
+                  </div>
+
+                  <div :class="cn(ui.titleWrapper(), props.ui?.titleWrapper)">
+                    <DialogTitle :class="cn((!!title || $slots.title) ? [ui.title(), props.ui?.title] : 'sr-only')">
+                      <slot name="title">
+                        {{ title }}
+                      </slot>
+                    </DialogTitle>
+                    <DialogDescription :class="cn((!!description || $slots.description) ? [ui.description(), props.ui?.description] : 'sr-only')">
+                      <slot name="description">
+                        {{ description }}
+                      </slot>
+                    </DialogDescription>
+                  </div>
+
+                  <DialogClose v-if="closable" :class="cn(ui.close(), props.ui?.close)">
+                    <slot name="close">
+                      <Icon name="close" />
+                    </slot>
+                  </DialogClose>
+                </slot>
+              </header>
+
+              <div :class="cn(ui.content(), props.ui?.content)">
+                <slot name="content" v-bind="{ open, loading, close }" />
+              </div>
+
+              <footer v-if="!!$slots.footer" :class="cn(ui.footer(), props.ui?.footer)">
+                <slot name="footer" v-bind="{ open, loading, close }" />
+              </footer>
+            </div>
+          </Motion>
+        </DialogContent>
+      </AnimatePresence>
+    </DialogPortal>
+  </DialogRoot>
+</template>

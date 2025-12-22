@@ -1,19 +1,23 @@
 <script lang="ts" setup>
-const show = ref(false)
 </script>
 
 <template>
   <Container name="PLAY YOUR CODE HERE" description="🐗 Hakuna matata">
-    <UiButton label="Open" @click="show = true" />
+    <UiModal icon="lucide:album" title="Title" description="This is a description." variant="normal" size="md" radius="xl" placement="right" translucent closable>
+      <UiButton label="Open" />
 
-    <UiActionSheet v-model="show">
-      <template #selection>
-        3 selected
+      <template #content>
+        <div>
+          Hello World
+        </div>
       </template>
-      <template #actions>
-        <UiButton icon="lucide:star" label="Like" variant="outline" />
-        <UiButton icon="lucide:share-2" label="Share" variant="outline" />
+
+      <template #footer="{ close }">
+        <UiButtonGroup radius="md">
+          <UiButton label="Apply" variant="solid" class="shadow-xs" />
+          <UiButton label="Cancel" class="shadow-xs" @click="close" />
+        </UiButtonGroup>
       </template>
-    </UiActionSheet>
+    </UiModal>
   </Container>
 </template>

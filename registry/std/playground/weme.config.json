@@ -22,7 +22,10 @@
       "tooltip-bg": "primary.9",
       "tooltip-fg": "primary.1",
       "popover-bg": "neutral.1",
-      "action-sheet-bg": "neutral.1"
+      "action-sheet-bg": "neutral.1",
+      "modal-bg": "neutral.1",
+      "modal-width": "24rem",
+      "modal-height": "12rem"
     }
   }
 }

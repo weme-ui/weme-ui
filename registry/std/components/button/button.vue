@@ -49,7 +49,7 @@ async function onClick(event: MouseEvent) {
   <Primitive v-bind="delegated" :disabled="isDisabled" :class="cn(ui.base(), props.ui?.base, props.class)" @click="onClick">
     <template v-if="isLoading">
       <Icon :name="loadingIcon" :class="cn(ui.icon(), ui.loading(), props.ui?.loading)" />
-      {{ loadingText }}
+      {{ loadingText || label }}
     </template>
     <template v-else>
       <Icon v-if="icon" :name="icon" :class="cn(ui.icon(), props.ui?.icon)" />

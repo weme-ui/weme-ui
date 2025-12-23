@@ -111,7 +111,7 @@ pnpm dlx @weme-ui/weme-ui add <name>
   - [x] `dropdown`
   - [x] `context-menu`
   - [x] `modal`
-  - [ ] `pop-confirm`
+  - [x] `pop-confirm`
   - [x] `popover`
   - [x] `tooltip-button`
   - [x] `tooltip`

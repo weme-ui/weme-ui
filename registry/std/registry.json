@@ -64,13 +64,13 @@
         {
           "type": "type",
           "path": "types/locale.ts",
-          "hash": "be917af88a8fec8a24551b3a1b9bca9f"
+          "hash": "23cc0460879ceec4bb767cd51424ee49"
         },
         {
           "type": "file",
           "path": "locales/en.ts",
           "target": "~/locales/en.ts",
-          "hash": "9a56f4f346082b1095cbc93917f5b871"
+          "hash": "d77c4222c215b5bb2a5bbd2e2c7337b5"
         }
       ]
     },
@@ -988,6 +988,37 @@
           "type": "style",
           "path": "components/pagination/pagination.style.ts",
           "hash": "17c865045f39b1e94d76f06d7f8e2c50"
+        }
+      ]
+    },
+    {
+      "name": "pop-confirm",
+      "type": "component",
+      "title": "Pop Confirm",
+      "description": "Used to confirm an action.",
+      "devDependencies": [
+        "defu"
+      ],
+      "registryDependencies": [
+        "button",
+        "icon",
+        "popover"
+      ],
+      "files": [
+        {
+          "type": "style",
+          "path": "components/pop-confirm/pop-confirm.style.ts",
+          "hash": "ed44432bffb7bb87ad590f96fcc16858"
+        },
+        {
+          "type": "type",
+          "path": "components/pop-confirm/pop-confirm.props.ts",
+          "hash": "8a61b0d41d0484a5b2bcb7457c43577a"
+        },
+        {
+          "type": "component",
+          "path": "components/pop-confirm/pop-confirm.vue",
+          "hash": "143e3000d0f104f073812f0b4a0dee53"
         }
       ]
     },

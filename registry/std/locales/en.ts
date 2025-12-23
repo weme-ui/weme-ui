@@ -33,6 +33,10 @@ export default defineLocale<LocaleMessages>({
       next: 'Next',
       last: 'Last',
     },
+    popConfirm: {
+      confirm: 'Ok',
+      cancel: 'Cancel',
+    },
     table: {
       noData: 'No data',
     },

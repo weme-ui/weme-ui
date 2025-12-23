@@ -27,6 +27,10 @@ export interface LocaleMessages {
     next: string
     last: string
   }
+  popConfirm: {
+    confirm: string
+    cancel: string
+  }
   table: {
     noData: string
   }

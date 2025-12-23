@@ -33,6 +33,10 @@ export default defineLocale<LocaleMessages>({
       next: '下一页',
       last: '末页',
     },
+    popConfirm: {
+      confirm: '确认',
+      cancel: '取消',
+    },
     table: {
       noData: '暂无数据',
     },

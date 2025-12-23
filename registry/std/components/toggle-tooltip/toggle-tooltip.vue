@@ -5,6 +5,7 @@ import { reactivePick } from '@vueuse/core'
 import { defu } from 'defu'
 import { PopoverArrow, PopoverContent, PopoverPortal, PopoverRoot, PopoverTrigger, useForwardPropsEmits } from 'reka-ui'
 import { computed, toRef } from 'vue'
+import { usePortal } from '~/composables/use-portal'
 import { cn } from '~/utils/styles'
 import Icon from '../icon/icon.vue'
 import { useToggleTooltipStyle } from './toggle-tooltip.style'
@@ -24,7 +25,7 @@ const delegated = reactivePick(props, 'defaultOpen', 'modal', 'open')
 const forwarded = useForwardPropsEmits(delegated, emits)
 
 const contentProps = toRef(() => defu(props.content, { sideOffset: 8, collisionPadding: 8 }) as PopoverContentProps)
-const portalProps = toRef(() => props.portal)
+const portalProps = usePortal(toRef(props, 'portal'))
 const arrowProps = toRef(() => props.arrow as PopoverArrowProps)
 
 const side = computed(() => {

@@ -9,6 +9,7 @@ import { portalContextInjectKey } from '~/composables/use-portal'
 import ToastProvider from '../toast/toast-provider.vue'
 
 const props = withDefaults(defineProps<AppProps<T>>(), {
+  scrollBody: true,
   portal: 'body',
   useId: () => useId(),
 })

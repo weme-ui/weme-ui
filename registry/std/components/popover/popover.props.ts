@@ -1,4 +1,4 @@
-import type { HoverCardRootProps, HoverCardTriggerProps, PopoverArrowProps, PopoverContentEmits, PopoverContentProps, PopoverPortalProps, PopoverRootEmits, PopoverRootProps } from 'reka-ui'
+import type { HoverCardRootProps, HoverCardTriggerProps, PopoverArrowProps, PopoverContentEmits, PopoverContentProps, PopoverRootEmits, PopoverRootProps } from 'reka-ui'
 import type { EmitsToProps } from 'vue'
 import type { PopoverStyleProps, PopoverStyleSlots } from './popover.style'
 
@@ -15,7 +15,7 @@ export interface PopoverProps<M extends PopoverMode = PopoverMode> extends Popov
   mode?: M
   content?: Omit<PopoverContentProps, 'as' | 'asChild'> & Partial<EmitsToProps<PopoverContentEmits>>
   arrow?: boolean | Omit<PopoverArrowProps, 'as' | 'asChild'>
-  portal?: PopoverPortalProps
+  portal?: boolean | string | HTMLElement
   reference?: HoverCardTriggerProps['reference']
   /**
    * @defaultValue true

@@ -6,6 +6,7 @@ import { defu } from 'defu'
 import { useForwardPropsEmits } from 'reka-ui'
 import { HoverCard, Popover } from 'reka-ui/namespaced'
 import { computed, toRef } from 'vue'
+import { usePortal } from '~/composables/use-portal'
 import { toBoolValue } from '~/utils/props'
 import { cn } from '~/utils/styles'
 import { usePopoverStyle } from './popover.style'
@@ -29,7 +30,7 @@ const delegated = props.mode === 'click'
 const forwarded = useForwardPropsEmits(delegated, emits)
 
 const arrowProps = toRef(() => props.arrow as PopoverArrowProps)
-const portalProps = toRef(() => props.portal)
+const portalProps = usePortal(toRef(props, 'portal'))
 const contentProps = toRef(() => defu(props.content, { side: 'bottom', sideOffset: 8, collisionPadding: 8 }) as PopoverContentProps)
 
 const contentEvents = computed(() => {

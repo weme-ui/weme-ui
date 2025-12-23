@@ -3,20 +3,22 @@ import type { ActionSheetEmits, ActionSheetProps } from './action-sheet.props'
 import { onKeyStroke, reactivePick, useMounted } from '@vueuse/core'
 import { Presence, Primitive, useForwardPropsEmits } from 'reka-ui'
 import { computed } from 'vue'
+import { usePortal } from '~/composables/use-portal'
 import { cn } from '~/utils/styles'
 import Button from '../button/button.vue'
 import { useActionSheetStyle } from './action-sheet.style'
 
 const props = withDefaults(defineProps<ActionSheetProps>(), {
   radius: 'md',
-  portal: 'body',
 })
-const emits = defineEmits<ActionSheetEmits>()
 
+const emits = defineEmits<ActionSheetEmits>()
 const delegated = reactivePick(props, 'as', 'asChild')
 const forwarded = useForwardPropsEmits(delegated, emits)
 
 const modelValue = defineModel<boolean>({ default: false })
+
+const portal = usePortal(toRef(props.portal))
 const isMounted = useMounted()
 
 const open = computed({
@@ -42,7 +44,7 @@ watch(open, (value) => {
 </script>
 
 <template>
-  <Teleport :to="portal" :disabled="disabled" :defer="defer">
+  <Teleport :to="portal.to" :disabled="disabled || portal.disabled" :defer="defer">
     <Presence v-if="isMounted || !!forceMount" :present="open">
       <Primitive
         v-bind="forwarded"

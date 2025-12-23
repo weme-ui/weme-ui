@@ -9,7 +9,7 @@ export interface ActionSheetProps extends PrimitiveProps {
   forceMount?: boolean
   closeOnEscape?: boolean
   disabled?: boolean
-  portal?: string | HTMLElement
+  portal?: boolean | string | HTMLElement
   defer?: boolean
   class?: any
   ui?: Partial<ActionSheetStyleSlots>

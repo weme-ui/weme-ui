@@ -4,7 +4,7 @@ import { createVariants } from '~/utils/styles'
 export const useActionSheetStyle = createVariants({
   slots: {
     base: [
-      'abs-(~ x-center) bottom-4 flex-(~ y-center) gap-3 p-2.5 z-popup',
+      'fixed abs-x-center bottom-4 flex-(~ y-center) gap-3 p-2.5 z-popup',
       'bg-action-sheet ring-(~ border/70) shadow-[0_-8px_15px_0px_color-mix(in_oklch,var(--neutral-9)_20%,transparent)]',
       'state-open:animate-scale-in state-closed:animate-scale-out',
     ],

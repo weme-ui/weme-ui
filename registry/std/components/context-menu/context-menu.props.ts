@@ -1,4 +1,4 @@
-import type { ContextMenuArrowProps, ContextMenuPortalProps, ContextMenuRootEmits, ContextMenuRootProps } from 'reka-ui'
+import type { ContextMenuArrowProps, ContextMenuRootEmits, ContextMenuRootProps } from 'reka-ui'
 import type { EmitsToProps } from 'vue'
 import type { DropdownItem } from '../dropdown/dropdown.props'
 import type { DropdownStyleProps, DropdownStyleSlots } from '../dropdown/dropdown.style'
@@ -15,7 +15,7 @@ export interface ContextMenuProps<T extends ContextMenuItem = ContextMenuItem> e
   radius?: DropdownStyleProps['radius']
   translucent?: DropdownStyleProps['translucent']
   content?: Omit<ContextMenuContentProps<T>, 'sub' | 'class' | 'ui' | 'override' | 'items' | 'checkedIcon' | 'loadingIcon' | 'externalIcon'> & EmitsToProps<Partial<ContextMenuContentEmits>>
-  portal?: string | ContextMenuPortalProps
+  portal?: boolean | string | HTMLElement
   arrow?: boolean | Omit<ContextMenuArrowProps, 'as' | 'asChild'>
   disabled?: boolean
   class?: any

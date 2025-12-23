@@ -1,4 +1,4 @@
-import type { ContextMenuContentEmits as _ContextMenuContentEmits, ContextMenuContentProps as _ContextMenuContentProps, ContextMenuArrowProps, ContextMenuPortalProps } from 'reka-ui'
+import type { ContextMenuContentEmits as _ContextMenuContentEmits, ContextMenuContentProps as _ContextMenuContentProps, ContextMenuArrowProps } from 'reka-ui'
 import type { DropdownStyle, DropdownStyleSlots } from '../dropdown/dropdown.style'
 
 export type ContextMenuContentProps<T> = Omit<_ContextMenuContentProps, 'as' | 'asChild'> & {
@@ -6,7 +6,7 @@ export type ContextMenuContentProps<T> = Omit<_ContextMenuContentProps, 'as' | '
   checkedIcon: string
   loadingIcon: string
   externalIcon: string
-  portal?: ContextMenuPortalProps
+  portal?: boolean | string | HTMLElement | undefined
   arrow?: boolean | Omit<ContextMenuArrowProps, 'as' | 'asChild'>
   sub?: boolean
   class?: any

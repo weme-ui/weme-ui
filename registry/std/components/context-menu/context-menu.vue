@@ -28,7 +28,6 @@ const delegated = reactivePick(props, 'modal', 'dir', 'pressOpenDelay')
 const forwarded = useForwardPropsEmits(delegated, emits)
 
 const contentProps = toRef(() => defu(props.content, { sideOffset: 8, collisionPadding: 8 }))
-const portalProps = toRef(() => typeof props.portal === 'string' ? { to: props.portal } : props.portal)
 const arrowProps = toRef(() => props.arrow)
 
 const indent = computed(() => props.items?.flat().some(
@@ -55,7 +54,7 @@ const ui = computed(() => useDropdownStyle({
       :loading-icon="loadingIcon"
       :external-icon="externalIcon"
       :items="items"
-      :portal="portalProps"
+      :portal="portal"
       :arrow="arrowProps"
       :class="cn(ui.content(), props.ui?.content, props.class)"
       :ui="ui"

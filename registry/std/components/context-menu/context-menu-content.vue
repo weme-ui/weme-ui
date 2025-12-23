@@ -17,7 +17,8 @@ import {
   ContextMenuSubContent as RekaContextMenuSubContent,
   useForwardPropsEmits,
 } from 'reka-ui'
-import { computed } from 'vue'
+import { computed, toRef } from 'vue'
+import { usePortal } from '~/composables/use-portal'
 import { cn } from '~/utils/styles'
 import Icon from '../icon/icon.vue'
 import Kbd from '../kbd/kbd.vue'
@@ -35,6 +36,7 @@ const props = withDefaults(defineProps<ContextMenuContentProps<T>>(), {
 const emits = defineEmits<ContextMenuContentEmits>()
 const delegated = reactiveOmit(props, 'class', 'ui', 'items', 'checkedIcon', 'loadingIcon', 'externalIcon', 'portal', 'arrow', 'sub')
 const forwarded = useForwardPropsEmits(delegated, emits)
+const portalProps = usePortal(toRef(props, 'portal'))
 
 const items = computed<T[][]>(() => {
   if (!props.items?.length)
@@ -88,7 +90,7 @@ const [
     </span>
   </DefineContextMenuItem>
 
-  <ContextMenuPortal v-bind="portal">
+  <ContextMenuPortal v-bind="portalProps">
     <component
       :is="sub ? RekaContextMenuSubContent : ContextMenuContent"
       v-bind="forwarded"

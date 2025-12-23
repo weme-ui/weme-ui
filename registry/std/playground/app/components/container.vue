@@ -5,12 +5,13 @@ defineProps<{
   name?: string
   description?: string
 }>()
-
-const open = ref(true)
 </script>
 
 <template>
-  <CollapsibleRoot v-model:open="open" class="flex-(~ col) gap-y-6 container px-4 py-3 mx-auto rounded-lg transition-colors last:mb-0 state-open:h-[calc(100vh-11rem)] state-closed:ring-(~ default) state-closed:shadow-sm">
+  <CollapsibleRoot
+    v-slot="{ open }"
+    class="flex-(~ col) gap-y-6 container px-4 py-3 mx-auto rounded-lg transition-colors last:mb-0 state-open:h-[calc(100vh-16rem)] state-closed:ring-(~ default) state-closed:shadow-sm"
+  >
     <div class="flex-(~ y-center) w-full h-6">
       <div class="flex-(~ 1 y-center) gap-3">
         <h2 class="text-highlighted font-medium">

@@ -26,7 +26,7 @@ pnpm dlx @weme-ui/weme-ui add <name>
 
 - General
   - [x] `app`
-  - [ ] `theme`
+  - [ ] `theme` // 稍后实现
   - [x] `button-group`
   - [x] `button`
   - [x] `icon-box`

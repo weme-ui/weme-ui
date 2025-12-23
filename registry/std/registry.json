@@ -1417,6 +1417,24 @@
       ]
     },
     {
+      "name": "theme",
+      "type": "component",
+      "title": "Theme",
+      "description": "Used to provide theme configuration.",
+      "files": [
+        {
+          "type": "type",
+          "path": "components/theme/theme.props.ts",
+          "hash": "0031009d04af68cce54aa54a7ce874bc"
+        },
+        {
+          "type": "component",
+          "path": "components/theme/theme.vue",
+          "hash": "e5315d3d7c48cb04e8d5e353ce1e206b"
+        }
+      ]
+    },
+    {
       "name": "timeline",
       "type": "component",
       "title": "Timeline",

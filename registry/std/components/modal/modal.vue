@@ -1,10 +1,10 @@
 <script lang="ts" setup>
-import type { DialogPortalProps } from 'reka-ui'
 import type { ModalEmits, ModalProps } from './modal.props'
 import { reactivePick } from '@vueuse/core'
 import { AnimatePresence, Motion } from 'motion-v'
 import { DialogClose, DialogContent, DialogDescription, DialogOverlay, DialogPortal, DialogRoot, DialogTitle, DialogTrigger, useForwardPropsEmits } from 'reka-ui'
 import { computed, toRef } from 'vue'
+import { usePortal } from '~/composables/use-portal'
 import { toBoolValue } from '~/utils/props'
 import { cn } from '~/utils/styles'
 import Icon from '../icon/icon.vue'
@@ -30,7 +30,7 @@ const delegated = reactivePick(props, 'defaultOpen', 'modal', 'open')
 const forwarded = useForwardPropsEmits(delegated, emits)
 const motions = useModalMotions(props)
 
-const portalProps = toRef(() => props.portal)
+const portalProps = usePortal(toRef(props, 'portal'))
 const overlayProps = toRef(() => props.overlay)
 const contentProps = toRef(() => props.content)
 
@@ -46,7 +46,7 @@ const ui = computed(() => useModalStyle({
       <slot :open="open" />
     </DialogTrigger>
 
-    <DialogPortal v-bind="typeof portal === 'string' ? { to: portal } : portalProps as DialogPortalProps">
+    <DialogPortal v-bind="portalProps">
       <AnimatePresence>
         <DialogOverlay
           v-if="!!overlay"

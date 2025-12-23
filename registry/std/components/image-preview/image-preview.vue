@@ -2,6 +2,7 @@
 import type { ImagePreviewEmits, ImagePreviewProps } from './image-preview.props'
 import { onKeyStroke, reactiveOmit } from '@vueuse/core'
 import { computed } from 'vue'
+import { usePortal } from '~/composables/use-portal'
 import { cn } from '~/utils/styles'
 import Icon from '../icon/icon.vue'
 import Image from '../image/image.vue'
@@ -14,6 +15,7 @@ const props = withDefaults(defineProps<ImagePreviewProps>(), {
 })
 const emits = defineEmits<ImagePreviewEmits>()
 const imageProps = reactiveOmit(props, 'previewSrc', 'placeholder', 'disabled', 'closeOnEscape', 'portal', 'class', 'ui')
+const portalProps = usePortal(toRef(props, 'portal'))
 const ui = computed(() => useImagePreviewStyle(props))
 
 const show = ref(false)
@@ -40,7 +42,7 @@ function onHidden() {
     <slot v-bind="{ ...imageProps }" />
   </Image>
 
-  <Teleport :to="portal" :disabled="disabled">
+  <Teleport v-bind="portalProps">
     <div v-if="show" :class="cn(ui.preview(), props.ui?.preview)">
       <div v-show="!loaded" :class="cn(ui.previewPlaceholder(), props.ui?.previewPlaceholder)">
         <slot name="placeholder">

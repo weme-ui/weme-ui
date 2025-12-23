@@ -494,6 +494,40 @@
       ]
     },
     {
+      "name": "context-menu",
+      "type": "component",
+      "title": "Context Menu",
+      "description": "Used to display a menu on right-click.",
+      "devDependencies": [
+        "defu"
+      ],
+      "registryDependencies": [
+        "dropdown"
+      ],
+      "files": [
+        {
+          "type": "type",
+          "path": "components/context-menu/context-menu.props.ts",
+          "hash": "222483152cb71d60b4ada555f845bb04"
+        },
+        {
+          "type": "component",
+          "path": "components/context-menu/context-menu.vue",
+          "hash": "084f7f1a978c894c1fb7c0d9c97a8ecd"
+        },
+        {
+          "type": "component",
+          "path": "components/context-menu/context-menu-content.vue",
+          "hash": "d08ded84f36bfb7416dcfa5b58698327"
+        },
+        {
+          "type": "type",
+          "path": "components/context-menu/context-menu-content.props.ts",
+          "hash": "884262342c000769e411833033c48cfb"
+        }
+      ]
+    },
+    {
       "name": "data-list",
       "type": "component",
       "title": "Data List",

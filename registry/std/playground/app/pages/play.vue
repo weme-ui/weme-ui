@@ -69,8 +69,10 @@ const items = computed(() => [
 
 <template>
   <Container name="PLAY YOUR CODE HERE" description="🐗 Hakuna matata">
-    <UiDropdown :items="items">
-      <UiButton>Open</UiButton>
-    </UiDropdown>
+    <UiContextMenu :items="items">
+      <div class="flex-(~ center) text-(xs muted) rounded-lg select-none size-40 b-(~ dashed default)">
+        Right click me
+      </div>
+    </UiContextMenu>
   </Container>
 </template>

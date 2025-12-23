@@ -2,7 +2,8 @@
 import type { ToastProviderProps } from './toast-provider.props'
 import { reactivePick } from '@vueuse/core'
 import { ToastPortal, ToastProvider, ToastViewport, useForwardProps } from 'reka-ui'
-import { computed } from 'vue'
+import { computed, toRef } from 'vue'
+import { usePortal } from '~/composables/use-portal'
 import { useToast } from '~/composables/use-toast'
 import { cn } from '~/utils/styles'
 import { useToastProviderStyle } from './toast-provider.style'
@@ -10,6 +11,8 @@ import { useToastProviderStyle } from './toast-provider.style'
 const props = withDefaults(defineProps<ToastProviderProps>(), { side: 'bottom-right' })
 const delegated = reactivePick(props, 'disableSwipe', 'duration', 'label', 'swipeThreshold')
 const forwarded = useForwardProps(delegated)
+
+const portalProps = usePortal(toRef(props, 'portal'))
 
 const swipeDirection = computed<ToastProviderProps['swipeDirection']>(() => {
   switch (props.side) {
@@ -75,7 +78,7 @@ function onUpdateOpen(value: boolean, id: string | number) {
       @click="toast.onClick && toast.onClick(toast)"
     />
 
-    <ToastPortal>
+    <ToastPortal v-bind="portalProps">
       <ToastViewport
         :data-expanded="expanded"
         :style="{

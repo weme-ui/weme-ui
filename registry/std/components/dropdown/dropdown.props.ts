@@ -1,4 +1,4 @@
-import type { DropdownMenuArrowProps, DropdownMenuPortalProps, DropdownMenuRootEmits, DropdownMenuRootProps } from 'reka-ui'
+import type { DropdownMenuArrowProps, DropdownMenuRootEmits, DropdownMenuRootProps } from 'reka-ui'
 import type { EmitsToProps } from 'vue'
 import type { KbdProps } from '../kbd/kbd.props'
 import type { DropdownContentEmits, DropdownContentProps } from './dropdown-content.props'
@@ -35,7 +35,7 @@ export interface DropdownProps<T extends DropdownItem = DropdownItem> extends Dr
   radius?: DropdownStyleProps['radius']
   translucent?: DropdownStyleProps['translucent']
   content?: Omit<DropdownContentProps<T>, 'sub' | 'class' | 'ui' | 'override' | 'items' | 'checkedIcon' | 'loadingIcon' | 'externalIcon' | 'portal' | 'arrow'> & EmitsToProps<Partial<DropdownContentEmits>>
-  portal?: string | DropdownMenuPortalProps
+  portal?: boolean | string | HTMLElement
   arrow?: boolean | Omit<DropdownMenuArrowProps, 'as' | 'asChild'>
   disabled?: boolean
   class?: any

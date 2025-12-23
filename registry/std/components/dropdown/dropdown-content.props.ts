@@ -1,4 +1,4 @@
-import type { DropdownMenuArrowProps, DropdownMenuContentEmits, DropdownMenuContentProps, DropdownMenuPortalProps } from 'reka-ui'
+import type { DropdownMenuArrowProps, DropdownMenuContentEmits, DropdownMenuContentProps } from 'reka-ui'
 import type { DropdownStyle, DropdownStyleSlots } from './dropdown.style'
 
 export type DropdownContentProps<T> = Omit<DropdownMenuContentProps, 'as' | 'asChild'> & {
@@ -6,7 +6,7 @@ export type DropdownContentProps<T> = Omit<DropdownMenuContentProps, 'as' | 'asC
   checkedIcon: string
   loadingIcon: string
   externalIcon: string
-  portal?: DropdownMenuPortalProps
+  portal?: boolean | string | HTMLElement
   arrow?: boolean | Omit<DropdownMenuArrowProps, 'as' | 'asChild'>
   sub?: boolean
   class?: any

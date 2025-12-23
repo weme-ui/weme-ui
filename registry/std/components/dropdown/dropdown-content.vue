@@ -17,6 +17,7 @@ import {
   DropdownMenuSubTrigger,
   useForwardPropsEmits,
 } from 'reka-ui'
+import { usePortal } from '~/composables/use-portal'
 import { cn } from '~/utils/styles'
 import Icon from '../icon/icon.vue'
 import Kbd from '../kbd/kbd.vue'
@@ -34,6 +35,8 @@ const props = withDefaults(defineProps<DropdownContentProps<T>>(), {
 const emits = defineEmits<DropdownContentEmits>()
 const delegated = reactiveOmit(props, 'class', 'ui', 'items', 'checkedIcon', 'loadingIcon', 'externalIcon', 'portal', 'arrow', 'sub')
 const forwarded = useForwardPropsEmits(delegated, emits)
+
+const portalProps = usePortal(toRef(props, 'portal'))
 
 const items = computed<T[][]>(() => {
   if (!props.items?.length)
@@ -87,7 +90,7 @@ const [
     </span>
   </DefineDropdownMenuItem>
 
-  <DropdownMenuPortal v-bind="portal">
+  <DropdownMenuPortal v-bind="portalProps">
     <component
       :is="sub ? DropdownMenuSubContent : DropdownMenuContent"
       v-bind="forwarded"

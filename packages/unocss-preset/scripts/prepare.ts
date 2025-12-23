@@ -1,12 +1,6 @@
 import { writeFile } from 'node:fs'
 import { transformColor } from '../src/colors/transformer'
-import { ALL_COLOR_NAMES } from '../src/defaults'
-
-const wemeColors: Record<string, string> = {
-  ocean: '#05f',
-  gunmetal: '#1d2129',
-  iron: '#86909c',
-}
+import { ALL_COLOR_NAMES, EXTRA_COLORS } from '../src/defaults'
 
 const neutralColors = ['iron']
 
@@ -14,7 +8,7 @@ const colorNames = [
   'black',
   'white',
   ...ALL_COLOR_NAMES,
-  ...Object.keys(wemeColors),
+  ...Object.keys(EXTRA_COLORS),
 ]
 
 function invertBlackWhite(color: string) {
@@ -30,7 +24,7 @@ function prepareWemeColors() {
 
   content.push('export default {')
   colorNames.forEach((name) => {
-    const color = wemeColors[name] ?? name
+    const color = EXTRA_COLORS[name] ?? name
 
     content.push(`  ${name}: {`)
     // Light

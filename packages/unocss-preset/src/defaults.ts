@@ -3,6 +3,12 @@ import type { WemePresetTheme, WemePresetThemeColorNames } from './types'
 export const BG_LIGHT = '#fff'
 export const BG_DARK = '#111'
 
+export const EXTRA_COLORS: Record<string, string> = {
+  ocean: '#05f',
+  gunmetal: '#1d2129',
+  iron: '#86909c',
+}
+
 export const THEME: WemePresetTheme = {
   id: 'ROOT',
   name: 'ROOT',
@@ -48,6 +54,9 @@ export const VARIANT_MAP: Record<string, string[]> = {
   box: ['solid', 'soft', 'surface', 'outline', 'inverse'],
 }
 
-export const COLOR_NAMES = ['tomato', 'red', 'ruby', 'crimson', 'pink', 'plum', 'purple', 'violet', 'iris', 'indigo', 'blue', 'cyan', 'teal', 'jade', 'green', 'grass', 'bronze', 'gold', 'brown', 'orange', 'sky', 'mint', 'lime', 'yellow', 'amber'] as const
-export const GRAY_COLOR_NAMES = ['gray', 'mauve', 'slate', 'sage', 'olive', 'sand'] as const
-export const ALL_COLOR_NAMES = [...GRAY_COLOR_NAMES, ...COLOR_NAMES] as const
+export const DEFAULT_COLOR_NAMES = ['tomato', 'red', 'ruby', 'crimson', 'pink', 'plum', 'purple', 'violet', 'iris', 'indigo', 'blue', 'cyan', 'teal', 'jade', 'green', 'grass', 'bronze', 'gold', 'brown', 'orange', 'sky', 'mint', 'lime', 'yellow', 'amber'] as const
+export const DEFAULT_GRAY_COLOR_NAMES = ['gray', 'mauve', 'slate', 'sage', 'olive', 'sand'] as const
+export const ALL_COLOR_NAMES = [...DEFAULT_GRAY_COLOR_NAMES, ...DEFAULT_COLOR_NAMES] as const
+
+export const COLOR_NAMES = [...DEFAULT_COLOR_NAMES, 'gunmetal', 'ocean'] as const
+export const GRAY_COLOR_NAMES = [...DEFAULT_GRAY_COLOR_NAMES, 'iron'] as const

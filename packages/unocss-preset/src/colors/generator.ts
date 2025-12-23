@@ -1,7 +1,7 @@
 import type { WemeColorArray, WemeColorMode } from '../types'
 import BezierEasing from 'bezier-easing'
 import Color from 'colorjs.io'
-import { BG_DARK, BG_LIGHT, GRAY_COLOR_NAMES } from '../defaults'
+import { BG_DARK, BG_LIGHT, DEFAULT_GRAY_COLOR_NAMES } from '../defaults'
 import { darkColors, darkGrayColors, lightColors, lightGrayColors } from './colors'
 
 const darkModeEasing = [1, 0, 1, 0] as [number, number, number, number]
@@ -88,7 +88,7 @@ function getScaleFromColor(
       i === arr.findIndex(v => v.scale === c.scale),
   )
 
-  const grayScaleNamesStr = GRAY_COLOR_NAMES as readonly string[]
+  const grayScaleNamesStr = DEFAULT_GRAY_COLOR_NAMES as readonly string[]
   const allAreGrays = closestColors.every(color =>
     grayScaleNamesStr.includes(color.scale),
   )

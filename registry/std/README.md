@@ -108,7 +108,7 @@ pnpm dlx @weme-ui/weme-ui add <name>
   - [ ] `toggle`
 - Overlays
   - [x] `action-sheet`
-  - [ ] `dropdown`
+  - [x] `dropdown`
   - [x] `modal`
   - [ ] `pop-confirm`
   - [x] `popover`

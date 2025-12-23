@@ -1,23 +1,76 @@
 <script lang="ts" setup>
+import type { DropdownItem } from '../../../components/dropdown/dropdown.props'
+
+const showHiddenFiles = ref(true)
+const showFileExtensions = ref(false)
+
+const items = computed(() => [
+  [
+    {
+      icon: 'user',
+      label: 'Profile',
+      shortcut: ['meta', 'P'],
+    },
+  ],
+  [
+    {
+      type: 'label',
+      label: 'Settings',
+    },
+    {
+      type: 'checkbox',
+      icon: 'lucide:eye',
+      label: 'Show hidden files',
+      checked: showHiddenFiles.value,
+      onCheck: (checked: boolean) => {
+        showHiddenFiles.value = checked
+      },
+    },
+    {
+      type: 'checkbox',
+      icon: 'lucide:paperclip',
+      label: 'Show file extensions',
+      checked: showFileExtensions.value,
+      onCheck: (checked: boolean) => {
+        showFileExtensions.value = checked
+      },
+    },
+    {
+      icon: 'lucide:settings',
+      label: 'Settings',
+      children: [
+        {
+          icon: 'lucide:settings',
+          label: 'General',
+          suffix: 'v1.0.0',
+        },
+        {
+          icon: 'lucide:monitor',
+          label: 'Appearance',
+        },
+        {
+          icon: 'lucide:lock',
+          label: 'Privacy',
+        },
+      ],
+    },
+    { type: 'separator' },
+
+  ],
+  [
+    {
+      icon: 'lucide:log-out',
+      label: 'Logout',
+      shortcut: ['meta', 'Q'],
+    },
+  ],
+] satisfies DropdownItem[][])
 </script>
 
 <template>
   <Container name="PLAY YOUR CODE HERE" description="🐗 Hakuna matata">
-    <UiModal icon="lucide:album" title="Title" description="This is a description." variant="normal" size="md" radius="xl" placement="right" translucent closable>
-      <UiButton label="Open" />
-
-      <template #content>
-        <div>
-          Hello World
-        </div>
-      </template>
-
-      <template #footer="{ close }">
-        <UiButtonGroup radius="md">
-          <UiButton label="Apply" variant="solid" class="shadow-xs" />
-          <UiButton label="Cancel" class="shadow-xs" @click="close" />
-        </UiButtonGroup>
-      </template>
-    </UiModal>
+    <UiDropdown :items="items">
+      <UiButton>Open</UiButton>
+    </UiDropdown>
   </Container>
 </template>

@@ -25,7 +25,8 @@
       "action-sheet-bg": "neutral.1",
       "modal-bg": "neutral.1",
       "modal-width": "24rem",
-      "modal-height": "12rem"
+      "modal-height": "12rem",
+      "dropdown-bg": "white.12"
     }
   }
 }

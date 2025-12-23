@@ -517,6 +517,52 @@
       ]
     },
     {
+      "name": "dropdown",
+      "type": "component",
+      "title": "Dropdown",
+      "description": "Used to create an accessible dropdown menu.",
+      "dependencies": [
+        "defu"
+      ],
+      "registryDependencies": [
+        "icon",
+        "kbd",
+        "link-overlay"
+      ],
+      "files": [
+        {
+          "type": "component",
+          "path": "components/dropdown/dropdown.vue",
+          "hash": "e5a85cf53e731f0ee13e135f8aaf08c5"
+        },
+        {
+          "type": "style",
+          "path": "components/dropdown/dropdown.style.ts",
+          "hash": "53e14b83a82f46032cf8411f0fca18c5"
+        },
+        {
+          "type": "type",
+          "path": "components/dropdown/dropdown.props.ts",
+          "hash": "00bb1666ee6353e8f2107877a55a7c7e"
+        },
+        {
+          "type": "component",
+          "path": "components/dropdown/dropdown-content.vue",
+          "hash": "3b20eb4f775ac6d5db545b0f0bca3211"
+        },
+        {
+          "type": "type",
+          "path": "components/dropdown/dropdown-content.props.ts",
+          "hash": "7a6d52d21e0d9dfd363c391f1ead45da"
+        }
+      ],
+      "cssVars": {
+        "dropdown": {
+          "bg": "white.12"
+        }
+      }
+    },
+    {
       "name": "float",
       "type": "component",
       "title": "Float",

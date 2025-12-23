@@ -1,4 +1,4 @@
-import type { TooltipArrowProps, TooltipContentEmits, TooltipContentProps, TooltipPortalProps, TooltipRootEmits, TooltipRootProps, TooltipTriggerProps } from 'reka-ui'
+import type { TooltipArrowProps, TooltipContentEmits, TooltipContentProps, TooltipRootEmits, TooltipRootProps, TooltipTriggerProps } from 'reka-ui'
 import type { EmitsToProps } from 'vue'
 import type { TooltipStyleProps, TooltipStyleSlots } from './tooltip.style'
 
@@ -9,7 +9,7 @@ export interface TooltipProps extends TooltipRootProps {
   content?: Omit<TooltipContentProps, 'as' | 'asChild'> & Partial<EmitsToProps<TooltipContentEmits>>
   arrow?: boolean | Omit<TooltipArrowProps, 'as' | 'asChild'>
   trigger?: TooltipTriggerProps
-  portal?: TooltipPortalProps
+  portal?: boolean | string | HTMLElement
   loading?: boolean
   class?: any
   ui?: Partial<TooltipStyleSlots>

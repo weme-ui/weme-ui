@@ -5,6 +5,7 @@ import { reactivePick } from '@vueuse/core'
 import { defu } from 'defu'
 import { TooltipArrow, TooltipContent, TooltipPortal, TooltipRoot, TooltipTrigger, useForwardPropsEmits } from 'reka-ui'
 import { computed } from 'vue'
+import { usePortal } from '~/composables/use-portal'
 import { cn } from '~/utils/styles'
 import Icon from '../icon/icon.vue'
 import { useTooltipStyle } from './tooltip.style'
@@ -24,7 +25,7 @@ const delegated = reactivePick(props, 'defaultOpen', 'open', 'disabled', 'delayD
 const forwarded = useForwardPropsEmits(delegated, emits)
 
 const triggerProps = toRef(() => props.trigger)
-const portalProps = toRef(() => props.portal)
+const portalProps = usePortal(toRef(props, 'portal'))
 const contentProps = toRef(() => defu(props.content, { sideOffset: 8, collisionPadding: 8 }) as TooltipContentProps)
 
 const side = computed(() => {

@@ -53,6 +53,11 @@
         },
         {
           "type": "composable",
+          "path": "composables/use-portal.ts",
+          "hash": "bcc2bae1af9525e69c1b68be1177eaf1"
+        },
+        {
+          "type": "composable",
           "path": "composables/use-locale.ts",
           "hash": "e9536bbc01ec37e27078453b030401a5"
         },
@@ -155,6 +160,27 @@
           "type": "component",
           "path": "components/alert/alert.vue",
           "hash": "64e201088591b6425665a05e3141ab5b"
+        }
+      ]
+    },
+    {
+      "name": "app",
+      "type": "component",
+      "title": "App",
+      "description": "Used to globally configure the app.",
+      "registryDependencies": [
+        "toast"
+      ],
+      "files": [
+        {
+          "type": "component",
+          "path": "components/app/app.vue",
+          "hash": "82956c96dfedbc134e6acd7d7392aa00"
+        },
+        {
+          "type": "type",
+          "path": "components/app/app.props.ts",
+          "hash": "4eb97450713a88712a832be79344be35"
         }
       ]
     },

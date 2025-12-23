@@ -7,7 +7,7 @@ const config = useRuntimeConfig()
 </script>
 
 <template>
-  <UiToastProvider>
+  <UiApp>
     <Html data-theme="default">
       <main class="relative h-screen">
         <div class="fixed top-6 left-6 size-6">
@@ -38,5 +38,5 @@ const config = useRuntimeConfig()
         </small>
       </main>
     </Html>
-  </UiToastProvider>
+  </UiApp>
 </template>

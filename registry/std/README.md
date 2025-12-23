@@ -25,7 +25,7 @@ pnpm dlx @weme-ui/weme-ui add <name>
 ## 组件列表
 
 - General
-  - [ ] `app`
+  - [x] `app`
   - [ ] `theme`
   - [x] `button-group`
   - [x] `button`
@@ -133,8 +133,11 @@ pnpm dlx @weme-ui/weme-ui add <name>
 
 ## 组合式 API
 
+- [x] `defineLocale`, `useLocale`, `usePortal`
+- [x] `defineShortcuts`, `useShortcuts`
 - [x] `useImageLoadingStatus` includes `UiImage`
 - [x] `useKbd` includes `UiKbd`
+- [x] `useToast` includes `UiToast`, `UiToastProvider`
 
 ---
 

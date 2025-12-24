@@ -5,7 +5,7 @@ export const useSkeletonStyle = createVariants({
   slots: {
     base: [
       'relative bg-muted overflow-hidden',
-      'after:(abs top-0 left-0 right-0 bottom-0 content-[""] transform-gpu animate-marquee will-change-transform)',
+      'after:(abs top-0 left-0 right-0 bottom-0 content-[""] transform-gpu animate-skeleton-shine will-change-transform)',
       'after:(bg-linear-to-r/oklch from-transparent via-elevated to-transparent)',
     ],
     textWrapper: 'flex-(~ col) gap-2',

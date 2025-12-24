@@ -6,24 +6,14 @@ export const animation = {
     'collapse-open': '{0%{height:0}100%{height:var(--reka-collapsible-content-height)}}',
     'collapse-close': '{0%{height:var(--reka-collapsible-content-height)}100%{height:0}}',
 
-    // Marquee
-    'marquee': '{0%{transform:translate(-100%) skew(-15deg)}100%{transform:translate(100%) skew(-15deg)}}',
+    // Skeleton
+    'skeleton-shine': '{0%{transform:translate(-100%) skew(-15deg)}100%{transform:translate(100%) skew(-15deg)}}',
 
     // Scale
     'scale-in': '{0%{transform:scale(0.95);opacity:0}100%{transform:scale(1);opacity:1}}',
     'scale-out': '{0%{transform:scale(1);opacity:1}100%{transform:scale(0.95);opacity:0}}',
     'scale-in-big': '{0%{transform:scale(0.1)}100%{transform:scale(1)}}',
     'scale-out-big': '{0%{transform:scale(1)}100%{transform:scale(0.1)}}',
-
-    // Popup
-    'popup-top': '{from{opacity:0;transform:translate3d(0,5%,0)}to{opacity:1;transform:translate3d(0,0,0)}}',
-    'popup-bottom': '{from{opacity:0;transform:translate3d(0,-5%,0)}to{opacity:1;transform:translate3d(0,0,0)}}',
-    'popup-left': '{from{opacity:0;transform:translate3d(-5%,0,0)}to{opacity:1;transform:translate3d(0,0,0)}}',
-    'popup-right': '{from{opacity:0;transform:translate3d(5%,0,0)}to{opacity:1;transform:translate3d(0,0,0)}}',
-    'popup-out-top': '{from{opacity:1;transform:translate3d(0,0,0)}to{opacity:0;transform:translate3d(0,-2%,0)}}',
-    'popup-out-bottom': '{from{opacity:1;transform:translate3d(0,0,0)}to{opacity:0;transform:translate3d(0,2%,0)}}',
-    'popup-out-left': '{from{opacity:1;transform:translate3d(0,0,0)}to{opacity:0;transform:translate3d(-2%,0,0)}}',
-    'popup-out-right': '{from{opacity:1;transform:translate3d(0,0,0)}to{opacity:0;transform:translate3d(2%,0,0)}}',
 
     // Toast
     'toast-close': '{0%{transform:var(--transform)}100%{transform:translateY(calc((var(--offset)-var(--height))*var(--translate-factor)))}}',
@@ -40,6 +30,10 @@ export const animation = {
     // Progress
     'progress-stripe': '{0%{background-position:0 0}100%{background-position:30px 30px}}',
     'progress-swing': '{0%,100%{width:50%;transform:translate(-25%)}50%{transform:translate(125%)}}',
+
+    // Marquee
+    'marquee-x': '{0%{transform:translateX(0)}100%{transform:translateX(-100%)}}',
+    'marquee-y': '{0%{transform:translateY(0)}100%{transform:translateY(-100%)}}',
   },
 
   durations: {
@@ -47,24 +41,14 @@ export const animation = {
     'collapse-open': '0.2s',
     'collapse-close': '0.2s',
 
-    // Marquee
-    'marquee': '2s',
+    // Skeleton
+    'skeleton-shine': '2s',
 
     // Scale
     'scale-in': '0.1s',
     'scale-out': '0.1s',
     'scale-in-big': '0.15s',
     'scale-out-big': '0.15s',
-
-    // Popup
-    'popup-top': '0.15s',
-    'popup-bottom': '0.15s',
-    'popup-left': '0.15s',
-    'popup-right': '0.15s',
-    'popup-out-top': '0.1s',
-    'popup-out-bottom': '0.1s',
-    'popup-out-left': '0.1s',
-    'popup-out-right': '0.1s',
 
     // Toast
     'toast-close': '0.2s',
@@ -81,6 +65,10 @@ export const animation = {
     // Progress
     'progress-stripe': '2s',
     'progress-swing': '3s',
+
+    // Marquee
+    'marquee-x': 'var(--marquee-duration)',
+    'marquee-y': 'var(--marquee-duration)',
   },
 
   timingFns: {
@@ -88,24 +76,14 @@ export const animation = {
     'collapse-open': 'ease-out',
     'collapse-close': 'ease-out',
 
-    // Marquee
-    'marquee': 'linear',
+    // Skeleton
+    'skeleton-shine': 'linear',
 
     // Scale
     'scale-in': 'ease-out',
     'scale-out': 'ease-in',
     'scale-in-big': 'ease-out',
     'scale-out-big': 'ease-in',
-
-    // Popup
-    'popup-top': 'cubic-bezier(0.16, 1, 0.3, 1)',
-    'popup-bottom': 'cubic-bezier(0.16, 1, 0.3, 1)',
-    'popup-left': 'cubic-bezier(0.16, 1, 0.3, 1)',
-    'popup-right': 'cubic-bezier(0.16, 1, 0.3, 1)',
-    'popup-out-top': 'ease-out',
-    'popup-out-bottom': 'ease-out',
-    'popup-out-left': 'ease-out',
-    'popup-out-right': 'ease-out',
 
     // Toast
     'toast-close': 'ease-in-out',
@@ -125,11 +103,15 @@ export const animation = {
   },
 
   counts: {
-    // Marquee
-    'marquee': 'infinite',
+    // Skeleton
+    'skeleton-shine': 'infinite',
 
     // Progress
     'progress-stripe': 'infinite',
     'progress-swing': 'infinite',
+
+    // Marquee
+    'marquee-x': 'var(--marquee-loop)',
+    'marquee-y': 'var(--marquee-loop)',
   },
 } satisfies Theme['animation']

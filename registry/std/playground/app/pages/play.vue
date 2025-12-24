@@ -15,7 +15,30 @@ const menuItems = computed(() => ([
 </script>
 
 <template>
-  <Container name="UiDropdown" description="🐗 Hakuna matata" default-open>
+  <Container name="UiMarquee" description="🐗 Hakuna matata" default-open>
+    <div class="w-200">
+      <UiMarquee reverse>
+        <UiCard class="w-60">
+          <UiSkeleton variant="text" :lines="3" />
+        </UiCard>
+        <UiCard class="w-60">
+          <UiSkeleton variant="text" :lines="3" />
+        </UiCard>
+        <UiCard class="w-60">
+          <UiSkeleton variant="text" :lines="3" />
+        </UiCard>
+        <UiCard class="w-60">
+          <UiSkeleton variant="text" :lines="3" />
+        </UiCard>
+      </UiMarquee>
+    </div>
+  </Container>
+
+  <Container name="UiSkeleton" description="🐗 Hakuna matata">
+    <UiSkeleton variant="text" :lines="3" class="w-60" />
+  </Container>
+
+  <Container name="UiDropdown" description="🐗 Hakuna matata">
     <UiButtonGroup gap="none">
       <UiButton>
         Click <UiIcon name="arrowRight" />

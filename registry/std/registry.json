@@ -904,6 +904,29 @@
       ]
     },
     {
+      "name": "marquee",
+      "type": "component",
+      "title": "Marquee",
+      "description": "Used to create infinite scrolling content.",
+      "files": [
+        {
+          "type": "style",
+          "path": "components/marquee/marquee.style.ts",
+          "hash": "c59772bf20da364caad51ce5535b2763"
+        },
+        {
+          "type": "component",
+          "path": "components/marquee/marquee.vue",
+          "hash": "acb0322c6a00dc5a86bb9c97f9dfa34c"
+        },
+        {
+          "type": "type",
+          "path": "components/marquee/marquee.props.ts",
+          "hash": "6f3e30739658013f1bc9cc3560ed8351"
+        }
+      ]
+    },
+    {
       "name": "modal",
       "type": "component",
       "title": "Modal",
@@ -1196,7 +1219,7 @@
         {
           "type": "style",
           "path": "components/skeleton/skeleton.style.ts",
-          "hash": "55fe5d4fc81a1724a721bb886430d307"
+          "hash": "0c3a946197e1ebc1f22360e11230185f"
         }
       ]
     },
@@ -1577,29 +1600,6 @@
           "fg": "primary.1"
         }
       }
-    },
-    {
-      "name": "marquee",
-      "type": "component",
-      "title": "Marquee",
-      "description": "Used to create infinite scrolling content.",
-      "files": [
-        {
-          "type": "style",
-          "path": "components/marquee/marquee.style.ts",
-          "hash": "3e4d540462cafa79802e0c6b8c988242"
-        },
-        {
-          "type": "component",
-          "path": "components/marquee/marquee.vue",
-          "hash": "ee459308c074a15a9729e03ad4fe04de"
-        },
-        {
-          "type": "type",
-          "path": "components/marquee/marquee.props.ts",
-          "hash": "73d5f7929646a96b1935bfe508a8ed63"
-        }
-      ]
     }
   ]
 }

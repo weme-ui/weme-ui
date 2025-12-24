@@ -123,8 +123,8 @@ pnpm dlx @weme-ui/weme-ui add <name>
   - [ ] `count-to`
   - [ ] `countdown`
   - [ ] `floating-panel`
-  - [ ] `marquee`
-  - [ ] `qr-code`
+  - [x] `marquee`
+  - [x] `qr-code`
   - [ ] `signature`
   - [ ] `splitter`
   - [ ] `timer`

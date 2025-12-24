@@ -1126,6 +1126,31 @@
       ]
     },
     {
+      "name": "qr-code",
+      "type": "component",
+      "title": "Qr Code",
+      "description": "Used to generate and display QR code.",
+      "devDependencies": [
+        "qrcode",
+        "@types/qrcode"
+      ],
+      "registryDependencies": [
+        "spinner"
+      ],
+      "files": [
+        {
+          "type": "type",
+          "path": "components/qr-code/qr-code.props.ts",
+          "hash": "ff0780dc344c434cae5618ff1085aa82"
+        },
+        {
+          "type": "component",
+          "path": "components/qr-code/qr-code.vue",
+          "hash": "0b73a34f470b474ebaa9961d4c3a05fc"
+        }
+      ]
+    },
+    {
       "name": "result",
       "type": "component",
       "title": "Result",

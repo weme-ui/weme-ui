@@ -35,6 +35,7 @@
   "devDependencies": {
     "@tanstack/vue-table": "catalog:",
     "@tanstack/vue-virtual": "catalog:",
+    "@types/qrcode": "catalog:",
     "@vueuse/core": "catalog:",
     "@weme-ui/nuxt": "workspace:*",
     "@weme-ui/unocss-preset": "workspace:*",
@@ -46,6 +47,7 @@
     "embla-carousel-wheel-gestures": "catalog:",
     "motion-v": "catalog:",
     "nuxt": "catalog:",
+    "qrcode": "catalog:",
     "reka-ui": "catalog:",
     "tailwind-merge": "catalog:",
     "tailwind-variants": "catalog:",

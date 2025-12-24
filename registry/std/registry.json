@@ -881,6 +881,32 @@
       ]
     },
     {
+      "name": "lens",
+      "type": "component",
+      "title": "Lens",
+      "description": "Used to zoom into images, videos, or practically anything.",
+      "devDependencies": [
+        "motion-v"
+      ],
+      "files": [
+        {
+          "type": "type",
+          "path": "components/lens/lens.props.ts",
+          "hash": "3443dd273fead60eb7c7df249dd0dd0b"
+        },
+        {
+          "type": "style",
+          "path": "components/lens/lens.style.ts",
+          "hash": "987315d010c35b8ff2e0cc098ea67fb2"
+        },
+        {
+          "type": "component",
+          "path": "components/lens/lens.vue",
+          "hash": "1db88fbb9498d3c29cb3517842dd3975"
+        }
+      ]
+    },
+    {
       "name": "link-overlay",
       "type": "component",
       "title": "Link Overlay",

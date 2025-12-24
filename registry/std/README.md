@@ -122,14 +122,14 @@ pnpm dlx @weme-ui/weme-ui add <name>
   - [ ] `back-top`
   - [ ] `countdown`
   - [ ] `floating-panel`
-  - [ ] `lens`
-  - [x] `number-ticker`
   - [ ] `signature`
   - [ ] `splitter`
   - [ ] `timer`
   - [ ] `tour`
   - [ ] `watermark`
+  - [x] `lens`
   - [x] `marquee`
+  - [x] `number-ticker`
   - [x] `qr-code`
 
 ## 组合式 API

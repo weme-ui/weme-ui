@@ -4,7 +4,7 @@ import { createVariants } from '~/utils/styles'
 export const useCardStyle = createVariants({
   slots: {
     base: 'relative overflow-hidden',
-    wrapper: 'flex-(~ col) overflow-hidden',
+    wrapper: 'flex-(~ col) h-full overflow-hidden',
     header: 'flex gap-2',
     headerIcon: '',
     headerTitle: 'font-semibold text-highlighted',

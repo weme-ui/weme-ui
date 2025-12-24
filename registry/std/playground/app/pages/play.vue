@@ -15,7 +15,13 @@ const menuItems = computed(() => ([
 </script>
 
 <template>
-  <Container name="UiQRCode" description="🐗 Hakuna matata" default-open>
+  <Container name="UiNumberTicker" description="🐗 Hakuna matata" default-open>
+    <UiCard>
+      <UiNumberTicker :value="100" class="font-(mono bold) text-lg" /> <span class="text-(xs toned)">times</span>
+    </UiCard>
+  </Container>
+
+  <Container name="UiQRCode" description="🐗 Hakuna matata">
     <UiCard>
       <UiQrCode value="https://weme-ui.com" :options="{ width: 180 }" />
     </UiCard>

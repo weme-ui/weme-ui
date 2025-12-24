@@ -120,21 +120,22 @@ pnpm dlx @weme-ui/weme-ui add <name>
   - [ ] `affix`
   - [ ] `anchor`
   - [ ] `back-top`
-  - [ ] `count-to`
   - [ ] `countdown`
   - [ ] `floating-panel`
-  - [x] `marquee`
-  - [x] `qr-code`
+  - [ ] `lens`
+  - [x] `number-ticker`
   - [ ] `signature`
   - [ ] `splitter`
   - [ ] `timer`
   - [ ] `tour`
   - [ ] `watermark`
+  - [x] `marquee`
+  - [x] `qr-code`
 
 ## 组合式 API
 
 - [x] `defineLocale`, `useLocale`, `usePortal`
-- [x] `defineShortcuts`, `useShortcuts`
+- [x] `defineShortcuts`
 - [x] `useImageLoadingStatus` includes `UiImage`
 - [x] `useKbd` includes `UiKbd`
 - [x] `useToast` includes `UiToast`, `UiToastProvider`

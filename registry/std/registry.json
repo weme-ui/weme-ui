@@ -964,6 +964,29 @@
       }
     },
     {
+      "name": "number-ticker",
+      "type": "component",
+      "title": "Number Ticker",
+      "description": "Used to display animated number up or down to a target number.",
+      "files": [
+        {
+          "type": "component",
+          "path": "components/number-ticker/number-ticker.vue",
+          "hash": "e37e178dc8da796ecf7254b65ccf1325"
+        },
+        {
+          "type": "type",
+          "path": "components/number-ticker/number-ticker.props.ts",
+          "hash": "338b26f2c2ef3504a9dc57cea2e59c2c"
+        },
+        {
+          "type": "style",
+          "path": "components/number-ticker/number-ticker.style.ts",
+          "hash": "6ce74a475975bbc0a5e6ed0ae01914cb"
+        }
+      ]
+    },
+    {
       "name": "overflow",
       "type": "component",
       "title": "Overflow",

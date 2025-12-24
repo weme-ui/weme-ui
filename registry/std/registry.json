@@ -1577,6 +1577,29 @@
           "fg": "primary.1"
         }
       }
+    },
+    {
+      "name": "marquee",
+      "type": "component",
+      "title": "Marquee",
+      "description": "Used to create infinite scrolling content.",
+      "files": [
+        {
+          "type": "style",
+          "path": "components/marquee/marquee.style.ts",
+          "hash": "3e4d540462cafa79802e0c6b8c988242"
+        },
+        {
+          "type": "component",
+          "path": "components/marquee/marquee.vue",
+          "hash": "ee459308c074a15a9729e03ad4fe04de"
+        },
+        {
+          "type": "type",
+          "path": "components/marquee/marquee.props.ts",
+          "hash": "73d5f7929646a96b1935bfe508a8ed63"
+        }
+      ]
     }
   ]
 }

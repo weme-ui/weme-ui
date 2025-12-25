@@ -14,7 +14,7 @@ export const useIconButtonStyle = createVariants({
       sm: { base: 'size-6', icon: 'size-4' },
       md: { base: 'size-8', icon: 'size-5' },
       lg: { base: 'size-10', icon: 'size-6' },
-      xl: { base: 'size-16', icon: 'size-11' },
+      xl: { base: 'size-16', icon: 'size-10' },
     },
   },
 

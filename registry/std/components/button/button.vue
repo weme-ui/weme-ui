@@ -46,13 +46,19 @@ async function onClick(event: MouseEvent) {
 </script>
 
 <template>
-  <Primitive v-bind="delegated" :disabled="isDisabled" :class="cn(ui.base(), props.ui?.base, props.class)" @click="onClick">
+  <Primitive
+    v-bind="delegated"
+    data-slot="base"
+    :disabled="isDisabled"
+    :class="cn(ui.base(), props.ui?.base, props.class)"
+    @click="onClick"
+  >
     <template v-if="isLoading">
-      <Icon :name="loadingIcon" :class="cn(ui.icon(), ui.loading(), props.ui?.loading)" />
+      <Icon data-slot="loading" :name="loadingIcon" :class="cn(ui.icon(), ui.loading(), props.ui?.loading)" />
       {{ loadingText || label }}
     </template>
     <template v-else>
-      <Icon v-if="icon" :name="icon" :class="cn(ui.icon(), props.ui?.icon)" />
+      <Icon v-if="icon" data-slot="icon" :name="icon" :class="cn(ui.icon(), props.ui?.icon)" />
       <slot>{{ label }}</slot>
     </template>
   </Primitive>

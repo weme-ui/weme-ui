@@ -18,6 +18,10 @@ export default defineNuxtConfig({
     ],
   },
 
+  alias: {
+    '@registry': fileURLToPath(new URL('./../', import.meta.url)),
+  },
+
   vite: {
     optimizeDeps: {
       include: [

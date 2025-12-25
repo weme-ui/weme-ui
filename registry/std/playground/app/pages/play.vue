@@ -15,7 +15,13 @@ const menuItems = computed(() => ([
 </script>
 
 <template>
-  <Container name="UiLens" description="🐗 Hakuna matata" default-open>
+  <Container name="UiTimer" description="🐗 Hakuna matata" default-open>
+    <UiCard>
+      <UiTimer />
+    </UiCard>
+  </Container>
+
+  <Container name="UiLens" description="🐗 Hakuna matata">
     <UiCard>
       <UiLens :zoom="2" class="rounded-lg">
         <UiImage src="https://images.unsplash.com/photo-1713869820987-519844949a8a?q=80&amp;w=3500&amp;auto=format&amp;fit=crop&amp;ixlib=rb-4.0.3&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="image" width="500" height="500" />

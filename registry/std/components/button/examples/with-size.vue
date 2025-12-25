@@ -5,7 +5,7 @@ const sizes = ['xs', 'sm', 'md', 'lg', 'xl'] as const
 </script>
 
 <template>
-  <div class="flex-(~ center) gap-6 flex-wrap">
+  <div class="flex-(~ center) gap-6 h-full flex-wrap">
     <template v-for="size in sizes" :key="size">
       <Button :label="size" :size="size" class="place-self-center" />
     </template>

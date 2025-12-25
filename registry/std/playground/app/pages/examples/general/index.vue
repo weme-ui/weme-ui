@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import ButtonGroupExamples from './button-group.vue'
 import ButtonExamples from './button.vue'
+import IconBoxExamples from './icon-box.vue'
 import IconExamples from './icon.vue'
 </script>
 
@@ -15,5 +16,9 @@ import IconExamples from './icon.vue'
 
   <Example title="图标" description="Icon">
     <IconExamples />
+  </Example>
+
+  <Example title="图标容器" description="Icon Box">
+    <IconBoxExamples />
   </Example>
 </template>

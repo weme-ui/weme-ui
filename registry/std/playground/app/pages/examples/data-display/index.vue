@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+import ItemExamples from './item.vue'
 </script>
 
 <template>
@@ -43,7 +44,7 @@
   </Example>
 
   <Example title="项目" description="Item">
-    <!--  -->
+    <ItemExamples />
   </Example>
 
   <Example title="统计" description="Stat">

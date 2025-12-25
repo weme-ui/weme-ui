@@ -1,5 +1,7 @@
-import { fileURLToPath } from 'node:url'
+import { createResolver } from 'nuxt/kit'
 import { version } from '../package.json'
+
+const { resolve } = createResolver(import.meta.url)
 
 export default defineNuxtConfig({
   modules: [
@@ -11,7 +13,7 @@ export default defineNuxtConfig({
       '~/components',
       {
         prefix: 'Ui',
-        path: fileURLToPath(new URL('./../components', import.meta.url)),
+        path: resolve('../'),
         pathPrefix: false,
         extensions: ['.vue'],
       },
@@ -19,7 +21,7 @@ export default defineNuxtConfig({
   },
 
   alias: {
-    '@registry': fileURLToPath(new URL('./../', import.meta.url)),
+    '@registry': resolve('../'),
   },
 
   vite: {

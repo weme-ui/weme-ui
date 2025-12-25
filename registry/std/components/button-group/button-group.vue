@@ -2,7 +2,9 @@
 import type { ButtonGroupProps } from './button-group.props'
 import { reactivePick } from '@vueuse/core'
 import { Primitive } from 'reka-ui'
-import { computed } from 'vue'
+import { computed, useSlots } from 'vue'
+import { toBoolDataAttrValue } from '~/utils/props'
+import { getChildrenSlots } from '~/utils/slots'
 import { cn } from '~/utils/styles'
 import { useButtonGroupStyle } from './button-group.style'
 
@@ -31,7 +33,7 @@ const ui = computed(() => useButtonGroupStyle({
   <Primitive
     v-bind="delegated"
     data-slot="root"
-    :data-disabled="disabled"
+    :data-disabled="toBoolDataAttrValue(disabled)"
     :class="cn(ui.root(), props.ui?.root, props.class)"
   >
     <template v-for="(child, index) in children" :key="index">

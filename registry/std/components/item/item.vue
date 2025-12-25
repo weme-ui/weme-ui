@@ -28,31 +28,33 @@ const ui = computed(() => useItemStyle({
 </script>
 
 <template>
-  <Primitive :as="as" :class="cn(ui.base(), props.ui?.base, props.class)">
-    <dl :class="cn(ui.item(), props.ui?.item)">
-      <slot v-if="$slots.indicator || icon" name="indicator">
-        <Icon v-if="icon" :name="icon" :class="cn(ui.indicator(), props.ui?.indicator)" />
-      </slot>
-      <div :class="cn(ui.wrapper(), props.ui?.wrapper)">
+  <Primitive :as="as" data-slot="root" :class="cn(ui.root(), props.ui?.root, props.class)">
+    <dl data-slot="item" :class="cn(ui.item(), props.ui?.item)">
+      <div v-if="$slots.indicator || icon" data-slot="indicator" :class="cn(ui.indicator(), props.ui?.indicator)">
+        <slot name="indicator">
+          <Icon v-if="icon" data-slot="indicatorIcon" :name="icon" :class="cn(ui.indicatorIcon(), props.ui?.indicatorIcon)" />
+        </slot>
+      </div>
+      <div data-slot="wrapper" :class="cn(ui.wrapper(), props.ui?.wrapper)">
         <slot name="content">
-          <dt v-if="$slots.label || label" :class="cn(ui.label(), props.ui?.label)">
-            <slot name="label">
-              {{ label }}
+          <dt v-if="$slots.title || title" data-slot="title" :class="cn(ui.title(), props.ui?.title)">
+            <slot name="title">
+              {{ title }}
             </slot>
           </dt>
-          <dd v-if="$slots.description || description" :class="cn(ui.description(), props.ui?.description)">
+          <dd v-if="$slots.description || description" data-slot="description" :class="cn(ui.description(), props.ui?.description)">
             <slot name="description">
               {{ description }}
             </slot>
           </dd>
         </slot>
       </div>
-      <div v-if="$slots.default || clickable || showArrow || loading" :class="cn(ui.content(), props.ui?.content)">
+      <div v-if="$slots.default || clickable || arrow || loading" data-slot="content" :class="cn(ui.content(), props.ui?.content)">
         <slot>
           {{ content }}
         </slot>
-        <Icon v-if="loading" :name="loadingIcon" class="animate-spin" />
-        <Icon v-else-if="clickable && showArrow" :name="arrowIcon" />
+        <Icon v-if="loading" :name="loadingIcon" data-slot="loading" :class="cn(ui.loading(), props.ui?.loading)" />
+        <Icon v-else-if="clickable || arrow" data-slot="arrow" :name="arrowIcon" :class="cn(ui.arrow(), props.ui?.arrow)" />
       </div>
     </dl>
     <LinkOverlay v-if="href && !disabled" :href="href" :target="target" :rel="rel" />

@@ -3,7 +3,7 @@ import type { ItemStyleProps, ItemStyleSlots } from './item.style'
 
 export interface ItemProps extends PrimitiveProps {
   icon?: string
-  label?: string
+  title?: string
   description?: string
   content?: string
   arrowIcon?: string
@@ -19,7 +19,7 @@ export interface ItemProps extends PrimitiveProps {
   loading?: boolean
   disabled?: boolean
   clickable?: boolean
-  showArrow?: boolean
+  arrow?: boolean
   class?: any
   ui?: Partial<ItemStyleSlots>
 }

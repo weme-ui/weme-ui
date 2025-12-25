@@ -3,6 +3,7 @@ import ButtonGroupExamples from './button-group.vue'
 import ButtonExamples from './button.vue'
 import IconBoxExamples from './icon-box.vue'
 import IconExamples from './icon.vue'
+import KbdExamples from './kbd.vue'
 </script>
 
 <template>
@@ -20,5 +21,9 @@ import IconExamples from './icon.vue'
 
   <Example title="图标容器" description="Icon Box">
     <IconBoxExamples />
+  </Example>
+
+  <Example title="键盘按键" description="Kbd">
+    <KbdExamples />
   </Example>
 </template>

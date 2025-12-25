@@ -13,12 +13,12 @@ export const useIconBoxStyle = createVariants({
     variant: { solid: '', soft: '', surface: '', outline: '', plain: '', inverse: '' },
     radius: {
       none: '',
-      xs: 'rounded-xs',
-      sm: 'rounded-sm',
-      md: 'rounded-md',
-      lg: 'rounded-lg',
-      xl: 'rounded-xl',
-      full: 'rounded-full',
+      xs: { root: 'rounded-xs' },
+      sm: { root: 'rounded-sm' },
+      md: { root: 'rounded-md' },
+      lg: { root: 'rounded-lg' },
+      xl: { root: 'rounded-xl' },
+      full: { root: 'rounded-full' },
     },
     size: {
       xs: { root: 'size-5', icon: 'size-3.5' },

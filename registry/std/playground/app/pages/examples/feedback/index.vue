@@ -2,7 +2,31 @@
 </script>
 
 <template>
-  <Example icon="lucide:inbox" title="反馈" description="用于用户反馈的组件。">
+  <Example title="警告" description="Alert">
+    <!--  -->
+  </Example>
+
+  <Example title="横幅" description="Banner">
+    <!--  -->
+  </Example>
+
+  <Example title="进度" description="Progress">
+    <!--  -->
+  </Example>
+
+  <Example title="结果" description="Result">
+    <!--  -->
+  </Example>
+
+  <Example title="骨架" description="Skeleton">
+    <!--  -->
+  </Example>
+
+  <Example title="加载" description="Spinner">
+    <!--  -->
+  </Example>
+
+  <Example title="通知" description="Toast">
     <!--  -->
   </Example>
 </template>

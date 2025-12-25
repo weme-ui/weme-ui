@@ -1,17 +1,20 @@
 <script lang="ts" setup>
+import AspectRationExamples from './aspect-ratio.vue'
+import FloatExamples from './float.vue'
+import GroupExamples from './group.vue'
 </script>
 
 <template>
   <Example title="宽高比" description="Aspect Ratio">
-    <!--  -->
+    <AspectRationExamples />
   </Example>
 
   <Example title="浮动" description="Float">
-    <!--  -->
+    <FloatExamples />
   </Example>
 
   <Example title="组合" description="Group">
-    <!--  -->
+    <GroupExamples />
   </Example>
 
   <Example title="溢出" description="Overflow">

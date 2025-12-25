@@ -33,6 +33,8 @@
     "typecheck": "vue-tsc --noEmit"
   },
   "devDependencies": {
+    "@iconify-json/lucide": "catalog:",
+    "@iconify-json/mingcute": "catalog:",
     "@tanstack/vue-table": "catalog:",
     "@tanstack/vue-virtual": "catalog:",
     "@types/qrcode": "catalog:",

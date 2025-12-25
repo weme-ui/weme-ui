@@ -16,7 +16,7 @@ const groups = [
 </script>
 
 <template>
-  <div class="grid-(~ cols-3) px-24 gap-8">
+  <div class="grid-(~ cols-2) px-24 gap-8">
     <template v-for="group in groups" :key="group.title">
       <UiItem v-bind="group" variant="outline" clickable show-arrow>
         <template #indicator>

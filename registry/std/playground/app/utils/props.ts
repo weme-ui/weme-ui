@@ -2,6 +2,10 @@ export function toBoolValue(value: any) {
   return value === '' || value === true
 }
 
+export function toBoolDataAttrValue(value: any) {
+  return toBoolValue(value) ? '' : undefined
+}
+
 export function get(object: Record<string, any> | undefined, path: (string | number)[] | string, defaultValue?: any): any {
   if (typeof path === 'string') {
     path = path.split('.').map((key) => {

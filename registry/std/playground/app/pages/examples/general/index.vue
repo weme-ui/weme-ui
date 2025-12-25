@@ -2,6 +2,7 @@
 import ButtonGroupExamples from './button-group.vue'
 import ButtonExamples from './button.vue'
 import IconBoxExamples from './icon-box.vue'
+import IconButtonExamples from './icon-button.vue'
 import IconExamples from './icon.vue'
 import KbdExamples from './kbd.vue'
 </script>
@@ -17,6 +18,10 @@ import KbdExamples from './kbd.vue'
 
   <Example title="图标" description="Icon">
     <IconExamples />
+  </Example>
+
+  <Example title="图标按钮" description="Icon Button">
+    <IconButtonExamples />
   </Example>
 
   <Example title="图标容器" description="Icon Box">

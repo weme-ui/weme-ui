@@ -4,7 +4,7 @@ import { createVariants } from '~/utils/styles'
 
 export const useIconBoxStyle = createVariants({
   slots: {
-    base: 'flex-(~ center)',
+    root: 'flex-(~ center)',
     icon: 'shrink-0',
   },
 
@@ -21,11 +21,11 @@ export const useIconBoxStyle = createVariants({
       full: 'rounded-full',
     },
     size: {
-      xs: { base: 'size-5', icon: 'size-3' },
-      sm: { base: 'size-6', icon: 'size-3.5' },
-      md: { base: 'size-8', icon: 'size-4' },
-      lg: { base: 'size-10', icon: 'size-5' },
-      xl: { base: 'size-16', icon: 'size-8' },
+      xs: { root: 'size-5', icon: 'size-3.5' },
+      sm: { root: 'size-6', icon: 'size-4' },
+      md: { root: 'size-8', icon: 'size-5' },
+      lg: { root: 'size-10', icon: 'size-6' },
+      xl: { root: 'size-16', icon: 'size-10' },
     },
   },
 
@@ -33,7 +33,7 @@ export const useIconBoxStyle = createVariants({
     ...createColorCompoundVariants({
       type: 'box',
       variants: ['solid', 'soft', 'surface', 'outline', 'plain', 'inverse'],
-      slot: 'base',
+      slot: 'root',
     }),
   ],
 

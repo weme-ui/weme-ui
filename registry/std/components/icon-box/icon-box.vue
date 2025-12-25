@@ -14,15 +14,15 @@ const props = withDefaults(defineProps<IconBoxProps>(), {
   size: 'md',
 })
 
-const delegated = reactivePick(props, 'as', 'asChild')
+const rootProps = reactivePick(props, 'as', 'asChild')
 const iconProps = reactiveOmit(props, 'as', 'asChild', 'ui', 'class')
 const ui = computed(() => useIconBoxStyle(props))
 </script>
 
 <template>
-  <Primitive v-bind="delegated" :class="cn(ui.base(), props.ui?.base, props.class)">
+  <Primitive v-bind="rootProps" data-slot="root" :class="cn(ui.root(), props.ui?.root, props.class)">
     <slot>
-      <Icon v-bind="iconProps" :class="cn(ui.icon(), props.ui?.icon)" />
+      <Icon v-bind="iconProps" data-slot="icon" :class="cn(ui.icon(), props.ui?.icon)" />
     </slot>
   </Primitive>
 </template>

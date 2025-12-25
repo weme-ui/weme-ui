@@ -13,6 +13,7 @@ export const useIconBoxStyle = createVariants({
     variant: { solid: '', soft: '', surface: '', outline: '', plain: '', inverse: '' },
     radius: {
       none: '',
+      xs: 'rounded-xs',
       sm: 'rounded-sm',
       md: 'rounded-md',
       lg: 'rounded-lg',

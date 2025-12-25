@@ -17,5 +17,12 @@ const ui = computed(() => useIconButtonStyle({
 </script>
 
 <template>
-  <Button v-bind="delegated" :class="cn(ui.base(), props.ui?.base, props.class)" />
+  <Button
+    v-bind="delegated"
+    :class="cn(ui.base(), props.ui?.base, props.class)"
+    :ui="{
+      icon: ui.icon(),
+      loading: ui.loading(),
+    }"
+  />
 </template>

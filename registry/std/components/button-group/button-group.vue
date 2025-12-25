@@ -28,7 +28,12 @@ const ui = computed(() => useButtonGroupStyle({
 </script>
 
 <template>
-  <Primitive v-bind="delegated" :class="cn(ui.base(), props.ui?.base, props.class)">
+  <Primitive
+    v-bind="delegated"
+    data-slot="root"
+    :data-disabled="disabled"
+    :class="cn(ui.root(), props.ui?.root, props.class)"
+  >
     <template v-for="(child, index) in children" :key="index">
       <component
         :is="child"
@@ -43,6 +48,7 @@ const ui = computed(() => useButtonGroupStyle({
           : index === children.length - 1
             ? 'last'
             : 'middle'"
+        data-slot="item"
       />
     </template>
   </Primitive>

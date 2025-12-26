@@ -5,6 +5,7 @@ import GroupExamples from './group.vue'
 import OverflowExamples from './overflow.vue'
 import ScrollAreaExamples from './scroll-area.vue'
 import SeparatorExamples from './separator.vue'
+import StackExamples from './stack.vue'
 </script>
 
 <template>
@@ -33,6 +34,6 @@ import SeparatorExamples from './separator.vue'
   </Example>
 
   <Example title="堆叠" description="Stack">
-    <!--  -->
+    <StackExamples />
   </Example>
 </template>

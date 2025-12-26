@@ -4,8 +4,8 @@ import { createVariants } from '~/utils/styles'
 
 export const useTagStyle = createVariants({
   slots: {
-    base: 'flex-(inline center) select-none',
-    label: 'flex-1 truncate text-nowrap',
+    root: 'flex-(inline center) select-none',
+    label: 'flex-(~ 1 center) truncate text-nowrap',
     close: [
       'relative flex-(~ center) rounded-full',
       'hover:before:(abs abs-center block content-[""] size-full rounded-full transition-opacity bg-current op-15)',
@@ -17,22 +17,21 @@ export const useTagStyle = createVariants({
     color: createColorVariants({ defaults: '' }),
     variant: { solid: '', soft: '', surface: '', outline: '', inverse: '' },
     size: {
-      xs: { base: 'text-xs h-5 gap-1 leading-none', close: 'size-3' },
-      sm: { base: 'text-xs h-6 gap-1', close: 'size-4' },
-      md: { base: 'text-sm h-8 gap-1.5', close: 'size-5' },
-      lg: { base: 'text-base h-10 gap-2', close: 'size-6' },
+      xs: { root: 'text-xs h-5 gap-1 leading-none', close: 'size-3' },
+      sm: { root: 'text-xs h-6 gap-1', close: 'size-4' },
+      md: { root: 'text-sm h-8 gap-1.5', close: 'size-5' },
+      lg: { root: 'text-base h-10 gap-2', close: 'size-6' },
     },
     radius: {
       none: '',
-      sm: 'rounded-sm',
-      md: 'rounded-md',
-      lg: 'rounded-lg',
-      xl: 'rounded-xl',
-      full: 'rounded-full',
+      xs: { root: 'rounded-xs' },
+      sm: { root: 'rounded-sm' },
+      md: { root: 'rounded-md' },
+      lg: { root: 'rounded-lg' },
+      xl: { root: 'rounded-xl' },
+      full: { root: 'rounded-full' },
     },
-    disabled: {
-      true: 'is-disabled',
-    },
+    disabled: { true: { root: 'is-disabled' } },
     closable: { true: '' },
   },
 
@@ -40,18 +39,18 @@ export const useTagStyle = createVariants({
     ...createColorCompoundVariants({
       type: 'box',
       variants: ['solid', 'soft', 'surface', 'outline', 'inverse'],
-      slot: 'base',
+      slot: 'root',
     }),
 
-    { size: 'xs', closable: true, class: { base: 'pl-1.5 pr-1' } },
-    { size: 'sm', closable: true, class: { base: 'pl-2.5 pr-1.5' } },
-    { size: 'md', closable: true, class: { base: 'pl-3 pr-2' } },
-    { size: 'lg', closable: true, class: { base: 'pl-4 pr-3' } },
+    { size: 'xs', closable: true, class: { root: 'pl-1.5 pr-1' } },
+    { size: 'sm', closable: true, class: { root: 'pl-2.5 pr-1.5' } },
+    { size: 'md', closable: true, class: { root: 'pl-3 pr-2' } },
+    { size: 'lg', closable: true, class: { root: 'pl-4 pr-3' } },
 
-    { size: 'xs', closable: false, class: { base: 'px-1.5' } },
-    { size: 'sm', closable: false, class: { base: 'px-2.5' } },
-    { size: 'md', closable: false, class: { base: 'px-3' } },
-    { size: 'lg', closable: false, class: { base: 'px-4' } },
+    { size: 'xs', closable: false, class: { root: 'px-1.5' } },
+    { size: 'sm', closable: false, class: { root: 'px-2.5' } },
+    { size: 'md', closable: false, class: { root: 'px-3' } },
+    { size: 'lg', closable: false, class: { root: 'px-4' } },
   ],
 
   defaultVariants: {

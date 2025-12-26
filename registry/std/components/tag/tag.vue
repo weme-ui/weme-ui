@@ -10,11 +10,11 @@ import Icon from '../icon/icon.vue'
 import { useTagStyle } from './tag.style'
 
 const props = withDefaults(defineProps<TagProps>(), {
-  closeIcon: 'close',
   color: 'primary',
   variant: 'soft',
   size: 'sm',
   radius: 'sm',
+  closeIcon: 'close',
   disabled: false,
   closable: false,
 })
@@ -39,11 +39,11 @@ function onClose() {
 
 <template>
   <Presence v-if="visible" :present="visible">
-    <Primitive v-bind="forwarded" :class="cn(ui.base(), props.ui?.base, props.class)">
-      <span :class="cn(ui.label(), props.ui?.label)">
+    <Primitive v-bind="forwarded" data-slot="root" :class="cn(ui.root(), props.ui?.root, props.class)">
+      <span :class="cn(ui.label(), props.ui?.label)" data-slot="label">
         <slot>{{ label }}</slot>
       </span>
-      <button v-if="closable" :aria-label="t('tag.close')" :class="cn(ui.close(), props.ui?.close)" @click="onClose">
+      <button v-if="closable" :aria-label="t('tag.close')" data-slot="close" :class="cn(ui.close(), props.ui?.close)" @click="onClose">
         <slot name="close">
           <Icon :name="closeIcon" />
         </slot>

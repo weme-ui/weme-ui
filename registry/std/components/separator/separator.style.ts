@@ -3,7 +3,7 @@ import { createVariants } from '~/utils/styles'
 
 export const useSeparatorStyle = createVariants({
   slots: {
-    base: '',
+    root: '',
     label: 'text-(xs toned) select-none px-2',
     separator: '',
   },
@@ -21,7 +21,7 @@ export const useSeparatorStyle = createVariants({
     },
     size: { xs: '', sm: '', md: '', lg: '' },
     hasLabel: {
-      true: { base: 'flex' },
+      true: { root: 'flex' },
     },
     labelPlacement: { start: '', center: '', end: '' },
   },
@@ -33,20 +33,27 @@ export const useSeparatorStyle = createVariants({
     { variant: 'gradient', hasLabel: true, orientation: 'horizontal', labelPlacement: 'start', class: { separator: 'from-border' } },
     { variant: 'gradient', hasLabel: true, orientation: 'horizontal', labelPlacement: 'end', class: { separator: 'to-border' } },
 
-    { variant: ['solid', 'dashed', 'dotted'], orientation: 'horizontal', class: { separator: 'b-t' } },
-    { variant: ['solid', 'dashed', 'dotted'], orientation: 'vertical', class: { separator: 'b-l' } },
+    { orientation: 'horizontal', variant: 'gradient', size: 'xs', class: { separator: 'h-px' } },
+    { orientation: 'horizontal', variant: 'gradient', size: 'sm', class: { separator: 'h-[2px]' } },
+    { orientation: 'horizontal', variant: 'gradient', size: 'md', class: { separator: 'h-[3px]' } },
+    { orientation: 'horizontal', variant: 'gradient', size: 'lg', class: { separator: 'h-[4px]' } },
 
-    { orientation: 'horizontal', size: 'xs', class: { separator: 'h-px' } },
-    { orientation: 'horizontal', size: 'sm', class: { separator: 'h-[2px]' } },
-    { orientation: 'horizontal', size: 'md', class: { separator: 'h-[3px]' } },
-    { orientation: 'horizontal', size: 'lg', class: { separator: 'h-[4px]' } },
+    { orientation: 'vertical', variant: 'gradient', size: 'xs', class: { separator: 'w-px' } },
+    { orientation: 'vertical', variant: 'gradient', size: 'sm', class: { separator: 'w-[2px]' } },
+    { orientation: 'vertical', variant: 'gradient', size: 'md', class: { separator: 'w-[3px]' } },
+    { orientation: 'vertical', variant: 'gradient', size: 'lg', class: { separator: 'w-[4px]' } },
 
-    { orientation: 'vertical', size: 'xs', class: { separator: 'w-px' } },
-    { orientation: 'vertical', size: 'sm', class: { separator: 'w-[2px]' } },
-    { orientation: 'vertical', size: 'md', class: { separator: 'w-[3px]' } },
-    { orientation: 'vertical', size: 'lg', class: { separator: 'w-[4px]' } },
+    { orientation: 'horizontal', variant: ['solid', 'dashed', 'dotted'], size: 'xs', class: { separator: 'b-t-px' } },
+    { orientation: 'horizontal', variant: ['solid', 'dashed', 'dotted'], size: 'sm', class: { separator: 'b-t-[2px]' } },
+    { orientation: 'horizontal', variant: ['solid', 'dashed', 'dotted'], size: 'md', class: { separator: 'b-t-[3px]' } },
+    { orientation: 'horizontal', variant: ['solid', 'dashed', 'dotted'], size: 'lg', class: { separator: 'b-t-[4px]' } },
 
-    { orientation: 'horizontal', hasLabel: true, class: { base: 'items-center' } },
+    { orientation: 'vertical', variant: ['solid', 'dashed', 'dotted'], size: 'xs', class: { separator: 'b-r-px' } },
+    { orientation: 'vertical', variant: ['solid', 'dashed', 'dotted'], size: 'sm', class: { separator: 'b-r-[2px]' } },
+    { orientation: 'vertical', variant: ['solid', 'dashed', 'dotted'], size: 'md', class: { separator: 'b-r-[3px]' } },
+    { orientation: 'vertical', variant: ['solid', 'dashed', 'dotted'], size: 'lg', class: { separator: 'b-r-[4px]' } },
+
+    { orientation: 'horizontal', hasLabel: true, class: { root: 'items-center' } },
   ],
 
   defaultVariants: {

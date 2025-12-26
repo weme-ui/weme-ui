@@ -23,12 +23,12 @@ const ui = computed(() => useSeparatorStyle({
 </script>
 
 <template>
-  <div v-if="label" :class="cn(ui.base(), props.ui?.base, props.class)">
-    <Separator v-if="labelPlacement !== 'start'" v-bind="delegated" :class="cn(ui.separator({ labelPlacement: 'end' }), props.ui?.separator)" />
-    <span :class="cn(ui.label(), props.ui?.label)">
+  <div v-if="label" data-slot="root" :class="cn(ui.root(), props.ui?.root, props.class)">
+    <Separator v-if="labelPlacement !== 'start'" v-bind="delegated" data-slot="separator" :class="cn(ui.separator({ labelPlacement: 'end' }), props.ui?.separator)" />
+    <span :class="cn(ui.label(), props.ui?.label)" data-slot="label">
       {{ label }}
     </span>
-    <Separator v-if="labelPlacement !== 'end'" v-bind="delegated" :class="cn(ui.separator({ labelPlacement: 'start' }), props.ui?.separator)" />
+    <Separator v-if="labelPlacement !== 'end'" v-bind="delegated" data-slot="separator" :class="cn(ui.separator({ labelPlacement: 'start' }), props.ui?.separator)" />
   </div>
-  <Separator v-else v-bind="delegated" :class="cn(ui.separator(), props.ui?.separator, props.class)" />
+  <Separator v-else v-bind="delegated" data-slot="separator" :class="cn(ui.separator(), props.ui?.separator, props.class)" />
 </template>

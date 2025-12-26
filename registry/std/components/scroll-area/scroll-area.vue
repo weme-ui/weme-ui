@@ -20,7 +20,12 @@ const props = withDefaults(defineProps<ScrollAreaProps<T>>(), {
 const emits = defineEmits<ScrollAreaEmits>()
 defineSlots<ScrollAreaSlots<T>>()
 
-const ui = computed(() => useScrollAreaStyle(props))
+const ui = computed(() => useScrollAreaStyle({
+  orientation: props.orientation,
+  size: props.size,
+  radius: props.radius,
+  virtualize: toBoolValue(props.virtualize),
+}))
 const rootRef = useTemplateRef<ComponentPublicInstance>('rootRef')
 const { dir } = useLocale()
 
@@ -153,9 +158,20 @@ defineExpose({
 </script>
 
 <template>
-  <ScrollAreaRoot ref="rootRef" :as="as" :data-orientation="orientation" :class="cn(ui.base(), props.ui?.base, props.class)">
+  <ScrollAreaRoot
+    ref="rootRef"
+    :as="as"
+    :data-orientation="orientation"
+    :class="cn(ui.root(), props.ui?.root, props.class)"
+    data-slot="root"
+  >
     <template v-if="virtualizer">
-      <ScrollAreaViewport :style="virtualViewportStyle" :class="cn(ui.viewport(), props.ui?.viewport)">
+      <ScrollAreaViewport
+        data-slot="viewport"
+        data-virtualize=""
+        :style="virtualViewportStyle"
+        :class="cn(ui.viewport(), props.ui?.viewport)"
+      >
         <div
           v-for="virtualItem in virtualItems"
           :key="String(virtualItem.key)"
@@ -163,6 +179,7 @@ defineExpose({
           :data-index="virtualItem.index"
           :class="ui.item({ class: props.ui?.item })"
           :style="getVirtualItemStyle(virtualItem)"
+          data-slot="item"
         >
           <slot
             :item="(items?.[virtualItem.index] as T)"
@@ -174,9 +191,14 @@ defineExpose({
     </template>
 
     <template v-else>
-      <ScrollAreaViewport :class="cn(ui.viewport(), props.ui?.viewport)">
+      <ScrollAreaViewport data-slot="viewport" :class="cn(ui.viewport(), props.ui?.viewport)">
         <template v-if="items?.length">
-          <div v-for="(item, index) in items" :key="getItemKey(item, index)" :class="cn(ui.item(), props.ui?.item)">
+          <div
+            v-for="(item, index) in items"
+            :key="getItemKey(item, index)"
+            :class="cn(ui.item(), props.ui?.item)"
+            data-slot="item"
+          >
             <slot :item="item" :index="index" />
           </div>
         </template>
@@ -186,8 +208,8 @@ defineExpose({
       </ScrollAreaViewport>
     </template>
 
-    <ScrollAreaScrollbar :orientation="orientation" :class="cn(ui.scrollbar(), props.ui?.scrollbar)">
-      <ScrollAreaThumb :class="cn(ui.thumb(), props.ui?.thumb)" />
+    <ScrollAreaScrollbar :orientation="orientation" :class="cn(ui.scrollbar(), props.ui?.scrollbar)" data-slot="scrollbar">
+      <ScrollAreaThumb :class="cn(ui.thumb(), props.ui?.thumb)" data-slot="thumb" />
     </ScrollAreaScrollbar>
   </ScrollAreaRoot>
 </template>

@@ -3,7 +3,7 @@ import { createVariants } from '~/utils/styles'
 
 export const useScrollAreaStyle = createVariants({
   slots: {
-    base: 'relative',
+    root: 'relative',
     viewport: 'relative size-full scroll-smooth rounded-inherit',
     scrollbar: [
       'flex select-none touch-none bg-transparent',
@@ -19,8 +19,8 @@ export const useScrollAreaStyle = createVariants({
 
   variants: {
     orientation: {
-      vertical: { base: 'overflow-y-auto overflow-x-hidden', scrollbar: 'flex-row' },
-      horizontal: { base: 'overflow-x-auto overflow-y-hidden', scrollbar: 'flex-col' },
+      vertical: { scrollbar: 'flex-row' },
+      horizontal: { scrollbar: 'flex-col' },
     },
     size: { xs: '', sm: '', md: '', lg: '' },
     radius: {
@@ -28,6 +28,10 @@ export const useScrollAreaStyle = createVariants({
       sm: { thumb: 'rounded-sm before:rounded-xs' },
       md: { thumb: 'rounded-md before:rounded-sm' },
       lg: { thumb: 'rounded-lg before:rounded-md' },
+    },
+    virtualize: {
+      true: { root: 'overflow-hidden' },
+      false: '',
     },
   },
 
@@ -41,11 +45,18 @@ export const useScrollAreaStyle = createVariants({
     { orientation: 'horizontal', size: 'sm', class: { scrollbar: 'h-1.5 mb-0.5 ml-0.5' } },
     { orientation: 'horizontal', size: 'md', class: { scrollbar: 'h-2 mb-0.5 ml-0.5' } },
     { orientation: 'horizontal', size: 'lg', class: { scrollbar: 'h-2.5 mb-0.5 ml-0.5' } },
+
+    { orientation: 'horizontal', virtualize: true, class: { root: 'overflow-x-auto overflow-y-hidden' } },
+    { orientation: 'horizontal', virtualize: false, class: { viewport: 'overflow-x-auto overflow-y-hidden' } },
+
+    { orientation: 'vertical', virtualize: true, class: { root: 'overflow-y-auto overflow-x-hidden' } },
+    { orientation: 'vertical', virtualize: false, class: { viewport: 'overflow-y-auto overflow-x-hidden' } },
   ],
 
   defaultVariants: {
     size: 'sm',
     radius: 'sm',
+    virtualize: false,
   },
 })
 

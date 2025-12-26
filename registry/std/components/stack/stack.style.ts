@@ -3,15 +3,15 @@ import { createVariants } from '~/utils/styles'
 
 export const useStackStyle = createVariants({
   slots: {
-    base: 'flex gap-2',
+    root: 'flex gap-2',
     item: '',
     separator: '',
   },
 
   variants: {
     orientation: {
-      horizontal: { base: 'flex-row', separator: 'h-auto' },
-      vertical: { base: 'flex-col', separator: 'w-auto' },
+      horizontal: { root: 'flex-row', separator: 'h-auto' },
+      vertical: { root: 'flex-col', separator: 'w-auto' },
     },
   },
 

@@ -3,6 +3,7 @@ import type { StackProps } from './stack.props'
 import { reactiveOmit } from '@vueuse/core'
 import { Primitive } from 'reka-ui'
 import { computed } from 'vue'
+import { getChildrenSlots } from '~/utils/slots'
 import { cn } from '~/utils/styles'
 import { useStackStyle } from './stack.style'
 
@@ -30,7 +31,7 @@ const ui = computed(() => useStackStyle({
 </script>
 
 <template>
-  <Primitive v-bind="delegated" :data-orientation="orientation" :class="cn(ui.base(), props.ui?.base, props.class)">
+  <Primitive v-bind="delegated" :data-orientation="orientation" :class="cn(ui.root(), props.ui?.root, props.class)" data-slot="root">
     <template v-for="(child, index) in children" :key="index">
       <component
         :is="child"
@@ -40,6 +41,7 @@ const ui = computed(() => useStackStyle({
           : index === children.length - 1
             ? 'last'
             : 'middle'"
+        data-slot="item"
       />
 
       <component
@@ -47,6 +49,7 @@ const ui = computed(() => useStackStyle({
         v-if="separator && index < children.length - 1"
         :orientation="orientation === 'vertical' ? 'horizontal' : 'vertical'"
         :class="cn(ui.separator(), props.ui?.separator)"
+        data-slot="separator"
       />
     </template>
   </Primitive>

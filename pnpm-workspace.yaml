@@ -18,11 +18,11 @@ catalog:
   '@clack/prompts': ^0.11.0
   '@commitlint/cli': ^20.2.0
   '@commitlint/config-conventional': ^20.2.0
-  '@iconify-json/lucide': ^1.2.82
-  '@iconify-json/mingcute': ^1.2.6
+  '@iconify-json/lucide': 1.2.82
+  '@iconify-json/mingcute': 1.2.6
   '@iconify-json/simple-icons': ^1.2.63
   '@inquirer/prompts': ^8.1.0
-  '@nuxt/content': ^3.9.0
+  '@nuxt/content': ^3.10.0
   '@nuxt/devtools': ^3.1.1
   '@nuxt/icon': ^2.1.1
   '@nuxt/image': ^2.0.0
@@ -38,7 +38,7 @@ catalog:
   '@types/node': 24.0.15
   '@types/qrcode': ^1.5.6
   '@types/spark-md5': ^3.0.5
-  '@typescript/native-preview': ^7.0.0-dev.20251223.1
+  '@typescript/native-preview': ^7.0.0-dev.20251225.1
   '@unocss/core': ^66.5.10
   '@unocss/nuxt': ^66.5.10
   '@unocss/rule-utils': ^66.5.10
@@ -52,7 +52,7 @@ catalog:
   changelogen: ^0.6.2
   citty: ^0.1.6
   clsx: ^2.1.1
-  colorjs.io: ^0.5.2
+  colorjs.io: 0.5.2
   columnify: ^1.6.0
   commitizen: ^4.3.1
   cz-git: ^1.12.0
@@ -93,7 +93,7 @@ catalog:
   taze: ^19.9.2
   tinyexec: ^1.0.2
   tinyglobby: ^0.2.15
-  tsdown: ^0.18.2
+  tsdown: ^0.18.3
   type-fest: ^5.3.1
   typescript: ^5.9.3
   ufo: ^1.6.1

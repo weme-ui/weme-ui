@@ -2,6 +2,7 @@
 import AspectRationExamples from './aspect-ratio.vue'
 import FloatExamples from './float.vue'
 import GroupExamples from './group.vue'
+import OverflowExamples from './overflow.vue'
 </script>
 
 <template>
@@ -18,7 +19,7 @@ import GroupExamples from './group.vue'
   </Example>
 
   <Example title="溢出" description="Overflow">
-    <!--  -->
+    <OverflowExamples />
   </Example>
 
   <Example title="滚动区域" description="Scroll Area">

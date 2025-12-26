@@ -3,6 +3,7 @@ import AspectRationExamples from './aspect-ratio.vue'
 import FloatExamples from './float.vue'
 import GroupExamples from './group.vue'
 import OverflowExamples from './overflow.vue'
+import ScrollAreaExamples from './scroll-area.vue'
 </script>
 
 <template>
@@ -23,7 +24,7 @@ import OverflowExamples from './overflow.vue'
   </Example>
 
   <Example title="滚动区域" description="Scroll Area">
-    <!--  -->
+    <ScrollAreaExamples />
   </Example>
 
   <Example title="分隔符" description="Separator">

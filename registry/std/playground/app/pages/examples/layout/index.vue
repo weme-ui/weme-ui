@@ -4,6 +4,7 @@ import FloatExamples from './float.vue'
 import GroupExamples from './group.vue'
 import OverflowExamples from './overflow.vue'
 import ScrollAreaExamples from './scroll-area.vue'
+import SeparatorExamples from './separator.vue'
 </script>
 
 <template>
@@ -28,7 +29,7 @@ import ScrollAreaExamples from './scroll-area.vue'
   </Example>
 
   <Example title="分隔符" description="Separator">
-    <!--  -->
+    <SeparatorExamples />
   </Example>
 
   <Example title="堆叠" description="Stack">

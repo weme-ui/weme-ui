@@ -3,17 +3,17 @@ import { createVariants } from '~/utils/styles'
 
 export const useOverflowStyle = createVariants({
   slots: {
-    base: 'flex-(~ y-center)',
+    root: 'flex-(inline y-center)',
     item: '',
     overflow: 'text-sm font-medium',
   },
 
   variants: {
     gap: {
-      xs: { base: 'gap-1' },
-      sm: { base: 'gap-2' },
-      md: { base: 'gap-3' },
-      lg: { base: 'gap-5' },
+      xs: { root: 'gap-1' },
+      sm: { root: 'gap-2' },
+      md: { root: 'gap-3' },
+      lg: { root: 'gap-5' },
     },
   },
 

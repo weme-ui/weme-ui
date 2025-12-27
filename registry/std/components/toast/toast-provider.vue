@@ -74,6 +74,7 @@ function onUpdateOpen(value: boolean, id: string | number) {
         '--transform': 'translateY(var(--translate)) scale(var(--scale))',
       }"
       :class="cn(ui.toast(), props.ui?.toast)"
+      data-slot="toast"
       @update:open="onUpdateOpen($event, toast.id)"
       @click="toast.onClick && toast.onClick(toast)"
     />
@@ -89,6 +90,7 @@ function onUpdateOpen(value: boolean, id: string | number) {
           '--height': `${height}px`,
         }"
         :class="cn(ui.viewport(), props.ui?.viewport, props.class)"
+        data-slot="viewport"
         @mouseenter="expanded = true"
         @mouseleave="expanded = false"
       />

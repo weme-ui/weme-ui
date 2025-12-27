@@ -62,36 +62,36 @@ function onClose() {
 </script>
 
 <template>
-  <Primitive v-bind="forwarded" :class="cn(ui.base(), props.ui?.base, props.class)">
-    <div :class="cn(ui.left(), props.ui?.left)" />
+  <Primitive v-bind="forwarded" :class="cn(ui.root(), props.ui?.root, props.class)" data-slot="root">
+    <div :class="cn(ui.left(), props.ui?.left)" data-slot="left" />
 
-    <div :class="cn(ui.center(), props.ui?.center)">
+    <div :class="cn(ui.center(), props.ui?.center)" data-slot="center">
       <slot name="icon">
-        <Icon v-if="icon" :name="icon" :class="cn(ui.icon(), props.ui?.icon)" />
+        <Icon v-if="icon" :name="icon" :class="cn(ui.icon(), props.ui?.icon)" data-slot="icon" />
       </slot>
 
-      <h3 v-if="title || !!$slots.title" :class="cn(ui.title(), props.ui?.title)">
+      <h3 v-if="title || !!$slots.title" :class="cn(ui.title(), props.ui?.title)" data-slot="title">
         <slot name="title">
           {{ title }}
         </slot>
       </h3>
 
-      <div v-if="actions?.length || !!$slots.actions" :class="cn(ui.actions(), props.ui?.actions)">
+      <div v-if="actions?.length || !!$slots.actions" :class="cn(ui.actions(), props.ui?.actions)" data-slot="actions">
         <slot name="actions">
           <Button v-for="(action, index) in actions" :key="index" :color="color" size="xs" v-bind="action" />
         </slot>
       </div>
     </div>
 
-    <div :class="cn(ui.right(), props.ui?.right)">
-      <button v-if="closable || !!$slots.close" :aria-label="t('banner.close')" :class="cn(ui.close(), props.ui?.close)" @click="onClose">
+    <div :class="cn(ui.right(), props.ui?.right)" data-slot="right">
+      <button v-if="closable || !!$slots.close" :aria-label="t('banner.close')" :class="cn(ui.close(), props.ui?.close)" data-slot="close" @click="onClose">
         <slot name="close">
           <Icon v-if="closable" name="close" />
         </slot>
       </button>
     </div>
 
-    <LinkOverlay v-if="href" :href="href" :target="target" :rel="rel" />
+    <LinkOverlay v-if="href" :href="href" :target="target" :rel="rel" data-slot="link-overlay" />
   </Primitive>
 </template>
 

@@ -4,7 +4,7 @@ import { createVariants } from '~/utils/styles'
 
 export const useProgressStyle = createVariants({
   slots: {
-    base: 'relative',
+    root: 'relative',
     tracker: 'bg-muted w-full overflow-hidden',
     indicator: 'h-full rounded-inherit transition-transform',
     info: 'flex-(~ y-center)',
@@ -41,17 +41,17 @@ export const useProgressStyle = createVariants({
     },
     showInfo: {
       true: {
-        base: 'flex-(~ col)',
+        root: 'flex-(~ col)',
       },
     },
   },
 
   compoundVariants: [
-    { showInfo: true, size: 'xs', class: { base: 'gap-y-0.5' } },
-    { showInfo: true, size: 'sm', class: { base: 'gap-y-1' } },
-    { showInfo: true, size: 'md', class: { base: 'gap-y-2' } },
-    { showInfo: true, size: 'lg', class: { base: 'gap-y-2.5' } },
-    { showInfo: true, size: 'xl', class: { base: 'gap-y-3' } },
+    { showInfo: true, size: 'xs', class: { root: 'gap-y-0.5' } },
+    { showInfo: true, size: 'sm', class: { root: 'gap-y-1' } },
+    { showInfo: true, size: 'md', class: { root: 'gap-y-2' } },
+    { showInfo: true, size: 'lg', class: { root: 'gap-y-2.5' } },
+    { showInfo: true, size: 'xl', class: { root: 'gap-y-3' } },
   ],
 
   defaultVariants: {

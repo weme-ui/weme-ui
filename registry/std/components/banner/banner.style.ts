@@ -4,7 +4,7 @@ import { createVariants } from '~/utils/styles'
 
 export const useBannerStyle = createVariants({
   slots: {
-    base: 'banner relative w-full flex-(~ y-center) justify-between gap-4 h-10 z-tooltip transition-colors',
+    root: 'banner relative w-full flex-(~ y-center) justify-between gap-4 h-10 z-tooltip transition-colors',
     left: 'hidden lg:flex-1 lg:(flex items-center)',
     center: 'flex-(~ y-center) gap-4 min-w-0',
     right: 'lg:flex-1 flex-(~ y-center) justify-end',
@@ -28,14 +28,14 @@ export const useBannerStyle = createVariants({
       type: 'box',
       variants: ['solid', 'soft', 'inverse'],
       extra: { closable: false },
-      slot: 'base',
+      slot: 'root',
     }),
 
     ...createColorCompoundVariants({
       type: 'btn',
       variants: ['solid', 'soft', 'inverse'],
       extra: { closable: true },
-      slot: 'base',
+      slot: 'root',
     }),
   ],
 

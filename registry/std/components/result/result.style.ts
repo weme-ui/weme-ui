@@ -3,7 +3,7 @@ import { createVariants } from '~/utils/styles'
 
 export const useResultStyle = createVariants({
   slots: {
-    base: 'flex-(~ col y-center)',
+    root: 'flex-(~ col y-center)',
     indicator: '',
     title: 'c-highlighted font-semibold',
     description: 'c-toned',

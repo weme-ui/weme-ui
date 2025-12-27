@@ -1,9 +1,10 @@
 <script lang="ts" setup>
+import AlertExamples from './alert.vue'
 </script>
 
 <template>
   <Example title="警告" description="Alert">
-    <!--  -->
+    <AlertExamples />
   </Example>
 
   <Example title="横幅" description="Banner">

@@ -4,7 +4,7 @@ import { createVariants } from '~/utils/styles'
 
 export const useAlertStyle = createVariants({
   slots: {
-    base: 'group relative flex grow-1 gap-2 p-4 transition text-left',
+    root: 'group relative flex grow-1 gap-2 p-4 transition text-left',
     icon: 'size-4 shrink-0',
     wrapper: 'grow-1 text-4 space-y-1',
     title: 'font-medium tracking-tight leading-none',
@@ -21,14 +21,14 @@ export const useAlertStyle = createVariants({
     variant: { solid: '', soft: '', surface: '', outline: '', inverse: '' },
     radius: {
       none: '',
-      xs: 'rounded-xs',
-      sm: 'rounded-sm',
-      md: 'rounded-md',
-      lg: 'rounded-lg',
-      xl: 'rounded-xl',
+      xs: { root: 'rounded-xs' },
+      sm: { root: 'rounded-sm' },
+      md: { root: 'rounded-md' },
+      lg: { root: 'rounded-lg' },
+      xl: { root: 'rounded-xl' },
     },
     inline: {
-      true: { base: 'flex-y-center', content: 'font-medium tracking-tight', close: 'abs-y-center' },
+      true: { root: 'flex-y-center', content: 'font-medium tracking-tight', close: 'abs-y-center' },
       false: { content: 'text-sm op-70 leading-none', close: 'top-4' },
     },
     clickable: { true: 'cursor-pointer' },
@@ -38,14 +38,14 @@ export const useAlertStyle = createVariants({
     ...createColorCompoundVariants({
       type: 'box',
       variants: ['solid', 'soft', 'surface', 'outline', 'inverse'],
-      slot: 'base',
+      slot: 'root',
       extra: { clickable: false },
     }),
 
     ...createColorCompoundVariants({
       type: 'btn',
       variants: ['solid', 'soft', 'surface', 'outline', 'inverse'],
-      slot: 'base',
+      slot: 'root',
       extra: { clickable: true },
     }),
   ],

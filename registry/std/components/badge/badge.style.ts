@@ -4,7 +4,7 @@ import { createVariants } from '~/utils/styles'
 
 export const useBadgeStyle = createVariants({
   slots: {
-    base: 'flex-(inline center) select-none transition-colors',
+    root: 'flex-(inline center) select-none transition-colors',
     icon: '',
   },
 
@@ -12,24 +12,25 @@ export const useBadgeStyle = createVariants({
     color: createColorVariants({ defaults: '' }),
     variant: { solid: '', soft: '', surface: '', outline: '', inverse: '' },
     size: {
-      xs: { base: 'text-xs h-5 px-1.5 leading-none', icon: 'size-3 mr-1' },
-      sm: { base: 'text-xs h-6 px-2.5', icon: 'size-3 mr-1' },
-      md: { base: 'text-sm h-8 px-3', icon: 'size-3.5 mr-1.5' },
-      lg: { base: 'text-base h-10 px-4', icon: 'size-4 mr-2' },
+      xs: { root: 'text-xs h-5 px-1.5 leading-none', icon: 'size-3 mr-1' },
+      sm: { root: 'text-xs h-6 px-2.5', icon: 'size-3 mr-1' },
+      md: { root: 'text-sm h-8 px-3', icon: 'size-3.5 mr-1.5' },
+      lg: { root: 'text-base h-10 px-4', icon: 'size-4 mr-2' },
     },
     radius: {
       none: '',
-      sm: 'rounded-sm',
-      md: 'rounded-md',
-      lg: 'rounded-lg',
-      xl: 'rounded-xl',
-      full: 'rounded-full',
+      xs: { root: 'rounded-xs' },
+      sm: { root: 'rounded-sm' },
+      md: { root: 'rounded-md' },
+      lg: { root: 'rounded-lg' },
+      xl: { root: 'rounded-xl' },
+      full: { root: 'rounded-full' },
     },
     disabled: {
-      true: 'is-disabled',
+      true: { root: 'is-disabled' },
     },
     clickable: {
-      true: 'relative cursor-pointer',
+      true: { root: 'relative cursor-pointer' },
     },
   },
 
@@ -37,14 +38,14 @@ export const useBadgeStyle = createVariants({
     ...createColorCompoundVariants({
       type: 'box',
       variants: ['solid', 'soft', 'surface', 'outline', 'inverse'],
-      slot: 'base',
+      slot: 'root',
       extra: { clickable: false },
     }),
 
     ...createColorCompoundVariants({
       type: 'btn',
       variants: ['solid', 'soft', 'surface', 'outline', 'inverse'],
-      slot: 'base',
+      slot: 'root',
       extra: { clickable: true },
     }),
   ],

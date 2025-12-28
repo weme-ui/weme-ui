@@ -7,10 +7,6 @@ import Icon from '../icon/icon.vue'
 import LinkOverlay from '../link-overlay/link-overlay.vue'
 import { useBadgeStyle } from './badge.style'
 
-defineOptions({
-  inheritAttrs: false,
-})
-
 const props = withDefaults(defineProps<BadgeProps>(), {
   color: 'primary',
   variant: 'soft',
@@ -30,11 +26,11 @@ const ui = computed(() => useBadgeStyle({
 </script>
 
 <template>
-  <Primitive :as="as" :as-child="asChild" :class="cn(ui.base(), props.ui?.base, props.class)">
+  <Primitive :as="as" :as-child="asChild" :class="cn(ui.root(), props.ui?.root, props.class)" data-slot="root">
     <slot v-if="$slots.icon || icon" name="icon">
-      <Icon v-if="icon" :name="icon" :class="cn(ui.icon(), props.ui?.icon)" />
+      <Icon v-if="icon" :name="icon" :class="cn(ui.icon(), props.ui?.icon)" data-slot="icon" />
     </slot>
     <slot>{{ label }}</slot>
-    <LinkOverlay v-if="clickable && !disabled" :href="href" :target="target" :rel="rel" />
+    <LinkOverlay v-if="clickable && !disabled" :href="href" :target="target" :rel="rel" data-slot="link-overlay" />
   </Primitive>
 </template>

@@ -1,6 +1,8 @@
 <script lang="ts" setup>
 import AvatarGroupExamples from './avatar-group.vue'
 import AvatarExamples from './avatar.vue'
+import BadgeExamples from './badge.vue'
+import CardExamples from './card.vue'
 import ItemExamples from './item.vue'
 </script>
 
@@ -14,11 +16,11 @@ import ItemExamples from './item.vue'
   </Example>
 
   <Example title="徽章" description="Badge">
-    <!--  -->
+    <BadgeExamples />
   </Example>
 
   <Example title="卡片" description="Card">
-    <!--  -->
+    <CardExamples />
   </Example>
 
   <Example title="剪贴板" description="Clipboard">

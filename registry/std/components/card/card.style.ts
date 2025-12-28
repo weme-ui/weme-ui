@@ -3,7 +3,7 @@ import { createVariants } from '~/utils/styles'
 
 export const useCardStyle = createVariants({
   slots: {
-    base: 'relative overflow-hidden',
+    root: 'relative overflow-hidden',
     wrapper: 'flex-(~ col) h-full overflow-hidden',
     header: 'flex gap-2',
     headerIcon: '',
@@ -16,11 +16,11 @@ export const useCardStyle = createVariants({
   variants: {
     variant: {
       normal: {
-        base: 'p-1.5 bg-muted',
+        root: 'p-1.5 bg-elevated',
         wrapper: 'bg-card shadow-xs',
       },
       outline: {
-        base: 'b-(~ default)',
+        root: 'b-(~ default)',
       },
     },
     size: {
@@ -30,17 +30,24 @@ export const useCardStyle = createVariants({
     },
     radius: {
       none: '',
-      xs: { base: 'rounded-xs', wrapper: 'rounded-xs' },
-      sm: { base: 'rounded-sm', wrapper: 'rounded-xs' },
-      md: { base: 'rounded-md', wrapper: 'rounded-sm' },
-      lg: { base: 'rounded-lg', wrapper: 'rounded-md' },
-      xl: { base: 'rounded-xl', wrapper: 'rounded-lg' },
+      xs: { root: 'rounded-xs', wrapper: 'rounded-xs' },
+      sm: { root: 'rounded-sm', wrapper: 'rounded-xs' },
+      md: { root: 'rounded-md', wrapper: 'rounded-sm' },
+      lg: { root: 'rounded-lg', wrapper: 'rounded-md' },
+      xl: { root: 'rounded-xl', wrapper: 'rounded-lg' },
     },
     translucent: {
-      true: { wrapper: 'bg-card/70 backdrop-blur-3xl' },
-      false: { wrapper: 'bg-card' },
+      true: '',
     },
   },
+
+  compoundVariants: [
+    { variant: 'outline', translucent: true, class: { wrapper: 'bg-card/70 backdrop-blur-3xl' } },
+    { variant: 'outline', translucent: false, class: { wrapper: 'bg-card' } },
+
+    { variant: 'normal', translucent: true, class: { root: 'bg-elevated/70 backdrop-blur-3xl' } },
+    { variant: 'normal', translucent: false, class: { root: 'bg-elevated' } },
+  ],
 
   defaultVariants: {
     variant: 'normal',

@@ -19,7 +19,7 @@ const ui = computed(() => useIconButtonStyle({
 <template>
   <Button
     v-bind="delegated"
-    :class="cn(ui.base(), props.ui?.base, props.class)"
+    :class="cn(ui.root(), props.ui?.root, props.class)"
     :ui="{
       icon: ui.icon(),
       loading: ui.loading(),

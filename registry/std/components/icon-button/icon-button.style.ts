@@ -3,18 +3,18 @@ import { createVariants } from '~/utils/styles'
 
 export const useIconButtonStyle = createVariants({
   slots: {
-    base: 'px-0 shrink-0',
+    root: 'px-0 shrink-0',
     icon: '',
     loading: '',
   },
 
   variants: {
     size: {
-      xs: { base: 'size-5', icon: 'size-3.5' },
-      sm: { base: 'size-6', icon: 'size-4' },
-      md: { base: 'size-8', icon: 'size-5' },
-      lg: { base: 'size-10', icon: 'size-6' },
-      xl: { base: 'size-16', icon: 'size-10' },
+      xs: { root: 'size-5', icon: 'size-3.5' },
+      sm: { root: 'size-6', icon: 'size-3.5' },
+      md: { root: 'size-8', icon: 'size-3.5' },
+      lg: { root: 'size-10', icon: 'size-4' },
+      xl: { root: 'size-12', icon: 'size-4.5' },
     },
   },
 

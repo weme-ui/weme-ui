@@ -48,9 +48,9 @@ async function onClick(event: MouseEvent) {
 <template>
   <Primitive
     v-bind="delegated"
-    data-slot="base"
+    data-slot="root"
     :disabled="isDisabled"
-    :class="cn(ui.base(), props.ui?.base, props.class)"
+    :class="cn(ui.root(), props.ui?.root, props.class)"
     @click="onClick"
   >
     <template v-if="isLoading">

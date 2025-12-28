@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import type { ChipboardEmits, ChipboardProps } from './chipboard.props'
+import type { ChipboardEmits, ChipboardProps } from './clipboard.props'
 import { reactiveOmit, useClipboard } from '@vueuse/core'
 import { computed } from 'vue'
 import Button from '../button/button.vue'

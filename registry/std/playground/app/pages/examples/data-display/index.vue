@@ -3,6 +3,9 @@ import AvatarGroupExamples from './avatar-group.vue'
 import AvatarExamples from './avatar.vue'
 import BadgeExamples from './badge.vue'
 import CardExamples from './card.vue'
+import ClipboardExamples from './clipboard.vue'
+import CommentExamples from './comment.vue'
+import DataListExamples from './data-list.vue'
 import ItemExamples from './item.vue'
 </script>
 
@@ -24,15 +27,15 @@ import ItemExamples from './item.vue'
   </Example>
 
   <Example title="剪贴板" description="Clipboard">
-    <!--  -->
+    <ClipboardExamples />
   </Example>
 
   <Example title="评论" description="Comment">
-    <!--  -->
+    <CommentExamples />
   </Example>
 
   <Example title="数据列表" description="Data List">
-    <!--  -->
+    <DataListExamples />
   </Example>
 
   <Example title="图片预览" description="Image Preview">
@@ -68,6 +71,8 @@ import ItemExamples from './item.vue'
   </Example>
 
   <Example title="表格" description="Table">
-    <!--  -->
+    <div class="pb-3">
+      TODO
+    </div>
   </Example>
 </template>

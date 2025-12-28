@@ -19,14 +19,19 @@ const ui = computed(() => useDataListStyle(props))
 </script>
 
 <template>
-  <Primitive v-bind="delegated" :data-orientation="orientation" :class="cn(ui.base(), props.ui?.base, props.class)">
-    <div v-for="(item, index) in items" :key="index" :class="cn(ui.item(), props.ui?.item, item.class)">
-      <dt :class="cn(ui.label(), props.ui?.label, item.ui?.label)">
+  <Primitive
+    v-bind="delegated"
+    :data-orientation="orientation"
+    :class="cn(ui.root(), props.ui?.root, props.class)"
+    data-slot="root"
+  >
+    <div v-for="(item, index) in items" :key="index" :class="cn(ui.item(), props.ui?.item, item.class)" data-slot="item">
+      <dt :class="cn(ui.label(), props.ui?.label, item.ui?.label)" data-slot="label">
         <slot name="label" v-bind="{ item, index }">
           {{ item.label }}
         </slot>
       </dt>
-      <dd :class="cn(ui.value(), props.ui?.value, item.ui?.value)">
+      <dd :class="cn(ui.value(), props.ui?.value, item.ui?.value)" data-slot="value">
         <slot name="value" v-bind="{ item, index }">
           {{ item.value }}
         </slot>

@@ -3,7 +3,7 @@ import { createVariants } from '~/utils/styles'
 
 export const useCommentStyle = createVariants({
   slots: {
-    base: 'flex gap-3',
+    root: 'flex gap-3',
     avatar: 'shrink-0',
     wrapper: 'flex-(~ 1 col) gap-2',
     header: 'flex-(~ y-center) gap-2',
@@ -16,16 +16,16 @@ export const useCommentStyle = createVariants({
   variants: {
     variant: {
       plain: {},
-      soft: { base: 'bg-muted' },
+      soft: { root: 'bg-muted' },
     },
     align: {
       start: { actions: 'justify-start' },
       end: { author: 'flex-1', actions: 'justify-end' },
     },
     size: {
-      sm: { base: 'p-3', header: 'text-xs', content: 'text-sm' },
-      md: { base: 'p-4', header: 'text-sm', content: 'text-base' },
-      lg: { base: 'p-5', header: 'text-base', content: 'text-lg' },
+      sm: { root: 'p-3', header: 'text-xs', content: 'text-sm' },
+      md: { root: 'p-4', header: 'text-sm', content: 'text-base' },
+      lg: { root: 'p-5', header: 'text-base', content: 'text-lg' },
     },
   },
 

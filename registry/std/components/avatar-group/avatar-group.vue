@@ -2,7 +2,7 @@
 import type { AvatarGroupProps } from './avatar-group.props'
 import { reactivePick } from '@vueuse/core'
 import { Primitive } from 'reka-ui'
-import { computed } from 'vue'
+import { computed, useSlots } from 'vue'
 import { cn } from '~/utils/styles'
 import Avatar from '../avatar/avatar.vue'
 import { useAvatarGroupStyle } from './avatar-group.style'
@@ -24,7 +24,7 @@ const ui = computed(() => useAvatarGroupStyle(props))
 </script>
 
 <template>
-  <Primitive v-bind="delegated" :class="cn(ui.base(), props.ui?.base, props.class)">
+  <Primitive v-bind="delegated" :class="cn(ui.root(), props.ui?.root, props.class)" data-slot="root">
     <Avatar
       v-if="hasMore"
       :fallback="count"
@@ -34,6 +34,7 @@ const ui = computed(() => useAvatarGroupStyle(props))
       :radius="radius"
       :delay-ms="delayMs"
       :class="cn(ui.item(), props.ui?.item)"
+      data-slot="item"
     />
     <template v-for="(item, index) in items" :key="index">
       <component
@@ -46,6 +47,7 @@ const ui = computed(() => useAvatarGroupStyle(props))
         :cross-origin="crossOrigin"
         :referrer-policy="referrerPolicy"
         :class="cn(ui.item(), props.ui?.item)"
+        data-slot="item"
       />
     </template>
   </Primitive>

@@ -7,10 +7,6 @@ import { cn } from '~/utils/styles'
 import Icon from '../icon/icon.vue'
 import { useAvatarStyle } from './avatar.style'
 
-defineOptions({
-  inheritAttrs: false,
-})
-
 const props = withDefaults(defineProps<AvatarProps>(), {
   color: 'primary',
   variant: 'solid',
@@ -31,9 +27,9 @@ const ui = computed(() => useAvatarStyle({
 </script>
 
 <template>
-  <AvatarRoot :as="as" :class="cn(ui.base(), props.ui?.base, props.class)">
-    <AvatarImage v-if="src" v-bind="delegated" :src="src" :class="cn(ui.image(), props.ui?.image)" />
-    <AvatarFallback :delay-ms="delayMs" :class="cn(ui.fallback(), props.ui?.fallback)">
+  <AvatarRoot :as="as" :class="cn(ui.root(), props.ui?.root, props.class)" data-slot="root">
+    <AvatarImage v-if="src" v-bind="delegated" :src="src" :class="cn(ui.image(), props.ui?.image)" data-slot="image" />
+    <AvatarFallback :delay-ms="delayMs" :class="cn(ui.fallback(), props.ui?.fallback)" data-slot="fallback">
       <slot v-if="$slots.default || fallback">
         {{ fallback }}
       </slot>

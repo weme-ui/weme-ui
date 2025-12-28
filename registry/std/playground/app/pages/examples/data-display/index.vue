@@ -1,14 +1,16 @@
 <script lang="ts" setup>
+import AvatarGroupExamples from './avatar-group.vue'
+import AvatarExamples from './avatar.vue'
 import ItemExamples from './item.vue'
 </script>
 
 <template>
   <Example title="头像组" description="Avatar Group">
-    <!--  -->
+    <AvatarGroupExamples />
   </Example>
 
   <Example title="头像" description="Avatar">
-    <!--  -->
+    <AvatarExamples />
   </Example>
 
   <Example title="徽章" description="Badge">

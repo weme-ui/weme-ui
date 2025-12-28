@@ -4,32 +4,32 @@ import { createVariants } from '~/utils/styles'
 
 export const useAvatarStyle = createVariants({
   slots: {
-    base: 'relative flex-(~ center) shrink-0 overflow-hidden select-none',
+    root: 'relative flex-(~ center) shrink-0 overflow-hidden select-none',
     image: 'size-full object-cover rounded-inherit',
-    fallback: 'flex-(~ center) size-full font-semibold leading-none',
+    fallback: 'flex-(~ center) size-full font-semibold leading-none rounded-inherit',
   },
 
   variants: {
     color: createColorVariants({ defaults: '' }),
     variant: { solid: '', soft: '', surface: '', outline: '', inverse: '' },
     size: {
-      'xs': { base: 'size-5', fallback: 'text-2.5' },
-      'sm': { base: 'size-6', fallback: 'text-3' },
-      'md': { base: 'size-8', fallback: 'text-3' },
-      'lg': { base: 'size-10', fallback: 'text-3.5' },
-      'xl': { base: 'size-16', fallback: 'text-6' },
-      '2xl': { base: 'size-20', fallback: 'text-10' },
-      '3xl': { base: 'size-24', fallback: 'text-12' },
-      '4xl': { base: 'size-32', fallback: 'text-16' },
+      'xs': { root: 'size-5', fallback: 'text-2.5' },
+      'sm': { root: 'size-6', fallback: 'text-3' },
+      'md': { root: 'size-8', fallback: 'text-3' },
+      'lg': { root: 'size-10', fallback: 'text-3.5' },
+      'xl': { root: 'size-16', fallback: 'text-6' },
+      '2xl': { root: 'size-20', fallback: 'text-10' },
+      '3xl': { root: 'size-24', fallback: 'text-12' },
+      '4xl': { root: 'size-32', fallback: 'text-16' },
     },
     radius: {
       none: '',
-      xs: { base: 'rounded-xs' },
-      sm: { base: 'rounded-sm' },
-      md: { base: 'rounded-md' },
-      lg: { base: 'rounded-lg' },
-      xl: { base: 'rounded-xl' },
-      full: { base: 'rounded-full' },
+      xs: { root: 'rounded-xs' },
+      sm: { root: 'rounded-sm' },
+      md: { root: 'rounded-md' },
+      lg: { root: 'rounded-lg' },
+      xl: { root: 'rounded-xl' },
+      full: { root: 'rounded-full' },
     },
   },
 

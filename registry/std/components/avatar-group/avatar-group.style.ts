@@ -3,7 +3,7 @@ import { createVariants } from '~/utils/styles'
 
 export const useAvatarGroupStyle = createVariants({
   slots: {
-    base: 'flex-(~ row-reverse) justify-end',
+    root: 'flex-(~ row-reverse) justify-end',
     item: 'relative ring-(1 white-12) first:me-0',
   },
 

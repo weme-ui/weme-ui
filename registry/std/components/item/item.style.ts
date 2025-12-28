@@ -21,7 +21,7 @@ export const useItemStyle = createVariants({
     variant: {
       plain: '',
       underline: { item: 'b-(b default)' },
-      outline: { root: 'b-(~ default) active:outline-4' },
+      outline: { root: 'b-(~ default)' },
     },
     align: {
       start: { item: 'items-start' },
@@ -47,6 +47,8 @@ export const useItemStyle = createVariants({
   },
 
   compoundVariants: [
+    { variant: 'outline', clickable: true, class: { root: 'active:outline-4' } },
+
     { color: 'primary', variant: ['plain', 'underline'], clickable: true, class: { root: 'hover:bg-primary-3 active:bg-primary-4' } },
     { color: 'secondary', variant: ['plain', 'underline'], clickable: true, class: { root: 'hover:bg-secondary-3 active:bg-secondary-4' } },
     { color: 'neutral', variant: ['plain', 'underline'], clickable: true, class: { root: 'hover:bg-neutral-3 active:bg-neutral-4' } },

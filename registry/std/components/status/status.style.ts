@@ -4,7 +4,7 @@ import { createVariants } from '~/utils/styles'
 
 export const useStatusStyle = createVariants({
   slots: {
-    base: 'flex-(inline y-center)',
+    root: 'flex-(inline y-center)',
     wrapper: '',
     indicator: 'block rounded-full',
     label: '',

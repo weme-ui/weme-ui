@@ -11,6 +11,7 @@ const props = withDefaults(defineProps<ImageProps>(), {
   as: 'img',
   fit: 'contain',
   radius: 'none',
+  fallbackDelayMs: 0,
 })
 
 const emits = defineEmits<ImageEmits>()
@@ -32,7 +33,7 @@ watch(
 )
 
 watchEffect((onCleanup) => {
-  if (props.fallbackSrc && props.fallbackDelayMs && import.meta.client) {
+  if (props.fallbackSrc && import.meta.client) {
     const timerId = window.setTimeout(() => {
       showFallback.value = true
     }, props.fallbackDelayMs)

@@ -7,7 +7,7 @@ const variants = ['plain', 'underline', 'outline'] as const
 <template>
   <div class="flex-(~ col) gap-6 h-full py-4 gap-6">
     <template v-for="variant in variants" :key="variant">
-      <Item icon="user" title="Title" description="Description" content="Content" :variant="variant" arrow clickable />
+      <Item icon="user" title="Title" description="Description" content="Content" :variant="variant" />
     </template>
   </div>
 </template>

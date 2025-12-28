@@ -4,7 +4,6 @@ import type { StatStyleProps, StatStyleSlots } from './stat.style'
 export interface StatProps extends PrimitiveProps {
   label?: string
   value?: string
-  unit?: string
   description?: string
   indicatorValue?: string
   trendUpIcon?: string

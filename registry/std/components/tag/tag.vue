@@ -43,7 +43,13 @@ function onClose() {
       <span :class="cn(ui.label(), props.ui?.label)" data-slot="label">
         <slot>{{ label }}</slot>
       </span>
-      <button v-if="closable" :aria-label="t('tag.close')" data-slot="close" :class="cn(ui.close(), props.ui?.close)" @click="onClose">
+      <button
+        v-if="!!closable && !disabled"
+        :aria-label="t('tag.close')"
+        data-slot="close"
+        :class="cn(ui.close(), props.ui?.close)"
+        @click="onClose"
+      >
         <slot name="close">
           <Icon :name="closeIcon" />
         </slot>

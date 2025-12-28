@@ -3,7 +3,7 @@ import { createVariants } from '~/utils/styles'
 
 export const useStatStyle = createVariants({
   slots: {
-    base: 'flex-(~ col) text-highlighted',
+    root: 'flex-(~ col) text-highlighted',
     label: '',
     value: 'font-bold',
     description: 'text-toned leading-none',
@@ -19,18 +19,16 @@ export const useStatStyle = createVariants({
       down: { indicatorIcon: 'c-danger', indicatorValue: 'c-danger-11' },
     },
     size: {
-      xs: { base: 'gap-0.5', label: 'text-xs', value: 'text-2xl', description: 'text-xs', indicator: 'text-xs' },
-      sm: { base: 'gap-0.75', label: 'text-sm', value: 'text-3xl', description: 'text-xs', indicator: 'text-sm' },
-      md: { base: 'gap-1', label: 'text-base', value: 'text-3xl', description: 'text-sm', indicator: 'text-sm' },
-      lg: { base: 'gap-1.5', label: 'text-base', value: 'text-4xl', description: 'text-sm', indicator: 'text-sm' },
+      xs: { root: 'gap-0.5', label: 'text-xs', value: 'text-2xl', description: 'text-xs', indicator: 'text-xs' },
+      sm: { root: 'gap-0.75', label: 'text-sm', value: 'text-3xl', description: 'text-xs', indicator: 'text-sm' },
+      md: { root: 'gap-1', label: 'text-base', value: 'text-3xl', description: 'text-sm', indicator: 'text-sm' },
+      lg: { root: 'gap-1.5', label: 'text-base', value: 'text-4xl', description: 'text-sm', indicator: 'text-sm' },
     },
   },
 
-  compoundVariants: [],
-
   defaultVariants: {
     trend: 'none',
-    size: 'md',
+    size: 'sm',
   },
 })
 

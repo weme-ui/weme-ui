@@ -7,7 +7,7 @@ const sizes = ['sm', 'md', 'lg'] as const
 <template>
   <div class="flex-(~ col) gap-6 h-full py-4 gap-6">
     <template v-for="size in sizes" :key="size">
-      <Item icon="user" title="Title" description="Description" content="Content" :size="size" variant="outline" arrow clickable />
+      <Item icon="user" title="Title" description="Description" content="Content" :size="size" variant="outline" />
     </template>
   </div>
 </template>

@@ -11,7 +11,11 @@ const props = withDefaults(defineProps<StackProps>(), {
   orientation: 'vertical',
 })
 
-const slots = useSlots()
+const slots = defineSlots<{
+  default: () => any
+  separator: () => any
+}>()
+
 const delegated = reactiveOmit(props, 'class', 'ui', 'orientation')
 
 const children = computed(() => {

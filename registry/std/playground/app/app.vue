@@ -7,7 +7,7 @@ const config = useRuntimeConfig()
 </script>
 
 <template>
-  <UiApp>
+  <UiApp portal="body">
     <Html data-theme="default">
       <main class="relative h-screen">
         <div class="fixed inset-x-0 top-0 h-20 bg-linear-to-b from-bg to-transparent z-1" />

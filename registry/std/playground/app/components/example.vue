@@ -21,7 +21,7 @@ defineProps<{
       </p>
     </div>
 
-    <div class="ring-(~ border) px-6 pt-4 rounded-lg">
+    <div class="ring-(~ border) px-6 py-4 rounded-lg">
       <div :class="cn('gap-6', $props.class)">
         <slot />
       </div>

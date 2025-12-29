@@ -2,7 +2,9 @@
 import type { GroupProps } from './group.props'
 import { reactivePick } from '@vueuse/core'
 import { Primitive } from 'reka-ui'
-import { computed } from 'vue'
+import { computed, useSlots } from 'vue'
+import { toBoolValue } from '~/utils/props'
+import { getChildrenSlots } from '~/utils/slots'
 import { cn } from '~/utils/styles'
 import { useGroupStyle } from './group.style'
 

@@ -2,6 +2,7 @@
 import type { BadgeProps } from './badge.props'
 import { Primitive } from 'reka-ui'
 import { computed } from 'vue'
+import { toBoolValue } from '~/utils/props'
 import { cn } from '~/utils/styles'
 import Icon from '../icon/icon.vue'
 import LinkOverlay from '../link-overlay/link-overlay.vue'

@@ -3,7 +3,7 @@ import type { LensEmits, LensProps } from './lens.props'
 import { reactivePick } from '@vueuse/core'
 import { Motion } from 'motion-v'
 import { Primitive, useForwardPropsEmits } from 'reka-ui'
-import { computed, ref } from 'vue'
+import { computed, ref, watchEffect } from 'vue'
 import { cn } from '~/utils/styles'
 import { useLensStyle } from './lens.style'
 

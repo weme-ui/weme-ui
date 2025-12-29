@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+import { ref } from 'vue'
 import Spinner from '../spinner.vue'
 
 const loading = ref(true)

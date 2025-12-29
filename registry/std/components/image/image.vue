@@ -2,7 +2,7 @@
 import type { ImageEmits, ImageProps } from './image.props'
 import { reactivePick } from '@vueuse/core'
 import { Primitive } from 'reka-ui'
-import { computed, toRefs } from 'vue'
+import { computed, ref, toRefs, watch, watchEffect } from 'vue'
 import { useImageLoadingStatus } from '~/composables/use-image-loading-status'
 import { cn } from '~/utils/styles'
 import { useImageStyle } from './image.style'

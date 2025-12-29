@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import type { ChipboardEmits, ChipboardProps } from './clipboard.props'
 import { reactiveOmit, useClipboard } from '@vueuse/core'
-import { computed } from 'vue'
+import { computed, ref } from 'vue'
 import Button from '../button/button.vue'
 import IconButton from '../icon-button/icon-button.vue'
 

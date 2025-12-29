@@ -113,24 +113,23 @@ pnpm dlx @weme-ui/weme-ui add <name>
   - [x] `modal`
   - [x] `pop-confirm`
   - [x] `popover`
-  - [x] `tooltip-button`
+  - [x] `toggle-tooltip`
   - [x] `tooltip`
   - [x] `overlay`
 - Others
   - [ ] `affix`
   - [ ] `anchor`
   - [ ] `back-top`
-  - [ ] `countdown`
   - [ ] `floating-panel`
   - [ ] `signature`
   - [ ] `splitter`
-  - [ ] `timer`
   - [ ] `tour`
   - [ ] `watermark`
   - [x] `lens`
   - [x] `marquee`
   - [x] `number-ticker`
   - [x] `qr-code`
+  - [x] `timer`
 
 ## 组合式 API
 

@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+import { ref } from 'vue'
 import Progress from '../progress.vue'
 
 const value = ref(80)

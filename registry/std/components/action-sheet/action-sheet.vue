@@ -2,7 +2,7 @@
 import type { ActionSheetEmits, ActionSheetProps } from './action-sheet.props'
 import { onKeyStroke, reactivePick, useMounted } from '@vueuse/core'
 import { Presence, Primitive, useForwardPropsEmits } from 'reka-ui'
-import { computed } from 'vue'
+import { computed, toRef, watch } from 'vue'
 import { usePortal } from '~/composables/use-portal'
 import { cn } from '~/utils/styles'
 import Button from '../button/button.vue'
@@ -18,7 +18,7 @@ const forwarded = useForwardPropsEmits(delegated, emits)
 
 const modelValue = defineModel<boolean>({ default: false })
 
-const portal = usePortal(toRef(props.portal))
+const portal = usePortal(toRef(() => props.portal))
 const isMounted = useMounted()
 
 const open = computed({

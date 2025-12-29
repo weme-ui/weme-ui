@@ -36,7 +36,7 @@ const props = withDefaults(defineProps<ContextMenuContentProps<T>>(), {
 const emits = defineEmits<ContextMenuContentEmits>()
 const delegated = reactiveOmit(props, 'class', 'ui', 'items', 'checkedIcon', 'loadingIcon', 'externalIcon', 'portal', 'arrow', 'sub')
 const forwarded = useForwardPropsEmits(delegated, emits)
-const portalProps = usePortal(toRef(props, 'portal'))
+const portalProps = usePortal(toRef(() => props.portal))
 
 const items = computed<T[][]>(() => {
   if (!props.items?.length)

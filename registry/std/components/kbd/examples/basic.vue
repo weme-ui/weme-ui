@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+import { kbdKeysMap } from '~/composables/use-kbd'
 import Kbd from '../kbd.vue'
 
 const keys = Object.keys(kbdKeysMap)

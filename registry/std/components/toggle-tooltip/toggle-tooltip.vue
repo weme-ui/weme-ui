@@ -25,7 +25,7 @@ const delegated = reactivePick(props, 'defaultOpen', 'modal', 'open')
 const forwarded = useForwardPropsEmits(delegated, emits)
 
 const contentProps = toRef(() => defu(props.content, { sideOffset: 8, collisionPadding: 8 }) as PopoverContentProps)
-const portalProps = usePortal(toRef(props, 'portal'))
+const portalProps = usePortal(toRef(() => props.portal))
 const arrowProps = toRef(() => props.arrow as PopoverArrowProps)
 
 const side = computed(() => {

@@ -3,6 +3,7 @@ import type { ProgressEmits, ProgressProps } from './progress.props'
 import { reactiveOmit } from '@vueuse/core'
 import { ProgressIndicator, ProgressRoot, useForwardPropsEmits } from 'reka-ui'
 import { computed } from 'vue'
+import { toBoolValue } from '~/utils/props'
 import { cn } from '~/utils/styles'
 import { useProgressStyle } from './progress.style'
 

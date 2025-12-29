@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+import { ref } from 'vue'
 import Button from '../../button/button.vue'
 import Steps from '../steps.vue'
 

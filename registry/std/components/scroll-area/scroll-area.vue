@@ -5,8 +5,9 @@ import type { ScrollAreaEmits, ScrollAreaItem, ScrollAreaProps, ScrollAreaSlots 
 import { useVirtualizer } from '@tanstack/vue-virtual'
 import { defu } from 'defu'
 import { ScrollAreaRoot, ScrollAreaScrollbar, ScrollAreaThumb, ScrollAreaViewport } from 'reka-ui'
-import { computed, useTemplateRef } from 'vue'
+import { computed, toRef, useTemplateRef, watch } from 'vue'
 import { useLocale } from '~/composables/use-locale'
+import { toBoolValue } from '~/utils/props'
 import { cn } from '~/utils/styles'
 import { useScrollAreaStyle } from './scroll-area.style'
 

@@ -17,6 +17,7 @@ import {
   DropdownMenuSubTrigger,
   useForwardPropsEmits,
 } from 'reka-ui'
+import { computed, toRef } from 'vue'
 import { usePortal } from '~/composables/use-portal'
 import { cn } from '~/utils/styles'
 import Icon from '../icon/icon.vue'
@@ -36,7 +37,7 @@ const emits = defineEmits<DropdownContentEmits>()
 const delegated = reactiveOmit(props, 'class', 'ui', 'items', 'checkedIcon', 'loadingIcon', 'externalIcon', 'portal', 'arrow', 'sub')
 const forwarded = useForwardPropsEmits(delegated, emits)
 
-const portalProps = usePortal(toRef(props, 'portal'))
+const portalProps = usePortal(toRef(() => props.portal))
 
 const items = computed<T[][]>(() => {
   if (!props.items?.length)

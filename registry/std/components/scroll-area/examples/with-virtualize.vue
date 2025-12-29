@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+import { ref } from 'vue'
 import ScrollArea from '../scroll-area.vue'
 
 const items = ref(Array.from({ length: 100 }, (_, i) => ({ id: i })))

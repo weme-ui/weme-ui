@@ -3,6 +3,7 @@ import type { NumberTickerProps } from './number-ticker.props'
 import { reactivePick, TransitionPresets, useElementVisibility, useTransition } from '@vueuse/core'
 import { Primitive } from 'reka-ui'
 import { computed, ref, watch } from 'vue'
+import { useLocale } from '~/composables/use-locale'
 import { cn } from '~/utils/styles'
 import { useNumberTickerStyle } from './number-ticker.style'
 

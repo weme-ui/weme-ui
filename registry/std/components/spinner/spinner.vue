@@ -2,7 +2,7 @@
 import type { SpinnerProps } from './spinner.props'
 import { createReusableTemplate, reactivePick } from '@vueuse/core'
 import { Primitive } from 'reka-ui'
-import { computed } from 'vue'
+import { computed, useSlots } from 'vue'
 import { cn } from '~/utils/styles'
 import Icon from '../icon/icon.vue'
 import Overlay from '../overlay/overlay.vue'

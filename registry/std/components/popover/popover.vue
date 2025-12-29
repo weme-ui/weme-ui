@@ -30,7 +30,7 @@ const delegated = props.mode === 'click'
 const forwarded = useForwardPropsEmits(delegated, emits)
 
 const arrowProps = toRef(() => props.arrow as PopoverArrowProps)
-const portalProps = usePortal(toRef(props, 'portal'))
+const portalProps = usePortal(toRef(() => props.portal))
 const contentProps = toRef(() => defu(props.content, { side: 'bottom', sideOffset: 8, collisionPadding: 8 }) as PopoverContentProps)
 
 const contentEvents = computed(() => {

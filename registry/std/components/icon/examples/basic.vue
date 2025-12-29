@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+import { useAppConfig } from '#imports'
 import Tooltip from '../../tooltip/tooltip.vue'
 import Icon from '../icon.vue'
 

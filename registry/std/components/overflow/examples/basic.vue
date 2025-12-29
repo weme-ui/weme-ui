@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+import { ref } from 'vue'
 import Tag from '../../tag/tag.vue'
 import Overflow from '../overflow.vue'
 

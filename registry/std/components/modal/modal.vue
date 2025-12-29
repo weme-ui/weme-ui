@@ -30,7 +30,7 @@ const delegated = reactivePick(props, 'defaultOpen', 'modal', 'open')
 const forwarded = useForwardPropsEmits(delegated, emits)
 const motions = useModalMotions(props)
 
-const portalProps = usePortal(toRef(props, 'portal'))
+const portalProps = usePortal(toRef(() => props.portal))
 const overlayProps = toRef(() => props.overlay)
 const contentProps = toRef(() => props.content)
 

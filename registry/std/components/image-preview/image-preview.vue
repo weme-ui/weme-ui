@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import type { ImagePreviewEmits, ImagePreviewProps } from './image-preview.props'
 import { onKeyStroke, reactiveOmit } from '@vueuse/core'
-import { computed, toRef } from 'vue'
+import { computed, ref, toRef } from 'vue'
 import { usePortal } from '~/composables/use-portal'
 import { cn } from '~/utils/styles'
 import Icon from '../icon/icon.vue'

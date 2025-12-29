@@ -2,7 +2,7 @@
 import type { ToastEmits, ToastProps } from './toast.props'
 import { reactivePick } from '@vueuse/core'
 import { ToastAction, ToastClose, ToastDescription, ToastRoot, ToastTitle, useForwardPropsEmits } from 'reka-ui'
-import { computed } from 'vue'
+import { computed, onMounted, ref } from 'vue'
 import { useLocale } from '~/composables/use-locale'
 import { cn } from '~/utils/styles'
 import Button from '../button/button.vue'

@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+import { ref } from 'vue'
 import Steps from '../steps.vue'
 
 const value = ref(1)

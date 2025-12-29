@@ -1,6 +1,6 @@
 import type { MaybeRef, Ref } from 'vue'
 import type { Locale, LocaleDirection } from '~/types/locale'
-import { unref } from 'vue'
+import { computed, isRef, ref, unref } from 'vue'
 import { get } from './props'
 
 export type TranslatorOption = Record<string, string | number>

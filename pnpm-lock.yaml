@@ -28,8 +28,8 @@ catalogs:
       specifier: 1.2.6
       version: 1.2.6
     '@iconify-json/simple-icons':
-      specifier: ^1.2.63
-      version: 1.2.63
+      specifier: ^1.2.64
+      version: 1.2.64
     '@inquirer/prompts':
       specifier: ^8.1.0
       version: 8.1.0
@@ -374,7 +374,7 @@ importers:
     devDependencies:
       '@iconify-json/simple-icons':
         specifier: 'catalog:'
-        version: 1.2.63
+        version: 1.2.64
       '@nuxt/content':
         specifier: 'catalog:'
         version: 3.10.0(better-sqlite3@12.5.0)(magicast@0.5.1)
@@ -1513,8 +1513,8 @@ packages:
   '@iconify-json/mingcute@1.2.6':
     resolution: {integrity: sha512-mXvLsBgsZz9jiAUKtU+EHsD5/tLzWAHQ0z0Qk255NjUnZqtbmIhSNoUHq59tO776K2Q48A4D+Y3LYce2niY3CQ==}
 
-  '@iconify-json/simple-icons@1.2.63':
-    resolution: {integrity: sha512-xZl2UWCwE58VlqZ+pDPmaUhE2tq8MVSTJRr4/9nzzHlDdjJ0Ud1VxNXPrwTSgESKY29iCQw3S0r2nJTSNNngHw==}
+  '@iconify-json/simple-icons@1.2.64':
+    resolution: {integrity: sha512-SMmm//tjZBvHnT0EAzZLnBTL6bukSkncM0pwkOXjr0FsAeCqjQtqoxBR0Mp+PazIJjXJKHm1Ju0YgnCIPOodJg==}
 
   '@iconify/collections@1.0.629':
     resolution: {integrity: sha512-1iT8HyMKpOvml6jxZDaW2dkdgzls4Ik7I/tn79hHqbPGWkNpIQsJSB3Dto+vAyboXLtsRvIKIwtSvfgrHR0HRw==}
@@ -9245,7 +9245,7 @@ snapshots:
     dependencies:
       '@iconify/types': 2.0.0
 
-  '@iconify-json/simple-icons@1.2.63':
+  '@iconify-json/simple-icons@1.2.64':
     dependencies:
       '@iconify/types': 2.0.0
 

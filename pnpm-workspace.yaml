@@ -20,7 +20,7 @@ catalog:
   '@commitlint/config-conventional': ^20.2.0
   '@iconify-json/lucide': 1.2.82
   '@iconify-json/mingcute': 1.2.6
-  '@iconify-json/simple-icons': ^1.2.63
+  '@iconify-json/simple-icons': ^1.2.64
   '@inquirer/prompts': ^8.1.0
   '@nuxt/content': ^3.10.0
   '@nuxt/devtools': ^3.1.1

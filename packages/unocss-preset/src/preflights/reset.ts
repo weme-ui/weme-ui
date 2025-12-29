@@ -1,4 +1,5 @@
-import type { Preflight, WemePresetResolvedOptions } from '../types'
+import type { Preflight } from '@unocss/core'
+import type { Theme, WemePresetResolvedOptions } from '../types'
 import { minifyCss } from '../utils'
 
 const resetCSS = `
@@ -45,7 +46,7 @@ body {
 }
 `
 
-export function reset(options: WemePresetResolvedOptions): Preflight {
+export function reset(options: WemePresetResolvedOptions): Preflight<Theme> {
   return {
     layer: 'base',
     getCSS({ generator }) {

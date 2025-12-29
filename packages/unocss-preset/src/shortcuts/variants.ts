@@ -1,4 +1,5 @@
-import type { Shortcuts, WemePresetResolvedOptions } from '../types'
+import type { Shortcut } from '@unocss/core'
+import type { Theme, WemePresetResolvedOptions } from '../types'
 import { getColorNames } from '../utils'
 
 function isLightColor(color: string) {
@@ -166,7 +167,7 @@ export function buttonVariantShortcuts(options: WemePresetResolvedOptions) {
       { autocomplete: 'btn-<color>-inverse' },
     ],
 
-  ] satisfies Shortcuts
+  ] satisfies Shortcut<Theme>[]
 }
 
 export function boxVariantShortcuts(options: WemePresetResolvedOptions) {
@@ -272,5 +273,5 @@ export function boxVariantShortcuts(options: WemePresetResolvedOptions) {
       },
       { autocomplete: 'box-<color>-inverse' },
     ],
-  ] satisfies Shortcuts
+  ] satisfies Shortcut<Theme>[]
 }

@@ -1,7 +1,8 @@
-import type { Rule, WemePresetResolvedOptions } from '../types'
+import type { Rule } from '@unocss/core'
+import type { Theme, WemePresetResolvedOptions } from '../types'
 import { resolveColor } from '../utils'
 
-export function fillColor(options: WemePresetResolvedOptions): Rule[] {
+export function fillColor(options: WemePresetResolvedOptions): Rule<Theme>[] {
   return [
     [
       /^fill-(.+)$/,
@@ -19,7 +20,7 @@ export function fillColor(options: WemePresetResolvedOptions): Rule[] {
   ]
 }
 
-export function strokeColor(options: WemePresetResolvedOptions): Rule[] {
+export function strokeColor(options: WemePresetResolvedOptions): Rule<Theme>[] {
   return [
     [
       /^stroke-(.+)$/,

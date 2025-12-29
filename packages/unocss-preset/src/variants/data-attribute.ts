@@ -1,4 +1,5 @@
-import type { Variant } from '../types'
+import type { Variant } from '@unocss/core'
+import type { Theme } from '../types'
 import { variantGetParameter } from '@unocss/rule-utils'
 
 const alignAttributes = ['start', 'end', 'center']
@@ -12,7 +13,7 @@ const swipeDirectionAttributes = ['left', 'right', 'up', 'down']
 // Extends
 const orderAttributes = ['first', 'last', 'middle']
 
-export const dataAttribute: Variant[] = [
+export const dataAttribute: Variant<Theme>[] = [
   // Align
   ...createDataVariants('align', alignAttributes),
   ...createDataVariants('align', alignAttributes, 'group'),

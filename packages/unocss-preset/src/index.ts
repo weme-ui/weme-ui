@@ -1,5 +1,6 @@
-import type { WemePresetOptions } from './types'
-import { definePreset } from 'unocss'
+import type { Preset } from '@unocss/core'
+import type { Theme, WemePresetOptions } from './types'
+import { definePreset } from '@unocss/core'
 import { resolveOptions } from './options'
 import { preflights } from './preflights'
 import { rules } from './rules'
@@ -8,7 +9,9 @@ import { theme } from './theme'
 import { getColorNames } from './utils'
 import { variants } from './variants'
 
-export const presetWemeUI = definePreset((userOptions: WemePresetOptions = {}) => {
+export { COLOR_NAMES, GRAY_COLOR_NAMES, THEME_COLORS, VARIANT_MAP } from './defaults'
+
+export const presetWemeUI = definePreset<WemePresetOptions, Theme>((userOptions = {}): Preset<Theme> => {
   const options = resolveOptions(userOptions)
 
   return {
@@ -23,10 +26,9 @@ export const presetWemeUI = definePreset((userOptions: WemePresetOptions = {}) =
       scale: `(${Array.from({ length: 11 }, (_, i) => i + 1).join('|')})`,
     },
     options,
-  }
+  } as Preset<Theme>
 })
 
-export { COLOR_NAMES, GRAY_COLOR_NAMES, THEME_COLORS, VARIANT_MAP } from './defaults'
-
+export default presetWemeUI
 export type { WemePresetOptions } from './types'
-export type { WemePresetThemeDefinition as WemePresetTheme, WemePresetThemeColorNames, WemePresetThemeColors, WemePresetThemeTokens } from './types'
+export type { Theme as UnoPresetTheme, WemePresetThemeDefinition as WemePresetTheme, WemePresetThemeColorNames, WemePresetThemeColors, WemePresetThemeTokens } from './types'

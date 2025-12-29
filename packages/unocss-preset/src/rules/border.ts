@@ -1,10 +1,11 @@
 /* eslint-disable regexp/no-empty-group */
 /* eslint-disable regexp/no-empty-capturing-group */
+import type { Rule } from '@unocss/core'
 import type { VariantHandler } from 'unocss'
-import type { Rule, WemePresetResolvedOptions } from '../types'
+import type { Theme, WemePresetResolvedOptions } from '../types'
 import { resolveColor } from '../utils'
 
-export function borderColors(options: WemePresetResolvedOptions): Rule[] {
+export function borderColors(options: WemePresetResolvedOptions): Rule<Theme>[] {
   return [
     [
       /^(?:border|b)-(.+)$/,
@@ -74,7 +75,7 @@ export function borderColors(options: WemePresetResolvedOptions): Rule[] {
   ]
 }
 
-export function borderSizes(options: WemePresetResolvedOptions): Rule[] {
+export function borderSizes(options: WemePresetResolvedOptions): Rule<Theme>[] {
   return [
     [
       /^(?:border|b)-()(?:width|size)-(.+)$/,
@@ -150,7 +151,7 @@ export function borderSizes(options: WemePresetResolvedOptions): Rule[] {
   ]
 }
 
-export function divideColor(options: WemePresetResolvedOptions): Rule[] {
+export function divideColor(options: WemePresetResolvedOptions): Rule<Theme>[] {
   return [
     [
       /^divide-(.+)$/,

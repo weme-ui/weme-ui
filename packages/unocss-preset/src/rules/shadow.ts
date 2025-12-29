@@ -1,7 +1,8 @@
-import type { Rule, WemePresetResolvedOptions } from '../types'
+import type { Rule } from '@unocss/core'
+import type { Theme, WemePresetResolvedOptions } from '../types'
 import { resolveColor } from '../utils'
 
-export function shadowColors(options: WemePresetResolvedOptions): Rule[] {
+export function shadowColors(options: WemePresetResolvedOptions): Rule<Theme>[] {
   return [
     [
       /^shadow-(.+)$/,
@@ -33,7 +34,7 @@ export function shadowColors(options: WemePresetResolvedOptions): Rule[] {
   ]
 }
 
-export function textShadowColors(options: WemePresetResolvedOptions): Rule[] {
+export function textShadowColors(options: WemePresetResolvedOptions): Rule<Theme>[] {
   return [
     [
       /^text-shadow-(.+)$/,

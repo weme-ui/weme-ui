@@ -1,4 +1,5 @@
-import type { Rule, WemePresetResolvedOptions } from '../types'
+import type { Rule } from '@unocss/core'
+import type { Theme, WemePresetResolvedOptions } from '../types'
 import { resolveColor, trackProperty } from '../utils'
 
 const properties = {
@@ -13,7 +14,7 @@ const properties = {
   'gradient-to-position': trackProperty('--un-gradient-to-position', { syntax: '<length-percentage>', initialValue: '100%' }),
 }
 
-export function gradientColors(options: WemePresetResolvedOptions): Rule[] {
+export function gradientColors(options: WemePresetResolvedOptions): Rule<Theme>[] {
   return [
     [
       /^(from|via|to|stops)-(.+)$/,

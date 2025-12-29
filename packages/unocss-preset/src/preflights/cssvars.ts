@@ -1,7 +1,8 @@
-import type { Preflight, WemePresetResolvedOptions } from '../types'
+import type { Preflight } from '@unocss/core'
+import type { Theme, WemePresetResolvedOptions } from '../types'
 import { cssVarName, minifyCss, resolveTokenValue } from '../utils'
 
-export function cssVars(options: WemePresetResolvedOptions): Preflight[] {
+export function cssVars(options: WemePresetResolvedOptions): Preflight<Theme>[] {
   return [
     {
       layer: 'theme',

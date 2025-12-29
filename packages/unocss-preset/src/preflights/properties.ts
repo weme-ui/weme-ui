@@ -1,7 +1,8 @@
-import type { Preflight } from '../types'
+import type { Preflight } from '@unocss/core'
+import type { Theme } from '../types'
 import { trackedProperties } from '../utils'
 
-export function properties(): Preflight | undefined {
+export function properties(): Preflight<Theme> | undefined {
   return {
     layer: 'properties',
     getCSS() {

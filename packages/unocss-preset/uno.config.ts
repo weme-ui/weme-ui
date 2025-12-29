@@ -1,5 +1,5 @@
 import { defineConfig, presetIcons, presetWind4, transformerVariantGroup } from 'unocss'
-import { presetWemeUI } from './src'
+import { presetWemeUI } from './'
 
 export default defineConfig({
   presets: [

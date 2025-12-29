@@ -1,7 +1,8 @@
-import type { Rule, WemePresetResolvedOptions } from '../types'
+import type { Rule } from '@unocss/core'
+import type { Theme, WemePresetResolvedOptions } from '../types'
 import { resolveColor } from '../utils'
 
-export function outlineColors(options: WemePresetResolvedOptions): Rule[] {
+export function outlineColors(options: WemePresetResolvedOptions): Rule<Theme>[] {
   return [
     [
       /^outline-(.+)$/,

@@ -1,4 +1,5 @@
-import type { Rule, WemePresetResolvedOptions } from '../types'
+import type { Rule } from '@unocss/core'
+import type { Theme, WemePresetResolvedOptions } from '../types'
 import { borderColors, borderSizes, divideColor } from './border'
 import { accentColors, bgColors, caretColors, decorationColors, fgColors, placeholderColors } from './color'
 import { gradientColors } from './gradient'
@@ -8,7 +9,7 @@ import { shadowColors, textShadowColors } from './shadow'
 import { boxSizes } from './size'
 import { fillColor, strokeColor } from './svg'
 
-export function rules(options: WemePresetResolvedOptions): Rule[] {
+export function rules(options: WemePresetResolvedOptions): Rule<Theme>[] {
   return [
     // region Colors
     bgColors(options),

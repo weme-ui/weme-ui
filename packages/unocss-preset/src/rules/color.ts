@@ -1,7 +1,8 @@
-import type { Rule, WemePresetResolvedOptions } from '../types'
+import type { Rule } from '@unocss/core'
+import type { Theme, WemePresetResolvedOptions } from '../types'
 import { resolveColor } from '../utils'
 
-export function fgColors(options: WemePresetResolvedOptions): Rule[] {
+export function fgColors(options: WemePresetResolvedOptions): Rule<Theme>[] {
   return [
     [
       /^(?:text|color|c)-(.+)$/,
@@ -19,7 +20,7 @@ export function fgColors(options: WemePresetResolvedOptions): Rule[] {
   ]
 }
 
-export function bgColors(options: WemePresetResolvedOptions): Rule[] {
+export function bgColors(options: WemePresetResolvedOptions): Rule<Theme>[] {
   return [
     [
       /^bg-(.+)$/,
@@ -37,7 +38,7 @@ export function bgColors(options: WemePresetResolvedOptions): Rule[] {
   ]
 }
 
-export function decorationColors(options: WemePresetResolvedOptions): Rule[] {
+export function decorationColors(options: WemePresetResolvedOptions): Rule<Theme>[] {
   return [
     [
       /^(?:underline|decoration)-(.+)$/,
@@ -60,7 +61,7 @@ export function decorationColors(options: WemePresetResolvedOptions): Rule[] {
   ]
 }
 
-export function accentColors(options: WemePresetResolvedOptions): Rule[] {
+export function accentColors(options: WemePresetResolvedOptions): Rule<Theme>[] {
   return [
     [
       /^accent-(.+)$/,
@@ -78,7 +79,7 @@ export function accentColors(options: WemePresetResolvedOptions): Rule[] {
   ]
 }
 
-export function caretColors(options: WemePresetResolvedOptions): Rule[] {
+export function caretColors(options: WemePresetResolvedOptions): Rule<Theme>[] {
   return [
     [
       /^caret-(.+)$/,
@@ -96,7 +97,7 @@ export function caretColors(options: WemePresetResolvedOptions): Rule[] {
   ]
 }
 
-export function placeholderColors(options: WemePresetResolvedOptions): Rule[] {
+export function placeholderColors(options: WemePresetResolvedOptions): Rule<Theme>[] {
   return [
     [
       /^placeholder-(.+)$/,

@@ -1,7 +1,8 @@
-import type { Preflight, WemePresetColorScales, WemePresetResolvedOptions } from '../types'
+import type { Preflight } from '@unocss/core'
+import type { Theme, WemePresetColorScales, WemePresetResolvedOptions } from '../types'
 import { minifyCss, trackedColors } from '../utils'
 
-export function colors(options: WemePresetResolvedOptions): Preflight[] {
+export function colors(options: WemePresetResolvedOptions): Preflight<Theme>[] {
   const colors: Preflight[] = []
   const colorNames = Object.keys(options.colors)
 

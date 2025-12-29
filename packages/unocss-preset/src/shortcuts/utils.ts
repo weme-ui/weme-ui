@@ -1,4 +1,4 @@
-import type { Shortcuts } from '../types'
+import type { StaticShortcutMap } from '@unocss/core'
 
 export const utils = [
   // Utils
@@ -25,4 +25,4 @@ export const utils = [
     'z-popup': 'z-30',
     'z-overlay': 'z-20',
   },
-] satisfies Shortcuts
+] satisfies StaticShortcutMap[]

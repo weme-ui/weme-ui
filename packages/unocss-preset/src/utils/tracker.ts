@@ -1,4 +1,4 @@
-import type { CSSObjectInput } from 'unocss'
+import type { CSSObjectInput } from '@unocss/core'
 import { symbols } from '@unocss/core'
 
 // region Tracking Colors

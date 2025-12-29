@@ -21,9 +21,9 @@ const ui = computed(() => useBreadcrumbStyle({
 </script>
 
 <template>
-  <Primitive v-bind="delegated" :class="cn(ui.base(), props.ui?.base, props.class)">
-    <ul :class="cn(ui.list(), props.ui?.list)">
-      <li v-for="(item, index) in items" :key="index" :class="cn(ui.item(), props.ui?.item)">
+  <Primitive v-bind="delegated" :class="cn(ui.root(), props.ui?.root, props.class)" data-slot="root">
+    <ul :class="cn(ui.list(), props.ui?.list)" data-slot="list">
+      <li v-for="(item, index) in items" :key="index" :class="cn(ui.item(), props.ui?.item)" data-slot="item">
         <slot name="item" v-bind="{ item, index }">
           <Primitive
             :as="item.to ? 'a' : 'span'"
@@ -33,16 +33,15 @@ const ui = computed(() => useBreadcrumbStyle({
               to: !!item.to,
               active: items && index === items?.length - 1,
             }), props.ui?.link)"
+            data-slot="link"
           >
-            <Icon v-if="item.icon" :name="item.icon" :class="cn(ui.icon(), props.ui?.icon)" />
+            <Icon v-if="item.icon" :name="item.icon" :class="cn(ui.icon(), props.ui?.icon)" data-slot="icon" />
             {{ item.label }}
           </Primitive>
         </slot>
-        <slot name="separator" v-bind="{ item, index }">
-          <template v-if="items && index < items.length - 1">
-            <Icon v-if="separatorIcon" :name="separatorIcon" :class="cn(ui.separatorIcon(), props.ui?.separatorIcon)" />
-            <span v-else :class="cn(ui.separator(), props.ui?.separator)">{{ separator }}</span>
-          </template>
+        <slot v-if="items && index < items.length - 1" name="separator" v-bind="{ item, index }">
+          <Icon v-if="separatorIcon" :name="separatorIcon" :class="cn(ui.separatorIcon(), props.ui?.separatorIcon)" data-slot="separatorIcon" />
+          <span v-else :class="cn(ui.separator(), props.ui?.separator)" data-slot="separator">{{ separator }}</span>
         </slot>
       </li>
     </ul>

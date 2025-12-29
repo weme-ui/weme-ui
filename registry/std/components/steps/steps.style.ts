@@ -4,7 +4,7 @@ import { createVariants } from '~/utils/styles'
 
 export const useStepsStyle = createVariants({
   slots: {
-    base: 'flex w-full',
+    root: 'flex w-full',
     item: 'flex items-start',
     trigger: 'font-medium state-active:font-bold',
     indicator: 'flex-(~ center) rounded-full transition-colors',
@@ -20,22 +20,22 @@ export const useStepsStyle = createVariants({
     variant: { solid: '', soft: '' },
     orientation: {
       horizontal: {
-        base: 'flex-row justify-end',
+        root: 'flex-row justify-end',
         item: 'flex-row',
         wrapper: 'overflow-hidden',
         title: 'relative',
         separator: '',
       },
       vertical: {
-        base: 'flex-col',
+        root: 'flex-col',
         item: 'pb-8 overflow-hidden',
         trigger: 'relative',
       },
     },
     size: {
-      sm: { base: 'gap-3', item: 'gap-3', indicator: 'size-6 text-sm', indicatorIcon: 'size-3', title: 'h-6 text-sm', description: 'text-xs' },
-      md: { base: 'gap-4', item: 'gap-4', indicator: 'size-8 text-base', indicatorIcon: 'size-4', title: 'h-8 text-base', description: 'text-sm' },
-      lg: { base: 'gap-5', item: 'gap-5', indicator: 'size-10 text-lg', indicatorIcon: 'size-5', title: 'h-10 text-lg', description: 'text-base' },
+      sm: { root: 'gap-3', item: 'gap-3', indicator: 'size-6 text-sm', indicatorIcon: 'size-3', title: 'h-6 text-sm', description: 'text-xs' },
+      md: { root: 'gap-4', item: 'gap-4', indicator: 'size-8 text-base', indicatorIcon: 'size-4', title: 'h-8 text-base', description: 'text-sm' },
+      lg: { root: 'gap-5', item: 'gap-5', indicator: 'size-10 text-lg', indicatorIcon: 'size-5', title: 'h-10 text-lg', description: 'text-base' },
     },
     isLatest: {
       true: {},

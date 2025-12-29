@@ -3,7 +3,7 @@ import { createVariants } from '~/utils/styles'
 
 export const useCarouselStyle = createVariants({
   slots: {
-    base: 'group relative focus:outline-none',
+    root: 'group relative focus:outline-none',
     viewport: 'overflow-hidden',
     container: 'flex items-start',
     item: 'min-w-0 shrink-0 basis-full',

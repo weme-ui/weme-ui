@@ -3,7 +3,7 @@ import { createVariants } from '~/utils/styles'
 
 export const usePaginationStyle = createVariants({
   slots: {
-    base: 'flex-(~ y-center) gap-4',
+    root: 'flex-(~ y-center) gap-4',
     list: 'flex-(~ 1 y-center) select-none',
     item: 'flex-(~ center) transition-colors data-[selected]:font-semibold disabled:is-disabled',
     ellipsis: 'flex-(~ center)',
@@ -22,9 +22,9 @@ export const usePaginationStyle = createVariants({
       inverse: { item: 'c-primary-1 data-[selected]:box-primary-inverse', ellipsis: 'c-primary-3', content: 'c-primary-1' },
     },
     size: {
-      sm: { base: 'text-xs', list: 'gap-1', item: 'min-w-5 h-5', ellipsis: 'min-w-5 h-5' },
-      md: { base: 'text-sm', list: 'gap-2', item: 'min-w-6 h-6', ellipsis: 'min-w-6 h-6' },
-      lg: { base: 'text-base', list: 'gap-2.5', item: 'min-w-7 h-7', ellipsis: 'min-w-7 h-7' },
+      sm: { root: 'text-xs', list: 'gap-1', item: 'min-w-5 h-5', ellipsis: 'min-w-5 h-5' },
+      md: { root: 'text-sm', list: 'gap-2', item: 'min-w-6 h-6', ellipsis: 'min-w-6 h-6' },
+      lg: { root: 'text-base', list: 'gap-2.5', item: 'min-w-7 h-7', ellipsis: 'min-w-7 h-7' },
     },
     radius: {
       none: '',

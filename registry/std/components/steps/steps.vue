@@ -64,7 +64,8 @@ defineExpose({
     v-slot="{ totalSteps }"
     v-model="currentStepIndex"
     v-bind="forwarded"
-    :class="cn(ui.base(), props.ui?.base, props.class)"
+    :class="cn(ui.root(), props.ui?.root, props.class)"
+    data-slot="root"
   >
     <StepperItem
       v-for="(item, index) in items"
@@ -74,34 +75,58 @@ defineExpose({
       :completed="item.completed"
       :disabled="item.disabled"
       :class="cn(ui.item({ isLatest: index === totalSteps - 1 }), props.ui?.item)"
+      data-slot="item"
     >
-      <StepperTrigger :class="cn(ui.trigger({ isLatest: index === totalSteps - 1 }), props.ui?.trigger)">
-        <StepperIndicator :data-state="state" :class="cn(ui.indicator(), props.ui?.indicator)">
+      <StepperTrigger :class="cn(ui.trigger({ isLatest: index === totalSteps - 1 }), props.ui?.trigger)" data-slot="trigger">
+        <StepperIndicator :data-state="state" :class="cn(ui.indicator(), props.ui?.indicator)" data-slot="indicator">
           <slot v-if="item.icon || $slots.indicator" name="indicator" v-bind="{ totalSteps, state, item, modelValue }">
             <Icon
               v-if="item.icon"
               :name="state === 'completed' ? item.completedIcon || completedIcon : item.icon"
               :class="cn(ui.indicatorIcon(), props.ui?.indicatorIcon)"
+              data-slot="indicatorIcon"
             />
           </slot>
           <slot v-else name="indicator" v-bind="{ totalSteps, state, item, modelValue }">
-            <Icon v-if="state === 'completed'" :name="item.completedIcon || completedIcon" :class="cn(ui.indicatorIcon(), props.ui?.indicatorIcon)" />
+            <Icon
+              v-if="state === 'completed'"
+              :name="item.completedIcon || completedIcon"
+              :class="cn(ui.indicatorIcon(), props.ui?.indicatorIcon)"
+              data-slot="indicatorIcon"
+            />
             <template v-else>
               {{ item.step }}
             </template>
           </slot>
         </StepperIndicator>
-        <StepperSeparator v-if="orientation === 'vertical' && index < totalSteps - 1" :class="cn(ui.separator(), props.ui?.separator)" />
+        <StepperSeparator
+          v-if="orientation === 'vertical' && index < totalSteps - 1"
+          :class="cn(ui.separator(), props.ui?.separator)"
+          data-slot="separator"
+        />
       </StepperTrigger>
 
-      <div :class="cn(ui.wrapper(), props.ui?.wrapper)">
-        <StepperTitle :data-state="state" :class="cn(ui.title({ isLatest: index === totalSteps - 1 }), props.ui?.title)">
+      <div :class="cn(ui.wrapper(), props.ui?.wrapper)" data-slot="wrapper">
+        <StepperTitle
+          :data-state="state"
+          :class="cn(ui.title({ isLatest: index === totalSteps - 1 }), props.ui?.title)"
+          data-slot="title"
+        >
           <slot name="title" v-bind="{ totalSteps, state, item, modelValue }">
             {{ item.title }}
           </slot>
-          <StepperSeparator v-if="orientation === 'horizontal' && index < totalSteps - 1" :class="cn(ui.separator(), props.ui?.separator)" />
+          <StepperSeparator
+            v-if="orientation === 'horizontal' && index < totalSteps - 1"
+            :class="cn(ui.separator(), props.ui?.separator)"
+            data-slot="separator"
+          />
         </StepperTitle>
-        <StepperDescription v-if="item.description" :data-state="state" :class="cn(ui.description({ isLatest: index === totalSteps - 1 }), props.ui?.description)">
+        <StepperDescription
+          v-if="item.description"
+          :data-state="state"
+          :class="cn(ui.description({ isLatest: index === totalSteps - 1 }), props.ui?.description)"
+          data-slot="description"
+        >
           <slot name="description" v-bind="{ totalSteps, state, item, modelValue }">
             {{ item.description }}
           </slot>

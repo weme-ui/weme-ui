@@ -2,7 +2,7 @@ import { createVariants } from '~/utils/styles'
 
 export const useCollapsibleStyle = createVariants({
   slots: {
-    base: '',
+    root: '',
     trigger: '',
     content: 'overflow-hidden will-change-height state-open:animate-collapse-open state-closed:animate-collapse-close',
   },

@@ -3,7 +3,7 @@ import { createVariants } from '~/utils/styles'
 
 export const useTabsStyle = createVariants({
   slots: {
-    base: 'flex',
+    root: 'flex',
     listWrapper: 'relative flex',
     list: 'relative flex',
     indicator: 'abs z-1',
@@ -43,8 +43,8 @@ export const useTabsStyle = createVariants({
   },
 
   compoundVariants: [
-    { side: ['top', 'bottom'], class: { base: 'flex-col', actions: 'flex-y-center justify-end pr-1' } },
-    { side: ['left', 'right'], class: { base: 'flex-row', list: 'flex-col', actions: 'flex-x-center items-end pb-2' } },
+    { side: ['top', 'bottom'], class: { root: 'flex-col', actions: 'flex-y-center justify-end pr-1' } },
+    { side: ['left', 'right'], class: { root: 'flex-row', list: 'flex-col', actions: 'flex-x-center items-end pb-2' } },
 
     { variant: 'line', side: 'top', class: { indicator: 'h-0.5 -bottom-px', content: 'b-(t default)' } },
     { variant: 'line', side: 'bottom', class: { indicator: 'h-0.5 -top-px', content: 'b-(b default)' } },
@@ -75,7 +75,7 @@ export const useTabsStyle = createVariants({
 
     { variant: 'plain', side: ['left', 'right'], class: { listWrapper: 'flex-col' } },
 
-    { variant: ['pill', 'capsule'], class: { base: 'gap-2' } },
+    { variant: ['pill', 'capsule'], class: { root: 'gap-2' } },
 
     { variant: ['card', 'pill', 'capsule'], size: 'sm', class: { indicator: 'h-6' } },
     { variant: ['card', 'pill', 'capsule'], size: 'md', class: { indicator: 'h-8' } },

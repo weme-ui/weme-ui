@@ -19,8 +19,8 @@ export interface CarouselProps<T extends CarouselItem = CarouselItem> extends Pi
   prevIcon?: string
   next?: Partial<IconButtonProps>
   nextIcon?: string
-  showArrows?: boolean
-  showDots?: boolean
+  arrows?: boolean
+  dots?: boolean
   autoplay?: boolean | AutoplayOptionsType
   fade?: boolean | FadeOptionsType
   wheelGestures?: boolean | WheelGesturesPluginOptions

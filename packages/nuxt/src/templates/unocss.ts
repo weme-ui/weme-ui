@@ -15,13 +15,10 @@ export function createUnoCssConfig(
 import { defineConfig, presetWind4, transformerVariantGroup } from 'unocss'
 import { presetWemeUI } from '@weme-ui/unocss-preset'
 
-const accentColors = ${JSON.stringify(accentColors || {}, null, 2)}
-
-const neutralColors = ${JSON.stringify(neutralColors || {}, null, 2)}
-
+const accentColors = ${JSON.stringify(accentColors || {}, null, 2)} as Record<string, string>
+const neutralColors = ${JSON.stringify(neutralColors || {}, null, 2)} as Record<string, string>
 const themes = ${JSON.stringify(themes || [], null, 2)}
-
-const cssVars = ${JSON.stringify(cssVars || {}, null, 2)}
+const cssVars = ${JSON.stringify(cssVars || {}, null, 2)} as Record<string, any>
 
 export default defineConfig({
   presets: [

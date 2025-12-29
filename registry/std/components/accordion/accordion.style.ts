@@ -3,7 +3,7 @@ import { createVariants } from '~/utils/styles'
 
 export const useAccordionStyle = createVariants({
   slots: {
-    base: 'flex-(~ col) overflow-hidden',
+    root: 'flex-(~ col) overflow-hidden',
     item: 'group overflow-hidden focus-visible:outline-none',
     header: '',
     trigger: 'flex w-full',
@@ -20,13 +20,13 @@ export const useAccordionStyle = createVariants({
 
   variants: {
     color: {
-      primary: { item: 'bg-primary-1', headerIcon: 'c-primary' },
-      secondary: { item: 'bg-secondary-1', headerIcon: 'c-secondary' },
-      neutral: { item: 'bg-neutral-1', headerIcon: 'c-neutral' },
-      info: { item: 'bg-info-1', headerIcon: 'c-info' },
-      success: { item: 'bg-success-1', headerIcon: 'c-success' },
-      warning: { item: 'bg-warning-1', headerIcon: 'c-warning' },
-      danger: { item: 'bg-danger-1', headerIcon: 'c-danger' },
+      primary: { trigger: 'focus-visible:outline-primary', headerIcon: 'c-primary' },
+      secondary: { trigger: 'focus-visible:outline-secondary', headerIcon: 'c-secondary' },
+      neutral: { trigger: 'focus-visible:outline-neutral', headerIcon: 'c-neutral' },
+      info: { trigger: 'focus-visible:outline-info', headerIcon: 'c-info' },
+      success: { trigger: 'focus-visible:outline-success', headerIcon: 'c-success' },
+      warning: { trigger: 'focus-visible:outline-warning', headerIcon: 'c-warning' },
+      danger: { trigger: 'focus-visible:outline-danger', headerIcon: 'c-danger' },
     },
     variant: {
       normal: {
@@ -37,7 +37,7 @@ export const useAccordionStyle = createVariants({
         header: 'state-open:b-(b default)',
       },
       table: {
-        base: 'b-(~ default)',
+        root: 'b-(~ default)',
         item: 'not-last:b-(b default)',
         header: 'state-open:b-(b default)',
       },
@@ -80,6 +80,11 @@ export const useAccordionStyle = createVariants({
       center: { trigger: 'items-center' },
       end: { trigger: 'items-end' },
     },
+    disabled: {
+      true: {
+        item: 'is-disabled',
+      },
+    },
   },
 
   compoundVariants: [
@@ -87,9 +92,9 @@ export const useAccordionStyle = createVariants({
     { variant: 'normal', size: 'md', class: { header: 'py-3', contentBody: 'px-1 pb-3' } },
     { variant: 'normal', size: 'lg', class: { header: 'py-4', contentBody: 'px-1.5 pb-4' } },
 
-    { variant: 'card', size: 'sm', class: { base: 'gap-2' } },
-    { variant: 'card', size: 'md', class: { base: 'gap-3' } },
-    { variant: 'card', size: 'lg', class: { base: 'gap-4' } },
+    { variant: 'card', size: 'sm', class: { root: 'gap-2' } },
+    { variant: 'card', size: 'md', class: { root: 'gap-3' } },
+    { variant: 'card', size: 'lg', class: { root: 'gap-4' } },
 
     { variant: ['card', 'table'], size: 'sm', class: { header: 'p-1.5', contentBody: 'p-2.5' } },
     { variant: ['card', 'table'], size: 'md', class: { header: 'p-2', contentBody: 'p-4' } },
@@ -102,12 +107,12 @@ export const useAccordionStyle = createVariants({
     { variant: 'card', radius: 'lg', class: { item: 'rounded-lg' } },
     { variant: 'card', radius: 'xl', class: { item: 'rounded-xl' } },
 
-    { variant: 'table', radius: 'none', class: { base: 'rounded-none' } },
-    { variant: 'table', radius: 'xs', class: { base: 'rounded-xs' } },
-    { variant: 'table', radius: 'sm', class: { base: 'rounded-sm' } },
-    { variant: 'table', radius: 'md', class: { base: 'rounded-md' } },
-    { variant: 'table', radius: 'lg', class: { base: 'rounded-lg' } },
-    { variant: 'table', radius: 'xl', class: { base: 'rounded-xl' } },
+    { variant: 'table', radius: 'none', class: { root: 'rounded-none' } },
+    { variant: 'table', radius: 'xs', class: { root: 'rounded-xs' } },
+    { variant: 'table', radius: 'sm', class: { root: 'rounded-sm' } },
+    { variant: 'table', radius: 'md', class: { root: 'rounded-md' } },
+    { variant: 'table', radius: 'lg', class: { root: 'rounded-lg' } },
+    { variant: 'table', radius: 'xl', class: { root: 'rounded-xl' } },
   ],
 
   defaultVariants: {

@@ -17,9 +17,9 @@ const ui = computed(() => useListStyle(props))
 </script>
 
 <template>
-  <Primitive v-bind="delegated" :class="cn(ui.base(), props.ui?.base, props.class)">
-    <li v-for="(item, index) in items" :key="index" :class="cn(ui.item(), item.ui?.item)">
-      <span v-if="item.indicator" :class="cn(ui.indicator(), item.ui?.indicator)">
+  <Primitive v-bind="delegated" :class="cn(ui.root(), props.ui?.root, props.class)" data-slot="root">
+    <li v-for="(item, index) in items" :key="index" :class="cn(ui.item(), item.ui?.item)" data-slot="item">
+      <span v-if="item.indicator" :class="cn(ui.indicator(), item.ui?.indicator)" data-slot="indicator">
         <slot name="indicator" v-bind="{ item, index }" />
       </span>
       <slot v-bind="{ item, index }">

@@ -2,7 +2,7 @@
 import type { BlockquoteProps } from './blockquote.props'
 import { reactivePick } from '@vueuse/core'
 import { Primitive } from 'reka-ui'
-import { computed } from 'vue'
+import { computed, useSlots } from 'vue'
 import { cn } from '~/utils/styles'
 import { useBlockquoteStyle } from './blockquote.style'
 
@@ -25,14 +25,14 @@ const ui = computed(() => useBlockquoteStyle({
 </script>
 
 <template>
-  <figure :class="cn(ui.base(), props.ui?.base, props.class)">
-    <div v-if="$slots.icon" :class="cn(ui.icon(), props.ui?.icon)">
+  <figure :class="cn(ui.root(), props.ui?.root, props.class)" data-slot="root">
+    <div v-if="$slots.icon" :class="cn(ui.icon(), props.ui?.icon)" data-slot="icon">
       <slot name="icon" />
     </div>
-    <Primitive v-bind="delegated" :class="cn(ui.content(), props.ui?.content)">
+    <Primitive v-bind="delegated" :class="cn(ui.content(), props.ui?.content)" data-slot="content">
       <slot />
     </Primitive>
-    <figcaption v-if="$slots.caption" :class="cn(ui.caption(), props.ui?.caption)">
+    <figcaption v-if="$slots.caption" :class="cn(ui.caption(), props.ui?.caption)" data-slot="caption">
       <slot name="caption" />
     </figcaption>
   </figure>

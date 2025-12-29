@@ -3,7 +3,7 @@ import { createVariants } from '~/utils/styles'
 
 export const useListStyle = createVariants({
   slots: {
-    base: 'flex-(~ col)',
+    root: 'flex-(~ col)',
     item: '',
     indicator: 'flex-(~ center) mie-2 shrink-0',
   },
@@ -11,7 +11,7 @@ export const useListStyle = createVariants({
   variants: {
     variant: {
       none: { item: 'flex-inline' },
-      marker: { base: 'list-revert' },
+      marker: { root: 'list-revert' },
     },
     align: {
       start: { item: 'items-start' },

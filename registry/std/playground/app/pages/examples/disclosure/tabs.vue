@@ -5,6 +5,9 @@ import TabsExampleWithRadius from '@registry/components/tabs/examples/with-radiu
 import TabsExampleWithSide from '@registry/components/tabs/examples/with-side.vue'
 import TabsExampleWithSize from '@registry/components/tabs/examples/with-size.vue'
 import TabsExampleWithVariant from '@registry/components/tabs/examples/with-variant.vue'
+
+import UiTabsContent from '@registry/components/tabs/tabs-content.vue'
+import UiTabs from '@registry/components/tabs/tabs.vue'
 </script>
 
 <template>

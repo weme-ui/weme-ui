@@ -4,6 +4,9 @@ import ItemGroupExampleWithAlign from '@registry/components/item-group/examples/
 import ItemGroupExampleWithHeader from '@registry/components/item-group/examples/with-header.vue'
 import ItemGroupExampleWithSize from '@registry/components/item-group/examples/with-size.vue'
 import ItemGroupExampleWithVariant from '@registry/components/item-group/examples/with-variant.vue'
+
+import UiTabsContent from '@registry/components/tabs/tabs-content.vue'
+import UiTabs from '@registry/components/tabs/tabs.vue'
 </script>
 
 <template>

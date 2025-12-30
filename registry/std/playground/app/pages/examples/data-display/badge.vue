@@ -6,6 +6,9 @@ import BadgeExampleWithLinkable from '@registry/components/badge/examples/with-l
 import BadgeExampleWithRadius from '@registry/components/badge/examples/with-radius.vue'
 import BadgeExampleWithSize from '@registry/components/badge/examples/with-size.vue'
 import BadgeExampleWithVariant from '@registry/components/badge/examples/with-variant.vue'
+
+import UiTabsContent from '@registry/components/tabs/tabs-content.vue'
+import UiTabs from '@registry/components/tabs/tabs.vue'
 </script>
 
 <template>

@@ -6,6 +6,9 @@ import PaginationExampleWithRadius from '@registry/components/pagination/example
 import PaginationExampleWithSimple from '@registry/components/pagination/examples/with-simple.vue'
 import PaginationExampleWithSize from '@registry/components/pagination/examples/with-size.vue'
 import PaginationExampleWithVariant from '@registry/components/pagination/examples/with-variant.vue'
+
+import UiTabsContent from '@registry/components/tabs/tabs-content.vue'
+import UiTabs from '@registry/components/tabs/tabs.vue'
 </script>
 
 <template>

@@ -4,11 +4,14 @@ import ButtonExampleWithColor from '@registry/components/button/examples/with-co
 import ButtonExampleWithIcon from '@registry/components/button/examples/with-icon.vue'
 import ButtonExampleWithRadius from '@registry/components/button/examples/with-radius.vue'
 import ButtonExampleWithSize from '@registry/components/button/examples/with-size.vue'
+
+import UiTabsContent from '@registry/components/tabs/tabs-content.vue'
+import UiTabs from '@registry/components/tabs/tabs.vue'
 </script>
 
 <template>
-  <UiTabs default-value="basic" class="h-full" animate>
-    <UiTabsContent value="basic" title="Basic" class="h-full">
+  <UiTabs default-value="basic" animate>
+    <UiTabsContent value="basic" title="Basic">
       <ButtonExampleWithBasic />
     </UiTabsContent>
 

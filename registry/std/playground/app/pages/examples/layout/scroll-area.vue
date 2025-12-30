@@ -4,6 +4,9 @@ import ScrollAreaExampleWithOrientation from '@registry/components/scroll-area/e
 import ScrollAreaExampleWithRadius from '@registry/components/scroll-area/examples/with-radius.vue'
 import ScrollAreaExampleWithSize from '@registry/components/scroll-area/examples/with-size.vue'
 import ScrollAreaExampleWithVirtualize from '@registry/components/scroll-area/examples/with-virtualize.vue'
+
+import UiTabsContent from '@registry/components/tabs/tabs-content.vue'
+import UiTabs from '@registry/components/tabs/tabs.vue'
 </script>
 
 <template>

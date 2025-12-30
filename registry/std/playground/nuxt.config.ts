@@ -8,18 +8,6 @@ export default defineNuxtConfig({
     '@weme-ui/nuxt',
   ],
 
-  components: {
-    dirs: [
-      '~/components',
-      {
-        prefix: 'Ui',
-        path: resolve('../'),
-        pathPrefix: false,
-        extensions: ['.vue'],
-      },
-    ],
-  },
-
   alias: {
     '@registry': resolve('../'),
   },
@@ -35,11 +23,6 @@ export default defineNuxtConfig({
         '@iconify-json/lucide',
         '@iconify-json/mingcute',
         'unocss',
-        '@unocss/core',
-        '@radix-ui/colors',
-        'colorjs.io',
-        'bezier-easing',
-        '@unocss/rule-utils',
       ],
     },
   },

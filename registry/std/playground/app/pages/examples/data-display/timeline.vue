@@ -1,4 +1,7 @@
 <script lang="ts" setup>
+import UiTabsContent from '@registry/components/tabs/tabs-content.vue'
+import UiTabs from '@registry/components/tabs/tabs.vue'
+
 import TimelineExampleBasic from '@registry/components/timeline/examples/basic.vue'
 import TimelineExampleWithAvatar from '@registry/components/timeline/examples/with-avatar.vue'
 import TimelineExampleWithColor from '@registry/components/timeline/examples/with-color.vue'

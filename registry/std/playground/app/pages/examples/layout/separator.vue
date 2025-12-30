@@ -4,6 +4,9 @@ import SeparatorExampleWithLabel from '@registry/components/separator/examples/w
 import SeparatorExampleWithOrientation from '@registry/components/separator/examples/with-orientation.vue'
 import SeparatorExampleWithSize from '@registry/components/separator/examples/with-size.vue'
 import SeparatorExampleWithVariant from '@registry/components/separator/examples/with-variant.vue'
+
+import UiTabsContent from '@registry/components/tabs/tabs-content.vue'
+import UiTabs from '@registry/components/tabs/tabs.vue'
 </script>
 
 <template>

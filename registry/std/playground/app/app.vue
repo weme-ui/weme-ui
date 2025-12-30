@@ -1,4 +1,6 @@
 <script lang="ts" setup>
+import App from '@registry/components/app/app.vue'
+
 useSeoMeta({
   title: 'Weme UI Prose Components',
 })
@@ -7,7 +9,7 @@ const config = useRuntimeConfig()
 </script>
 
 <template>
-  <UiApp portal="body">
+  <App portal="body">
     <Html data-theme="default">
       <main class="relative h-screen">
         <div class="fixed inset-x-0 top-0 h-20 bg-linear-to-b from-bg to-transparent z-1" />
@@ -31,6 +33,7 @@ const config = useRuntimeConfig()
         </div>
 
         <div class="flex-(~ col) gap-y-8 py-20">
+          <NuxtLoadingIndicator color="var(--primary-9)" />
           <NuxtPage />
         </div>
 
@@ -42,5 +45,5 @@ const config = useRuntimeConfig()
         </small>
       </main>
     </Html>
-  </UiApp>
+  </App>
 </template>

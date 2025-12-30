@@ -4,6 +4,9 @@ import SpinnerExampleWithDescription from '@registry/components/spinner/examples
 import SpinnerExampleWithIcon from '@registry/components/spinner/examples/with-icon.vue'
 import SpinnerExampleWithOverlay from '@registry/components/spinner/examples/with-overlay.vue'
 import SpinnerExampleWithSize from '@registry/components/spinner/examples/with-size.vue'
+
+import UiTabsContent from '@registry/components/tabs/tabs-content.vue'
+import UiTabs from '@registry/components/tabs/tabs.vue'
 </script>
 
 <template>

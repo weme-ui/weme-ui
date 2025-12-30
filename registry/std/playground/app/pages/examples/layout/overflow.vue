@@ -2,6 +2,9 @@
 import OverflowExampleBasic from '@registry/components/overflow/examples/basic.vue'
 import OverflowExampleWithCollapse from '@registry/components/overflow/examples/with-collapse.vue'
 import OverflowExampleWithGap from '@registry/components/overflow/examples/with-gap.vue'
+
+import UiTabsContent from '@registry/components/tabs/tabs-content.vue'
+import UiTabs from '@registry/components/tabs/tabs.vue'
 </script>
 
 <template>

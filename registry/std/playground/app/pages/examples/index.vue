@@ -1,4 +1,7 @@
 <script lang="ts" setup>
+import IconBox from '@registry/components/icon-box/icon-box.vue'
+import Item from '@registry/components/item/item.vue'
+
 const groups = [
   { icon: 'lucide:box', title: '通用', description: '包括按钮、图标及其他构建直观且一致用户体验的基础界面元素。', href: '/examples/general' },
   { icon: 'lucide:proportions', title: '布局', description: '组织应用布局和建立统一 UI 基础的核心结构组件。', href: '/examples/layout' },
@@ -18,11 +21,11 @@ const groups = [
 <template>
   <div class="grid-(~ cols-2) px-24 gap-8">
     <template v-for="group in groups" :key="group.title">
-      <UiItem v-bind="group" variant="outline" clickable show-arrow>
+      <Item v-bind="group" variant="outline" clickable show-arrow>
         <template #indicator>
-          <UiIconBox :name="group.icon" variant="outline" radius="lg" size="lg" class="mr-3" />
+          <IconBox :name="group.icon" variant="outline" radius="lg" size="lg" class="mr-3" />
         </template>
-      </UiItem>
+      </Item>
     </template>
   </div>
 </template>

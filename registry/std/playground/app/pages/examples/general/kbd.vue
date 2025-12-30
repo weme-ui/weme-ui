@@ -3,6 +3,9 @@ import KbdExampleBasic from '@registry/components/kbd/examples/basic.vue'
 import KbdExampleWithColor from '@registry/components/kbd/examples/with-color.vue'
 import KbdExampleWithSize from '@registry/components/kbd/examples/with-size.vue'
 import KbdExampleWithVariant from '@registry/components/kbd/examples/with-variant.vue'
+
+import UiTabsContent from '@registry/components/tabs/tabs-content.vue'
+import UiTabs from '@registry/components/tabs/tabs.vue'
 </script>
 
 <template>

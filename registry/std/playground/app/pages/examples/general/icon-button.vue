@@ -4,6 +4,9 @@ import IconButtonExampleWithColor from '@registry/components/icon-button/example
 import IconButtonExampleWithRadius from '@registry/components/icon-button/examples/with-radius.vue'
 import IconButtonExampleWithSize from '@registry/components/icon-button/examples/with-size.vue'
 import IconButtonExampleWithVariant from '@registry/components/icon-button/examples/with-variant.vue'
+
+import UiTabsContent from '@registry/components/tabs/tabs-content.vue'
+import UiTabs from '@registry/components/tabs/tabs.vue'
 </script>
 
 <template>

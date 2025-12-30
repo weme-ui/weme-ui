@@ -3,6 +3,9 @@ import CommentExampleBasic from '@registry/components/comment/examples/basic.vue
 import CommentExampleWithAction from '@registry/components/comment/examples/with-action.vue'
 import CommentExampleWithAlign from '@registry/components/comment/examples/with-align.vue'
 import CommentExampleWithSize from '@registry/components/comment/examples/with-size.vue'
+
+import UiTabsContent from '@registry/components/tabs/tabs-content.vue'
+import UiTabs from '@registry/components/tabs/tabs.vue'
 </script>
 
 <template>

@@ -3,6 +3,9 @@ import BreadcrumbExampleBasic from '@registry/components/breadcrumb/examples/bas
 import BreadcrumbExampleWithIcon from '@registry/components/breadcrumb/examples/with-icon.vue'
 import BreadcrumbExampleWithSeparator from '@registry/components/breadcrumb/examples/with-separator.vue'
 import BreadcrumbExampleWithSize from '@registry/components/breadcrumb/examples/with-size.vue'
+
+import UiTabsContent from '@registry/components/tabs/tabs-content.vue'
+import UiTabs from '@registry/components/tabs/tabs.vue'
 </script>
 
 <template>

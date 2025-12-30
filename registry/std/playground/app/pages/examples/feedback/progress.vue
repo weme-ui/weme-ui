@@ -5,6 +5,9 @@ import ProgressExampleWithColor from '@registry/components/progress/examples/wit
 import ProgressExampleWithLabel from '@registry/components/progress/examples/with-label.vue'
 import ProgressExampleWithRadius from '@registry/components/progress/examples/with-radius.vue'
 import ProgressExampleWithSize from '@registry/components/progress/examples/with-size.vue'
+
+import UiTabsContent from '@registry/components/tabs/tabs-content.vue'
+import UiTabs from '@registry/components/tabs/tabs.vue'
 </script>
 
 <template>

@@ -2,6 +2,9 @@
 import ImagePreviewExampleBasic from '@registry/components/image-preview/examples/basic.vue'
 import ImagePreviewExampleWithDisabled from '@registry/components/image-preview/examples/with-disabled.vue'
 import ImagePreviewExampleWithPlaceholder from '@registry/components/image-preview/examples/with-placeholder.vue'
+
+import UiTabsContent from '@registry/components/tabs/tabs-content.vue'
+import UiTabs from '@registry/components/tabs/tabs.vue'
 </script>
 
 <template>

@@ -3,6 +3,9 @@ import ClipboardExampleBasic from '@registry/components/clipboard/examples/basic
 import ClipboardExampleWithSize from '@registry/components/clipboard/examples/with-size.vue'
 import ClipboardExampleWithText from '@registry/components/clipboard/examples/with-text.vue'
 import ClipboardExampleWithVariant from '@registry/components/clipboard/examples/with-variant.vue'
+
+import UiTabsContent from '@registry/components/tabs/tabs-content.vue'
+import UiTabs from '@registry/components/tabs/tabs.vue'
 </script>
 
 <template>

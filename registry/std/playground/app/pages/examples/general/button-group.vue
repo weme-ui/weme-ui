@@ -4,11 +4,14 @@ import ButtonGroupExampleWithColor from '@registry/components/button-group/examp
 import ButtonGroupExampleWithGap from '@registry/components/button-group/examples/with-gap.vue'
 import ButtonGroupExampleWithSize from '@registry/components/button-group/examples/with-size.vue'
 import ButtonGroupExampleWithVariant from '@registry/components/button-group/examples/with-variant.vue'
+
+import UiTabsContent from '@registry/components/tabs/tabs-content.vue'
+import UiTabs from '@registry/components/tabs/tabs.vue'
 </script>
 
 <template>
-  <UiTabs default-value="basic" class="h-full" animate>
-    <UiTabsContent value="basic" title="Basic" class="h-full">
+  <UiTabs default-value="basic" animate>
+    <UiTabsContent value="basic" title="Basic">
       <ButtonGroupExampleWithBasic />
     </UiTabsContent>
 

@@ -1,4 +1,7 @@
 <script lang="ts" setup>
+import UiTabsContent from '@registry/components/tabs/tabs-content.vue'
+import UiTabs from '@registry/components/tabs/tabs.vue'
+
 import ToastExampleBasic from '@registry/components/toast/examples/basic.vue'
 import ToastExampleWithActions from '@registry/components/toast/examples/with-actions.vue'
 import ToastExampleWithColor from '@registry/components/toast/examples/with-color.vue'

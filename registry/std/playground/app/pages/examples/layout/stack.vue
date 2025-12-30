@@ -2,6 +2,9 @@
 import StackExampleBasic from '@registry/components/stack/examples/basic.vue'
 import StackExampleWithOrientation from '@registry/components/stack/examples/with-orientation.vue'
 import StackExampleWithSeparator from '@registry/components/stack/examples/with-separator.vue'
+
+import UiTabsContent from '@registry/components/tabs/tabs-content.vue'
+import UiTabs from '@registry/components/tabs/tabs.vue'
 </script>
 
 <template>

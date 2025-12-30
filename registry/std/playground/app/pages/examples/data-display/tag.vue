@@ -1,4 +1,7 @@
 <script lang="ts" setup>
+import UiTabsContent from '@registry/components/tabs/tabs-content.vue'
+import UiTabs from '@registry/components/tabs/tabs.vue'
+
 import TagExampleBasic from '@registry/components/tag/examples/basic.vue'
 import TagExampleWithClosable from '@registry/components/tag/examples/with-closable.vue'
 import TagExampleWithColor from '@registry/components/tag/examples/with-color.vue'

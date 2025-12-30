@@ -4,6 +4,9 @@ import IconBoxExampleWithColor from '@registry/components/icon-box/examples/with
 import IconBoxExampleWithRadius from '@registry/components/icon-box/examples/with-radius.vue'
 import IconBoxExampleWithSize from '@registry/components/icon-box/examples/with-size.vue'
 import IconBoxExampleWithVariant from '@registry/components/icon-box/examples/with-variant.vue'
+
+import UiTabsContent from '@registry/components/tabs/tabs-content.vue'
+import UiTabs from '@registry/components/tabs/tabs.vue'
 </script>
 
 <template>

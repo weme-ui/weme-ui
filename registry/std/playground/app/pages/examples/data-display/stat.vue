@@ -3,6 +3,9 @@ import StatExampleBasic from '@registry/components/stat/examples/basic.vue'
 import StatExampleWithExtra from '@registry/components/stat/examples/with-extra.vue'
 import StatExampleWithSize from '@registry/components/stat/examples/with-size.vue'
 import StatExampleWithTrend from '@registry/components/stat/examples/with-trend.vue'
+
+import UiTabsContent from '@registry/components/tabs/tabs-content.vue'
+import UiTabs from '@registry/components/tabs/tabs.vue'
 </script>
 
 <template>

@@ -2,6 +2,9 @@
 import ResultExampleBasic from '@registry/components/result/examples/basic.vue'
 import ResultExampleWithSize from '@registry/components/result/examples/with-size.vue'
 import ResultExampleWithSlot from '@registry/components/result/examples/with-slot.vue'
+
+import UiTabsContent from '@registry/components/tabs/tabs-content.vue'
+import UiTabs from '@registry/components/tabs/tabs.vue'
 </script>
 
 <template>

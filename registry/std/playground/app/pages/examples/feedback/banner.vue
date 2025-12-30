@@ -3,6 +3,9 @@ import BannerExampleBasic from '@registry/components/banner/examples/basic.vue'
 import BannerExampleWithActions from '@registry/components/banner/examples/with-actions.vue'
 import BannerExampleWithColor from '@registry/components/banner/examples/with-color.vue'
 import BannerExampleWithVariant from '@registry/components/banner/examples/with-variant.vue'
+
+import UiTabsContent from '@registry/components/tabs/tabs-content.vue'
+import UiTabs from '@registry/components/tabs/tabs.vue'
 </script>
 
 <template>

@@ -5,6 +5,9 @@ import CarouselExampleWithControls from '@registry/components/carousel/examples/
 import CarouselExampleWithFade from '@registry/components/carousel/examples/with-fade.vue'
 import CarouselExampleWithOrientation from '@registry/components/carousel/examples/with-orientation.vue'
 import CarouselExampleWithWheel from '@registry/components/carousel/examples/with-wheel.vue'
+
+import UiTabsContent from '@registry/components/tabs/tabs-content.vue'
+import UiTabs from '@registry/components/tabs/tabs.vue'
 </script>
 
 <template>

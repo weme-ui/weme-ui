@@ -6,6 +6,9 @@ import CardExampleWithSize from '@registry/components/card/examples/with-size.vu
 import CardExampleWithSlot from '@registry/components/card/examples/with-slot.vue'
 import CardExampleWithTranslucent from '@registry/components/card/examples/with-translucent.vue'
 import CardExampleWithVariant from '@registry/components/card/examples/with-variant.vue'
+
+import UiTabsContent from '@registry/components/tabs/tabs-content.vue'
+import UiTabs from '@registry/components/tabs/tabs.vue'
 </script>
 
 <template>

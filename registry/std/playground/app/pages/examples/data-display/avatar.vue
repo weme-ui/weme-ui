@@ -5,6 +5,9 @@ import AvatarExampleWithIcon from '@registry/components/avatar/examples/with-ico
 import AvatarExampleWithRadius from '@registry/components/avatar/examples/with-radius.vue'
 import AvatarExampleWithSize from '@registry/components/avatar/examples/with-size.vue'
 import AvatarExampleWithVariant from '@registry/components/avatar/examples/with-variant.vue'
+
+import UiTabsContent from '@registry/components/tabs/tabs-content.vue'
+import UiTabs from '@registry/components/tabs/tabs.vue'
 </script>
 
 <template>

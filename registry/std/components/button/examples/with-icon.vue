@@ -1,7 +1,7 @@
 <script lang="ts" setup>
-import { THEME_COLORS } from '@weme-ui/unocss-preset'
 import Button from '../button.vue'
 
+const colors = ['primary', 'secondary', 'neutral', 'info', 'success', 'warning', 'danger'] as const
 const variants = [
   'solid',
   'soft',
@@ -15,7 +15,7 @@ const variants = [
 
 <template>
   <div class="grid-(~ cols-8) items-center gap-5 flex-wrap">
-    <template v-for="color in THEME_COLORS" :key="color">
+    <template v-for="color in colors" :key="color">
       <span class="text-(sm toned)">{{ color }}</span>
       <template v-for="variant in variants" :key="variant">
         <Button icon="info" :label="variant" :color="color" :variant="variant" class="place-self-center" />

@@ -5,6 +5,9 @@ import AvatarGroupExampleWithMax from '@registry/components/avatar-group/example
 import AvatarGroupExampleWithRadius from '@registry/components/avatar-group/examples/with-radius.vue'
 import AvatarGroupExampleWithSize from '@registry/components/avatar-group/examples/with-size.vue'
 import AvatarGroupExampleWithVariant from '@registry/components/avatar-group/examples/with-variant.vue'
+
+import UiTabsContent from '@registry/components/tabs/tabs-content.vue'
+import UiTabs from '@registry/components/tabs/tabs.vue'
 </script>
 
 <template>

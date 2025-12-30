@@ -9,7 +9,7 @@ const props = withDefaults(defineProps<IconProps>(), {
 })
 
 const delegated = reactiveOmit(props, 'name', 'class')
-const wemeIcons = useAppConfig().weme?.icons
+const wemeIcons = useAppConfig().weme.icons
 const iconName = computed(() => {
   if (Object.keys(wemeIcons).includes(props.name))
     return wemeIcons[props.name as any as keyof typeof wemeIcons] as string

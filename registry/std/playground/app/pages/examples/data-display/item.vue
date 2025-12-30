@@ -5,6 +5,9 @@ import ItemExampleWithColor from '@registry/components/item/examples/with-color.
 import ItemExampleWithRadius from '@registry/components/item/examples/with-radius.vue'
 import ItemExampleWithSize from '@registry/components/item/examples/with-size.vue'
 import ItemExampleWithVariant from '@registry/components/item/examples/with-variant.vue'
+
+import UiTabsContent from '@registry/components/tabs/tabs-content.vue'
+import UiTabs from '@registry/components/tabs/tabs.vue'
 </script>
 
 <template>

@@ -2,6 +2,9 @@
 import FloatExampleBasic from '@registry/components/float/examples/basic.vue'
 import FloatExampleWithOffset from '@registry/components/float/examples/with-offset.vue'
 import FloatExampleWithPlacement from '@registry/components/float/examples/with-placement.vue'
+
+import UiTabsContent from '@registry/components/tabs/tabs-content.vue'
+import UiTabs from '@registry/components/tabs/tabs.vue'
 </script>
 
 <template>

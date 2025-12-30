@@ -6,6 +6,9 @@ import AccordionExampleWithDisabled from '@registry/components/accordion/example
 import AccordionExampleWithRadius from '@registry/components/accordion/examples/with-radius.vue'
 import AccordionExampleWithSize from '@registry/components/accordion/examples/with-size.vue'
 import AccordionExampleWithVariant from '@registry/components/accordion/examples/with-variant.vue'
+
+import UiTabsContent from '@registry/components/tabs/tabs-content.vue'
+import UiTabs from '@registry/components/tabs/tabs.vue'
 </script>
 
 <template>

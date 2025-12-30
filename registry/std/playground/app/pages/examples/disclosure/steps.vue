@@ -6,6 +6,9 @@ import StepsExampleWithIcon from '@registry/components/steps/examples/with-icon.
 import StepsExampleWithOrientation from '@registry/components/steps/examples/with-orientation.vue'
 import StepsExampleWithSize from '@registry/components/steps/examples/with-size.vue'
 import StepsExampleWithVariant from '@registry/components/steps/examples/with-variant.vue'
+
+import UiTabsContent from '@registry/components/tabs/tabs-content.vue'
+import UiTabs from '@registry/components/tabs/tabs.vue'
 </script>
 
 <template>

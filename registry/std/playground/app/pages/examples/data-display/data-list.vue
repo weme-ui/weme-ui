@@ -4,6 +4,9 @@ import DataListExampleWithColumn from '@registry/components/data-list/examples/w
 import DataListExampleWithOrientation from '@registry/components/data-list/examples/with-orientation.vue'
 import DataListExampleWithSize from '@registry/components/data-list/examples/with-size.vue'
 import DataListExampleWithVariant from '@registry/components/data-list/examples/with-variant.vue'
+
+import UiTabsContent from '@registry/components/tabs/tabs-content.vue'
+import UiTabs from '@registry/components/tabs/tabs.vue'
 </script>
 
 <template>

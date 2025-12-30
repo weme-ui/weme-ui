@@ -8,6 +8,9 @@ import AlertExampleWithLinkable from '@registry/components/alert/examples/with-l
 import AlertExampleWithRadius from '@registry/components/alert/examples/with-radius.vue'
 import AlertExampleWithStatus from '@registry/components/alert/examples/with-status.vue'
 import AlertExampleWithVariant from '@registry/components/alert/examples/with-variant.vue'
+
+import UiTabsContent from '@registry/components/tabs/tabs-content.vue'
+import UiTabs from '@registry/components/tabs/tabs.vue'
 </script>
 
 <template>

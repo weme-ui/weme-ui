@@ -1,5 +1,7 @@
-import { fileURLToPath } from 'node:url'
+import { createResolver } from 'nuxt/kit'
 import { version } from '../package.json'
+
+const { resolve } = createResolver(import.meta.url)
 
 export default defineNuxtConfig({
   modules: [
@@ -11,11 +13,16 @@ export default defineNuxtConfig({
       '~/components',
       {
         prefix: 'Prose',
-        path: fileURLToPath(new URL('./../components', import.meta.url)),
+        path: resolve('../components'),
         pathPrefix: false,
         extensions: ['.vue'],
       },
     ],
+  },
+
+  alias: {
+    '@std': resolve('../../std'),
+    '@prose': resolve('../components'),
   },
 
   vite: {

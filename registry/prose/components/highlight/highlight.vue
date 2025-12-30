@@ -18,7 +18,7 @@ const chunks = useHighlight(props)
 
 <template>
   <template v-for="chunk in chunks">
-    <Mark v-if="chunk.match" :key="chunk.text" v-bind="markProps">{{ chunk.text }}</Mark>
+    <Mark v-if="chunk.match" :key="chunk.text" v-bind="mark">{{ chunk.text }}</Mark>
     <template v-else>
       {{ chunk.text }}
     </template>

@@ -9,20 +9,23 @@ export const useListStyle = createVariants({
   },
 
   variants: {
+    color: {
+      primary: { item: 'marker:text-primary', indicator: 'text-primary' },
+      secondary: { item: 'marker:text-secondary', indicator: 'text-secondary' },
+      neutral: { item: 'marker:text-neutral', indicator: 'text-neutral' },
+      info: { item: 'marker:text-info', indicator: 'text-info' },
+      success: { item: 'marker:text-success', indicator: 'text-success' },
+      warning: { item: 'marker:text-warning', indicator: 'text-warning' },
+      danger: { item: 'marker:text-danger', indicator: 'text-danger' },
+    },
     variant: {
       none: { item: 'flex-inline' },
       marker: { root: 'list-revert' },
-    },
-    align: {
-      start: { item: 'items-start' },
-      center: { item: 'items-center' },
-      end: { item: 'items-end' },
     },
   },
 
   defaultVariants: {
     variant: 'marker',
-    align: 'start',
   },
 })
 

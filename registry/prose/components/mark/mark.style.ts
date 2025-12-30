@@ -12,6 +12,7 @@ export const useMarkStyle = createVariants({
     variant: { solid: '', soft: '', surface: '', outline: '', plain: '' },
     radius: {
       none: '',
+      xs: 'rounded-xs',
       sm: 'rounded-sm',
       md: 'rounded-md',
       lg: 'rounded-lg',
@@ -23,9 +24,13 @@ export const useMarkStyle = createVariants({
   compoundVariants: [
     ...createColorCompoundVariants({
       type: 'box',
-      variants: ['solid', 'soft', 'surface'],
+      variants: ['solid', 'soft', 'surface', 'outline', 'plain'],
       slot: 'base',
     }),
+
+    { variant: ['outline', 'plain'], class: 'bg-transparent' },
+
+    { variant: 'plain', class: 'font-semibold' },
   ],
 
   defaultVariants: {

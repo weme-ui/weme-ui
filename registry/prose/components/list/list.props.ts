@@ -10,8 +10,8 @@ export interface ListItemProps {
 
 export interface ListProps extends PrimitiveProps {
   items?: ListItemProps[]
+  color?: ListStyleProps['color']
   variant?: ListStyleProps['variant']
-  align?: ListStyleProps['align']
   class?: any
   ui?: Partial<ListStyleSlots>
 }

@@ -6,7 +6,7 @@ export interface HighlightProps {
   ignoreCase?: boolean
   matchAll?: boolean
   exactMatch?: boolean
-  markProps?: Partial<MarkProps>
+  mark?: Partial<MarkProps>
 }
 
 export interface HighlightChunk {

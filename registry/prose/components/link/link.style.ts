@@ -10,8 +10,8 @@ export const useLinkStyle = createVariants({
   variants: {
     color: createColorVariants({ variant: 'plain', type: 'btn', slot: 'base' }),
     variant: {
-      plain: { base: 'no-underline hover:(underline underline-offset-3 underline-current/20)' },
-      underline: { base: 'underline-(~ offset-3 current/20)' },
+      plain: { base: 'no-underline hover:(underline underline-offset-4 underline-current/20)' },
+      underline: { base: 'underline-(~ offset-4 current/20)' },
     },
   },
 

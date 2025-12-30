@@ -58,6 +58,8 @@ const ui = computed(() => useItemStyle({
         <Icon v-else-if="clickable || arrow" data-slot="arrow" :name="arrowIcon" :class="cn(ui.arrow(), props.ui?.arrow)" />
       </div>
     </dl>
-    <LinkOverlay v-if="href && !disabled" :href="href" :target="target" :rel="rel" />
+    <LinkOverlay v-if="href && !disabled" :href="href" :target="target" :rel="rel" v-bind="linkOverlay">
+      <slot name="link-overlay" />
+    </LinkOverlay>
   </Primitive>
 </template>

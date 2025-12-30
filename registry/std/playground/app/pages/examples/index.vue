@@ -21,9 +21,13 @@ const groups = [
 <template>
   <div class="grid-(~ cols-2) px-24 gap-8">
     <template v-for="group in groups" :key="group.title">
-      <Item v-bind="group" variant="outline" clickable show-arrow>
+      <Item v-bind="group" variant="outline" :link-overlay="{ asChild: true }" clickable show-arrow>
         <template #indicator>
           <IconBox :name="group.icon" variant="outline" radius="lg" size="lg" class="mr-3" />
+        </template>
+
+        <template #link-overlay>
+          <NuxtLink />
         </template>
       </Item>
     </template>

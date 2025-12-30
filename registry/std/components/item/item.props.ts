@@ -1,4 +1,5 @@
 import type { PrimitiveProps } from 'reka-ui'
+import type { LinkOverlayProps } from '../link-overlay/link-overlay.props'
 import type { ItemStyleProps, ItemStyleSlots } from './item.style'
 
 export interface ItemProps extends PrimitiveProps {
@@ -20,6 +21,7 @@ export interface ItemProps extends PrimitiveProps {
   disabled?: boolean
   clickable?: boolean
   arrow?: boolean
+  linkOverlay?: Pick<LinkOverlayProps, 'as' | 'asChild'>
   class?: any
   ui?: Partial<ItemStyleSlots>
 }

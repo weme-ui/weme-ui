@@ -32,7 +32,7 @@ export default defineConfig({
       neutralColors,
       themes,
       cssVars,
-    }),
+    }) as any,
   ],
 
   transformers: [

@@ -25,20 +25,20 @@ const ui = computed(() => useProgressStyle({
 </script>
 
 <template>
-  <ProgressRoot v-bind="forwarded" :class="cn(ui.root(), props.ui?.root, props.class)" data-slot="root">
-    <div v-if="label" :class="cn(ui.info(), props.ui?.info)" data-slot="info">
-      <span :class="cn(ui.label(), props.ui?.label)" data-slot="label">{{ label }}</span>
-      <span :class="cn(ui.value(), props.ui?.value)" data-slot="value">
+  <ProgressRoot v-bind="forwarded" :class="cn(ui.root(), props.ui?.root, props.class)" data-slot="progress">
+    <div v-if="label" :class="cn(ui.info(), props.ui?.info)" data-slot="progress-info">
+      <span :class="cn(ui.label(), props.ui?.label)" data-slot="progress-label">{{ label }}</span>
+      <span :class="cn(ui.value(), props.ui?.value)" data-slot="progress-value">
         <slot name="value" v-bind="{ value: modelValue }">
           {{ modelValue }} <small>%</small>
         </slot>
       </span>
     </div>
-    <div :class="cn(ui.tracker(), props.ui?.tracker)" data-slot="tracker">
+    <div :class="cn(ui.tracker(), props.ui?.tracker)" data-slot="progress-tracker">
       <ProgressIndicator
         :class="cn(ui.indicator(), props.ui?.indicator)"
         :style="`transform: translateX(-${100 - (modelValue ?? 0)}%)`"
-        data-slot="indicator"
+        data-slot="progress-indicator"
       />
     </div>
   </ProgressRoot>

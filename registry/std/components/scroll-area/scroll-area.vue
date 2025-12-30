@@ -164,14 +164,14 @@ defineExpose({
     :as="as"
     :data-orientation="orientation"
     :class="cn(ui.root(), props.ui?.root, props.class)"
-    data-slot="root"
+    data-slot="scroll-area"
   >
     <template v-if="virtualizer">
       <ScrollAreaViewport
-        data-slot="viewport"
-        data-virtualize=""
         :style="virtualViewportStyle"
         :class="cn(ui.viewport(), props.ui?.viewport)"
+        data-virtualize=""
+        data-slot="scroll-area-viewport"
       >
         <div
           v-for="virtualItem in virtualItems"
@@ -180,7 +180,7 @@ defineExpose({
           :data-index="virtualItem.index"
           :class="ui.item({ class: props.ui?.item })"
           :style="getVirtualItemStyle(virtualItem)"
-          data-slot="item"
+          data-slot="scroll-area-item"
         >
           <slot
             :item="(items?.[virtualItem.index] as T)"
@@ -192,13 +192,13 @@ defineExpose({
     </template>
 
     <template v-else>
-      <ScrollAreaViewport data-slot="viewport" :class="cn(ui.viewport(), props.ui?.viewport)">
+      <ScrollAreaViewport :class="cn(ui.viewport(), props.ui?.viewport)" data-slot="scroll-area-viewport">
         <template v-if="items?.length">
           <div
             v-for="(item, index) in items"
             :key="getItemKey(item, index)"
             :class="cn(ui.item(), props.ui?.item)"
-            data-slot="item"
+            data-slot="scroll-area-item"
           >
             <slot :item="item" :index="index" />
           </div>
@@ -209,8 +209,8 @@ defineExpose({
       </ScrollAreaViewport>
     </template>
 
-    <ScrollAreaScrollbar :orientation="orientation" :class="cn(ui.scrollbar(), props.ui?.scrollbar)" data-slot="scrollbar">
-      <ScrollAreaThumb :class="cn(ui.thumb(), props.ui?.thumb)" data-slot="thumb" />
+    <ScrollAreaScrollbar :orientation="orientation" :class="cn(ui.scrollbar(), props.ui?.scrollbar)" data-slot="scroll-area-scrollbar">
+      <ScrollAreaThumb :class="cn(ui.thumb(), props.ui?.thumb)" data-slot="scroll-area-thumb" />
     </ScrollAreaScrollbar>
   </ScrollAreaRoot>
 </template>

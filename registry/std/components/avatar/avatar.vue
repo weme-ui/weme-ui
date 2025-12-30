@@ -27,14 +27,14 @@ const ui = computed(() => useAvatarStyle({
 </script>
 
 <template>
-  <AvatarRoot :as="as" :class="cn(ui.root(), props.ui?.root, props.class)" data-slot="root">
-    <AvatarImage v-if="src" v-bind="delegated" :src="src" :class="cn(ui.image(), props.ui?.image)" data-slot="image" />
-    <AvatarFallback :delay-ms="delayMs" :class="cn(ui.fallback(), props.ui?.fallback)" data-slot="fallback">
+  <AvatarRoot :as="as" :class="cn(ui.root(), props.ui?.root, props.class)" data-slot="avatar">
+    <AvatarImage v-if="src" v-bind="delegated" :src="src" :class="cn(ui.image(), props.ui?.image)" data-slot="avatar-image" />
+    <AvatarFallback :delay-ms="delayMs" :class="cn(ui.fallback(), props.ui?.fallback)" data-slot="avatar-fallback">
       <slot v-if="$slots.default || fallback">
         {{ fallback }}
       </slot>
       <slot v-else name="icon">
-        <Icon :name="icon" />
+        <Icon :name="icon" :class="cn(ui.icon(), props.ui?.icon)" />
       </slot>
     </AvatarFallback>
   </AvatarRoot>

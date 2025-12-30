@@ -202,24 +202,24 @@ defineExpose({
     aria-roledescription="carousel"
     role="region"
     tabindex="0"
-    data-slot="root"
+    data-slot="carousel"
     @keydown="onKeyDown"
   >
-    <div ref="emblaRef" :class="cn(ui.viewport(), props.ui?.viewport)" data-slot="viewport">
-      <div :class="cn(ui.container(), props.ui?.container)" data-slot="container">
+    <div ref="emblaRef" :class="cn(ui.viewport(), props.ui?.viewport)" data-slot="carousel-viewport">
+      <div :class="cn(ui.container(), props.ui?.container)" data-slot="carousel-container">
         <div
           v-for="(item, index) in items"
           v-bind="!!dots ? { role: 'tabpanel' } : { 'role': 'group', 'aria-roledescription': 'slide' }"
           :key="index"
           :class="cn(ui.item(), props.ui?.item, isCarouselItem(item) && item.class)"
-          data-slot="item"
+          data-slot="carousel-item"
         >
           <slot :item="item" :index="index" />
         </div>
       </div>
     </div>
-    <div v-if="!!arrows || !!dots" :class="cn(ui.controls(), props.ui?.controls)" data-slot="controls">
-      <div v-if="!!arrows" :class="cn(ui.arrows(), props.ui?.arrows)" data-slot="arrows">
+    <div v-if="!!arrows || !!dots" :class="cn(ui.controls(), props.ui?.controls)" data-slot="carousel-controls">
+      <div v-if="!!arrows" :class="cn(ui.arrows(), props.ui?.arrows)" data-slot="carousel-arrows">
         <IconButton
           v-bind="typeof prev === 'object' ? prev : undefined"
           :disabled="!canScrollPrev"
@@ -228,7 +228,7 @@ defineExpose({
           :variant="prev?.variant || 'surface'"
           :size="next?.size || 'sm'"
           :class="cn(ui.prev(), props.ui?.prev)"
-          data-slot="prev"
+          data-slot="carousel-prev"
           @click="scrollPrev"
         />
         <IconButton
@@ -239,11 +239,11 @@ defineExpose({
           :variant="next?.variant || 'surface'"
           :size="next?.size || 'sm'"
           :class="cn(ui.next(), props.ui?.next)"
-          data-slot="next"
+          data-slot="carousel-next"
           @click="scrollNext"
         />
       </div>
-      <div v-if="!!dots" role="tablist" :aria-label="t('carousel.dots')" :class="cn(ui.dots(), props.ui?.dots)" data-slot="dots">
+      <div v-if="!!dots" role="tablist" :aria-label="t('carousel.dots')" :class="cn(ui.dots(), props.ui?.dots)" data-slot="carousel-dots">
         <button
           v-for="(_, index) in scrollSnaps"
           :key="index"
@@ -252,7 +252,7 @@ defineExpose({
           :data-state="index === selectedIndex ? 'active' : undefined"
           :class="cn(ui.dot({ active: index === selectedIndex }), props.ui?.dot)"
           role="tab"
-          data-slot="dot"
+          data-slot="carousel-dot"
           @click="scrollTo(index)"
         />
       </div>

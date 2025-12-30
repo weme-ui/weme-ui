@@ -37,13 +37,14 @@ const ui = computed(() => useMarqueeStyle({
       '--marquee-duration': `${speed * repeat / 10}s`,
       '--marquee-spacing': spacing,
     }"
+    data-slot="marquee"
   >
-    <div v-if="edgeFade" :class="cn(ui.edge({ side: 'start' }), props.ui?.edge)" />
-    <div :class="cn(ui.viewport(), props.ui?.viewport)">
-      <div v-for="n in repeat" :key="n" :class="cn(ui.content(), props.ui?.content)">
+    <div v-if="edgeFade" :class="cn(ui.edge({ side: 'start' }), props.ui?.edge)" data-slot="marquee-edge-start" />
+    <div :class="cn(ui.viewport(), props.ui?.viewport)" data-slot="marquee-viewport">
+      <div v-for="n in repeat" :key="n" :class="cn(ui.content(), props.ui?.content)" data-slot="marquee-content">
         <slot />
       </div>
     </div>
-    <div v-if="edgeFade" :class="cn(ui.edge({ side: 'end' }), props.ui?.edge)" />
+    <div v-if="edgeFade" :class="cn(ui.edge({ side: 'end' }), props.ui?.edge)" data-slot="marquee-edge-end" />
   </Primitive>
 </template>

@@ -20,6 +20,7 @@ const ui = computed(() => useFloatStyle(props))
       '--offset-y': `var(--offset, ${offsetY || offset})`,
       '--offset-x': `var(--offset, ${offsetX || offset})`,
     }"
+    data-slot="float"
   >
     <slot />
   </Primitive>

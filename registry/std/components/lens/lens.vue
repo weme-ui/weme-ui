@@ -55,6 +55,7 @@ watchEffect(() => {
       '--lens-size': `${size / 2}px`,
       '--lens-zoom': zoom,
     }"
+    data-slot="lens"
     @mousemove="onMouseMove"
     @mouseenter="setIsHovering(true)"
     @mouseleave="setIsHovering(false)"
@@ -70,8 +71,9 @@ watchEffect(() => {
       :style="{
         maskImage: `radial-gradient(${maskPosition}, black 100%, transparent 100%)`,
       }"
+      data-slot="lens-viewport"
     >
-      <div :class="cn(ui.zoom(), props.ui?.zoom)">
+      <div :class="cn(ui.zoom(), props.ui?.zoom)" data-slot="lens-zoom">
         <slot />
       </div>
     </Motion>

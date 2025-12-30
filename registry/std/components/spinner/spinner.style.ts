@@ -6,7 +6,7 @@ export const useSpinnerStyle = createVariants({
     root: '',
     indicator: 'animate-spin',
     description: 'text-sm',
-    loading: '',
+    viewport: '',
   },
 
   variants: {
@@ -18,7 +18,7 @@ export const useSpinnerStyle = createVariants({
       xl: { root: 'gap-2.5', indicator: 'size-10' },
     },
     overlay: {
-      true: { root: 'relative overflow-hidden', loading: 'abs inset-0 flex-(~ center) gap-2 c-primary-1 z-tooltip' },
+      true: { root: 'relative overflow-hidden', viewport: 'abs inset-0 flex-(~ center) gap-2 c-primary-1 z-tooltip' },
       false: { root: 'flex-(~ center) gap-2 c-primary' },
     },
   },

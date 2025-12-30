@@ -7,6 +7,7 @@ export const useAvatarStyle = createVariants({
     root: 'relative flex-(~ center) shrink-0 overflow-hidden select-none',
     image: 'size-full object-cover rounded-inherit',
     fallback: 'flex-(~ center) size-full font-semibold leading-none rounded-inherit',
+    icon: '',
   },
 
   variants: {

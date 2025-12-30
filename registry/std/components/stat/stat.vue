@@ -20,32 +20,31 @@ const ui = computed(() => useStatStyle(props))
 </script>
 
 <template>
-  <Primitive v-bind="delegated" :class="cn(ui.root(), props.ui?.root, props.class)" data-slot="root">
-    <dt :class="cn(ui.label(), props.ui?.label)" data-slot="label">
+  <Primitive v-bind="delegated" :class="cn(ui.root(), props.ui?.root, props.class)" data-slot="stat">
+    <dt :class="cn(ui.label(), props.ui?.label)" data-slot="stat-label">
       <slot name="label">
         {{ label }}
       </slot>
     </dt>
-    <dd :class="cn(ui.value(), props.ui?.value)" data-slot="value">
+    <dd :class="cn(ui.value(), props.ui?.value)" data-slot="stat-value">
       <slot name="value">
         {{ value }}
       </slot>
     </dd>
-    <dt v-if="trend !== 'none'" :class="cn(ui.indicator(), props.ui?.indicator)" data-slot="indicator">
+    <dt v-if="trend !== 'none'" :class="cn(ui.indicator(), props.ui?.indicator)" data-slot="stat-indicator">
       <slot name="indicator" v-bind="{ trend }">
         <Icon
           :name="trend === 'up' ? trendUpIcon : trendDownIcon"
           :class="cn(ui.indicatorIcon(), props.ui?.indicatorIcon)"
-          data-slot="indicatorIcon"
         />
       </slot>
-      <span :class="cn(ui.indicatorValue(), props.ui?.indicatorValue)" data-slot="indicatorValue">
+      <span :class="cn(ui.indicatorValue(), props.ui?.indicatorValue)" data-slot="stat-indicator-value">
         <slot name="indicatorValue">
           {{ indicatorValue }}
         </slot>
       </span>
     </dt>
-    <p v-if="$slots.description || description" :class="cn(ui.description(), props.ui?.description)" data-slot="description">
+    <p v-if="$slots.description || description" :class="cn(ui.description(), props.ui?.description)" data-slot="stat-description">
       <slot name="description">
         {{ description }}
       </slot>

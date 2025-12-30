@@ -39,5 +39,6 @@ watch(
     :class="props.class"
     :alt="$attrs.alt || 'QR Code'"
     aria-label="QR Code"
+    data-slot="qr-code"
   />
 </template>

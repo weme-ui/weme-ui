@@ -65,7 +65,7 @@ watch(
 </script>
 
 <template>
-  <Primitive ref="rootRef" v-bind="delegated" :class="cn(ui.base(), props.ui?.base, props.class)">
+  <Primitive ref="rootRef" v-bind="delegated" :class="cn(ui.base(), props.ui?.base, props.class)" data-slot="number-ticker">
     {{ output }}
   </Primitive>
 </template>

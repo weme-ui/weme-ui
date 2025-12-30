@@ -49,13 +49,13 @@ defineExpose({
     v-bind="forwarded"
     :class="cn(ui.root(), props.ui?.root, props.class)"
     :style="{ '--height': height }"
-    data-slot="root"
+    data-slot="toast"
   >
     <slot v-if="icon || $slots.icon" name="icon">
-      <Icon v-if="icon" :name="icon" :class="cn(ui.icon(), props.ui?.icon)" data-slot="icon" />
+      <Icon v-if="icon" :name="icon" :class="cn(ui.icon(), props.ui?.icon)" />
     </slot>
-    <div :class="cn(ui.wrapper(), props.ui?.wrapper)" data-slot="wrapper">
-      <ToastTitle v-if="title || $slots.title" :class="cn(ui.title(), props.ui?.title)" data-slot="title">
+    <div :class="cn(ui.wrapper(), props.ui?.wrapper)" data-slot="toast-wrapper">
+      <ToastTitle v-if="title || $slots.title" :class="cn(ui.title(), props.ui?.title)" data-slot="toast-title">
         <slot name="title">
           {{ title }}
         </slot>
@@ -64,14 +64,14 @@ defineExpose({
       <ToastDescription
         v-if="description || $slots.description"
         :class="cn(ui.description(), props.ui?.description)"
-        data-slot="description"
+        data-slot="toast-description"
       >
         <slot name="description">
           {{ description }}
         </slot>
       </ToastDescription>
 
-      <div v-if="orientation === 'vertical' && actions?.length" :class="cn(ui.actions(), props.ui?.actions)" data-slot="actions">
+      <div v-if="orientation === 'vertical' && actions?.length" :class="cn(ui.actions(), props.ui?.actions)" data-slot="toast-actions">
         <ToastAction
           v-for="(action, index) in actions"
           :key="index"
@@ -92,7 +92,7 @@ defineExpose({
     <div
       v-if="(orientation === 'horizontal' && actions?.length) || closable"
       :class="cn(ui.actions({ orientation: 'horizontal' }), props.ui?.actions)"
-      data-slot="actions"
+      data-slot="toast-actions"
     >
       <template v-if="orientation === 'horizontal' && actions?.length">
         <slot name="actions">
@@ -113,7 +113,7 @@ defineExpose({
         </slot>
       </template>
 
-      <ToastClose v-if="closable || !!$slots.close" :aria-label="t('toast.close')" data-slot="close" :class="cn(ui.close(), props.ui?.close)">
+      <ToastClose v-if="closable || !!$slots.close" :aria-label="t('toast.close')" :class="cn(ui.close(), props.ui?.close)" data-slot="toast-close">
         <slot name="close">
           <Icon name="close" />
         </slot>

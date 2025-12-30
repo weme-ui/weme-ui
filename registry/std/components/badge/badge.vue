@@ -27,11 +27,13 @@ const ui = computed(() => useBadgeStyle({
 </script>
 
 <template>
-  <Primitive :as="as" :as-child="asChild" :class="cn(ui.root(), props.ui?.root, props.class)" data-slot="root">
-    <slot v-if="$slots.icon || icon" name="icon">
-      <Icon v-if="icon" :name="icon" :class="cn(ui.icon(), props.ui?.icon)" data-slot="icon" />
+  <Primitive :as="as" :as-child="asChild" :class="cn(ui.root(), props.ui?.root, props.class)" data-slot="badge">
+    <slot v-if="!!$slots.icon || !!icon" name="icon">
+      <Icon v-if="!!icon" :name="icon" :class="cn(ui.icon(), props.ui?.icon)" />
     </slot>
     <slot>{{ label }}</slot>
-    <LinkOverlay v-if="clickable && !disabled" :href="href" :target="target" :rel="rel" data-slot="link-overlay" />
+    <LinkOverlay v-if="clickable && !disabled" :href="href" :target="target" :rel="rel" :as-child="!!$slots['link-overlay']">
+      <slot name="link-overlay" />
+    </LinkOverlay>
   </Primitive>
 </template>

@@ -44,18 +44,18 @@ function onHidden() {
 </script>
 
 <template>
-  <Image v-bind="imageProps" :class="cn(ui.base(), props.ui?.base, props.class)" data-slot="base" @click="onShow">
+  <Image v-bind="imageProps" :class="cn(ui.base(), props.ui?.base, props.class)" @click="onShow">
     <slot v-bind="{ ...imageProps }" />
   </Image>
 
   <Teleport :to="portalProps.to" :disabled="portalProps.disabled">
-    <div v-if="show" :class="cn(ui.preview(), props.ui?.preview)" data-slot="preview">
-      <div v-show="!loaded" :class="cn(ui.previewPlaceholder(), props.ui?.previewPlaceholder)" data-slot="previewPlaceholder">
+    <div v-if="show" :class="cn(ui.preview(), props.ui?.preview)" data-slot="image-preview">
+      <div v-show="!loaded" :class="cn(ui.previewPlaceholder(), props.ui?.previewPlaceholder)" data-slot="image-preview-placeholder">
         <slot name="placeholder">
           <template v-if="placeholder">
             {{ placeholder }}
           </template>
-          <Icon v-else name="loading" :class="cn(ui.loading(), props.ui?.loading)" data-slot="loading" />
+          <Icon v-else name="loading" :class="cn(ui.loading(), props.ui?.loading)" />
         </slot>
       </div>
 
@@ -63,12 +63,12 @@ function onHidden() {
         v-show="loaded"
         :src="previewSrc || src"
         :class="cn(ui.previewImage(), props.ui?.previewImage)"
-        data-slot="previewImage"
+        data-slot="image-preview-image"
         @loading-status-change="(status) => loaded = status === 'loaded'"
       />
 
       <slot name="actions" />
     </div>
-    <Overlay v-model="show" :class="cn(ui.overlay(), props.ui?.overlay)" data-slot="overlay" @click="onHidden" />
+    <Overlay v-model="show" :class="cn(ui.overlay(), props.ui?.overlay)" data-slot="image-preview-overlay" @click="onHidden" />
   </Teleport>
 </template>

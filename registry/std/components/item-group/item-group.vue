@@ -23,23 +23,27 @@ const children = computed(() => {
 </script>
 
 <template>
-  <Primitive v-bind="delegated" :class="cn(ui.root(), props.ui?.root, props.class)" data-slot="root">
-    <div :class="cn(ui.header(), props.ui?.header)" data-slot="header">
-      <div :class="cn(ui.titleWrapper(), props.ui?.titleWrapper)" data-slot="titleWrapper">
+  <Primitive v-bind="delegated" :class="cn(ui.root(), props.ui?.root, props.class)" role="group" data-slot="item-group">
+    <div
+      v-if="!!$slots.title || !!title || !!$slots.description || !!description"
+      :class="cn(ui.header(), props.ui?.header)"
+      data-slot="item-group-header"
+    >
+      <div :class="cn(ui.titleWrapper(), props.ui?.titleWrapper)" data-slot="item-group-title-wrapper">
         <slot name="title">
-          <h3 v-if="title" :class="cn(ui.title(), props.ui?.title)" data-slot="title">
+          <h3 v-if="title" :class="cn(ui.title(), props.ui?.title)" data-slot="item-group-title">
             {{ title }}
           </h3>
-          <p v-if="description" :class="cn(ui.description(), props.ui?.description)" data-slot="description">
+          <p v-if="description" :class="cn(ui.description(), props.ui?.description)" data-slot="item-group-description">
             {{ description }}
           </p>
         </slot>
       </div>
-      <div v-if="$slots.actions" :class="cn(ui.actions(), props.ui?.actions)" data-slot="actions">
+      <div v-if="$slots.actions" :class="cn(ui.actions(), props.ui?.actions)" data-slot="item-group-actions">
         <slot name="actions" />
       </div>
     </div>
-    <div :class="cn(ui.body(), props.ui?.body)" data-slot="body">
+    <div :class="cn(ui.body(), props.ui?.body)" data-slot="item-group-body">
       <template v-for="(child, index) in children" :key="index">
         <component
           :is="child"
@@ -48,11 +52,10 @@ const children = computed(() => {
           :align="align"
           :radius="variant === 'card' ? 'none' : radius"
           :class="cn('group', ui.item(), props.ui?.item, child.props?.class)"
-          data-slot="item"
         />
       </template>
     </div>
-    <div v-if="$slots.footer" :class="cn(ui.footer(), props.ui?.footer)" data-slot="footer">
+    <div v-if="$slots.footer" :class="cn(ui.footer(), props.ui?.footer)" data-slot="item-group-footer">
       <slot name="footer" />
     </div>
   </Primitive>

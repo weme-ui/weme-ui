@@ -31,21 +31,21 @@ const [
 
 <template>
   <DefineLoading>
-    <Icon :name="icon" :class="cn(ui.indicator(), props.ui?.indicator)" data-slot="indicator" />
+    <Icon :name="icon" :class="cn(ui.indicator(), props.ui?.indicator)" />
     <slot name="description">
-      <p v-if="description" :class="cn(ui.description(), props.ui?.description)" data-slot="description">
+      <p v-if="description" :class="cn(ui.description(), props.ui?.description)" data-slot="spinner-description">
         {{ description }}
       </p>
     </slot>
   </DefineLoading>
 
-  <Primitive v-bind="delegated" :class="cn(ui.root(), props.ui?.root, props.class)" data-slot="root">
+  <Primitive v-bind="delegated" :class="cn(ui.root(), props.ui?.root, props.class)" data-slot="spinner">
     <template v-if="overlay">
       <slot />
-      <div :class="cn(ui.loading(), props.ui?.loading)" data-slot="loading">
+      <div :class="cn(ui.viewport(), props.ui?.viewport)" data-slot="spinner-viewport">
         <ReuseLoading />
       </div>
-      <Overlay v-model="loading" data-slot="overlay" />
+      <Overlay v-model="loading" data-slot="spinner-overlay" />
     </template>
 
     <template v-else>

@@ -45,7 +45,7 @@ const ui = computed(() => useTimelineStyle({
 </script>
 
 <template>
-  <Primitive v-bind="delegated" :class="cn(ui.root(), props.ui?.root, props.class)" data-slot="root">
+  <Primitive v-bind="delegated" :class="cn(ui.root(), props.ui?.root, props.class)" data-slot="timeline">
     <dl
       v-for="(item, index) in items"
       :key="index"
@@ -55,10 +55,10 @@ const ui = computed(() => useTimelineStyle({
         : index === items.length - 1
           ? 'last'
           : 'middle'"
-      data-slot="item"
+      data-slot="timeline-item"
     >
-      <div :class="cn(ui.connector({ color: item.color || color }), props.ui?.connector, item.ui?.connector)" data-slot="connector">
-        <div :class="cn(ui.indicator({ color: item.color || color }), props.ui?.indicator, item.ui?.indicator)" data-slot="indicator">
+      <div :class="cn(ui.connector({ color: item.color || color }), props.ui?.connector, item.ui?.connector)" data-slot="timeline-connector">
+        <div :class="cn(ui.indicator({ color: item.color || color }), props.ui?.indicator, item.ui?.indicator)" data-slot="timeline-indicator">
           <slot name="indicator" v-bind="{ item, index }">
             <Avatar
               v-if="item.avatar"
@@ -66,29 +66,27 @@ const ui = computed(() => useTimelineStyle({
               :color="item.color || color"
               :variant="item.variant || variant"
               :class="cn(ui.avatar(), props.ui?.avatar, item.ui?.avatar)"
-              data-slot="avatar"
             />
             <Icon
               v-else-if="item.icon"
               :name="item.icon"
               :class="cn(ui.icon(), props.ui?.icon, item.ui?.icon)"
-              data-slot="icon"
             />
           </slot>
         </div>
         <div
           v-if="reversed ? index > 0 : index < items.length - 1"
           :class="cn(ui.separator(), props.ui?.separator, item.ui?.separator)"
-          data-slot="separator"
+          data-slot="timeline-separator"
         />
       </div>
-      <div :class="cn(ui.content(), props.ui?.content, item.ui?.content)" data-slot="content">
-        <dt :class="cn(ui.title(), props.ui?.title, item.ui?.title)" data-slot="title">
+      <div :class="cn(ui.content(), props.ui?.content, item.ui?.content)" data-slot="timeline-content">
+        <dt :class="cn(ui.title(), props.ui?.title, item.ui?.title)" data-slot="timeline-title">
           <slot name="title" v-bind="{ item, index }">
             {{ item.title }}
           </slot>
         </dt>
-        <dd v-if="item.description" :class="cn(ui.description(), props.ui?.description, item.ui?.description)" data-slot="description">
+        <dd v-if="item.description" :class="cn(ui.description(), props.ui?.description, item.ui?.description)" data-slot="timeline-description">
           <slot name="description" v-bind="{ item, index }">
             {{ item.description }}
           </slot>

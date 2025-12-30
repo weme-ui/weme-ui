@@ -24,7 +24,7 @@ const ui = computed(() => useAvatarGroupStyle(props))
 </script>
 
 <template>
-  <Primitive v-bind="delegated" :class="cn(ui.root(), props.ui?.root, props.class)" data-slot="root">
+  <Primitive v-bind="delegated" :class="cn(ui.root(), props.ui?.root, props.class)" role="group" data-slot="avatar-group">
     <Avatar
       v-if="hasMore"
       :fallback="count"
@@ -34,7 +34,6 @@ const ui = computed(() => useAvatarGroupStyle(props))
       :radius="radius"
       :delay-ms="delayMs"
       :class="cn(ui.item(), props.ui?.item)"
-      data-slot="item"
     />
     <template v-for="(item, index) in items" :key="index">
       <component
@@ -47,7 +46,6 @@ const ui = computed(() => useAvatarGroupStyle(props))
         :cross-origin="crossOrigin"
         :referrer-policy="referrerPolicy"
         :class="cn(ui.item(), props.ui?.item)"
-        data-slot="item"
       />
     </template>
   </Primitive>

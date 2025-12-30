@@ -23,12 +23,12 @@ const ui = computed(() => useStatusStyle({
 </script>
 
 <template>
-  <Primitive v-bind="delegated" :class="cn(ui.root(), props.ui?.root, props.class)" data-slot="root">
-    <span v-if="animate" :class="cn(ui.wrapper(), props.ui?.wrapper)" data-slot="wrapper">
-      <span :class="cn(ui.indicator(), props.ui?.indicator)" data-slot="indicator" />
+  <Primitive v-bind="delegated" :class="cn(ui.root(), props.ui?.root, props.class)" data-slot="status">
+    <span v-if="!!animate" :class="cn(ui.wrapper(), props.ui?.wrapper)" data-slot="status-wrapper">
+      <span :class="cn(ui.indicator(), props.ui?.indicator)" data-slot="status-indicator" />
     </span>
-    <span v-else :class="cn(ui.indicator(), props.ui?.indicator)" data-slot="indicator" />
-    <span v-if="$slots.default || label" :class="cn(ui.label(), props.ui?.label)" data-slot="label">
+    <span v-else :class="cn(ui.indicator(), props.ui?.indicator)" data-slot="status-indicator" />
+    <span v-if="!!$slots.default || !!label" :class="cn(ui.label(), props.ui?.label)" data-slot="status-label">
       <slot>{{ label }}</slot>
     </span>
   </Primitive>

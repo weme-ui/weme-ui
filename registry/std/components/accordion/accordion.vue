@@ -36,7 +36,7 @@ const items = computed(() => props.items.map(
   <AccordionRoot
     v-bind="forwarded"
     :class="cn(ui.root(), props.ui?.root, props.class)"
-    data-slot="root"
+    data-slot="accordion"
   >
     <template v-for="item in items" :key="item.value">
       <AccordionItem
@@ -45,27 +45,22 @@ const items = computed(() => props.items.map(
         :disabled="item.disabled"
         :unmount-on-hide="item.unmountOnHide"
         :class="cn(ui.item({ disabled: item.disabled }), props.ui?.item)"
-        data-slot="item"
+        data-slot="accordion-item"
       >
-        <AccordionHeader :class="cn(ui.header(), props.ui?.header)" data-slot="header">
-          <AccordionTrigger :class="cn(ui.trigger(), props.ui?.trigger)" data-slot="trigger">
+        <AccordionHeader :class="cn(ui.header(), props.ui?.header)" data-slot="accordion-header">
+          <AccordionTrigger :class="cn(ui.trigger(), props.ui?.trigger)" data-slot="accordion-trigger">
             <div
               v-if="!!$slots.icon || !!item.icon"
               :class="cn(ui.headerIconWrapper(), props.ui?.headerIconWrapper)"
-              data-slot="headerIconWrapper"
+              data-slot="accordion-header-icon-wrapper"
             >
               <slot name="icon" v-bind="{ item, open }">
-                <Icon
-                  v-if="!!item.icon"
-                  :name="item.icon"
-                  :class="cn(ui.headerIcon(), props.ui?.headerIcon)"
-                  data-slot="headerIcon"
-                />
+                <Icon v-if="!!item.icon" :name="item.icon" :class="cn(ui.headerIcon(), props.ui?.headerIcon)" />
               </slot>
             </div>
-            <div :class="cn(ui.headerTitleWrapper(), props.ui?.headerTitleWrapper)" data-slot="titleWrapper">
+            <div :class="cn(ui.headerTitleWrapper(), props.ui?.headerTitleWrapper)" data-slot="accordion-title-wrapper">
               <slot name="title" v-bind="{ item, open }">
-                <strong :class="cn(ui.headerTitle(), props.ui?.headerTitle)" data-slot="headerTitle">
+                <strong :class="cn(ui.headerTitle(), props.ui?.headerTitle)" data-slot="accordion-header-title">
                   {{ item.title }}
                 </strong>
               </slot>
@@ -73,28 +68,24 @@ const items = computed(() => props.items.map(
                 <p
                   v-if="item.description"
                   :class="cn(ui.headerDescription(), props.ui?.headerDescription)"
-                  data-slot="headerDescription"
+                  data-slot="accordion-header-description"
                 >
                   {{ item.description }}
                 </p>
               </slot>
             </div>
             <div
-              data-slot="triggerIndicatorWrapper"
               :class="cn(ui.triggerIndicatorWrapper(), props.ui?.triggerIndicatorWrapper)"
+              data-slot="accordion-trigger-indicator-wrapper"
             >
               <slot name="indicator" v-bind="{ open }">
-                <Icon
-                  data-slot="triggerIndicator"
-                  :name="indicatorIcon"
-                  :class="cn(ui.triggerIndicator(), props.ui?.triggerIndicator)"
-                />
+                <Icon :name="indicatorIcon" :class="cn(ui.triggerIndicator(), props.ui?.triggerIndicator)" />
               </slot>
             </div>
           </AccordionTrigger>
         </AccordionHeader>
-        <AccordionContent :class="cn(ui.content(), props.ui?.content)" data-slot="content">
-          <div :class="cn(ui.contentBody(), props.ui?.contentBody)" data-slot="contentBody">
+        <AccordionContent :class="cn(ui.content(), props.ui?.content)" data-slot="accordion-content">
+          <div :class="cn(ui.contentBody(), props.ui?.contentBody)" data-slot="accordion-content-body">
             <slot name="content" v-bind="{ item, open }">
               {{ item.content }}
             </slot>

@@ -10,14 +10,14 @@ const ui = computed(() => useSkeletonStyle(props))
 </script>
 
 <template>
-  <div v-if="variant === 'text'" :class="cn(ui.textWrapper(), props.ui?.textWrapper, props.class)" data-slot="text-wrapper">
+  <div v-if="variant === 'text'" :class="cn(ui.textWrapper(), props.ui?.textWrapper, props.class)" data-slot="skeleton-text">
     <template v-for="line in lines" :key="line">
       <Primitive
         :as="as"
         :class="cn(ui.base({ lineEnd: lines > 1 && line === lines }), props.ui?.base)"
-        data-slot="base"
+        data-slot="skeleton-text-line"
       />
     </template>
   </div>
-  <Primitive v-else :as="as" :class="cn(ui.base(), props.ui?.base, props.class)" data-slot="base" />
+  <Primitive v-else :as="as" :class="cn(ui.base(), props.ui?.base, props.class)" data-slot="skeleton" />
 </template>

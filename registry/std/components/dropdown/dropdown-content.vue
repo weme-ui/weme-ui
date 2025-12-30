@@ -59,6 +59,7 @@ const [
     <DropdownMenuItemIndicator
       v-if="item.type === 'checkbox' || item.type === 'radio'"
       :class="cn(ui.itemIndicator(), override?.itemIndicator)"
+      data-slot="dropdown-menu-item-indicator"
     >
       <Icon :name="checkedIcon" />
     </DropdownMenuItemIndicator>
@@ -66,7 +67,7 @@ const [
     <Icon v-if="!!item.loading" :name="loadingIcon" :class="cn(ui.loading(), override?.loading)" />
     <Icon v-if="item.icon" :name="item.icon" :class="cn(ui.itemIcon(), override?.itemIcon)" />
 
-    <label :class="cn(ui.itemLabel(), override?.itemLabel)">
+    <label :class="cn(ui.itemLabel(), override?.itemLabel)" data-slot="dropdown-menu-item-label">
       {{ item.label }}
       <Icon
         v-if="item.target === '_blank' && item.rel === 'noopener noreferrer'"
@@ -75,7 +76,7 @@ const [
       />
     </label>
 
-    <span :class="cn(ui.itemCommand(), override?.itemCommand)">
+    <span :class="cn(ui.itemCommand(), override?.itemCommand)" data-slot="dropdown-menu-item-command">
       {{ item.suffix }}
       <Kbd
         v-for="(value, index) in item.shortcut"
@@ -96,18 +97,21 @@ const [
       :is="sub ? DropdownMenuSubContent : DropdownMenuContent"
       v-bind="forwarded"
       :class="cn(ui.content({ indent: !!sub }))"
+      :data-slot="sub ? 'dropdown-menu-sub-content' : 'dropdown-menu-content'"
     >
       <slot name="top" />
 
-      <div :class="cn(ui.viewport(), override?.viewport)">
+      <div :class="cn(ui.viewport(), override?.viewport)" data-slot="dropdown-menu-viewport">
         <DropdownMenuGroup
           v-for="(group, groupIdx) in items" :key="`g-${groupIdx}`"
           :class="cn(ui.group(), override?.group)"
+          data-slot="dropdown-menu-group"
         >
           <template v-for="(item, itemIdx) in group" :key="`g-${groupIdx}-${itemIdx}`">
             <DropdownMenuLabel
               v-if="item.type === 'label'"
               :class="cn(ui.label(), override?.label)"
+              data-slot="dropdown-menu-label"
             >
               <!-- @vue-ignore -->
               <ReuseDropdownMenuItem :item="item" />
@@ -116,10 +120,16 @@ const [
             <DropdownMenuSeparator
               v-else-if="item.type === 'separator'"
               :class="cn(ui.separator(), override?.separator)"
+              data-slot="dropdown-menu-separator"
             />
 
             <DropdownMenuSub v-else-if="!!item.children?.length">
-              <DropdownMenuSubTrigger :disabled="item.disabled" :text-value="item.value" :class="cn(ui.item(), override?.item)">
+              <DropdownMenuSubTrigger
+                :disabled="item.disabled"
+                :text-value="item.value"
+                :class="cn(ui.item(), override?.item)"
+                data-slot="dropdown-menu-sub-trigger"
+              >
                 <!-- @vue-ignore -->
                 <ReuseDropdownMenuItem :item="item" />
               </DropdownMenuSubTrigger>
@@ -138,6 +148,7 @@ const [
               :disabled="item.disabled"
               :text-value="item.value"
               :class="cn(ui.item(), override?.item)"
+              data-slot="dropdown-menu-checkbox-item"
               @update:model-value="item.onCheck"
               @select="item.onSelect"
             >
@@ -150,17 +161,15 @@ const [
               :disabled="item.disabled"
               :text-value="item.value"
               :class="cn(ui.item(), override?.item)"
+              data-slot="dropdown-menu-item"
               @select="item.onSelect"
             >
               <!-- @vue-ignore -->
               <ReuseDropdownMenuItem :item="item" />
 
-              <LinkOverlay
-                v-if="item.href"
-                :href="item.href"
-                :target="item.target"
-                :rel="item.rel"
-              />
+              <LinkOverlay v-if="!!item.href" :href="item.href" :target="item.target" :rel="item.rel" :as-child="!!$slots['link-overlay']">
+                <slot name="link-overlay" />
+              </LinkOverlay>
             </DropdownMenuItem>
           </template>
         </DropdownMenuGroup>
@@ -172,6 +181,7 @@ const [
         v-if="!!arrow"
         v-bind="typeof arrow === 'object' ? arrow : {}"
         :class="cn(ui.arrow(), override?.arrow)"
+        data-slot="dropdown-menu-arrow"
       />
     </component>
   </DropdownMenuPortal>

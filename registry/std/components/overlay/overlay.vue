@@ -34,6 +34,7 @@ useForwardExpose()
       :as-child="asChild"
       :data-state="open ? 'open' : 'closed'"
       :class="cn(ui.base(), props.ui?.base, props.class)"
+      data-slot="overlay"
     />
   </Presence>
 </template>

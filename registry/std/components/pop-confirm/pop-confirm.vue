@@ -94,6 +94,7 @@ async function onCancel() {
     mode="click"
     modal
     arrow
+    data-slot="pop-confirm"
     @update:open="(val) => open = val"
   >
     <template #default>
@@ -101,7 +102,7 @@ async function onCancel() {
     </template>
 
     <template #content>
-      <div :class="cn(ui.content(), props.ui?.content)">
+      <div :class="cn(ui.content(), props.ui?.content)" data-slot="pop-confirm-content">
         <slot name="indicator">
           <Icon v-if="icon" :name="icon" :class="cn(ui.indicator(), props.ui?.indicator)" />
         </slot>
@@ -109,7 +110,7 @@ async function onCancel() {
           {{ message }}
         </slot>
       </div>
-      <div :class="cn(ui.actions(), props.ui?.actions)">
+      <div :class="cn(ui.actions(), props.ui?.actions)" data-slot="pop-confirm-actions">
         <Button v-bind="cancelProps" @click="onCancel" />
         <Button v-bind="{ ...confirmProps, loading }" @click="onConfirm" />
       </div>

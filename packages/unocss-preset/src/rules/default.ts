@@ -1,4 +1,4 @@
-import type { Rule } from '@unocss/core'
+import type { Rule } from 'unocss'
 import type { Theme, WemePresetResolvedOptions } from '../types'
 import { borderColors, borderSizes, divideColor } from './border'
 import { accentColors, bgColors, caretColors, decorationColors, fgColors, placeholderColors } from './color'
@@ -51,5 +51,5 @@ export function rules(options: WemePresetResolvedOptions): Rule<Theme>[] {
     // region Size
     boxSizes(options),
     // endregion
-  ].flat()
+  ].flat() as Rule<Theme>[]
 }

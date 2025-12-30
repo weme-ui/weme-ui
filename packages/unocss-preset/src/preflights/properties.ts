@@ -1,4 +1,4 @@
-import type { Preflight } from '@unocss/core'
+import type { Preflight } from 'unocss'
 import type { Theme } from '../types'
 import { trackedProperties } from '../utils'
 

@@ -1,4 +1,4 @@
-import type { Shortcut } from '@unocss/core'
+import type { UserShortcuts } from 'unocss'
 import type { Theme, WemePresetResolvedOptions } from '../types'
 import { getColorNames } from '../utils'
 
@@ -167,7 +167,7 @@ export function buttonVariantShortcuts(options: WemePresetResolvedOptions) {
       { autocomplete: 'btn-<color>-inverse' },
     ],
 
-  ] satisfies Shortcut<Theme>[]
+  ] satisfies UserShortcuts<Theme>
 }
 
 export function boxVariantShortcuts(options: WemePresetResolvedOptions) {
@@ -273,5 +273,5 @@ export function boxVariantShortcuts(options: WemePresetResolvedOptions) {
       },
       { autocomplete: 'box-<color>-inverse' },
     ],
-  ] satisfies Shortcut<Theme>[]
+  ] satisfies UserShortcuts<Theme>
 }

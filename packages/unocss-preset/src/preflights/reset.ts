@@ -1,4 +1,4 @@
-import type { Preflight } from '@unocss/core'
+import type { Preflight } from 'unocss'
 import type { Theme, WemePresetResolvedOptions } from '../types'
 import { minifyCss } from '../utils'
 

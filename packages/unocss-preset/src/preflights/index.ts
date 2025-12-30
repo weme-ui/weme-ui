@@ -1,4 +1,4 @@
-import type { Preflight } from '@unocss/core'
+import type { Preflight } from 'unocss'
 import type { Theme, WemePresetResolvedOptions } from '../types'
 import { colors } from './colors'
 import { cssVars } from './cssvars'
@@ -7,11 +7,11 @@ import { reset } from './reset'
 import { themes } from './themes'
 
 export function preflights(options: WemePresetResolvedOptions): Preflight<Theme>[] {
-  return [
+  return ([
     properties(),
     reset(options),
     ...cssVars(options),
     ...colors(options),
     ...themes(options),
-  ].filter(Boolean) as Preflight<Theme>[]
+  ].filter(Boolean)) as Preflight<Theme>[]
 }

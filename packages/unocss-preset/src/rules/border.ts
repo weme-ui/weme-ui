@@ -1,7 +1,6 @@
 /* eslint-disable regexp/no-empty-group */
 /* eslint-disable regexp/no-empty-capturing-group */
-import type { Rule } from '@unocss/core'
-import type { VariantHandler } from 'unocss'
+import type { Rule, VariantHandler } from 'unocss'
 import type { Theme, WemePresetResolvedOptions } from '../types'
 import { resolveColor } from '../utils'
 

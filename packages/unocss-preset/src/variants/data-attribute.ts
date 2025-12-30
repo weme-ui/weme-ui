@@ -1,4 +1,4 @@
-import type { Variant } from '@unocss/core'
+import type { Variant } from 'unocss'
 import type { Theme } from '../types'
 import { variantGetParameter } from '@unocss/rule-utils'
 

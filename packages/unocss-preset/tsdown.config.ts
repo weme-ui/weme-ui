@@ -10,5 +10,10 @@ export default defineConfig({
   external: [
     '@unocss/core',
     '@unocss/rule-utils',
+    '@radix-ui/colors',
+    'bezier-easing',
+    'colorjs.io',
+    'defu',
+    'unocss',
   ],
 })

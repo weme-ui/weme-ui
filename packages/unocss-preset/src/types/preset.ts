@@ -1,6 +1,6 @@
-import type { PresetOptions } from '@unocss/core'
 import type { IInlineCssVar, INestedCssVar } from '@weme-ui/schema'
 import type { PartialDeep } from 'type-fest'
+import type { PresetOptions } from 'unocss'
 import type { WemeColorMode } from './color'
 
 export interface WemePresetOptions extends PresetOptions {

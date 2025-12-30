@@ -1,6 +1,6 @@
-import type { Preset } from '@unocss/core'
+import type { Preset } from 'unocss'
 import type { Theme, WemePresetOptions } from './types'
-import { definePreset } from '@unocss/core'
+import { definePreset } from 'unocss'
 import { resolveOptions } from './options'
 import { preflights } from './preflights'
 import { rules } from './rules'
@@ -16,19 +16,20 @@ export const presetWemeUI = definePreset<WemePresetOptions, Theme>((userOptions 
 
   return {
     name: '@weme-ui/unocss-preset',
-    rules: rules(options),
     shortcuts: shortcuts(options),
     preflights: preflights(options),
     theme: theme(options),
+    rules: rules(options),
     variants,
-    shorthands: {
-      color: `(${getColorNames(options.colors).join('|')})`,
-      scale: `(${Array.from({ length: 11 }, (_, i) => i + 1).join('|')})`,
-    },
     options,
-  } as Preset<Theme>
+    autocomplete: {
+      shorthands: {
+        color: `(${getColorNames(options.colors).join('|')})`,
+        scale: `(${Array.from({ length: 11 }, (_, i) => i + 1).join('|')})`,
+      },
+    },
+  }
 })
 
+export type { Theme as UnoPresetTheme, WemePresetOptions, WemePresetThemeDefinition as WemePresetTheme, WemePresetThemeColorNames, WemePresetThemeColors, WemePresetThemeTokens } from './types'
 export default presetWemeUI
-export type { WemePresetOptions } from './types'
-export type { Theme as UnoPresetTheme, WemePresetThemeDefinition as WemePresetTheme, WemePresetThemeColorNames, WemePresetThemeColors, WemePresetThemeTokens } from './types'

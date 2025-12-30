@@ -1,4 +1,4 @@
-import type { Preflight } from '@unocss/core'
+import type { Preflight } from 'unocss'
 import type { Theme, WemePresetResolvedOptions, WemePresetTheme } from '../types'
 import { transformColor } from '../colors/transformer'
 import { THEME } from '../defaults'

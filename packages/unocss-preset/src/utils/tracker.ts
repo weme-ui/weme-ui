@@ -1,5 +1,5 @@
-import type { CSSObjectInput } from '@unocss/core'
-import { symbols } from '@unocss/core'
+import type { CSSObjectInput } from 'unocss'
+import { symbols } from 'unocss'
 
 // region Tracking Colors
 export const trackedColors = new Set<string>()

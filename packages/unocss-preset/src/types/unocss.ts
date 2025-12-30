@@ -52,4 +52,4 @@ interface Theme {
   supports?: Record<string, string>
 }
 
-export type { Theme, ThemeAnimation }
+export type { Theme }

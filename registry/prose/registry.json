@@ -57,7 +57,7 @@
         {
           "type": "component",
           "path": "components/blockquote/blockquote.vue",
-          "hash": "7f421dbe337b2ac008bedfe133775fcc"
+          "hash": "e3fba1dc4c922e622f59088b8d2f1121"
         },
         {
           "type": "style",
@@ -85,7 +85,7 @@
         {
           "type": "style",
           "path": "components/code/code.style.ts",
-          "hash": "8a34aa035c792a93fd1617ae341317b3"
+          "hash": "bf430503f9086c84d7fc39d0819290c3"
         }
       ]
     },
@@ -136,35 +136,6 @@
       ]
     },
     {
-      "name": "highlight",
-      "type": "component",
-      "title": "Highlight",
-      "description": "Used to highlight substrings of a text.",
-      "dependencies": [
-        "@zag-js/highlight-word"
-      ],
-      "registryDependencies": [
-        "mark"
-      ],
-      "files": [
-        {
-          "type": "type",
-          "path": "components/highlight/highlight.props.ts",
-          "hash": "a5a496780977dea15e5004e62c3dc013"
-        },
-        {
-          "type": "component",
-          "path": "components/highlight/highlight.vue",
-          "hash": "5305a6f56de6b8b2101bcdcd76dd5130"
-        },
-        {
-          "type": "util",
-          "path": "composables/use-highlight.ts",
-          "hash": "1a732a49f89c1d64c6d94fbf7b753ab6"
-        }
-      ]
-    },
-    {
       "name": "link",
       "type": "component",
       "title": "Link",
@@ -183,7 +154,7 @@
         {
           "type": "style",
           "path": "components/link/link.style.ts",
-          "hash": "ccb91a439d8230d7dacc0608e55268f1"
+          "hash": "a0f4b6a331b1e0f232d809c90291636a"
         }
       ]
     },
@@ -196,17 +167,17 @@
         {
           "type": "type",
           "path": "components/list/list.props.ts",
-          "hash": "b5185b367926c0670b99d5ba7279f2ad"
+          "hash": "b17f5e646c1dc09d2d48a1295b00be45"
         },
         {
           "type": "component",
           "path": "components/list/list.vue",
-          "hash": "18f3f6ba96de64b3653c854da764d87f"
+          "hash": "cb423211e188f1a2202236e868488e3a"
         },
         {
           "type": "style",
           "path": "components/list/list.style.ts",
-          "hash": "9a85e8d00524f8b54149437b7006c6eb"
+          "hash": "76466f3f762c35f8814dc2265c0dc4b9"
         }
       ]
     },
@@ -229,7 +200,7 @@
         {
           "type": "style",
           "path": "components/mark/mark.style.ts",
-          "hash": "c1afc86de626140493af1044fc1c8d21"
+          "hash": "09ca47f3384254226e9a19ee767317cf"
         }
       ]
     },

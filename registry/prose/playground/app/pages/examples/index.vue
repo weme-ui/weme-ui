@@ -7,7 +7,6 @@ const groups = [
   { icon: 'lucide:code-xml', title: 'Code', description: 'Used to display inline code.', href: '/examples/code' },
   { icon: 'lucide:italic', title: 'Em', description: 'Used to mark text for emphasis.', href: '/examples/em' },
   { icon: 'lucide:heading', title: 'Heading', description: 'Used to render semantic HTML heading elements.', href: '/examples/heading' },
-  { icon: 'lucide:lightbulb', title: 'Highlight', description: 'Used to highlight substrings of a text.', href: '/examples/highlight' },
   { icon: 'lucide:link', title: 'Link', description: 'Used to provide accessible navigation.', href: '/examples/link' },
   { icon: 'lucide:list', title: 'List', description: 'Used to display a list of items.', href: '/examples/list' },
   { icon: 'lucide:highlighter', title: 'Mark', description: 'Used to mark text for emphasis.', href: '/examples/mark' },

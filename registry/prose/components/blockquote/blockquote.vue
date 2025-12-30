@@ -25,14 +25,14 @@ const ui = computed(() => useBlockquoteStyle({
 </script>
 
 <template>
-  <figure :class="cn(ui.root(), props.ui?.root, props.class)" data-slot="root">
-    <div v-if="!!$slots.icon" :class="cn(ui.icon(), props.ui?.icon)" data-slot="icon">
+  <figure :class="cn(ui.root(), props.ui?.root, props.class)">
+    <div v-if="!!$slots.icon" :class="cn(ui.icon(), props.ui?.icon)">
       <slot name="icon" />
     </div>
-    <Primitive v-bind="delegated" :class="cn(ui.content(), props.ui?.content)" data-slot="content">
+    <Primitive v-bind="delegated" :class="cn(ui.content(), props.ui?.content)">
       <slot />
     </Primitive>
-    <figcaption v-if="!!$slots.caption" :class="cn(ui.caption(), props.ui?.caption)" data-slot="caption">
+    <figcaption v-if="!!$slots.caption" :class="cn(ui.caption(), props.ui?.caption)">
       <slot name="caption" />
     </figcaption>
   </figure>

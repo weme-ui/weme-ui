@@ -57,7 +57,7 @@
         {
           "type": "component",
           "path": "components/blockquote/blockquote.vue",
-          "hash": "e3fba1dc4c922e622f59088b8d2f1121"
+          "hash": "795a293d60e51f0da42a5ca60db000ad"
         },
         {
           "type": "style",
@@ -172,7 +172,7 @@
         {
           "type": "component",
           "path": "components/list/list.vue",
-          "hash": "cb423211e188f1a2202236e868488e3a"
+          "hash": "4e000d1b6ad883e851f4380c0ca466cc"
         },
         {
           "type": "style",

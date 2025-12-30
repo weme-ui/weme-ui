@@ -8,18 +8,6 @@ export default defineNuxtConfig({
     '@weme-ui/nuxt',
   ],
 
-  components: {
-    dirs: [
-      '~/components',
-      {
-        prefix: 'Prose',
-        path: resolve('../components'),
-        pathPrefix: false,
-        extensions: ['.vue'],
-      },
-    ],
-  },
-
   alias: {
     '@std': resolve('../../std'),
     '@prose': resolve('../components'),

@@ -3,5 +3,9 @@ import Highlight from '../highlight.vue'
 </script>
 
 <template>
-  <Highlight text="The quick brown fox jumps over the lazy fox." :query="['fox', 'over']" match-all />
+  <Highlight
+    text="The quick brown fox jumps over the lazy fox."
+    query="fox"
+    match-all
+  />
 </template>

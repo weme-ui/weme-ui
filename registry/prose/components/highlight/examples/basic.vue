@@ -3,5 +3,8 @@ import Highlight from '../highlight.vue'
 </script>
 
 <template>
-  <Highlight text="The quick brown fox jumps over the lazy fox." query="fox" />
+  <Highlight
+    query="fox"
+    text="The quick brown fox jumps over the lazy fox."
+  />
 </template>

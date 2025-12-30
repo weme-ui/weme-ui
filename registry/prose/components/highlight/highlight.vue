@@ -1,19 +1,22 @@
 <script lang="ts" setup>
 import type { HighlightProps } from './highlight.props'
+import { reactiveOmit } from '@vueuse/core'
 import { useHighlight } from '~/composables/use-highlight'
 import Mark from '../mark/mark.vue'
 
 const props = withDefaults(defineProps<HighlightProps>(), {
-  ignoreCase: undefined,
-  matchAll: undefined,
-  exactMatch: undefined,
+  ignoreCase: false,
+  matchAll: false,
+  exactMatch: false,
 })
+
+const delegated = reactiveOmit(props, 'mark')
 
 if (typeof props.text !== 'string') {
   throw new TypeError('Highlight text must be a string')
 }
 
-const chunks = useHighlight(props)
+const chunks = useHighlight(delegated)
 </script>
 
 <template>

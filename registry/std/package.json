@@ -41,6 +41,7 @@
     "@vueuse/core": "catalog:",
     "@weme-ui/nuxt": "workspace:*",
     "@weme-ui/unocss-preset": "workspace:*",
+    "@zag-js/highlight-word": "catalog:",
     "clsx": "catalog:",
     "embla-carousel": "catalog:",
     "embla-carousel-autoplay": "catalog:",

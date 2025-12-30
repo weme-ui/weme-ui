@@ -1,7 +1,12 @@
 <script lang="ts" setup>
+import HighlightExamples from './highlight.vue'
 </script>
 
 <template>
+  <Example title="高亮" description="Highlight">
+    <HighlightExamples />
+  </Example>
+
   <Example title="镜头" description="Lens">
     <!--  -->
   </Example>

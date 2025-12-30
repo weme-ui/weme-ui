@@ -1,11 +1,26 @@
 <script lang="ts" setup>
 import App from '@registry/components/app/app.vue'
+import { useMagicKeys } from '@vueuse/core'
+
+const { b, g, h } = useMagicKeys()
+const route = useRoute()
+const router = useRouter()
+const config = useRuntimeConfig()
 
 useSeoMeta({
   title: 'Weme UI Prose Components',
 })
 
-const config = useRuntimeConfig()
+watchEffect(() => {
+  if (g?.value && route.path !== '/examples')
+    router.push('/examples')
+
+  if (b?.value && route.path !== '/')
+    router.go(-1)
+
+  if (h?.value && route.path !== '/')
+    router.push('/')
+})
 </script>
 
 <template>

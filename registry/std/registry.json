@@ -669,6 +669,37 @@
       ]
     },
     {
+      "name": "highlight",
+      "type": "component",
+      "title": "Highlight",
+      "description": "Used to emphasize specific words or phrases within a larger body of text.",
+      "dependencies": [
+        "@zag-js/highlight-word"
+      ],
+      "files": [
+        {
+          "type": "component",
+          "path": "components/highlight/highlight.vue",
+          "hash": "68095b9ff2a4b57784de470296f2a9cf"
+        },
+        {
+          "type": "style",
+          "path": "components/highlight/highlight.style.ts",
+          "hash": "85db289c76282884cdd051776291f10a"
+        },
+        {
+          "type": "type",
+          "path": "components/highlight/highlight.props.ts",
+          "hash": "6086c49ebca3b7d4bebc5e15a269b877"
+        },
+        {
+          "type": "composable",
+          "path": "composables/use-highlight.ts",
+          "hash": "5039ce85fefb5cbf211c7a2f5a110f22"
+        }
+      ]
+    },
+    {
       "name": "icon",
       "type": "component",
       "title": "Icon",
@@ -677,7 +708,7 @@
         {
           "type": "component",
           "path": "components/icon/icon.vue",
-          "hash": "349a37c9bc5c8f3fb375e00fcd80a415"
+          "hash": "2f36a8f3028ad542002d2a70fa99a70a"
         },
         {
           "type": "type",
@@ -925,7 +956,7 @@
         {
           "type": "component",
           "path": "components/link-overlay/link-overlay.vue",
-          "hash": "480dcfe66cafec08cffa1f47b82849cf"
+          "hash": "da423ec195681c2b1a2cd01c0d2d4413"
         }
       ]
     },

@@ -58,15 +58,6 @@
     "typecheck": "tsgo --noEmit",
     "play": "vite playground"
   },
-  "peerDependencies": {
-    "@radix-ui/colors": "catalog:",
-    "@unocss/core": "catalog:",
-    "@unocss/rule-utils": "catalog:",
-    "bezier-easing": "catalog:",
-    "colorjs.io": "catalog:",
-    "defu": "catalog:",
-    "unocss": "catalog:"
-  },
   "devDependencies": {
     "@radix-ui/colors": "catalog:",
     "@types/node": "catalog:",

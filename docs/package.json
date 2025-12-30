@@ -23,7 +23,6 @@
   "devDependencies": {
     "@iconify-json/simple-icons": "catalog:",
     "@nuxt/content": "catalog:",
-    "@nuxtjs/i18n": "catalog:",
     "@weme-ui/nuxt": "workspace:*",
     "@weme-ui/unocss-preset": "workspace:*",
     "better-sqlite3": "catalog:",

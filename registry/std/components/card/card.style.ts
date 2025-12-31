@@ -3,8 +3,8 @@ import { createVariants } from '~/utils/styles'
 
 export const useCardStyle = createVariants({
   slots: {
-    root: 'relative overflow-hidden',
-    wrapper: 'flex-(~ col) h-full overflow-hidden',
+    root: 'relative flex-(~ col)',
+    wrapper: 'flex-(~ col) w-full',
     header: 'flex gap-2',
     headerIcon: '',
     headerTitle: 'font-semibold text-highlighted',
@@ -42,8 +42,8 @@ export const useCardStyle = createVariants({
   },
 
   compoundVariants: [
-    { variant: 'outline', translucent: true, class: { wrapper: 'bg-card/70 backdrop-blur-3xl' } },
-    { variant: 'outline', translucent: false, class: { wrapper: 'bg-card' } },
+    { variant: 'outline', translucent: true, class: { root: 'bg-card/70 backdrop-blur-3xl' } },
+    { variant: 'outline', translucent: false, class: { root: 'bg-card' } },
 
     { variant: 'normal', translucent: true, class: { root: 'bg-elevated/70 backdrop-blur-3xl' } },
     { variant: 'normal', translucent: false, class: { root: 'bg-elevated' } },

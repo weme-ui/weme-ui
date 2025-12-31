@@ -18,8 +18,8 @@ const ui = computed(() => useCardStyle(props))
 
 <template>
   <Primitive :as="as" :class="cn(ui.root(), props.ui?.root, props.class)" data-slot="card">
+    <slot name="start" />
     <div :class="cn(ui.wrapper(), props.ui?.wrapper)" data-slot="card-wrapper">
-      <slot name="start" />
       <slot name="header">
         <div v-if="!!$slots.title || !!title || !!$slots.description || !!description" :class="cn(ui.header(), props.ui?.header)" data-slot="card-header">
           <slot v-if="!!$slots.icon || !!icon" name="icon">
@@ -46,7 +46,7 @@ const ui = computed(() => useCardStyle(props))
       <div v-if="!!$slots.footer" :class="cn(ui.footer(), props.ui?.footer)" data-slot="card-footer">
         <slot name="footer" />
       </div>
-      <slot name="end" />
     </div>
+    <slot name="end" />
   </Primitive>
 </template>

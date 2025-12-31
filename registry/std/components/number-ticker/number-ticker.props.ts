@@ -13,5 +13,3 @@ export interface NumberTickerProps extends PrimitiveProps {
   ui?: Partial<NumberTickerStyleSlots>
   transform?: (value: number) => string
 }
-
-export interface NumberTickerEmits {}

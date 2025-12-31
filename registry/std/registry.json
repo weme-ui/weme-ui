@@ -969,12 +969,12 @@
         {
           "type": "style",
           "path": "components/marquee/marquee.style.ts",
-          "hash": "c59772bf20da364caad51ce5535b2763"
+          "hash": "50e2d60f252aae738ec366fd2d93d287"
         },
         {
           "type": "component",
           "path": "components/marquee/marquee.vue",
-          "hash": "fbc6e99b677a79243bd777a10308f265"
+          "hash": "8ff09f51e3f9cf65945fb92a110e7677"
         },
         {
           "type": "type",
@@ -1029,12 +1029,12 @@
         {
           "type": "component",
           "path": "components/number-ticker/number-ticker.vue",
-          "hash": "380496705bbe25bb768102281d4df93f"
+          "hash": "e3467597d6860c6730230de8d99ab52a"
         },
         {
           "type": "type",
           "path": "components/number-ticker/number-ticker.props.ts",
-          "hash": "338b26f2c2ef3504a9dc57cea2e59c2c"
+          "hash": "77237b98530893a3b7350d348eb35f95"
         },
         {
           "type": "style",

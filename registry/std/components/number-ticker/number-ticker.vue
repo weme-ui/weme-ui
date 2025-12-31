@@ -66,6 +66,8 @@ watch(
 
 <template>
   <Primitive ref="rootRef" v-bind="delegated" :class="cn(ui.base(), props.ui?.base, props.class)" data-slot="number-ticker">
-    {{ output }}
+    <slot v-bind="{ output }">
+      {{ transform ? transform(Number(output)) : output }}
+    </slot>
   </Primitive>
 </template>

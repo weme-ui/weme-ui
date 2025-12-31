@@ -39,12 +39,12 @@ const ui = computed(() => useMarqueeStyle({
     }"
     data-slot="marquee"
   >
-    <div v-if="edgeFade" :class="cn(ui.edge({ side: 'start' }), props.ui?.edge)" data-slot="marquee-edge-start" />
+    <div v-if="edgeFade && orientation === 'horizontal'" :class="cn(ui.edge({ side: 'start' }), props.ui?.edge)" data-slot="marquee-edge-start" />
     <div :class="cn(ui.viewport(), props.ui?.viewport)" data-slot="marquee-viewport">
       <div v-for="n in repeat" :key="n" :class="cn(ui.content(), props.ui?.content)" data-slot="marquee-content">
         <slot />
       </div>
     </div>
-    <div v-if="edgeFade" :class="cn(ui.edge({ side: 'end' }), props.ui?.edge)" data-slot="marquee-edge-end" />
+    <div v-if="edgeFade && orientation === 'horizontal'" :class="cn(ui.edge({ side: 'end' }), props.ui?.edge)" data-slot="marquee-edge-end" />
   </Primitive>
 </template>

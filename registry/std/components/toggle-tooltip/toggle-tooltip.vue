@@ -18,6 +18,7 @@ const props = withDefaults(defineProps<ToggleTooltipProps>(), {
   side: 'top',
   radius: 'md',
   loading: false,
+  portal: true,
 })
 
 const emits = defineEmits<ToggleTooltipEmits>()

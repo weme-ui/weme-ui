@@ -21,6 +21,7 @@ const props = withDefaults(defineProps<ContextMenuProps>(), {
   side: 'right',
   radius: 'lg',
   translucent: false,
+  portal: true,
 })
 
 const emits = defineEmits<ContextMenuEmits>()

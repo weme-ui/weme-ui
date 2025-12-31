@@ -20,6 +20,7 @@ const props = withDefaults(defineProps<PopoverProps<M>>(), {
   size: 'sm',
   radius: 'md',
   translucent: false,
+  portal: true,
 })
 
 const emits = defineEmits<PopoverEmits>()
@@ -66,6 +67,7 @@ const Component = computed(() => props.mode === 'hover' ? HoverCard : Popover)
       v-if="!!$slots.default || !!reference"
       :reference="reference"
       :class="cn(ui.trigger(), props.ui?.trigger)"
+      :data-mode="mode"
       data-slot="popover-trigger"
       as-child
     >

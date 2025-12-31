@@ -3,7 +3,7 @@ import { createVariants } from '~/utils/styles'
 
 export const useModalStyle = createVariants({
   slots: {
-    base: 'fixed flex z-popup focus:outline-none',
+    base: 'fixed flex-(~ col) z-popup focus:outline-none',
     wrapper: 'relative flex-(~ 1 col)',
     trigger: '',
     header: 'flex items-start',
@@ -13,7 +13,7 @@ export const useModalStyle = createVariants({
     title: 'text-highlighted font-medium',
     description: 'text-toned',
     content: 'h-full',
-    footer: 'flex-(~ y-center) justify-end',
+    footer: 'flex-(~ y-center) gap-2 justify-end',
     close: [
       'abs right-5 top-5 text-3.5 flex-(~ center) [&>span]:z-1',
       'after:(abs size-6 block content-[""] rounded-full transition-colors)',
@@ -39,9 +39,9 @@ export const useModalStyle = createVariants({
       center: 'abs-center min-w-modal',
     },
     size: {
-      sm: { header: 'px-4 pt-3', iconWrapper: 'h-5 mr-1.5', icon: 'size-4', title: 'text-sm', description: 'text-xs', content: 'p-4 text-sm', footer: 'px-4 pb-3 text-sm' },
-      md: { header: 'px-5 pt-4', iconWrapper: 'h-6 mr-2', icon: 'size-5', title: 'text-base', description: 'text-sm', content: 'p-5 text-base', footer: 'px-5 pb-4 text-base' },
-      lg: { header: 'px-6 pt-5', iconWrapper: 'h-6.5 mr-2.5', icon: 'size-5', title: 'text-lg', description: 'text-base', content: 'p-6 text-base', footer: 'px-6 pb-5 text-base' },
+      sm: { header: 'px-4 pt-3', iconWrapper: 'h-5 mr-1.5', icon: 'size-4', title: 'text-sm', description: 'text-xs', content: 'p-4 text-sm', footer: 'text-sm' },
+      md: { header: 'px-5 pt-4', iconWrapper: 'h-6 mr-2', icon: 'size-5', title: 'text-base', description: 'text-sm', content: 'p-5 text-base', footer: 'text-base' },
+      lg: { header: 'px-6 pt-5', iconWrapper: 'h-6.5 mr-2.5', icon: 'size-5', title: 'text-lg', description: 'text-base', content: 'p-6 text-base', footer: 'text-base' },
     },
     radius: {
       none: '',
@@ -58,9 +58,13 @@ export const useModalStyle = createVariants({
   },
 
   compoundVariants: [
-    { variant: 'normal', size: 'sm', class: { base: 'p-1' } },
-    { variant: 'normal', size: 'md', class: { base: 'p-1.25' } },
-    { variant: 'normal', size: 'lg', class: { base: 'p-1.5' } },
+    { variant: 'normal', size: 'sm', class: { base: 'p-1', footer: 'pt-1.5 pb-0.5' } },
+    { variant: 'normal', size: 'md', class: { base: 'p-1.25', footer: 'pt-2.25 pb-1' } },
+    { variant: 'normal', size: 'lg', class: { base: 'p-1.5', footer: 'pt-2.5 pb-1' } },
+
+    { variant: 'outline', size: 'sm', class: { footer: 'px-4 pb-3' } },
+    { variant: 'outline', size: 'md', class: { footer: 'px-5 pb-4' } },
+    { variant: 'outline', size: 'lg', class: { footer: 'px-6 pb-5' } },
 
     { variant: 'normal', radius: 'xs', class: { wrapper: 'rounded-xs' } },
     { variant: 'normal', radius: 'sm', class: { wrapper: 'rounded-xs' } },

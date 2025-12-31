@@ -8,7 +8,10 @@ import { useToast } from '~/composables/use-toast'
 import { cn } from '~/utils/styles'
 import { useToastProviderStyle } from './toast-provider.style'
 
-const props = withDefaults(defineProps<ToastProviderProps>(), { side: 'bottom-right' })
+const props = withDefaults(defineProps<ToastProviderProps>(), {
+  side: 'bottom-right',
+  portal: true,
+})
 const delegated = reactivePick(props, 'disableSwipe', 'duration', 'label', 'swipeThreshold')
 const forwarded = useForwardProps(delegated)
 

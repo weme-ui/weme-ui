@@ -18,6 +18,7 @@ const props = withDefaults(defineProps<TooltipProps>(), {
   side: 'top',
   radius: 'md',
   loading: false,
+  portal: true,
 })
 
 const emits = defineEmits<TooltipEmits>()
@@ -37,7 +38,7 @@ const side = computed(() => {
 
 const align = computed(() => {
   if (props.side.includes('-')) {
-    return props.side.split('-')[1] === 'left' ? 'end' : 'start'
+    return props.side.split('-')[1] === 'left' ? 'start' : 'end'
   }
   return 'center'
 })

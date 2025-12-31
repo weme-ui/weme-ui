@@ -31,6 +31,7 @@ defineOptions({
 
 const props = withDefaults(defineProps<ContextMenuContentProps<T>>(), {
   sub: false,
+  portal: true,
 })
 
 const emits = defineEmits<ContextMenuContentEmits>()
@@ -46,6 +47,10 @@ const items = computed<T[][]>(() => {
     ? props.items as T[][]
     : [props.items] as T[][]
 })
+
+const indent = computed(() => items.value.flat().some(
+  item => item.type === 'checkbox' || item.type === 'radio',
+))
 
 const [
   DefineContextMenuItem,
@@ -81,6 +86,7 @@ const [
         v-for="(value, index) in item.shortcut"
         :key="index"
         v-bind="typeof value === 'string' ? { value } : value"
+        :variant="typeof value === 'object' ? value.variant : 'plain'"
         size="sm"
       />
       <Icon
@@ -109,7 +115,7 @@ const [
           <template v-for="(item, itemIdx) in group" :key="`g-${groupIdx}-${itemIdx}`">
             <ContextMenuLabel
               v-if="item.type === 'label'"
-              :class="cn(ui.label(), override?.label)"
+              :class="cn(ui.label({ indent }), override?.label)"
               data-slot="context-menu-label"
             >
               <!-- @vue-ignore -->
@@ -126,7 +132,7 @@ const [
               <ContextMenuSubTrigger
                 :disabled="item.disabled"
                 :text-value="item.value"
-                :class="cn(ui.item(), override?.item)"
+                :class="cn(ui.item({ indent }), override?.item)"
                 data-slot="context-menu-sub-trigger"
               >
                 <!-- @vue-ignore -->
@@ -146,7 +152,7 @@ const [
               :model-value="item.checked"
               :disabled="item.disabled"
               :text-value="item.value"
-              :class="cn(ui.item(), override?.item)"
+              :class="cn(ui.item({ indent }), override?.item)"
               data-slot="context-menu-checkbox-item"
               @update:model-value="item.onCheck"
               @select="item.onSelect"
@@ -159,7 +165,7 @@ const [
               v-else
               :disabled="item.disabled"
               :text-value="item.value"
-              :class="cn(ui.item(), override?.item)"
+              :class="cn(ui.item({ indent }), override?.item)"
               data-slot="context-menu-item"
               @select="item.onSelect"
             >

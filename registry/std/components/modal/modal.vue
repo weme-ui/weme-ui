@@ -23,6 +23,7 @@ const props = withDefaults(defineProps<ModalProps>(), {
   translucent: false,
   overlay: true,
   loadingIcon: 'loading',
+  portal: true,
 })
 
 const emits = defineEmits<ModalEmits>()
@@ -58,6 +59,7 @@ const ui = computed(() => useModalStyle({
 
         <DialogContent v-bind="contentProps" as-child>
           <Motion v-bind="motions.content as any" :class="cn(ui.base(), props.ui?.base, props.class)" data-slot="modal-content">
+            <slot name="start" />
             <div :class="cn(ui.wrapper(), props.ui?.wrapper)" data-slot="modal-wrapper">
               <header :class="cn((!!title || !!$slots.title) ? [ui.header(), props.ui?.header] : 'sr-only')" data-slot="modal-header">
                 <slot name="header" v-bind="{ open, close }">
@@ -93,10 +95,14 @@ const ui = computed(() => useModalStyle({
                 <slot name="content" v-bind="{ open, loading, close }" />
               </div>
 
-              <footer v-if="!!$slots.footer" :class="cn(ui.footer(), props.ui?.footer)" data-slot="modal-footer">
+              <footer v-if="!!$slots.footer && variant === 'outline'" :class="cn(ui.footer(), props.ui?.footer)" data-slot="modal-footer">
                 <slot name="footer" v-bind="{ open, loading, close }" />
               </footer>
             </div>
+
+            <footer v-if="!!$slots.footer && variant === 'normal'" :class="cn(ui.footer(), props.ui?.footer)" data-slot="modal-footer">
+              <slot name="footer" v-bind="{ open, loading, close }" />
+            </footer>
           </Motion>
         </DialogContent>
       </AnimatePresence>

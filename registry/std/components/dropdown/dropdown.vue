@@ -20,6 +20,7 @@ const props = withDefaults(defineProps<DropdownProps<T>>(), {
   side: 'bottom',
   radius: 'lg',
   translucent: false,
+  portal: true,
 })
 
 const emits = defineEmits<DropdownEmits>()

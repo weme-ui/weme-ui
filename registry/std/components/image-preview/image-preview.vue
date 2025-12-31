@@ -11,6 +11,7 @@ import { useImagePreviewStyle } from './image-preview.style'
 
 const props = withDefaults(defineProps<ImagePreviewProps>(), {
   closeOnEscape: true,
+  portal: true,
 })
 
 const emits = defineEmits<ImagePreviewEmits>()

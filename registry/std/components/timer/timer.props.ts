@@ -1,27 +1,31 @@
 import type { PrimitiveProps } from 'reka-ui'
-import type { TimerStyleSlots } from './timer.style'
+import type { TimerStyleProps, TimerStyleSlots } from './timer.style'
 
-export interface TimerTickDetails {
-  day: number
-  hour: number
-  minute: number
-  second: number
-  millisecond: number
+export type TimerMode = 'countdown' | 'countup'
+
+export interface TimerTick {
+  days: string
+  hours: string
+  minutes: string
+  seconds: string
+  milliseconds: string
 }
 
 export interface TimerProps extends PrimitiveProps {
-  active?: boolean
+  color?: TimerStyleProps['color']
+  variant?: TimerStyleProps['variant']
+  size?: TimerStyleProps['size']
+  radius?: TimerStyleProps['radius']
+  mode?: TimerMode
+  autoStart?: boolean
   startTime?: number
   endTime?: number
-  precision?: number
-  autoStart?: boolean
-  countdown?: boolean
-  separator?: string
+  precision?: 0 | 1 | 2 | 3
   class?: any
   ui?: Partial<TimerStyleSlots>
 }
 
 export interface TimerEmits {
-  (e: 'tick', value: number): void
-  (e: 'complete'): void
+  (e: 'tick', value: TimerTick): void
+  (e: 'finish'): void
 }

@@ -4,9 +4,14 @@ import LensExamples from './lens.vue'
 import MarqueeExamples from './marquee.vue'
 import NumberTickerExamples from './number-ticker.vue'
 import QRCodeExamples from './qr-code.vue'
+import TimerExamples from './timer.vue'
 </script>
 
 <template>
+  <Example title="计时器" description="Timer">
+    <TimerExamples />
+  </Example>
+
   <Example title="高亮" description="Highlight">
     <HighlightExamples />
   </Example>
@@ -25,9 +30,5 @@ import QRCodeExamples from './qr-code.vue'
 
   <Example title="二维码" description="QR Code">
     <QRCodeExamples />
-  </Example>
-
-  <Example title="计时器" description="Timer">
-    <!--  -->
   </Example>
 </template>

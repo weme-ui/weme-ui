@@ -1598,17 +1598,17 @@
         {
           "type": "component",
           "path": "components/timer/timer.vue",
-          "hash": "5753beb79db73e12f16112a8b0976794"
+          "hash": "8dec3c3474e80b132d8f58bb339672ed"
         },
         {
           "type": "type",
           "path": "components/timer/timer.props.ts",
-          "hash": "a40e26ac4d18236425b9656d54207dbf"
+          "hash": "7bd12125bed85137db4dbc6460541771"
         },
         {
           "type": "style",
           "path": "components/timer/timer.style.ts",
-          "hash": "04f3c91977e5b6a5e1da1664c895b423"
+          "hash": "dda92e10b7e66970c95a02b3a2727802"
         }
       ]
     },

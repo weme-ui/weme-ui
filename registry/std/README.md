@@ -123,7 +123,6 @@ pnpm dlx @weme-ui/weme-ui add <name>
   - [ ] `floating-panel`
   - [ ] `signature`
   - [ ] `splitter`
-  - [ ] `timer` // TODO
   - [ ] `tour`
   - [ ] `watermark`
   - [x] `highlight`
@@ -131,6 +130,7 @@ pnpm dlx @weme-ui/weme-ui add <name>
   - [x] `marquee`
   - [x] `number-ticker`
   - [x] `qr-code`
+  - [x] `timer`
 
 ## 组合式 API
 

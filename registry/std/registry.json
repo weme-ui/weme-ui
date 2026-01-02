@@ -137,6 +137,29 @@
       }
     },
     {
+      "name": "affix",
+      "type": "component",
+      "title": "Affix",
+      "description": "Used to fix an element to a specific position.",
+      "files": [
+        {
+          "type": "style",
+          "path": "components/affix/affix.style.ts",
+          "hash": "98f03507f4b168e85f76d8accf43a765"
+        },
+        {
+          "type": "component",
+          "path": "components/affix/affix.vue",
+          "hash": "4f6285695b94f6d24cfce6434204d32c"
+        },
+        {
+          "type": "type",
+          "path": "components/affix/affix.props.ts",
+          "hash": "bef7cb6157ab3e68d81b62090e15203d"
+        }
+      ]
+    },
+    {
       "name": "alert",
       "type": "component",
       "title": "Alert",

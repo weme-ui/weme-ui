@@ -117,7 +117,6 @@ pnpm dlx @weme-ui/weme-ui add <name>
   - [x] `tooltip`
   - [x] `overlay`
 - Others
-  - [ ] `affix`
   - [ ] `anchor`
   - [ ] `back-top`
   - [ ] `floating-panel`
@@ -125,6 +124,7 @@ pnpm dlx @weme-ui/weme-ui add <name>
   - [ ] `splitter`
   - [ ] `tour`
   - [ ] `watermark`
+  - [x] `affix`
   - [x] `highlight`
   - [x] `lens`
   - [x] `marquee`
@@ -138,6 +138,7 @@ pnpm dlx @weme-ui/weme-ui add <name>
 - [x] `defineShortcuts`
 - [x] `useImageLoadingStatus` includes `UiImage`
 - [x] `useKbd` includes `UiKbd`
+- [x] `useHighlight` includes `UiHighlight`
 - [x] `useToast` includes `UiToast`, `UiToastProvider`
 
 ---

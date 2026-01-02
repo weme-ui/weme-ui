@@ -64,11 +64,11 @@ const throttledUpdatePosition = useThrottleFn(() => {
 }, 10)
 
 onMounted(() => {
-  watchEffect((onInvalidate) => {
-    if (!import.meta.client) {
-      return
-    }
+  if (!import.meta.client) {
+    return
+  }
 
+  watchEffect((onInvalidate) => {
     const element
       = (props.container
         && props.container !== window
@@ -78,12 +78,12 @@ onMounted(() => {
     containerRef.value = element
 
     if (element) {
-      window.addEventListener('scroll', throttledUpdatePosition)
-      window.addEventListener('resize', throttledUpdatePosition)
+      element.addEventListener('scroll', throttledUpdatePosition)
+      element.addEventListener('resize', throttledUpdatePosition)
 
       onInvalidate(() => {
-        window.removeEventListener('scroll', throttledUpdatePosition)
-        window.removeEventListener('resize', throttledUpdatePosition)
+        element.removeEventListener('scroll', throttledUpdatePosition)
+        element.removeEventListener('resize', throttledUpdatePosition)
       })
     }
   })

@@ -1,9 +1,9 @@
 import type { AffixStyleSlots } from './affix.style'
 
 export interface AffixProps {
+  container?: string | HTMLElement | Window
   triggerTop?: number
   triggerBottom?: number
-  target?: string | HTMLElement | Window
   class?: any
   ui?: Partial<AffixStyleSlots>
 }

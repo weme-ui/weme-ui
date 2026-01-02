@@ -12,8 +12,8 @@ defineOptions({
 const props = defineProps<AffixProps>()
 const emits = defineEmits<AffixEmits>()
 
+const containerRef = shallowRef<HTMLElement | Window>()
 const rootRef = useTemplateRef<HTMLElement>('rootRef')
-const targetRef = shallowRef<HTMLElement | Window>()
 
 const isFixed = ref(false)
 const width = ref<number | null>(null)
@@ -24,7 +24,7 @@ const bottom = ref<number | null>(null)
 const ui = computed(() => useAffixStyle({ enable: isFixed.value }))
 
 const throttledUpdatePosition = useThrottleFn(() => {
-  if (!targetRef.value || !rootRef.value) {
+  if (!containerRef.value || !rootRef.value) {
     return
   }
 
@@ -32,12 +32,12 @@ const throttledUpdatePosition = useThrottleFn(() => {
   const placement = triggerBottom === undefined ? 'top' : 'bottom'
 
   const rootRect = rootRef.value.getBoundingClientRect()
-  const targetRect = targetRef.value instanceof Window
+  const targetRect = containerRef.value instanceof Window
     ? {
         top: 0,
         bottom: window.innerHeight,
       }
-    : targetRef.value.getBoundingClientRect()
+    : containerRef.value.getBoundingClientRect()
 
   width.value = rootRect.width
   height.value = rootRect.height
@@ -70,12 +70,12 @@ onMounted(() => {
     }
 
     const element
-      = (props.target
-        && props.target !== window
-        && document.querySelector(props.target as string) as HTMLElement)
+      = (props.container
+        && props.container !== window
+        && document.querySelector(props.container as string) as HTMLElement)
       || window
 
-    targetRef.value = element
+    containerRef.value = element
 
     if (element) {
       window.addEventListener('scroll', throttledUpdatePosition)

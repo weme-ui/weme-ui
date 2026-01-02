@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import PopoverExampleBasic from '@registry/components/popover/examples/basic.vue'
+import PopoverExampleWithAnchor from '@registry/components/popover/examples/with-anchor.vue'
 import PopoverExampleWithDismissible from '@registry/components/popover/examples/with-dismissible.vue'
 import PopoverExampleWithMode from '@registry/components/popover/examples/with-mode.vue'
 import PopoverExampleWithRadius from '@registry/components/popover/examples/with-radius.vue'
@@ -39,6 +40,10 @@ import UiTabs from '@registry/components/tabs/tabs.vue'
 
     <UiTabsContent value="with-dismissible" title="With Dismissible">
       <PopoverExampleWithDismissible />
+    </UiTabsContent>
+
+    <UiTabsContent value="with-anchor" title="With Anchor">
+      <PopoverExampleWithAnchor />
     </UiTabsContent>
   </UiTabs>
 </template>

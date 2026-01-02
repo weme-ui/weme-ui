@@ -52,7 +52,6 @@ pnpm dlx @weme-ui/weme-ui add <name>
 - Collections
   - [ ] `combobox`
   - [ ] `listbox`
-  - [ ] `picker`
   - [ ] `tree`
 - Data Display
   - [x] `avatar-group`
@@ -90,6 +89,7 @@ pnpm dlx @weme-ui/weme-ui add <name>
   - [ ] `file-upload`
   - [ ] `form`
   - [ ] `input`
+  - [ ] `label`
   - [ ] `mention`
   - [ ] `number-input`
   - [ ] `password-input`

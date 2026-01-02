@@ -38,7 +38,7 @@ catalog:
   '@types/node': 24.0.15
   '@types/qrcode': ^1.5.6
   '@types/spark-md5': ^3.0.5
-  '@typescript/native-preview': ^7.0.0-dev.20260101.1
+  '@typescript/native-preview': ^7.0.0-dev.20260102.1
   '@unocss/core': ^66.5.12
   '@unocss/nuxt': ^66.5.12
   '@unocss/rule-utils': ^66.5.12

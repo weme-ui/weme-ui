@@ -43,6 +43,7 @@
     "@weme-ui/unocss-preset": "workspace:*",
     "@zag-js/highlight-word": "catalog:",
     "clsx": "catalog:",
+    "compute-scroll-into-view": "catalog:",
     "embla-carousel": "catalog:",
     "embla-carousel-autoplay": "catalog:",
     "embla-carousel-fade": "catalog:",

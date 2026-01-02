@@ -150,12 +150,12 @@
         {
           "type": "component",
           "path": "components/affix/affix.vue",
-          "hash": "4f6285695b94f6d24cfce6434204d32c"
+          "hash": "6bafef75b744b9bf96ef2b9e3fe90d86"
         },
         {
           "type": "type",
           "path": "components/affix/affix.props.ts",
-          "hash": "bef7cb6157ab3e68d81b62090e15203d"
+          "hash": "3f9cd83785348fdcbf153a7880ab36d9"
         }
       ]
     },
@@ -183,6 +183,32 @@
           "type": "component",
           "path": "components/alert/alert.vue",
           "hash": "3b6551f09c5661aa14bd4ff3cbaf7c10"
+        }
+      ]
+    },
+    {
+      "name": "anchor",
+      "type": "component",
+      "title": "Anchor",
+      "description": "Used to create an anchor links to quickly navigate to a specific section of a page.",
+      "dependencies": [
+        "compute-scroll-into-view"
+      ],
+      "files": [
+        {
+          "type": "type",
+          "path": "components/anchor/anchor.props.ts",
+          "hash": "1ed0d76ea83b98115304549e9a97f674"
+        },
+        {
+          "type": "component",
+          "path": "components/anchor/anchor.vue",
+          "hash": "212d3d3590fac57bda5e32aa82563333"
+        },
+        {
+          "type": "style",
+          "path": "components/anchor/anchor.style.ts",
+          "hash": "801da30c36f51aa2a3a6d107d4f5ba87"
         }
       ]
     },

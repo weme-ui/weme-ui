@@ -117,14 +117,13 @@ pnpm dlx @weme-ui/weme-ui add <name>
   - [x] `tooltip`
   - [x] `overlay`
 - Others
-  - [ ] `anchor`
-  - [ ] `back-top`
   - [ ] `floating-panel`
   - [ ] `signature`
   - [ ] `splitter`
   - [ ] `tour`
   - [ ] `watermark`
   - [x] `affix`
+  - [x] `anchor` // TODO: 需要完善
   - [x] `highlight`
   - [x] `lens`
   - [x] `marquee`

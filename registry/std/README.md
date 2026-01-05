@@ -92,7 +92,7 @@ pnpm dlx @weme-ui/weme-ui add <name>
   - [ ] `label`
   - [ ] `mention`
   - [ ] `number-input`
-  - [ ] `password-input`
+  - [x] `password-input`
   - [ ] `pin-input`
   - [ ] `radio-card`
   - [ ] `radio-group`

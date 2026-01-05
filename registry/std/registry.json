@@ -891,17 +891,17 @@
         {
           "type": "type",
           "path": "components/input/input.props.ts",
-          "hash": "f912c5b8ba717226cd1a640858b98f66"
+          "hash": "1611b06e85b3d1670c66d999677fad13"
         },
         {
           "type": "style",
           "path": "components/input/input.style.ts",
-          "hash": "3eb02a296a15541dd1e9cf1853e728c7"
+          "hash": "b055fa1175758a77ae73099fd0c226f3"
         },
         {
           "type": "component",
           "path": "components/input/input.vue",
-          "hash": "f286fd71ff1afacdf379b14508e0e018"
+          "hash": "f7ddb28b4bc31a3407dd112df321ea9d"
         }
       ]
     },
@@ -1197,6 +1197,33 @@
           "type": "style",
           "path": "components/pagination/pagination.style.ts",
           "hash": "e4ec58b6fe8822fceb6f9ba23da04e46"
+        }
+      ]
+    },
+    {
+      "name": "password-input",
+      "type": "component",
+      "title": "Password Input",
+      "description": "Used to input secure text like password and api-keys.",
+      "registryDependencies": [
+        "icon",
+        "input"
+      ],
+      "files": [
+        {
+          "type": "type",
+          "path": "components/password-input/password-input.props.ts",
+          "hash": "7cfd3354b2af61c367dc73f459ae515d"
+        },
+        {
+          "type": "style",
+          "path": "components/password-input/password-input.style.ts",
+          "hash": "41b641df3b0b1d6ce4b2d224bb3b7986"
+        },
+        {
+          "type": "component",
+          "path": "components/password-input/password-input.vue",
+          "hash": "b53b98c7b06c3baf3574e8a8c733022e"
         }
       ]
     },

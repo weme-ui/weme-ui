@@ -1,0 +1,21 @@
+<script lang="ts" setup>
+import PasswordInput from '../password-input.vue'
+
+const variants = ['soft', 'outline', 'line', 'none'] as const
+</script>
+
+<template>
+  <div class="flex-(~ center wrap) gap-6 mt-4">
+    <template v-for="variant in variants" :key="variant">
+      <PasswordInput
+        name="input"
+        placeholder="Enter your text here"
+        autocomplete="off"
+        class="min-w-80"
+        :variant="variant"
+        :invalid="false"
+        clear
+      />
+    </template>
+  </div>
+</template>

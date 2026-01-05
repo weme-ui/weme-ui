@@ -174,6 +174,7 @@ defineExpose({
         @change="onChange"
         @keydown.enter="onEnter"
       >
+      <slot />
       <button
         v-if="!!clear"
         :class="cn(ui.clear(), props.ui?.clear)"

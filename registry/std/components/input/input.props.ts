@@ -4,7 +4,7 @@ import type { InputStyleProps, InputStyleSlots } from './input.style'
 export type InputValue = string | number | null
 
 export interface InputProps extends PrimitiveProps {
-  type?: 'text' | 'email' | 'number' | 'url' | 'tel' | 'search'
+  type?: 'text' | 'email' | 'number' | 'url' | 'tel' | 'search' | 'password'
   variant?: InputStyleProps['variant']
   size?: InputStyleProps['size']
   radius?: InputStyleProps['radius']
@@ -36,6 +36,7 @@ export interface InputEmits {
 }
 
 export interface InputSlots {
+  default: () => any
   prepend: () => any
   prefix: () => any
   loading: () => any

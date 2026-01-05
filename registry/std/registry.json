@@ -901,7 +901,7 @@
         {
           "type": "component",
           "path": "components/input/input.vue",
-          "hash": "f7ddb28b4bc31a3407dd112df321ea9d"
+          "hash": "b26aed729e9443d4dcf344608bdfcc0e"
         }
       ]
     },
@@ -1099,6 +1099,32 @@
           "height": "12rem"
         }
       }
+    },
+    {
+      "name": "number-input",
+      "type": "component",
+      "title": "Number Input",
+      "description": "Used to enter a number, and increment or decrement the value using stepper buttons.",
+      "registryDependencies": [
+        "icon"
+      ],
+      "files": [
+        {
+          "type": "type",
+          "path": "components/number-input/number-input.props.ts",
+          "hash": "1585514263246450407513d16e1b0312"
+        },
+        {
+          "type": "style",
+          "path": "components/number-input/number-input.style.ts",
+          "hash": "17d07dbf68f8fe859c283b83382af54f"
+        },
+        {
+          "type": "component",
+          "path": "components/number-input/number-input.vue",
+          "hash": "cd111d20ea003205475bd58f24b1adc2"
+        }
+      ]
     },
     {
       "name": "number-ticker",

@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import InputExample from './input.vue'
+import NumberInputExample from './number-input.vue'
 import PasswordInputExample from './password-input.vue'
 </script>
 
@@ -10,5 +11,9 @@ import PasswordInputExample from './password-input.vue'
 
   <Example title="密码输入框" description="Password Input">
     <PasswordInputExample />
+  </Example>
+
+  <Example title="数字输入框" description="Number Input">
+    <NumberInputExample />
   </Example>
 </template>

@@ -1,8 +1,9 @@
 <script lang="ts" setup>
+import InputExample from './input.vue'
 </script>
 
 <template>
-  <Example icon="lucide:text-cursor-input" title="表单" description="构建交互式用户输入体验的综合表单组件。">
-    <!--  -->
+  <Example title="输入框" description="Input">
+    <InputExample />
   </Example>
 </template>

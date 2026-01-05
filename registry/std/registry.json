@@ -58,6 +58,11 @@
         },
         {
           "type": "composable",
+          "path": "composables/use-primitive-ref.ts",
+          "hash": "59a0e0aeb7ffa28ba8b0047cf9034bd3"
+        },
+        {
+          "type": "composable",
           "path": "composables/use-locale.ts",
           "hash": "e9536bbc01ec37e27078453b030401a5"
         },
@@ -871,6 +876,32 @@
           "type": "style",
           "path": "components/image-preview/image-preview.style.ts",
           "hash": "aa91d70b61a0d19437127466c679ff47"
+        }
+      ]
+    },
+    {
+      "name": "input",
+      "type": "component",
+      "title": "Input",
+      "description": "Used to get user input in a text field.",
+      "registryDependencies": [
+        "icon"
+      ],
+      "files": [
+        {
+          "type": "type",
+          "path": "components/input/input.props.ts",
+          "hash": "f912c5b8ba717226cd1a640858b98f66"
+        },
+        {
+          "type": "style",
+          "path": "components/input/input.style.ts",
+          "hash": "3eb02a296a15541dd1e9cf1853e728c7"
+        },
+        {
+          "type": "component",
+          "path": "components/input/input.vue",
+          "hash": "f286fd71ff1afacdf379b14508e0e018"
         }
       ]
     },

@@ -88,7 +88,7 @@ pnpm dlx @weme-ui/weme-ui add <name>
   - [ ] `field`
   - [ ] `file-upload`
   - [ ] `form`
-  - [ ] `input`
+  - [x] `input`
   - [ ] `label`
   - [ ] `mention`
   - [ ] `number-input`

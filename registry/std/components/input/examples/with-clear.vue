@@ -8,7 +8,7 @@ const sizes = ['xs', 'sm', 'md', 'lg', 'xl'] as const
 </script>
 
 <template>
-  <div class="flex-(~ center wrap) gap-6">
+  <div class="flex-(~ center wrap) gap-6 mt-4">
     <template v-for="size in sizes" :key="size">
       <div v-for="variant in variants" :key="variant">
         <Input

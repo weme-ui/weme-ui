@@ -165,7 +165,6 @@ defineExpose({
         :required="required"
         :readonly="readonly"
         :class="cn(ui.input(), props.ui?.input)"
-        :aria-disabled="toBoolValue(disabled) || undefined"
         :aria-required="toBoolValue(required) || undefined"
         :aria-invalid="toBoolValue(invalid) || undefined"
         @focus="onFocus"

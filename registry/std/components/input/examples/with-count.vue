@@ -3,7 +3,7 @@ import Input from '../input.vue'
 </script>
 
 <template>
-  <div class="text-center">
+  <div class="text-center mt-4">
     <Input
       name="input"
       placeholder="Enter your text here"

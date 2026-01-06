@@ -88,7 +88,7 @@ pnpm dlx @weme-ui/weme-ui add <name>
   - [ ] `field`
   - [ ] `file-upload`
   - [ ] `form`
-  - [ ] `label`
+  - [x] `label`
   - [ ] `mention`
   - [ ] `radio-card`
   - [ ] `radio-group`

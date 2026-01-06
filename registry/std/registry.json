@@ -992,6 +992,29 @@
       ]
     },
     {
+      "name": "label",
+      "type": "component",
+      "title": "Label",
+      "description": "Used to add a label to a form element.",
+      "files": [
+        {
+          "type": "style",
+          "path": "components/label/label.style.ts",
+          "hash": "a6e65ad8cb6faac97aa7769bb15ff70f"
+        },
+        {
+          "type": "component",
+          "path": "components/label/label.vue",
+          "hash": "28ad3db95440ae44c36cbae1b22ccd12"
+        },
+        {
+          "type": "type",
+          "path": "components/label/label.props.ts",
+          "hash": "931738e2722335b99ad491432eadbfe9"
+        }
+      ]
+    },
+    {
       "name": "lens",
       "type": "component",
       "title": "Lens",

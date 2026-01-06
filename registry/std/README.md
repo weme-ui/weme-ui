@@ -88,12 +88,8 @@ pnpm dlx @weme-ui/weme-ui add <name>
   - [ ] `field`
   - [ ] `file-upload`
   - [ ] `form`
-  - [x] `input`
   - [ ] `label`
   - [ ] `mention`
-  - [ ] `number-input`
-  - [x] `password-input`
-  - [ ] `pin-input`
   - [ ] `radio-card`
   - [ ] `radio-group`
   - [ ] `rating`
@@ -102,10 +98,14 @@ pnpm dlx @weme-ui/weme-ui add <name>
   - [ ] `slider`
   - [ ] `switch`
   - [ ] `tags-input`
-  - [ ] `textarea`
   - [ ] `time-picker`
   - [ ] `toggle-group`
   - [ ] `toggle`
+  - [x] `input`
+  - [x] `number-input`
+  - [x] `password-input`
+  - [x] `pin-input`
+  - [x] `textarea`
 - Overlays
   - [x] `action-sheet`
   - [x] `dropdown`

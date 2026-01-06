@@ -2,6 +2,7 @@
 import InputExample from './input.vue'
 import NumberInputExample from './number-input.vue'
 import PasswordInputExample from './password-input.vue'
+import PinInputExample from './pin-input.vue'
 </script>
 
 <template>
@@ -15,5 +16,9 @@ import PasswordInputExample from './password-input.vue'
 
   <Example title="数字输入框" description="Number Input">
     <NumberInputExample />
+  </Example>
+
+  <Example title="PIN 输入框" description="Pin Input">
+    <PinInputExample />
   </Example>
 </template>

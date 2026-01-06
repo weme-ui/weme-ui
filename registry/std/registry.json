@@ -1254,6 +1254,29 @@
       ]
     },
     {
+      "name": "pin-input",
+      "type": "component",
+      "title": "Pin Input",
+      "description": "Used to capture a pin code or otp from the user.",
+      "files": [
+        {
+          "type": "type",
+          "path": "components/pin-input/pin-input.props.ts",
+          "hash": "43028641f01e820385d45c311ff41bfa"
+        },
+        {
+          "type": "style",
+          "path": "components/pin-input/pin-input.style.ts",
+          "hash": "cc73d0669bd72283a9b2613bda9e42a1"
+        },
+        {
+          "type": "component",
+          "path": "components/pin-input/pin-input.vue",
+          "hash": "733a21e1e918457e877d2ccc9f32034b"
+        }
+      ]
+    },
+    {
       "name": "pop-confirm",
       "type": "component",
       "title": "Pop Confirm",

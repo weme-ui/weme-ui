@@ -3,6 +3,7 @@ import InputExample from './input.vue'
 import NumberInputExample from './number-input.vue'
 import PasswordInputExample from './password-input.vue'
 import PinInputExample from './pin-input.vue'
+import SwitchExample from './switch.vue'
 import TagsInputExample from './tags-input.vue'
 import TextareaExample from './textarea.vue'
 </script>
@@ -30,5 +31,9 @@ import TextareaExample from './textarea.vue'
 
   <Example title="多行输入框" description="Textarea">
     <TextareaExample />
+  </Example>
+
+  <Example title="开关" description="Switch">
+    <SwitchExample />
   </Example>
 </template>

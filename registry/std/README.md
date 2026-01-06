@@ -96,7 +96,6 @@ pnpm dlx @weme-ui/weme-ui add <name>
   - [ ] `segmented-control`
   - [ ] `select`
   - [ ] `slider`
-  - [ ] `switch`
   - [ ] `time-picker`
   - [ ] `toggle-group`
   - [ ] `toggle`
@@ -104,6 +103,7 @@ pnpm dlx @weme-ui/weme-ui add <name>
   - [x] `number-input`
   - [x] `password-input`
   - [x] `pin-input`
+  - [x] `switch`
   - [x] `tags-input`
   - [x] `textarea`
 - Overlays

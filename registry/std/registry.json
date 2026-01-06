@@ -1610,6 +1610,32 @@
       ]
     },
     {
+      "name": "switch",
+      "type": "component",
+      "title": "Switch",
+      "description": "Used to capture a binary state.",
+      "registryDependencies": [
+        "icon"
+      ],
+      "files": [
+        {
+          "type": "component",
+          "path": "components/switch/switch.vue",
+          "hash": "0565881fd8241b6e27326ea19ac12d67"
+        },
+        {
+          "type": "style",
+          "path": "components/switch/switch.style.ts",
+          "hash": "e479e033a71143211298c473249ca237"
+        },
+        {
+          "type": "type",
+          "path": "components/switch/switch.props.ts",
+          "hash": "610a28344de4cc6b4e3b76b7387e2b05"
+        }
+      ]
+    },
+    {
       "name": "table",
       "type": "component",
       "title": "Table",

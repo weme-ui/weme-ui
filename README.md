@@ -9,6 +9,10 @@
 [![License][license-src]][license-href]
 
 <p align="center">
+  ⚠️ Do not use in production. This project is still in early development.
+</p>
+
+<p align="center">
   Re-usable UI components with Reka UI and UnoCSS.
 </p>
 
@@ -31,12 +35,6 @@ pnpm dlx @weme-ui/weme-ui init
 
 ```bash
 pnpm dlx @weme-ui/weme-ui add <component-name>
-```
-
-### 创建主题
-
-```bash
-pnpm dlx @weme-ui/weme-ui theme <theme-name>
 ```
 
 ---

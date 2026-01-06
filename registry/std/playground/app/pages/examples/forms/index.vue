@@ -3,6 +3,7 @@ import InputExample from './input.vue'
 import NumberInputExample from './number-input.vue'
 import PasswordInputExample from './password-input.vue'
 import PinInputExample from './pin-input.vue'
+import TextareaExample from './textarea.vue'
 </script>
 
 <template>
@@ -20,5 +21,9 @@ import PinInputExample from './pin-input.vue'
 
   <Example title="PIN 输入框" description="Pin Input">
     <PinInputExample />
+  </Example>
+
+  <Example title="多行输入框" description="Textarea">
+    <TextareaExample />
   </Example>
 </template>

@@ -1701,6 +1701,29 @@
       ]
     },
     {
+      "name": "textarea",
+      "type": "component",
+      "title": "Textarea",
+      "description": "Used to enter multiple lines of text.",
+      "files": [
+        {
+          "type": "style",
+          "path": "components/textarea/textarea.style.ts",
+          "hash": "56d56190d1575d788f6445c380376e3c"
+        },
+        {
+          "type": "component",
+          "path": "components/textarea/textarea.vue",
+          "hash": "079358af65e8d5c2a03f3672ee3b3e5a"
+        },
+        {
+          "type": "type",
+          "path": "components/textarea/textarea.props.ts",
+          "hash": "a7ccc7354867266c3635c430193663c4"
+        }
+      ]
+    },
+    {
       "name": "theme",
       "type": "component",
       "title": "Theme",

@@ -3,10 +3,15 @@ import InputExample from './input.vue'
 import NumberInputExample from './number-input.vue'
 import PasswordInputExample from './password-input.vue'
 import PinInputExample from './pin-input.vue'
+import TagsInputExample from './tags-input.vue'
 import TextareaExample from './textarea.vue'
 </script>
 
 <template>
+  <Example title="标签输入框" description="Tags Input">
+    <TagsInputExample />
+  </Example>
+
   <Example title="输入框" description="Input">
     <InputExample />
   </Example>

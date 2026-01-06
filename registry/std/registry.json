@@ -1701,6 +1701,32 @@
       ]
     },
     {
+      "name": "tags-input",
+      "type": "component",
+      "title": "Tags Input",
+      "description": "Used to enter multiple values as tags with features like tag creation, deletion, and keyboard navigation.",
+      "registryDependencies": [
+        "icon"
+      ],
+      "files": [
+        {
+          "type": "type",
+          "path": "components/tags-input/tags-input.props.ts",
+          "hash": "fa3e02f4422ab7abf015e08af1446dd6"
+        },
+        {
+          "type": "component",
+          "path": "components/tags-input/tags-input.vue",
+          "hash": "98230ef0e90909ed4c25fc2aa9f6ec1b"
+        },
+        {
+          "type": "style",
+          "path": "components/tags-input/tags-input.style.ts",
+          "hash": "4dceea9cf90605bb7f0c33cae65641fb"
+        }
+      ]
+    },
+    {
       "name": "textarea",
       "type": "component",
       "title": "Textarea",

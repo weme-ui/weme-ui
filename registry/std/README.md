@@ -97,7 +97,6 @@ pnpm dlx @weme-ui/weme-ui add <name>
   - [ ] `select`
   - [ ] `slider`
   - [ ] `switch`
-  - [ ] `tags-input`
   - [ ] `time-picker`
   - [ ] `toggle-group`
   - [ ] `toggle`
@@ -105,6 +104,7 @@ pnpm dlx @weme-ui/weme-ui add <name>
   - [x] `number-input`
   - [x] `password-input`
   - [x] `pin-input`
+  - [x] `tags-input`
   - [x] `textarea`
 - Overlays
   - [x] `action-sheet`

@@ -63,22 +63,22 @@ defineExpose({
   <StepperRoot
     v-slot="{ totalSteps }"
     v-model="currentStepIndex"
+    data-slot="steps"
     v-bind="forwarded"
     :class="cn(ui.root(), props.ui?.root, props.class)"
-    data-slot="steps"
   >
     <StepperItem
       v-for="(item, index) in items"
       v-slot="{ state }"
       :key="index"
+      data-slot="steps-item"
       :step="item.step"
       :completed="item.completed"
       :disabled="item.disabled"
       :class="cn(ui.item({ isLatest: index === totalSteps - 1 }), props.ui?.item)"
-      data-slot="steps-item"
     >
-      <StepperTrigger :class="cn(ui.trigger({ isLatest: index === totalSteps - 1 }), props.ui?.trigger)" data-slot="steps-trigger">
-        <StepperIndicator :data-state="state" :class="cn(ui.indicator(), props.ui?.indicator)" data-slot="steps-indicator">
+      <StepperTrigger data-slot="steps-trigger" :class="cn(ui.trigger({ isLatest: index === totalSteps - 1 }), props.ui?.trigger)">
+        <StepperIndicator data-slot="steps-indicator" :data-state="state" :class="cn(ui.indicator(), props.ui?.indicator)">
           <slot v-if="item.icon || $slots.indicator" name="indicator" v-bind="{ totalSteps, state, item, modelValue }">
             <Icon
               v-if="item.icon"
@@ -99,31 +99,31 @@ defineExpose({
         </StepperIndicator>
         <StepperSeparator
           v-if="orientation === 'vertical' && index < totalSteps - 1"
-          :class="cn(ui.separator(), props.ui?.separator)"
           data-slot="steps-separator"
+          :class="cn(ui.separator(), props.ui?.separator)"
         />
       </StepperTrigger>
 
-      <div :class="cn(ui.wrapper(), props.ui?.wrapper)" data-slot="steps-wrapper">
+      <div data-slot="steps-wrapper" :class="cn(ui.wrapper(), props.ui?.wrapper)">
         <StepperTitle
+          data-slot="steps-title"
           :data-state="state"
           :class="cn(ui.title({ isLatest: index === totalSteps - 1 }), props.ui?.title)"
-          data-slot="steps-title"
         >
           <slot name="title" v-bind="{ totalSteps, state, item, modelValue }">
             {{ item.title }}
           </slot>
           <StepperSeparator
             v-if="orientation === 'horizontal' && index < totalSteps - 1"
-            :class="cn(ui.separator(), props.ui?.separator)"
             data-slot="steps-separator"
+            :class="cn(ui.separator(), props.ui?.separator)"
           />
         </StepperTitle>
         <StepperDescription
           v-if="item.description"
+          data-slot="steps-description"
           :data-state="state"
           :class="cn(ui.description({ isLatest: index === totalSteps - 1 }), props.ui?.description)"
-          data-slot="steps-description"
         >
           <slot name="description" v-bind="{ totalSteps, state, item, modelValue }">
             {{ item.description }}

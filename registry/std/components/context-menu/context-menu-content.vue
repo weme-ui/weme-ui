@@ -62,8 +62,8 @@ const [
   <DefineContextMenuItem v-slot="{ item }">
     <ContextMenuItemIndicator
       v-if="item.type === 'checkbox' || item.type === 'radio'"
-      :class="cn(ui.itemIndicator(), override?.itemIndicator)"
       data-slot="context-menu-item-indicator"
+      :class="cn(ui.itemIndicator(), override?.itemIndicator)"
     >
       <Icon :name="checkedIcon" />
     </ContextMenuItemIndicator>
@@ -71,7 +71,7 @@ const [
     <Icon v-if="!!item.loading" :name="loadingIcon" :class="cn(ui.loading(), override?.loading)" />
     <Icon v-if="item.icon" :name="item.icon" :class="cn(ui.itemIcon(), override?.itemIcon)" />
 
-    <label :class="cn(ui.itemLabel(), override?.itemLabel)" data-slot="context-menu-item-label">
+    <label data-slot="context-menu-item-label" :class="cn(ui.itemLabel(), override?.itemLabel)">
       {{ item.label }}
       <Icon
         v-if="item.target === '_blank' && item.rel === 'noopener noreferrer'"
@@ -80,7 +80,7 @@ const [
       />
     </label>
 
-    <span :class="cn(ui.itemCommand(), override?.itemCommand)" data-slot="context-menu-item-command">
+    <span data-slot="context-menu-item-command" :class="cn(ui.itemCommand(), override?.itemCommand)">
       {{ item.suffix }}
       <Kbd
         v-for="(value, index) in item.shortcut"
@@ -101,22 +101,22 @@ const [
     <component
       :is="sub ? RekaContextMenuSubContent : ContextMenuContent"
       v-bind="forwarded"
-      :class="cn(ui.content({ indent: !!sub }))"
       :data-slot="sub ? 'context-menu-sub-content' : 'context-menu-content'"
+      :class="cn(ui.content({ indent: !!sub }))"
     >
       <slot name="top" />
 
-      <div :class="cn(ui.viewport(), override?.viewport)" data-slot="context-menu-viewport">
+      <div data-slot="context-menu-viewport" :class="cn(ui.viewport(), override?.viewport)">
         <ContextMenuGroup
           v-for="(group, groupIdx) in items" :key="`g-${groupIdx}`"
-          :class="cn(ui.group(), override?.group)"
           data-slot="context-menu-group"
+          :class="cn(ui.group(), override?.group)"
         >
           <template v-for="(item, itemIdx) in group" :key="`g-${groupIdx}-${itemIdx}`">
             <ContextMenuLabel
               v-if="item.type === 'label'"
-              :class="cn(ui.label({ indent }), override?.label)"
               data-slot="context-menu-label"
+              :class="cn(ui.label({ indent }), override?.label)"
             >
               <!-- @vue-ignore -->
               <ReuseContextMenuItem :item="item" />
@@ -124,16 +124,16 @@ const [
 
             <ContextMenuSeparator
               v-else-if="item.type === 'separator'"
-              :class="cn(ui.separator(), override?.separator)"
               data-slot="context-menu-separator"
+              :class="cn(ui.separator(), override?.separator)"
             />
 
             <ContextMenuSub v-else-if="!!item.children?.length">
               <ContextMenuSubTrigger
+                data-slot="context-menu-sub-trigger"
                 :disabled="item.disabled"
                 :text-value="item.value"
                 :class="cn(ui.item({ indent }), override?.item)"
-                data-slot="context-menu-sub-trigger"
               >
                 <!-- @vue-ignore -->
                 <ReuseContextMenuItem :item="item" />
@@ -149,11 +149,11 @@ const [
 
             <ContextMenuCheckboxItem
               v-else-if="item.type === 'checkbox'"
+              data-slot="context-menu-checkbox-item"
               :model-value="item.checked"
               :disabled="item.disabled"
               :text-value="item.value"
               :class="cn(ui.item({ indent }), override?.item)"
-              data-slot="context-menu-checkbox-item"
               @update:model-value="item.onCheck"
               @select="item.onSelect"
             >
@@ -163,10 +163,10 @@ const [
 
             <ContextMenuItem
               v-else
+              data-slot="context-menu-item"
               :disabled="item.disabled"
               :text-value="item.value"
               :class="cn(ui.item({ indent }), override?.item)"
-              data-slot="context-menu-item"
               @select="item.onSelect"
             >
               <!-- @vue-ignore -->
@@ -185,8 +185,8 @@ const [
       <ContextMenuArrow
         v-if="!!arrow"
         v-bind="typeof arrow === 'object' ? arrow : {}"
-        :class="cn(ui.arrow(), override?.arrow)"
         data-slot="context-menu-arrow"
+        :class="cn(ui.arrow(), override?.arrow)"
       />
     </component>
   </ContextMenuPortal>

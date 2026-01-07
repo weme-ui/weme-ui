@@ -48,19 +48,19 @@ const ui = computed(() => useToggleTooltipStyle(props))
 
 <template>
   <PopoverRoot v-slot="{ open }" v-bind="forwarded">
-    <PopoverTrigger :class="cn(ui.trigger(), props.ui?.trigger, props.class)" data-slot="toggle-tooltip-trigger" as-child>
+    <PopoverTrigger data-slot="toggle-tooltip-trigger" :class="cn(ui.trigger(), props.ui?.trigger, props.class)" as-child>
       <slot :open="open" />
     </PopoverTrigger>
 
     <PopoverPortal v-bind="portalProps">
       <PopoverContent
         v-bind="{ ...contentProps, ...$attrs }"
+        data-slot="toggle-tooltip-content"
         :side="side"
         :align="align"
         :class="cn(ui.content(), props.ui?.content)"
-        data-slot="toggle-tooltip-content"
       >
-        <div :class="cn(ui.contentWrapper(), props.ui?.contentWrapper)" data-slot="toggle-tooltip-content-wrapper">
+        <div data-slot="toggle-tooltip-content-wrapper" :class="cn(ui.contentWrapper(), props.ui?.contentWrapper)">
           <Icon v-if="loading" name="loading" :class="cn(ui.loading(), props.ui?.loading)" />
           <slot name="content" :open="open">
             {{ text }}
@@ -70,9 +70,9 @@ const ui = computed(() => useToggleTooltipStyle(props))
         <PopoverArrow
           v-if="!!arrow"
           v-bind="arrowProps"
+          data-slot="toggle-tooltip-arrow"
           :class="cn(ui.arrow(), props.ui?.arrow)"
           :rounded="radius !== 'none'"
-          data-slot="toggle-tooltip-arrow"
         />
       </PopoverContent>
     </PopoverPortal>

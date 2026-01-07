@@ -20,7 +20,7 @@ const ui = computed(() => useIconBoxStyle(props))
 </script>
 
 <template>
-  <Primitive v-bind="rootProps" :class="cn(ui.root(), props.ui?.root, props.class)" data-slot="icon-box">
+  <Primitive v-bind="rootProps" data-slot="icon-box" :class="cn(ui.root(), props.ui?.root, props.class)">
     <slot>
       <Icon v-bind="iconProps" :class="cn(ui.icon(), props.ui?.icon)" />
     </slot>

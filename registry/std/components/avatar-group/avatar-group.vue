@@ -24,7 +24,12 @@ const ui = computed(() => useAvatarGroupStyle(props))
 </script>
 
 <template>
-  <Primitive v-bind="delegated" :class="cn(ui.root(), props.ui?.root, props.class)" role="group" data-slot="avatar-group">
+  <Primitive
+    v-bind="delegated"
+    data-slot="avatar-group"
+    role="group"
+    :class="cn(ui.root(), props.ui?.root, props.class)"
+  >
     <Avatar
       v-if="hasMore"
       :fallback="count"

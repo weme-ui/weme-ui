@@ -17,22 +17,22 @@ const ui = computed(() => useCardStyle(props))
 </script>
 
 <template>
-  <Primitive :as="as" :class="cn(ui.root(), props.ui?.root, props.class)" data-slot="card">
+  <Primitive :as="as" data-slot="card" :class="cn(ui.root(), props.ui?.root, props.class)">
     <slot name="start" />
-    <div :class="cn(ui.wrapper(), props.ui?.wrapper)" data-slot="card-wrapper">
+    <div data-slot="card-wrapper" :class="cn(ui.wrapper(), props.ui?.wrapper)">
       <slot name="header">
-        <div v-if="!!$slots.title || !!title || !!$slots.description || !!description" :class="cn(ui.header(), props.ui?.header)" data-slot="card-header">
+        <div v-if="!!$slots.title || !!title || !!$slots.description || !!description" data-slot="card-header" :class="cn(ui.header(), props.ui?.header)">
           <slot v-if="!!$slots.icon || !!icon" name="icon">
             <Icon v-if="!!icon" :name="icon" :class="cn(ui.headerIcon(), props.ui?.headerIcon)" />
           </slot>
           <div class="flex-1">
             <slot v-if="!!$slots.title || !!title" name="title">
-              <h3 :class="cn(ui.headerTitle(), props.ui?.headerTitle)" data-slot="card-title">
+              <h3 data-slot="card-title" :class="cn(ui.headerTitle(), props.ui?.headerTitle)">
                 {{ title }}
               </h3>
             </slot>
             <slot v-if="!!$slots.description || !!description" name="description">
-              <p :class="cn(ui.headerDescription(), props.ui?.headerDescription)" data-slot="card-description">
+              <p data-slot="card-description" :class="cn(ui.headerDescription(), props.ui?.headerDescription)">
                 {{ description }}
               </p>
             </slot>
@@ -40,10 +40,10 @@ const ui = computed(() => useCardStyle(props))
           <slot name="action" />
         </div>
       </slot>
-      <div :class="cn(ui.body(), props.ui?.body)" data-slot="card-body">
+      <div data-slot="card-body" :class="cn(ui.body(), props.ui?.body)">
         <slot />
       </div>
-      <div v-if="!!$slots.footer" :class="cn(ui.footer(), props.ui?.footer)" data-slot="card-footer">
+      <div v-if="!!$slots.footer" data-slot="card-footer" :class="cn(ui.footer(), props.ui?.footer)">
         <slot name="footer" />
       </div>
     </div>

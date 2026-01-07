@@ -34,10 +34,10 @@ const ui = computed(() => useSwitchStyle({
   <SwitchRoot
     v-slot="{ modelValue }"
     v-bind="forwarded"
-    :class="cn(ui.root(), props.ui?.root, props.class)"
     data-slot="switch"
+    :class="cn(ui.root(), props.ui?.root, props.class)"
   >
-    <SwitchThumb :class="cn(ui.thumb(), props.ui?.thumb)" data-slot="switch-thumb">
+    <SwitchThumb data-slot="switch-thumb" :class="cn(ui.thumb(), props.ui?.thumb)">
       <Icon v-if="!!loading" :name="loadingIcon" :class="cn(ui.icon(), props.ui?.icon)" />
       <slot v-else-if="!!$slots.icon || !!icon" name="icon" :checked="modelValue">
         <Icon

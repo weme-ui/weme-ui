@@ -99,15 +99,16 @@ defineExpose({
   <div ref="rootRef" data-slot="affix">
     <div
       v-if="isFixed"
+      data-slot="affix-placeholder"
       aria-hidden="true"
       :style="{
         width: !!width ? `${width}px` : undefined,
         height: !!height ? `${height}px` : undefined,
       }"
-      data-slot="affix-placeholder"
     />
     <div
       v-bind="$attrs"
+      data-slot="affix-wrapper"
       :class="cn(ui.base(), props.ui?.base, props.class)"
       :style="{
         '--affix-top': top !== null ? `${top}px` : undefined,
@@ -115,7 +116,6 @@ defineExpose({
         '--affix-width': width !== null ? `${width}px` : undefined,
         '--affix-height': height !== null ? `${height}px` : undefined,
       }"
-      data-slot="affix-wrapper"
     >
       <slot />
     </div>

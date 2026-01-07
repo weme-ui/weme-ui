@@ -62,36 +62,38 @@ function onClose() {
 </script>
 
 <template>
-  <Primitive v-bind="forwarded" :class="cn(ui.root(), props.ui?.root, props.class)" data-slot="banner">
-    <div :class="cn(ui.left(), props.ui?.left)" data-slot="banner-left" />
+  <Primitive v-bind="forwarded" data-slot="banner" :class="cn(ui.root(), props.ui?.root, props.class)">
+    <div data-slot="banner-left" :class="cn(ui.left(), props.ui?.left)">
+      <slot name="left" />
+    </div>
 
-    <div :class="cn(ui.center(), props.ui?.center)" data-slot="banner-center">
+    <div data-slot="banner-center" :class="cn(ui.center(), props.ui?.center)">
       <slot name="icon">
         <Icon v-if="icon" :name="icon" :class="cn(ui.icon(), props.ui?.icon)" />
       </slot>
 
-      <h3 v-if="title || !!$slots.title" :class="cn(ui.title(), props.ui?.title)" data-slot="banner-title">
+      <h3 v-if="title || !!$slots.title" data-slot="banner-title" :class="cn(ui.title(), props.ui?.title)">
         <slot name="title">
           {{ title }}
         </slot>
       </h3>
 
-      <div v-if="actions?.length || !!$slots.actions" :class="cn(ui.actions(), props.ui?.actions)" data-slot="banner-actions">
+      <div v-if="actions?.length || !!$slots.actions" data-slot="banner-actions" :class="cn(ui.actions(), props.ui?.actions)">
         <slot name="actions">
           <Button v-for="(action, index) in actions" :key="index" :color="color" size="xs" v-bind="action" />
         </slot>
       </div>
     </div>
 
-    <div :class="cn(ui.right(), props.ui?.right)" data-slot="banner-right">
-      <button v-if="closable || !!$slots.close" :aria-label="t('banner.close')" :class="cn(ui.close(), props.ui?.close)" data-slot="banner-close" @click="onClose">
+    <div data-slot="banner-right" :class="cn(ui.right(), props.ui?.right)">
+      <button v-if="closable || !!$slots.close" data-slot="banner-close" :aria-label="t('banner.close')" :class="cn(ui.close(), props.ui?.close)" @click="onClose">
         <slot name="close">
           <Icon v-if="closable" name="close" />
         </slot>
       </button>
     </div>
 
-    <LinkOverlay v-if="href" :href="href" :target="target" :rel="rel" data-slot="link-overlay" :as-child="!!$slots['link-overlay']">
+    <LinkOverlay v-if="href" :href="href" :target="target" :rel="rel" :as-child="!!$slots['link-overlay']">
       <slot name="link-overlay" />
     </LinkOverlay>
   </Primitive>

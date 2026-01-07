@@ -50,19 +50,19 @@ const ui = computed(() => useTooltipStyle({
 
 <template>
   <TooltipRoot v-slot="{ open }" v-bind="forwarded">
-    <TooltipTrigger v-bind="triggerProps" :class="cn(ui.trigger(), props.ui?.trigger, props.class)" data-slot="tooltip-trigger">
+    <TooltipTrigger v-bind="triggerProps" data-slot="tooltip-trigger" :class="cn(ui.trigger(), props.ui?.trigger, props.class)">
       <slot :open="open" />
     </TooltipTrigger>
 
     <TooltipPortal v-bind="portalProps">
       <TooltipContent
         v-bind="{ ...contentProps, ...$attrs }"
+        data-slot="tooltip-content"
         :side="side"
         :align="align"
         :class="cn(ui.content(), props.ui?.content)"
-        data-slot="tooltip-content"
       >
-        <div :class="cn(ui.contentWrapper(), props.ui?.contentWrapper)" data-slot="tooltip-content-wrapper">
+        <div data-slot="tooltip-content-wrapper" :class="cn(ui.contentWrapper(), props.ui?.contentWrapper)">
           <Icon v-if="loading" name="loading" :class="cn(ui.loading(), props.ui?.loading)" />
           <slot name="content" v-bind="{ open }">
             {{ text }}
@@ -72,9 +72,9 @@ const ui = computed(() => useTooltipStyle({
         <TooltipArrow
           v-if="!!arrow"
           v-bind="typeof arrow === 'object' ? arrow : undefined"
+          data-slot="tooltip-arrow"
           :class="cn(ui.arrow(), props.ui?.arrow)"
           :rounded="radius !== 'none'"
-          data-slot="tooltip-arrow"
         />
       </TooltipContent>
     </TooltipPortal>

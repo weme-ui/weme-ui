@@ -65,10 +65,10 @@ const Component = computed(() => props.mode === 'hover' ? HoverCard : Popover)
   <Component.Root v-slot="{ open, close }: { open: boolean, close?: () => void }" v-bind="forwarded">
     <Component.Trigger
       v-if="!!$slots.default || !!reference"
+      data-slot="popover-trigger"
       :reference="reference"
       :class="cn(ui.trigger(), props.ui?.trigger)"
       :data-mode="mode"
-      data-slot="popover-trigger"
       as-child
     >
       <slot :open="open" />
@@ -79,11 +79,11 @@ const Component = computed(() => props.mode === 'hover' ? HoverCard : Popover)
     </Component.Anchor>
 
     <Component.Portal v-bind="portalProps">
-      <Component.Content v-bind="contentProps" :class="cn(ui.contentWrapper(), props.ui?.contentWrapper)" data-slot="popover-content-wrapper" v-on="contentEvents">
-        <div :class="cn(ui.content(), props.ui?.content, props.class)" data-slot="popover-content">
+      <Component.Content v-bind="contentProps" data-slot="popover-content-wrapper" :class="cn(ui.contentWrapper(), props.ui?.contentWrapper)" v-on="contentEvents">
+        <div data-slot="popover-content" :class="cn(ui.content(), props.ui?.content, props.class)">
           <slot name="content" v-bind="((close ? { close } : {}))" />
         </div>
-        <Component.Arrow v-if="!!arrow" v-bind="arrowProps" :class="cn(ui.arrow(), props.ui?.arrow)" data-slot="popover-arrow" />
+        <Component.Arrow v-if="!!arrow" v-bind="arrowProps" data-slot="popover-arrow" :class="cn(ui.arrow(), props.ui?.arrow)" />
       </Component.Content>
     </Component.Portal>
   </Component.Root>

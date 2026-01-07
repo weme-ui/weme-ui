@@ -28,13 +28,13 @@ const ui = computed(() => useOverflowStyle({
 </script>
 
 <template>
-  <Primitive v-bind="delegated" :class="cn(ui.root(), props.ui?.root, props.class)" data-slot="overflow">
+  <Primitive v-bind="delegated" data-slot="overflow" :class="cn(ui.root(), props.ui?.root, props.class)">
     <template v-for="(item, index) in list" :key="index">
       <component :is="item" :class="cn(ui.item(), props.ui?.item)" />
     </template>
 
     <slot name="overflow" :number="number">
-      <span v-if="!!collapsed" :class="cn(ui.overflow(), props.ui?.overflow)" data-slot="overflow-number">{{ number }}+</span>
+      <span v-if="!!collapsed" data-slot="overflow-number" :class="cn(ui.overflow(), props.ui?.overflow)">{{ number }}+</span>
     </slot>
   </Primitive>
 </template>

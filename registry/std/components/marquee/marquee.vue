@@ -30,6 +30,7 @@ const ui = computed(() => useMarqueeStyle({
 <template>
   <Primitive
     v-bind="delegated"
+    data-slot="marquee"
     :data-orientation="orientation"
     :class="cn(ui.base(), props.ui?.base, props.class)"
     :style="{
@@ -37,14 +38,21 @@ const ui = computed(() => useMarqueeStyle({
       '--marquee-duration': `${speed * repeat / 10}s`,
       '--marquee-spacing': spacing,
     }"
-    data-slot="marquee"
   >
-    <div v-if="edgeFade && orientation === 'horizontal'" :class="cn(ui.edge({ side: 'start' }), props.ui?.edge)" data-slot="marquee-edge-start" />
-    <div :class="cn(ui.viewport(), props.ui?.viewport)" data-slot="marquee-viewport">
-      <div v-for="n in repeat" :key="n" :class="cn(ui.content(), props.ui?.content)" data-slot="marquee-content">
+    <div
+      v-if="edgeFade && orientation === 'horizontal'"
+      data-slot="marquee-edge-start"
+      :class="cn(ui.edge({ side: 'start' }), props.ui?.edge)"
+    />
+    <div data-slot="marquee-viewport" :class="cn(ui.viewport(), props.ui?.viewport)">
+      <div v-for="n in repeat" :key="n" data-slot="marquee-content" :class="cn(ui.content(), props.ui?.content)">
         <slot />
       </div>
     </div>
-    <div v-if="edgeFade && orientation === 'horizontal'" :class="cn(ui.edge({ side: 'end' }), props.ui?.edge)" data-slot="marquee-edge-end" />
+    <div
+      v-if="edgeFade && orientation === 'horizontal'"
+      data-slot="marquee-edge-end"
+      :class="cn(ui.edge({ side: 'end' }), props.ui?.edge)"
+    />
   </Primitive>
 </template>

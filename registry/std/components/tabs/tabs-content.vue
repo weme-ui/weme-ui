@@ -8,7 +8,7 @@ const delegated = useForwardProps(reactivePick(props, 'as', 'asChild', 'value', 
 </script>
 
 <template>
-  <TabsContent v-bind="delegated" :class="props.class" data-slot="tabs-content">
+  <TabsContent v-bind="delegated" data-slot="tabs-content" :class="props.class">
     <slot />
   </TabsContent>
 </template>

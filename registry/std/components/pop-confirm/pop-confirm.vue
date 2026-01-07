@@ -88,13 +88,13 @@ async function onCancel() {
 <template>
   <Popover
     v-bind="forwarded"
+    data-slot="pop-confirm"
     :open="open"
     :content="contentProps"
     :class="cn(ui.base(), props.ui?.base, props.class)"
     mode="click"
     modal
     arrow
-    data-slot="pop-confirm"
     @update:open="(val) => open = val"
   >
     <template #default>
@@ -102,7 +102,7 @@ async function onCancel() {
     </template>
 
     <template #content>
-      <div :class="cn(ui.content(), props.ui?.content)" data-slot="pop-confirm-content">
+      <div data-slot="pop-confirm-content" :class="cn(ui.content(), props.ui?.content)">
         <slot name="indicator">
           <Icon v-if="icon" :name="icon" :class="cn(ui.indicator(), props.ui?.indicator)" />
         </slot>
@@ -110,7 +110,7 @@ async function onCancel() {
           {{ message }}
         </slot>
       </div>
-      <div :class="cn(ui.actions(), props.ui?.actions)" data-slot="pop-confirm-actions">
+      <div data-slot="pop-confirm-actions" :class="cn(ui.actions(), props.ui?.actions)">
         <Button v-bind="cancelProps" @click="onCancel" />
         <Button v-bind="{ ...confirmProps, loading }" @click="onConfirm" />
       </div>

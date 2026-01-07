@@ -32,10 +32,10 @@ const ui = computed(() => useButtonGroupStyle({
 <template>
   <Primitive
     v-bind="delegated"
+    data-slot="button-group"
+    role="group"
     :data-disabled="toBoolDataAttrValue(disabled)"
     :class="cn(ui.root(), props.ui?.root, props.class)"
-    role="group"
-    data-slot="button-group"
   >
     <template v-for="(child, index) in children" :key="index">
       <component

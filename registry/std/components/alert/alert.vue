@@ -48,33 +48,39 @@ watch(
 
 <template>
   <Presence v-if="visible" :present="visible">
-    <Primitive :as="as" :class="cn(ui.root(), props.ui?.root, props.class)" data-slot="alert">
+    <Primitive :as="as" data-slot="alert" :class="cn(ui.root(), props.ui?.root, props.class)">
       <slot v-if="$slots.icon || resolvedIcon" name="icon">
         <Icon v-if="resolvedIcon" :name="resolvedIcon" :class="cn(ui.icon(), props.ui?.icon)" />
       </slot>
 
-      <div :class="cn(ui.wrapper(), props.ui?.wrapper)" data-slot="alert-wrapper">
+      <div data-slot="alert-wrapper" :class="cn(ui.wrapper(), props.ui?.wrapper)">
         <slot v-if="$slots.title || title" name="title">
-          <h3 v-if="title" :class="cn(ui.title(), props.ui?.title)" data-slot="alert-title">
+          <h3 v-if="title" data-slot="alert-title" :class="cn(ui.title(), props.ui?.title)">
             {{ title }}
           </h3>
         </slot>
         <slot v-if="$slots.default || content" name="content">
-          <p v-if="content" :class="cn(ui.content(), props.ui?.content)" data-slot="alert-content">
+          <p v-if="content" data-slot="alert-content" :class="cn(ui.content(), props.ui?.content)">
             {{ content }}
           </p>
         </slot>
       </div>
 
       <slot v-if="$slots.actions || clickable" name="actions">
-        <div :class="cn(ui.actions(), props.ui?.actions)" data-slot="alert-actions">
+        <div data-slot="alert-actions" :class="cn(ui.actions(), props.ui?.actions)">
           <slot name="actions">
             <Icon v-if="target === '_blank' || rel === 'noopener noreferrer' || href?.startsWith('http')" name="external" />
           </slot>
         </div>
       </slot>
 
-      <button v-if="closable" :aria-label="t('alert.close')" :class="cn(ui.close(), props.ui?.close)" data-slot="alert-close" @click="onClose">
+      <button
+        v-if="closable"
+        data-slot="alert-close"
+        :aria-label="t('alert.close')"
+        :class="cn(ui.close(), props.ui?.close)"
+        @click="onClose"
+      >
         <slot name="close">
           <Icon name="close" />
         </slot>

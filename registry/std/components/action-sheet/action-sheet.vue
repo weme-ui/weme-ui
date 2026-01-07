@@ -48,18 +48,18 @@ watch(open, (value) => {
     <Presence v-if="isMounted || !!forceMount" :present="open">
       <Primitive
         v-bind="forwarded"
+        data-slot="action-sheet"
         :data-state="open ? 'open' : 'closed'"
         :class="cn(ui.base(), props.ui?.base, props.class)"
         role="dialog"
-        data-slot="action-sheet"
       >
-        <div v-if="$slots.selection" :class="cn(ui.selection(), props.ui?.selection)" data-slot="action-sheet-selection">
+        <div v-if="$slots.selection" data-slot="action-sheet-selection" :class="cn(ui.selection(), props.ui?.selection)">
           <slot name="selection" />
         </div>
         <slot v-if="$slots.selection && $slots.actions" name="separator">
-          <hr :class="cn(ui.separator(), props.ui?.separator)" data-slot="action-sheet-separator">
+          <hr data-slot="action-sheet-separator" :class="cn(ui.separator(), props.ui?.separator)">
         </slot>
-        <div v-if="actions?.length || $slots.actions" :class="cn(ui.actions(), props.ui?.actions)" data-slot="action-sheet-actions">
+        <div v-if="actions?.length || $slots.actions" data-slot="action-sheet-actions" :class="cn(ui.actions(), props.ui?.actions)">
           <slot name="actions">
             <Button v-for="(action, index) in actions" :key="index" v-bind="action" />
           </slot>

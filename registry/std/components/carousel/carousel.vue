@@ -197,62 +197,62 @@ defineExpose({
 <template>
   <Primitive
     :as="as"
-    :data-orientation="orientation"
-    :class="cn(ui.root(), props.ui?.root, props.class)"
-    aria-roledescription="carousel"
-    role="region"
-    tabindex="0"
     data-slot="carousel"
+    role="region"
+    :data-orientation="orientation"
+    aria-roledescription="carousel"
+    :class="cn(ui.root(), props.ui?.root, props.class)"
+    tabindex="0"
     @keydown="onKeyDown"
   >
-    <div ref="emblaRef" :class="cn(ui.viewport(), props.ui?.viewport)" data-slot="carousel-viewport">
-      <div :class="cn(ui.container(), props.ui?.container)" data-slot="carousel-container">
+    <div ref="emblaRef" data-slot="carousel-viewport" :class="cn(ui.viewport(), props.ui?.viewport)">
+      <div data-slot="carousel-container" :class="cn(ui.container(), props.ui?.container)">
         <div
           v-for="(item, index) in items"
           v-bind="!!dots ? { role: 'tabpanel' } : { 'role': 'group', 'aria-roledescription': 'slide' }"
           :key="index"
-          :class="cn(ui.item(), props.ui?.item, isCarouselItem(item) && item.class)"
           data-slot="carousel-item"
+          :class="cn(ui.item(), props.ui?.item, isCarouselItem(item) && item.class)"
         >
           <slot :item="item" :index="index" />
         </div>
       </div>
     </div>
-    <div v-if="!!arrows || !!dots" :class="cn(ui.controls(), props.ui?.controls)" data-slot="carousel-controls">
-      <div v-if="!!arrows" :class="cn(ui.arrows(), props.ui?.arrows)" data-slot="carousel-arrows">
+    <div v-if="!!arrows || !!dots" data-slot="carousel-controls" :class="cn(ui.controls(), props.ui?.controls)">
+      <div v-if="!!arrows" data-slot="carousel-arrows" :class="cn(ui.arrows(), props.ui?.arrows)">
         <IconButton
           v-bind="typeof prev === 'object' ? prev : undefined"
+          data-slot="carousel-prev"
           :disabled="!canScrollPrev"
           :icon="prevIcon"
           :aria-label="t('carousel.prev')"
           :variant="prev?.variant || 'surface'"
           :size="next?.size || 'sm'"
           :class="cn(ui.prev(), props.ui?.prev)"
-          data-slot="carousel-prev"
           @click="scrollPrev"
         />
         <IconButton
           v-bind="typeof next === 'object' ? next : undefined"
+          data-slot="carousel-next"
           :disabled="!canScrollNext"
           :icon="nextIcon"
           :aria-label="t('carousel.next')"
           :variant="next?.variant || 'surface'"
           :size="next?.size || 'sm'"
           :class="cn(ui.next(), props.ui?.next)"
-          data-slot="carousel-next"
           @click="scrollNext"
         />
       </div>
-      <div v-if="!!dots" role="tablist" :aria-label="t('carousel.dots')" :class="cn(ui.dots(), props.ui?.dots)" data-slot="carousel-dots">
+      <div v-if="!!dots" role="tablist" data-slot="carousel-dots" :aria-label="t('carousel.dots')" :class="cn(ui.dots(), props.ui?.dots)">
         <button
           v-for="(_, index) in scrollSnaps"
           :key="index"
+          data-slot="carousel-dot"
           :aria-label="t('carousel.goto', { slide: index + 1 })"
           :aria-selected="index === selectedIndex"
           :data-state="index === selectedIndex ? 'active' : undefined"
           :class="cn(ui.dot({ active: index === selectedIndex }), props.ui?.dot)"
           role="tab"
-          data-slot="carousel-dot"
           @click="scrollTo(index)"
         />
       </div>

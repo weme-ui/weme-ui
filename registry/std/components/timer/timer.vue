@@ -192,18 +192,18 @@ defineExpose({
 <template>
   <Primitive
     v-bind="forwarded"
-    :class="cn(ui.root(), props.ui?.root, props.class)"
-    :data-state="running ? 'running' : finished ? 'finished' : 'paused'"
     data-slot="timer"
+    :data-state="running ? 'running' : finished ? 'finished' : 'paused'"
+    :class="cn(ui.root(), props.ui?.root, props.class)"
   >
     <template v-if="timeTick.days !== '0'">
-      <div :class="cn(ui.item(), props.ui?.item)" data-slot="timer-days">
-        <div :class="cn(ui.value(), props.ui?.value)" data-slot="timer-days-value">
+      <div data-slot="timer-days" :class="cn(ui.item(), props.ui?.item)">
+        <div data-slot="timer-days-value" :class="cn(ui.value(), props.ui?.value)">
           <slot name="days" v-bind="{ value: timeTick.days }">
             {{ timeTick.days }}
           </slot>
         </div>
-        <div v-if="!!$slots['days-label']" :class="cn(ui.label(), props.ui?.label)" data-slot="timer-days-label">
+        <div v-if="!!$slots['days-label']" data-slot="timer-days-label" :class="cn(ui.label(), props.ui?.label)">
           <slot name="days-label" />
         </div>
       </div>
@@ -214,13 +214,13 @@ defineExpose({
       </div>
     </template>
 
-    <div :class="cn(ui.item(), props.ui?.item)" data-slot="timer-hours">
-      <div :class="cn(ui.value(), props.ui?.value)" data-slot="timer-hours-value">
+    <div data-slot="timer-hours" :class="cn(ui.item(), props.ui?.item)">
+      <div data-slot="timer-hours-value" :class="cn(ui.value(), props.ui?.value)">
         <slot name="hours" v-bind="{ value: timeTick.hours }">
           {{ timeTick.hours }}
         </slot>
       </div>
-      <div v-if="!!$slots['hours-label']" :class="cn(ui.label(), props.ui?.label)" data-slot="timer-hours-label">
+      <div v-if="!!$slots['hours-label']" data-slot="timer-hours-label" :class="cn(ui.label(), props.ui?.label)">
         <slot name="hours-label" />
       </div>
     </div>
@@ -230,13 +230,13 @@ defineExpose({
       </slot>
     </div>
 
-    <div :class="cn(ui.item(), props.ui?.item)" data-slot="timer-minutes">
-      <div :class="cn(ui.value(), props.ui?.value)" data-slot="timer-minutes-value">
+    <div data-slot="timer-minutes" :class="cn(ui.item(), props.ui?.item)">
+      <div data-slot="timer-minutes-value" :class="cn(ui.value(), props.ui?.value)">
         <slot name="minutes" v-bind="{ value: timeTick.minutes }">
           {{ timeTick.minutes }}
         </slot>
       </div>
-      <div v-if="!!$slots['minutes-label']" :class="cn(ui.label(), props.ui?.label)" data-slot="timer-minutes-label">
+      <div v-if="!!$slots['minutes-label']" data-slot="timer-minutes-label" :class="cn(ui.label(), props.ui?.label)">
         <slot name="minutes-label" />
       </div>
     </div>
@@ -246,13 +246,13 @@ defineExpose({
       </slot>
     </div>
 
-    <div :class="cn(ui.item(), props.ui?.item)" data-slot="timer-seconds">
-      <div :class="cn(ui.value(), props.ui?.value)" data-slot="timer-seconds-value">
+    <div data-slot="timer-seconds" :class="cn(ui.item(), props.ui?.item)">
+      <div data-slot="timer-seconds-value" :class="cn(ui.value(), props.ui?.value)">
         <slot name="seconds" v-bind="{ value: timeTick.seconds }">
           {{ timeTick.seconds }}
         </slot>
       </div>
-      <div v-if="!!$slots['seconds-label']" :class="cn(ui.label(), props.ui?.label)" data-slot="timer-seconds-label">
+      <div v-if="!!$slots['seconds-label']" data-slot="timer-seconds-label" :class="cn(ui.label(), props.ui?.label)">
         <slot name="seconds-label" />
       </div>
     </div>
@@ -263,13 +263,13 @@ defineExpose({
           :
         </slot>
       </div>
-      <div :class="cn(ui.item(), props.ui?.item)" data-slot="timer-milliseconds">
-        <div :class="cn(ui.value(), props.ui?.value)" data-slot="timer-milliseconds-value">
+      <div data-slot="timer-milliseconds" :class="cn(ui.item(), props.ui?.item)">
+        <div data-slot="timer-milliseconds-value" :class="cn(ui.value(), props.ui?.value)">
           <slot name="milliseconds" v-bind="{ value: timeTick.milliseconds }">
             {{ timeTick.milliseconds }}
           </slot>
         </div>
-        <div v-if="!!$slots['milliseconds-label']" :class="cn(ui.label(), props.ui?.label)" data-slot="timer-milliseconds-label">
+        <div v-if="!!$slots['milliseconds-label']" data-slot="timer-milliseconds-label" :class="cn(ui.label(), props.ui?.label)">
           <slot name="milliseconds-label" />
         </div>
       </div>

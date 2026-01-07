@@ -162,25 +162,25 @@ defineExpose({
   <ScrollAreaRoot
     ref="rootRef"
     :as="as"
+    data-slot="scroll-area"
     :data-orientation="orientation"
     :class="cn(ui.root(), props.ui?.root, props.class)"
-    data-slot="scroll-area"
   >
     <template v-if="virtualizer">
       <ScrollAreaViewport
+        data-slot="scroll-area-viewport"
+        data-virtualize=""
         :style="virtualViewportStyle"
         :class="cn(ui.viewport(), props.ui?.viewport)"
-        data-virtualize=""
-        data-slot="scroll-area-viewport"
       >
         <div
           v-for="virtualItem in virtualItems"
           :key="String(virtualItem.key)"
           :ref="measureElement"
+          data-slot="scroll-area-item"
           :data-index="virtualItem.index"
           :class="ui.item({ class: props.ui?.item })"
           :style="getVirtualItemStyle(virtualItem)"
-          data-slot="scroll-area-item"
         >
           <slot
             :item="(items?.[virtualItem.index] as T)"
@@ -192,13 +192,13 @@ defineExpose({
     </template>
 
     <template v-else>
-      <ScrollAreaViewport :class="cn(ui.viewport(), props.ui?.viewport)" data-slot="scroll-area-viewport">
+      <ScrollAreaViewport data-slot="scroll-area-viewport" :class="cn(ui.viewport(), props.ui?.viewport)">
         <template v-if="items?.length">
           <div
             v-for="(item, index) in items"
             :key="getItemKey(item, index)"
-            :class="cn(ui.item(), props.ui?.item)"
             data-slot="scroll-area-item"
+            :class="cn(ui.item(), props.ui?.item)"
           >
             <slot :item="item" :index="index" />
           </div>
@@ -209,8 +209,8 @@ defineExpose({
       </ScrollAreaViewport>
     </template>
 
-    <ScrollAreaScrollbar :orientation="orientation" :class="cn(ui.scrollbar(), props.ui?.scrollbar)" data-slot="scroll-area-scrollbar">
-      <ScrollAreaThumb :class="cn(ui.thumb(), props.ui?.thumb)" data-slot="scroll-area-thumb" />
+    <ScrollAreaScrollbar data-slot="scroll-area-scrollbar" :orientation="orientation" :class="cn(ui.scrollbar(), props.ui?.scrollbar)">
+      <ScrollAreaThumb data-slot="scroll-area-thumb" :class="cn(ui.thumb(), props.ui?.thumb)" />
     </ScrollAreaScrollbar>
   </ScrollAreaRoot>
 </template>

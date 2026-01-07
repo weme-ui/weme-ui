@@ -39,15 +39,15 @@ function onClose() {
 
 <template>
   <Presence v-if="visible" :present="visible">
-    <Primitive v-bind="forwarded" :class="cn(ui.root(), props.ui?.root, props.class)" data-slot="tag">
-      <span :class="cn(ui.label(), props.ui?.label)" data-slot="tag-label">
+    <Primitive v-bind="forwarded" data-slot="tag" :class="cn(ui.root(), props.ui?.root, props.class)">
+      <span data-slot="tag-label" :class="cn(ui.label(), props.ui?.label)">
         <slot>{{ label }}</slot>
       </span>
       <button
         v-if="!!closable && !disabled"
+        data-slot="tag-close"
         :aria-label="t('tag.close')"
         :class="cn(ui.close(), props.ui?.close)"
-        data-slot="tag-close"
         @click="onClose"
       >
         <slot name="close">

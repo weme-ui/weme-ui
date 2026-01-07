@@ -24,7 +24,7 @@ const ui = computed(() => useHighlightStyle(props))
 
 <template>
   <template v-for="chunk in chunks" :key="chunk.text">
-    <mark v-if="chunk.match" :class="cn(ui.mark(), props.class)">{{ chunk.text }}</mark>
+    <mark v-if="chunk.match" data-highlight :class="cn(ui.mark(), props.class)">{{ chunk.text }}</mark>
     <template v-else>
       {{ chunk.text }}
     </template>

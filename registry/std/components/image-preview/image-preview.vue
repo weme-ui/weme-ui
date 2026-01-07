@@ -50,8 +50,8 @@ function onHidden() {
   </Image>
 
   <Teleport :to="portalProps.to" :disabled="portalProps.disabled">
-    <div v-if="show" :class="cn(ui.preview(), props.ui?.preview)" data-slot="image-preview">
-      <div v-show="!loaded" :class="cn(ui.previewPlaceholder(), props.ui?.previewPlaceholder)" data-slot="image-preview-placeholder">
+    <div v-if="show" data-slot="image-preview" :class="cn(ui.preview(), props.ui?.preview)">
+      <div v-show="!loaded" data-slot="image-preview-placeholder" :class="cn(ui.previewPlaceholder(), props.ui?.previewPlaceholder)">
         <slot name="placeholder">
           <template v-if="placeholder">
             {{ placeholder }}
@@ -62,14 +62,14 @@ function onHidden() {
 
       <Image
         v-show="loaded"
+        data-slot="image-preview-image"
         :src="previewSrc || src"
         :class="cn(ui.previewImage(), props.ui?.previewImage)"
-        data-slot="image-preview-image"
         @loading-status-change="(status) => loaded = status === 'loaded'"
       />
 
       <slot name="actions" />
     </div>
-    <Overlay v-model="show" :class="cn(ui.overlay(), props.ui?.overlay)" data-slot="image-preview-overlay" @click="onHidden" />
+    <Overlay v-model="show" data-slot="image-preview-overlay" :class="cn(ui.overlay(), props.ui?.overlay)" @click="onHidden" />
   </Teleport>
 </template>

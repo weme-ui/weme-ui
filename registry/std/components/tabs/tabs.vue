@@ -56,30 +56,30 @@ const [
 
 <template>
   <DefineTabsList>
-    <div :class="cn(ui.listWrapper(), props.ui?.listWrapper)" data-slot="tabs-list-wrapper">
-      <TabsList v-bind="listProps" :class="cn(ui.list(), props.ui?.list)" data-slot="tabs-list">
-        <TabsIndicator v-bind="indicatorProps" :class="cn(ui.indicator(), props.ui?.indicator)" data-slot="tabs-indicator" />
+    <div data-slot="tabs-list-wrapper" :class="cn(ui.listWrapper(), props.ui?.listWrapper)">
+      <TabsList v-bind="listProps" data-slot="tabs-list" :class="cn(ui.list(), props.ui?.list)">
+        <TabsIndicator v-bind="indicatorProps" data-slot="tabs-indicator" :class="cn(ui.indicator(), props.ui?.indicator)" />
         <TabsTrigger
           v-for="content in contents"
           v-bind="triggerProps"
           :key="content.props?.value"
+          data-slot="tabs-trigger"
           :value="content.props?.value"
           :disabled="content.props?.disabled"
           :class="cn(ui.trigger(), props.ui?.trigger)"
-          data-slot="tabs-trigger"
         >
           <Icon
             v-if="content.props?.icon || content.props?.loading"
             :name="toBoolValue(content.props.loading) ? 'loading' : content.props.icon"
             :class="cn(ui.icon({ loading: toBoolValue(content.props.loading) }), props.ui?.icon)"
           />
-          <span v-if="content.props?.title" :class="cn(ui.title(), props.ui?.title)" data-slot="tabs-title">
+          <span v-if="content.props?.title" data-slot="tabs-title" :class="cn(ui.title(), props.ui?.title)">
             {{ content.props?.title }}
           </span>
           <slot name="trigger-after" v-bind="content.props" />
         </TabsTrigger>
       </TabsList>
-      <div v-if="$slots.actions" :class="cn(ui.actions(), props.ui?.actions)" data-slot="tabs-actions">
+      <div v-if="$slots.actions" data-slot="tabs-actions" :class="cn(ui.actions(), props.ui?.actions)">
         <slot name="actions" />
       </div>
     </div>
@@ -87,10 +87,10 @@ const [
 
   <TabsRoot
     v-bind="forwarded"
+    data-slot="tabs"
     :default-value="defaultValue"
     :orientation="orientation"
     :class="cn(ui.root(), props.ui?.root, props.class)"
-    data-slot="tabs"
   >
     <ReuseTabsList v-if="side === 'top' || side === 'left'" />
     <template v-for="(content, index) in contents" :key="content.props?.value">

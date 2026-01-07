@@ -35,10 +35,10 @@ watch(
   <Primitive
     v-else
     v-bind="{ ...delegated, ...$attrs }"
+    data-slot="qr-code"
     :src="src"
     :class="props.class"
     :alt="$attrs.alt || 'QR Code'"
     aria-label="QR Code"
-    data-slot="qr-code"
   />
 </template>

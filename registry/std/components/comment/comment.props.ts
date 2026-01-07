@@ -12,6 +12,7 @@ export interface CommentProps extends PrimitiveProps {
   variant?: CommentStyleProps['variant']
   align?: CommentStyleProps['align']
   size?: CommentStyleProps['size']
+  radius?: CommentStyleProps['radius']
   class?: any
   ui?: Partial<CommentStyleSlots>
 }

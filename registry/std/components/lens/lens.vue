@@ -48,6 +48,7 @@ watchEffect(() => {
 <template>
   <Primitive
     v-bind="forwarded"
+    data-slot="lens"
     :class="cn(ui.base(), props.ui?.base, props.class)"
     :style="{
       '--lens-x': `${position.x}px`,
@@ -55,7 +56,6 @@ watchEffect(() => {
       '--lens-size': `${size / 2}px`,
       '--lens-zoom': zoom,
     }"
-    data-slot="lens"
     @mousemove="onMouseMove"
     @mouseenter="setIsHovering(true)"
     @mouseleave="setIsHovering(false)"
@@ -63,6 +63,7 @@ watchEffect(() => {
     <slot />
     <Motion
       v-show="isHovering"
+      data-slot="lens-viewport"
       :initial="{ opacity: 0, scale: 0.58 }"
       :animate="{ opacity: 1, scale: 1 }"
       :exit="{ opacity: 0, scale: 0.8 }"
@@ -71,9 +72,8 @@ watchEffect(() => {
       :style="{
         maskImage: `radial-gradient(${maskPosition}, black 100%, transparent 100%)`,
       }"
-      data-slot="lens-viewport"
     >
-      <div :class="cn(ui.zoom(), props.ui?.zoom)" data-slot="lens-zoom">
+      <div data-slot="lens-zoom" :class="cn(ui.zoom(), props.ui?.zoom)">
         <slot />
       </div>
     </Motion>

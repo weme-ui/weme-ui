@@ -27,12 +27,21 @@ export const useCommentStyle = createVariants({
       md: { root: 'p-4', header: 'text-sm', content: 'text-base' },
       lg: { root: 'p-5', header: 'text-base', content: 'text-lg' },
     },
+    radius: {
+      none: '',
+      xs: { root: 'rounded-xs' },
+      sm: { root: 'rounded-sm' },
+      md: { root: 'rounded-md' },
+      lg: { root: 'rounded-lg' },
+      xl: { root: 'rounded-xl' },
+    },
   },
 
   defaultVariants: {
     variant: 'plain',
     align: 'start',
     size: 'md',
+    radius: 'md',
   },
 })
 

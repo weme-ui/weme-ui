@@ -43,7 +43,7 @@ const ui = computed(() => useModalStyle({
 
 <template>
   <DialogRoot v-slot="{ open, close }" v-bind="forwarded">
-    <DialogTrigger :class="cn(ui.trigger(), props.ui?.trigger)" data-slot="modal-trigger" as-child>
+    <DialogTrigger data-slot="modal-trigger" :class="cn(ui.trigger(), props.ui?.trigger)" as-child>
       <slot :open="open" />
     </DialogTrigger>
 
@@ -54,36 +54,36 @@ const ui = computed(() => useModalStyle({
           v-bind="typeof overlayProps === 'object' ? overlayProps : undefined"
           as-child
         >
-          <Motion v-bind="motions.overlay" :class="cn(ui.overlay(), props.ui?.overlay)" data-slot="modal-overlay" />
+          <Motion v-bind="motions.overlay" data-slot="modal-overlay" :class="cn(ui.overlay(), props.ui?.overlay)" />
         </DialogOverlay>
 
         <DialogContent v-bind="contentProps" as-child>
-          <Motion v-bind="motions.content as any" :class="cn(ui.base(), props.ui?.base, props.class)" data-slot="modal-content">
+          <Motion v-bind="motions.content as any" data-slot="modal-content" :class="cn(ui.base(), props.ui?.base, props.class)">
             <slot name="start" />
-            <div :class="cn(ui.wrapper(), props.ui?.wrapper)" data-slot="modal-wrapper">
-              <header :class="cn((!!title || !!$slots.title) ? [ui.header(), props.ui?.header] : 'sr-only')" data-slot="modal-header">
+            <div data-slot="modal-wrapper" :class="cn(ui.wrapper(), props.ui?.wrapper)">
+              <header data-slot="modal-header" :class="cn((!!title || !!$slots.title) ? [ui.header(), props.ui?.header] : 'sr-only')">
                 <slot name="header" v-bind="{ open, close }">
-                  <div v-if="!!loading || !!icon || !!$slots.icon" :class="cn(ui.iconWrapper(), props.ui?.iconWrapper)" data-slot="modal-icon-wrapper">
+                  <div v-if="!!loading || !!icon || !!$slots.icon" data-slot="modal-icon-wrapper" :class="cn(ui.iconWrapper(), props.ui?.iconWrapper)">
                     <slot name="icon" v-bind="{ open, loading }">
                       <Icon v-if="!!loading" :name="loadingIcon" :class="cn(ui.loading(), props.ui?.loading)" />
                       <Icon v-else-if="!!icon" :name="icon" :class="cn(ui.icon(), props.ui?.icon)" />
                     </slot>
                   </div>
 
-                  <div :class="cn(ui.titleWrapper(), props.ui?.titleWrapper)" data-slot="modal-title-wrapper">
-                    <DialogTitle :class="cn((!!title || $slots.title) ? [ui.title(), props.ui?.title] : 'sr-only')" data-slot="modal-title">
+                  <div data-slot="modal-title-wrapper" :class="cn(ui.titleWrapper(), props.ui?.titleWrapper)">
+                    <DialogTitle data-slot="modal-title" :class="cn((!!title || $slots.title) ? [ui.title(), props.ui?.title] : 'sr-only')">
                       <slot name="title">
                         {{ title }}
                       </slot>
                     </DialogTitle>
-                    <DialogDescription :class="cn((!!description || $slots.description) ? [ui.description(), props.ui?.description] : 'sr-only')" data-slot="modal-description">
+                    <DialogDescription data-slot="modal-description" :class="cn((!!description || $slots.description) ? [ui.description(), props.ui?.description] : 'sr-only')">
                       <slot name="description">
                         {{ description }}
                       </slot>
                     </DialogDescription>
                   </div>
 
-                  <DialogClose v-if="closable" :class="cn(ui.close(), props.ui?.close)" data-slot="modal-close">
+                  <DialogClose v-if="closable" data-slot="modal-close" :class="cn(ui.close(), props.ui?.close)">
                     <slot name="close">
                       <Icon name="close" />
                     </slot>
@@ -91,16 +91,16 @@ const ui = computed(() => useModalStyle({
                 </slot>
               </header>
 
-              <div :class="cn(ui.content(), props.ui?.content)" data-slot="modal-content">
+              <div data-slot="modal-content" :class="cn(ui.content(), props.ui?.content)">
                 <slot name="content" v-bind="{ open, loading, close }" />
               </div>
 
-              <footer v-if="!!$slots.footer && variant === 'outline'" :class="cn(ui.footer(), props.ui?.footer)" data-slot="modal-footer">
+              <footer v-if="!!$slots.footer && variant === 'outline'" data-slot="modal-footer" :class="cn(ui.footer(), props.ui?.footer)">
                 <slot name="footer" v-bind="{ open, loading, close }" />
               </footer>
             </div>
 
-            <footer v-if="!!$slots.footer && variant === 'normal'" :class="cn(ui.footer(), props.ui?.footer)" data-slot="modal-footer">
+            <footer v-if="!!$slots.footer && variant === 'normal'" data-slot="modal-footer" :class="cn(ui.footer(), props.ui?.footer)">
               <slot name="footer" v-bind="{ open, loading, close }" />
             </footer>
           </Motion>

@@ -45,7 +45,7 @@ const ui = computed(() => useDropdownStyle({
 
 <template>
   <ContextMenuRoot v-bind="forwarded">
-    <ContextMenuTrigger :disabled="disabled" :class="cn(ui.trigger(), props.ui?.trigger)" data-slot="context-menu-trigger" as-child>
+    <ContextMenuTrigger data-slot="context-menu-trigger" :disabled="disabled" :class="cn(ui.trigger(), props.ui?.trigger)" as-child>
       <slot />
     </ContextMenuTrigger>
 

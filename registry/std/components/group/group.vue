@@ -26,7 +26,7 @@ const ui = computed(() => useGroupStyle({
 </script>
 
 <template>
-  <Primitive v-bind="delegated" :class="cn(ui.root(), props.ui?.root, props.class)" role="group" data-slot="group">
+  <Primitive v-bind="delegated" data-slot="group" role="group" :class="cn(ui.root(), props.ui?.root, props.class)">
     <template v-for="(child, index) in children" :key="index">
       <component
         :is="child"

@@ -54,17 +54,17 @@ const indent = computed(() => items.value.flat().some(
 ))
 
 const [
-  DefineDropdownMenuItem,
-  ReuseDropdownMenuItem,
+  DefineDropdownItem,
+  ReuseDropdownItem,
 ] = createReusableTemplate<{ item: T }>()
 </script>
 
 <template>
-  <DefineDropdownMenuItem v-slot="{ item }">
+  <DefineDropdownItem v-slot="{ item }">
     <DropdownMenuItemIndicator
       v-if="item.type === 'checkbox' || item.type === 'radio'"
+      data-slot="dropdown-item-indicator"
       :class="cn(ui.itemIndicator(), override?.itemIndicator)"
-      data-slot="dropdown-menu-item-indicator"
     >
       <Icon :name="checkedIcon" />
     </DropdownMenuItemIndicator>
@@ -72,7 +72,7 @@ const [
     <Icon v-if="!!item.loading" :name="loadingIcon" :class="cn(ui.loading(), override?.loading)" />
     <Icon v-if="item.icon" :name="item.icon" :class="cn(ui.itemIcon(), override?.itemIcon)" />
 
-    <label :class="cn(ui.itemLabel(), override?.itemLabel)" data-slot="dropdown-menu-item-label">
+    <label data-slot="dropdown-item-label" :class="cn(ui.itemLabel(), override?.itemLabel)">
       {{ item.label }}
       <Icon
         v-if="item.target === '_blank' && item.rel === 'noopener noreferrer'"
@@ -81,7 +81,7 @@ const [
       />
     </label>
 
-    <span :class="cn(ui.itemCommand(), override?.itemCommand)" data-slot="dropdown-menu-item-command">
+    <span data-slot="dropdown-item-command" :class="cn(ui.itemCommand(), override?.itemCommand)">
       {{ item.suffix }}
       <Kbd
         v-for="(value, index) in item.shortcut"
@@ -96,48 +96,48 @@ const [
         :class="cn(ui.itemArrowIcon(), override?.itemArrowIcon)"
       />
     </span>
-  </DefineDropdownMenuItem>
+  </DefineDropdownItem>
 
   <DropdownMenuPortal v-bind="portalProps">
     <component
       :is="sub ? DropdownMenuSubContent : DropdownMenuContent"
       v-bind="forwarded"
+      :data-slot="sub ? 'dropdown-sub-content' : 'dropdown-content'"
       :class="cn(ui.content({ indent: !!sub }))"
-      :data-slot="sub ? 'dropdown-menu-sub-content' : 'dropdown-menu-content'"
     >
       <slot name="top" />
 
-      <div :class="cn(ui.viewport(), override?.viewport)" data-slot="dropdown-menu-viewport">
+      <div data-slot="dropdown-viewport" :class="cn(ui.viewport(), override?.viewport)">
         <DropdownMenuGroup
           v-for="(group, groupIdx) in items" :key="`g-${groupIdx}`"
+          data-slot="dropdown-group"
           :class="cn(ui.group(), override?.group)"
-          data-slot="dropdown-menu-group"
         >
           <template v-for="(item, itemIdx) in group" :key="`g-${groupIdx}-${itemIdx}`">
             <DropdownMenuLabel
               v-if="item.type === 'label'"
+              data-slot="dropdown-label"
               :class="cn(ui.label({ indent }), override?.label)"
-              data-slot="dropdown-menu-label"
             >
               <!-- @vue-ignore -->
-              <ReuseDropdownMenuItem :item="item" />
+              <ReuseDropdownItem :item="item" />
             </DropdownMenuLabel>
 
             <DropdownMenuSeparator
               v-else-if="item.type === 'separator'"
+              data-slot="dropdown-separator"
               :class="cn(ui.separator(), override?.separator)"
-              data-slot="dropdown-menu-separator"
             />
 
             <DropdownMenuSub v-else-if="!!item.children?.length">
               <DropdownMenuSubTrigger
+                data-slot="dropdown-sub-trigger"
                 :disabled="item.disabled"
                 :text-value="item.value"
                 :class="cn(ui.item({ indent }), override?.item)"
-                data-slot="dropdown-menu-sub-trigger"
               >
                 <!-- @vue-ignore -->
-                <ReuseDropdownMenuItem :item="item" />
+                <ReuseDropdownItem :item="item" />
               </DropdownMenuSubTrigger>
 
               <DropdownSubContent
@@ -151,27 +151,27 @@ const [
             <DropdownMenuCheckboxItem
               v-else-if="item.type === 'checkbox'"
               :model-value="item.checked"
+              data-slot="dropdown-checkbox-item"
               :disabled="item.disabled"
               :text-value="item.value"
               :class="cn(ui.item({ indent }), override?.item)"
-              data-slot="dropdown-menu-checkbox-item"
               @update:model-value="item.onCheck"
               @select="item.onSelect"
             >
               <!-- @vue-ignore -->
-              <ReuseDropdownMenuItem :item="item" />
+              <ReuseDropdownItem :item="item" />
             </DropdownMenuCheckboxItem>
 
             <DropdownMenuItem
               v-else
+              data-slot="dropdown-item"
               :disabled="item.disabled"
               :text-value="item.value"
               :class="cn(ui.item({ indent }), override?.item)"
-              data-slot="dropdown-menu-item"
               @select="item.onSelect"
             >
               <!-- @vue-ignore -->
-              <ReuseDropdownMenuItem :item="item" />
+              <ReuseDropdownItem :item="item" />
 
               <LinkOverlay v-if="!!item.href" :href="item.href" :target="item.target" :rel="item.rel" :as-child="!!$slots['link-overlay']">
                 <slot name="link-overlay" />
@@ -186,8 +186,8 @@ const [
       <DropdownMenuArrow
         v-if="!!arrow"
         v-bind="typeof arrow === 'object' ? arrow : {}"
+        data-slot="dropdown-arrow"
         :class="cn(ui.arrow(), override?.arrow)"
-        data-slot="dropdown-menu-arrow"
       />
     </component>
   </DropdownMenuPortal>

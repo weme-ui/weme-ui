@@ -35,6 +35,7 @@ function onCopy() {
   <Button
     v-if="isTextButton"
     v-bind="delegated"
+    data-slot="clipboard"
     :icon="copied ? copiedIcon : copyIcon"
     :class="props.class"
     @click="onCopy"
@@ -44,6 +45,7 @@ function onCopy() {
   <IconButton
     v-else
     v-bind="delegated"
+    data-slot="clipboard"
     :icon="copied ? copiedIcon : copyIcon"
     :class="props.class"
     @click="onCopy"

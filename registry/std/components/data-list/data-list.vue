@@ -21,17 +21,22 @@ const ui = computed(() => useDataListStyle(props))
 <template>
   <Primitive
     v-bind="delegated"
+    data-slot="data-list"
     :data-orientation="orientation"
     :class="cn(ui.root(), props.ui?.root, props.class)"
-    data-slot="data-list"
   >
-    <div v-for="(item, index) in items" :key="index" :class="cn(ui.item(), props.ui?.item, item.class)" data-slot="data-list-item">
-      <dt :class="cn(ui.label(), props.ui?.label, item.ui?.label)" data-slot="data-list-label">
+    <div
+      v-for="(item, index) in items"
+      :key="index"
+      data-slot="data-list-item"
+      :class="cn(ui.item(), props.ui?.item, item.class)"
+    >
+      <dt data-slot="data-list-label" :class="cn(ui.label(), props.ui?.label, item.ui?.label)">
         <slot name="label" v-bind="{ item, index }">
           {{ item.label }}
         </slot>
       </dt>
-      <dd :class="cn(ui.value(), props.ui?.value, item.ui?.value)" data-slot="data-list-value">
+      <dd data-slot="data-list-value" :class="cn(ui.value(), props.ui?.value, item.ui?.value)">
         <slot name="value" v-bind="{ item, index }">
           {{ item.value }}
         </slot>

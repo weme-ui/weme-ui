@@ -29,28 +29,28 @@ const ui = computed(() => useItemStyle({
 </script>
 
 <template>
-  <Primitive :as="as" :class="cn(ui.root(), props.ui?.root, props.class)" data-slot="item">
+  <Primitive :as="as" data-slot="item" :class="cn(ui.root(), props.ui?.root, props.class)">
     <dl :class="cn(ui.item(), props.ui?.item)">
-      <div v-if="$slots.indicator || icon" :class="cn(ui.indicator(), props.ui?.indicator)" data-slot="item-indicator">
+      <div v-if="$slots.indicator || icon" data-slot="item-indicator" :class="cn(ui.indicator(), props.ui?.indicator)">
         <slot name="indicator">
           <Icon v-if="icon" :name="icon" :class="cn(ui.indicatorIcon(), props.ui?.indicatorIcon)" />
         </slot>
       </div>
-      <div :class="cn(ui.wrapper(), props.ui?.wrapper)" data-slot="item-wrapper">
+      <div data-slot="item-wrapper" :class="cn(ui.wrapper(), props.ui?.wrapper)">
         <slot name="content">
-          <dt v-if="$slots.title || title" :class="cn(ui.title(), props.ui?.title)" data-slot="item-title">
+          <dt v-if="$slots.title || title" data-slot="item-title" :class="cn(ui.title(), props.ui?.title)">
             <slot name="title">
               {{ title }}
             </slot>
           </dt>
-          <dd v-if="$slots.description || description" :class="cn(ui.description(), props.ui?.description)" data-slot="item-description">
+          <dd v-if="$slots.description || description" data-slot="item-description" :class="cn(ui.description(), props.ui?.description)">
             <slot name="description">
               {{ description }}
             </slot>
           </dd>
         </slot>
       </div>
-      <div v-if="$slots.default || clickable || arrow || loading" :class="cn(ui.content(), props.ui?.content)" data-slot="item-content">
+      <div v-if="$slots.default || clickable || arrow || loading" data-slot="item-content" :class="cn(ui.content(), props.ui?.content)">
         <slot>
           {{ content }}
         </slot>

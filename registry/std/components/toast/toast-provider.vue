@@ -83,6 +83,7 @@ function onUpdateOpen(value: boolean, id: string | number) {
 
     <ToastPortal v-bind="portalProps">
       <ToastViewport
+        data-slot="toast-viewport"
         :data-expanded="expanded"
         :style="{
           '--scale-factor': '0.05',
@@ -92,7 +93,6 @@ function onUpdateOpen(value: boolean, id: string | number) {
           '--height': `${height}px`,
         }"
         :class="cn(ui.viewport(), props.ui?.viewport, props.class)"
-        data-slot="toast-viewport"
         @mouseenter="expanded = true"
         @mouseleave="expanded = false"
       />

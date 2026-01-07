@@ -13,17 +13,17 @@ const ui = computed(() => useResultStyle(props))
 </script>
 
 <template>
-  <Primitive v-bind="delegated" :class="cn(ui.root(), props.ui?.root, props.class)" data-slot="result">
+  <Primitive v-bind="delegated" data-slot="result" :class="cn(ui.root(), props.ui?.root, props.class)">
     <slot name="indicator">
       <Icon v-if="icon" :name="icon" :class="cn(ui.indicator(), props.ui?.indicator)" />
     </slot>
     <slot name="title">
-      <h3 v-if="title" :class="cn(ui.title(), props.ui?.title)" data-slot="result-title">
+      <h3 v-if="title" data-slot="result-title" :class="cn(ui.title(), props.ui?.title)">
         {{ title }}
       </h3>
     </slot>
     <slot name="description">
-      <p v-if="description" :class="cn(ui.description(), props.ui?.description)" data-slot="result-description">
+      <p v-if="description" data-slot="result-description" :class="cn(ui.description(), props.ui?.description)">
         {{ description }}
       </p>
     </slot>

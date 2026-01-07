@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import FloatExampleBasic from '@registry/components/float/examples/basic.vue'
+import FloatExampleWithComponent from '@registry/components/float/examples/with-component.vue'
 import FloatExampleWithOffset from '@registry/components/float/examples/with-offset.vue'
 import FloatExampleWithPlacement from '@registry/components/float/examples/with-placement.vue'
 
@@ -19,6 +20,10 @@ import UiTabs from '@registry/components/tabs/tabs.vue'
 
     <UiTabsContent value="with-offset" title="With Offset">
       <FloatExampleWithOffset />
+    </UiTabsContent>
+
+    <UiTabsContent value="with-component" title="With Component">
+      <FloatExampleWithComponent />
     </UiTabsContent>
   </UiTabs>
 </template>

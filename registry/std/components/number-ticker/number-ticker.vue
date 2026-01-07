@@ -65,9 +65,9 @@ watch(
 </script>
 
 <template>
-  <Primitive ref="rootRef" v-bind="delegated" :class="cn(ui.base(), props.ui?.base, props.class)" data-slot="number-ticker">
+  <Primitive ref="rootRef" v-bind="delegated" data-slot="number-ticker" :class="cn(ui.base(), props.ui?.base, props.class)">
     <slot v-bind="{ output }">
-      {{ transform ? transform(Number(output)) : output }}
+      {{ !!transform ? transform(Number(output)) : output }}
     </slot>
   </Primitive>
 </template>

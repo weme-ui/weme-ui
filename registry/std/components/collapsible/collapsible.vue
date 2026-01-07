@@ -22,14 +22,29 @@ const ui = computed(() => useCollapsibleStyle({
 </script>
 
 <template>
-  <CollapsibleRoot v-slot="{ open }" v-bind="forwarded" :class="cn(ui.root(), props.ui?.root, props.class)" data-slot="collapsible">
-    <CollapsibleTrigger v-if="orientation === 'bottom'" :class="cn(ui.trigger(), props.ui?.trigger)" data-slot="collapsible-trigger" as-child>
+  <CollapsibleRoot
+    v-slot="{ open }"
+    v-bind="forwarded"
+    data-slot="collapsible"
+    :class="cn(ui.root(), props.ui?.root, props.class)"
+  >
+    <CollapsibleTrigger
+      v-if="orientation === 'bottom'"
+      data-slot="collapsible-trigger"
+      :class="cn(ui.trigger(), props.ui?.trigger)"
+      as-child
+    >
       <slot name="trigger" :open="open" />
     </CollapsibleTrigger>
-    <CollapsibleContent :class="cn(ui.content(), props.ui?.content)" data-slot="collapsible-content">
+    <CollapsibleContent data-slot="collapsible-content" :class="cn(ui.content(), props.ui?.content)">
       <slot />
     </CollapsibleContent>
-    <CollapsibleTrigger v-if="orientation === 'top'" :class="cn(ui.trigger(), props.ui?.trigger)" data-slot="collapsible-trigger" as-child>
+    <CollapsibleTrigger
+      v-if="orientation === 'top'"
+      data-slot="collapsible-trigger"
+      :class="cn(ui.trigger(), props.ui?.trigger)"
+      as-child
+    >
       <slot name="trigger" :open="open" />
     </CollapsibleTrigger>
   </CollapsibleRoot>

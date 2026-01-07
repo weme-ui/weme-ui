@@ -16,7 +16,7 @@ export const useCardStyle = createVariants({
   variants: {
     variant: {
       normal: {
-        root: 'p-1.5 bg-elevated',
+        root: 'p-1.5',
         wrapper: 'bg-card shadow-xs',
       },
       outline: {
@@ -45,8 +45,8 @@ export const useCardStyle = createVariants({
     { variant: 'outline', translucent: true, class: { root: 'bg-card/70 backdrop-blur-3xl' } },
     { variant: 'outline', translucent: false, class: { root: 'bg-card' } },
 
-    { variant: 'normal', translucent: true, class: { root: 'bg-elevated/70 backdrop-blur-3xl' } },
-    { variant: 'normal', translucent: false, class: { root: 'bg-elevated' } },
+    { variant: 'normal', translucent: true, class: { root: 'bg-muted/70 backdrop-blur-3xl' } },
+    { variant: 'normal', translucent: false, class: { root: 'bg-muted' } },
   ],
 
   defaultVariants: {

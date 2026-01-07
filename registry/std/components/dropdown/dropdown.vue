@@ -45,9 +45,9 @@ const ui = computed(() => useDropdownStyle({
 <template>
   <DropdownMenuRoot v-slot="{ open }" v-bind="forwarded">
     <DropdownMenuTrigger
+      data-slot="dropdown-trigger"
       :disabled="disabled"
       :class="cn(ui.trigger(), props.ui?.trigger)"
-      data-slot="dropdown-trigger"
       as-child
     >
       <slot :open="open" />

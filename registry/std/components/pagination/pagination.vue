@@ -39,21 +39,21 @@ const ui = computed(() => usePaginationStyle(props))
   <PaginationRoot
     v-slot="{ page, pageCount }"
     v-bind="forwarded"
-    :class="cn(ui.root(), props.ui?.root, props.class)"
     data-slot="pagination"
+    :class="cn(ui.root(), props.ui?.root, props.class)"
   >
     <slot name="start" />
-    <span v-if="showTotal" :class="cn(ui.total(), props.ui?.total)" data-slot="pagination-total">
+    <span v-if="showTotal" data-slot="pagination-total" :class="cn(ui.total(), props.ui?.total)">
       <slot name="total" v-bind="{ total }">
         {{ t('pagination.total', { total: total || 0 }) }}
       </slot>
     </span>
-    <PaginationList v-slot="{ items }" :class="cn(ui.list(), props.ui?.list)" data-slot="pagination-list">
+    <PaginationList v-slot="{ items }" data-slot="pagination-list" :class="cn(ui.list(), props.ui?.list)">
       <PaginationFirst
         v-if="showMoreControls"
+        data-slot="pagination-item"
         :aria-label="t('pagination.first')"
         :class="cn(ui.item(), props.ui?.item)"
-        data-slot="pagination-item"
         @click="to?.(1)"
       >
         <slot name="first">
@@ -61,16 +61,16 @@ const ui = computed(() => usePaginationStyle(props))
         </slot>
       </PaginationFirst>
       <PaginationPrev
+        data-slot="pagination-item"
         :aria-label="t('pagination.prev')"
         :class="cn(ui.item(), props.ui?.item)"
-        data-slot="pagination-item"
         @click="() => page > 1 ? to?.(page - 1) : undefined"
       >
         <slot name="prev">
           <Icon :name="prevPageIcon" />
         </slot>
       </PaginationPrev>
-      <div v-if="simple" :class="cn(ui.content(), props.ui?.content)" data-slot="pagination-pager">
+      <div v-if="simple" data-slot="pagination-pager" :class="cn(ui.content(), props.ui?.content)">
         <span>{{ page }}</span>
         <span>/</span>
         <span>{{ pageCount }}</span>
@@ -81,8 +81,8 @@ const ui = computed(() => usePaginationStyle(props))
             v-if="item.type === 'page'"
             :key="index"
             :value="item.value"
-            :class="cn(ui.item(), props.ui?.item)"
             data-slot="pagination-item"
+            :class="cn(ui.item(), props.ui?.item)"
             @select="to?.(item.value)"
           >
             <slot name="item" v-bind="{ item, index, page, pageCount }">
@@ -92,8 +92,8 @@ const ui = computed(() => usePaginationStyle(props))
           <PaginationEllipsis
             v-else
             :key="item.type"
-            :class="cn(ui.ellipsis(), props.ui?.ellipsis)"
             data-slot="pagination-ellipsis"
+            :class="cn(ui.ellipsis(), props.ui?.ellipsis)"
           >
             <slot name="ellipsis">
               <Icon :name="ellipsisIcon" />
@@ -102,9 +102,9 @@ const ui = computed(() => usePaginationStyle(props))
         </template>
       </template>
       <PaginationNext
+        data-slot="pagination-item"
         :aria-label="t('pagination.next')"
         :class="cn(ui.item(), props.ui?.item)"
-        data-slot="pagination-item"
         @click="() => page < pageCount ? to?.(page + 1) : undefined"
       >
         <slot name="next">
@@ -113,9 +113,9 @@ const ui = computed(() => usePaginationStyle(props))
       </PaginationNext>
       <PaginationLast
         v-if="showMoreControls"
+        data-slot="pagination-item"
         :aria-label="t('pagination.last')"
         :class="cn(ui.item(), props.ui?.item)"
-        data-slot="pagination-item"
         @click="to?.(pageCount)"
       >
         <slot name="last">

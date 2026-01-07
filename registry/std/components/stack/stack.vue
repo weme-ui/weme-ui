@@ -35,7 +35,12 @@ const ui = computed(() => useStackStyle({
 </script>
 
 <template>
-  <Primitive v-bind="delegated" :data-orientation="orientation" :class="cn(ui.root(), props.ui?.root, props.class)" data-slot="stack">
+  <Primitive
+    v-bind="delegated"
+    data-slot="stack"
+    :data-orientation="orientation"
+    :class="cn(ui.root(), props.ui?.root, props.class)"
+  >
     <template v-for="(child, index) in children" :key="index">
       <component
         :is="child"
@@ -50,9 +55,9 @@ const ui = computed(() => useStackStyle({
       <component
         :is="separator"
         v-if="separator && index < children.length - 1"
+        data-slot="stack-separator"
         :orientation="orientation === 'vertical' ? 'horizontal' : 'vertical'"
         :class="cn(ui.separator(), props.ui?.separator)"
-        data-slot="stack-separator"
       />
     </template>
   </Primitive>

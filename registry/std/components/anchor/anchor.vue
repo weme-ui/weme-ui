@@ -131,26 +131,26 @@ onMounted(() => {
 <template>
   <div
     ref="rootRef"
-    :class="cn(ui.root(), props.ui?.root, props.class)"
     data-slot="anchor"
+    :class="cn(ui.root(), props.ui?.root, props.class)"
   >
     <div
+      data-slot="anchor-indicator"
       :class="cn(ui.indicator(), props.ui?.indicator)"
       :style="{
         '--anchor-indicator-top': indicatorTop ? `${indicatorTop}px` : undefined,
       }"
-      data-slot="anchor-indicator"
     />
-    <ul :class="cn(ui.list(), props.ui?.list)" data-slot="anchor-list">
+    <ul data-slot="anchor-list" :class="cn(ui.list(), props.ui?.list)">
       <li
         v-for="link in links"
         :key="link.href"
+        data-slot="anchor-item"
         :class="cn(ui.item(), props.ui?.item)"
         :data-active="link.href === currentLink ? '' : undefined"
-        data-slot="anchor-item"
       >
         <slot name="link" v-bind="{ link, isActive: link.href === currentLink }">
-          <a :href="link.href" :class="cn(ui.link(), props.ui?.link)" :title="link.label" data-slot="anchor-link">
+          <a data-slot="anchor-link" :href="link.href" :class="cn(ui.link(), props.ui?.link)" :title="link.label">
             {{ link.label }}
           </a>
         </slot>

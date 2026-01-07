@@ -27,7 +27,7 @@ const ui = computed(() => useBadgeStyle({
 </script>
 
 <template>
-  <Primitive :as="as" :as-child="asChild" :class="cn(ui.root(), props.ui?.root, props.class)" data-slot="badge">
+  <Primitive :as="as" :as-child="asChild" data-slot="badge" :class="cn(ui.root(), props.ui?.root, props.class)">
     <slot v-if="!!$slots.icon || !!icon" name="icon">
       <Icon v-if="!!icon" :name="icon" :class="cn(ui.icon(), props.ui?.icon)" />
     </slot>

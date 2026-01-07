@@ -8,7 +8,7 @@ const delegated = reactiveOmit(props, 'class')
 </script>
 
 <template>
-  <AspectRatio v-bind="delegated" :class="props.class" data-slot="aspect-ratio">
+  <AspectRatio v-bind="delegated" data-slot="aspect-ratio" :class="props.class">
     <slot />
   </AspectRatio>
 </template>

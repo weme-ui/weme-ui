@@ -26,7 +26,7 @@ export const useModalStyle = createVariants({
   variants: {
     variant: {
       normal: {
-        base: 'bg-elevated shadow-lg/10 b-(~ default/50)',
+        base: 'bg-muted shadow-lg/10 b-(~ default/50)',
         wrapper: 'bg-modal shadow-sm',
       },
       outline: 'bg-modal ring-(~ border) shadow-lg',

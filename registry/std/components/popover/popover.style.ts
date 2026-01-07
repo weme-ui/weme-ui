@@ -52,8 +52,8 @@ export const usePopoverStyle = createVariants({
     { variant: 'normal', size: 'md', class: { contentWrapper: 'p-1.25' } },
     { variant: 'normal', size: 'lg', class: { contentWrapper: 'p-1.5' } },
 
-    { variant: 'normal', translucent: true, class: { contentWrapper: 'bg-elevated/80 backdrop-blur-3xl', arrow: 'fill-elevated/80 backdrop-blur-3xl' } },
-    { variant: 'normal', translucent: false, class: { contentWrapper: 'bg-elevated', arrow: 'fill-elevated' } },
+    { variant: 'normal', translucent: true, class: { contentWrapper: 'bg-muted/80 backdrop-blur-3xl', arrow: 'fill-muted/80 backdrop-blur-3xl' } },
+    { variant: 'normal', translucent: false, class: { contentWrapper: 'bg-muted', arrow: 'fill-muted' } },
   ],
 
   defaultVariants: {

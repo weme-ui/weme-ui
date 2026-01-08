@@ -67,10 +67,10 @@ defineExpose({
   <TagsInputRoot
     v-slot="{ modelValue: tags }"
     v-bind="forwarded"
+    data-slot="tags-input"
     :model-value="modelValue"
     :class="cn(ui.root(), props.ui?.root, props.class)"
     :data-focused="toBoolDataAttrValue(isFocused)"
-    data-slot="tags-input"
   >
     <slot v-if="!!$slots.loading || loading" name="loading">
       <Icon :name="loadingIcon" :class="cn(ui.icon(), props.ui?.icon)" />
@@ -82,17 +82,17 @@ defineExpose({
     <TagsInputItem
       v-for="(tag, index) in tags"
       :key="index"
+      data-slot="tags-input-item"
       :value="tag"
       :class="cn(ui.item(), props.ui?.item)"
-      data-slot="tags-input-item"
     >
-      <TagsInputItemText :class="cn(ui.itemText(), props.ui?.itemText)" data-slot="tags-input-item-text">
+      <TagsInputItemText data-slot="tags-input-item-text" :class="cn(ui.itemText(), props.ui?.itemText)">
         {{ tag }}
       </TagsInputItemText>
       <TagsInputItemDelete
-        :class="cn(ui.itemDelete(), props.ui?.itemDelete)"
-        :disabled="disabled"
         data-slot="tags-input-item-delete"
+        :disabled="disabled"
+        :class="cn(ui.itemDelete(), props.ui?.itemDelete)"
       >
         <Icon :name="deleteIcon" />
       </TagsInputItemDelete>
@@ -101,16 +101,16 @@ defineExpose({
     <TagsInputInput
       ref="input"
       v-bind="{ ...$attrs }"
+      data-slot="tags-input-value"
       :auto-focus="autoFocus"
       :max-length="maxLength"
       :placeholder="placeholder"
       :class="cn(ui.input(), props.ui?.input)"
-      data-slot="tags-input-value"
       @focus="onFocus"
       @blur="onBlur"
     />
 
-    <TagsInputClear v-if="!!clear && tags.length" :class="cn(ui.clear(), props.ui?.clear)" data-slot="tags-input-clear">
+    <TagsInputClear v-if="!!clear && tags.length" data-slot="tags-input-clear" :class="cn(ui.clear(), props.ui?.clear)">
       <slot name="clear">
         <Icon :name="clearIcon" />
       </slot>

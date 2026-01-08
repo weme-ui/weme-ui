@@ -31,12 +31,12 @@ export const useTagsInputStyle = createVariants({
   compoundVariants: [
     { variant: 'soft', focused: false, invalid: false, class: {
       root: 'bg-muted b-(~ transparent) hover:bg-elevated',
-      item: 'bg-neutral-1 shadow-sm',
+      item: 'bg-neutral-1 b-(~ transparent) shadow-sm',
       input: 'placeholder:text-toned hover:placeholder:text-default',
     } },
     { variant: 'soft', focused: true, disabled: false, invalid: false, class: {
       root: 'bg-neutral-1 b-(~ primary)',
-      item: 'bg-primary-3 hover:bg-primary-4 state-active:outline-(1 primary)',
+      item: 'b-(~ primary-8) hover:b-primary state-active:outline-(1 primary)',
     } },
     { variant: 'soft', invalid: true, class: {
       root: 'bg-danger-3',
@@ -49,15 +49,15 @@ export const useTagsInputStyle = createVariants({
 
     { variant: 'outline', focused: false, invalid: false, class: {
       root: 'b-(~ default) hover:b-primary-7',
-      item: 'b-(~ default) hover:b-primary-7',
+      item: 'b-(~ default) hover:b-primary-8',
       input: 'placeholder:text-toned hover:placeholder:text-default',
     } },
     { variant: 'outline', focused: true, disabled: false, invalid: false, class: {
-      root: 'bg-neutral-1 b-(~ primary) outline-(2 primary-4)',
-      item: 'bg-primary-3 b-(~ transparent) hover:bg-primary-4 state-active:outline-(1 primary)',
+      root: 'bg-neutral-1 b-(~ primary) outline-primary-4',
+      item: 'b-(~ primary-8) hover:b-primary state-active:outline-(1 primary)',
     } },
     { variant: 'outline', invalid: true, class: {
-      root: 'bg-danger-3 b-(~ danger)',
+      root: 'b-(~ danger)',
       item: 'bg-danger-5 hover:bg-danger-6 state-active:bg-danger-6',
       itemText: 'text-danger',
       itemDelete: 'text-danger',
@@ -65,17 +65,23 @@ export const useTagsInputStyle = createVariants({
       clear: 'text-danger hover:text-danger-10',
     } },
 
+    { variant: 'outline', focused: true, disabled: false, invalid: false, size: 'xs', class: { root: 'outline-2' } },
+    { variant: 'outline', focused: true, disabled: false, invalid: false, size: 'sm', class: { root: 'outline-2' } },
+    { variant: 'outline', focused: true, disabled: false, invalid: false, size: 'md', class: { root: 'outline-3' } },
+    { variant: 'outline', focused: true, disabled: false, invalid: false, size: 'lg', class: { root: 'outline-4' } },
+    { variant: 'outline', focused: true, disabled: false, invalid: false, size: 'xl', class: { root: 'outline-5' } },
+
     { variant: 'line', focused: false, invalid: false, class: {
       root: 'b-(b default) hover:b-primary-7',
-      item: 'b-(~ default) hover:b-primary-7',
+      item: 'b-(~ default) hover:b-primary-8',
       input: 'placeholder:text-toned hover:placeholder:text-default',
     } },
     { variant: 'line', focused: true, disabled: false, invalid: false, class: {
       root: 'b-(b primary)',
-      item: 'b-(~ default) hover:b-primary-7 state-active:outline-(1 primary)',
+      item: 'b-(~ default) hover:b-primary-8 state-active:outline-(1 primary)',
     } },
     { variant: 'line', invalid: true, class: {
-      root: 'bg-danger-3 b-(b danger)',
+      root: 'b-(b danger)',
       item: 'bg-danger-5 hover:bg-danger-6 state-active:bg-danger-6',
       itemText: 'text-danger',
       itemDelete: 'text-danger',
@@ -88,7 +94,7 @@ export const useTagsInputStyle = createVariants({
       input: 'placeholder:text-toned hover:placeholder:text-default',
     } },
     { variant: 'none', focused: true, disabled: false, invalid: false, class: {
-      item: 'b-(~ default) hover:b-primary-7 state-active:outline-(1 primary)',
+      item: 'b-(~ default) hover:b-primary-8 state-active:outline-(1 primary)',
     } },
     { variant: 'none', invalid: true, class: {
       item: 'bg-danger-3 hover:bg-danger-5 state-active:bg-danger-5',

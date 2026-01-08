@@ -14,4 +14,6 @@ export interface SwitchProps extends SwitchRootProps {
   ui?: Partial<SwitchStyleSlots>
 }
 
-export interface SwitchEmits extends SwitchRootEmits {}
+export interface SwitchEmits extends SwitchRootEmits {
+  change: [value: boolean]
+}

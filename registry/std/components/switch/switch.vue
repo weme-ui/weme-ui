@@ -2,7 +2,7 @@
 import type { SwitchEmits, SwitchProps } from './switch.props'
 import { reactiveOmit } from '@vueuse/core'
 import { SwitchRoot, SwitchThumb, useForwardPropsEmits } from 'reka-ui'
-import { computed } from 'vue'
+import { computed, watch } from 'vue'
 import { toBoolValue } from '~/utils/props'
 import { cn } from '~/utils/styles'
 import Icon from '../icon/icon.vue'
@@ -28,6 +28,13 @@ const ui = computed(() => useSwitchStyle({
   disabled: toBoolValue(props.disabled),
   loading: toBoolValue(props.loading),
 }))
+
+watch(
+  () => props.modelValue,
+  (value) => {
+    emits('change', !!value)
+  },
+)
 </script>
 
 <template>

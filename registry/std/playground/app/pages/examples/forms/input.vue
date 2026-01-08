@@ -3,6 +3,7 @@ import InputExampleBasic from '@registry/components/input/examples/basic.vue'
 import InputExampleWithAddon from '@registry/components/input/examples/with-addon.vue'
 import InputExampleWithClear from '@registry/components/input/examples/with-clear.vue'
 import InputExampleWithCount from '@registry/components/input/examples/with-count.vue'
+import InputExampleWithEvent from '@registry/components/input/examples/with-event.vue'
 import InputExampleWithIcon from '@registry/components/input/examples/with-icon.vue'
 import InputExampleWithInvalid from '@registry/components/input/examples/with-invalid.vue'
 import InputExampleWithRadius from '@registry/components/input/examples/with-radius.vue'
@@ -49,6 +50,10 @@ import UiTabs from '@registry/components/tabs/tabs.vue'
 
     <UiTabsContent value="with-count" title="With Count">
       <InputExampleWithCount />
+    </UiTabsContent>
+
+    <UiTabsContent value="with-event" title="With Event">
+      <InputExampleWithEvent />
     </UiTabsContent>
   </UiTabs>
 </template>

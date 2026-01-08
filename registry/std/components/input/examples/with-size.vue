@@ -16,7 +16,6 @@ const sizes = ['xs', 'sm', 'md', 'lg', 'xl'] as const
           prefix-icon="user"
           suffix-icon="info"
           class="min-w-80"
-          counter
           :max-length="10"
           :variant="variant"
           :size="size"

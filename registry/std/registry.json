@@ -27,19 +27,9 @@
       ],
       "files": [
         {
-          "type": "util",
-          "path": "utils/styles.ts",
-          "hash": "3975a0ea465ea931c4f5fd90af0e62b6"
-        },
-        {
-          "type": "util",
-          "path": "utils/props.ts",
-          "hash": "ac899bb21011eb89c6ad635525491c30"
-        },
-        {
-          "type": "util",
-          "path": "utils/slots.ts",
-          "hash": "c373d298d63b63e704e179feb987f8bf"
+          "type": "composable",
+          "path": "composables/define-locale.ts",
+          "hash": "c6f0a1880990fe68808766585362d420"
         },
         {
           "type": "composable",
@@ -48,8 +38,8 @@
         },
         {
           "type": "composable",
-          "path": "composables/define-locale.ts",
-          "hash": "c6f0a1880990fe68808766585362d420"
+          "path": "composables/use-locale.ts",
+          "hash": "e9536bbc01ec37e27078453b030401a5"
         },
         {
           "type": "composable",
@@ -62,9 +52,22 @@
           "hash": "59a0e0aeb7ffa28ba8b0047cf9034bd3"
         },
         {
-          "type": "composable",
-          "path": "composables/use-locale.ts",
-          "hash": "e9536bbc01ec37e27078453b030401a5"
+          "type": "file",
+          "path": "locales/en.ts",
+          "target": "~/locales/en.ts",
+          "hash": "d77c4222c215b5bb2a5bbd2e2c7337b5"
+        },
+        {
+          "type": "file",
+          "path": "types/input.ts",
+          "target": "~/types/input.ts",
+          "hash": "d2e34b23160601f31b5e29364e130376"
+        },
+        {
+          "type": "file",
+          "path": "types/locale.ts",
+          "target": "~/types/locale.ts",
+          "hash": "23cc0460879ceec4bb767cd51424ee49"
         },
         {
           "type": "util",
@@ -72,15 +75,19 @@
           "hash": "4a0219f3b39df35f3420453a53aa4dac"
         },
         {
-          "type": "type",
-          "path": "types/locale.ts",
-          "hash": "23cc0460879ceec4bb767cd51424ee49"
+          "type": "util",
+          "path": "utils/props.ts",
+          "hash": "ac899bb21011eb89c6ad635525491c30"
         },
         {
-          "type": "file",
-          "path": "locales/en.ts",
-          "target": "~/locales/en.ts",
-          "hash": "d77c4222c215b5bb2a5bbd2e2c7337b5"
+          "type": "util",
+          "path": "utils/slots.ts",
+          "hash": "c373d298d63b63e704e179feb987f8bf"
+        },
+        {
+          "type": "util",
+          "path": "utils/styles.ts",
+          "hash": "3975a0ea465ea931c4f5fd90af0e62b6"
         }
       ]
     },
@@ -101,7 +108,7 @@
         {
           "type": "component",
           "path": "components/accordion/accordion.vue",
-          "hash": "dfed41871bafb0c733231395993ae3a4"
+          "hash": "f7d97d2577c9ab672f79b13759dd5b11"
         },
         {
           "type": "style",
@@ -122,7 +129,7 @@
         {
           "type": "component",
           "path": "components/action-sheet/action-sheet.vue",
-          "hash": "a50f5ceddf4de6115826aca0724f01dc"
+          "hash": "4f45087e4c693127ed7385f8c94ce136"
         },
         {
           "type": "type",
@@ -155,7 +162,7 @@
         {
           "type": "component",
           "path": "components/affix/affix.vue",
-          "hash": "6bafef75b744b9bf96ef2b9e3fe90d86"
+          "hash": "f3c24e983341f95307ec60c1cfda4b90"
         },
         {
           "type": "type",
@@ -187,7 +194,7 @@
         {
           "type": "component",
           "path": "components/alert/alert.vue",
-          "hash": "3b6551f09c5661aa14bd4ff3cbaf7c10"
+          "hash": "9d15985445741d98550a18238b14f549"
         }
       ]
     },
@@ -208,7 +215,7 @@
         {
           "type": "component",
           "path": "components/anchor/anchor.vue",
-          "hash": "212d3d3590fac57bda5e32aa82563333"
+          "hash": "5bc40645528845c7c2857bb4bd5cc7f4"
         },
         {
           "type": "style",
@@ -252,7 +259,7 @@
         {
           "type": "component",
           "path": "components/aspect-ratio/aspect-ratio.vue",
-          "hash": "2b563e788b1dffc984fb8af8fb4d6035"
+          "hash": "dcf2274b634b92bf37e145d74670be8a"
         }
       ]
     },
@@ -270,7 +277,7 @@
         {
           "type": "component",
           "path": "components/avatar/avatar.vue",
-          "hash": "24665fb4fb4413981263af63da4a30c8"
+          "hash": "0d66236f706015b54e42ced24eec4d37"
         },
         {
           "type": "type",
@@ -301,7 +308,7 @@
         {
           "type": "component",
           "path": "components/avatar-group/avatar-group.vue",
-          "hash": "0693c1ca5194acac1e543da21f4c25b4"
+          "hash": "6d0d9b14eaf4ee56f9cde101552471cd"
         }
       ]
     },
@@ -323,7 +330,7 @@
         {
           "type": "component",
           "path": "components/badge/badge.vue",
-          "hash": "63561f630fd5a5e819bdbab9a2ad253b"
+          "hash": "4ab7aa2fb1b84b1dab774a44fe5941e3"
         },
         {
           "type": "type",
@@ -356,7 +363,7 @@
         {
           "type": "component",
           "path": "components/banner/banner.vue",
-          "hash": "03f7df8f4e2c4a4dd3d69063c20a3ef0"
+          "hash": "0673e0614b93d0aad63654d264ed7199"
         }
       ]
     },
@@ -372,7 +379,7 @@
         {
           "type": "component",
           "path": "components/breadcrumb/breadcrumb.vue",
-          "hash": "ad1d1d52981a9cac3c496d6abdf28a57"
+          "hash": "2678575e1d86d37cd44fa8df2c92a0f7"
         },
         {
           "type": "type",
@@ -434,7 +441,7 @@
         {
           "type": "component",
           "path": "components/button-group/button-group.vue",
-          "hash": "11e3735224a6f9eeb7b71d9b89d2162d"
+          "hash": "1e05398a45c56c19d19dbd296a45c103"
         }
       ]
     },
@@ -450,12 +457,12 @@
         {
           "type": "component",
           "path": "components/card/card.vue",
-          "hash": "0e5d5253c50f852a55d81c3ea0ae37a3"
+          "hash": "ae1656fb0fab46c1f8774d35f1028d72"
         },
         {
           "type": "style",
           "path": "components/card/card.style.ts",
-          "hash": "fd4133592cbe1d1afcbed6437fd34b4b"
+          "hash": "0cb1b2e45c6c5021a41b30e4f560fb62"
         },
         {
           "type": "type",
@@ -498,7 +505,7 @@
         {
           "type": "component",
           "path": "components/carousel/carousel.vue",
-          "hash": "8d195fbc764ab859f64064da7b4f9966"
+          "hash": "03a296be3391151ddaaf2e0c83f8a16a"
         }
       ]
     },
@@ -519,7 +526,7 @@
         {
           "type": "component",
           "path": "components/clipboard/clipboard.vue",
-          "hash": "9da63e44c00200886a17216e68cd762a"
+          "hash": "b229d086b2ff63232106abcf37773c81"
         }
       ]
     },
@@ -532,7 +539,7 @@
         {
           "type": "component",
           "path": "components/collapsible/collapsible.vue",
-          "hash": "342f7f8d9800ad0e5bd29b9e55752533"
+          "hash": "ed8cc9e10da61cf194172e148092016e"
         },
         {
           "type": "style",
@@ -559,17 +566,17 @@
         {
           "type": "component",
           "path": "components/comment/comment.vue",
-          "hash": "ba5e9f78550bf0ddf319f788beacfadc"
+          "hash": "6359d5a7ce7981e5bd3127d9f7fa6d85"
         },
         {
           "type": "type",
           "path": "components/comment/comment.props.ts",
-          "hash": "5e8324d1da2f0c7317b50ad3ff61db1d"
+          "hash": "7dea8ef156930e672e369482ee80922f"
         },
         {
           "type": "style",
           "path": "components/comment/comment.style.ts",
-          "hash": "5d403c8ff6d215e15c844270abb2ec3a"
+          "hash": "3b3f6072135953967375d4a482ca8132"
         }
       ]
     },
@@ -593,12 +600,12 @@
         {
           "type": "component",
           "path": "components/context-menu/context-menu.vue",
-          "hash": "1a5141342b67c22662edca8a53c09f67"
+          "hash": "ad48195a6aa8393013fedc28fadaf94b"
         },
         {
           "type": "component",
           "path": "components/context-menu/context-menu-content.vue",
-          "hash": "acf7b18f14f5050f495ad242a4745430"
+          "hash": "0c4a8af02022ef3ef638930789f25de5"
         },
         {
           "type": "type",
@@ -616,7 +623,7 @@
         {
           "type": "component",
           "path": "components/data-list/data-list.vue",
-          "hash": "ab87a4786f70288c656d0eb32e8bc1f5"
+          "hash": "0af486f9fb90586ee4e03eed39d63be9"
         },
         {
           "type": "type",
@@ -647,7 +654,7 @@
         {
           "type": "component",
           "path": "components/dropdown/dropdown.vue",
-          "hash": "cb785c2ed6c437be1ea547a99c24884c"
+          "hash": "0045796476154e8e4ed450558c4dfb33"
         },
         {
           "type": "style",
@@ -662,7 +669,7 @@
         {
           "type": "component",
           "path": "components/dropdown/dropdown-content.vue",
-          "hash": "d63db30b385d7e2dc604e8b6539c316f"
+          "hash": "c204c5ec27a33b47e1f9dcec939ea5b1"
         },
         {
           "type": "type",
@@ -685,7 +692,7 @@
         {
           "type": "component",
           "path": "components/float/float.vue",
-          "hash": "be864f3a424644bf55f0526b0e6f3cbc"
+          "hash": "e73cd2a6e740ce7fef4055803915da34"
         },
         {
           "type": "style",
@@ -708,7 +715,7 @@
         {
           "type": "component",
           "path": "components/group/group.vue",
-          "hash": "43265ade0f231e1fe169a24a5f9b2a59"
+          "hash": "3ebbdf4711930bd456bd1a954550bf48"
         },
         {
           "type": "type",
@@ -734,7 +741,7 @@
         {
           "type": "component",
           "path": "components/highlight/highlight.vue",
-          "hash": "68095b9ff2a4b57784de470296f2a9cf"
+          "hash": "aa656331870a4a22902e0b17ac162da8"
         },
         {
           "type": "style",
@@ -793,7 +800,7 @@
         {
           "type": "component",
           "path": "components/icon-box/icon-box.vue",
-          "hash": "277f22192c5b16f9d55c33f65b2a14ef"
+          "hash": "17c7eb758b11b0ed22893251af93e53f"
         }
       ]
     },
@@ -814,7 +821,7 @@
         {
           "type": "component",
           "path": "components/icon-button/icon-button.vue",
-          "hash": "756cd25e928d121bbe7dba0977792eaf"
+          "hash": "d5fb9251e68926b9babda46df8aa708a"
         },
         {
           "type": "type",
@@ -865,7 +872,7 @@
         {
           "type": "component",
           "path": "components/image-preview/image-preview.vue",
-          "hash": "0f90964a1cf2a88fb0a99cac8f32a133"
+          "hash": "078ce5d81679362a1edaebeeeaee79df"
         },
         {
           "type": "type",
@@ -891,17 +898,17 @@
         {
           "type": "type",
           "path": "components/input/input.props.ts",
-          "hash": "1611b06e85b3d1670c66d999677fad13"
+          "hash": "7a1c39a60bdeaeae688c6c9bea6e1747"
         },
         {
           "type": "style",
           "path": "components/input/input.style.ts",
-          "hash": "b055fa1175758a77ae73099fd0c226f3"
+          "hash": "24e93bbb90507bb14f43cb361b3021be"
         },
         {
           "type": "component",
           "path": "components/input/input.vue",
-          "hash": "b26aed729e9443d4dcf344608bdfcc0e"
+          "hash": "6caddea0bafce7e940677ceb69655531"
         }
       ]
     },
@@ -918,7 +925,7 @@
         {
           "type": "component",
           "path": "components/item/item.vue",
-          "hash": "c6c1bffaacf2789fe9dd5d048664257b"
+          "hash": "40266ea9709647c5099f46d9d3e32513"
         },
         {
           "type": "style",
@@ -944,7 +951,7 @@
         {
           "type": "component",
           "path": "components/item-group/item-group.vue",
-          "hash": "0a9706d5a5eba5caf4b2a349e5a90702"
+          "hash": "18de623e71f585222e1b566fe93996dd"
         },
         {
           "type": "style",
@@ -1036,7 +1043,7 @@
         {
           "type": "component",
           "path": "components/lens/lens.vue",
-          "hash": "893cda60d533f477856fe3079e09d8c8"
+          "hash": "8f9d6443aafb1fa128873be20e7231b6"
         }
       ]
     },
@@ -1059,7 +1066,7 @@
         {
           "type": "component",
           "path": "components/link-overlay/link-overlay.vue",
-          "hash": "da423ec195681c2b1a2cd01c0d2d4413"
+          "hash": "ec96535300fbdef1b5b67e16f548ba13"
         }
       ]
     },
@@ -1077,7 +1084,7 @@
         {
           "type": "component",
           "path": "components/marquee/marquee.vue",
-          "hash": "8ff09f51e3f9cf65945fb92a110e7677"
+          "hash": "2d6f8381d0dc7c98bd7efec5fb411ebc"
         },
         {
           "type": "type",
@@ -1102,7 +1109,7 @@
         {
           "type": "component",
           "path": "components/modal/modal.vue",
-          "hash": "4bc9b5f3d11c5a6f7e26a2c740639d28"
+          "hash": "8727803ef5ea1fce7e4a1d0d4d9d94f7"
         },
         {
           "type": "type",
@@ -1112,7 +1119,7 @@
         {
           "type": "style",
           "path": "components/modal/modal.style.ts",
-          "hash": "b1dce2ba55e62ffb95b09b07bdb33b01"
+          "hash": "43d7aff46d05932d95f82e24cf284283"
         }
       ],
       "cssVars": {
@@ -1158,7 +1165,7 @@
         {
           "type": "component",
           "path": "components/number-ticker/number-ticker.vue",
-          "hash": "e3467597d6860c6730230de8d99ab52a"
+          "hash": "2311fa47658f27621690c780c6eadaf0"
         },
         {
           "type": "type",
@@ -1186,7 +1193,7 @@
         {
           "type": "component",
           "path": "components/overflow/overflow.vue",
-          "hash": "ba709f2933bdd7edd80a6aee77f9727d"
+          "hash": "c2a7f33de30fee630944e6fdb9e6a96d"
         },
         {
           "type": "style",
@@ -1209,7 +1216,7 @@
         {
           "type": "component",
           "path": "components/overlay/overlay.vue",
-          "hash": "be778e01db20e1bd8716d2c62f1f75d0"
+          "hash": "833726c2328f29069558a81d1ca4f7cd"
         },
         {
           "type": "style",
@@ -1240,7 +1247,7 @@
         {
           "type": "component",
           "path": "components/pagination/pagination.vue",
-          "hash": "9c5109d7cdda1065e3b5a1881ca30506"
+          "hash": "89f962ffd3f1308d7584d02156bd7668"
         },
         {
           "type": "style",
@@ -1326,7 +1333,7 @@
         {
           "type": "component",
           "path": "components/pop-confirm/pop-confirm.vue",
-          "hash": "e54d316a3b0f06164ebfb1e03ae0e50c"
+          "hash": "6b0e978fca65c9d7f9c5c882a9505c21"
         }
       ]
     },
@@ -1342,12 +1349,12 @@
         {
           "type": "style",
           "path": "components/popover/popover.style.ts",
-          "hash": "25ca5eaf2c23ebb5376c0e9f6e6ffc63"
+          "hash": "c84625a48bc05e38f11af3c936bad0e6"
         },
         {
           "type": "component",
           "path": "components/popover/popover.vue",
-          "hash": "4822ddf246a3eb7ef50f775a76f1f8aa"
+          "hash": "2d3ff30bf7acc4fc8a032b8edb9d4142"
         },
         {
           "type": "type",
@@ -1370,7 +1377,7 @@
         {
           "type": "component",
           "path": "components/progress/progress.vue",
-          "hash": "3798f108ddedd014d494920c56d610f3"
+          "hash": "8732c86dcf4ab7c6b60ae42893b39372"
         },
         {
           "type": "style",
@@ -1405,7 +1412,7 @@
         {
           "type": "component",
           "path": "components/qr-code/qr-code.vue",
-          "hash": "c6da7ccaf6bf853c256162de7d154092"
+          "hash": "f22c06d01bcb71e08d9b2f431d34d2ac"
         }
       ]
     },
@@ -1421,7 +1428,7 @@
         {
           "type": "component",
           "path": "components/result/result.vue",
-          "hash": "cb8d9a8a031c97c738bd4dd3dfba20b7"
+          "hash": "a70fa6676e572cae32b6758eb49fc849"
         },
         {
           "type": "type",
@@ -1452,7 +1459,7 @@
         {
           "type": "component",
           "path": "components/scroll-area/scroll-area.vue",
-          "hash": "81c1cb868af8c23e3da24d3870aaac97"
+          "hash": "216574a6daab97ae28387ed99c01d54e"
         },
         {
           "type": "type",
@@ -1470,7 +1477,7 @@
         {
           "type": "component",
           "path": "components/separator/separator.vue",
-          "hash": "2997c23561ecf337a1860b676a64e65c"
+          "hash": "9fea5b9f99e900a6e20ecb80a0943a78"
         },
         {
           "type": "style",
@@ -1493,7 +1500,7 @@
         {
           "type": "component",
           "path": "components/skeleton/skeleton.vue",
-          "hash": "c13f9d5dd9ce15281aa0397a02605d6b"
+          "hash": "480063424ec7c75545000badbdb81440"
         },
         {
           "type": "type",
@@ -1530,7 +1537,7 @@
         {
           "type": "component",
           "path": "components/spinner/spinner.vue",
-          "hash": "248c6dc225f406a1b722a13bd5778164"
+          "hash": "d3ffbf84041b48332ab9056fb73406d0"
         }
       ]
     },
@@ -1548,7 +1555,7 @@
         {
           "type": "component",
           "path": "components/stack/stack.vue",
-          "hash": "71fcb7a4315ea3b72887d113926e5119"
+          "hash": "fbe90e638555fe8acd6b68bc48df8655"
         },
         {
           "type": "style",
@@ -1574,7 +1581,7 @@
         {
           "type": "component",
           "path": "components/stat/stat.vue",
-          "hash": "ca54e706979b8e4a62404f69290a1615"
+          "hash": "5e7712d0cb86743904ca1c4180334fae"
         },
         {
           "type": "type",
@@ -1602,7 +1609,7 @@
         {
           "type": "component",
           "path": "components/status/status.vue",
-          "hash": "9a805d367889895295c60a400ace2588"
+          "hash": "cf4c1ead364f3fee8cecd8da4d606bc6"
         }
       ]
     },
@@ -1628,7 +1635,7 @@
         {
           "type": "component",
           "path": "components/steps/steps.vue",
-          "hash": "a20b50033294694a59e2d4ae96ad38e4"
+          "hash": "eb44aecbbb8ce28d8eb04b192ad6dcbc"
         }
       ]
     },
@@ -1644,7 +1651,7 @@
         {
           "type": "component",
           "path": "components/switch/switch.vue",
-          "hash": "0565881fd8241b6e27326ea19ac12d67"
+          "hash": "798344252fca0cbb32c929de0fd7920c"
         },
         {
           "type": "style",
@@ -1699,7 +1706,7 @@
         {
           "type": "component",
           "path": "components/tabs/tabs.vue",
-          "hash": "98971297956d1497c66c2688cd3379b9"
+          "hash": "68d02ec249bfb2ebc693d307c6ab7ccd"
         },
         {
           "type": "style",
@@ -1719,7 +1726,7 @@
         {
           "type": "component",
           "path": "components/tabs/tabs-content.vue",
-          "hash": "9d19637e2942fdd76c2ce5580352bccc"
+          "hash": "2a315c1b8b9b41e3d03ac72ea4d9c0e5"
         }
       ]
     },
@@ -1740,7 +1747,7 @@
         {
           "type": "component",
           "path": "components/tag/tag.vue",
-          "hash": "361a457bb3c144cd67723be728bcb438"
+          "hash": "ac9a91eb8961ddb475aa61daf49c6af0"
         },
         {
           "type": "type",
@@ -1829,7 +1836,7 @@
         {
           "type": "component",
           "path": "components/timeline/timeline.vue",
-          "hash": "9716c5a759090ff1a19ad2c6bc44c2de"
+          "hash": "a437d008b453eff0f398cd0f430e24e3"
         },
         {
           "type": "type",
@@ -1852,7 +1859,7 @@
         {
           "type": "component",
           "path": "components/timer/timer.vue",
-          "hash": "8dec3c3474e80b132d8f58bb339672ed"
+          "hash": "f6f3e080bab85c759c1677e7c552cd0b"
         },
         {
           "type": "type",
@@ -1879,7 +1886,7 @@
         {
           "type": "component",
           "path": "components/toast/toast.vue",
-          "hash": "b367b9a3322322e2e8bc5dff2317c296"
+          "hash": "5e6089c8a38c2ed5cd786e7b10d3d30c"
         },
         {
           "type": "type",
@@ -1899,7 +1906,7 @@
         {
           "type": "component",
           "path": "components/toast/toast-provider.vue",
-          "hash": "658004c6ebc616c260c25291b68d0786"
+          "hash": "8ac0cf0bfc813f23ebf6977bdb786bbe"
         },
         {
           "type": "type",
@@ -1934,7 +1941,7 @@
         {
           "type": "component",
           "path": "components/toggle-tooltip/toggle-tooltip.vue",
-          "hash": "224b752e1d1dd950a7ef300854a9dad8"
+          "hash": "251953818220c1ae9d4dfae9cbf2a6bc"
         },
         {
           "type": "type",
@@ -1963,7 +1970,7 @@
         {
           "type": "component",
           "path": "components/tooltip/tooltip.vue",
-          "hash": "a6c992cbce67f2417248e4bc68e51e51"
+          "hash": "af22628bc8b4a402b3ca557cb125d9f4"
         },
         {
           "type": "type",

@@ -31,8 +31,14 @@ export const usePinInputStyle = createVariants({
     { variant: 'soft', invalid: true, class: { input: 'bg-danger-3 text-danger placeholder:text-danger' } },
 
     { variant: 'outline', invalid: false, focused: false, class: { input: 'bg-neutral-1 b-(~ default) hover:b-primary-7' } },
-    { variant: 'outline', invalid: false, focused: true, class: { input: 'bg-neutral-1 b-(~ primary) outline-(2 primary-4)' } },
+    { variant: 'outline', invalid: false, focused: true, class: { input: 'bg-neutral-1 b-(~ primary) outline-primary-4' } },
     { variant: 'outline', invalid: true, class: { input: ' b-(~ danger) bg-danger-3 text-danger placeholder:text-danger outline-none' } },
+
+    { variant: 'outline', size: 'xs', invalid: false, focused: true, class: { input: 'outline-2' } },
+    { variant: 'outline', size: 'sm', invalid: false, focused: true, class: { input: 'outline-2' } },
+    { variant: 'outline', size: 'md', invalid: false, focused: true, class: { input: 'outline-3' } },
+    { variant: 'outline', size: 'lg', invalid: false, focused: true, class: { input: 'outline-4' } },
+    { variant: 'outline', size: 'xl', invalid: false, focused: true, class: { input: 'outline-5' } },
 
     { variant: 'line', invalid: false, focused: false, class: { input: 'b-(b default) hover:b-primary-7' } },
     { variant: 'line', invalid: false, focused: true, class: { input: 'b-(b primary) outline-none' } },

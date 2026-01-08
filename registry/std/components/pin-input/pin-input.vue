@@ -32,16 +32,16 @@ const focused = ref(-1)
 </script>
 
 <template>
-  <PinInputRoot v-bind="forwarded" :class="cn(ui.root(), props.ui?.root, props.class)" data-slot="pin-input">
+  <PinInputRoot v-bind="forwarded" data-slot="pin-input" :class="cn(ui.root(), props.ui?.root, props.class)">
     <PinInputInput
       v-for="(id, index) in length"
       :key="id"
       :index="index"
+      data-slot="pin-input-value"
       :class="cn(ui.input({ focused: index === focused }), props.ui?.input)"
       :aria-required="toBoolValue(required) || undefined"
       :aria-invalid="toBoolValue(invalid) || undefined"
       :data-focused="toBoolDataAttrValue(index === focused)"
-      data-slot="pin-input-value"
       @focus="focused = index"
       @blur="focused = -1"
     />

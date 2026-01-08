@@ -31,7 +31,7 @@ export const useTextareaStyle = createVariants({
     { variant: 'soft', invalid: true, class: { root: 'bg-danger-3', textarea: 'outline-none' } },
 
     { variant: 'outline', invalid: false, disabled: false, focused: false, class: { root: 'bg-neutral-1 b-(~ default) hover:b-primary-7' } },
-    { variant: 'outline', invalid: false, disabled: false, focused: true, class: { root: 'bg-neutral-1 b-(~ primary) outline-(2 primary-3)', textarea: 'outline-none' } },
+    { variant: 'outline', invalid: false, disabled: false, focused: true, class: { root: 'bg-neutral-1 b-(~ primary) outline-(3 primary-3)', textarea: 'outline-none' } },
     { variant: 'outline', invalid: true, class: { root: 'bg-danger-3 b-(~ danger)', textarea: 'outline-none' } },
 
     { variant: 'line', invalid: false, disabled: false, focused: false, class: { root: 'b-(b default) hover:b-primary-7' } },

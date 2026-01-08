@@ -6,6 +6,7 @@ import InputExampleWithCount from '@registry/components/input/examples/with-coun
 import InputExampleWithEvent from '@registry/components/input/examples/with-event.vue'
 import InputExampleWithIcon from '@registry/components/input/examples/with-icon.vue'
 import InputExampleWithInvalid from '@registry/components/input/examples/with-invalid.vue'
+import InputExampleWithLoading from '@registry/components/input/examples/with-loading.vue'
 import InputExampleWithRadius from '@registry/components/input/examples/with-radius.vue'
 import InputExampleWithSize from '@registry/components/input/examples/with-size.vue'
 import InputExampleWithVariant from '@registry/components/input/examples/with-variant.vue'
@@ -54,6 +55,10 @@ import UiTabs from '@registry/components/tabs/tabs.vue'
 
     <UiTabsContent value="with-event" title="With Event">
       <InputExampleWithEvent />
+    </UiTabsContent>
+
+    <UiTabsContent value="with-loading" title="With Loading">
+      <InputExampleWithLoading />
     </UiTabsContent>
   </UiTabs>
 </template>

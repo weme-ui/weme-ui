@@ -34,6 +34,7 @@ export const useInputStyle = createVariants({
     focused: { true: '' },
     disabled: { true: { root: 'is-disabled' } },
     invalid: { true: '' },
+    loading: { true: { root: 'is-loading' } },
     overcount: {
       true: { counter: 'text-danger' },
       false: { counter: 'text-toned' },

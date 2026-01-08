@@ -18,6 +18,7 @@ const props = withDefaults(defineProps<InputProps<T>>(), {
   size: 'md',
   radius: 'sm',
   clearIcon: 'close',
+  loadingIcon: 'loading',
   autocomplete: 'off',
 })
 
@@ -41,6 +42,7 @@ const ui = computed(() => useInputStyle({
   prefix: !!props.prefix || !!props.prefixIcon || !!slots?.prefix,
   suffix: !!props.suffix || !!props.suffixIcon || !!slots?.suffix,
   append: !!props.append || !!slots?.append,
+  loading: toBoolValue(props.loading),
   disabled: toBoolValue(props.disabled),
   invalid: toBoolValue(props.invalid),
   focused: isFocused.value,
@@ -216,13 +218,14 @@ defineExpose({
         </slot>
       </span>
       <span
-        v-if="!!$slots.suffix || suffix || suffixIcon"
+        v-if="!!$slots.suffix || suffix || suffixIcon || loading || loadingIcon"
         data-slot="input-suffix"
         :class="cn(ui.suffix(), props.ui?.suffix)"
       >
         <slot name="suffix">
-          <template v-if="suffixIcon">
-            <Icon :name="suffixIcon" :class="cn(ui.icon(), props.ui?.icon)" />
+          <template v-if="suffixIcon || loading || loadingIcon">
+            <Icon v-if="loading" :name="loadingIcon" :class="cn('animate-spin', ui.icon(), props.ui?.icon)" />
+            <Icon v-else-if="suffixIcon" :name="suffixIcon" :class="cn(ui.icon(), props.ui?.icon)" />
           </template>
           <template v-else>
             {{ suffix }}

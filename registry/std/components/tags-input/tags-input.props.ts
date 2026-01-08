@@ -22,7 +22,7 @@ export interface TagsInputProps<T extends TagsInputValue = TagsInputValue> exten
 }
 
 export interface TagsInputEmits<T extends TagsInputValue = TagsInputValue> extends TagsInputRootEmits<T> {
-  change: [event: Event]
+  change: [values: T[]]
   focus: [event: FocusEvent]
   blur: [event: FocusEvent]
 }

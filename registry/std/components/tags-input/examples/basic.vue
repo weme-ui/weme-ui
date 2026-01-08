@@ -10,6 +10,7 @@ const value = ref(['tag1', 'tag2', 'tag3'])
       v-model="value"
       placeholder="Enter your tags here"
       clear
+      @change="console.log"
     />
   </div>
 </template>

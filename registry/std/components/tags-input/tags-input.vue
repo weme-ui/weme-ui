@@ -38,24 +38,24 @@ const ui = computed(() => useTagsInputStyle({
   focused: isFocused.value,
 }))
 
-function onAutoFocus() {
+function handleAutoFocus() {
   if (props.autoFocus) {
     inputRef.value?.$el?.focus()
   }
 }
 
-function onFocus(event: FocusEvent) {
+function handleFocus(event: FocusEvent) {
   isFocused.value = true
   emits('focus', event)
 }
 
-function onBlur(event: FocusEvent) {
+function handleBlur(event: FocusEvent) {
   isFocused.value = false
   emits('blur', event)
 }
 
 onMounted(() => {
-  onAutoFocus()
+  handleAutoFocus()
 })
 
 defineExpose({
@@ -71,6 +71,7 @@ defineExpose({
     :model-value="modelValue"
     :class="cn(ui.root(), props.ui?.root, props.class)"
     :data-focused="toBoolDataAttrValue(isFocused)"
+    @update:model-value="emits('change', [...$event])"
   >
     <slot v-if="!!$slots.loading || loading" name="loading">
       <Icon :name="loadingIcon" :class="cn(ui.icon(), props.ui?.icon)" />
@@ -106,8 +107,8 @@ defineExpose({
       :max-length="maxLength"
       :placeholder="placeholder"
       :class="cn(ui.input(), props.ui?.input)"
-      @focus="onFocus"
-      @blur="onBlur"
+      @focus="handleFocus"
+      @blur="handleBlur"
     />
 
     <TagsInputClear v-if="!!clear && tags.length" data-slot="tags-input-clear" :class="cn(ui.clear(), props.ui?.clear)">

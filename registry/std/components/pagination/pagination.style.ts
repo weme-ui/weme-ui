@@ -5,7 +5,7 @@ export const usePaginationStyle = createVariants({
   slots: {
     root: 'flex-(~ y-center) gap-4',
     list: 'flex-(~ 1 y-center) select-none',
-    item: 'flex-(~ center) transition-colors data-[selected]:font-semibold disabled:is-disabled',
+    item: 'flex-(~ center) transition-colors data-[selected]:font-semibold disabled:is-disabled focus-visible:outline-primary',
     ellipsis: 'flex-(~ center)',
     total: 'c-toned text-left',
     content: 'flex-(~ y-center) gap-2',

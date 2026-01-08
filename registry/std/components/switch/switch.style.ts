@@ -10,13 +10,13 @@ export const useSwitchStyle = createVariants({
 
   variants: {
     color: {
-      primary: { root: 'state-checked:bg-primary', thumb: 'bg-primary-1', icon: 'state-checked:text-primary' },
-      secondary: { root: 'state-checked:bg-secondary', thumb: 'bg-secondary-1', icon: 'state-checked:text-secondary' },
-      neutral: { root: 'state-checked:bg-neutral', thumb: 'bg-neutral-1', icon: 'state-checked:text-neutral' },
-      info: { root: 'state-checked:bg-info', thumb: 'bg-info-1', icon: 'state-checked:text-info' },
-      success: { root: 'state-checked:bg-success', thumb: 'bg-success-1', icon: 'state-checked:text-success' },
-      warning: { root: 'state-checked:bg-warning', thumb: 'bg-warning-1', icon: 'state-checked:text-warning' },
-      danger: { root: 'state-checked:bg-danger', thumb: 'bg-danger-1', icon: 'state-checked:text-danger' },
+      primary: { root: 'state-checked:bg-primary focus-visible:outline-primary', thumb: 'bg-primary-1', icon: 'state-checked:text-primary' },
+      secondary: { root: 'state-checked:bg-secondary focus-visible:outline-secondary', thumb: 'bg-secondary-1', icon: 'state-checked:text-secondary' },
+      neutral: { root: 'state-checked:bg-neutral focus-visible:outline-neutral', thumb: 'bg-neutral-1', icon: 'state-checked:text-neutral' },
+      info: { root: 'state-checked:bg-info focus-visible:outline-info', thumb: 'bg-info-1', icon: 'state-checked:text-info' },
+      success: { root: 'state-checked:bg-success focus-visible:outline-success', thumb: 'bg-success-1', icon: 'state-checked:text-success' },
+      warning: { root: 'state-checked:bg-warning focus-visible:outline-warning', thumb: 'bg-warning-1', icon: 'state-checked:text-warning' },
+      danger: { root: 'state-checked:bg-danger focus-visible:outline-danger', thumb: 'bg-danger-1', icon: 'state-checked:text-danger' },
     },
     size: {
       xs: { root: 'w-5.5 h-3.5', thumb: 'size-2.5 text-2 shadow-sm' },

@@ -3,7 +3,7 @@ import { createVariants } from '~/utils/styles'
 
 export const useTooltipStyle = createVariants({
   slots: {
-    trigger: '',
+    trigger: 'focus-visible:outline-none',
     contentWrapper: 'flex-(~ center) gap-1.5',
     content: [
       'overflow-hidden select-none px-2.5 py-1 text-sm bg-tooltip/80 text-tooltip z-tooltip backdrop-blur-3xl pointer-events-auto',

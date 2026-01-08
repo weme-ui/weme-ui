@@ -3,7 +3,7 @@ import { createVariants } from '~/utils/styles'
 
 export const useModalStyle = createVariants({
   slots: {
-    base: 'fixed flex-(~ col) z-popup focus:outline-none',
+    base: 'fixed flex-(~ col) z-popup focus:outline-primary',
     wrapper: 'relative flex-(~ 1 col)',
     trigger: '',
     header: 'flex items-start',
@@ -15,8 +15,8 @@ export const useModalStyle = createVariants({
     content: 'h-full',
     footer: 'flex-(~ y-center) gap-2 justify-end',
     close: [
-      'abs right-5 top-5 text-3.5 flex-(~ center) [&>span]:z-1',
-      'after:(abs size-6 block content-[""] rounded-full transition-colors)',
+      'abs right-5 top-5 text-3.5 flex-(~ center) size-6 rounded-full focus-visible:outline-primary [&>span]:z-1',
+      'after:(abs inset-0 block content-[""] rounded-inherit transition-colors)',
       'hover:after:bg-elevated hover:c-highlighted',
     ],
     overlay: 'fixed inset-0 bg-overlay/80 z-overlay',

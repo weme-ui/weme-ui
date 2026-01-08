@@ -4,7 +4,7 @@ import { createVariants } from '~/utils/styles'
 export const useScrollAreaStyle = createVariants({
   slots: {
     root: 'relative',
-    viewport: 'relative size-full scroll-smooth rounded-inherit',
+    viewport: 'relative size-full scroll-smooth rounded-inherit focus-visible:outline-primary',
     scrollbar: [
       'flex select-none touch-none bg-transparent',
       'state-visible:(animate-fade-in animate-duration-100 animate-ease-in-out)',

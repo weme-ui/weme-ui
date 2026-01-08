@@ -6,8 +6,8 @@ export const useStepsStyle = createVariants({
   slots: {
     root: 'flex w-full',
     item: 'flex items-start',
-    trigger: 'font-medium state-active:font-bold',
-    indicator: 'flex-(~ center) rounded-full transition-colors',
+    trigger: 'rounded-full font-medium state-active:font-bold',
+    indicator: 'flex-(~ center) rounded-inherit transition-colors',
     indicatorIcon: 'shrink-0',
     wrapper: 'flex-(~ 1 col) items-start',
     title: 'flex-(~ y-center) transition-colors state-active:(font-bold text-highlighted)',
@@ -53,6 +53,14 @@ export const useStepsStyle = createVariants({
     { color: 'success', variant: ['solid', 'soft'], class: { indicator: 'box-success-soft state-active:box-success', separator: 'bg-success-3 state-completed:bg-success' } },
     { color: 'warning', variant: ['solid', 'soft'], class: { indicator: 'box-warning-soft state-active:box-warning', separator: 'bg-warning-3 state-completed:bg-warning' } },
     { color: 'danger', variant: ['solid', 'soft'], class: { indicator: 'box-danger-soft state-active:box-danger', separator: 'bg-danger-3 state-completed:bg-danger' } },
+
+    { color: 'primary', class: { trigger: 'focus-visible:outline-primary' } },
+    { color: 'secondary', class: { trigger: 'focus-visible:outline-secondary' } },
+    { color: 'neutral', class: { trigger: 'focus-visible:outline-neutral' } },
+    { color: 'info', class: { trigger: 'focus-visible:outline-info' } },
+    { color: 'success', class: { trigger: 'focus-visible:outline-success' } },
+    { color: 'warning', class: { trigger: 'focus-visible:outline-warning' } },
+    { color: 'danger', class: { trigger: 'focus-visible:outline-danger' } },
 
     { color: 'primary', variant: 'solid', class: { indicator: 'state-completed:box-primary' } },
     { color: 'primary', variant: 'soft', class: { indicator: 'state-completed:box-primary-soft' } },

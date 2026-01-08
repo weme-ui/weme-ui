@@ -10,7 +10,7 @@ export const usePopoverStyle = createVariants({
     ],
     content: '',
     arrow: '',
-    close: '',
+    close: 'focus-visible:outline-primary',
   },
 
   variants: {

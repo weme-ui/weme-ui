@@ -10,7 +10,7 @@ export const useTabsStyle = createVariants({
     trigger: 'relative z-2 flex-(~ center) cursor-default transition-colors data-[active]:(text-highlighted font-semibold) focus-visible:outline-primary',
     icon: '',
     title: '',
-    content: 'flex-1',
+    content: 'flex-1 focus-visible:outline-primary',
     actions: 'flex-(~ 1)',
   },
 

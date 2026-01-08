@@ -13,4 +13,5 @@ export interface NumberInputProps extends NumberFieldRootProps {
 }
 
 export interface NumberInputEmits extends NumberFieldRootEmits {
+  change: [value: number]
 }

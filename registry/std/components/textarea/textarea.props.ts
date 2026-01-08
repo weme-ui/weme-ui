@@ -21,7 +21,7 @@ export interface TextareaProps extends PrimitiveProps {
 }
 
 export interface TextareaEmits {
-  change: [event: Event]
+  change: [value: string | undefined]
   focus: [event: FocusEvent]
   blur: [event: FocusEvent]
 }

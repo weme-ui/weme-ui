@@ -93,7 +93,7 @@ function handleChange(e: Event) {
   if (props.modelModifiers?.trim)
     (e.target as HTMLInputElement).value = value.trim()
 
-  emits('change', e)
+  emits('change', value as T)
 }
 
 function handleFocus(e: FocusEvent) {

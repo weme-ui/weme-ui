@@ -30,7 +30,7 @@ const ui = computed(() => useTextareaStyle({
   invalid: toBoolValue(props.invalid),
 }))
 
-function onResize() {
+function handleResize() {
   if (props.autoSize && textareaRef.value) {
     textareaRef.value.rows = props.rows
 
@@ -50,12 +50,12 @@ function onResize() {
   }
 }
 
-function onFocus(event: FocusEvent) {
+function handleFocus(event: FocusEvent) {
   isFocused.value = true
   emits('focus', event)
 }
 
-function onBlur(event: FocusEvent) {
+function handleBlur(event: FocusEvent) {
   isFocused.value = false
   emits('blur', event)
 }
@@ -64,10 +64,14 @@ onMounted(() => {
   watch(
     modelValue,
     () => {
-      nextTick(onResize)
+      nextTick(handleResize)
     },
     { immediate: true },
   )
+
+  watch(modelValue, (value) => {
+    emits('change', value)
+  })
 })
 
 defineExpose({
@@ -89,9 +93,8 @@ defineExpose({
       v-bind="{ ...forwarded, ...$attrs }"
       :class="cn(ui.textarea(), props.ui?.textarea)"
       data-slot="textarea-value"
-      @focus="onFocus"
-      @blur="onBlur"
-      @change="emits('change', $event)"
+      @focus="handleFocus"
+      @blur="handleBlur"
     />
     <span
       v-if="counter && maxLength"

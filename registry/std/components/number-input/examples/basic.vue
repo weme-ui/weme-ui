@@ -4,8 +4,6 @@ import NumberInput from '../number-input.vue'
 
 <template>
   <div class="text-center mt-4">
-    <NumberInput
-      placeholder="Please enter a number"
-    />
+    <NumberInput placeholder="Please enter a number" />
   </div>
 </template>

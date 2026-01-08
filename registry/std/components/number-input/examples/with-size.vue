@@ -7,7 +7,7 @@ const sizes = ['xs', 'sm', 'md', 'lg', 'xl'] as const
 </script>
 
 <template>
-  <div class="grid-(~ cols-4) gap-6 mt-4">
+  <div class="grid-(~ cols-5) gap-6 mt-4">
     <template v-for="orientation in orientations" :key="orientation">
       <template v-for="variant in variants" :key="variant">
         <template v-for="size in sizes" :key="size">

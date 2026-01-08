@@ -34,40 +34,50 @@ const ui = computed(() => useNumberInputStyle({
   focused: isFocused.value,
 }))
 
-function onFocus() {
+function handleUpdate(value: number | undefined) {
+  if (value !== undefined)
+    emits('change', value)
+}
+
+function handleFocus() {
   isFocused.value = true
 }
 
-function onBlur() {
+function handleBlur() {
   isFocused.value = false
 }
 </script>
 
 <template>
-  <NumberFieldRoot v-bind="forwarded" :class="cn(ui.root(), props.ui?.root, props.class)" data-slot="number-input">
+  <NumberFieldRoot
+    v-bind="forwarded"
+    data-slot="number-input"
+    :class="cn(ui.root(), props.ui?.root, props.class)"
+    @update:model-value="handleUpdate"
+  >
     <template v-if="props.orientation === 'horizontal'">
-      <NumberFieldDecrement :class="cn(ui.decrement(), props.ui?.decrement)" data-slot="number-input-decrement">
+      <NumberFieldDecrement data-slot="number-input-decrement" :class="cn(ui.decrement(), props.ui?.decrement)">
         <slot name="decrement">
           <Icon :name="decrementIcon" />
         </slot>
       </NumberFieldDecrement>
     </template>
     <NumberFieldInput
+      data-slot="number-input-value"
       :placeholder="placeholder"
       :class="cn(ui.input(), props.ui?.input)"
       :aria-required="toBoolValue(props.required) || undefined"
       :aria-invalid="toBoolValue(props.invalid) || undefined"
-      data-slot="number-input-value"
-      @focus="onFocus"
-      @blur="onBlur"
+      @focus="handleFocus"
+      @blur="handleBlur"
     />
-    <NumberFieldIncrement :class="cn(ui.increment(), props.ui?.increment)" data-slot="number-input-increment">
+    <NumberFieldIncrement data-slot="number-input-increment" :class="cn(ui.increment(), props.ui?.increment)">
       <slot name="increment">
         <Icon :name="incrementIcon" />
       </slot>
     </NumberFieldIncrement>
     <template v-if="props.orientation === 'vertical'">
-      <NumberFieldDecrement :class="cn(ui.decrement(), props.ui?.decrement)" data-slot="number-input-decrement">
+      <NumberFieldDecrement data-slot="number-input-decrement" :class="cn(ui.decrement(), props.ui?.decrement)">
         <slot name="decrement">
           <Icon :name="decrementIcon" />
         </slot>

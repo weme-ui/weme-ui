@@ -40,7 +40,7 @@ export interface InputProps<T extends InputValue = InputValue> {
 
 export interface InputEmits<T extends InputValue = InputValue> {
   'update:modelValue': [value: T]
-  'change': [event: Event]
+  'change': [value: T]
   'enter': [value: T]
   'clear': [value: T]
   'blur': [event: FocusEvent]

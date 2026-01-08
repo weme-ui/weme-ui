@@ -6,7 +6,7 @@ export const usePasswordInputStyle = createVariants({
   extend: useInputStyle,
 
   slots: {
-    visibilityButton: 'flex-(~ center) text-highlighted rounded-full transition-colors hover:bg-muted',
+    visibilityButton: 'flex-(~ center) rounded-full transition-colors hover:bg-muted',
   },
 
   compoundVariants: [

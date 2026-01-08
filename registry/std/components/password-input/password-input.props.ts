@@ -2,7 +2,7 @@ import type { InputEmits, InputProps } from '../input/input.props'
 import type { InputStyleSlots } from '../input/input.style'
 import type { PasswordInputStyleSlots } from './password-input.style'
 
-export interface PasswordInputProps extends Omit<InputProps, 'type' | 'class' | 'ui'> {
+export interface PasswordInputProps extends Omit<InputProps, 'type' | 'loading' | 'loadingIcon' | 'suffix' | 'suffixIcon' | 'class' | 'ui'> {
   type?: 'password' | 'text'
   visibility?: boolean
   visibleIcon?: string

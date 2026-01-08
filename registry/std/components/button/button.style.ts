@@ -4,7 +4,7 @@ import { createVariants } from '~/utils/styles'
 
 export const useButtonStyle = createVariants({
   slots: {
-    root: 'flex-(inline center) cursor-default font-medium select-none transition-colors',
+    root: 'flex-(inline center) cursor-default font-medium select-none transition-colors focus-visible:outline-primary',
     icon: '',
     loading: 'animate-spin',
   },

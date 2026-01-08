@@ -35,14 +35,14 @@ function onChangeVisible() {
 </script>
 
 <template>
-  <Input v-bind="forwarded" :type="type" data-slot="password-input">
+  <Input v-bind="forwarded" data-slot="password-input" :type="type">
     <slot />
 
     <template v-if="visibility" #suffix>
       <slot name="visibility" v-bind="{ visible }">
         <button
-          :class="cn(ui.visibilityButton(), props.ui?.visibilityButton)"
           data-slot="password-input-visibility"
+          :class="cn(ui.visibilityButton(), props.ui?.visibilityButton)"
           @click="onChangeVisible"
         >
           <Icon :name="visible ? hiddenIcon : visibleIcon" />

@@ -1,6 +1,5 @@
 <script lang="ts" setup>
 import InputExample from './input.vue'
-import LabelExample from './label.vue'
 import NumberInputExample from './number-input.vue'
 import PasswordInputExample from './password-input.vue'
 import PinInputExample from './pin-input.vue'
@@ -36,9 +35,5 @@ import TextareaExample from './textarea.vue'
 
   <Example title="开关" description="Switch">
     <SwitchExample />
-  </Example>
-
-  <Example title="标签" description="Label">
-    <LabelExample />
   </Example>
 </template>

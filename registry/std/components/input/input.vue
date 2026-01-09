@@ -148,7 +148,7 @@ defineExpose({
 </script>
 
 <template>
-  <Primitive :as="as" data-slot="input" :class="cn(ui.root(), props.ui?.root, props.class)">
+  <Primitive :as="as" :data-slot="$attrs['data-slot'] || 'input'" :class="cn(ui.root(), props.ui?.root, props.class)">
     <div
       v-if="!!$slots.prepend || prepend"
       data-slot="input-prepend"

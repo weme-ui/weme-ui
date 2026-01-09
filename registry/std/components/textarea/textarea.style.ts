@@ -32,11 +32,11 @@ export const useTextareaStyle = createVariants({
 
     { variant: 'outline', invalid: false, disabled: false, focused: false, class: { root: 'bg-neutral-1 b-(~ default) hover:b-primary-7' } },
     { variant: 'outline', invalid: false, disabled: false, focused: true, class: { root: 'bg-neutral-1 b-(~ primary) outline-(3 primary-3)', textarea: 'outline-none' } },
-    { variant: 'outline', invalid: true, class: { root: 'bg-danger-3 b-(~ danger)', textarea: 'outline-none' } },
+    { variant: 'outline', invalid: true, class: { root: 'b-(~ danger)', textarea: 'outline-none' } },
 
     { variant: 'line', invalid: false, disabled: false, focused: false, class: { root: 'b-(b default) hover:b-primary-7' } },
     { variant: 'line', invalid: false, disabled: false, focused: true, class: { root: 'b-(b primary)', textarea: 'outline-none' } },
-    { variant: 'line', invalid: true, class: { root: 'bg-danger-3 b-(b danger)', textarea: 'outline-none' } },
+    { variant: 'line', invalid: true, class: { root: 'b-(b danger)', textarea: 'outline-none' } },
 
     { variant: ['soft', 'outline'], radius: 'xs', class: { root: 'rounded-xs' } },
     { variant: ['soft', 'outline'], radius: 'sm', class: { root: 'rounded-sm' } },

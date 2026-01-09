@@ -28,11 +28,11 @@ export const usePinInputStyle = createVariants({
 
     { variant: 'soft', invalid: false, focused: false, class: { input: 'bg-muted hover:bg-elevated' } },
     { variant: 'soft', invalid: false, focused: true, class: { input: 'bg-neutral-1 b-(~ primary) outline-none' } },
-    { variant: 'soft', invalid: true, class: { input: 'bg-danger-3 text-danger placeholder:text-danger' } },
+    { variant: 'soft', invalid: true, class: { input: 'bg-danger-3 text-danger placeholder:text-danger focus-visible:outline-danger' } },
 
     { variant: 'outline', invalid: false, focused: false, class: { input: 'bg-neutral-1 b-(~ default) hover:b-primary-7' } },
-    { variant: 'outline', invalid: false, focused: true, class: { input: 'bg-neutral-1 b-(~ primary) outline-primary-4' } },
-    { variant: 'outline', invalid: true, class: { input: ' b-(~ danger) bg-danger-3 text-danger placeholder:text-danger outline-none' } },
+    { variant: 'outline', invalid: false, focused: true, class: { input: 'bg-neutral-1 b-(~ primary) outline-primary-3' } },
+    { variant: 'outline', invalid: true, class: { input: ' b-(~ danger) text-danger placeholder:text-danger outline-none' } },
 
     { variant: 'outline', size: 'xs', invalid: false, focused: true, class: { input: 'outline-2' } },
     { variant: 'outline', size: 'sm', invalid: false, focused: true, class: { input: 'outline-2' } },
@@ -42,7 +42,7 @@ export const usePinInputStyle = createVariants({
 
     { variant: 'line', invalid: false, focused: false, class: { input: 'b-(b default) hover:b-primary-7' } },
     { variant: 'line', invalid: false, focused: true, class: { input: 'b-(b primary) outline-none' } },
-    { variant: 'line', invalid: true, class: { input: 'bg-danger-3 text-danger placeholder:text-danger outline-none' } },
+    { variant: 'line', invalid: true, class: { input: 'b-(b danger) text-danger placeholder:text-danger outline-none' } },
 
     { variant: 'none', invalid: false, focused: true, class: { input: 'outline-primary' } },
     { variant: 'none', invalid: true, class: { input: 'text-danger placeholder:text-danger outline-none' } },

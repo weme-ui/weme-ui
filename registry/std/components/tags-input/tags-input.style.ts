@@ -58,7 +58,7 @@ export const useTagsInputStyle = createVariants({
     } },
     { variant: 'outline', invalid: true, class: {
       root: 'b-(~ danger)',
-      item: 'bg-danger-5 hover:bg-danger-6 state-active:bg-danger-6',
+      item: 'bg-danger-3 hover:bg-danger-4 state-active:bg-danger-4',
       itemText: 'text-danger',
       itemDelete: 'text-danger',
       input: 'text-danger placeholder:text-danger',
@@ -82,7 +82,7 @@ export const useTagsInputStyle = createVariants({
     } },
     { variant: 'line', invalid: true, class: {
       root: 'b-(b danger)',
-      item: 'bg-danger-5 hover:bg-danger-6 state-active:bg-danger-6',
+      item: 'bg-danger-3 hover:bg-danger-4 state-active:bg-danger-4',
       itemText: 'text-danger',
       itemDelete: 'text-danger',
       input: 'text-danger placeholder:text-danger',
@@ -97,7 +97,7 @@ export const useTagsInputStyle = createVariants({
       item: 'b-(~ default) hover:b-primary-8 state-active:outline-(1 primary)',
     } },
     { variant: 'none', invalid: true, class: {
-      item: 'bg-danger-3 hover:bg-danger-5 state-active:bg-danger-5',
+      item: 'bg-danger-3 hover:bg-danger-4 state-active:bg-danger-4',
       itemText: 'text-danger',
       itemDelete: 'text-danger',
       input: 'text-danger placeholder:text-danger',

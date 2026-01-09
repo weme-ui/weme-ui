@@ -2,6 +2,7 @@
 import InputExample from './input.vue'
 import NumberInputExample from './number-input.vue'
 import PasswordInputExample from './password-input.vue'
+import PasswordStrengthMeterExample from './password-strength-meter.vue'
 import PinInputExample from './pin-input.vue'
 import SwitchExample from './switch.vue'
 import TagsInputExample from './tags-input.vue'
@@ -19,6 +20,10 @@ import TextareaExample from './textarea.vue'
 
   <Example title="密码输入框" description="Password Input">
     <PasswordInputExample />
+  </Example>
+
+  <Example title="密码强度" description="Password Strength Meter">
+    <PasswordStrengthMeterExample />
   </Example>
 
   <Example title="数字输入框" description="Number Input">

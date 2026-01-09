@@ -42,6 +42,7 @@
     "@weme-ui/nuxt": "workspace:*",
     "@weme-ui/unocss-preset": "workspace:*",
     "@zag-js/highlight-word": "catalog:",
+    "check-password-strength": "catalog:",
     "clsx": "catalog:",
     "compute-scroll-into-view": "catalog:",
     "embla-carousel": "catalog:",

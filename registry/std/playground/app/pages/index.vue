@@ -8,7 +8,7 @@
       <hr class="w-px h-20 bg-border b-none">
 
       <small class="op-50 select-none">
-        Press <span class="flex-(inline center) box-primary-outline px-1.5 rounded">G</span> to select a component.
+        Press <span class="flex-(inline center) box-primary-outline px-1.5 rounded">⌘</span> + <span class="flex-(inline center) box-primary-outline px-1.5 rounded">G</span> to select a component.
       </small>
     </div>
   </div>

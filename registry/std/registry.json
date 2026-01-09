@@ -55,7 +55,13 @@
           "type": "file",
           "path": "locales/en.ts",
           "target": "~/locales/en.ts",
-          "hash": "d77c4222c215b5bb2a5bbd2e2c7337b5"
+          "hash": "bd1b58b6a1c5e54255c1111f35f213e4"
+        },
+        {
+          "type": "file",
+          "path": "locales/zh_cn.ts",
+          "target": "~/locales/zh_cn.ts",
+          "hash": "a499e3c883bd774b979e1ae5950ef300"
         },
         {
           "type": "file",
@@ -67,7 +73,7 @@
           "type": "file",
           "path": "types/locale.ts",
           "target": "~/types/locale.ts",
-          "hash": "23cc0460879ceec4bb767cd51424ee49"
+          "hash": "f70d84e2e88fc6d57707c2d923298fde"
         },
         {
           "type": "util",
@@ -908,7 +914,7 @@
         {
           "type": "component",
           "path": "components/input/input.vue",
-          "hash": "73096711e9668a3bf4d65226ab3eee9e"
+          "hash": "1a37ef2bd50d330ea048b0301f588c39"
         }
       ]
     },
@@ -1259,6 +1265,39 @@
           "hash": "aa3a5526ecf3f74cfe2e2a1f5eaf658a"
         }
       ]
+    },
+    {
+      "name": "password-strength-meter",
+      "type": "component",
+      "title": "Password Strength Meter",
+      "description": "Used to display the strength of a password.",
+      "devDependencies": [
+        "check-password-strength"
+      ],
+      "files": [
+        {
+          "type": "type",
+          "path": "components/password-strength-meter/password-strength-meter.props.ts",
+          "hash": "b81934f061e61766a6c5dfe75bc2f501"
+        },
+        {
+          "type": "component",
+          "path": "components/password-strength-meter/password-strength-meter.vue",
+          "hash": "878414f99f3f214aec006d704e4bb879"
+        },
+        {
+          "type": "style",
+          "path": "components/password-strength-meter/password-strength-meter.style.ts",
+          "hash": "ffa52ba56e7406071d0d1946d524b5f9"
+        }
+      ],
+      "cssVars": {
+        "meter": {
+          "weak-color": "danger.9",
+          "medium-color": "warning.8",
+          "strong-color": "success.8"
+        }
+      }
     },
     {
       "name": "pin-input",

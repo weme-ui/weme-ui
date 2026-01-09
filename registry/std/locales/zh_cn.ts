@@ -37,6 +37,12 @@ export default defineLocale<LocaleMessages>({
       confirm: '确认',
       cancel: '取消',
     },
+    passwordStrengthMeter: {
+      tooWeak: '弱',
+      weak: '弱',
+      medium: '中',
+      strong: '强',
+    },
     table: {
       noData: '暂无数据',
     },

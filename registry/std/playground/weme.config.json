@@ -26,7 +26,10 @@
       "modal-bg": "neutral.1",
       "modal-width": "24rem",
       "modal-height": "12rem",
-      "dropdown-bg": "white.12"
+      "dropdown-bg": "white.12",
+      "meter-weak-color": "danger.9",
+      "meter-medium-color": "warning.8",
+      "meter-strong-color": "success.8"
     }
   }
 }

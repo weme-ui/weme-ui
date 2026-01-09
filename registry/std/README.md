@@ -100,6 +100,7 @@ pnpm dlx @weme-ui/weme-ui add <name>
   - [x] `input`
   - [x] `number-input`
   - [x] `password-input`
+  - [x] `password-strength-meter`
   - [x] `pin-input`
   - [x] `switch`
   - [x] `tags-input`

@@ -2,7 +2,7 @@
 import App from '@registry/components/app/app.vue'
 import { useMagicKeys } from '@vueuse/core'
 
-const { b, g, h } = useMagicKeys()
+const keys = useMagicKeys({ reactive: true })
 const route = useRoute()
 const router = useRouter()
 const config = useRuntimeConfig()
@@ -12,13 +12,13 @@ useSeoMeta({
 })
 
 watchEffect(() => {
-  if (g?.value && route.path !== '/examples')
+  if (keys.meta_g && route.path !== '/examples')
     router.push('/examples')
 
-  if (b?.value && route.path !== '/')
+  if (keys.meta_b && route.path !== '/')
     router.go(-1)
 
-  if (h?.value && route.path !== '/')
+  if (keys.meta_h && route.path !== '/')
     router.push('/')
 })
 </script>

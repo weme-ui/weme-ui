@@ -31,6 +31,12 @@ export interface LocaleMessages {
     confirm: string
     cancel: string
   }
+  passwordStrengthMeter: {
+    tooWeak: string
+    weak: string
+    medium: string
+    strong: string
+  }
   table: {
     noData: string
   }

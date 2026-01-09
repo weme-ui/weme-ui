@@ -26,3 +26,25 @@ export function get(object: Record<string, any> | undefined, path: (string | num
 
   return result !== undefined ? result : defaultValue
 }
+
+export function omit<D extends object, K extends keyof D>(
+  data: D,
+  keys: K[],
+): Omit<D, K> {
+  const result = { ...data }
+
+  for (const key of keys) {
+    delete result[key]
+  }
+
+  return result as Omit<D, K>
+}
+
+export function removeUndefined<T extends object>(obj: T): T {
+  for (const key in obj) {
+    if (obj[key] === undefined) {
+      delete obj[key]
+    }
+  }
+  return obj
+}

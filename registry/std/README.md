@@ -123,6 +123,7 @@ pnpm dlx @weme-ui/weme-ui add <name>
   - [ ] `watermark`
   - [x] `affix`
   - [x] `anchor` // TODO: 需要完善
+  - [x] `bar-code`
   - [x] `highlight`
   - [x] `lens`
   - [x] `marquee`

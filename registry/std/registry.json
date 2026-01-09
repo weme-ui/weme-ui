@@ -83,7 +83,7 @@
         {
           "type": "util",
           "path": "utils/props.ts",
-          "hash": "ac899bb21011eb89c6ad635525491c30"
+          "hash": "da9999f1ed32a1b171adcaecdc7a8ab4"
         },
         {
           "type": "util",
@@ -370,6 +370,27 @@
           "type": "component",
           "path": "components/banner/banner.vue",
           "hash": "0673e0614b93d0aad63654d264ed7199"
+        }
+      ]
+    },
+    {
+      "name": "bar-code",
+      "type": "component",
+      "title": "Bar Code",
+      "description": "Used to display a bar code.",
+      "devDependencies": [
+        "jsbarcode"
+      ],
+      "files": [
+        {
+          "type": "component",
+          "path": "components/bar-code/bar-code.vue",
+          "hash": "94dc346266def0c76e03a9550624b4a4"
+        },
+        {
+          "type": "type",
+          "path": "components/bar-code/bar-code.props.ts",
+          "hash": "c493a7ed7740e32892e168a3914a191d"
         }
       ]
     },
@@ -1423,12 +1444,12 @@
         {
           "type": "type",
           "path": "components/qr-code/qr-code.props.ts",
-          "hash": "ff0780dc344c434cae5618ff1085aa82"
+          "hash": "052afb8d02e66a10dd0b831dc9e4b1c8"
         },
         {
           "type": "component",
           "path": "components/qr-code/qr-code.vue",
-          "hash": "f22c06d01bcb71e08d9b2f431d34d2ac"
+          "hash": "430935d86e2bc58da26cf6797c288d4c"
         }
       ]
     },

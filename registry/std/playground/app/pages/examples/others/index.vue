@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import AffixExamples from './affix.vue'
 import AnchorExamples from './anchor.vue'
+import BarCodeExamples from './bar-code.vue'
 import HighlightExamples from './highlight.vue'
 import LensExamples from './lens.vue'
 import MarqueeExamples from './marquee.vue'
@@ -32,6 +33,10 @@ import TimerExamples from './timer.vue'
 
   <Example title="二维码" description="QR Code">
     <QRCodeExamples />
+  </Example>
+
+  <Example title="条形码" description="Bar Code">
+    <BarCodeExamples />
   </Example>
 
   <Example title="吸附" description="Affix">

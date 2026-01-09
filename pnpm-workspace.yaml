@@ -17,8 +17,8 @@ catalog:
   '@antfu/eslint-config': ^6.7.3
   '@clack/core': ^0.5.0
   '@clack/prompts': ^0.11.0
-  '@commitlint/cli': ^20.3.0
-  '@commitlint/config-conventional': ^20.3.0
+  '@commitlint/cli': ^20.3.1
+  '@commitlint/config-conventional': ^20.3.1
   '@iconify-json/lucide': 1.2.82
   '@iconify-json/mingcute': 1.2.6
   '@iconify-json/simple-icons': ^1.2.65
@@ -38,7 +38,7 @@ catalog:
   '@types/node': 24.0.15
   '@types/qrcode': ^1.5.6
   '@types/spark-md5': ^3.0.5
-  '@typescript/native-preview': ^7.0.0-dev.20260107.1
+  '@typescript/native-preview': ^7.0.0-dev.20260108.1
   '@unocss/core': ^66.5.12
   '@unocss/nuxt': ^66.5.12
   '@unocss/rule-utils': ^66.5.12
@@ -71,6 +71,7 @@ catalog:
   eslint-plugin-pnpm: ^1.4.3
   esno: ^4.8.0
   handlebars: ^4.7.8
+  jsbarcode: ^3.12.3
   jsonc-eslint-parser: ^2.4.2
   lint-staged: ^16.2.7
   log-symbols: ^7.0.1

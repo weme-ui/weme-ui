@@ -1,15 +1,15 @@
 <script lang="ts" setup>
 import type { QrCodeProps } from './qr-code.props'
-import { reactivePick } from '@vueuse/core'
 import { defu } from 'defu'
 import QRCode from 'qrcode'
-import { Primitive } from 'reka-ui'
 import { computed, shallowRef, watch } from 'vue'
 import Spinner from '../spinner/spinner.vue'
 
-const props = withDefaults(defineProps<QrCodeProps>(), { as: 'img' })
-const delegated = reactivePick(props, 'as', 'asChild')
+defineOptions({
+  inheritAttrs: false,
+})
 
+const props = defineProps<QrCodeProps>()
 const src = shallowRef<string>('')
 const value = computed(() => props.value)
 const options = computed(() => defu(props.options, { margin: 3, errorCorrectionLevel: 'H' }))
@@ -32,13 +32,12 @@ watch(
 
 <template>
   <Spinner v-if="!src" />
-  <Primitive
+  <img
     v-else
-    v-bind="{ ...delegated, ...$attrs }"
+    v-bind="$attrs"
     data-slot="qr-code"
     :src="src"
     :class="props.class"
-    :alt="$attrs.alt || 'QR Code'"
     aria-label="QR Code"
-  />
+  >
 </template>

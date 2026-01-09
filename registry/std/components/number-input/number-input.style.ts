@@ -81,9 +81,15 @@ export const useNumberInputStyle = createVariants({
 
     { variant: 'outline', disabled: false, invalid: false, class: { root: 'b-(~ default)' } },
     { variant: 'outline', focused: false, disabled: false, invalid: false, class: { root: 'hover:b-primary-7', input: 'hover:b-x-primary-7' } },
-    { variant: 'outline', focused: true, disabled: false, invalid: false, class: { root: 'b-primary outline-(2 primary-4)' } },
+    { variant: 'outline', focused: true, disabled: false, invalid: false, class: { root: 'b-primary outline-primary-3' } },
 
-    { variant: 'outline', disabled: false, invalid: true, class: { root: 'b-(~ danger) bg-danger-3' } },
+    { variant: 'outline', size: 'xs', focused: true, disabled: false, invalid: false, class: { root: 'outline-2' } },
+    { variant: 'outline', size: 'sm', focused: true, disabled: false, invalid: false, class: { root: 'outline-2' } },
+    { variant: 'outline', size: 'md', focused: true, disabled: false, invalid: false, class: { root: 'outline-3' } },
+    { variant: 'outline', size: 'lg', focused: true, disabled: false, invalid: false, class: { root: 'outline-4' } },
+    { variant: 'outline', size: 'xl', focused: true, disabled: false, invalid: false, class: { root: 'outline-5' } },
+
+    { variant: 'outline', disabled: false, invalid: true, class: { root: 'b-(~ danger)' } },
 
     { disabled: false, invalid: true, class: { input: 'text-danger placeholder:text-danger' } },
 
@@ -91,7 +97,7 @@ export const useNumberInputStyle = createVariants({
     { variant: 'line', focused: false, disabled: false, invalid: false, class: { root: 'hover:b-b-primary-7' } },
     { variant: 'line', focused: true, disabled: false, invalid: false, class: { root: 'b-b-primary' } },
 
-    { variant: 'line', disabled: false, invalid: true, class: { root: 'b-(b danger) bg-danger-3' } },
+    { variant: 'line', disabled: false, invalid: true, class: { root: 'b-(b danger)' } },
 
     { variant: ['soft', 'outline'], radius: 'xs', class: { root: 'rounded-xs' } },
     { variant: ['soft', 'outline'], radius: 'sm', class: { root: 'rounded-sm' } },

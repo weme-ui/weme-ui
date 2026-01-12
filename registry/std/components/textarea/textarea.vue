@@ -3,19 +3,21 @@ import type { TextareaEmits, TextareaProps } from './textarea.props'
 import { reactivePick } from '@vueuse/core'
 import { Primitive, useForwardPropsEmits } from 'reka-ui'
 import { computed, nextTick, onMounted, ref, useTemplateRef, watch } from 'vue'
+import { useFormField } from '~/composables/use-form-field'
 import { cn } from '~/utils/styles'
 import { useTextareaStyle } from './textarea.style'
 
 const props = withDefaults(defineProps<TextareaProps>(), {
   variant: 'soft',
-  radius: 'sm',
   rows: 3,
   autoSize: true,
 })
 
 const emits = defineEmits<TextareaEmits>()
-const delegated = reactivePick(props, 'id', 'name', 'placeholder', 'rows', 'readonly', 'required', 'disabled')
+const delegated = reactivePick(props, 'placeholder', 'rows', 'readonly')
 const forwarded = useForwardPropsEmits(delegated, emits)
+
+const { id, name, radius, disabled, required } = useFormField<TextareaProps>(props)
 
 const modelValue = defineModel<string>()
 const textareaRef = useTemplateRef<HTMLTextAreaElement>('textarea')
@@ -24,8 +26,8 @@ const isFocused = ref(false)
 
 const ui = computed(() => useTextareaStyle({
   variant: props.variant,
-  radius: props.radius,
-  disabled: toBoolValue(props.disabled),
+  radius: radius.value === 'full' ? 'xl' : radius.value,
+  disabled: toBoolValue(disabled.value),
   focused: isFocused.value,
   invalid: toBoolValue(props.invalid),
 }))
@@ -88,8 +90,12 @@ defineExpose({
     data-slot="textarea"
   >
     <textarea
+      :id="id"
       ref="textarea"
       v-model="modelValue"
+      :name="name"
+      :disabled="disabled"
+      :required="required"
       v-bind="{ ...forwarded, ...$attrs }"
       :class="cn(ui.textarea(), props.ui?.textarea)"
       data-slot="textarea-value"

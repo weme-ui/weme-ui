@@ -3,6 +3,7 @@ import type { PasswordInputEmits, PasswordInputProps } from './password-input.pr
 import { reactiveOmit } from '@vueuse/core'
 import { useForwardPropsEmits } from 'reka-ui'
 import { computed } from 'vue'
+import { useFormField } from '~/composables/use-form-field'
 import { toBoolValue } from '~/utils/props'
 import { cn } from '~/utils/styles'
 import Icon from '../icon/icon.vue'
@@ -16,13 +17,15 @@ const props = withDefaults(defineProps<PasswordInputProps>(), {
 })
 
 const emits = defineEmits<PasswordInputEmits>()
-const delegated = reactiveOmit(props, 'type', 'hiddenIcon', 'visibleIcon', 'visibility')
+const delegated = reactiveOmit(props, 'size', 'radius', 'required', 'disabled', 'type', 'hiddenIcon', 'visibleIcon', 'visibility')
 const forwarded = useForwardPropsEmits(delegated, emits)
+
+const { id, name, size, radius, disabled, required } = useFormField<PasswordInputProps>(props)
 
 const visible = defineModel<boolean>('visible', { default: false })
 
 const ui = computed(() => usePasswordInputStyle({
-  size: props.size,
+  size: size.value,
   invalid: toBoolValue(props.invalid),
 }))
 
@@ -35,7 +38,17 @@ function onChangeVisible() {
 </script>
 
 <template>
-  <Input v-bind="forwarded" data-slot="password-input" :type="type">
+  <Input
+    v-bind="forwarded"
+    :id="id"
+    :name="name"
+    :size="size"
+    :radius="radius"
+    :disabled="disabled"
+    :required="required"
+    data-slot="password-input"
+    :type="type"
+  >
     <slot />
 
     <template v-if="visibility" #suffix>

@@ -3,6 +3,7 @@ import type { TagsInputEmits, TagsInputProps, TagsInputValue } from './tags-inpu
 import { reactiveOmit } from '@vueuse/core'
 import { TagsInputClear, TagsInputInput, TagsInputItem, TagsInputItemDelete, TagsInputItemText, TagsInputRoot, useForwardPropsEmits } from 'reka-ui'
 import { computed, onMounted, ref, toRef, useTemplateRef } from 'vue'
+import { useFormField } from '~/composables/use-form-field'
 import { toBoolDataAttrValue, toBoolValue } from '~/utils/props'
 import { cn } from '~/utils/styles'
 import Icon from '../icon/icon.vue'
@@ -14,26 +15,26 @@ defineOptions({
 
 const props = withDefaults(defineProps<TagsInputProps<T>>(), {
   variant: 'soft',
-  size: 'md',
-  radius: 'sm',
   deleteIcon: 'close',
   clearIcon: 'lucide:trash',
   loadingIcon: 'loading',
 })
 
 const emits = defineEmits<TagsInputEmits<T>>()
-const delegated = reactiveOmit(props, 'class', 'ui', 'maxLength', 'placeholder', 'autoFocus', 'icon', 'loading', 'loadingIcon', 'variant', 'size', 'radius', 'deleteIcon', 'clearIcon', 'invalid', 'clear')
+const delegated = reactiveOmit(props, 'id', 'name', 'required', 'disabled', 'class', 'ui', 'maxLength', 'placeholder', 'autoFocus', 'icon', 'loading', 'loadingIcon', 'variant', 'size', 'radius', 'deleteIcon', 'clearIcon', 'invalid', 'clear')
 const forwarded = useForwardPropsEmits(delegated, emits)
 const inputRef = useTemplateRef('input')
+
+const { id, name, size, radius, disabled, required } = useFormField<TagsInputProps<T>>(props)
 
 const isFocused = ref(false)
 
 const ui = computed(() => useTagsInputStyle({
   variant: props.variant,
-  size: props.size,
-  radius: props.radius,
+  size: size.value,
+  radius: radius.value,
   invalid: toBoolValue(props.invalid),
-  disabled: toBoolValue(props.disabled),
+  disabled: toBoolValue(disabled.value),
   loading: toBoolValue(props.loading),
   focused: isFocused.value,
 }))
@@ -65,8 +66,12 @@ defineExpose({
 
 <template>
   <TagsInputRoot
+    :id="id"
     v-slot="{ modelValue: tags }"
     v-bind="forwarded"
+    :name="name"
+    :required="required"
+    :disabled="disabled"
     data-slot="tags-input"
     :model-value="modelValue"
     :class="cn(ui.root(), props.ui?.root, props.class)"

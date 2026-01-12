@@ -3,6 +3,7 @@ import type { NumberInputEmits, NumberInputProps } from './number-input.props'
 import { reactiveOmit } from '@vueuse/core'
 import { NumberFieldDecrement, NumberFieldIncrement, NumberFieldInput, NumberFieldRoot, useForwardPropsEmits } from 'reka-ui'
 import { computed, ref } from 'vue'
+import { useFormField } from '~/composables/use-form-field'
 import { toBoolValue } from '~/utils/props'
 import { cn } from '~/utils/styles'
 import Icon from '../icon/icon.vue'
@@ -10,14 +11,14 @@ import { useNumberInputStyle } from './number-input.style'
 
 const props = withDefaults(defineProps<NumberInputProps>(), {
   variant: 'soft',
-  size: 'md',
-  radius: 'sm',
   orientation: 'horizontal',
 })
 
 const emits = defineEmits<NumberInputEmits>()
-const delegated = reactiveOmit(props, 'class', 'ui', 'placeholder', 'variant', 'size', 'radius', 'orientation', 'invalid')
+const delegated = reactiveOmit(props, 'id', 'name', 'class', 'ui', 'placeholder', 'variant', 'size', 'radius', 'orientation', 'invalid')
 const forwarded = useForwardPropsEmits(delegated, emits)
+
+const { id, name, size, radius, disabled, required } = useFormField<NumberInputProps>(props)
 
 const isFocused = ref(false)
 
@@ -26,10 +27,10 @@ const incrementIcon = computed(() => props.orientation === 'vertical' ? 'up' : '
 
 const ui = computed(() => useNumberInputStyle({
   variant: props.variant,
-  size: props.size,
-  radius: props.radius,
+  size: size.value,
+  radius: radius.value,
   orientation: props.orientation,
-  disabled: toBoolValue(props.disabled),
+  disabled: toBoolValue(disabled.value),
   invalid: toBoolValue(props.invalid),
   focused: isFocused.value,
 }))
@@ -50,7 +51,10 @@ function handleBlur() {
 
 <template>
   <NumberFieldRoot
+    :id="id"
     v-bind="forwarded"
+    :name="name"
+    :required="required"
     data-slot="number-input"
     :class="cn(ui.root(), props.ui?.root, props.class)"
     @update:model-value="handleUpdate"

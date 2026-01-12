@@ -3,6 +3,7 @@ import type { InputEmits, InputProps, InputValue } from './input.props'
 import { useVModel } from '@vueuse/core'
 import { Primitive } from 'reka-ui'
 import { computed, onMounted, ref, useSlots, useTemplateRef, watch } from 'vue'
+import { useFormField } from '~/composables/use-form-field'
 import { toBoolDataAttrValue, toBoolValue } from '~/utils/props'
 import { cn } from '~/utils/styles'
 import Icon from '../icon/icon.vue'
@@ -15,8 +16,6 @@ defineOptions({
 const props = withDefaults(defineProps<InputProps<T>>(), {
   type: 'text',
   variant: 'soft',
-  size: 'md',
-  radius: 'sm',
   clearIcon: 'close',
   loadingIcon: 'loading',
   autocomplete: 'off',
@@ -26,6 +25,7 @@ const emits = defineEmits<InputEmits<T>>()
 const slots = useSlots()
 
 const modelValue = useVModel<InputProps<T>, 'modelValue', 'update:modelValue'>(props, 'modelValue', emits, { defaultValue: props.defaultValue })
+const { id, name, size, radius, disabled, required } = useFormField<InputProps<T>>(props)
 const isFocused = ref(false)
 
 let preValue = modelValue.value
@@ -36,21 +36,21 @@ watch(modelValue, (_, oldValue) => {
 
 const ui = computed(() => useInputStyle({
   variant: props.variant,
-  size: props.size,
-  radius: props.radius,
+  size: size.value,
+  radius: radius.value,
   prepend: !!props.prepend || !!slots?.prepend,
   prefix: !!props.prefix || !!props.prefixIcon || !!slots?.prefix,
   suffix: !!props.suffix || !!props.suffixIcon || !!slots?.suffix,
   append: !!props.append || !!slots?.append,
   loading: toBoolValue(props.loading),
-  disabled: toBoolValue(props.disabled),
+  disabled: toBoolValue(disabled.value),
   invalid: toBoolValue(props.invalid),
   focused: isFocused.value,
   counter: toBoolValue(props.counter),
   overcount: modelValue.value ? String(modelValue.value)?.length > (props.maxLength || 0) : false,
   clear: toBoolValue(props.clear)
     && !!modelValue.value
-    && !props.disabled
+    && !disabled.value
     && !props.readonly,
 }))
 
@@ -179,8 +179,10 @@ defineExpose({
         </slot>
       </span>
       <input
-        ref="input"
         v-bind="$attrs"
+        :id="id"
+        ref="input"
+        :name="name"
         :type="type"
         :value="modelValue"
         :placeholder="placeholder"

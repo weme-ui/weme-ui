@@ -3,7 +3,7 @@ import { createVariants } from '~/utils/styles'
 
 export const useSwitchStyle = createVariants({
   slots: {
-    root: 'relative flex-(~ y-center) bg-muted transition-colors',
+    root: 'relative flex-(~ y-center) bg-muted transition-colors hover:state-unchecked:bg-elevated',
     thumb: 'flex-(~ center) my-auto transition-transform translate-x-0.5 will-change-transform state-checked:translate-x-full',
     icon: 'shrink-0 transition-colors',
   },

@@ -34,6 +34,7 @@ const ui = computed(() => useToggleStyle({
     :name="name"
     :disabled="disabled"
     :required="required"
+    :aria-label="label"
     :class="cn(ui.root(), props.ui?.root, props.class)"
   >
     <slot v-if="icon || offIcon || !!$slots.icon" name="icon" v-bind="{ state, pressed, disabled }">

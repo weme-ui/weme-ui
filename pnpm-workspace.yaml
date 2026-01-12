@@ -21,8 +21,8 @@ catalog:
   '@commitlint/config-conventional': ^20.3.1
   '@iconify-json/lucide': 1.2.82
   '@iconify-json/mingcute': 1.2.6
-  '@iconify-json/simple-icons': ^1.2.65
-  '@inquirer/prompts': ^8.1.0
+  '@iconify-json/simple-icons': ^1.2.66
+  '@inquirer/prompts': ^8.2.0
   '@nuxt/content': ^3.10.0
   '@nuxt/devtools': ^3.1.1
   '@nuxt/icon': ^2.2.0
@@ -38,14 +38,15 @@ catalog:
   '@types/node': 24.0.15
   '@types/qrcode': ^1.5.6
   '@types/spark-md5': ^3.0.5
-  '@typescript/native-preview': ^7.0.0-dev.20260108.1
+  '@typescript/native-preview': ^7.0.0-dev.20260111.1
   '@unocss/core': ^66.5.12
   '@unocss/nuxt': ^66.5.12
   '@unocss/rule-utils': ^66.5.12
+  '@vee-validate/zod': ^4.15.1
   '@vitejs/plugin-vue': ^6.0.3
   '@vueuse/core': ^14.1.0
   '@zag-js/highlight-word': 1.31.1
-  better-sqlite3: ^12.5.0
+  better-sqlite3: ^12.6.0
   bezier-easing: ^2.1.0
   bumpp: ^10.3.2
   chalk: ^5.6.2
@@ -96,7 +97,7 @@ catalog:
   taze: ^19.9.2
   tinyexec: ^1.0.2
   tinyglobby: ^0.2.15
-  tsdown: ^0.18.4
+  tsdown: ^0.19.0
   type-fest: ^5.3.1
   typescript: ^5.9.3
   ufo: ^1.6.2

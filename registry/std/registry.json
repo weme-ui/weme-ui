@@ -2016,12 +2016,38 @@
         {
           "type": "component",
           "path": "components/toggle/toggle.vue",
-          "hash": "2b6885c57a7049d53122872bd6007e58"
+          "hash": "70885e85a5295b3de41d91ebcf1bdb9b"
         },
         {
           "type": "type",
           "path": "components/toggle/toggle.props.ts",
           "hash": "31b6999be3d8da2a13ea2966265fa623"
+        }
+      ]
+    },
+    {
+      "name": "toggle-group",
+      "type": "component",
+      "title": "Toggle Group",
+      "description": "Used to group multiple toggle buttons.",
+      "registryDependencies": [
+        "toggle"
+      ],
+      "files": [
+        {
+          "type": "style",
+          "path": "components/toggle-group/toggle-group.style.ts",
+          "hash": "3f26df60ac59a624ccb9095a07ca91f3"
+        },
+        {
+          "type": "component",
+          "path": "components/toggle-group/toggle-group.vue",
+          "hash": "13bcfcfd9d3eb006a4c4c3db9b6e5c73"
+        },
+        {
+          "type": "type",
+          "path": "components/toggle-group/toggle-group.props.ts",
+          "hash": "d7694fa2bf08e87ed4bcaa549ee2b684"
         }
       ]
     },

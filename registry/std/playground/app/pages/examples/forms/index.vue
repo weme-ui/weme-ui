@@ -8,12 +8,17 @@ import PinInputExample from './pin-input.vue'
 import SwitchExample from './switch.vue'
 import TagsInputExample from './tags-input.vue'
 import TextareaExample from './textarea.vue'
+import ToggleGroupExample from './toggle-group.vue'
 import ToggleExample from './toggle.vue'
 </script>
 
 <template>
   <Example title="开关按钮" description="Toggle">
     <ToggleExample />
+  </Example>
+
+  <Example title="开关按钮组" description="Toggle Group">
+    <ToggleGroupExample />
   </Example>
 
   <Example title="输入框" description="Input">

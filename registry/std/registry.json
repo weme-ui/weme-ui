@@ -1320,7 +1320,7 @@
         {
           "type": "component",
           "path": "components/password-input/password-input.vue",
-          "hash": "aa3a5526ecf3f74cfe2e2a1f5eaf658a"
+          "hash": "31851c7b8c85f2eaff54e44bdcdcf46a"
         }
       ]
     },
@@ -1998,6 +1998,32 @@
           "width": "24rem"
         }
       }
+    },
+    {
+      "name": "toggle",
+      "type": "component",
+      "title": "Toggle",
+      "description": "Used to toggle between two states.",
+      "registryDependencies": [
+        "icon"
+      ],
+      "files": [
+        {
+          "type": "style",
+          "path": "components/toggle/toggle.style.ts",
+          "hash": "5ab28be5e028129fd8373702b9063070"
+        },
+        {
+          "type": "component",
+          "path": "components/toggle/toggle.vue",
+          "hash": "2b6885c57a7049d53122872bd6007e58"
+        },
+        {
+          "type": "type",
+          "path": "components/toggle/toggle.props.ts",
+          "hash": "31b6999be3d8da2a13ea2966265fa623"
+        }
+      ]
     },
     {
       "name": "toggle-tooltip",

@@ -94,8 +94,8 @@ pnpm dlx @weme-ui/weme-ui add <name>
   - [ ] `select`
   - [ ] `slider`
   - [ ] `time-picker`
-  - [ ] `toggle-group`
-  - [ ] `toggle`
+  - [x] `toggle-group`
+  - [x] `toggle`
   - [x] `form`
   - [x] `input`
   - [x] `number-input`

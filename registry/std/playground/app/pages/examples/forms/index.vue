@@ -8,15 +8,12 @@ import PinInputExample from './pin-input.vue'
 import SwitchExample from './switch.vue'
 import TagsInputExample from './tags-input.vue'
 import TextareaExample from './textarea.vue'
+import ToggleExample from './toggle.vue'
 </script>
 
 <template>
-  <Example title="表单" description="Form">
-    <FormExample />
-  </Example>
-
-  <Example title="标签输入框" description="Tags Input">
-    <TagsInputExample />
+  <Example title="开关按钮" description="Toggle">
+    <ToggleExample />
   </Example>
 
   <Example title="输入框" description="Input">
@@ -35,6 +32,10 @@ import TextareaExample from './textarea.vue'
     <NumberInputExample />
   </Example>
 
+  <Example title="标签输入框" description="Tags Input">
+    <TagsInputExample />
+  </Example>
+
   <Example title="PIN 输入框" description="Pin Input">
     <PinInputExample />
   </Example>
@@ -45,5 +46,9 @@ import TextareaExample from './textarea.vue'
 
   <Example title="开关" description="Switch">
     <SwitchExample />
+  </Example>
+
+  <Example title="表单" description="Form">
+    <FormExample />
   </Example>
 </template>

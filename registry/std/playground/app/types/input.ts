@@ -16,4 +16,5 @@ export interface FormFieldInjectedProps<T> {
   radius?: GetStyleProps<T, 'radius'>
   disabled?: boolean
   required?: boolean
+  invalid?: boolean
 }

@@ -67,7 +67,7 @@
           "type": "file",
           "path": "types/input.ts",
           "target": "~/types/input.ts",
-          "hash": "d2e34b23160601f31b5e29364e130376"
+          "hash": "2d2f4492456be9e132ec5e13ab506c2d"
         },
         {
           "type": "file",
@@ -734,6 +734,43 @@
       ]
     },
     {
+      "name": "form",
+      "type": "component",
+      "title": "Form",
+      "description": "Used to wrap a group of form elements.",
+      "devDependencies": [
+        "@vee-validate/zod",
+        "vee-validate",
+        "zod"
+      ],
+      "registryDependencies": [
+        "icon-button",
+        "toggle-tooltip"
+      ],
+      "files": [
+        {
+          "type": "composable",
+          "path": "composables/use-form-field.ts",
+          "hash": "104199e36ed0a1c9fb6933aee77e91d7"
+        },
+        {
+          "type": "style",
+          "path": "components/form/form-field.style.ts",
+          "hash": "81ecb87c03c892e42ad50d631d6fc015"
+        },
+        {
+          "type": "type",
+          "path": "components/form/form-field.props.ts",
+          "hash": "c7f952129c54eba87dc92b5d896d5fc2"
+        },
+        {
+          "type": "component",
+          "path": "components/form/form-field.vue",
+          "hash": "ad6ffdb5f2c2f12e1792e847381e3312"
+        }
+      ]
+    },
+    {
       "name": "group",
       "type": "component",
       "title": "Group",
@@ -935,7 +972,7 @@
         {
           "type": "component",
           "path": "components/input/input.vue",
-          "hash": "1a37ef2bd50d330ea048b0301f588c39"
+          "hash": "c6d44d49effc92093be06f7d49975a9e"
         }
       ]
     },
@@ -1156,7 +1193,7 @@
         {
           "type": "component",
           "path": "components/number-input/number-input.vue",
-          "hash": "ac07565e04ee62036cc7f893ac2b77a3"
+          "hash": "ccca71d88b9faccde64e6d8cfe66ccff"
         }
       ]
     },
@@ -1339,7 +1376,7 @@
         {
           "type": "component",
           "path": "components/pin-input/pin-input.vue",
-          "hash": "e50018ea386c51ed5990e7fc5adc777d"
+          "hash": "d0231ca7f5abf2ff4ae227fd540bf3ea"
         }
       ]
     },
@@ -1688,12 +1725,12 @@
         {
           "type": "component",
           "path": "components/switch/switch.vue",
-          "hash": "4e088b62376a8c86f912e26b18d8cd36"
+          "hash": "54c18450e55a73343866a5c7ff98bbc7"
         },
         {
           "type": "style",
           "path": "components/switch/switch.style.ts",
-          "hash": "80b188735be02ea2902efaff30a596d1"
+          "hash": "864688ddd9c6b3a46534a3f42cae8884"
         },
         {
           "type": "type",
@@ -1810,7 +1847,7 @@
         {
           "type": "component",
           "path": "components/tags-input/tags-input.vue",
-          "hash": "d210cd3d0c0c0418eb2b7d88f41f6aaf"
+          "hash": "d92a898f91860d8ec6b212b8ffc3d04f"
         },
         {
           "type": "style",
@@ -1833,7 +1870,7 @@
         {
           "type": "component",
           "path": "components/textarea/textarea.vue",
-          "hash": "ad794609ef8de0af2972429004553ba9"
+          "hash": "e7174baad64801f87d0e46ef103dcfb9"
         },
         {
           "type": "type",

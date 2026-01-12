@@ -38,6 +38,7 @@
     "@tanstack/vue-table": "catalog:",
     "@tanstack/vue-virtual": "catalog:",
     "@types/qrcode": "catalog:",
+    "@vee-validate/zod": "catalog:",
     "@vueuse/core": "catalog:",
     "@weme-ui/nuxt": "workspace:*",
     "@weme-ui/unocss-preset": "workspace:*",
@@ -61,6 +62,7 @@
     "vee-validate": "catalog:",
     "vue": "catalog:",
     "vue-router": "catalog:",
-    "vue-tsc": "catalog:"
+    "vue-tsc": "catalog:",
+    "zod": "catalog:"
   }
 }

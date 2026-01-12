@@ -86,7 +86,6 @@ pnpm dlx @weme-ui/weme-ui add <name>
   - [ ] `date-picker`
   - [ ] `editable`
   - [ ] `file-upload`
-  - [ ] `form`
   - [ ] `mention`
   - [ ] `radio-card`
   - [ ] `radio-group`
@@ -97,6 +96,7 @@ pnpm dlx @weme-ui/weme-ui add <name>
   - [ ] `time-picker`
   - [ ] `toggle-group`
   - [ ] `toggle`
+  - [x] `form`
   - [x] `input`
   - [x] `number-input`
   - [x] `password-input`

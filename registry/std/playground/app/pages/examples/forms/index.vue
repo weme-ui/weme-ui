@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+import FormExample from './form.vue'
 import InputExample from './input.vue'
 import NumberInputExample from './number-input.vue'
 import PasswordInputExample from './password-input.vue'
@@ -10,6 +11,10 @@ import TextareaExample from './textarea.vue'
 </script>
 
 <template>
+  <Example title="表单" description="Form">
+    <FormExample />
+  </Example>
+
   <Example title="标签输入框" description="Tags Input">
     <TagsInputExample />
   </Example>

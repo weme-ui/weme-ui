@@ -1589,6 +1589,32 @@
       ]
     },
     {
+      "name": "slider",
+      "type": "component",
+      "title": "Slider",
+      "description": "Used to allow users to make selections from a range of values.",
+      "registryDependencies": [
+        "tooltip"
+      ],
+      "files": [
+        {
+          "type": "component",
+          "path": "components/slider/slider.vue",
+          "hash": "7c72375e6fe663e06ab3211d8fc733a7"
+        },
+        {
+          "type": "style",
+          "path": "components/slider/slider.style.ts",
+          "hash": "6bf82304b53ceff60c663728adbb9e8e"
+        },
+        {
+          "type": "type",
+          "path": "components/slider/slider.props.ts",
+          "hash": "15f152afeb988fbf03410b6b9d0fc79e"
+        }
+      ]
+    },
+    {
       "name": "spinner",
       "type": "component",
       "title": "Spinner",
@@ -2106,7 +2132,7 @@
         {
           "type": "style",
           "path": "components/tooltip/tooltip.style.ts",
-          "hash": "1dd8d64f33cc0cc3af5e1a57b94a3b8b"
+          "hash": "4e358eba8f05c0cc9254f24b0888c2a9"
         }
       ],
       "cssVars": {

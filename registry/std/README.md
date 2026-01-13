@@ -92,19 +92,19 @@ pnpm dlx @weme-ui/weme-ui add <name>
   - [ ] `rating`
   - [ ] `segmented-control`
   - [ ] `select`
-  - [ ] `slider`
   - [ ] `time-picker`
-  - [x] `toggle-group`
-  - [x] `toggle`
   - [x] `form`
   - [x] `input`
   - [x] `number-input`
   - [x] `password-input`
   - [x] `password-strength-meter`
   - [x] `pin-input`
+  - [x] `slider`
   - [x] `switch`
   - [x] `tags-input`
   - [x] `textarea`
+  - [x] `toggle-group`
+  - [x] `toggle`
 - Overlays
   - [x] `action-sheet`
   - [x] `dropdown`

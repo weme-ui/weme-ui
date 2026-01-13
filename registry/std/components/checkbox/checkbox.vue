@@ -2,7 +2,7 @@
 import type { CheckboxEmits, CheckboxProps } from './checkbox.props'
 import { reactiveOmit } from '@vueuse/core'
 import { CheckboxIndicator, CheckboxRoot, Label, useForwardPropsEmits, VisuallyHidden } from 'reka-ui'
-import { computed } from 'vue'
+import { computed, watch } from 'vue'
 import { useFormField } from '~/composables/use-form-field'
 import { toBoolValue } from '~/utils/props'
 import { cn } from '~/utils/styles'
@@ -36,6 +36,14 @@ function getState(checked: boolean | 'indeterminate') {
       ? 'checked'
       : 'unchecked'
 }
+
+watch(
+  () => props.modelValue,
+  (value) => {
+    if (value !== undefined && value !== null)
+      emits('change', value)
+  },
+)
 </script>
 
 <template>

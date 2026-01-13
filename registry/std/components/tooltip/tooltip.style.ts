@@ -6,7 +6,7 @@ export const useTooltipStyle = createVariants({
     trigger: 'focus-visible:outline-none',
     contentWrapper: 'flex-(~ center) gap-1.5',
     content: [
-      'overflow-hidden select-none px-2.5 py-1 text-sm bg-tooltip/80 text-tooltip z-tooltip backdrop-blur-3xl pointer-events-auto',
+      'select-none px-2.5 py-1 text-sm bg-tooltip/80 text-tooltip z-tooltip backdrop-blur-3xl pointer-events-auto',
       'data-[state=delayed-open]:animate-scale-in state-closed:animate-scale-out origin-$reka-tooltip-content-transform-origin',
     ],
     arrow: 'fill-tooltip/80 backdrop-blur-3xl',

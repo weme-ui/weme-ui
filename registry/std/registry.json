@@ -1491,6 +1491,32 @@
       ]
     },
     {
+      "name": "rating",
+      "type": "component",
+      "title": "Rating",
+      "description": "Used to allow users to rate something.",
+      "registryDependencies": [
+        "icon"
+      ],
+      "files": [
+        {
+          "type": "style",
+          "path": "components/rating/rating.style.ts",
+          "hash": "ea29a922577990630e3e1da616e0dc53"
+        },
+        {
+          "type": "type",
+          "path": "components/rating/rating.props.ts",
+          "hash": "a8a046a68830ca4b8279a20e9e75848a"
+        },
+        {
+          "type": "component",
+          "path": "components/rating/rating.vue",
+          "hash": "640acbfbbc0146c8ab5a553e59a2e6bb"
+        }
+      ]
+    },
+    {
       "name": "result",
       "type": "component",
       "title": "Result",
@@ -1600,7 +1626,7 @@
         {
           "type": "component",
           "path": "components/slider/slider.vue",
-          "hash": "7c72375e6fe663e06ab3211d8fc733a7"
+          "hash": "b1c39075d8b6754e02ba9c7b29d82122"
         },
         {
           "type": "style",

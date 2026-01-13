@@ -5,6 +5,7 @@ import NumberInputExample from './number-input.vue'
 import PasswordInputExample from './password-input.vue'
 import PasswordStrengthMeterExample from './password-strength-meter.vue'
 import PinInputExample from './pin-input.vue'
+import RatingExample from './rating.vue'
 import SliderExample from './slider.vue'
 import SwitchExample from './switch.vue'
 import TagsInputExample from './tags-input.vue'
@@ -14,8 +15,8 @@ import ToggleExample from './toggle.vue'
 </script>
 
 <template>
-  <Example title="滑块" description="Slider">
-    <SliderExample />
+  <Example title="评分" description="Rating">
+    <RatingExample />
   </Example>
 
   <Example title="输入框" description="Input">
@@ -56,6 +57,10 @@ import ToggleExample from './toggle.vue'
 
   <Example title="开关按钮组" description="Toggle Group">
     <ToggleGroupExample />
+  </Example>
+
+  <Example title="滑块" description="Slider">
+    <SliderExample />
   </Example>
 
   <Example title="表单" description="Form">

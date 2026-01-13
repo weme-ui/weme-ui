@@ -84,12 +84,9 @@ pnpm dlx @weme-ui/weme-ui add <name>
   - [ ] `color-picker`
   - [ ] `color-swatch`
   - [ ] `date-picker`
-  - [ ] `editable`
   - [ ] `file-upload`
-  - [ ] `mention`
   - [ ] `radio-card`
   - [ ] `radio-group`
-  - [ ] `rating`
   - [ ] `segmented-control`
   - [ ] `select`
   - [ ] `time-picker`
@@ -99,6 +96,7 @@ pnpm dlx @weme-ui/weme-ui add <name>
   - [x] `password-input`
   - [x] `password-strength-meter`
   - [x] `pin-input`
+  - [x] `rating`
   - [x] `slider`
   - [x] `switch`
   - [x] `tags-input`

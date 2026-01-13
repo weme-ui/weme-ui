@@ -132,7 +132,7 @@ watch(
       </CheckboxIndicator>
     </div>
 
-    <slot />
+    <slot v-bind="{ state }" />
 
     <div
       v-if="!!$slots.trailing"

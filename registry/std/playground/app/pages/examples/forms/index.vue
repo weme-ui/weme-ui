@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+import CheckboxGroupExample from './checkbox-group.vue'
 import CheckboxExample from './checkbox.vue'
 import FormExample from './form.vue'
 import InputExample from './input.vue'
@@ -66,6 +67,10 @@ import ToggleExample from './toggle.vue'
 
   <Example title="复选框" description="Checkbox">
     <CheckboxExample />
+  </Example>
+
+  <Example title="复选框组" description="Checkbox Group">
+    <CheckboxGroupExample />
   </Example>
 
   <Example title="表单" description="Form">

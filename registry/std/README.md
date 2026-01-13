@@ -79,17 +79,16 @@ pnpm dlx @weme-ui/weme-ui add <name>
   - [x] `steps`
   - [x] `tabs`
 - Forms
-  - [ ] `checkbox-card`
-  - [ ] `checkbox`
   - [ ] `color-picker`
   - [ ] `color-swatch`
   - [ ] `date-picker`
   - [ ] `file-upload`
-  - [ ] `radio-card`
   - [ ] `radio-group`
   - [ ] `segmented-control`
   - [ ] `select`
   - [ ] `time-picker`
+  - [x] `checkbox-group`
+  - [x] `checkbox`
   - [x] `form`
   - [x] `input`
   - [x] `number-input`

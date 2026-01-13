@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+import CheckboxExample from './checkbox.vue'
 import FormExample from './form.vue'
 import InputExample from './input.vue'
 import NumberInputExample from './number-input.vue'
@@ -15,10 +16,6 @@ import ToggleExample from './toggle.vue'
 </script>
 
 <template>
-  <Example title="评分" description="Rating">
-    <RatingExample />
-  </Example>
-
   <Example title="输入框" description="Input">
     <InputExample />
   </Example>
@@ -61,6 +58,14 @@ import ToggleExample from './toggle.vue'
 
   <Example title="滑块" description="Slider">
     <SliderExample />
+  </Example>
+
+  <Example title="评分" description="Rating">
+    <RatingExample />
+  </Example>
+
+  <Example title="复选框" description="Checkbox">
+    <CheckboxExample />
   </Example>
 
   <Example title="表单" description="Form">

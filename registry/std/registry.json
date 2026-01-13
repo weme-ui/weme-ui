@@ -537,6 +537,32 @@
       ]
     },
     {
+      "name": "checkbox",
+      "type": "component",
+      "title": "Checkbox",
+      "description": "Used to allow users to select multiple items from a list of options.",
+      "registryDependencies": [
+        "icon"
+      ],
+      "files": [
+        {
+          "type": "component",
+          "path": "components/checkbox/checkbox.vue",
+          "hash": "a75688c92eafa11baf06e01728541d8c"
+        },
+        {
+          "type": "type",
+          "path": "components/checkbox/checkbox.props.ts",
+          "hash": "20a4ef6c8b6d4a598548f8320e359c5b"
+        },
+        {
+          "type": "style",
+          "path": "components/checkbox/checkbox.style.ts",
+          "hash": "432bca5e2308298152813e0a167c6a82"
+        }
+      ]
+    },
+    {
       "name": "clipboard",
       "type": "component",
       "title": "Clipboard",

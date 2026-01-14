@@ -17,9 +17,9 @@ export const useTabsStyle = createVariants({
   variants: {
     variant: {
       line: { indicator: 'bg-primary' },
-      pill: { indicator: 'bg-elevated' },
+      pill: { indicator: 'bg-muted' },
       card: { indicator: 'after:(abs content-[""] z-2)', content: 'b-(~ default)' },
-      capsule: { list: 'self-start bg-elevated p-1', indicator: 'bg-default shadow-sm', actions: 'abs' },
+      capsule: { list: 'self-start bg-muted p-1', indicator: 'bg-default shadow-sm', actions: 'abs' },
       plain: {},
     },
     side: {

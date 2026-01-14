@@ -548,7 +548,7 @@
         {
           "type": "component",
           "path": "components/checkbox/checkbox.vue",
-          "hash": "bccd096ecd410f95b19e43ca393302da"
+          "hash": "27819dea57ea3ee1d2fbb64027e6a0c9"
         },
         {
           "type": "type",
@@ -558,7 +558,7 @@
         {
           "type": "style",
           "path": "components/checkbox/checkbox.style.ts",
-          "hash": "432bca5e2308298152813e0a167c6a82"
+          "hash": "87194e18c6e69afc9a595e39406b12e4"
         }
       ]
     },
@@ -579,7 +579,7 @@
         {
           "type": "style",
           "path": "components/checkbox-group/checkbox-group.style.ts",
-          "hash": "445b93c91c651a93bebbd4bfe1ffb002"
+          "hash": "57e9d626aa5c6b83b1440b0903c8b55d"
         },
         {
           "type": "type",
@@ -1539,6 +1539,29 @@
           "type": "component",
           "path": "components/qr-code/qr-code.vue",
           "hash": "430935d86e2bc58da26cf6797c288d4c"
+        }
+      ]
+    },
+    {
+      "name": "radio-group",
+      "type": "component",
+      "title": "Radio Group",
+      "description": "Used to select a single value from a list of options.",
+      "files": [
+        {
+          "type": "component",
+          "path": "components/radio-group/radio-group.vue",
+          "hash": "a16ac11532fd0a2552b58c1e224ab063"
+        },
+        {
+          "type": "type",
+          "path": "components/radio-group/radio-group.props.ts",
+          "hash": "e31e2a398636728776c8a65e3befff76"
+        },
+        {
+          "type": "style",
+          "path": "components/radio-group/radio-group.style.ts",
+          "hash": "af89ac3560bd0d7e44215a48a6844f5d"
         }
       ]
     },

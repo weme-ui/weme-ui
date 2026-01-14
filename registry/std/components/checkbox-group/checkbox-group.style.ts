@@ -23,7 +23,7 @@ export const useCheckboxGroupStyle = createVariants({
         item: 'bg-neutral-1 b-(~ default) hover:state-unchecked:b-elevated',
       },
       table: {
-        root: 'overflow-hidden bg-neutral-1 b-(~ default)',
+        root: 'bg-neutral-1 b-(~ default)',
         item: 'flex-1 overflow-hidden focus-visible:z-1',
       },
     },

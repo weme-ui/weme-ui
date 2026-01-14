@@ -98,7 +98,7 @@ watch(
         :for="id"
         :class="cn(ui.label(), props.ui?.label)"
       >
-        <slot name="label" v-bind="{ state }">
+        <slot name="label" v-bind="{ label, state }">
           {{ label }}
         </slot>
       </Label>
@@ -108,10 +108,11 @@ watch(
         :data-state="getState(state)"
         :class="cn(ui.description(), props.ui?.description)"
       >
-        <slot name="description" v-bind="{ state }">
+        <slot name="description" v-bind="{ description, state }">
           {{ description }}
         </slot>
       </p>
+      <slot v-bind="{ state }" />
     </div>
 
     <div
@@ -131,8 +132,6 @@ watch(
         </slot>
       </CheckboxIndicator>
     </div>
-
-    <slot v-bind="{ state }" />
 
     <div
       v-if="!!$slots.trailing"

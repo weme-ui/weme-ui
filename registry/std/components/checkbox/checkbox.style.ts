@@ -5,10 +5,10 @@ export const useCheckboxStyle = createVariants({
   slots: {
     root: 'flex-(~ y-center)',
     indicatorWrapper: 'flex-(~ center) bg-muted transition-colors hover:state-unchecked:bg-elevated',
-    indicator: 'relative transition-transform animate-scale-in-big',
+    indicator: 'relative text-neutral-1 transition-transform animate-scale-in-big',
     wrapper: 'flex-(~ 1 col) text-highlighted items-start',
     label: 'leading-none state-checked:font-medium',
-    description: 'text-toned state-checked:text-default',
+    description: 'text-toned leading-none state-checked:text-default',
     leading: '',
     trailing: '',
   },
@@ -17,31 +17,24 @@ export const useCheckboxStyle = createVariants({
     color: {
       primary: {
         indicatorWrapper: 'state-checked:bg-primary state-indeterminate:bg-primary',
-        indicator: 'text-primary-1',
       },
       secondary: {
         indicatorWrapper: 'state-checked:bg-secondary state-indeterminate:bg-secondary',
-        indicator: 'text-secondary-1',
       },
       neutral: {
         indicatorWrapper: 'state-checked:bg-neutral state-indeterminate:bg-neutral',
-        indicator: 'text-neutral-1',
       },
       info: {
         indicatorWrapper: 'state-checked:bg-info state-indeterminate:bg-info',
-        indicator: 'text-info-1',
       },
       success: {
         indicatorWrapper: 'state-checked:bg-success state-indeterminate:bg-success',
-        indicator: 'text-success-1',
       },
       warning: {
         indicatorWrapper: 'state-checked:bg-warning state-indeterminate:bg-warning',
-        indicator: 'text-warning-1',
       },
       danger: {
         indicatorWrapper: 'state-checked:bg-danger state-indeterminate:bg-danger',
-        indicator: 'text-danger-1',
       },
     },
     size: {

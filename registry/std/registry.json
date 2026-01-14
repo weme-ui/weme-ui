@@ -1644,6 +1644,32 @@
       ]
     },
     {
+      "name": "segmented-control",
+      "type": "component",
+      "title": "Segmented Control",
+      "description": "Used to pick one choice from a linear set of options.",
+      "registryDependencies": [
+        "icon"
+      ],
+      "files": [
+        {
+          "type": "component",
+          "path": "components/segmented-control/segmented-control.vue",
+          "hash": "be9b8cfa07ade5fec9a45d705a7a3880"
+        },
+        {
+          "type": "style",
+          "path": "components/segmented-control/segmented-control.style.ts",
+          "hash": "9a6f6bd4f6dd175f107bb15f0a6e6466"
+        },
+        {
+          "type": "type",
+          "path": "components/segmented-control/segmented-control.props.ts",
+          "hash": "a4cc3cd3b1abb4ecb4bfdee672944af9"
+        }
+      ]
+    },
+    {
       "name": "separator",
       "type": "component",
       "title": "Separator",
@@ -1912,7 +1938,7 @@
         {
           "type": "style",
           "path": "components/tabs/tabs.style.ts",
-          "hash": "15572453503ad21425f9454a03c7f507"
+          "hash": "309f621bc8dca5bd209a235e0b2c009c"
         },
         {
           "type": "type",

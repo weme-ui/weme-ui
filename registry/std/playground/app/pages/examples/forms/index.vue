@@ -9,6 +9,7 @@ import PasswordStrengthMeterExample from './password-strength-meter.vue'
 import PinInputExample from './pin-input.vue'
 import RadioGroupExample from './radio-group.vue'
 import RatingExample from './rating.vue'
+import SegmentedControlExample from './segmented-control.vue'
 import SliderExample from './slider.vue'
 import SwitchExample from './switch.vue'
 import TagsInputExample from './tags-input.vue'
@@ -18,10 +19,6 @@ import ToggleExample from './toggle.vue'
 </script>
 
 <template>
-  <Example title="单选框组" description="Radio Group">
-    <RadioGroupExample />
-  </Example>
-
   <Example title="输入框" description="Input">
     <InputExample />
   </Example>
@@ -76,6 +73,14 @@ import ToggleExample from './toggle.vue'
 
   <Example title="复选框组" description="Checkbox Group">
     <CheckboxGroupExample />
+  </Example>
+
+  <Example title="单选框组" description="Radio Group">
+    <RadioGroupExample />
+  </Example>
+
+  <Example title="分段控制" description="Segmented Control">
+    <SegmentedControlExample />
   </Example>
 
   <Example title="表单" description="Form">

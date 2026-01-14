@@ -82,8 +82,8 @@ pnpm dlx @weme-ui/weme-ui add <name>
   - [ ] `color-picker`
   - [ ] `color-swatch`
   - [ ] `date-picker`
+  - [ ] `emoji-picker`
   - [ ] `file-upload`
-  - [ ] `segmented-control`
   - [ ] `select`
   - [ ] `time-picker`
   - [x] `checkbox-group`
@@ -96,6 +96,7 @@ pnpm dlx @weme-ui/weme-ui add <name>
   - [x] `pin-input`
   - [x] `radio-group`
   - [x] `rating`
+  - [x] `segmented-control`
   - [x] `slider`
   - [x] `switch`
   - [x] `tags-input`
@@ -113,6 +114,7 @@ pnpm dlx @weme-ui/weme-ui add <name>
   - [x] `tooltip`
   - [x] `overlay`
 - Others
+  - [ ] `captcha`
   - [ ] `floating-panel`
   - [ ] `signature`
   - [ ] `splitter`

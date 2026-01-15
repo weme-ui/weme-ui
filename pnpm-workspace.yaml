@@ -14,7 +14,7 @@ packages:
   - packages/*
 
 catalog:
-  '@antfu/eslint-config': ^7.0.0
+  '@antfu/eslint-config': ^7.0.1
   '@clack/core': ^0.5.0
   '@clack/prompts': ^0.11.0
   '@commitlint/cli': ^20.3.1
@@ -38,10 +38,10 @@ catalog:
   '@types/node': 24.0.15
   '@types/qrcode': ^1.5.6
   '@types/spark-md5': ^3.0.5
-  '@typescript/native-preview': ^7.0.0-dev.20260113.1
-  '@unocss/core': ^66.5.12
-  '@unocss/nuxt': ^66.5.12
-  '@unocss/rule-utils': ^66.5.12
+  '@typescript/native-preview': ^7.0.0-dev.20260115.1
+  '@unocss/core': ^66.6.0
+  '@unocss/nuxt': ^66.6.0
+  '@unocss/rule-utils': ^66.6.0
   '@vee-validate/zod': ^4.15.1
   '@vitejs/plugin-vue': ^6.0.3
   '@vueuse/core': ^14.1.0
@@ -98,10 +98,10 @@ catalog:
   tinyexec: ^1.0.2
   tinyglobby: ^0.2.15
   tsdown: ^0.19.0
-  type-fest: ^5.4.0
+  type-fest: ^5.4.1
   typescript: ^5.9.3
-  ufo: ^1.6.2
-  unocss: ^66.5.12
+  ufo: ^1.6.3
+  unocss: ^66.6.0
   vee-validate: ^4.15.1
   vite: ^7.3.1
   vitest: ^4.0.17

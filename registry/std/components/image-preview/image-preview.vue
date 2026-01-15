@@ -70,6 +70,6 @@ function onHidden() {
 
       <slot name="actions" />
     </div>
-    <Overlay v-model="show" data-slot="image-preview-overlay" :class="cn(ui.overlay(), props.ui?.overlay)" @click="onHidden" />
+    <Overlay :visible="show" data-slot="image-preview-overlay" :class="cn(ui.overlay(), props.ui?.overlay)" @click="onHidden" />
   </Teleport>
 </template>

@@ -7,21 +7,33 @@ export const useSpinnerStyle = createVariants({
     indicator: 'animate-spin',
     description: 'text-sm',
     viewport: '',
+    overlay: '',
   },
 
   variants: {
     size: {
-      xs: { root: 'gap-1', indicator: 'size-3' },
-      sm: { root: 'gap-1', indicator: 'size-4' },
-      md: { root: 'gap-1.5', indicator: 'size-6' },
-      lg: { root: 'gap-2', indicator: 'size-8' },
-      xl: { root: 'gap-2.5', indicator: 'size-10' },
+      xs: { indicator: 'size-3' },
+      sm: { indicator: 'size-4' },
+      md: { indicator: 'size-6' },
+      lg: { indicator: 'size-8' },
+      xl: { indicator: 'size-10' },
     },
     overlay: {
-      true: { root: 'relative overflow-hidden', viewport: 'abs inset-0 flex-(~ center) gap-2 c-primary-1 z-tooltip' },
+      true: { viewport: 'abs inset-0 flex-(~ center) gap-2 c-primary-1 z-tooltip' },
       false: { root: 'flex-(~ center) gap-2 c-primary' },
     },
+    loading: { true: '' },
   },
+
+  compoundVariants: [
+    { loading: true, overlay: true, class: { root: 'relative' } },
+
+    { loading: true, size: 'xs', class: { root: 'gap-1' } },
+    { loading: true, size: 'sm', class: { root: 'gap-1' } },
+    { loading: true, size: 'md', class: { root: 'gap-1.5' } },
+    { loading: true, size: 'lg', class: { root: 'gap-2' } },
+    { loading: true, size: 'xl', class: { root: 'gap-2.5' } },
+  ],
 
   defaultVariants: {
     size: 'md',

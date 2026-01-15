@@ -16,7 +16,6 @@ const props = withDefaults(defineProps<SpinnerProps>(), { icon: 'loading' })
 const delegated = reactivePick(props, 'as', 'asChild')
 const slots = useSlots()
 const overlay = computed(() => slots.default?.() !== undefined)
-const loading = defineModel<boolean>({ default: false })
 
 const ui = computed(() => useSpinnerStyle({
   ...props,
@@ -45,7 +44,7 @@ const [
       <div data-slot="spinner-viewport" :class="cn(ui.viewport(), props.ui?.viewport)">
         <ReuseLoading />
       </div>
-      <Overlay v-model="loading" data-slot="spinner-overlay" />
+      <Overlay :visible="loading" data-slot="spinner-overlay" :class="cn(ui.overlay(), props.ui?.overlay)" />
     </template>
 
     <template v-else>

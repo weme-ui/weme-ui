@@ -3,13 +3,13 @@ import { ref } from 'vue'
 import Button from '../../button/button.vue'
 import Overlay from '../overlay.vue'
 
-const open = ref(false)
+const visible = ref(false)
 </script>
 
 <template>
   <div class="flex-(~ center)">
-    <Button label="Open" @click="open = !open" />
+    <Button label="Open" @click="visible = !visible" />
   </div>
 
-  <Overlay v-model="open" class="fixed" @click="open = false" />
+  <Overlay :visible="visible" class="fixed" @click="visible = false" />
 </template>

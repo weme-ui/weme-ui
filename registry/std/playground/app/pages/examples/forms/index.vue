@@ -10,6 +10,7 @@ import PinInputExample from './pin-input.vue'
 import RadioGroupExample from './radio-group.vue'
 import RatingExample from './rating.vue'
 import SegmentedControlExample from './segmented-control.vue'
+import SelectExample from './select.vue'
 import SliderExample from './slider.vue'
 import SwitchExample from './switch.vue'
 import TagsInputExample from './tags-input.vue'
@@ -19,6 +20,10 @@ import ToggleExample from './toggle.vue'
 </script>
 
 <template>
+  <Example title="下拉选择框" description="Select">
+    <SelectExample />
+  </Example>
+
   <Example title="输入框" description="Input">
     <InputExample />
   </Example>

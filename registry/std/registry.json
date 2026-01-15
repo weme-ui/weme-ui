@@ -44,7 +44,7 @@
         {
           "type": "composable",
           "path": "composables/use-portal.ts",
-          "hash": "540f7f50bdca7281c324d537e0a2f725"
+          "hash": "b227e50df595fabbc8e0e33171a26183"
         },
         {
           "type": "composable",
@@ -988,7 +988,7 @@
         {
           "type": "component",
           "path": "components/image-preview/image-preview.vue",
-          "hash": "078ce5d81679362a1edaebeeeaee79df"
+          "hash": "b0267f000c996c0edf15bb8a044e7309"
         },
         {
           "type": "type",
@@ -1304,12 +1304,12 @@
         {
           "type": "type",
           "path": "components/overlay/overlay.props.ts",
-          "hash": "6b29bba3fff3a6bfb73419d9bbabc32e"
+          "hash": "abae210a226f3d5465b4bb9342fc2f7f"
         },
         {
           "type": "component",
           "path": "components/overlay/overlay.vue",
-          "hash": "833726c2328f29069558a81d1ca4f7cd"
+          "hash": "70a22890e203a2df0a6eef4d329bece6"
         },
         {
           "type": "style",
@@ -1670,6 +1670,33 @@
       ]
     },
     {
+      "name": "select",
+      "type": "component",
+      "title": "Select",
+      "description": "Used to pick a value from predefined options.",
+      "registryDependencies": [
+        "icon",
+        "popover"
+      ],
+      "files": [
+        {
+          "type": "component",
+          "path": "components/select/select.vue",
+          "hash": "7e08c81ca9e8e923036a26f4239de02c"
+        },
+        {
+          "type": "type",
+          "path": "components/select/select.props.ts",
+          "hash": "ebeb05176ab2ad0524aa172f5c71cef7"
+        },
+        {
+          "type": "style",
+          "path": "components/select/select.style.ts",
+          "hash": "a7bfceab2f2496726de76e88e6042dc1"
+        }
+      ]
+    },
+    {
       "name": "separator",
       "type": "component",
       "title": "Separator",
@@ -1754,17 +1781,17 @@
         {
           "type": "style",
           "path": "components/spinner/spinner.style.ts",
-          "hash": "e83ee3b7cd910e587f2b6b6251ce430d"
+          "hash": "a1315cf8ac1214ce24f248f237bd496f"
         },
         {
           "type": "type",
           "path": "components/spinner/spinner.props.ts",
-          "hash": "24e1f72bdfbb9cf5c3f3582ca29723a4"
+          "hash": "f18494ae1e1cc9494d20412c2181fa1c"
         },
         {
           "type": "component",
           "path": "components/spinner/spinner.vue",
-          "hash": "d3ffbf84041b48332ab9056fb73406d0"
+          "hash": "f5cfa13458b92f244b08f6621e31df7c"
         }
       ]
     },

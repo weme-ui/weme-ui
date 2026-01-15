@@ -51,6 +51,7 @@ pnpm dlx @weme-ui/weme-ui add <name>
   - [x] `toast`
 - Collections
   - [ ] `combobox`
+  - [ ] `command`
   - [ ] `listbox`
   - [ ] `tree`
 - Data Display
@@ -84,7 +85,6 @@ pnpm dlx @weme-ui/weme-ui add <name>
   - [ ] `date-picker`
   - [ ] `emoji-picker`
   - [ ] `file-upload`
-  - [ ] `select`
   - [ ] `time-picker`
   - [x] `checkbox-group`
   - [x] `checkbox`
@@ -97,6 +97,7 @@ pnpm dlx @weme-ui/weme-ui add <name>
   - [x] `radio-group`
   - [x] `rating`
   - [x] `segmented-control`
+  - [x] `select`
   - [x] `slider`
   - [x] `switch`
   - [x] `tags-input`

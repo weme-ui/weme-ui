@@ -10,6 +10,7 @@ export interface LocaleContext<M> {
   lang: Ref<string>
   dir: Ref<LocaleDirection>
   code: Ref<string>
+  timezone: Ref<string>
   t: Translator
 }
 
@@ -29,6 +30,7 @@ export function translate<M>(path: string, option: undefined | TranslatorOption,
 export function buildLocaleContext<M>(locale: MaybeRef<Locale<M>>): LocaleContext<M> {
   const lang = computed(() => unref(locale).name)
   const code = computed(() => unref(locale).code)
+  const timezone = computed(() => unref(locale).timezone)
   const dir = computed(() => unref(locale).dir)
   const localeRef = isRef(locale) ? locale : ref(locale) as Ref<Locale<M>>
 
@@ -36,6 +38,7 @@ export function buildLocaleContext<M>(locale: MaybeRef<Locale<M>>): LocaleContex
     lang,
     code,
     dir,
+    timezone,
     locale: localeRef,
     t: buildTranslator(locale),
   }

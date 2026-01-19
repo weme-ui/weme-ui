@@ -1,9 +1,10 @@
-import type { LocaleMessages } from '~/types'
+import type { LocaleMessages } from '~/types/locale'
 import { defineLocale } from '~/composables/define-locale'
 
 export default defineLocale<LocaleMessages>({
   name: '简体中文',
   code: 'zh-CN',
+  timezone: 'Asia/Shanghai',
   messages: {
     alert: {
       close: '关闭',
@@ -12,10 +13,15 @@ export default defineLocale<LocaleMessages>({
       close: '关闭',
     },
     calendar: {
-      nextMonth: '下个月',
-      nextYear: '明年',
       prevMonth: '上个月',
+      monthView: '月视图',
+      nextMonth: '下个月',
       prevYear: '去年',
+      yearView: '年视图',
+      nextYear: '明年',
+      prevPage: '上一页',
+      decadeView: '历年视图',
+      nextPage: '下一页',
     },
     carousel: {
       dots: '选择要显示的幻灯片',

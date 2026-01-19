@@ -3,7 +3,7 @@
   "type": "module",
   "version": "0.1.5",
   "private": true,
-  "packageManager": "pnpm@10.28.0",
+  "packageManager": "pnpm@10.28.1",
   "description": "The standard components for Weme UI",
   "author": "Allen Luo <luoyi@mouji.net>",
   "license": "MIT",
@@ -35,6 +35,7 @@
   "devDependencies": {
     "@iconify-json/lucide": "catalog:",
     "@iconify-json/mingcute": "catalog:",
+    "@internationalized/date": "catalog:",
     "@tanstack/vue-table": "catalog:",
     "@tanstack/vue-virtual": "catalog:",
     "@types/qrcode": "catalog:",

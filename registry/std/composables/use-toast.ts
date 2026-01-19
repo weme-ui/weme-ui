@@ -1,6 +1,6 @@
 import type { ToastRootEmits } from 'reka-ui'
 import type { EmitsToProps } from 'vue'
-import type { ToastProps } from '~/types'
+import type { ToastProps } from '~/types/components'
 import { useState } from '#imports'
 import { createSharedComposable } from '@vueuse/core'
 import { nextTick, ref } from 'vue'

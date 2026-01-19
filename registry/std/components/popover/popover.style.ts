@@ -28,7 +28,7 @@ export const usePopoverStyle = createVariants({
       md: { content: 'p-3' },
       lg: { content: 'p-4' },
     },
-    radius: { none: '', xs: '', sm: '', md: '', lg: '', xl: '' },
+    radius: { none: '', xs: '', sm: '', md: '', lg: '', xl: '', full: '' },
     translucent: {
       true: { content: 'bg-popover/80 backdrop-blur-3xl', arrow: 'fill-popover/80' },
       false: { content: 'bg-popover', arrow: 'fill-popover' },
@@ -41,12 +41,14 @@ export const usePopoverStyle = createVariants({
     { variant: 'normal', radius: 'md', class: { contentWrapper: 'rounded-md', content: 'rounded-sm' } },
     { variant: 'normal', radius: 'lg', class: { contentWrapper: 'rounded-lg', content: 'rounded-md' } },
     { variant: 'normal', radius: 'xl', class: { contentWrapper: 'rounded-xl', content: 'rounded-lg' } },
+    { variant: 'normal', radius: 'full', class: { contentWrapper: 'rounded-2xl', content: 'rounded-xl' } },
 
     { variant: 'outline', radius: 'xs', class: { content: 'rounded-xs' } },
     { variant: 'outline', radius: 'sm', class: { content: 'rounded-sm' } },
     { variant: 'outline', radius: 'md', class: { content: 'rounded-md' } },
     { variant: 'outline', radius: 'lg', class: { content: 'rounded-lg' } },
     { variant: 'outline', radius: 'xl', class: { content: 'rounded-xl' } },
+    { variant: 'outline', radius: 'full', class: { content: 'rounded-2xl' } },
 
     { variant: 'normal', size: 'sm', class: { contentWrapper: 'p-1' } },
     { variant: 'normal', size: 'md', class: { contentWrapper: 'p-1.25' } },

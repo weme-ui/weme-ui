@@ -11,6 +11,10 @@ import { toBoolValue } from '~/utils/props'
 import { cn } from '~/utils/styles'
 import { usePopoverStyle } from './popover.style'
 
+defineOptions({
+  inheritAttrs: false,
+})
+
 const props = withDefaults(defineProps<PopoverProps<M>>(), {
   mode: 'click' as never,
   openDelay: 0,
@@ -79,8 +83,17 @@ const Component = computed(() => props.mode === 'hover' ? HoverCard : Popover)
     </Component.Anchor>
 
     <Component.Portal v-bind="portalProps">
-      <Component.Content v-bind="contentProps" data-slot="popover-content-wrapper" :class="cn(ui.contentWrapper(), props.ui?.contentWrapper)" v-on="contentEvents">
-        <div data-slot="popover-content" :class="cn(ui.content(), props.ui?.content, props.class)">
+      <Component.Content
+        v-bind="{ ...contentProps, ...(variant === 'normal' ? $attrs : {}) }"
+        data-slot="popover-content-wrapper"
+        :class="cn(ui.contentWrapper(), props.ui?.contentWrapper, variant === 'normal' && props.class)"
+        v-on="contentEvents"
+      >
+        <div
+          v-bind="variant === 'normal' ? $attrs : {}"
+          data-slot="popover-content"
+          :class="cn(ui.content(), props.ui?.content, variant === 'outline' && props.class)"
+        >
           <slot name="content" v-bind="((close ? { close } : {}))" />
         </div>
         <Component.Arrow v-if="!!arrow" v-bind="arrowProps" data-slot="popover-arrow" :class="cn(ui.arrow(), props.ui?.arrow)" />

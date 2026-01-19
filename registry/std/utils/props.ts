@@ -1,9 +1,19 @@
+import { defu } from 'defu'
+import { toRef } from 'vue'
+
 export function toBoolValue(value: any) {
   return value === '' || value === true
 }
 
 export function toBoolDataAttrValue(value: any) {
   return toBoolValue(value) ? '' : undefined
+}
+
+export function mergeToRef<T>(props: T | undefined | boolean, defaults: T) {
+  return toRef(() => defu(
+    typeof props === 'object' ? props : {},
+    defaults as any,
+  ) as T)
 }
 
 export function get(object: Record<string, any> | undefined, path: (string | number)[] | string, defaultValue?: any): any {

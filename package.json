@@ -47,7 +47,6 @@
     "cz-git": "catalog:",
     "czg": "catalog:",
     "eslint": "catalog:",
-    "eslint-plugin-pnpm": "catalog:",
     "jsonc-eslint-parser": "catalog:",
     "lint-staged": "catalog:",
     "premove": "catalog:",

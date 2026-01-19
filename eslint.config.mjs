@@ -1,11 +1,11 @@
 import antfu from '@antfu/eslint-config'
-import pluginPnpm from 'eslint-plugin-pnpm'
 import * as jsoncParser from 'jsonc-eslint-parser'
 import * as yamlParser from 'yaml-eslint-parser'
 
 export default antfu({
   type: 'app',
 
+  pnpm: true,
   typescript: true,
   markdown: true,
   vue: true,
@@ -29,9 +29,6 @@ export default antfu({
   languageOptions: {
     parser: jsoncParser,
   },
-  plugins: {
-    pnpm: pluginPnpm,
-  },
   rules: {
     'pnpm/json-enforce-catalog': 'error',
     'pnpm/json-valid-catalog': 'error',
@@ -42,9 +39,6 @@ export default antfu({
   files: ['pnpm-workspace.yaml'],
   languageOptions: {
     parser: yamlParser,
-  },
-  plugins: {
-    pnpm: pluginPnpm,
   },
   rules: {
     'pnpm/yaml-no-unused-catalog-item': 'error',

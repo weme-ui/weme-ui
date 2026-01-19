@@ -70,7 +70,6 @@ catalog:
   embla-carousel-vue: ^8.6.0
   embla-carousel-wheel-gestures: ^8.1.0
   eslint: ^9.39.2
-  eslint-plugin-pnpm: ^1.5.0
   esno: ^4.8.0
   handlebars: ^4.7.8
   jsbarcode: ^3.12.3

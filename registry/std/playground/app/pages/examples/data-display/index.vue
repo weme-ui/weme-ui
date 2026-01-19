@@ -2,6 +2,7 @@
 import AvatarGroupExamples from './avatar-group.vue'
 import AvatarExamples from './avatar.vue'
 import BadgeExamples from './badge.vue'
+import CalendarExamples from './calendar.vue'
 import CardExamples from './card.vue'
 import ClipboardExamples from './clipboard.vue'
 import CommentExamples from './comment.vue'
@@ -17,6 +18,10 @@ import TimelineExamples from './timeline.vue'
 </script>
 
 <template>
+  <Example title="日历" description="Calendar">
+    <CalendarExamples />
+  </Example>
+
   <Example title="头像组" description="Avatar Group">
     <AvatarGroupExamples />
   </Example>

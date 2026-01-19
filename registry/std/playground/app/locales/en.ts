@@ -1,9 +1,10 @@
-import type { LocaleMessages } from '~/types'
+import type { LocaleMessages } from '~/types/locale'
 import { defineLocale } from '~/composables/define-locale'
 
 export default defineLocale<LocaleMessages>({
   name: 'English',
   code: 'en',
+  timezone: 'UTC',
   messages: {
     alert: {
       close: 'Close',
@@ -12,10 +13,15 @@ export default defineLocale<LocaleMessages>({
       close: 'Close',
     },
     calendar: {
-      nextMonth: 'Next month',
-      nextYear: 'Next year',
       prevMonth: 'Previous month',
+      monthView: 'Month view',
+      nextMonth: 'Next month',
       prevYear: 'Previous year',
+      yearView: 'Year view',
+      nextYear: 'Next year',
+      prevPage: 'Previous page',
+      decadeView: 'Decade view',
+      nextPage: 'Next page',
     },
     carousel: {
       dots: 'Choose slide to display',

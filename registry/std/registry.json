@@ -13,6 +13,7 @@
       "dependencies": [
         "@vueuse/core",
         "clsx",
+        "defu",
         "reka-ui",
         "tailwind-merge",
         "tailwind-variants"
@@ -29,7 +30,7 @@
         {
           "type": "composable",
           "path": "composables/define-locale.ts",
-          "hash": "c6f0a1880990fe68808766585362d420"
+          "hash": "bc3f7bb5f65ff039033d4870c52ae0be"
         },
         {
           "type": "composable",
@@ -55,13 +56,13 @@
           "type": "file",
           "path": "locales/en.ts",
           "target": "~/locales/en.ts",
-          "hash": "bd1b58b6a1c5e54255c1111f35f213e4"
+          "hash": "18c17ba31d2f3aa1d69862e82e20566a"
         },
         {
           "type": "file",
           "path": "locales/zh_cn.ts",
           "target": "~/locales/zh_cn.ts",
-          "hash": "a499e3c883bd774b979e1ae5950ef300"
+          "hash": "2fc7b296ffacbcc41da3411a425b2477"
         },
         {
           "type": "file",
@@ -73,17 +74,17 @@
           "type": "file",
           "path": "types/locale.ts",
           "target": "~/types/locale.ts",
-          "hash": "f70d84e2e88fc6d57707c2d923298fde"
+          "hash": "c4317428f28126eeecce4815b2805c22"
         },
         {
           "type": "util",
           "path": "utils/locale.ts",
-          "hash": "4a0219f3b39df35f3420453a53aa4dac"
+          "hash": "2a2060b5286e73ae92c784b612d6e9ac"
         },
         {
           "type": "util",
           "path": "utils/props.ts",
-          "hash": "da9999f1ed32a1b171adcaecdc7a8ab4"
+          "hash": "8148c44f113f7a06c7b87748aa5ed773"
         },
         {
           "type": "util",
@@ -473,6 +474,37 @@
       ]
     },
     {
+      "name": "calendar",
+      "type": "component",
+      "title": "Calendar",
+      "description": "Used to display data in a calendar format.",
+      "devDependencies": [
+        "@internationalized/date"
+      ],
+      "registryDependencies": [
+        "button",
+        "icon-button",
+        "tooltip"
+      ],
+      "files": [
+        {
+          "type": "type",
+          "path": "components/calendar/calendar.props.ts",
+          "hash": "8f45618f9fec7badcc5d1d25ccad99c6"
+        },
+        {
+          "type": "component",
+          "path": "components/calendar/calendar.vue",
+          "hash": "17b641c09f9acf08d6f63b974615dd6a"
+        },
+        {
+          "type": "style",
+          "path": "components/calendar/calendar.style.ts",
+          "hash": "54af26dd150fb69a86d158486342b06f"
+        }
+      ]
+    },
+    {
       "name": "card",
       "type": "component",
       "title": "Card",
@@ -664,9 +696,6 @@
       "type": "component",
       "title": "Context Menu",
       "description": "Used to display a menu on right-click.",
-      "devDependencies": [
-        "defu"
-      ],
       "registryDependencies": [
         "dropdown"
       ],
@@ -721,9 +750,6 @@
       "type": "component",
       "title": "Dropdown",
       "description": "Used to create an accessible dropdown menu.",
-      "dependencies": [
-        "defu"
-      ],
       "registryDependencies": [
         "icon",
         "kbd",
@@ -1437,9 +1463,6 @@
       "type": "component",
       "title": "Pop Confirm",
       "description": "Used to confirm an action.",
-      "devDependencies": [
-        "defu"
-      ],
       "registryDependencies": [
         "button",
         "icon",
@@ -1468,19 +1491,16 @@
       "type": "component",
       "title": "Popover",
       "description": "Used to show detailed information inside a pop-up.",
-      "devDependencies": [
-        "defu"
-      ],
       "files": [
         {
           "type": "style",
           "path": "components/popover/popover.style.ts",
-          "hash": "d56cafa216c509ad3e2c41aebbc49c49"
+          "hash": "26e8b74a156717d02e9333ac9010e090"
         },
         {
           "type": "component",
           "path": "components/popover/popover.vue",
-          "hash": "2d3ff30bf7acc4fc8a032b8edb9d4142"
+          "hash": "d58812d5dde757627f4c1a699b0e719f"
         },
         {
           "type": "type",
@@ -2170,7 +2190,7 @@
         {
           "type": "composable",
           "path": "composables/use-toast.ts",
-          "hash": "a9e88324f1ea327eaf3dc374f649ed4f"
+          "hash": "07f07dd44955684798fea2d7d7effaf7"
         }
       ],
       "cssVars": {
@@ -2236,9 +2256,6 @@
       "type": "component",
       "title": "Toggle Tooltip",
       "description": "Looks like a tooltip, but works like a popover.",
-      "devDependencies": [
-        "defu"
-      ],
       "registryDependencies": [
         "icon",
         "tooltip"
@@ -2266,9 +2283,6 @@
       "type": "component",
       "title": "Tooltip",
       "description": "Used to display additional information when a user hovers over an element.",
-      "devDependencies": [
-        "defu"
-      ],
       "registryDependencies": [
         "icon"
       ],

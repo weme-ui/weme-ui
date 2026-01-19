@@ -6,10 +6,15 @@ export interface LocaleMessages {
     close: string
   }
   calendar: {
-    nextMonth: string
-    nextYear: string
     prevMonth: string
+    monthView: string
+    nextMonth: string
     prevYear: string
+    yearView: string
+    nextYear: string
+    prevPage: string
+    decadeView: string
+    nextPage: string
   }
   carousel: {
     dots: string
@@ -53,6 +58,7 @@ export type LocaleDirection = 'ltr' | 'rtl'
 export interface Locale<M> {
   name: string
   code: string
+  timezone: string
   dir: LocaleDirection
   messages: M
 }

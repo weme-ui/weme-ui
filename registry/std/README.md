@@ -58,6 +58,7 @@ pnpm dlx @weme-ui/weme-ui add <name>
   - [x] `avatar-group`
   - [x] `avatar`
   - [x] `badge`
+  - [x] `calendar`
   - [x] `card`
   - [x] `chipboard`
   - [x] `comment`

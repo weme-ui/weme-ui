@@ -5,6 +5,7 @@ import { defu } from 'defu'
 interface DefineLocaleOptions<M> {
   name: string
   code: string
+  timezone: string
   dir?: LocaleDirection
   messages: M
 }

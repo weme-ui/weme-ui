@@ -9,6 +9,28 @@
 [![License][license-src]][license-href]
 [![code style][code-style-src]][code-style-href]
 
+<p align="center">
+  ⚠️ Do not use in production. This project is still in early development.
+</p>
+
+<p align="center">
+  Re-usable UI components with Reka UI and UnoCSS.
+</p>
+
+## 如何开始
+
+### 初始化
+
+```bash
+pnpm dlx @weme-ui/weme-ui init
+```
+
+### 添加组件
+
+```bash
+pnpm dlx @weme-ui/weme-ui add slim/button
+```
+
 ## 许可证
 
 [MIT][license-href] License © 2025 [weme-ui][github-href]

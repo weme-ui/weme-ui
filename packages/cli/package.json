@@ -59,7 +59,8 @@
   },
   "peerDependencies": {
     "nuxt": "^4.0.0",
-    "vue": "^3.0.0"
+    "vue": "^3.0.0",
+    "zod": "^4.4.3"
   },
   "peerDependenciesMeta": {
     "nuxt": {
@@ -69,12 +70,10 @@
       "optional": true
     }
   },
-  "dependencies": {
-    "tsdown": "catalog:build",
-    "zod": "catalog:utils"
-  },
   "devDependencies": {
     "@types/node": "catalog:dev",
-    "vitest": "catalog:dev"
+    "tsdown": "catalog:build",
+    "vitest": "catalog:dev",
+    "zod": "catalog:utils"
   }
 }

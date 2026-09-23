@@ -1,0 +1,76 @@
+{
+  "name": "weme-ui",
+  "type": "module",
+  "version": "0.0.0",
+  "private": true,
+  "packageManager": "bun@1.4.2",
+  "author": "Allen Luo <luoyi@mouji.net>",
+  "license": "MIT",
+  "homepage": "https://github.com/weme-ui/weme-ui",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/weme-ui/weme-ui.git"
+  },
+  "bugs": {
+    "url": "https://github.com/weme-ui/weme-ui/issues"
+  },
+  "workspaces": [
+    "packages/*"
+  ],
+  "catalogs": {
+    "build": {
+      "@antfu/eslint-config": "^9.0.0",
+      "@antfu/ni": "^30.6.0",
+      "@commitlint/cli": "^21.0.2",
+      "@commitlint/config-conventional": "^21.0.2",
+      "eslint-plugin-format": "^2.0.1",
+      "eslint": "^10.4.1",
+      "lint-staged": "^17.0.7",
+      "simple-git-hooks": "^2.13.1",
+      "tsdown": "^0.22.3",
+      "turbo": "^2.11.3",
+      "typescript": "^6.0.3"
+    },
+    "dev": {
+      "@types/node": "^25.9.1",
+      "vitest": "^4.1.8"
+    },
+    "utils": {
+      "defu": "^6.1.7",
+      "zod": "^4.4.3"
+    }
+  },
+  "engines": {
+    "node": ">=22.14.0",
+    "bun": ">=1.3.12"
+  },
+  "scripts": {
+    "build": "turbo run build",
+    "dev": "turbo run dev",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "typecheck": "turbo run typecheck",
+    "test": "turbo run test",
+    "prepare": "simple-git-hooks"
+  },
+  "devDependencies": {
+    "@antfu/eslint-config": "catalog:build",
+    "@antfu/ni": "catalog:build",
+    "@commitlint/cli": "catalog:build",
+    "@commitlint/config-conventional": "catalog:build",
+    "eslint": "catalog:build",
+    "eslint-plugin-format": "catalog:build",
+    "lint-staged": "catalog:build",
+    "simple-git-hooks": "catalog:build",
+    "tsdown": "catalog:build",
+    "turbo": "catalog:build",
+    "typescript": "catalog:build"
+  },
+  "simple-git-hooks": {
+    "pre-commit": "nr lint-staged",
+    "commit-msg": "nr commitlint --edit ${1}"
+  },
+  "lint-staged": {
+    "*": "eslint --fix"
+  }
+}

@@ -1,0 +1,23 @@
+# Node dependencies
+node_modules
+
+# Logs
+coverage
+logs
+*.log
+
+# Misc
+.DS_Store
+.idea
+
+# Local env files
+.env
+.env.*
+!.env.example
+
+# Build
+dist
+*.tsbuildinfo
+
+# Turbo
+.turbo

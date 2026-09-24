@@ -1,18 +1,62 @@
-import type { FillRecord } from '../utils/types'
+import type { AccentColorNames, NeutralColorNames } from '../colors'
+import type { FillRecord, LooseAutocomplete } from '../utils/types'
 
 /**
  * 设计令牌值
  *
  * @category Tokens
  */
-export type TokenValue<T extends string> = FillRecord<string, T>
+type TokenValue<T extends string> = FillRecord<string, T>
+
+/**
+ * 圆角大小 `[data-radius]` -> `--radius-factor`
+ *
+ * - `none` -> `0`
+ * - `xs` -> `0.5`
+ * - `sm` -> `0.75`
+ * - `md` -> `1`
+ * - `lg` -> `1.5`
+ * - `full` -> `3`
+ *
+ * @category Tokens
+ */
+export type ThemeRadius = 'none' | 'xs' | 'sm' | 'md' | 'lg' | 'full'
+
+/**
+ * 缩放倍率 `[data-scaling]` -> `--scaling`
+ *
+ * - `90%` -> `0.9`
+ * - `95%` -> `0.95`
+ * - `100%` -> `1`
+ * - `105%` -> `1.05`
+ * - `110%` -> `1.1`
+ *
+ * @category Tokens
+ */
+export type ThemeScaling = '90%' | '95%' | '100%' | '105%' | '110%'
+
+/**
+ * 主题颜色名称/值
+ *
+ * @category Tokens
+ */
+export type ThemeColors = FillRecord<
+  LooseAutocomplete<AccentColorNames | NeutralColorNames>,
+  | 'primary'
+  | 'secondary'
+  | 'neutral'
+  | 'info'
+  | 'success'
+  | 'warning'
+  | 'error'
+>
 
 /**
  * 设计令牌
  *
  * @category Tokens
  */
-export interface Tokens {
+export interface ThemeTokens {
   /**
    * Text color
    *
@@ -47,4 +91,45 @@ export interface Tokens {
    * Additional tokens
    */
   [key: string]: string | Record<string, string>
+}
+
+/**
+ * WemeUI 主题
+ *
+ * @category Tokens
+ */
+export interface WemeUITheme {
+  /**
+   * 主题名称
+   *
+   * @example [data-theme="default"]
+   *
+   * @default 'default'
+   */
+  name: string
+  /**
+  /**
+   * 缩放倍率
+   *
+   * @example [data-scaling="100%"]
+   *
+   * @default '100%'
+   */
+  scaling: ThemeScaling
+  /**
+   * 圆角大小
+   *
+   * @example [data-radius="md"]
+   *
+   * @default 'md'
+   */
+  radius: ThemeRadius
+  /**
+   * 主题颜色
+   */
+  colors: ThemeColors
+  /**
+   * 主题令牌
+   */
+  tokens: ThemeTokens
 }

@@ -33,8 +33,14 @@
     },
     "dev": {
       "@types/node": "^25.9.1",
+      "@vitejs/plugin-vue": "^6.0.9",
       "unocss": "^66.10.5",
-      "vitest": "^4.1.8"
+      "unplugin-auto-import": "^21.1.0",
+      "unplugin-vue-components": "^32.1.0",
+      "vite": "^8.3.0",
+      "vitest": "^4.1.8",
+      "vue-router": "^5.3.1",
+      "vue": "^3.5.43"
     },
     "utils": {
       "defu": "^6.1.7",
@@ -48,6 +54,7 @@
   "scripts": {
     "build": "turbo run build",
     "dev": "turbo run dev",
+    "dev:preset": "turbo run dev --ui=tui --filter=@weme-ui/unocss-preset --parallel",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "typecheck": "turbo run typecheck",

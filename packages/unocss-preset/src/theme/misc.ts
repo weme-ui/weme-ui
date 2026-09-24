@@ -84,6 +84,7 @@ export const shadow = {
     'inset 0 1.5px 2px 0 #00000006',
     'inset 0 1.5px 2px 0 rgba(0, 0, 0, 0.1)',
   ],
+  none: '0 0 rgb(0 0 0 / 0)',
 } satisfies Theme['shadow']
 
 /**

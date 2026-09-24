@@ -67,6 +67,17 @@ describe('resolveRadixColorScales', () => {
     }))
   })
 
+  it('keeps black and white solid and alpha scales identical', () => {
+    for (const name of ['black', 'white'] as const) {
+      for (const mode of ['light', 'dark'] as const) {
+        const result = resolveRadixColorScales({ color: name, mode, space: 'srgb' })
+
+        expect(result.solid).toEqual(result.alpha)
+        expect(result.solid).toHaveLength(12)
+      }
+    }
+  })
+
   it('generates custom scales for non-radix color values', () => {
     const result = resolveRadixColorScales({ color: '#3b82f6', space: 'srgb' })
 
@@ -74,5 +85,23 @@ describe('resolveRadixColorScales', () => {
     expect(result.alpha).toHaveLength(12)
     expect(result.solid[8]).toBe('#3b82f6')
     expect(result.solid[0].startsWith('#')).toBe(true)
+  })
+
+  it('defaults scope to accent for custom colors', () => {
+    const hex = '#86909c'
+    const defaults = resolveRadixColorScales({ color: hex, space: 'srgb' })
+    const accent = resolveRadixColorScales({ color: hex, space: 'srgb', scope: 'accent' })
+    const neutral = resolveRadixColorScales({ color: hex, space: 'srgb', scope: 'neutral' })
+
+    expect(defaults).toEqual(accent)
+    expect(defaults.solid).not.toEqual(neutral.solid)
+  })
+
+  it('ignores scope for named radix colors', () => {
+    const accent = resolveRadixColorScales({ color: 'blue', space: 'srgb', scope: 'accent' })
+    const neutral = resolveRadixColorScales({ color: 'blue', space: 'srgb', scope: 'neutral' })
+
+    expect(accent).toEqual(neutral)
+    expect(accent.solid).toEqual(getRadixColorScales({ name: 'blue', space: 'srgb' }))
   })
 })

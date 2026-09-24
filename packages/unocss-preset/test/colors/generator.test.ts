@@ -76,4 +76,38 @@ describe('generateRadixColorScales', () => {
 
     expect(generateRadixColorScales(options)).toEqual(generateRadixColorScales(options))
   })
+
+  it('generates dark scales for low-chroma and near-black neutrals', () => {
+    for (const color of ['#78716c', '#111111', '#0a0a0a', '#86909c'] as const) {
+      for (const mode of ['light', 'dark'] as const) {
+        const result = generateRadixColorScales({
+          color,
+          mode,
+          space: 'srgb',
+          scope: 'neutral',
+        })
+
+        expectTwelveStepScale(result.solid)
+        expectTwelveStepScale(result.alpha)
+        expect(result.solid.every(value => !value.includes('NaN'))).toBe(true)
+        expect(result.alpha.every(value => !value.includes('NaN'))).toBe(true)
+      }
+    }
+  })
+
+  it('generates dark scales for pure black and white in both scopes', () => {
+    for (const color of ['#000000', '#ffffff'] as const) {
+      for (const scope of ['accent', 'neutral'] as const) {
+        const result = generateRadixColorScales({
+          color,
+          mode: 'dark',
+          space: 'srgb',
+          scope,
+        })
+
+        expectTwelveStepScale(result.solid)
+        expectTwelveStepScale(result.alpha)
+      }
+    }
+  })
 })

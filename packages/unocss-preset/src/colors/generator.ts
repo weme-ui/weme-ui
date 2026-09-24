@@ -91,7 +91,7 @@ export function generateRadixColorScales(options: GenerateColorScalesOptions): G
 
   const colorScales = scope === 'accent'
     ? getScaleFromColor(baseColor, baseHex === '#000' || baseHex === '#fff' ? neutralScales : allScales, bgColor)
-    : getScaleFromColor(baseColor, allScales, bgColor)
+    : getScaleFromColor(baseColor, neutralScales, bgColor)
 
   if (scope === 'accent') {
     const [step9Color] = getStep9Colors(colorScales, baseColor)
@@ -159,24 +159,27 @@ function getScaleFromColor(
   }
 
   const colorA = closestColors[0]
-  const colorB = closestColors[1]
+  const colorB = closestColors[1] ?? closestColors[0]
 
   const a = colorB.distance
   const b = colorA.distance
   const c = colorA.color.deltaEOK(colorB.color)
 
-  const cosA = (b ** 2 + c ** 2 - a ** 2) / (2 * b * c)
+  // 三角几何在共线/重合时可能产生越界余弦或除零，需钳制后再求混合比
+  const denomA = 2 * b * c
+  const denomB = 2 * a * c
+  const cosA = denomA === 0 ? 1 : Math.min(1, Math.max(-1, (b ** 2 + c ** 2 - a ** 2) / denomA))
   const radA = Math.acos(cosA)
   const sinA = Math.sin(radA)
 
-  const cosB = (a ** 2 + c ** 2 - b ** 2) / (2 * a * c)
+  const cosB = denomB === 0 ? 1 : Math.min(1, Math.max(-1, (a ** 2 + c ** 2 - b ** 2) / denomB))
   const radB = Math.acos(cosB)
   const sinB = Math.sin(radB)
 
-  const tanC1 = cosA / sinA
-  const tanC2 = cosB / sinB
+  const tanC1 = sinA === 0 ? 0 : cosA / sinA
+  const tanC2 = sinB === 0 ? 0 : cosB / sinB
 
-  const ratio = Math.max(0, tanC1 / tanC2) * 0.5
+  const ratio = tanC2 === 0 ? 0 : Math.max(0, tanC1 / tanC2) * 0.5
 
   const scaleA = scales[colorA.scale]
   const scaleB = scales[colorB.scale]
@@ -188,13 +191,15 @@ function getScaleFromColor(
     .slice()
     .sort((a, b) => source.deltaEOK(a) - source.deltaEOK(b))[0]
 
-  const ratioC = (source.coords?.[1] ?? 0) / (baseColor.coords?.[1] ?? 0)
+  const sourceChroma = source.coords?.[1] ?? 0
+  const baseChroma = baseColor.coords?.[1] ?? 0
+  // 参考色无彩度时（如纯灰）不能做除法，否则会得到 Infinity/NaN
+  const ratioC = baseChroma > 0 ? sourceChroma / baseChroma : 0
 
   scale.forEach((color) => {
-    color.coords[1] = Math.min(
-      (source.coords?.[1] ?? 0) * 1.5,
-      (color.coords?.[1] ?? 0) * ratioC,
-    )
+    color.coords[1] = baseChroma > 0
+      ? Math.min(sourceChroma * 1.5, (color.coords?.[1] ?? 0) * ratioC)
+      : sourceChroma
     color.coords[2] = source.coords?.[2] ?? 0
   })
 

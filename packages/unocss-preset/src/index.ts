@@ -2,6 +2,7 @@ import type { Arrayable, CSSEntry, PreflightContext, PresetOptions } from '@unoc
 import type { CustomColors } from './colors'
 import type { Theme } from './theme'
 import { definePreset } from '@unocss/core'
+import { theme } from './theme'
 
 /**
  * 暗色模式选择器
@@ -157,6 +158,7 @@ export const presetWemeUI = definePreset<PresetWemeUIOptions, Theme>((options = 
   return {
     name: '@weme-ui/unocss-preset',
     prefix: options.prefix,
+    theme: theme(options),
     layers: {
       properties: -200,
       theme: -150,

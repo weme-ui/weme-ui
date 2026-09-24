@@ -1,9 +1,10 @@
 import type { FillRecord } from '../utils'
 
 /**
- * 主题实色颜色
+ * 主题颜色刻度
  *
  * @category Theme
+ * @link {@see https://www.radix-ui.com/colors}
  */
 export type ThemeColorScales = FillRecord<string, '1' | '2' | '3' | '4' | '5' | '6' | '7' | '8' | '9' | '10' | '11' | '12' | 'a1' | 'a2' | 'a3' | 'a4' | 'a5' | 'a6' | 'a7' | 'a8' | 'a9' | 'a10' | 'a11' | 'a12'>
 
@@ -25,7 +26,7 @@ export interface ThemeColors {
  *
  * @category Theme
  */
-export interface ThemeAnimations {
+interface ThemeAnimations {
   keyframes?: Record<string, string>
   durations?: Record<string, string>
   timingFns?: Record<string, string>

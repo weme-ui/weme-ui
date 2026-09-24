@@ -1,6 +1,6 @@
 import type * as colors from '@radix-ui/colors'
 import type { FillRecord } from '../utils/types'
-import type { RADIX_COLOR_NAMES, RADIX_NEUTRAL_COLOR_NAMES } from './defaults'
+import type { ACCENT_COLOR_NAMES, NEUTRAL_COLOR_NAMES, RADIX_COLOR_NAMES, RADIX_NEUTRAL_COLOR_NAMES } from './defaults'
 
 export type RadixColorName = keyof typeof colors
 export type RadixColorPureName = typeof RADIX_COLOR_NAMES[number]
@@ -69,3 +69,6 @@ export interface CustomColors {
    */
   neutral?: Record<string, string>
 }
+
+export type AccentColorNames = typeof ACCENT_COLOR_NAMES[number]
+export type NeutralColorNames = typeof NEUTRAL_COLOR_NAMES[number]

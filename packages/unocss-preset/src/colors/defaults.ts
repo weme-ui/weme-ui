@@ -47,11 +47,21 @@ export const DEFAULT_BACKGROUND_COLORS = {
 } as const
 
 /**
+ * 额外的主色颜色名称
+ */
+const ADDITIONAL_ACCENT_COLORS_NAMES = Object.keys(ADDITIONAL_ACCENT_COLORS) as (keyof typeof ADDITIONAL_ACCENT_COLORS)[]
+
+/**
  * 主色名称
  */
-export const ACCENT_COLOR_NAMES = [...RADIX_COLOR_NAMES, ...Object.keys(ADDITIONAL_ACCENT_COLORS)] as const
+export const ACCENT_COLOR_NAMES = [...RADIX_COLOR_NAMES, ...ADDITIONAL_ACCENT_COLORS_NAMES] as const
+
+/**
+ * 额外的中性色颜色名称
+ */
+const ADDITIONAL_NEUTRAL_COLORS_NAMES = Object.keys(ADDITIONAL_NEUTRAL_COLORS) as (keyof typeof ADDITIONAL_NEUTRAL_COLORS)[]
 
 /**
  * 中性色名称
  */
-export const NEUTRAL_COLOR_NAMES = [...RADIX_NEUTRAL_COLOR_NAMES, ...Object.keys(ADDITIONAL_NEUTRAL_COLORS)] as const
+export const NEUTRAL_COLOR_NAMES = [...RADIX_NEUTRAL_COLOR_NAMES, ...ADDITIONAL_NEUTRAL_COLORS_NAMES] as const

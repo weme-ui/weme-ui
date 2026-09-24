@@ -9,6 +9,7 @@ export default defineConfig([
       theme: 'src/theme.ts',
       tokens: 'src/tokens.ts',
       utils: 'src/utils.ts',
+      variants: 'src/variants.ts',
     },
     format: ['esm'],
     platform: 'node',

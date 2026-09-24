@@ -40,8 +40,9 @@ describe('radixColorNames', () => {
 describe('additional colors', () => {
   it('exposes accent and neutral extras', () => {
     expect(ADDITIONAL_ACCENT_COLORS).toEqual({
-      ocean: '#05f',
       clay: '#d97757',
+      ocean: '#05f',
+      gunmetal: '#1d2129',
     })
     expect(ADDITIONAL_NEUTRAL_COLORS).toEqual({
       iron: '#86909c',

@@ -1,0 +1,30 @@
+import type { VariantObject } from '@unocss/core'
+import type { PseudoVariantUtilities } from '@unocss/rule-utils'
+import type { PresetWemeUIOptions } from '..'
+import type { Theme } from '../theme'
+import {
+  createPartClasses,
+  createPseudoClassesAndElements,
+  createPseudoClassFunctions,
+  createTaggedPseudoClasses,
+  getBracket,
+  variantGetBracket,
+} from '@unocss/rule-utils'
+import { h } from '../utils'
+
+export function variantPseudoClassesAndElements(): VariantObject<Theme>[] {
+  const utils: PseudoVariantUtilities<Theme> = { getBracket, h: h as unknown as PseudoVariantUtilities<Theme>['h'], variantGetBracket }
+  return createPseudoClassesAndElements<Theme>(utils)
+}
+
+export function variantPseudoClassFunctions(): VariantObject<Theme> {
+  const utils: PseudoVariantUtilities<Theme> = { getBracket, h: h as unknown as PseudoVariantUtilities<Theme>['h'], variantGetBracket }
+  return createPseudoClassFunctions<Theme>(utils)
+}
+
+export function variantTaggedPseudoClasses(options: PresetWemeUIOptions = {}): VariantObject<Theme>[] {
+  const utils: PseudoVariantUtilities<Theme> = { getBracket, h: h as unknown as PseudoVariantUtilities<Theme>['h'], variantGetBracket }
+  return createTaggedPseudoClasses<Theme>(options, utils)
+}
+
+export const variantPartClasses: VariantObject<Theme> = createPartClasses<Theme>()

@@ -1,12 +1,73 @@
-import type { CSSObject, CSSObjectInput, CSSValueInput, RuleContext, StaticRule, VariantContext } from '@unocss/core'
+import type { CSSEntries, CSSObject, CSSObjectInput, CSSValueInput, DynamicMatcher, RuleContext, StaticRule, VariantContext } from '@unocss/core'
 import type { Theme } from '../theme'
-import { symbols, toArray } from '@unocss/core'
+import { escapeSelector, symbols, toArray } from '@unocss/core'
 import { colorToString, getStringComponent, getStringComponents, isInterpolatedMethod, parseCssColor } from '@unocss/rule-utils'
 import { SpecialColorKey } from './constant'
 import { h } from './handlers'
 import { bracketTypeRe, numberWithUnitRE } from './handlers/regex'
-import { cssMathFnRE, globalKeywords } from './mappings'
+import { cssMathFnRE, directionMap, globalKeywords } from './mappings'
 import { detectThemeValue, generateThemeVariable, propertyTracking, themeTracking } from './track'
+
+// #region Number Resolver
+
+export function numberResolver(size: string, defaultValue?: string | number): number | undefined {
+  const v = h.number(size) ?? defaultValue
+
+  if (v != null) {
+    let num = Number(v)
+    if (String(v).endsWith('%')) {
+      num = Number(String(v).slice(0, -1)) / 100
+    }
+
+    return num
+  }
+}
+
+// #endregion
+
+// #region Direction with size
+
+/**
+ * Returns a {@link DynamicMatcher} that generates spacing CSS properties for directional utilities.
+ *
+ * @param property - The base CSS property name (e.g. 'margin', 'padding').
+ * @param map - Optional mapping of direction keys to property postfixes. Defaults to {@link directionMap}.
+ * @param formatter - Optional function to format the final property name. Defaults to `(p, d) => \`\${p}\${d}\``.
+ */
+export function directionSize(
+  property: string,
+  map: Record<string, string[]> = directionMap,
+  formatter: (p: string, d: string) => string = (p, d) => `${p}${d}`,
+): DynamicMatcher<Theme> {
+  return (([_, direction, size = '4']: (string | undefined)[], { theme }): CSSEntries | undefined => {
+    if (size != null && direction != null) {
+      let v: string | number | undefined
+
+      const isNegative = size.startsWith('-')
+      if (isNegative)
+        size = size.slice(1)
+
+      v = numberResolver(size)
+
+      if (v != null && !Number.isNaN(v)) {
+        themeTracking('spacing')
+        return map[direction].map(i => [formatter(property, i), `calc(var(--spacing) * ${isNegative ? '-' : ''}${v})`])
+      }
+      else if (theme.spacing && size in theme.spacing) {
+        themeTracking('spacing', size)
+        return map[direction].map(i => [formatter(property, i), isNegative ? `calc(var(--${escapeSelector(`spacing-${size}`)}) * -1)` : `var(--${escapeSelector(`spacing-${size}`)})`])
+      }
+
+      v = h.bracket.cssvar.global.auto.fraction.rem(isNegative ? `-${size}` : size, theme)
+
+      if (v != null) {
+        return map[direction].map(i => [formatter(property, i), v])
+      }
+    }
+  }) as DynamicMatcher<Theme>
+}
+
+// #endregion
 
 // #region With Colors
 

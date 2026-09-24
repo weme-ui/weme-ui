@@ -75,8 +75,8 @@
     "typescript": "catalog:build"
   },
   "simple-git-hooks": {
-    "pre-commit": "nr lint-staged",
-    "commit-msg": "nr commitlint --edit ${1}"
+    "pre-commit": "bunx lint-staged",
+    "commit-msg": "bunx commitlint --edit ${1}"
   },
   "lint-staged": {
     "*": "eslint --fix"

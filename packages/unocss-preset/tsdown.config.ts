@@ -4,6 +4,7 @@ export default defineConfig([
   {
     entry: {
       index: 'src/index.ts',
+      types: 'src/types.ts',
       colors: 'src/colors.ts',
       theme: 'src/theme.ts',
       tokens: 'src/tokens.ts',

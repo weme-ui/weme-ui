@@ -3,6 +3,7 @@ import type { CustomColors } from './colors'
 import type { Theme } from './theme'
 import { definePreset } from '@unocss/core'
 import { extractorArbitraryVariants } from '@unocss/extractor-arbitrary-variants'
+import { postprocessors } from './postprocess'
 import { rules } from './rules'
 import { shortcuts } from './shortcuts'
 import { shorthands } from './shorthands'
@@ -177,6 +178,7 @@ export const presetWemeUI = definePreset<PresetWemeUIOptions, Theme>((options = 
     },
     theme: theme(options),
     variants: variants(options),
+    postprocess: postprocessors(options),
     extractorDefault: options.arbitraryVariants === false
       ? undefined
       : extractorArbitraryVariants(),

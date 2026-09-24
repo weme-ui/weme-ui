@@ -6,6 +6,7 @@ export default defineConfig([
       index: 'src/index.ts',
       types: 'src/types.ts',
       colors: 'src/colors.ts',
+      rules: 'src/rules.ts',
       theme: 'src/theme.ts',
       tokens: 'src/tokens.ts',
       utils: 'src/utils.ts',

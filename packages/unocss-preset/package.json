@@ -35,6 +35,10 @@
       "types": "./dist/colors.d.ts",
       "import": "./dist/colors.js"
     },
+    "./rules": {
+      "types": "./dist/rules.d.ts",
+      "import": "./dist/rules.js"
+    },
     "./theme": {
       "types": "./dist/theme.d.ts",
       "import": "./dist/theme.js"

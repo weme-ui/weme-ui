@@ -2,8 +2,13 @@ import type { Arrayable, CSSEntry, PreflightContext, PresetOptions } from '@unoc
 import type { CustomColors } from './colors'
 import type { Theme } from './theme'
 import { definePreset } from '@unocss/core'
+import { extractorArbitraryVariants } from '@unocss/extractor-arbitrary-variants'
+import { rules } from './rules'
+import { shortcuts } from './shortcuts'
+import { shorthands } from './shorthands'
 import { theme } from './theme'
-import { PRESET_NAME } from './utils'
+import { PRESET_NAME, trackedProperties, trackedTheme } from './utils'
+import { variants } from './variants'
 
 /**
  * 暗色模式选择器
@@ -159,13 +164,30 @@ export const presetWemeUI = definePreset<PresetWemeUIOptions, Theme>((options = 
   return {
     name: PRESET_NAME,
     prefix: options.prefix,
-    theme: theme(options),
+    rules,
+    shortcuts,
+    options,
     layers: {
       properties: -200,
       theme: -150,
       base: -100,
     },
-    options,
+    autocomplete: {
+      shorthands,
+    },
+    theme: theme(options),
+    variants: variants(options),
+    extractorDefault: options.arbitraryVariants === false
+      ? undefined
+      : extractorArbitraryVariants(),
+    configResolved() {
+      trackedTheme.clear()
+      trackedProperties.clear()
+    },
+    meta: {
+      themeDeps: trackedTheme,
+      propertyDeps: trackedProperties,
+    },
   }
 })
 

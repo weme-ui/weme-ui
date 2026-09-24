@@ -15,7 +15,7 @@ export type ThemeColorScales = FillRecord<string, '1' | '2' | '3' | '4' | '5' | 
  *
  * @link {@see https://www.radix-ui.com/colors}
  */
-export interface ThemeColors {
+export interface Colors {
   [key: string]: ThemeColorScales & {
     dark?: ThemeColorScales
   }
@@ -42,7 +42,7 @@ interface ThemeAnimations {
  */
 export interface Theme {
   font?: Record<string, string>
-  colors?: ThemeColors
+  colors?: Colors
   spacing?: Record<string, string>
   breakpoint?: Record<string, string>
   verticalBreakpoint?: Record<string, string>

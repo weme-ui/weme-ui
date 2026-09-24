@@ -13,13 +13,17 @@ export const RADIX_COLOR_NAMES = [...RADIX_NEUTRAL_COLOR_NAMES, 'gold', 'bronze'
  */
 export const ADDITIONAL_ACCENT_COLORS = {
   /**
+   * 粘土色
+   */
+  clay: '#d97757',
+  /**
    * 海洋蓝
    */
   ocean: '#05f',
   /**
-   * 粘土色
+   * 枪金属色
    */
-  clay: '#d97757',
+  gunmetal: '#1d2129',
 } as const
 
 /**

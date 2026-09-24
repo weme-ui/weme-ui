@@ -1,5 +1,4 @@
 import type * as colors from '@radix-ui/colors'
-import type { FillRecord } from '../utils/types'
 import type { ACCENT_COLOR_NAMES, NEUTRAL_COLOR_NAMES, RADIX_COLOR_NAMES, RADIX_NEUTRAL_COLOR_NAMES } from './defaults'
 
 export type RadixColorName = keyof typeof colors
@@ -40,13 +39,6 @@ export type ColorValueScales<T> = [T, T, T, T, T, T, T, T, T, T, T, T]
  * @category Colors
  */
 export type ColorScales<T = string, K extends string = string> = Record<K, ColorValueScales<T>>
-
-/**
- * 主题颜色名称/值
- *
- * @category Colors
- */
-export type ThemeColorNames = FillRecord<string, 'primary' | 'secondary' | 'neutral' | 'success' | 'info' | 'warning' | 'error'>
 
 /**
  * 自定义颜色

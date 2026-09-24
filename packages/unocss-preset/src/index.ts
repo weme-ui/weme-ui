@@ -3,6 +3,7 @@ import type { CustomColors } from './colors'
 import type { Theme } from './theme'
 import { definePreset } from '@unocss/core'
 import { theme } from './theme'
+import { PRESET_NAME } from './utils'
 
 /**
  * 暗色模式选择器
@@ -156,7 +157,7 @@ export const presetWemeUI = definePreset<PresetWemeUIOptions, Theme>((options = 
   options.colors.space = options.colors.space ?? 'display-p3'
 
   return {
-    name: '@weme-ui/unocss-preset',
+    name: PRESET_NAME,
     prefix: options.prefix,
     theme: theme(options),
     layers: {

@@ -35,25 +35,9 @@
       "types": "./dist/colors.d.ts",
       "import": "./dist/colors.js"
     },
-    "./rules": {
-      "types": "./dist/rules.d.ts",
-      "import": "./dist/rules.js"
-    },
-    "./theme": {
-      "types": "./dist/theme.d.ts",
-      "import": "./dist/theme.js"
-    },
     "./tokens": {
       "types": "./dist/tokens.d.ts",
       "import": "./dist/tokens.js"
-    },
-    "./utils": {
-      "types": "./dist/utils.d.ts",
-      "import": "./dist/utils.js"
-    },
-    "./variants": {
-      "types": "./dist/variants.d.ts",
-      "import": "./dist/variants.js"
     }
   },
   "main": "./dist/index.js",

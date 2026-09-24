@@ -1,0 +1,18 @@
+{
+  "name": "playground",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "dev": "vite"
+  },
+  "dependencies": {
+    "@vitejs/plugin-vue": "catalog:dev",
+    "typescript": "catalog:build",
+    "unocss": "catalog:dev",
+    "unplugin-auto-import": "catalog:dev",
+    "unplugin-vue-components": "catalog:dev",
+    "vite": "catalog:dev",
+    "vue": "catalog:dev",
+    "vue-router": "catalog:dev"
+  }
+}

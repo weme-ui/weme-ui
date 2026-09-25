@@ -85,8 +85,8 @@ function expectMatchesResolved(
   },
 ) {
   const { color, space = 'srgb', scope, withAlpha } = options
-  const light = resolveRadixColorScales({ color, space, mode: 'light', scope })
-  const dark = resolveRadixColorScales({ color, space, mode: 'dark', scope })
+  const light = resolveRadixColorScales({ color, space, mode: 'light', kind: scope })
+  const dark = resolveRadixColorScales({ color, space, mode: 'dark', kind: scope })
 
   expectScaleShape(themeColor, withAlpha)
   expectScaleShape(themeColor?.dark, withAlpha)

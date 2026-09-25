@@ -1,4 +1,4 @@
-import type { ColorMode, ColorScales, ColorScope, ColorSpace, ColorValueScales, RadixColorPureName, RadixNeutralColorPureName } from './types'
+import type { ColorKind, ColorMode, ColorScales, ColorSpace, ColorValueScales, RadixColorPureName, RadixNeutralColorPureName } from './types'
 import BezierEasing from 'bezier-easing'
 import Color from 'colorjs.io'
 import { getRadixColorScales } from './color'
@@ -61,11 +61,11 @@ export interface GenerateColorScalesOptions {
    */
   mode?: ColorMode
   /**
-   * 颜色范围
+   * 颜色种类
    *
    * @default 'accent'
    */
-  scope?: ColorScope
+  kind?: ColorKind
 }
 
 export type GenerateColorScalesResult = ColorScales<string, 'solid' | 'alpha'>
@@ -78,7 +78,7 @@ export function generateRadixColorScales(options: GenerateColorScalesOptions): G
     color,
     space = 'display-p3',
     mode = 'light',
-    scope = 'accent',
+    kind = 'accent',
   } = options
 
   const allScales = mode === 'light' ? lightColors : darkColors
@@ -89,11 +89,11 @@ export function generateRadixColorScales(options: GenerateColorScalesOptions): G
   const baseColor = new Color(color).to('oklch')
   const baseHex = baseColor.toString({ format: 'hex' })
 
-  const colorScales = scope === 'accent'
+  const colorScales = kind === 'accent'
     ? getScaleFromColor(baseColor, baseHex === '#000' || baseHex === '#fff' ? neutralScales : allScales, bgColor)
     : getScaleFromColor(baseColor, neutralScales, bgColor)
 
-  if (scope === 'accent') {
+  if (kind === 'accent') {
     const [step9Color] = getStep9Colors(colorScales, baseColor)
 
     colorScales[8] = step9Color

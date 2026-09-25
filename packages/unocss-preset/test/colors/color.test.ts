@@ -90,16 +90,16 @@ describe('resolveRadixColorScales', () => {
   it('defaults scope to accent for custom colors', () => {
     const hex = '#86909c'
     const defaults = resolveRadixColorScales({ color: hex, space: 'srgb' })
-    const accent = resolveRadixColorScales({ color: hex, space: 'srgb', scope: 'accent' })
-    const neutral = resolveRadixColorScales({ color: hex, space: 'srgb', scope: 'neutral' })
+    const accent = resolveRadixColorScales({ color: hex, space: 'srgb', kind: 'accent' })
+    const neutral = resolveRadixColorScales({ color: hex, space: 'srgb', kind: 'neutral' })
 
     expect(defaults).toEqual(accent)
     expect(defaults.solid).not.toEqual(neutral.solid)
   })
 
   it('ignores scope for named radix colors', () => {
-    const accent = resolveRadixColorScales({ color: 'blue', space: 'srgb', scope: 'accent' })
-    const neutral = resolveRadixColorScales({ color: 'blue', space: 'srgb', scope: 'neutral' })
+    const accent = resolveRadixColorScales({ color: 'blue', space: 'srgb', kind: 'accent' })
+    const neutral = resolveRadixColorScales({ color: 'blue', space: 'srgb', kind: 'neutral' })
 
     expect(accent).toEqual(neutral)
     expect(accent.solid).toEqual(getRadixColorScales({ name: 'blue', space: 'srgb' }))

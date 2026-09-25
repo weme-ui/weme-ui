@@ -1,5 +1,5 @@
 import type { PresetWemeUIOptions } from '..'
-import type { ColorMode, ColorScope, ColorSpace } from '../colors'
+import type { ColorKind, ColorMode, ColorSpace } from '../colors'
 import type { Theme, ThemeColorScales } from './types'
 import { ADDITIONAL_ACCENT_COLORS, ADDITIONAL_NEUTRAL_COLORS, RADIX_COLOR_NAMES, resolveRadixColorScales } from '../colors'
 
@@ -40,7 +40,7 @@ function createThemeColors(
   name: string,
   space: ColorSpace,
   color?: string,
-  scope?: ColorScope,
+  kind?: ColorKind,
 ) {
   const colors: Exclude<Theme['colors'], undefined> = {}
   const modes: ColorMode[] = ['light', 'dark']
@@ -50,7 +50,7 @@ function createThemeColors(
       color: color || name,
       space,
       mode,
-      scope,
+      kind,
     })
 
     // Solid colors

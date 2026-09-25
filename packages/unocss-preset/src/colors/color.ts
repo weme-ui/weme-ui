@@ -50,13 +50,8 @@ export function getRadixColorScales(
   const alphaColorKeySuffixMap: Record<ColorSpace, string> = { 'srgb': 'A', 'display-p3': 'P3A' }
 
   const colorKey = [
-    // 对调亮色和暗色中的黑色和白色
     isDarkBlack ? 'white' : isDarkWhite ? 'black' : name,
-
-    // 移除非黑色和白色以外的颜色在暗色模式中的后缀
     mode === 'dark' && !isOverlayColor ? 'Dark' : '',
-
-    // 处理透明颜色值
     (isOverlayColor ? true : alpha) ? alphaColorKeySuffixMap[space] : solidColorKeySuffixMap[space],
   ].join('') as RadixColorName
 
@@ -71,7 +66,7 @@ export function resolveRadixColorScales(options: GenerateColorScalesOptions): Ge
     color,
     space = 'display-p3',
     mode = 'light',
-    scope = 'accent',
+    kind = 'accent',
   } = options
 
   if ([...RADIX_COLOR_NAMES, 'black', 'white'].includes(color)) {
@@ -85,6 +80,6 @@ export function resolveRadixColorScales(options: GenerateColorScalesOptions): Ge
     color,
     space,
     mode,
-    scope,
+    kind,
   })
 }

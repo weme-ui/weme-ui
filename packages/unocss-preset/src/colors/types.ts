@@ -20,11 +20,11 @@ export type ColorSpace = 'srgb' | 'display-p3'
 export type ColorMode = 'light' | 'dark'
 
 /**
- * 颜色范围
+ * 颜色种类
  *
  * @category Colors
  */
-export type ColorScope = 'accent' | 'neutral'
+export type ColorKind = 'accent' | 'neutral'
 
 /**
  * 颜色值元组

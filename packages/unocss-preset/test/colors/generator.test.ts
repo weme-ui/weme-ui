@@ -51,8 +51,8 @@ describe('generateRadixColorScales', () => {
   })
 
   it('supports accent and neutral scopes', () => {
-    const accent = generateRadixColorScales({ color: '#3b82f6', scope: 'accent', space: 'srgb' })
-    const neutral = generateRadixColorScales({ color: '#3b82f6', scope: 'neutral', space: 'srgb' })
+    const accent = generateRadixColorScales({ color: '#3b82f6', kind: 'accent', space: 'srgb' })
+    const neutral = generateRadixColorScales({ color: '#3b82f6', kind: 'neutral', space: 'srgb' })
 
     expectTwelveStepScale(accent.solid)
     expectTwelveStepScale(neutral.solid)
@@ -84,7 +84,7 @@ describe('generateRadixColorScales', () => {
           color,
           mode,
           space: 'srgb',
-          scope: 'neutral',
+          kind: 'neutral',
         })
 
         expectTwelveStepScale(result.solid)
@@ -102,7 +102,7 @@ describe('generateRadixColorScales', () => {
           color,
           mode: 'dark',
           space: 'srgb',
-          scope,
+          kind: scope,
         })
 
         expectTwelveStepScale(result.solid)

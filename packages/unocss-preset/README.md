@@ -10,12 +10,52 @@
 [![code style][code-style-src]][code-style-href]
 
 <p align="center">
-  ⚠️ Do not use in production. This project is still in early development.
+  Re-usable UI components with Reka UI and UnoCSS.
 </p>
 
 <p align="center">
-  Re-usable UI components with Reka UI and UnoCSS.
+  ⚠️ Do not use in production. This project is still in early development.
 </p>
+
+## 生成颜色 CSS 变量
+
+```css
+/* layer: theme */
+:root,
+.light {
+  --amber-1: oklch(99.425% 0.00285 84.559);
+}
+
+.dark {
+  --amber-1: oklch(18.496% 0.01336 77.796);
+}
+
+@supports (color: color(display-p3 1 1 1)) {
+  @media (color-gamut: p3) {
+    :root,
+    .light {
+      --amber-1: color(display-p3 0.995 0.992 0.985);
+    }
+
+    .dark {
+      --amber-1: color(display-p3 0.082 0.07 0.05);
+    }
+  }
+}
+
+/* layer: default */
+.bg-amber-1 {
+  background-color: var(--amber-1);
+}
+.bg-amber-1\/10 {
+  background-color: color-mix(in srgb, var(--amber-1) var(--un-bg-opacity), transparent);
+}
+@supports (color: color-mix(in lab, red, red)) {
+  .bg-amber-1\/10 {
+    background-color: color-mix(in oklab, var(--amber-1) var(--un-bg-opacity), transparent);
+  }
+}
+```
 
 ## 许可证
 

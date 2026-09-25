@@ -6,7 +6,7 @@ import type { FillRecord } from '../utils'
  * @category Theme
  * @link {@see https://www.radix-ui.com/colors}
  */
-export type ThemeColorScales = FillRecord<string, '1' | '2' | '3' | '4' | '5' | '6' | '7' | '8' | '9' | '10' | '11' | '12' | 'a1' | 'a2' | 'a3' | 'a4' | 'a5' | 'a6' | 'a7' | 'a8' | 'a9' | 'a10' | 'a11' | 'a12'>
+export type ThemeColorScales = FillRecord<string, '1' | '2' | '3' | '4' | '5' | '6' | '7' | '8' | '9' | '10' | '11' | '12'>
 
 /**
  * 主题颜色
@@ -15,9 +15,12 @@ export type ThemeColorScales = FillRecord<string, '1' | '2' | '3' | '4' | '5' | 
  *
  * @link {@see https://www.radix-ui.com/colors}
  */
-export interface Colors {
+export interface ThemeColors {
   [key: string]: ThemeColorScales & {
-    dark?: ThemeColorScales
+    dark: ThemeColorScales
+    p3: ThemeColorScales & {
+      dark: ThemeColorScales
+    }
   }
 }
 
@@ -42,7 +45,7 @@ interface ThemeAnimations {
  */
 export interface Theme {
   font?: Record<string, string>
-  colors?: Colors
+  colors?: ThemeColors
   spacing?: Record<string, string>
   breakpoint?: Record<string, string>
   verticalBreakpoint?: Record<string, string>

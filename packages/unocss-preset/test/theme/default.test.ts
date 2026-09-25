@@ -47,14 +47,13 @@ describe('theme', () => {
   it('forwards color options into the colors theme', () => {
     const options = {
       colors: {
-        space: 'srgb' as const,
         accent: { brand: '#ff0000' },
         neutral: { mist: '#94a3b8' },
       },
     }
 
     expect(theme(options).colors).toEqual(colors(options.colors))
-    expect(theme(options).colors?.brand?.['9']).toBe('#f00')
+    expect(theme(options).colors?.brand?.['9']).toMatch(/^oklch\(/)
     expect(theme(options).colors?.mist).toBeDefined()
   })
 

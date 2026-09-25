@@ -107,6 +107,10 @@ export const RegistryItemSchema = z.object({
   /**
    * CSS 变量
    *
+   * - 变量名必须以 -- 开头，并不会做其它处理，如：`background -> bg, foreground -> text, etc`.
+   * - 变量值必须为字符串，可以直接使用 CSS 属性值，也可以使用 Weme UI 主题变量
+   *   如：`neutral.1 -> var(--neutral-1), background.base -> var(--bg-color)`
+   *
    * @example { '--item-css-variable': '#000' }
    */
   cssVars: z.record(NonEmptyTrimmedString.toLowerCase(), z.string()).optional(),

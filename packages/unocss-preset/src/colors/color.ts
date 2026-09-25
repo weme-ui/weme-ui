@@ -1,8 +1,10 @@
-import type { GenerateColorScalesOptions, GenerateColorScalesResult } from './generator'
-import type { ColorMode, ColorSpace, ColorValueScales, RadixColorName, RadixColorPureName } from './types'
+import type { GenerateColorScalesOptions } from './generator'
+import type { ColorMode, ColorValueScales, RadixColorName, RadixColorPureName, ResolvedColorScales } from './types'
 import * as colors from '@radix-ui/colors'
+import Color from 'colorjs.io'
 import { RADIX_COLOR_NAMES } from './defaults'
 import { generateRadixColorScales } from './generator'
+import { toOklchString } from './utils'
 
 export interface GetRadixColorScalesOptions {
   /**
@@ -15,18 +17,6 @@ export interface GetRadixColorScalesOptions {
    * @default 'light'
    */
   mode?: ColorMode
-  /**
-   * 颜色空间
-   *
-   * @default 'display-p3'
-   */
-  space?: ColorSpace
-  /**
-   * 使用透明颜色值
-   *
-   * @default false
-   */
-  alpha?: boolean
 }
 
 /**
@@ -38,21 +28,17 @@ export function getRadixColorScales(
   const {
     name,
     mode = 'light',
-    space = 'display-p3',
-    alpha = false,
   } = options
 
-  const isOverlayColor = name === 'black' || name === 'white'
+  const isBlackOrWhite = name === 'black' || name === 'white'
   const isDarkBlack = name === 'black' && mode === 'dark'
   const isDarkWhite = name === 'white' && mode === 'dark'
 
-  const solidColorKeySuffixMap: Record<ColorSpace, string> = { 'srgb': '', 'display-p3': 'P3' }
-  const alphaColorKeySuffixMap: Record<ColorSpace, string> = { 'srgb': 'A', 'display-p3': 'P3A' }
-
   const colorKey = [
     isDarkBlack ? 'white' : isDarkWhite ? 'black' : name,
-    mode === 'dark' && !isOverlayColor ? 'Dark' : '',
-    (isOverlayColor ? true : alpha) ? alphaColorKeySuffixMap[space] : solidColorKeySuffixMap[space],
+    mode === 'dark' && !isBlackOrWhite ? 'Dark' : '',
+    'P3',
+    isBlackOrWhite ? 'A' : '',
   ].join('') as RadixColorName
 
   return Object.values(colors[colorKey]) as ColorValueScales<string>
@@ -61,24 +47,24 @@ export function getRadixColorScales(
 /**
  * 解析 Radix 颜色刻度
  */
-export function resolveRadixColorScales(options: GenerateColorScalesOptions): GenerateColorScalesResult {
+export function resolveRadixColorScales(options: GenerateColorScalesOptions): ResolvedColorScales {
   const {
     color,
-    space = 'display-p3',
     mode = 'light',
     kind = 'accent',
   } = options
 
   if ([...RADIX_COLOR_NAMES, 'black', 'white'].includes(color)) {
+    const radixColors = getRadixColorScales({ name: color as RadixColorPureName, mode })
+
     return {
-      solid: getRadixColorScales({ name: color as RadixColorPureName, mode, space }),
-      alpha: getRadixColorScales({ name: color as RadixColorPureName, mode, space, alpha: true }),
+      p3: radixColors,
+      oklch: radixColors.map(c => toOklchString(new Color(c))) as ColorValueScales<string>,
     }
   }
 
   return generateRadixColorScales({
     color,
-    space,
     mode,
     kind,
   })

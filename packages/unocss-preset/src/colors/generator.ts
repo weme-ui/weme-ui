@@ -1,9 +1,9 @@
-import type { ColorKind, ColorMode, ColorScales, ColorSpace, ColorValueScales, RadixColorPureName, RadixNeutralColorPureName } from './types'
+import type { ColorKind, ColorMode, ColorScales, ColorValueScales, RadixColorPureName, RadixNeutralColorPureName, ResolvedColorScales } from './types'
 import BezierEasing from 'bezier-easing'
 import Color from 'colorjs.io'
 import { getRadixColorScales } from './color'
 import { DEFAULT_BACKGROUND_COLORS, RADIX_COLOR_NAMES, RADIX_NEUTRAL_COLOR_NAMES } from './defaults'
-import { toAlphaP3String, toAlphaSrgbString, toP3String } from './utils'
+import { toOklchString, toP3String } from './utils'
 
 export type RadixColorScales<T extends RadixColorPureName> = ColorScales<Color, T>
 
@@ -49,12 +49,6 @@ export interface GenerateColorScalesOptions {
    */
   color: string
   /**
-   * 颜色空间
-   *
-   * @default 'display-p3'
-   */
-  space?: ColorSpace
-  /**
    * 颜色模式
    *
    * @default 'light'
@@ -68,15 +62,12 @@ export interface GenerateColorScalesOptions {
   kind?: ColorKind
 }
 
-export type GenerateColorScalesResult = ColorScales<string, 'solid' | 'alpha'>
-
 /**
  * 生成 Radix 颜色刻度
  */
-export function generateRadixColorScales(options: GenerateColorScalesOptions): GenerateColorScalesResult {
+export function generateRadixColorScales(options: GenerateColorScalesOptions): ResolvedColorScales {
   const {
     color,
-    space = 'display-p3',
     mode = 'light',
     kind = 'accent',
   } = options
@@ -84,7 +75,6 @@ export function generateRadixColorScales(options: GenerateColorScalesOptions): G
   const allScales = mode === 'light' ? lightColors : darkColors
   const neutralScales = mode === 'light' ? lightNeutralColors : darkNeutralColors
   const bgColor = new Color(mode === 'light' ? DEFAULT_BACKGROUND_COLORS.light : DEFAULT_BACKGROUND_COLORS.dark).to('oklch')
-  const bgHex = bgColor.toString({ format: 'hex' })
 
   const baseColor = new Color(color).to('oklch')
   const baseHex = baseColor.toString({ format: 'hex' })
@@ -110,18 +100,9 @@ export function generateRadixColorScales(options: GenerateColorScalesOptions): G
     )
   }
 
-  const hex = colorScales.map(c => c.to('srgb').toString({ format: 'hex' })) as ColorValueScales<string>
-
-  if (space === 'srgb') {
-    return {
-      solid: hex,
-      alpha: hex.map(c => toAlphaSrgbString(c, bgHex)) as ColorValueScales<string>,
-    }
-  }
-
   return {
-    solid: colorScales.map(toP3String) as ColorValueScales<string>,
-    alpha: hex.map(c => toAlphaP3String(c, bgHex)) as ColorValueScales<string>,
+    oklch: colorScales.map(toOklchString) as ColorValueScales<string>,
+    p3: colorScales.map(toP3String) as ColorValueScales<string>,
   }
 }
 

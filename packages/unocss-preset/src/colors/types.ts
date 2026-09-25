@@ -6,13 +6,6 @@ export type RadixColorPureName = typeof RADIX_COLOR_NAMES[number]
 export type RadixNeutralColorPureName = typeof RADIX_NEUTRAL_COLOR_NAMES[number]
 
 /**
- * 颜色空间
- *
- * @category Colors
- */
-export type ColorSpace = 'srgb' | 'display-p3'
-
-/**
  * 颜色模式
  *
  * @category Colors
@@ -41,17 +34,18 @@ export type ColorValueScales<T> = [T, T, T, T, T, T, T, T, T, T, T, T]
 export type ColorScales<T = string, K extends string = string> = Record<K, ColorValueScales<T>>
 
 /**
+ * 解析后的颜色刻度
+ *
+ * @category Colors
+ */
+export type ResolvedColorScales = ColorScales<string, 'oklch' | 'p3'>
+
+/**
  * 自定义颜色
  *
  * @category Colors
  */
 export interface CustomColors {
-  /**
-   * 颜色空间
-   *
-   * @default 'display-p3'
-   */
-  space?: ColorSpace
   /**
    * 颜色
    */

@@ -3,7 +3,6 @@ export * from './handlers'
 export * from './mappings'
 export * from './track'
 export * from './types'
-export * from './unit-resolver'
 export * from './utilities'
 
 export * from '@unocss/rule-utils'

@@ -11,7 +11,7 @@ describe('border rules', () => {
       'border-x-4': { 'border-inline-width': '4px' },
       'border-t-width-3': { 'border-top-width': '3px' },
       'border-block-2': { 'border-block-start-width': '2px', 'border-block-end-width': '2px' },
-      'border-blue-9': { 'border-color': 'color-mix(in srgb, var(--colors-blue-9) var(--un-border-opacity), transparent)' },
+      'border-blue-9': { 'border-color': 'var(--blue-9)' },
       'border-x-current': { 'border-inline-color': 'currentColor' },
       'border-op-50': { '--un-border-opacity': '50%' },
       'b-t-opacity-25': { '--un-border-top-opacity': '25%' },

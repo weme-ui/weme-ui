@@ -6,11 +6,11 @@ describe('svg rules', () => {
   it('resolves fill, stroke, line cap and line join', () => {
     expectUtilities(svgUtilities, {
       'fill-none': { fill: 'none' },
-      'fill-blue-9': { fill: 'color-mix(in srgb, var(--colors-blue-9) var(--un-fill-opacity), transparent)' },
+      'fill-blue-9': { fill: 'var(--blue-9)' },
       'fill-op-40': { '--un-fill-opacity': '40%' },
       'stroke-none': { stroke: 'none' },
       'stroke-2': { 'stroke-width': '2px' },
-      'stroke-blue-9': { stroke: 'color-mix(in srgb, var(--colors-blue-9) var(--un-stroke-opacity), transparent)' },
+      'stroke-blue-9': { stroke: 'var(--blue-9)' },
       'stroke-opacity-25': { '--un-stroke-opacity': '25%' },
       'stroke-dash-4': { 'stroke-dasharray': 4 },
       'stroke-offset-2': { 'stroke-dashoffset': '2px' },

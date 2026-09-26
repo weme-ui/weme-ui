@@ -16,7 +16,7 @@ describe('color rules', () => {
 
   it('resolves background colors, images and opacity', () => {
     expectUtilities(bgColors, {
-      'bg-blue-9': { 'background-color': 'color-mix(in srgb, var(--colors-blue-9) var(--un-bg-opacity), transparent)' },
+      'bg-blue-9': { 'background-color': 'var(--blue-9)' },
       'bg-transparent': { 'background-color': 'transparent' },
       'bg-current': { 'background-color': 'currentColor' },
       'bg-op-50': { '--un-bg-opacity': '50%' },

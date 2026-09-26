@@ -23,7 +23,7 @@ describe('filter rules', () => {
       'sepia-50': { '--un-sepia': 'sepia(50%)', 'filter': filterValue },
       'backdrop-opacity-40': { '--un-backdrop-opacity': 'opacity(40%)', 'backdrop-filter': backdropValue },
       'drop-shadow-sm': { '--un-drop-shadow': 'drop-shadow(0 1px 2px var(--un-drop-shadow-color, rgb(0 0 0 / 0.15)))', 'filter': filterValue },
-      'drop-shadow-blue-9': { '--un-drop-shadow-color': 'color-mix(in srgb, var(--colors-blue-9) var(--un-drop-shadow-opacity), transparent)' },
+      'drop-shadow-blue-9': { '--un-drop-shadow-color': 'var(--blue-9)' },
       'drop-shadow-op-25': { '--un-drop-shadow-opacity': '25%' },
       'filter': { filter: filterValue },
       'backdrop-filter': { 'backdrop-filter': backdropValue, '-webkit-backdrop-filter': backdropValue },

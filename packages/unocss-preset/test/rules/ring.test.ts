@@ -13,14 +13,14 @@ describe('ring rules', () => {
         '--un-ring-shadow': 'var(--un-ring-inset,) 0 0 0 calc(2px + var(--un-ring-offset-width)) var(--un-ring-color, currentColor)',
       },
       'ring-blue-9': {
-        '--un-ring-color': 'color-mix(in srgb, var(--colors-blue-9) var(--un-ring-opacity), transparent)',
+        '--un-ring-color': 'var(--blue-9)',
       },
       'ring-op-40': { '--un-ring-opacity': '40%' },
       'inset-ring': {
         '--un-inset-ring-shadow': 'inset 0 0 0 1px var(--un-inset-ring-color, currentColor)',
       },
       'inset-ring-blue-9': {
-        '--un-inset-ring-color': 'color-mix(in srgb, var(--colors-blue-9) var(--un-inset-ring-opacity), transparent)',
+        '--un-inset-ring-color': 'var(--blue-9)',
       },
       'inset-ring-opacity-10': { '--un-inset-ring-opacity': '10%' },
       'ring-offset': {
@@ -29,7 +29,7 @@ describe('ring rules', () => {
       },
       'ring-offset-4': { '--un-ring-offset-width': '4px' },
       'ring-offset-blue-9': {
-        '--un-ring-offset-color': 'color-mix(in srgb, var(--colors-blue-9) var(--un-ring-offset-opacity), transparent)',
+        '--un-ring-offset-color': 'var(--blue-9)',
       },
       'ring-offset-op-20': { '--un-ring-offset-opacity': '20%' },
       'ring-inset': { '--un-ring-inset': 'inset' },

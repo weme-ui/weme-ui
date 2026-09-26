@@ -15,8 +15,8 @@ describe('decoration rules', () => {
       'underline-auto': { 'text-decoration-thickness': 'auto' },
       'decoration-from-font': { 'text-decoration-thickness': 'from-font' },
       'underline-blue-9': {
-        'text-decoration-color': 'color-mix(in srgb, var(--colors-blue-9) var(--un-line-opacity), transparent)',
-        '-webkit-text-decoration-color': 'color-mix(in srgb, var(--colors-blue-9) var(--un-line-opacity), transparent)',
+        'text-decoration-color': 'var(--blue-9)',
+        '-webkit-text-decoration-color': 'var(--blue-9)',
       },
       'decoration-op-40': { '--un-line-opacity': '40%' },
       'underline-offset-2': { 'text-underline-offset': '2px' },

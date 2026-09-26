@@ -16,7 +16,7 @@ describe('shadow rules', () => {
         '--un-shadow': '0 0 var(--un-shadow-color, rgb(0 0 0 / 0))',
       },
       'shadow-blue-9': {
-        '--un-shadow-color': 'color-mix(in srgb, var(--colors-blue-9) var(--un-shadow-opacity), transparent)',
+        '--un-shadow-color': 'var(--blue-9)',
       },
       'shadow-op-40': { '--un-shadow-opacity': '40%' },
       'inset-shadow-xs': {

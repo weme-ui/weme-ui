@@ -8,7 +8,7 @@ describe('behavior rules', () => {
     expectUtilities(outline, {
       'outline': { 'outline-style': 'var(--un-outline-style)', 'outline-width': '1px' },
       'outline-2': { 'outline-style': 'var(--un-outline-style)', 'outline-width': '2px' },
-      'outline-blue-9': { 'outline-color': 'color-mix(in srgb, var(--colors-blue-9) var(--un-outline-opacity), transparent)' },
+      'outline-blue-9': { 'outline-color': 'var(--blue-9)' },
       'outline-op-25': { '--un-outline-opacity': '25%' },
       'outline-offset-2': { 'outline-offset': '2px' },
       'outline-offset-none': { 'outline-offset': '0' },
@@ -58,7 +58,7 @@ describe('behavior rules', () => {
 
   it('resolves accent, caret, image rendering, overscroll and scroll behavior', () => {
     expectUtilities(accents, {
-      'accent-blue-9': { 'accent-color': 'color-mix(in srgb, var(--colors-blue-9) var(--un-accent-opacity), transparent)' },
+      'accent-blue-9': { 'accent-color': 'var(--blue-9)' },
       'accent-op-50': { '--un-accent-opacity': '50%' },
       'accent-not-a-color': undefined,
     })

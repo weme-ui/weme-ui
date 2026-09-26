@@ -5,7 +5,7 @@ import { expectUtilities } from './_utils'
 describe('placeholder rules', () => {
   it('resolves placeholder color and opacity from the internal prefix', () => {
     expectUtilities(placeholders, {
-      '$ placeholder-blue-9': { color: 'color-mix(in srgb, var(--colors-blue-9) var(--un-placeholder-opacity), transparent)' },
+      '$ placeholder-blue-9': { color: 'var(--blue-9)' },
       '$ placeholder-current': { color: 'currentColor' },
       '$ placeholder-op-50': { '--un-placeholder-opacity': '50%' },
       '$ placeholder-opacity-20': { '--un-placeholder-opacity': '20%' },

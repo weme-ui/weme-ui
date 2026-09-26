@@ -21,7 +21,7 @@ describe('background rules', () => {
         'background-image': 'repeating-linear-gradient(var(--un-gradient, var(--un-gradient-stops, rgb(255 255 255 / 0))))',
       },
       'from-blue-9': {
-        '--un-gradient-from': 'color-mix(in oklab, var(--colors-blue-9) var(--un-from-opacity), transparent)',
+        '--un-gradient-from': 'color-mix(in oklab, var(--blue-9) var(--un-from-opacity), transparent)',
       },
       'via-transparent': {
         '--un-gradient-via': 'transparent',

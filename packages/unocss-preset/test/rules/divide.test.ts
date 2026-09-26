@@ -20,7 +20,7 @@ describe('divide rules', () => {
       },
       'divide-x-reverse': { '--un-divide-x-reverse': '1' },
       'divide-blue-9': {
-        'border-color': 'color-mix(in srgb, var(--colors-blue-9) var(--un-divide-opacity), transparent)',
+        'border-color': 'var(--blue-9)',
       },
       'divide-op-30': { '--un-divide-opacity': '30%' },
       'divide-dashed': { 'border-style': 'dashed' },

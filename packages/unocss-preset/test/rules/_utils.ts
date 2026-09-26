@@ -2,16 +2,22 @@ import type { CSSObject, Rule, RuleContext } from '@unocss/core'
 import type { Theme } from '~/theme'
 import { symbols } from '@unocss/core'
 import { expect } from 'vitest'
-import { createContext } from '../variants/_utils'
+import { theme } from '~/theme/default'
 
 export function createRuleContext(overrides: Record<string, unknown> = {}): RuleContext<Theme> {
   return {
-    ...createContext(),
+    theme: theme({}),
+    generator: {
+      config: {
+        separators: [':'],
+      },
+      userConfig: {},
+    },
     symbols,
     variantHandlers: [],
     constructCSS: (css: CSSObject) => JSON.stringify(css),
     ...overrides,
-  } as RuleContext<Theme>
+  } as unknown as RuleContext<Theme>
 }
 
 function isGenerator(value: object): value is Generator {

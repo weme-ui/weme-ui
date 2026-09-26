@@ -28,7 +28,7 @@ describe('gap rules', () => {
       'rule-y-dashed': { 'column-rule-style': 'dashed' },
       'rule-op-50': { '--un-rule-opacity': '50%' },
       'rule-x-opacity-25': { '--un-row-rule-opacity': '25%' },
-      'rule-blue-9': { 'rule-color': 'color-mix(in srgb, var(--colors-blue-9) var(--un-rule-opacity), transparent)' },
+      'rule-blue-9': { 'rule-color': 'var(--blue-9)' },
       'rule-break-normal': { 'rule-break': 'normal' },
       'rule-x-break-none': { 'row-rule-break': 'none' },
       'rule-visibility-between': { 'rule-visibility-items': 'between' },

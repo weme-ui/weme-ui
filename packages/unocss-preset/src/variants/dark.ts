@@ -1,6 +1,6 @@
 import type { Variant } from '@unocss/core'
-import type { PresetWemeUIOptions } from '../index'
 import type { Theme } from '../theme'
+import type { PresetWemeUIOptions } from '~/options'
 import { variantMatcher, variantParentMatcher } from '@unocss/rule-utils'
 
 export function variantColorsMediaOrClass(options: PresetWemeUIOptions = {}): Variant<Theme>[] {

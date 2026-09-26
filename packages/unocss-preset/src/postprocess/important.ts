@@ -1,5 +1,5 @@
 import type { Postprocessor } from '@unocss/core'
-import type { PresetWemeUIOptions } from '..'
+import type { PresetWemeUIOptions } from '~/options'
 
 export function important({ important: option }: PresetWemeUIOptions): Postprocessor[] {
   if (option == null || option === false)

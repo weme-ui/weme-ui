@@ -1,6 +1,6 @@
 import type { CSSEntry, Preflight } from '@unocss/core'
-import type { PreflightsTheme, PresetWemeUIOptions } from '..'
 import type { Theme } from '../theme/types'
+import type { PreflightsTheme, PresetWemeUIOptions } from '~/options'
 import { escapeSelector, toArray, uniq } from '@unocss/core'
 import { alphaPlaceholdersRE } from '@unocss/rule-utils'
 import { compressCSS, detectThemeValue, getThemeByKey, themeTracking, trackedTheme } from '../utils'

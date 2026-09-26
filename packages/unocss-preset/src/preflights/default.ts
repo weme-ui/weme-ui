@@ -1,6 +1,6 @@
 import type { Preflight } from '@unocss/core'
-import type { PresetWemeUIOptions } from '..'
 import type { Theme } from '../theme/types'
+import type { PresetWemeUIOptions } from '~/options'
 import { property } from './property'
 import { reset } from './reset'
 import { theme } from './theme'

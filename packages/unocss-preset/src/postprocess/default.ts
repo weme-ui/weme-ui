@@ -1,5 +1,5 @@
 import type { Postprocessor } from '@unocss/core'
-import type { PresetWemeUIOptions } from '..'
+import type { PresetWemeUIOptions } from '~/options'
 import { important } from './important'
 import { varPrefix } from './var-prefix'
 

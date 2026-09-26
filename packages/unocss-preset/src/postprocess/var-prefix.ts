@@ -1,5 +1,5 @@
 import type { Postprocessor } from '@unocss/core'
-import type { PresetWemeUIOptions } from '..'
+import type { PresetWemeUIOptions } from '~/options'
 
 export function varPrefix({ variablePrefix: prefix }: PresetWemeUIOptions): Postprocessor[] {
   const processor: Postprocessor = (obj) => {

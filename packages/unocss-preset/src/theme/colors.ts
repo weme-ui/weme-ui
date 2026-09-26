@@ -1,6 +1,6 @@
-import type { PresetWemeUIOptions } from '..'
 import type { ColorKind, ColorMode } from '../colors'
 import type { Theme, ThemeColorScales } from './types'
+import type { PresetWemeUIOptions } from '~/options'
 import { ADDITIONAL_ACCENT_COLORS, ADDITIONAL_NEUTRAL_COLORS, RADIX_COLOR_NAMES, resolveRadixColorScales } from '../colors'
 
 /**

@@ -1,7 +1,7 @@
 import type { VariantObject } from '@unocss/core'
 import type { PseudoVariantUtilities } from '@unocss/rule-utils'
-import type { PresetWemeUIOptions } from '..'
 import type { Theme } from '../theme'
+import type { PresetWemeUIOptions } from '~/options'
 import {
   createPartClasses,
   createPseudoClassesAndElements,

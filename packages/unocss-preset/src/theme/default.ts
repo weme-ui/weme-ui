@@ -1,5 +1,5 @@
-import type { PresetWemeUIOptions } from '..'
 import type { Theme } from './types'
+import type { PresetWemeUIOptions } from '~/options'
 import { animation } from './animation'
 import { aria } from './aria'
 import { colors } from './colors'

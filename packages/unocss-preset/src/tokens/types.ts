@@ -88,11 +88,6 @@ export interface ThemeTokens {
    * - `--border-color-inverted`
    */
   border: TokenValue<'base' | 'elevated' | 'inverted'>
-
-  /**
-   * Additional tokens
-   */
-  [key: string]: string | Record<string, string>
 }
 
 /**

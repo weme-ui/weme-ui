@@ -34,7 +34,7 @@ describe('themeTracking', () => {
 
 describe('generateThemeVariable', () => {
   it('builds css variables from theme key paths', () => {
-    expect(generateThemeVariable('colors', ['blue', '9'])).toBe('var(--colors-blue-9)')
+    expect(generateThemeVariable('colors', ['blue', '9'])).toBe('var(--blue-9)')
     expect(generateThemeVariable('spacing', 'DEFAULT')).toBe('var(--spacing-DEFAULT)')
   })
 })

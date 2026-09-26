@@ -140,36 +140,41 @@ export function theme(options: PresetWemeUIOptions): Preflight<Theme> {
           },
         ).filter(Boolean)
 
-        const colorCSS = resolvedColors.join('\n')
-        const darkColorCSS = resolvedDarkColors.join('\n')
-        const p3ColorCSS = resolvedP3Colors.join('\n')
-        const p3DarkColorCSS = resolvedP3DarkColors.join('\n')
+        const colorCSS = resolvedColors.length > 0
+          ? `
+          :root, .light {
+${resolvedColors.join('\n')}
+}`
+          : ''
+        const darkColorCSS = resolvedDarkColors.length > 0
+          ? `
+.dark {
+${resolvedDarkColors.join('\n')}
+}`
+          : ''
+        const p3ColorCSS = resolvedP3Colors.length > 0
+          ? `
+@supports (color: color(display-p3 1 1 1)) {
+  @media (color-gamut: p3) {
+    :root,
+    .light {
+${resolvedP3Colors.join('\n')}
+    }
+
+    .dark {
+${resolvedP3DarkColors.join('\n')}
+    }
+  }
+}`
+          : ''
 
         return compressCSS(`
 :root, :host {
 ${depCSS}
 }
-
-:root, .light {
 ${colorCSS}
-}
-
-.dark {
 ${darkColorCSS}
-}
-
-@supports (color: color(display-p3 1 1 1)) {
-  @media (color-gamut: p3) {
-    :root,
-    .light {
 ${p3ColorCSS}
-    }
-
-    .dark {
-${p3DarkColorCSS}
-    }
-  }
-}
 `, generator.config.envMode === 'dev')
       }
 

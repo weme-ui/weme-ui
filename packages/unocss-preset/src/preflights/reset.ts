@@ -409,6 +409,18 @@ input:where([type='button'], [type='reset'], [type='submit']),
 }
 
 /*
+  Color Schema
+*/
+
+:root, .light {
+  color-scheme: light;
+}
+
+.dark {
+  color-scheme: dark;
+}
+
+/*
   Scaling
 */
 

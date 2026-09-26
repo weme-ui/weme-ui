@@ -7,6 +7,7 @@ import { compressCSS, detectThemeValue, getThemeByKey, themeTracking, trackedThe
 
 /** Exclude output for CSS Variables */
 const ExcludeCssVarKeys = [
+  'colors',
   'spacing',
   'breakpoint',
   'verticalBreakpoint',
@@ -82,12 +83,19 @@ export function theme(options: PresetWemeUIOptions): Preflight<Theme> {
         }
       }
 
+      let colors: CSSEntry[] = []
       let deps: CSSEntry[]
-      const generateCSS = (deps: CSSEntry[]) => {
+      const generateCSS = (deps: CSSEntry[], colors: CSSEntry[]) => {
         if (process) {
           for (const utility of deps) {
             for (const p of toArray(process)) {
               p(utility, ctx)
+            }
+          }
+
+          for (const color of colors) {
+            for (const p of toArray(process)) {
+              p(color, ctx)
             }
           }
         }
@@ -98,15 +106,92 @@ export function theme(options: PresetWemeUIOptions): Preflight<Theme> {
         }
         const depCSS = resolvedDeps.join('\n')
 
+        const resolvedDarkColors: string[] = []
+        const resolvedP3Colors: string[] = []
+        const resolvedP3DarkColors: string[] = []
+        const resolvedColors = colors.map(
+          ([key, value]) => {
+            if (key && value) {
+              const darkKey = key.replace(/^--/, '').split('-').join('-dark-')
+              const darkValue = getThemeByKey(theme, 'colors', darkKey.split('-'))
+
+              if (darkKey && darkValue) {
+                resolvedDarkColors.push(`${escapeSelector(key)}: ${darkValue};`)
+              }
+
+              const p3Key = key.replace(/^--/, '').split('-').join('-p3-')
+              const p3Value = getThemeByKey(theme, 'colors', p3Key.split('-'))
+
+              if (p3Key && p3Value) {
+                resolvedP3Colors.push(`${escapeSelector(key)}: ${p3Value};`)
+              }
+
+              const p3DarkKey = key.replace(/^--/, '').split('-').join('-p3-dark-')
+              const p3DarkValue = getThemeByKey(theme, 'colors', p3DarkKey.split('-'))
+
+              if (p3DarkKey && p3DarkValue) {
+                resolvedP3DarkColors.push(`${escapeSelector(key)}: ${p3DarkValue};`)
+              }
+
+              return `${escapeSelector(key)}: ${value};`
+            }
+
+            return undefined
+          },
+        ).filter(Boolean)
+
+        const colorCSS = resolvedColors.join('\n')
+        const darkColorCSS = resolvedDarkColors.join('\n')
+        const p3ColorCSS = resolvedP3Colors.join('\n')
+        const p3DarkColorCSS = resolvedP3DarkColors.join('\n')
+
         return compressCSS(`
 :root, :host {
 ${depCSS}
-}`, generator.config.envMode === 'dev')
+}
+
+:root, .light {
+${colorCSS}
+}
+
+.dark {
+${darkColorCSS}
+}
+
+@supports (color: color(display-p3 1 1 1)) {
+  @media (color-gamut: p3) {
+    :root,
+    .light {
+${p3ColorCSS}
+    }
+
+    .dark {
+${p3DarkColorCSS}
+    }
+  }
+}
+`, generator.config.envMode === 'dev')
       }
 
       if (mode === 'on-demand') {
         if (trackedTheme.size === 0)
           return undefined
+
+        colors = Array.from(trackedTheme).map((k) => {
+          const [key, prop] = k.split(':') as [keyof Theme, string]
+
+          if (key !== 'colors') {
+            return undefined
+          }
+
+          const v = getThemeByKey(theme, key, prop.split('-'))
+
+          if (typeof v === 'string') {
+            return [`--${prop}`, v]
+          }
+
+          return undefined
+        }).filter(Boolean) as CSSEntry[]
 
         deps = Array.from(trackedTheme).map((k) => {
           const [key, prop] = k.split(':') as [keyof Theme, string]
@@ -127,9 +212,10 @@ ${depCSS}
       else {
         const keys = Object.keys(theme).filter(k => !ExcludeCssVarKeys.includes(k))
         deps = Array.from(getThemeVarsMap(theme, keys))
+        colors = Array.from(getThemeVarsMap(theme, ['colors']))
       }
 
-      return generateCSS(deps)
+      return generateCSS(deps, colors)
     },
   }
 }

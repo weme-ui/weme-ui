@@ -272,7 +272,10 @@ export function colorCSSGenerator(
       method = `in ${method}`
     }
 
-    css[property] = `color-mix(${method}, ${value} ${alpha ?? `var(${alphaKey})`}, transparent)${rawColorComment}`
+    css[property] = alpha
+      ? `color-mix(${method}, ${value} ${alpha ?? `var(${alphaKey})`}, transparent)${rawColorComment}`
+      : `${value}${rawColorComment}`
+
     result.push(defineProperty(alphaKey, { syntax: '<percentage>', initialValue: '100%' }))
 
     if (!isSpecial) {
@@ -282,11 +285,17 @@ export function colorCSSGenerator(
           const colorValue = ['shadow', 'inset-shadow', 'text-shadow', 'drop-shadow'].includes(varName)
             ? `${alpha ? `color-mix(in oklab, ${value} ${alpha}, transparent)` : `${value}`} var(${alphaKey})`
             : `${value} ${alpha ?? `var(${alphaKey})`}`
-          result.push({
-            [symbols.parent]: '@supports (color: color-mix(in lab, red, red))',
-            [symbols.noMerge]: true,
-            [property]: `color-mix(in oklab, ${colorValue}, transparent)${rawColorComment}`,
-          })
+
+          if (
+            ['shadow', 'inset-shadow', 'text-shadow', 'drop-shadow'].includes(varName)
+            || alpha
+          ) {
+            result.push({
+              [symbols.parent]: '@supports (color: color-mix(in lab, red, red))',
+              [symbols.noMerge]: true,
+              [property]: `color-mix(in oklab, ${colorValue}, transparent)${rawColorComment}`,
+            })
+          }
         }
       }
       if (ctx?.theme) {

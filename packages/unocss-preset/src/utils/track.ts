@@ -22,7 +22,7 @@ export function themeTracking(key: string, props: Arrayable<string> = 'DEFAULT')
 }
 
 export function generateThemeVariable(key: string, props: Arrayable<string>) {
-  return `var(--${key}-${toArray(props).join('-')})`
+  return `var(--${key === 'colors' ? '' : `${key}-`}${toArray(props).join('-')})`
 }
 
 export function detectThemeValue(value: string, theme: Theme) {

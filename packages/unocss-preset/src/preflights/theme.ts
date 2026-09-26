@@ -142,7 +142,7 @@ export function theme(options: PresetWemeUIOptions): Preflight<Theme> {
 
         const colorCSS = resolvedColors.length > 0
           ? `
-          :root, .light {
+:root, .light {
 ${resolvedColors.join('\n')}
 }`
           : ''

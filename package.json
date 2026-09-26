@@ -33,6 +33,8 @@
     "dev": {
       "@types/node": "^25.9.1",
       "@vitejs/plugin-vue": "^6.0.9",
+      "defu": "^6.1.7",
+      "type-fest": "^5.10.0",
       "unocss": "^66.10.5",
       "unplugin-auto-import": "^21.1.0",
       "unplugin-vue-components": "^32.1.0",

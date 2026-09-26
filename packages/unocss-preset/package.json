@@ -78,7 +78,9 @@
     "@unocss/rule-utils": "^66.10.5",
     "bezier-easing": "^3.1.0",
     "colorjs.io": "^0.7.1",
+    "defu": "catalog:dev",
     "tsdown": "catalog:build",
+    "type-fest": "catalog:dev",
     "typescript": "catalog:build",
     "vitest": "catalog:dev"
   }

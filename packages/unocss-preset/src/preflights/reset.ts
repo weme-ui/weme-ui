@@ -407,6 +407,9 @@ input:where([type='button'], [type='reset'], [type='submit']),
 [hidden]:where(:not([hidden~='until-found'])) {
   display: none !important;
 }
+`
+
+const wemeUIStyles = `
 
 /*
   Color Schema
@@ -475,7 +478,7 @@ export function reset(options: PresetWemeUIOptions): Preflight<Theme> | undefine
       themeTracking('default', ['font', 'family'])
       themeTracking('default', ['monoFont', 'family'])
 
-      return compressCSS(resetCSS, generator.config.envMode === 'dev')
+      return compressCSS(resetCSS + wemeUIStyles, generator.config.envMode === 'dev')
     },
     layer: 'base',
   }

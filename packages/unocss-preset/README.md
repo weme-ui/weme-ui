@@ -43,6 +43,16 @@
   }
 }
 
+[data-theme='default'] {
+  --primary-1: var(--amber-1);
+
+  --text-color-highlighted: var(--neutral-12);
+  --text-color: var(--neutral-11);
+  --text-color-subtle: var(--neutral-6);
+  --text-color-muted: var(--neutral-4);
+  --text-color-inverted: var(--neutral-1);
+}
+
 /* layer: default */
 .bg-amber-1 {
   background-color: var(--amber-1);

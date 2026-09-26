@@ -110,6 +110,11 @@ ${depCSS}
 
         deps = Array.from(trackedTheme).map((k) => {
           const [key, prop] = k.split(':') as [keyof Theme, string]
+
+          // 跳过颜色主题变量，改为 tokens 接管
+          if (key === 'colors')
+            return undefined
+
           const v = getThemeByKey(theme, key, prop.split('-'))
 
           if (typeof v === 'string') {

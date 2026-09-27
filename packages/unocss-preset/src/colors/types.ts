@@ -41,11 +41,11 @@ export type ColorScales<T = string, K extends string = string> = Record<K, Color
 export type ResolvedColorScales = ColorScales<string, 'oklch' | 'p3'>
 
 /**
- * 自定义颜色
+ * 附加颜色
  *
  * @category Colors
  */
-export interface CustomColors {
+export interface AdditionalColors {
   /**
    * 颜色
    */

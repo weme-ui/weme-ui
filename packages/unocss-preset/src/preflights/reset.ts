@@ -1,6 +1,6 @@
 import type { Preflight } from '@unocss/core'
+import type { PresetWemeUIOptions } from '../options'
 import type { Theme } from '../theme'
-import type { PresetWemeUIOptions } from '~/options'
 import { compressCSS, themeTracking } from '../utils'
 
 /*

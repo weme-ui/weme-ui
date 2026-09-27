@@ -1,4 +1,4 @@
-import type { ThemeColors } from './types'
+import type { CustomThemeColors } from './types'
 import { DEFAULT_COLORS } from './defaults'
 
 const CSSVAR_SHORTCUTS: Record<string, string> = {
@@ -11,7 +11,7 @@ const CSSVAR_SHORTCUTS: Record<string, string> = {
 /**
  * 检查是否为主题颜色名称
  */
-export function isThemeColorName(name: string): name is keyof ThemeColors {
+export function isThemeColorName(name: string): name is keyof CustomThemeColors {
   return name in DEFAULT_COLORS
 }
 

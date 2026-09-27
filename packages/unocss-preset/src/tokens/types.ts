@@ -20,7 +20,7 @@ type TokenValue<T extends string> = FillRecord<string, T>
  *
  * @category Tokens
  */
-export type ThemeRadius = 'none' | 'xs' | 'sm' | 'md' | 'lg' | 'full'
+export type CustomThemeRadius = 'none' | 'xs' | 'sm' | 'md' | 'lg' | 'full'
 
 /**
  * 缩放倍率 `[data-scaling]` -> `--scaling`
@@ -33,7 +33,7 @@ export type ThemeRadius = 'none' | 'xs' | 'sm' | 'md' | 'lg' | 'full'
  *
  * @category Tokens
  */
-export type ThemeScaling = '90%' | '95%' | '100%' | '105%' | '110%'
+export type CustomThemeScaling = '90%' | '95%' | '100%' | '105%' | '110%'
 
 /**
  * 主题颜色名称/值
@@ -42,7 +42,7 @@ export type ThemeScaling = '90%' | '95%' | '100%' | '105%' | '110%'
  *
  * @category Tokens
  */
-export type ThemeColors = FillRecord<
+export type CustomThemeColors = FillRecord<
   LooseAutocomplete<AccentColorNames | NeutralColorNames>,
   | 'primary'
   | 'secondary'
@@ -58,7 +58,7 @@ export type ThemeColors = FillRecord<
  *
  * @category Tokens
  */
-export interface ThemeTokens {
+export interface CustomThemeTokens {
   /**
    * Text color
    *
@@ -95,7 +95,7 @@ export interface ThemeTokens {
  *
  * @category Tokens
  */
-export interface WemeUITheme {
+export interface CustomTheme {
   /**
    * 主题名称
    *
@@ -105,28 +105,11 @@ export interface WemeUITheme {
    */
   name: string
   /**
-  /**
-   * 缩放倍率
-   *
-   * @example [data-scaling="100%"]
-   *
-   * @default '100%'
-   */
-  scaling: ThemeScaling
-  /**
-   * 圆角大小
-   *
-   * @example [data-radius="md"]
-   *
-   * @default 'md'
-   */
-  radius: ThemeRadius
-  /**
    * 主题颜色
    */
-  colors: ThemeColors
+  colors: CustomThemeColors
   /**
    * 主题令牌
    */
-  tokens: ThemeTokens
+  tokens: CustomThemeTokens
 }

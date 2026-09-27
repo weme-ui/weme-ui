@@ -1,4 +1,4 @@
-import type { ThemeColors, ThemeRadius, ThemeScaling, ThemeTokens } from './types'
+import type { CustomThemeColors, CustomThemeTokens } from './types'
 
 /**
  * 默认主题名称
@@ -6,27 +6,12 @@ import type { ThemeColors, ThemeRadius, ThemeScaling, ThemeTokens } from './type
  * @category Tokens
  */
 export const DEFAULT_NAME = 'default'
-
-/**
- * 默认缩放倍率
- *
- * @category Tokens
- */
-export const DEFAULT_SCALING: ThemeScaling = '100%'
-
-/**
- * 默认圆角大小
- *
- * @category Tokens
- */
-export const DEFAULT_RADIUS: ThemeRadius = 'md'
-
 /**
  * 默认主题颜色
  *
  * @category Tokens
  */
-export const DEFAULT_COLORS: ThemeColors = {
+export const DEFAULT_COLORS: CustomThemeColors = {
   primary: 'gunmetal',
   secondary: 'clay',
   neutral: 'iron',
@@ -41,7 +26,7 @@ export const DEFAULT_COLORS: ThemeColors = {
  *
  * @category Tokens
  */
-export const DEFAULT_TOKENS: ThemeTokens = {
+export const DEFAULT_TOKENS: CustomThemeTokens = {
   text: {
     highlighted: 'neutral.12',
     base: 'neutral.11',

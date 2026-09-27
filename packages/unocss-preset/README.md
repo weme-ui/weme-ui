@@ -43,9 +43,15 @@
   }
 }
 
-[data-theme='default'] {
+:where([data-theme='default']) {
   --primary-1: var(--amber-1);
+}
 
+.dark:where([data-theme='default']) {
+  --primary-1: var(--amber-1);
+}
+
+:where([data-theme='default']) {
   --text-color-highlighted: var(--neutral-12);
   --text-color: var(--neutral-11);
   --text-color-subtle: var(--neutral-6);

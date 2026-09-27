@@ -1,10 +1,9 @@
-import type { Arrayable, CSSEntry, PreflightContext, PresetOptions } from '@unocss/core'
-import type { PartialDeep } from 'type-fest'
-import type { CustomColors } from './colors'
+import type { Arrayable, CSSEntry, DeepPartial, PreflightContext, PresetOptions } from '@unocss/core'
+import type { AdditionalColors } from './colors'
 import type { Theme } from './theme'
-import type { WemeUITheme } from './tokens'
+import type { CustomTheme } from './tokens'
 import { defu } from 'defu'
-import { DEFAULT_COLORS, DEFAULT_NAME, DEFAULT_RADIUS, DEFAULT_SCALING, DEFAULT_TOKENS } from './tokens'
+import { DEFAULT_COLORS, DEFAULT_NAME, DEFAULT_TOKENS } from './tokens'
 
 /**
  * 暗色模式选择器
@@ -146,12 +145,12 @@ export interface PresetWemeUIOptions extends PresetOptions {
   /**
    * 自定义颜色
    */
-  colors?: CustomColors
+  colors?: AdditionalColors
 
   /**
    * 自定义主题
    */
-  themes?: PartialDeep<WemeUITheme>[]
+  themes?: DeepPartial<CustomTheme>[]
 
   /**
    * 自定义 CSS 变量
@@ -159,6 +158,9 @@ export interface PresetWemeUIOptions extends PresetOptions {
   cssVars?: Record<string, string>
 }
 
+/**
+ * 解析预设选项
+ */
 export function resolveOptions(options: PresetWemeUIOptions) {
   options.dark = options.dark ?? 'class'
   options.variablePrefix = options.variablePrefix ?? 'un-'
@@ -167,25 +169,23 @@ export function resolveOptions(options: PresetWemeUIOptions) {
   options.themes = options.themes ?? []
   options.cssVars = options.cssVars ?? {}
 
-  options.themes = options.themes.map((theme) => {
-    return {
-      name: theme.name ?? DEFAULT_NAME,
-      scaling: theme.scaling ?? DEFAULT_SCALING,
-      radius: theme.radius ?? DEFAULT_RADIUS,
-      colors: defu(theme.colors ?? {}, DEFAULT_COLORS),
-      tokens: defu(theme.tokens ?? {}, DEFAULT_TOKENS),
-    }
-  })
-
-  if (!options.themes.some(theme => theme.name === DEFAULT_NAME)) {
-    options.themes.push({
+  if (options.themes?.length === 0) {
+    options.themes?.push({
       name: DEFAULT_NAME,
-      scaling: DEFAULT_SCALING,
-      radius: DEFAULT_RADIUS,
       colors: DEFAULT_COLORS,
       tokens: DEFAULT_TOKENS,
     })
   }
+
+  options.themes = options.themes.map(
+    (theme) => {
+      return {
+        name: theme.name ?? DEFAULT_NAME,
+        colors: defu(theme.colors ?? {}, DEFAULT_COLORS),
+        tokens: defu(theme.tokens ?? {}, DEFAULT_TOKENS),
+      }
+    },
+  )
 
   return options
 }

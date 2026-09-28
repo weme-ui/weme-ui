@@ -13,11 +13,11 @@ export function custom(options: PresetWemeUIOptions): Preflight<Theme> | undefin
 
   return {
     getCSS: ({ generator, theme }) => {
-      const defaultCssVarsCSS = options.cssVars ? resolveCustomCssVars(options.cssVars) : ''
+      const defaultCssVarsCSS = options.cssVars ? resolveCustomCssVars(options.cssVars, theme) : ''
 
       const themeCSS = options.themes?.map((custom) => {
         const colorAliasCSS = resolveCustomThemeColorAlias(custom as CustomTheme, theme)
-        const tokensCSS = resolveCustomThemeTokens(custom as CustomTheme)
+        const tokensCSS = resolveCustomThemeTokens(custom as CustomTheme, theme)
 
         return `${colorAliasCSS}
     ${defaultCssVarsCSS}
@@ -49,12 +49,14 @@ function resolveCustomThemeColorAlias(custom: CustomTheme, theme: Theme): string
   const lightSelector = `${custom.name === DEFAULT_NAME ? ':root, ' : ''}:where([data-theme='${custom.name}'])`
   const darkSelector = `.dark:where([data-theme='${custom.name}'])`
 
-  const colorAliases = Array.from(trackedColorAliases).reduce((acc, alias) => {
-    const [name, no] = alias.split(':')
-    acc[name] = acc[name] || []
-    acc[name].push(no)
-    return acc
-  }, {} as Record<string, string[]>)
+  const colorAliases = Array.from(trackedColorAliases)
+    .sort((a, b) => a.localeCompare(b))
+    .reduce((acc, alias) => {
+      const [name, no] = alias.split(':')
+      acc[name] = acc[name] || []
+      acc[name].push(no)
+      return acc
+    }, {} as Record<string, string[]>)
 
   Object.entries(colorAliases).forEach(([name, nos]) => {
     const color = custom.colors[name as keyof CustomThemeColorAlias]
@@ -63,7 +65,7 @@ function resolveCustomThemeColorAlias(custom: CustomTheme, theme: Theme): string
       const lightColorScales = resolveRadixColorScales({ color, mode: 'light' })
       const darkColorScales = resolveRadixColorScales({ color, mode: 'dark' })
 
-      nos.forEach((no) => {
+      nos.sort((a, b) => Number(a) - Number(b)).forEach((no) => {
         lightCSS.push(`--${name}-${no}: var(--custom-${name}-${no}, ${lightColorScales.p3[Number(no) - 1]});`)
         darkCSS.push(`--${name}-${no}: var(--custom-${name}-${no}, ${darkColorScales.p3[Number(no) - 1]});`)
 
@@ -71,7 +73,7 @@ function resolveCustomThemeColorAlias(custom: CustomTheme, theme: Theme): string
       })
     }
     else {
-      nos.forEach((no) => {
+      nos.sort((a, b) => Number(a) - Number(b)).forEach((no) => {
         lightCSS.push(`--${name}-${no}: var(--custom-${name}-${no}, var(--${color}-${no}));`)
         darkCSS.push(`--${name}-${no}: var(--custom-${name}-${no}, var(--${color}-${no}));`)
 
@@ -90,19 +92,19 @@ ${darkCSS.join('\n')}
   : ''}`
 }
 
-function resolveCustomThemeTokens(theme: CustomTheme): string {
-  const tokensSelector = `${theme.name === DEFAULT_NAME ? ':root, ' : ''}:where([data-theme='${theme.name}'])`
+function resolveCustomThemeTokens(custom: CustomTheme, theme: Theme): string {
+  const tokensSelector = `${custom.name === DEFAULT_NAME ? ':root, ' : ''}:where([data-theme='${custom.name}'])`
   const tokensCSS: string[] = Object.entries(
-    resolveCustomThemeCssVars(theme.tokens),
+    resolveCustomThemeCssVars(custom.tokens, theme),
   ).map(
     ([key, value]) => {
       return `${key}: ${value};`
     },
   )
 
-  if (theme.cssVars) {
+  if (custom.cssVars) {
     Object.entries(
-      resolveCustomThemeCssVars(theme.cssVars),
+      resolveCustomThemeCssVars(custom.cssVars, theme),
     ).forEach(([key, value]) => {
       tokensCSS.push(`${key}: ${value};`)
     })
@@ -116,9 +118,9 @@ ${tokensCSS.join('\n')}
     : ''
 }
 
-function resolveCustomCssVars(cssVars: CustomThemeCSSVars): string {
+function resolveCustomCssVars(cssVars: CustomThemeCSSVars, theme: Theme): string {
   const cssVarsCSS: string[] = Object.entries(
-    resolveCustomThemeCssVars(cssVars),
+    resolveCustomThemeCssVars(cssVars, theme),
   ).map(
     ([key, value]) => {
       return `${key}: ${value};`

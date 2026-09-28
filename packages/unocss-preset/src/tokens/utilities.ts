@@ -1,5 +1,6 @@
+import type { Theme } from '../theme'
 import type { CustomThemeCSSVars, CustomThemeTokens } from './types'
-import { colorAliasTracking } from '../utils'
+import { colorAliasTracking, generateThemeVariable, parseColor, themeTracking } from '../utils'
 import { CUSTOM_THEME_COLOR_ALIASES } from './defaults'
 
 /**
@@ -62,7 +63,7 @@ export function resolveAliasCssVar(alias: string): string {
  *   'card': {
  *     // 主题颜色 -> `--card-background: var(--primary-1)`
  *     'background': 'primary.1',
- *     // 色卡颜色 -> `--card-background: var(--red-9)`
+ *     // 色卡颜色 -> `--card-error-color: var(--red-9)`
  *     'error-color': 'red.9',
  *     // 主题令牌 -> `--card-text: var(--foreground-base)`
  *     'text': 'foreground.base',
@@ -72,16 +73,36 @@ export function resolveAliasCssVar(alias: string): string {
  *
  * @category Tokens
  */
-export function resolveCustomThemeCssVars(cssVars: CustomThemeCSSVars | CustomThemeTokens) {
+export function resolveCustomThemeCssVars(
+  cssVars: CustomThemeCSSVars | CustomThemeTokens,
+  theme: Theme,
+) {
   const result: Record<string, string> = {}
 
   Object.entries(cssVars).forEach(([scope, vars]) => {
     if (typeof vars === 'string') {
-      result[`--${scope}`] = resolveAliasCssVar(vars)
+      const body = vars.replace(/\./g, '-')
+      const { keys } = parseColor(body, theme) ?? {}
+
+      if (keys) {
+        result[`--${scope}`] = generateThemeVariable('colors', keys)
+      }
+      else {
+        result[`--${scope}`] = resolveAliasCssVar(vars)
+      }
     }
     else {
       Object.entries(vars).forEach(([key, value]) => {
-        result[`--${scope}-${key}`] = resolveAliasCssVar(value as string)
+        const body = String(value).replace(/\./g, '-')
+        const { keys } = parseColor(body, theme) ?? {}
+
+        if (keys) {
+          themeTracking('colors', keys)
+          result[`--${scope}-${key}`] = generateThemeVariable('colors', keys)
+        }
+        else {
+          result[`--${scope}-${key}`] = resolveAliasCssVar(value as string)
+        }
       })
     }
   })

@@ -109,7 +109,7 @@ export function theme(options: PresetWemeUIOptions): Preflight<Theme> {
         const resolvedDarkColors: string[] = []
         const resolvedP3Colors: string[] = []
         const resolvedP3DarkColors: string[] = []
-        const resolvedColors = colors.map(
+        const resolvedColors = colors.sort((a, b) => a[0].localeCompare(b[0])).map(
           ([key, value]) => {
             if (key && value) {
               const darkKey = key.replace(/^--/, '').split('-').join('-dark-')

@@ -36,13 +36,13 @@ export type CustomThemeRadius = 'none' | 'xs' | 'sm' | 'md' | 'lg' | 'full'
 export type CustomThemeScaling = '90%' | '95%' | '100%' | '105%' | '110%'
 
 /**
- * 主题颜色名称/值
+ * 主题颜色别名
  *
  * 自定义颜色规则：--colors-primary: var(--custom-colors-primary-9, var(--colors-gunmetal-9))
  *
  * @category Tokens
  */
-export type CustomThemeColors = FillRecord<
+export type CustomThemeColorAlias = FillRecord<
   LooseAutocomplete<AccentColorNames | NeutralColorNames>,
   | 'primary'
   | 'secondary'
@@ -112,9 +112,9 @@ export interface CustomTheme {
    */
   name: string
   /**
-   * 主题颜色
+   * 主题颜色别名
    */
-  colors: CustomThemeColors
+  colors: CustomThemeColorAlias
   /**
    * 主题令牌
    */

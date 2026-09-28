@@ -23,6 +23,7 @@
       "@commitlint/cli": "^21.0.2",
       "@commitlint/config-conventional": "^21.0.2",
       "eslint-plugin-format": "^2.0.1",
+      "@unocss/eslint-plugin": "^66.10.5",
       "eslint": "^10.4.1",
       "lint-staged": "^17.0.7",
       "simple-git-hooks": "^2.13.1",
@@ -59,13 +60,14 @@
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "typecheck": "turbo run typecheck",
-    "test": "turbo run test",
+    "test": "turbo run test --ui=tui --parallel",
     "prepare": "simple-git-hooks"
   },
   "devDependencies": {
     "@antfu/eslint-config": "catalog:build",
     "@commitlint/cli": "catalog:build",
     "@commitlint/config-conventional": "catalog:build",
+    "@unocss/eslint-plugin": "catalog:build",
     "eslint": "catalog:build",
     "eslint-plugin-format": "catalog:build",
     "lint-staged": "catalog:build",

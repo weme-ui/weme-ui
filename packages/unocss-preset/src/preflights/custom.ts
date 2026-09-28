@@ -14,10 +14,10 @@ export function custom(options: PresetWemeUIOptions): Preflight<Theme> | undefin
   const defaultCssVarsCSS = options.cssVars ? resolveCustomCssVars(options.cssVars) : ''
 
   const themeCSS = options.themes?.map((theme) => {
-    const colorsCSS = resolveCustomThemeColors(theme as CustomTheme)
+    const colorAliasCSS = resolveCustomThemeColorAlias(theme as CustomTheme)
     const tokensCSS = resolveCustomThemeTokens(theme as CustomTheme)
 
-    return `${colorsCSS}
+    return `${colorAliasCSS}
 ${defaultCssVarsCSS}
 ${tokensCSS}
 `
@@ -38,7 +38,7 @@ ${tokensCSS}
   }
 }
 
-function resolveCustomThemeColors(theme: CustomTheme): string {
+function resolveCustomThemeColorAlias(theme: CustomTheme): string {
   const lightCSS: string[] = []
   const darkCSS: string[] = []
 

@@ -1,4 +1,4 @@
-import type { CustomThemeColors, CustomThemeTokens } from './types'
+import type { CustomThemeColorAlias, CustomThemeTokens } from './types'
 
 /**
  * 默认主题名称
@@ -11,7 +11,7 @@ export const DEFAULT_NAME = 'default'
  *
  * @category Tokens
  */
-export const DEFAULT_COLORS: CustomThemeColors = {
+export const DEFAULT_COLORS: CustomThemeColorAlias = {
   primary: 'gunmetal',
   secondary: 'clay',
   neutral: 'iron',

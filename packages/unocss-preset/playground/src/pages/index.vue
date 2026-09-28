@@ -2,7 +2,5 @@
 </script>
 
 <template>
-  <div class="bg-gunmetal-9/10">
-    <slot />
-  </div>
+  Hello World
 </template>

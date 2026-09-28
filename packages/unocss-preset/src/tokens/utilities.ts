@@ -1,35 +1,65 @@
-import type { CustomThemeColors } from './types'
-import { DEFAULT_COLORS } from './defaults'
-
-const CSSVAR_SHORTCUTS: Record<string, string> = {
-  background: 'bg',
-  foreground: 'text',
-  color: '',
-  default: '',
-}
+import type { CustomThemeCSSVars, CustomThemeTokens } from './types'
 
 /**
- * 检查是否为主题颜色名称
- */
-export function isThemeColorName(name: string): name is keyof CustomThemeColors {
-  return name in DEFAULT_COLORS
-}
-
-/**
- * 获取 CSS 变量名称
+ * 检查是否为原始颜色
  *
- * - ['background', 'name', 9] -> '--bg-name-9'
- * - ['foreground', 'name', 9] -> '--text-name-9'
- * - ['name', 'color', 9] -> '--name-9'
- * - ['name', 'default'] -> '--name'
- * - ['--css-variable'] -> '--css-variable'
- * - ['--card-background'] -> '--card-bg'
+ * @category Tokens
  */
-export function getCSSVarName(...args: Array<string | number | undefined>): string {
-  return `--${args
-    .map(c => c !== undefined ? String(c).toLowerCase() : '')
-    .map(c => c.split('-').map(n => CSSVAR_SHORTCUTS[n] ?? n).filter(Boolean).join('-'))
-    .filter(Boolean)
-    .join('-')
-    .replace(/^--/, '')}`
+export function isRawColor(color: string): boolean {
+  return color.startsWith('#')
+    || color.startsWith('rgb(')
+    || color.startsWith('hsl(')
+    || color.startsWith('lab(')
+    || color.startsWith('lch(')
+    || color.startsWith('oklch(')
+    || color.startsWith('color(')
+    || color.startsWith('var(')
+}
+
+/**
+ * 解析别名 CSS 变量
+ *
+ * @category Tokens
+ */
+export function resolveAliasCssVar(alias: string): string {
+  if (alias.includes('.')) {
+    return `var(--${alias.split('.').join('-')})`
+  }
+  return `var(--${alias})`
+}
+
+/**
+ * 解析自定义主题 CSS 变量
+ *
+ * @example
+ * ```
+ * {
+ *   'card': {
+ *     // 主题颜色 -> `--card-background: var(--primary-1)`
+ *     'background': 'primary.1',
+ *     // 色卡颜色 -> `--card-background: var(--red-9)`
+ *     'error-color': 'red.9',
+ *     // 主题令牌 -> `--card-text: var(--foreground-base)`
+ *     'text': 'foreground.base',
+ *   }
+ * }
+ * ```
+ *
+ * @category Tokens
+ */
+export function resolveCustomThemeCssVars(cssVars: CustomThemeCSSVars | CustomThemeTokens) {
+  const result: Record<string, string> = {}
+
+  Object.entries(cssVars).forEach(([scope, vars]) => {
+    if (typeof vars === 'string') {
+      result[`--${scope}`] = resolveAliasCssVar(vars)
+    }
+    else {
+      Object.entries(vars).forEach(([key, value]) => {
+        result[`--${scope}-${key}`] = resolveAliasCssVar(value as string)
+      })
+    }
+  })
+
+  return result
 }

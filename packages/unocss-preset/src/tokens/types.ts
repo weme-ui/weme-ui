@@ -62,33 +62,40 @@ export interface CustomThemeTokens {
   /**
    * Text color
    *
-   * - `--text-color-highlighted`
-   * - `--text-color`
-   * - `--text-color-subtle`
-   * - `--text-color-muted`
-   * - `--text-color-inverted`
+   * - `--foreground-highlighted`
+   * - `--foreground-base`
+   * - `--foreground-subtle`
+   * - `--foreground-muted`
+   * - `--foreground-inverted`
    */
-  text: TokenValue<'highlighted' | 'base' | 'subtle' | 'muted' | 'inverted'>
+  foreground: TokenValue<'highlighted' | 'base' | 'subtle' | 'muted' | 'inverted'>
 
   /**
    * Background color
    *
-   * - `--bg-color`
-   * - `--bg-color-muted`
-   * - `--bg-color-elevated`
-   * - `--bg-color-inverted`
+   * - `--background-base`
+   * - `--background-muted`
+   * - `--background-elevated`
+   * - `--background-inverted`
    */
   background: TokenValue<'base' | 'muted' | 'elevated' | 'inverted'>
 
   /**
    * Border color
    *
-   * - `--border-color`
-   * - `--border-color-elevated`
-   * - `--border-color-inverted`
+   * - `--border-base`
+   * - `--border-elevated`
+   * - `--border-inverted`
    */
   border: TokenValue<'base' | 'elevated' | 'inverted'>
 }
+
+/**
+ * 自定义 CSS 变量
+ *
+ * @category Tokens
+ */
+export type CustomThemeCSSVars = Record<string, Record<string, string> | string>
 
 /**
  * WemeUI 主题
@@ -112,4 +119,8 @@ export interface CustomTheme {
    * 主题令牌
    */
   tokens: CustomThemeTokens
+  /**
+   * CSS 变量
+   */
+  cssVars: CustomThemeCSSVars
 }

@@ -1,7 +1,7 @@
 import type { Arrayable, CSSEntry, DeepPartial, PreflightContext, PresetOptions } from '@unocss/core'
 import type { AdditionalColors } from './colors'
 import type { Theme } from './theme'
-import type { CustomTheme } from './tokens'
+import type { CustomTheme, CustomThemeCSSVars } from './tokens'
 import { defu } from 'defu'
 import { DEFAULT_COLORS, DEFAULT_NAME, DEFAULT_TOKENS } from './tokens'
 
@@ -155,7 +155,7 @@ export interface PresetWemeUIOptions extends PresetOptions {
   /**
    * 自定义 CSS 变量
    */
-  cssVars?: Record<string, string>
+  cssVars?: CustomThemeCSSVars
 }
 
 /**
@@ -174,6 +174,7 @@ export function resolveOptions(options: PresetWemeUIOptions) {
       name: DEFAULT_NAME,
       colors: DEFAULT_COLORS,
       tokens: DEFAULT_TOKENS,
+      cssVars: {},
     })
   }
 
@@ -183,6 +184,7 @@ export function resolveOptions(options: PresetWemeUIOptions) {
         name: theme.name ?? DEFAULT_NAME,
         colors: defu(theme.colors ?? {}, DEFAULT_COLORS),
         tokens: defu(theme.tokens ?? {}, DEFAULT_TOKENS),
+        cssVars: theme.cssVars ?? {},
       }
     },
   )

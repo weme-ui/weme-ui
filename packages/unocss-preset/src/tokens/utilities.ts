@@ -1,4 +1,6 @@
 import type { CustomThemeCSSVars, CustomThemeTokens } from './types'
+import { colorAliasTracking } from '../utils'
+import { CUSTOM_THEME_COLOR_ALIASES } from './defaults'
 
 /**
  * 检查是否为原始颜色
@@ -14,6 +16,29 @@ export function isRawColor(color: string): boolean {
     || color.startsWith('oklch(')
     || color.startsWith('color(')
     || color.startsWith('var(')
+}
+
+export function parseCustomThemeColorAlias(keys: string[]) {
+  const [alias] = keys
+
+  if (!CUSTOM_THEME_COLOR_ALIASES.includes(alias)) {
+    return
+  }
+
+  if (keys.length === 1) {
+    keys.push('9')
+  }
+
+  const color: string = resolveAliasCssVar(keys.join('-'))
+  const no = keys.at(-1)
+
+  colorAliasTracking(alias, no)
+
+  return {
+    color,
+    no,
+    keys,
+  }
 }
 
 /**

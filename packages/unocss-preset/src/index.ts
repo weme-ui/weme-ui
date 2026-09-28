@@ -9,7 +9,7 @@ import { rules } from './rules'
 import { shortcuts } from './shortcuts'
 import { shorthands } from './shorthands'
 import { theme } from './theme'
-import { PRESET_NAME, trackedProperties, trackedTheme, trackedTokens } from './utils'
+import { PRESET_NAME, trackedColorAliases, trackedProperties, trackedTheme, trackedTokens } from './utils'
 import { variants } from './variants'
 
 /**
@@ -45,11 +45,13 @@ export const presetWemeUI = definePreset<PresetWemeUIOptions, Theme>((userOption
       trackedTheme.clear()
       trackedTokens.clear()
       trackedProperties.clear()
+      trackedColorAliases.clear()
     },
     meta: {
       themeDeps: trackedTheme,
       tokenDeps: trackedTokens,
       propertyDeps: trackedProperties,
+      colorAliasDeps: trackedColorAliases,
     },
   }
 })

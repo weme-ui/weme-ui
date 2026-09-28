@@ -3,7 +3,7 @@ import type { AdditionalColors } from './colors'
 import type { Theme } from './theme'
 import type { CustomTheme, CustomThemeCSSVars } from './tokens'
 import { defu } from 'defu'
-import { DEFAULT_COLORS, DEFAULT_NAME, DEFAULT_TOKENS } from './tokens'
+import { DEFAULT_COLOR_ALIASES, DEFAULT_NAME, DEFAULT_TOKENS } from './tokens'
 
 /**
  * 暗色模式选择器
@@ -172,7 +172,7 @@ export function resolveOptions(options: PresetWemeUIOptions) {
   if (options.themes?.length === 0) {
     options.themes?.push({
       name: DEFAULT_NAME,
-      colors: DEFAULT_COLORS,
+      colors: DEFAULT_COLOR_ALIASES,
       tokens: DEFAULT_TOKENS,
       cssVars: {},
     })
@@ -182,7 +182,7 @@ export function resolveOptions(options: PresetWemeUIOptions) {
     (theme) => {
       return {
         name: theme.name ?? DEFAULT_NAME,
-        colors: defu(theme.colors ?? {}, DEFAULT_COLORS),
+        colors: defu(theme.colors ?? {}, DEFAULT_COLOR_ALIASES),
         tokens: defu(theme.tokens ?? {}, DEFAULT_TOKENS),
         cssVars: theme.cssVars ?? {},
       }

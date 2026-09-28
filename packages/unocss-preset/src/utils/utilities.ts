@@ -2,6 +2,7 @@ import type { CSSEntries, CSSObject, CSSObjectInput, CSSValueInput, DynamicMatch
 import type { Theme } from '../theme'
 import { escapeSelector, symbols, toArray } from '@unocss/core'
 import { colorToString, getStringComponent, getStringComponents, isInterpolatedMethod, parseCssColor } from '@unocss/rule-utils'
+import { parseCustomThemeColorAlias } from '../tokens'
 import { SpecialColorKey } from './constant'
 import { h } from './handlers'
 import { bracketTypeRe, numberWithUnitRE } from './handlers/regex'
@@ -147,6 +148,11 @@ export function parseColor(body: string, theme: Theme) {
       const keys = colors.slice(0, -2).concat([`${secondLast}${last}`])
       parsed = parseThemeColor(theme, keys)
     }
+  }
+
+  if (!parsed) {
+    // parse theme color alias
+    parsed = parseCustomThemeColorAlias(colors)
   }
 
   let { no, keys, color } = parsed ?? {}

@@ -65,3 +65,17 @@ export function tokenTracking(token: string) {
 }
 
 // #endregion
+
+// #region Color Aliases
+
+export const trackedColorAliases = new Set<string>([])
+
+export function colorAliasTracking(alias: string, no?: string) {
+  const key = `${alias}:${no ?? 9}`
+
+  if (!trackedColorAliases.has(key)) {
+    trackedColorAliases.add(key)
+  }
+}
+
+// #endregion

@@ -11,7 +11,7 @@ export const DEFAULT_NAME = 'default'
  *
  * @category Tokens
  */
-export const DEFAULT_COLORS: CustomThemeColorAlias = {
+export const DEFAULT_COLOR_ALIASES: CustomThemeColorAlias = {
   primary: 'gunmetal',
   secondary: 'clay',
   neutral: 'iron',
@@ -46,6 +46,21 @@ export const DEFAULT_TOKENS: CustomThemeTokens = {
     inverted: 'neutral.12',
   },
 }
+
+/**
+ * 自定义主题颜色别名
+ *
+ * @category Tokens
+ */
+export const CUSTOM_THEME_COLOR_ALIASES: string[] = [
+  'primary',
+  'secondary',
+  'neutral',
+  'success',
+  'info',
+  'warning',
+  'error',
+]
 
 /**
  * 主题令牌映射

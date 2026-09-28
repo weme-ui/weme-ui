@@ -1,14 +1,21 @@
-![Weme UI](https://raw.githubusercontent.com/moujinet/assets/main/weme-ui/png/circle-128.png)
+<p align="center">
+  <img align="center" src="https://raw.githubusercontent.com/moujinet/assets/main/weme-ui/png/circle-128.png" alt="Weme UI" height="128" />
+  <h1 align="center">
+    Weme UI <sup style="color: #4CBBA5">UnoCSS Preset</sup>
+  </h1>
+</p>
 
-# Weme UI UnoCSS Preset
+[![npm version][npm-version-src]][npm-version-href]
+[![License][license-src]][license-href]
+[![code style][code-style-src]][code-style-href]
 
-![npm version](https://img.shields.io/npm/v/@weme-ui/weme-ui?style=flat&colorA=1d2129&colorB=4CBBA5)
-![License](https://img.shields.io/github/license/weme-ui/weme-ui.svg?style=flat&colorA=1d2129&colorB=4CBBA5)
-![code style](https://antfu.me/badge-code-style.svg)
+<p align="center">
+  Re-usable UI components with Reka UI and UnoCSS.
+</p>
 
-Re-usable UI components with Reka UI and UnoCSS.
-
-⚠️ Do not use in production. This project is still in early development.
+<p align="center">
+  ⚠️ Do not use in production. This project is still in early development.
+</p>
 
 ## 生成颜色 CSS 变量
 

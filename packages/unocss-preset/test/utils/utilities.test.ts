@@ -2,7 +2,8 @@ import type { Theme } from '~/theme'
 import { symbols } from '@unocss/core'
 import { beforeEach, describe, expect, it } from 'vitest'
 import { colors } from '~/theme/colors'
-import { trackedProperties, trackedTheme } from '~/utils/track'
+import { CUSTOM_THEME_COLOR_ALIASES } from '~/tokens'
+import { trackedColorAliases, trackedProperties, trackedTheme } from '~/utils/track'
 import {
   colorableShadows,
   colorCSSGenerator,
@@ -82,6 +83,34 @@ describe('parseColor', () => {
     expect(parseColor('blue-p3-dark-12', theme)?.color).toBe(blue.p3.dark['12'])
   })
 
+  it('resolves custom theme color aliases to css variables', () => {
+    trackedColorAliases.clear()
+
+    for (const alias of CUSTOM_THEME_COLOR_ALIASES) {
+      const parsed = parseColor(alias, theme)
+      expect(parsed?.color).toBe(`var(--${alias}-9)`)
+      expect(parsed?.keys).toEqual([alias, '9'])
+      expect(parsed?.no).toBe('9')
+      expect(parsed?.name).toBe(alias)
+    }
+
+    const step = parseColor('error-1', theme)
+    expect(step?.color).toBe('var(--error-1)')
+    expect(step?.keys).toEqual(['error', '1'])
+    expect(step?.no).toBe('1')
+
+    const faded = parseColor('primary/20', theme)
+    expect(faded?.color).toBe('var(--primary-9)')
+    expect(faded?.opacity).toBe('20')
+    expect(faded?.alpha).toBe('20%')
+    expect(faded?.keys).toEqual(['primary', '9'])
+
+    expect([...trackedColorAliases]).toEqual([
+      ...CUSTOM_THEME_COLOR_ALIASES.map(alias => `${alias}:9`),
+      'error:1',
+    ])
+  })
+
   it('parses special colors, hex shortcuts, brackets and interpolation methods', () => {
     expect(parseColor('transparent', theme)?.color).toBe('transparent')
     expect(parseColor('current', theme)?.color).toBe('currentColor')
@@ -96,8 +125,9 @@ describe('parseColor', () => {
     expect(bracket?.keys).toBeUndefined()
   })
 
-  it('rejects size-like values and unknown colors', () => {
+  it('rejects size-like values, token names and unknown colors', () => {
     expect(parseColor('10px', theme)).toBeUndefined()
+    expect(parseColor('foreground', theme)?.color).toBeUndefined()
     expect(parseColor('not-a-color', theme)?.color).toBeUndefined()
   })
 })
@@ -111,6 +141,7 @@ describe('colorCSSGenerator and colorResolver', () => {
   beforeEach(() => {
     trackedTheme.clear()
     trackedProperties.clear()
+    trackedColorAliases.clear()
   })
 
   it('emits theme colors as variables and mixes them only when alpha is set', () => {
@@ -184,6 +215,24 @@ describe('colorCSSGenerator and colorResolver', () => {
     })
   })
 
+  it('emits alias colors as css variables and mixes alpha in srgb', () => {
+    const plain = colorCSSGenerator(parseColor('primary', theme), 'color', 'text', context)
+    expect(plain?.[0]).toEqual({ color: 'var(--primary-9)' })
+    expect(plain).toHaveLength(2)
+    expect(trackedTheme.size).toBe(0)
+    expect(trackedColorAliases.has('primary:9')).toBe(true)
+
+    const faded = colorCSSGenerator(parseColor('primary-9/50', theme), 'color', 'text', context)
+    expect(faded?.[0].color).toBe('color-mix(in srgb, var(--primary-9) 50%, transparent)')
+    expect(faded).toHaveLength(2)
+
+    const dev = colorCSSGenerator(parseColor('error-1/20', theme), 'color', 'text', {
+      theme,
+      generator: { config: { envMode: 'dev' } },
+    } as any)
+    expect(dev?.[0].color).toBe('color-mix(in srgb, var(--error-1) 20%, transparent) /* var(--error-1) */')
+  })
+
   it('resolves theme colors to variables and ignores unknown colors', () => {
     const resolve = colorResolver('background-color', 'bg')
     const result = resolve(['', 'blue-9'], context)
@@ -216,7 +265,10 @@ describe('hasParseableColor', () => {
   it('checks whether a color body resolves to a concrete value', () => {
     expect(hasParseableColor('blue', theme)).toBe(true)
     expect(hasParseableColor('blue-p3-dark-9', theme)).toBe(true)
+    expect(hasParseableColor('primary', theme)).toBe(true)
+    expect(hasParseableColor('error-3', theme)).toBe(true)
     expect(hasParseableColor('transparent', theme)).toBe(true)
+    expect(hasParseableColor('foreground', theme)).toBe(false)
     expect(hasParseableColor('missing', theme)).toBe(false)
     expect(hasParseableColor(undefined, theme)).toBe(false)
   })

@@ -6,9 +6,16 @@ export default defineConfig({
     presetWemeUI({
       cssVars: {
         card: {
-          'background': 'primary.1',
-          'error-color': 'red.9',
           'text': 'foreground.base',
+          'background': 'primary.1',
+          'border': 'border.base',
+          'fill': 'background.base',
+          'border-width': '2px',
+          'width': '15rem',
+          'height': '15rem',
+          'padding': '2rem',
+          'margin': '2rem',
+          'space': '2rem',
         },
       },
     }),

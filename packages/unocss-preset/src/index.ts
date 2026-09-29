@@ -9,7 +9,7 @@ import { rules } from './rules'
 import { shortcuts } from './shortcuts'
 import { shorthands } from './shorthands'
 import { theme } from './theme'
-import { PRESET_NAME, trackedColorAliases, trackedProperties, trackedTheme, trackedTokens } from './utils'
+import { PRESET_NAME, trackedColorAliases, trackedProperties, trackedTheme } from './utils'
 import { variants } from './variants'
 
 /**
@@ -23,8 +23,6 @@ export const presetWemeUI = definePreset<PresetWemeUIOptions, Theme>((userOption
   return {
     name: PRESET_NAME,
     prefix: options.prefix,
-    rules,
-    shortcuts,
     options,
     layers: {
       properties: -200,
@@ -34,6 +32,8 @@ export const presetWemeUI = definePreset<PresetWemeUIOptions, Theme>((userOption
     autocomplete: {
       shorthands,
     },
+    rules,
+    shortcuts,
     theme: theme(options),
     variants: variants(options),
     preflights: preflights(options),
@@ -43,13 +43,11 @@ export const presetWemeUI = definePreset<PresetWemeUIOptions, Theme>((userOption
       : extractorArbitraryVariants(),
     configResolved() {
       trackedTheme.clear()
-      trackedTokens.clear()
       trackedProperties.clear()
       trackedColorAliases.clear()
     },
     meta: {
       themeDeps: trackedTheme,
-      tokenDeps: trackedTokens,
       propertyDeps: trackedProperties,
       colorAliasDeps: trackedColorAliases,
     },

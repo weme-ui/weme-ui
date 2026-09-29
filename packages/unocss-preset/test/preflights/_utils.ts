@@ -1,7 +1,7 @@
 import type { PreflightContext } from '@unocss/core'
 import type { Theme } from '~/theme'
 import { theme as buildTheme } from '~/theme/default'
-import { trackedProperties, trackedTheme } from '~/utils/track'
+import { trackedColorAliases, trackedProperties, trackedTheme } from '~/utils/track'
 
 export function createPreflightContext(overrides: {
   envMode?: string
@@ -21,4 +21,5 @@ export function createPreflightContext(overrides: {
 export function resetTracking() {
   trackedTheme.clear()
   trackedProperties.clear()
+  trackedColorAliases.clear()
 }

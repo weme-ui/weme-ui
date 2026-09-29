@@ -13,16 +13,18 @@ export function custom(options: PresetWemeUIOptions): Preflight<Theme> | undefin
 
   return {
     getCSS: ({ generator, theme }) => {
-      const defaultCssVarsCSS = options.cssVars ? resolveCustomCssVars(options.cssVars, theme) : ''
+      const defaultCssVarsCSS = options.cssVars
+        ? createCssBlock(':root', serializeCssVars(options.cssVars, theme))
+        : ''
 
-      const themeCSS = options.themes?.map((custom) => {
-        const colorAliasCSS = resolveCustomThemeColorAlias(custom as CustomTheme, theme)
-        const tokensCSS = resolveCustomThemeTokens(custom as CustomTheme, theme)
+      const themeCSS = options.themes?.map((themeConfig) => {
+        const customTheme = themeConfig as CustomTheme
+        const colorAliasCSS = resolveCustomThemeColorAlias(customTheme, theme)
+        const tokensCSS = resolveCustomThemeTokens(customTheme, theme)
 
-        return `${colorAliasCSS}
-    ${defaultCssVarsCSS}
-    ${tokensCSS}
-    `
+        return [colorAliasCSS, defaultCssVarsCSS, tokensCSS]
+          .filter(Boolean)
+          .join('\n')
       }).filter(Boolean).join('\n')
 
       if (!themeCSS) {
@@ -38,99 +40,107 @@ export function custom(options: PresetWemeUIOptions): Preflight<Theme> | undefin
   }
 }
 
-function resolveCustomThemeColorAlias(custom: CustomTheme, theme: Theme): string {
-  if (trackedColorAliases.size === 0) {
+function getThemeSelector(name: string, dark = false): string {
+  const themeSelector = `:where([data-theme='${name}'])`
+
+  if (dark) {
+    return `.dark${themeSelector}`
+  }
+
+  return name === DEFAULT_NAME
+    ? `:root, ${themeSelector}`
+    : themeSelector
+}
+
+function createCssBlock(selector: string, entries: string[]): string {
+  if (entries.length === 0) {
     return ''
   }
 
-  const lightCSS: string[] = []
-  const darkCSS: string[] = []
+  return `${selector} {
+${entries.join('\n')}
+}`
+}
 
-  const lightSelector = `${custom.name === DEFAULT_NAME ? ':root, ' : ''}:where([data-theme='${custom.name}'])`
-  const darkSelector = `.dark:where([data-theme='${custom.name}'])`
+function serializeCssVars(
+  cssVars: CustomThemeCSSVars | CustomTheme['tokens'],
+  theme: Theme,
+): string[] {
+  return Object.entries(resolveCustomThemeCssVars(cssVars, theme)).map(
+    ([key, value]) => `${key}: ${value};`,
+  )
+}
 
-  const colorAliases = Array.from(trackedColorAliases)
+function getTrackedColorAliasGroups(): Record<string, string[]> {
+  return Array.from(trackedColorAliases)
     .sort((a, b) => a.localeCompare(b))
     .reduce((acc, alias) => {
       const [name, no] = alias.split(':')
-      acc[name] = acc[name] || []
+      acc[name] ??= []
       acc[name].push(no)
       return acc
     }, {} as Record<string, string[]>)
+}
 
-  Object.entries(colorAliases).forEach(([name, nos]) => {
+function resolveAliasDeclarations(
+  custom: CustomTheme,
+  theme: Theme,
+): { light: string[], dark: string[] } {
+  const light: string[] = []
+  const dark: string[] = []
+
+  Object.entries(getTrackedColorAliasGroups()).forEach(([name, nos]) => {
     const color = custom.colors[name as keyof CustomThemeColorAlias]
+    const steps = [...nos].sort((a, b) => Number(a) - Number(b))
 
     if (isRawColor(color)) {
       const lightColorScales = resolveRadixColorScales({ color, mode: 'light' })
       const darkColorScales = resolveRadixColorScales({ color, mode: 'dark' })
 
-      nos.sort((a, b) => Number(a) - Number(b)).forEach((no) => {
-        lightCSS.push(`--${name}-${no}: var(--custom-${name}-${no}, ${lightColorScales.p3[Number(no) - 1]});`)
-        darkCSS.push(`--${name}-${no}: var(--custom-${name}-${no}, ${darkColorScales.p3[Number(no) - 1]});`)
+      steps.forEach((no) => {
+        const index = Number(no) - 1
+        const lightValue = lightColorScales.p3[index]
+        const darkValue = darkColorScales.p3[index]
 
-        detectThemeValue(lightColorScales.p3[Number(no) - 1], theme)
+        light.push(`--${name}-${no}: var(--custom-${name}-${no}, ${lightValue});`)
+        dark.push(`--${name}-${no}: var(--custom-${name}-${no}, ${darkValue});`)
+
+        detectThemeValue(lightValue, theme)
       })
     }
     else {
-      nos.sort((a, b) => Number(a) - Number(b)).forEach((no) => {
-        lightCSS.push(`--${name}-${no}: var(--custom-${name}-${no}, var(--${color}-${no}));`)
-        darkCSS.push(`--${name}-${no}: var(--custom-${name}-${no}, var(--${color}-${no}));`)
+      steps.forEach((no) => {
+        const value = `var(--custom-${name}-${no}, var(--${color}-${no}))`
+
+        light.push(`--${name}-${no}: ${value};`)
+        dark.push(`--${name}-${no}: ${value};`)
 
         themeTracking('colors', [color, no])
       })
     }
   })
 
-  return `${lightSelector} {
-${lightCSS.join('\n')}
+  return { light, dark }
 }
-${darkCSS.length > 0
-  ? `${darkSelector} {
-${darkCSS.join('\n')}
-}`
-  : ''}`
+
+function resolveCustomThemeColorAlias(custom: CustomTheme, theme: Theme): string {
+  if (trackedColorAliases.size === 0) {
+    return ''
+  }
+
+  const { light, dark } = resolveAliasDeclarations(custom, theme)
+
+  return [
+    createCssBlock(getThemeSelector(custom.name), light),
+    createCssBlock(getThemeSelector(custom.name, true), dark),
+  ].filter(Boolean).join('\n')
 }
 
 function resolveCustomThemeTokens(custom: CustomTheme, theme: Theme): string {
-  const tokensSelector = `${custom.name === DEFAULT_NAME ? ':root, ' : ''}:where([data-theme='${custom.name}'])`
-  const tokensCSS: string[] = Object.entries(
-    resolveCustomThemeCssVars(custom.tokens, theme),
-  ).map(
-    ([key, value]) => {
-      return `${key}: ${value};`
-    },
-  )
+  const entries = [
+    ...serializeCssVars(custom.tokens, theme),
+    ...(custom.cssVars ? serializeCssVars(custom.cssVars, theme) : []),
+  ]
 
-  if (custom.cssVars) {
-    Object.entries(
-      resolveCustomThemeCssVars(custom.cssVars, theme),
-    ).forEach(([key, value]) => {
-      tokensCSS.push(`${key}: ${value};`)
-    })
-  }
-
-  return tokensCSS.length > 0
-    ? `${tokensSelector} {
-${tokensCSS.join('\n')}
-}
-`
-    : ''
-}
-
-function resolveCustomCssVars(cssVars: CustomThemeCSSVars, theme: Theme): string {
-  const cssVarsCSS: string[] = Object.entries(
-    resolveCustomThemeCssVars(cssVars, theme),
-  ).map(
-    ([key, value]) => {
-      return `${key}: ${value};`
-    },
-  )
-
-  return cssVarsCSS.length > 0
-    ? `:root {
-${cssVarsCSS.join('\n')}
-}
-`
-    : ''
+  return createCssBlock(getThemeSelector(custom.name), entries)
 }

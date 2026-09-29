@@ -175,7 +175,7 @@ export function parseCustomCssVar(
  *
  * @category Tokens
  */
-export function customThemeCSSGenerator(
+export function customThemeColorCSSGenerator(
   data: CustomThemeParsedResult,
   property: string,
 ): [CSSObject, ...CSSValueInput[]] | undefined {
@@ -229,6 +229,6 @@ export function customThemeCssVarResolver(property: string, varName: FuzzyMapKey
     if (!data?.keys.length)
       return
 
-    return customThemeCSSGenerator(data, property)
+    return customThemeColorCSSGenerator(data, property)
   }
 }

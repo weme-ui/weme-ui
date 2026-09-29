@@ -4,7 +4,7 @@ import type { CSSEntries, CSSObject, CSSValueInput, Rule, RuleContext } from '@u
 import type { ResolvedWemeUIOptions } from '../options'
 import type { Theme } from '../theme'
 import { notNull } from '@unocss/core'
-import { customThemeCSSGenerator, parseCustomCssVar, parseCustomThemeToken } from '../tokens'
+import { customThemeColorCSSGenerator, parseCustomCssVar, parseCustomThemeToken } from '../tokens'
 import { colorCSSGenerator, cornerMap, directionMap, generateThemeVariable, globalKeywords, h, hasParseableColor, isSize, parseColor, SpecialColorKey, themeTracking } from '../utils'
 
 export const borderStyles = ['solid', 'dashed', 'dotted', 'double', 'hidden', 'none', 'groove', 'ridge', 'inset', 'outset', ...globalKeywords]
@@ -81,7 +81,7 @@ function borderColorResolver(direction: string, options: ResolvedWemeUIOptions) 
     if (!customThemeData?.keys.length)
       return
 
-    const customTheme = customThemeCSSGenerator(customThemeData, `border${direction}-color`)
+    const customTheme = customThemeColorCSSGenerator(customThemeData, `border${direction}-color`)
 
     if (customTheme) {
       const css = customTheme[0]

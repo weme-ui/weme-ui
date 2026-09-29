@@ -4,7 +4,7 @@ import {
   CUSTOM_CSSVAR_FUZZY_MAP,
   CUSTOM_THEME_COLOR_ALIASES,
   CUSTOM_THEME_TOKENS_MAP,
-  customThemeCSSGenerator,
+  customThemeColorCSSGenerator,
   customThemeCssVarResolver,
   generateColorAliasCssVar,
   isRawColor,
@@ -361,12 +361,12 @@ describe('customThemeCSSGenerator', () => {
   })
 
   it('returns undefined when keys are empty', () => {
-    expect(customThemeCSSGenerator({ name: 'primary', keys: [], alpha: undefined }, 'color')).toBeUndefined()
+    expect(customThemeColorCSSGenerator({ name: 'primary', keys: [], alpha: undefined }, 'color')).toBeUndefined()
     expect(trackedProperties.size).toBe(0)
   })
 
   it('emits a theme variable and an opacity property without alpha', () => {
-    const result = customThemeCSSGenerator({
+    const result = customThemeColorCSSGenerator({
       name: 'foreground-base',
       keys: ['foreground', 'base'],
       alpha: undefined,
@@ -383,7 +383,7 @@ describe('customThemeCSSGenerator', () => {
   })
 
   it('mixes a positive alpha in oklab and adds a color-mix fallback', () => {
-    const result = customThemeCSSGenerator({
+    const result = customThemeColorCSSGenerator({
       name: 'foreground-base',
       keys: ['foreground', 'base'],
       alpha: 50,
@@ -401,7 +401,7 @@ describe('customThemeCSSGenerator', () => {
   })
 
   it('mixes alpha 0 as a percentage', () => {
-    const result = customThemeCSSGenerator({
+    const result = customThemeColorCSSGenerator({
       name: 'foreground-highlighted',
       keys: ['foreground', 'highlighted'],
       alpha: 0,
@@ -417,7 +417,7 @@ describe('customThemeCSSGenerator', () => {
     for (const property of ['shadow-color', 'inset-shadow-color', 'text-shadow-color', 'drop-shadow-color'] as const) {
       trackedProperties.clear()
 
-      const result = customThemeCSSGenerator({
+      const result = customThemeColorCSSGenerator({
         name: 'foreground-base',
         keys: ['foreground', 'base'],
         alpha: undefined,
@@ -437,7 +437,7 @@ describe('customThemeCSSGenerator', () => {
   })
 
   it('nests a positive alpha inside the shadow fallback', () => {
-    const result = customThemeCSSGenerator({
+    const result = customThemeColorCSSGenerator({
       name: 'foreground-base',
       keys: ['foreground', 'base'],
       alpha: 40,
@@ -1625,7 +1625,7 @@ describe('successful results snapshots', () => {
       Object.fromEntries(
         cases.map(([property, data]) => [
           `${property}:${data.keys.join('-')}${data.alpha === undefined ? '' : `/${data.alpha}`}`,
-          customThemeCSSGenerator(data, property),
+          customThemeColorCSSGenerator(data, property),
         ]),
       ),
     ).toMatchInlineSnapshot(`

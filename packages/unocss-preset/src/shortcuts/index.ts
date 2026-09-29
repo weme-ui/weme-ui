@@ -1,5 +1,1 @@
-import { containerShortcuts } from '../rules/container'
-
-export const shortcuts = [
-  ...containerShortcuts,
-]
+export * from './default'

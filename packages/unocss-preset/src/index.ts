@@ -32,8 +32,8 @@ export const presetWemeUI = definePreset<PresetWemeUIOptions, Theme>((userOption
     autocomplete: {
       shorthands,
     },
-    rules,
-    shortcuts,
+    rules: rules(options),
+    shortcuts: shortcuts(options),
     theme: theme(options),
     variants: variants(options),
     preflights: preflights(options),

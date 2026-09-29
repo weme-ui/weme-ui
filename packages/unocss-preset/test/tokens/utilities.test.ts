@@ -5,7 +5,7 @@ import {
   CUSTOM_THEME_COLOR_ALIASES,
   CUSTOM_THEME_TOKENS_MAP,
   customThemeColorCSSGenerator,
-  customThemeCssVarResolver,
+  customThemeColorResolver,
   generateColorAliasCssVar,
   isRawColor,
   parseColorAlias,
@@ -458,7 +458,7 @@ describe('customThemeCssVarResolver', () => {
   })
 
   it('returns undefined when the body cannot be parsed or matched', () => {
-    const resolve = customThemeCssVarResolver('color', 'color')
+    const resolve = customThemeColorResolver('color', 'color')
 
     expect(resolve('var(--foreground)', {})).toBeUndefined()
     expect(resolve('var(--foreground)/50', {})).toBeUndefined()
@@ -471,7 +471,7 @@ describe('customThemeCssVarResolver', () => {
   })
 
   it('resolves a complete theme token', () => {
-    const result = customThemeCssVarResolver('border-color', 'border-color')('foreground-base', {})
+    const result = customThemeColorResolver('border-color', 'border-color')('foreground-base', {})
 
     expect(result?.[0]).toEqual({ 'border-color': 'var(--foreground-base)' })
     expect(result).toHaveLength(2)
@@ -479,7 +479,7 @@ describe('customThemeCssVarResolver', () => {
   })
 
   it('resolves a complete theme token with alpha', () => {
-    const result = customThemeCssVarResolver('color', 'color')('foreground-base/50', {})
+    const result = customThemeColorResolver('color', 'color')('foreground-base/50', {})
 
     expect(result?.[0]).toEqual({
       color: 'color-mix(in oklab, var(--foreground-base) 50%, transparent)',
@@ -488,7 +488,7 @@ describe('customThemeCssVarResolver', () => {
   })
 
   it('falls through to parseCustomCssVar when the theme token has no keys', () => {
-    const result = customThemeCssVarResolver('color', 'color')('card/40', {
+    const result = customThemeColorResolver('color', 'color')('card/40', {
       'card-text': 'foreground.base',
     })
 
@@ -499,7 +499,7 @@ describe('customThemeCssVarResolver', () => {
   })
 
   it('prefers a complete theme token over a css var with the same body', () => {
-    const result = customThemeCssVarResolver('color', 'color')('foreground-base', {
+    const result = customThemeColorResolver('color', 'color')('foreground-base', {
       'foreground-base-text': 'primary.9',
     })
 
@@ -1760,8 +1760,8 @@ describe('successful results snapshots', () => {
   it('customThemeCssVarResolver', () => {
     trackedProperties.clear()
 
-    const resolveColor = customThemeCssVarResolver('color', 'color')
-    const resolveBorder = customThemeCssVarResolver('border-color', 'border-color')
+    const resolveColor = customThemeColorResolver('color', 'color')
+    const resolveBorder = customThemeColorResolver('border-color', 'border-color')
     const cssVars = { 'card-text': 'foreground.base', 'card-border-color': 'border.base' }
 
     const cases = {

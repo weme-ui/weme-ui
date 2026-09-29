@@ -219,7 +219,7 @@ export function customThemeColorCSSGenerator(
  *
  * @category Tokens
  */
-export function customThemeCssVarResolver(property: string, varName: FuzzyMapKey) {
+export function customThemeColorResolver(property: string, varName: FuzzyMapKey) {
   return (match: string, cssVars: ResolvedCustomThemeCSSVars): [CSSObject, ...CSSValueInput[]] | undefined => {
     const token = parseCustomThemeToken(match)
     const data = token?.keys.length

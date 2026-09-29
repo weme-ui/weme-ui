@@ -1,7 +1,7 @@
 import type { CSSObject, CSSValueInput, Rule, RuleContext } from '@unocss/core'
 import type { ResolvedWemeUIOptions } from '../options'
 import type { Theme } from '../theme'
-import { customThemeCssVarResolver } from '../tokens'
+import { customThemeColorResolver } from '../tokens'
 import { colorResolver, globalKeywords, h, isSize } from '../utils'
 
 const decorationStyles = ['solid', 'double', 'dotted', 'dashed', 'wavy', ...globalKeywords]
@@ -47,7 +47,7 @@ function handleColorOrWidth(
     return result
   }
 
-  const customTheme = customThemeCssVarResolver('text-decoration-color', 'border-color')(match[1], options.cssVars)
+  const customTheme = customThemeColorResolver('text-decoration-color', 'border-color')(match[1], options.cssVars)
   if (customTheme) {
     const css = customTheme[0] as CSSObject
     css['-webkit-text-decoration-color'] = css['text-decoration-color']

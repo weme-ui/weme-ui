@@ -1,7 +1,7 @@
 import type { Rule, RuleContext } from '@unocss/core'
 import type { ResolvedWemeUIOptions } from '../options'
 import type { Theme } from '../theme'
-import { customThemeCssVarResolver } from '../tokens'
+import { customThemeColorResolver } from '../tokens'
 import { colorResolver, h } from '../utils'
 
 export function placeholders(options: ResolvedWemeUIOptions): Rule<Theme>[] {
@@ -19,7 +19,7 @@ function handlerPlaceholder(match: RegExpMatchArray, ctx: RuleContext<Theme>, op
     return result
   }
 
-  const customTheme = customThemeCssVarResolver('color', 'color')(match[1], options.cssVars)
+  const customTheme = customThemeColorResolver('color', 'color')(match[1], options.cssVars)
   if (customTheme) {
     return customTheme
   }

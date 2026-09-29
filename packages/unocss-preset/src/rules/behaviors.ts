@@ -2,7 +2,7 @@ import type { CSSValueInput, Rule, RuleContext } from '@unocss/core'
 import type { ResolvedWemeUIOptions } from '../options'
 import type { Theme } from '../theme'
 import { symbols } from '@unocss/core'
-import { customThemeCssVarResolver } from '../tokens'
+import { customThemeColorResolver } from '../tokens'
 import { colorResolver, defineProperty, globalKeywords, h, isSize, makeGlobalStaticRules } from '../utils'
 
 export function outline(options: ResolvedWemeUIOptions): Rule<Theme>[] {
@@ -77,7 +77,7 @@ function* handleColor(
       yield i
     }
   }
-  const customTheme = customThemeCssVarResolver(property, fuzzyMapKey)(match[1], options.cssVars)
+  const customTheme = customThemeColorResolver(property, fuzzyMapKey)(match[1], options.cssVars)
   if (customTheme) {
     for (const i of customTheme) {
       yield i

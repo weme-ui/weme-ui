@@ -2,7 +2,7 @@ import type { CSSObject, CSSValueInput, Rule, RuleContext } from '@unocss/core'
 import type { ResolvedWemeUIOptions } from '../options'
 import type { Theme } from '../theme'
 import { getStringComponent, getStringComponents } from '@unocss/rule-utils'
-import { customThemeCssVarResolver } from '../tokens'
+import { customThemeColorResolver } from '../tokens'
 import {
   colorableShadows,
   colorResolver,
@@ -388,7 +388,7 @@ function handleColor(
     return result
   }
 
-  const customTheme = customThemeCssVarResolver('color', 'color')(match[1], options.cssVars)
+  const customTheme = customThemeColorResolver('color', 'color')(match[1], options.cssVars)
   if (customTheme) {
     return customTheme
   }

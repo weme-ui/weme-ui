@@ -1,7 +1,7 @@
 import type { Rule } from '@unocss/core'
 import type { ResolvedWemeUIOptions } from '../options'
 import type { Theme } from '../theme'
-import { customThemeCssVarResolver } from '../tokens'
+import { customThemeColorResolver } from '../tokens'
 import { colorResolver, h, isSize } from '../utils'
 
 /**
@@ -41,7 +41,7 @@ export function bgColors(options: ResolvedWemeUIOptions): Rule<Theme>[] {
       if (color)
         return color
 
-      return customThemeCssVarResolver('background-color', 'background-color')(d, options.cssVars)
+      return customThemeColorResolver('background-color', 'background-color')(d, options.cssVars)
     }, { autocomplete: 'bg-$colors' }],
     [/^bg-op(?:acity)?-?(.+)$/, ([, opacity], { theme }) => ({ '--un-bg-opacity': h.bracket.percent.cssvar(opacity, theme) }), { autocomplete: 'bg-(op|opacity)-<percent>' }],
   ]

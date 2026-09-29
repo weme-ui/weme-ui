@@ -1,7 +1,7 @@
 import type { CSSObject, CSSValueInput, Rule, RuleContext } from '@unocss/core'
 import type { ResolvedWemeUIOptions } from '../options'
 import type { Theme } from '../theme'
-import { customThemeCssVarResolver } from '../tokens'
+import { customThemeColorResolver } from '../tokens'
 import { colorResolver, h, isSize } from '../utils'
 
 export function svgUtilities(options: ResolvedWemeUIOptions): Rule<Theme>[] {
@@ -55,7 +55,7 @@ function handleColor(
     return result
   }
 
-  const customTheme = customThemeCssVarResolver(property, varName)(match[1], options.cssVars)
+  const customTheme = customThemeColorResolver(property, varName)(match[1], options.cssVars)
   if (customTheme) {
     return customTheme
   }

@@ -1,7 +1,7 @@
 import type { CSSObject, Rule, RuleContext } from '@unocss/core'
 import type { ResolvedWemeUIOptions } from '../options'
 import type { Theme } from '../theme'
-import { customThemeCssVarResolver } from '../tokens'
+import { customThemeColorResolver } from '../tokens'
 import { colorResolver, defineProperty, h } from '../utils'
 import { borderStyles } from './border'
 import { notLastChildSelectorVariant } from './spacing'
@@ -20,7 +20,7 @@ export function divides(options: ResolvedWemeUIOptions): Rule<Theme>[] {
         return
       }
 
-      const customTheme = customThemeCssVarResolver('border-color', 'border-color')(match[1], options.cssVars)
+      const customTheme = customThemeColorResolver('border-color', 'border-color')(match[1], options.cssVars)
       if (customTheme) {
         yield {
           [ctx.symbols.variants]: [notLastChildSelectorVariant(match[0])],

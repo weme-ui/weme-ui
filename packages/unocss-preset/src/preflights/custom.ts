@@ -3,8 +3,8 @@ import type { ResolvedWemeUIOptions } from '../options'
 import type { Theme } from '../theme'
 import type { CustomTheme, CustomThemeColorAlias, ResolvedCustomThemeCSSVars } from '../tokens'
 import { resolveRadixColorScales } from '../colors'
-import { DEFAULT_NAME, isRawColor, resolveCustomThemeCssVars } from '../tokens'
-import { compressCSS, detectThemeValue, themeTracking, trackedColorAliases } from '../utils'
+import { DEFAULT_NAME, isRawColor, resolveAliasCssVar } from '../tokens'
+import { compressCSS, detectThemeValue, generateThemeVariable, parseColor, themeTracking, trackedColorAliases } from '../utils'
 
 export function custom(options: ResolvedWemeUIOptions): Preflight<Theme> | undefined {
   if (options.themes.length === 0) {
@@ -72,9 +72,21 @@ function serializeCssVars(
   cssVars: ResolvedCustomThemeCSSVars,
   theme: Theme,
 ): string[] {
-  return Object.entries(resolveCustomThemeCssVars(cssVars, theme)).map(
-    ([key, value]) => `${key}: ${value};`,
-  )
+  const result: string[] = []
+  Object.entries(cssVars).forEach(([key, value]) => {
+    const body = String(value).replace(/\./g, '-')
+    const { keys } = parseColor(body, theme) ?? {}
+
+    if (keys && keys.length > 0) {
+      themeTracking('colors', keys)
+      result.push(`--${key}: ${generateThemeVariable('colors', keys)};`)
+    }
+    else {
+      result.push(`--${key}: ${resolveAliasCssVar(value)};`)
+    }
+  })
+
+  return result
 }
 
 function getTrackedColorAliasGroups(): Record<string, string[]> {

@@ -1,39 +1,43 @@
 import type { CSSValueInput, Rule, RuleContext } from '@unocss/core'
+import type { ResolvedWemeUIOptions } from '../options'
 import type { Theme } from '../theme'
 import { symbols } from '@unocss/core'
+import { customThemeCssVarResolver } from '../tokens'
 import { colorResolver, defineProperty, globalKeywords, h, isSize, makeGlobalStaticRules } from '../utils'
 
-export const outline: Rule<Theme>[] = [
-  // size
-  [/^outline-(?:width-|size-)?(.+)$/, handleWidth, { autocomplete: 'outline-(width|size)-<num>' }],
+export function outline(options: ResolvedWemeUIOptions): Rule<Theme>[] {
+  return [
+    // size
+    [/^outline-(?:width-|size-)?(.+)$/, handleWidth, { autocomplete: 'outline-(width|size)-<num>' }],
 
-  // color
-  [/^outline-(?:color-)?(.+)$/, handleColorOrWidth, { autocomplete: 'outline-$colors' }],
-  [/^outline-op(?:acity)?-?(.+)$/, ([, opacity], { theme }) => ({ '--un-outline-opacity': h.bracket.percent.cssvar(opacity, theme) }), { autocomplete: 'outline-(op|opacity)-<percent>' }],
+    // color
+    [/^outline-(?:color-)?(.+)$/, (match, ctx) => handleColorOrWidth(match, ctx, options), { autocomplete: 'outline-$colors' }],
+    [/^outline-op(?:acity)?-?(.+)$/, ([, opacity], { theme }) => ({ '--un-outline-opacity': h.bracket.percent.cssvar(opacity, theme) }), { autocomplete: 'outline-(op|opacity)-<percent>' }],
 
-  // offset
-  [/^outline-offset-(.+)$/, ([, d], { theme }) => ({ 'outline-offset': h.bracket.cssvar.global.px(d, theme) }), { autocomplete: 'outline-(offset)-<num>' }],
-  ['outline-offset-none', { 'outline-offset': '0' }],
+    // offset
+    [/^outline-offset-(.+)$/, ([, d], { theme }) => ({ 'outline-offset': h.bracket.cssvar.global.px(d, theme) }), { autocomplete: 'outline-(offset)-<num>' }],
+    ['outline-offset-none', { 'outline-offset': '0' }],
 
-  // style
-  ['outline', [
-    {
-      'outline-style': 'var(--un-outline-style)',
-      'outline-width': '1px',
-    },
-    defineProperty('--un-outline-style', { initialValue: 'solid' }),
-  ]],
-  ['outline-hidden', [
-    { 'outline-style': 'none' },
-    {
-      [symbols.parent]: `@media (forced-colors: active)`,
-      'outline': `2px solid transparent`,
-      'outline-offset': `2px`,
-    },
-  ]],
-  ['outline-none', { '--un-outline-style': 'none', 'outline-style': 'none' }],
-  ...['auto', 'dashed', 'dotted', 'double', 'solid', 'groove', 'ridge', 'inset', 'outset', ...globalKeywords].map(v => [`outline-${v}`, { '--un-outline-style': v, 'outline-style': v }] as Rule<Theme>),
-]
+    // style
+    ['outline', [
+      {
+        'outline-style': 'var(--un-outline-style)',
+        'outline-width': '1px',
+      },
+      defineProperty('--un-outline-style', { initialValue: 'solid' }),
+    ]],
+    ['outline-hidden', [
+      { 'outline-style': 'none' },
+      {
+        [symbols.parent]: `@media (forced-colors: active)`,
+        'outline': `2px solid transparent`,
+        'outline-offset': `2px`,
+      },
+    ]],
+    ['outline-none', { '--un-outline-style': 'none', 'outline-style': 'none' }],
+    ...['auto', 'dashed', 'dotted', 'double', 'solid', 'groove', 'ridge', 'inset', 'outset', ...globalKeywords].map(v => [`outline-${v}`, { '--un-outline-style': v, 'outline-style': v }] as Rule<Theme>),
+  ]
+}
 
 function* handleWidth([, b]: string[], { theme }: RuleContext<Theme>): Generator<CSSValueInput | undefined> {
   const v = h.bracket.cssvar.global.px(b, theme)
@@ -46,16 +50,37 @@ function* handleWidth([, b]: string[], { theme }: RuleContext<Theme>): Generator
   }
 }
 
-function* handleColorOrWidth(match: RegExpMatchArray, ctx: RuleContext<Theme>): Generator<CSSValueInput | string | undefined> {
+function* handleColorOrWidth(
+  match: RegExpMatchArray,
+  ctx: RuleContext<Theme>,
+  options: ResolvedWemeUIOptions,
+): Generator<CSSValueInput | string | undefined> {
   if (isSize(match[1])) {
     yield* handleWidth(match, ctx)
   }
   else {
-    const result = colorResolver('outline-color', 'outline')(match, ctx)
-    if (result) {
-      for (const i of result) {
-        yield i
-      }
+    yield* handleColor('outline-color', 'outline', 'border-color', match, ctx, options)
+  }
+}
+
+function* handleColor(
+  property: string,
+  varName: string,
+  fuzzyMapKey: 'color' | 'border-color',
+  match: RegExpMatchArray,
+  ctx: RuleContext<Theme>,
+  options: ResolvedWemeUIOptions,
+): Generator<CSSValueInput | string | undefined> {
+  const result = colorResolver(property, varName)(match, ctx)
+  if (result) {
+    for (const i of result) {
+      yield i
+    }
+  }
+  const customTheme = customThemeCssVarResolver(property, fuzzyMapKey)(match[1], options.cssVars)
+  if (customTheme) {
+    for (const i of customTheme) {
+      yield i
     }
   }
 }
@@ -124,15 +149,19 @@ export const listStyle: Rule<Theme>[] = [
   ...makeGlobalStaticRules('list', 'list-style-type'),
 ]
 
-export const accents: Rule<Theme>[] = [
-  [/^accent-(.+)$/, colorResolver('accent-color', 'accent'), { autocomplete: 'accent-$colors' }],
-  [/^accent-op(?:acity)?-?(.+)$/, ([, d], { theme }) => ({ '--un-accent-opacity': h.bracket.percent(d, theme) }), { autocomplete: ['accent-(op|opacity)', 'accent-(op|opacity)-<percent>'] }],
-]
+export function accents(options: ResolvedWemeUIOptions): Rule<Theme>[] {
+  return [
+    [/^accent-(.+)$/, (match, ctx) => handleColor('accent-color', 'accent', 'color', match, ctx, options), { autocomplete: 'accent-$colors' }],
+    [/^accent-op(?:acity)?-?(.+)$/, ([, d], { theme }) => ({ '--un-accent-opacity': h.bracket.percent(d, theme) }), { autocomplete: ['accent-(op|opacity)', 'accent-(op|opacity)-<percent>'] }],
+  ]
+}
 
-export const carets: Rule<Theme>[] = [
-  [/^caret-(.+)$/, colorResolver('caret-color', 'caret'), { autocomplete: 'caret-$colors' }],
-  [/^caret-op(?:acity)?-?(.+)$/, ([, d], { theme }) => ({ '--un-caret-opacity': h.bracket.percent(d, theme) }), { autocomplete: ['caret-(op|opacity)', 'caret-(op|opacity)-<percent>'] }],
-]
+export function carets(options: ResolvedWemeUIOptions): Rule<Theme>[] {
+  return [
+    [/^caret-(.+)$/, (match, ctx) => handleColor('caret-color', 'caret', 'color', match, ctx, options), { autocomplete: 'caret-$colors' }],
+    [/^caret-op(?:acity)?-?(.+)$/, ([, d], { theme }) => ({ '--un-caret-opacity': h.bracket.percent(d, theme) }), { autocomplete: ['caret-(op|opacity)', 'caret-(op|opacity)-<percent>'] }],
+  ]
+}
 
 export const imageRenderings: Rule<Theme>[] = [
   ['image-render-auto', { 'image-rendering': 'auto' }],

@@ -7,7 +7,7 @@ import { colorResolver, h, isSize } from '../utils'
 export function svgUtilities(options: ResolvedWemeUIOptions): Rule<Theme>[] {
   return [
   // fills
-    [/^fill-(.+)$/, (match, ctx) => handleColor('fill', 'fill', 'fill', match, ctx, options), { autocomplete: 'fill-$colors' }],
+    [/^fill-(.+)$/, (match, ctx) => handleColor('fill', 'fill', match, ctx, options), { autocomplete: 'fill-$colors' }],
     [/^fill-op(?:acity)?-?(.+)$/, ([, opacity], { theme }) => ({ '--un-fill-opacity': h.bracket.percent.cssvar(opacity, theme) }), { autocomplete: 'fill-(op|opacity)-<percent>' }],
     ['fill-none', { fill: 'none' }],
 
@@ -45,18 +45,17 @@ function handleWidth([, b]: string[], { theme }: RuleContext<Theme>): CSSObject 
 
 function handleColor(
   property: string,
-  opacityVar: string,
-  fuzzyMapKey: 'border-color' | 'fill',
+  varName: 'border-color' | 'fill',
   match: RegExpMatchArray,
   ctx: RuleContext<Theme>,
   options: ResolvedWemeUIOptions,
 ) {
-  const result = colorResolver(property, opacityVar)(match, ctx)
+  const result = colorResolver(property, varName)(match, ctx)
   if (result) {
     return result
   }
 
-  const customTheme = customThemeCssVarResolver(property, fuzzyMapKey)(match[1], options.cssVars)
+  const customTheme = customThemeCssVarResolver(property, varName)(match[1], options.cssVars)
   if (customTheme) {
     return customTheme
   }
@@ -65,5 +64,5 @@ function handleColor(
 function handleColorOrWidth(match: RegExpMatchArray, ctx: RuleContext<Theme>, options: ResolvedWemeUIOptions): CSSObject | (CSSValueInput | string)[] | undefined {
   if (isSize(match[1]))
     return handleWidth(match, ctx)
-  return handleColor('stroke', 'stroke', 'border-color', match, ctx, options)
+  return handleColor('stroke', 'border-color', match, ctx, options)
 }

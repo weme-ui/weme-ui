@@ -38,7 +38,7 @@ import { viewTransition } from './view-transition'
 
 export function rules(options: ResolvedWemeUIOptions): Rule<Theme>[] {
   return [
-    fonts,
+    fonts(options),
     tabSizes,
     textIndents,
     textStrokes,

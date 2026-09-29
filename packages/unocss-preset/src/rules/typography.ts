@@ -1,6 +1,8 @@
 import type { CSSObject, CSSValueInput, Rule, RuleContext } from '@unocss/core'
+import type { ResolvedWemeUIOptions } from '../options'
 import type { Theme } from '../theme'
 import { getStringComponent, getStringComponents } from '@unocss/rule-utils'
+import { customThemeCssVarResolver } from '../tokens'
 import {
   colorableShadows,
   colorResolver,
@@ -14,197 +16,199 @@ import {
 import { bracketTypeRe } from '../utils/handlers/regex'
 import { generateThemeVariable, themeTracking } from '../utils/track'
 
-export const fonts: Rule<Theme>[] = [
-  // text
-  [/^text-(.+)$/, handleText, { autocomplete: 'text-$text' }],
+export function fonts(options: ResolvedWemeUIOptions): Rule<Theme>[] {
+  return [
+    // text
+    [/^text-(.+)$/, handleText, { autocomplete: 'text-$text' }],
 
-  // // text size
-  [/^(?:text|font)-size-(.+)$/, handleSize, { autocomplete: 'text-size-$text' }],
+    // // text size
+    [/^(?:text|font)-size-(.+)$/, handleSize, { autocomplete: 'text-size-$text' }],
 
-  // text colors
-  [/^text-(?:color-)?(.+)$/, handlerColorOrSize, { autocomplete: 'text-$colors' }],
+    // text colors
+    [/^text-(?:color-)?(.+)$/, (match, ctx) => handlerColorOrSize(match, ctx, options), { autocomplete: 'text-$colors' }],
 
-  // colors
-  [/^(?:color|c)-(.+)$/, colorResolver('color', 'text')],
+    // colors
+    [/^(?:color|c)-(.+)$/, (match, ctx) => handleColor(match, ctx, options)],
 
-  // style
-  [/^(?:text|color|c)-(.+)$/, ([, v]) => globalKeywords.includes(v) ? { color: v } : undefined, { autocomplete: `(text|color|c)-(${globalKeywords.join('|')})` }],
+    // style
+    [/^(?:text|color|c)-(.+)$/, ([, v]) => globalKeywords.includes(v) ? { color: v } : undefined, { autocomplete: `(text|color|c)-(${globalKeywords.join('|')})` }],
 
-  // opacity
-  [/^(?:text|color|c)-op(?:acity)?-?(.+)$/, ([, opacity], { theme }) => ({ '--un-text-opacity': h.bracket.percent.cssvar(opacity, theme) }), { autocomplete: '(text|color|c)-(op|opacity)-<percent>' }],
+    // opacity
+    [/^(?:text|color|c)-op(?:acity)?-?(.+)$/, ([, opacity], { theme }) => ({ '--un-text-opacity': h.bracket.percent.cssvar(opacity, theme) }), { autocomplete: '(text|color|c)-(op|opacity)-<percent>' }],
 
-  // weights
-  [
-    /^fw-?([^-]+)$/,
-    ([, s], { theme }) => {
-      let v: string | undefined
+    // weights
+    [
+      /^fw-?([^-]+)$/,
+      ([, s], { theme }) => {
+        let v: string | undefined
 
-      if (theme.fontWeight?.[s]) {
-        themeTracking(`fontWeight`, s)
-        v = generateThemeVariable('fontWeight', s)
-      }
-      else {
-        v = h.bracket.cssvar.global.number(s, theme)
-      }
+        if (theme.fontWeight?.[s]) {
+          themeTracking(`fontWeight`, s)
+          v = generateThemeVariable('fontWeight', s)
+        }
+        else {
+          v = h.bracket.cssvar.global.number(s, theme)
+        }
 
-      return {
-        '--un-font-weight': v,
-        'font-weight': v,
-      }
-    },
-    {
-      autocomplete: [
-        '(font|fw)-(100|200|300|400|500|600|700|800|900)',
-        '(font|fw)-$fontWeight',
-      ],
-    },
-  ],
+        return {
+          '--un-font-weight': v,
+          'font-weight': v,
+        }
+      },
+      {
+        autocomplete: [
+          '(font|fw)-(100|200|300|400|500|600|700|800|900)',
+          '(font|fw)-$fontWeight',
+        ],
+      },
+    ],
 
-  // leadings
-  [
-    /^(?:font-)?(?:leading|lh|line-height)-(.+)$/,
-    ([, s], { theme }) => {
-      let v: string | undefined
+    // leadings
+    [
+      /^(?:font-)?(?:leading|lh|line-height)-(.+)$/,
+      ([, s], { theme }) => {
+        let v: string | undefined
 
-      if (theme.leading?.[s]) {
-        themeTracking('leading', s)
-        v = generateThemeVariable('leading', s)
-      }
-      else if (numberResolver(s)) {
-        themeTracking('spacing')
-        v = `calc(var(--spacing) * ${numberResolver(s)})`
-      }
-      else {
-        v = h.bracket.cssvar.global.rem(s, theme)
-      }
+        if (theme.leading?.[s]) {
+          themeTracking('leading', s)
+          v = generateThemeVariable('leading', s)
+        }
+        else if (numberResolver(s)) {
+          themeTracking('spacing')
+          v = `calc(var(--spacing) * ${numberResolver(s)})`
+        }
+        else {
+          v = h.bracket.cssvar.global.rem(s, theme)
+        }
 
-      if (v != null) {
-        return [
-          {
-            '--un-leading': v,
-            'line-height': v,
-          },
-          defineProperty('--un-leading'),
-        ]
-      }
-    },
-    { autocomplete: '(leading|lh|line-height)-$leading' },
-  ],
+        if (v != null) {
+          return [
+            {
+              '--un-leading': v,
+              'line-height': v,
+            },
+            defineProperty('--un-leading'),
+          ]
+        }
+      },
+      { autocomplete: '(leading|lh|line-height)-$leading' },
+    ],
 
-  // synthesis
-  ['font-synthesis-weight', { 'font-synthesis': 'weight' }],
-  ['font-synthesis-style', { 'font-synthesis': 'style' }],
-  ['font-synthesis-small-caps', { 'font-synthesis': 'small-caps' }],
-  ['font-synthesis-none', { 'font-synthesis': 'none' }],
-  [/^font-synthesis-(.+)$/, ([, s], { theme }) => ({ 'font-synthesis': h.bracket.cssvar.global(s, theme) })],
+    // synthesis
+    ['font-synthesis-weight', { 'font-synthesis': 'weight' }],
+    ['font-synthesis-style', { 'font-synthesis': 'style' }],
+    ['font-synthesis-small-caps', { 'font-synthesis': 'small-caps' }],
+    ['font-synthesis-none', { 'font-synthesis': 'none' }],
+    [/^font-synthesis-(.+)$/, ([, s], { theme }) => ({ 'font-synthesis': h.bracket.cssvar.global(s, theme) })],
 
-  // tracking
-  [
-    /^(?:font-)?tracking-(.+)$/,
-    ([, s], { theme }) => {
-      let v: string | undefined
+    // tracking
+    [
+      /^(?:font-)?tracking-(.+)$/,
+      ([, s], { theme }) => {
+        let v: string | undefined
 
-      if (theme.tracking?.[s]) {
-        themeTracking(`tracking`, s)
-        v = generateThemeVariable('tracking', s)
-      }
-      else {
-        v = h.bracket.cssvar.global.rem(s, theme)
-      }
+        if (theme.tracking?.[s]) {
+          themeTracking(`tracking`, s)
+          v = generateThemeVariable('tracking', s)
+        }
+        else {
+          v = h.bracket.cssvar.global.rem(s, theme)
+        }
 
-      return {
-        '--un-tracking': v,
-        'letter-spacing': v,
-      }
-    },
-    { autocomplete: 'tracking-$tracking' },
-  ],
+        return {
+          '--un-tracking': v,
+          'letter-spacing': v,
+        }
+      },
+      { autocomplete: 'tracking-$tracking' },
+    ],
 
-  // word-spacing
-  [
-    /^(?:font-)?word-spacing-(.+)$/,
-    ([, s], { theme }) => {
-      // Use the same variable as tracking
-      const v = theme.tracking?.[s] ? generateThemeVariable('tracking', s) : h.bracket.cssvar.global.rem(s, theme)
-      return {
-        '--un-word-spacing': v,
-        'word-spacing': v,
-      }
-    },
-    { autocomplete: 'word-spacing-$spacing' },
-  ],
+    // word-spacing
+    [
+      /^(?:font-)?word-spacing-(.+)$/,
+      ([, s], { theme }) => {
+        // Use the same variable as tracking
+        const v = theme.tracking?.[s] ? generateThemeVariable('tracking', s) : h.bracket.cssvar.global.rem(s, theme)
+        return {
+          '--un-word-spacing': v,
+          'word-spacing': v,
+        }
+      },
+      { autocomplete: 'word-spacing-$spacing' },
+    ],
 
-  // stretch
-  ['font-stretch-normal', { 'font-stretch': 'normal' }],
-  ['font-stretch-ultra-condensed', { 'font-stretch': 'ultra-condensed' }],
-  ['font-stretch-extra-condensed', { 'font-stretch': 'extra-condensed' }],
-  ['font-stretch-condensed', { 'font-stretch': 'condensed' }],
-  ['font-stretch-semi-condensed', { 'font-stretch': 'semi-condensed' }],
-  ['font-stretch-semi-expanded', { 'font-stretch': 'semi-expanded' }],
-  ['font-stretch-expanded', { 'font-stretch': 'expanded' }],
-  ['font-stretch-extra-expanded', { 'font-stretch': 'extra-expanded' }],
-  ['font-stretch-ultra-expanded', { 'font-stretch': 'ultra-expanded' }],
-  [
-    /^font-stretch-(.+)$/,
-    ([, s], { theme }) => ({ 'font-stretch': h.bracket.cssvar.fraction.global(s, theme) }),
-    { autocomplete: 'font-stretch-<percentage>' },
-  ],
+    // stretch
+    ['font-stretch-normal', { 'font-stretch': 'normal' }],
+    ['font-stretch-ultra-condensed', { 'font-stretch': 'ultra-condensed' }],
+    ['font-stretch-extra-condensed', { 'font-stretch': 'extra-condensed' }],
+    ['font-stretch-condensed', { 'font-stretch': 'condensed' }],
+    ['font-stretch-semi-condensed', { 'font-stretch': 'semi-condensed' }],
+    ['font-stretch-semi-expanded', { 'font-stretch': 'semi-expanded' }],
+    ['font-stretch-expanded', { 'font-stretch': 'expanded' }],
+    ['font-stretch-extra-expanded', { 'font-stretch': 'extra-expanded' }],
+    ['font-stretch-ultra-expanded', { 'font-stretch': 'ultra-expanded' }],
+    [
+      /^font-stretch-(.+)$/,
+      ([, s], { theme }) => ({ 'font-stretch': h.bracket.cssvar.fraction.global(s, theme) }),
+      { autocomplete: 'font-stretch-<percentage>' },
+    ],
 
-  // family & weight
-  [
-    /^font-(.+)$/,
-    ([, d], { theme }) => {
-      let v: string | undefined
+    // family & weight
+    [
+      /^font-(.+)$/,
+      ([, d], { theme }) => {
+        let v: string | undefined
 
-      // Prefer theme font family
-      if (theme.font?.[d]) {
-        themeTracking('font', d)
-        v = generateThemeVariable('font', d)
-        return { 'font-family': v }
-      }
+        // Prefer theme font family
+        if (theme.font?.[d]) {
+          themeTracking('font', d)
+          v = generateThemeVariable('font', d)
+          return { 'font-family': v }
+        }
 
-      // Prefer theme font weight
-      if (theme.fontWeight?.[d]) {
-        themeTracking('fontWeight', d)
-        v = generateThemeVariable('fontWeight', d)
-        return { '--un-font-weight': v, 'font-weight': v }
-      }
+        // Prefer theme font weight
+        if (theme.fontWeight?.[d]) {
+          themeTracking('fontWeight', d)
+          v = generateThemeVariable('fontWeight', d)
+          return { '--un-font-weight': v, 'font-weight': v }
+        }
 
-      // Numeric font weight (e.g. font-700)
-      v = h.number(d)
-      if (v != null) {
-        return { '--un-font-weight': v, 'font-weight': v }
-      }
+        // Numeric font weight (e.g. font-700)
+        v = h.number(d)
+        if (v != null) {
+          return { '--un-font-weight': v, 'font-weight': v }
+        }
 
-      // Bracketed font family (e.g. font-[family:Inter])
-      v = h.bracketOfFamily(d, theme)
-      if (v != null && h.number(v) == null) {
-        v = h.cssvar(v) ?? v
-        return { 'font-family': v }
-      }
+        // Bracketed font family (e.g. font-[family:Inter])
+        v = h.bracketOfFamily(d, theme)
+        if (v != null && h.number(v) == null) {
+          v = h.cssvar(v) ?? v
+          return { 'font-family': v }
+        }
 
-      // Bracketed numeric font weight (e.g. font-[number:700])
-      v = h.bracketOfNumber(d, theme)
-      if (v != null) {
-        v = h.cssvar.number(v)
-        return { '--un-font-weight': v, 'font-weight': v }
-      }
+        // Bracketed numeric font weight (e.g. font-[number:700])
+        v = h.bracketOfNumber(d, theme)
+        if (v != null) {
+          v = h.cssvar.number(v)
+          return { '--un-font-weight': v, 'font-weight': v }
+        }
 
-      // Bracketed value that is a unknown (e.g. font-[sth])
-      v = h.bracket(d, theme)
-      if (v != null && h.number(v) != null) {
-        const num = h.number(v)
-        return { '--un-font-weight': num, 'font-weight': num }
-      }
+        // Bracketed value that is a unknown (e.g. font-[sth])
+        v = h.bracket(d, theme)
+        if (v != null && h.number(v) != null) {
+          const num = h.number(v)
+          return { '--un-font-weight': num, 'font-weight': num }
+        }
 
-      v = h.bracket.cssvar.global(d, theme)
-      if (v != null) {
-        return { 'font-family': v }
-      }
-    },
-    { autocomplete: ['font-$font', 'font-$fontWeight'] },
-  ],
-]
+        v = h.bracket.cssvar.global(d, theme)
+        if (v != null) {
+          return { 'font-family': v }
+        }
+      },
+      { autocomplete: ['font-$font', 'font-$fontWeight'] },
+    ],
+  ]
+}
 
 export const tabSizes: Rule<Theme>[] = [
   [/^tab(?:-(.+))?$/, ([, s], { theme }) => {
@@ -374,10 +378,26 @@ function handleSize([, s]: string[], { theme }: RuleContext<Theme>): CSSObject |
   }
 }
 
-function handlerColorOrSize(match: RegExpMatchArray, ctx: RuleContext<Theme>): CSSObject | (CSSValueInput | string)[] | undefined {
+function handleColor(
+  match: RegExpMatchArray,
+  ctx: RuleContext<Theme>,
+  options: ResolvedWemeUIOptions,
+): CSSObject | (CSSValueInput | string)[] | undefined {
+  const result = colorResolver('color', 'text')(match, ctx)
+  if (result) {
+    return result
+  }
+
+  const customTheme = customThemeCssVarResolver('color', 'color')(match[1], options.cssVars)
+  if (customTheme) {
+    return customTheme
+  }
+}
+
+function handlerColorOrSize(match: RegExpMatchArray, ctx: RuleContext<Theme>, options: ResolvedWemeUIOptions): CSSObject | (CSSValueInput | string)[] | undefined {
   if (isSize(match[1]))
     return handleSize(match, ctx)
-  return colorResolver('color', 'text')(match, ctx)
+  return handleColor(match, ctx, options)
 }
 
 export function splitShorthand(body: string, type: string) {

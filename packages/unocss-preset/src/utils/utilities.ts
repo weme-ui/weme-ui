@@ -150,8 +150,8 @@ export function parseColor(body: string, theme: Theme) {
     }
   }
 
+  // parse custom theme color alias
   if (!parsed) {
-    // parse theme color alias
     parsed = parseCustomThemeColorAlias(colors)
   }
 

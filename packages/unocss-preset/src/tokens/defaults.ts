@@ -63,39 +63,124 @@ export const CUSTOM_THEME_COLOR_ALIASES: string[] = [
 ]
 
 /**
- * 主题令牌映射
+ * 主题令牌映射，限定颜色相关的类名匹配
+ *
+ * @category Tokens
  */
 export const CUSTOM_THEME_TOKENS_MAP: Record<string, string[]> = {
-  text: ['highlighted', 'base', 'subtle', 'muted', 'inverted'],
+  foreground: ['highlighted', 'base', 'subtle', 'muted', 'inverted'],
   background: ['base', 'muted', 'elevated', 'inverted'],
   border: ['base', 'elevated', 'inverted'],
 }
 
 /**
- * 模糊 CSS 变量映射
+ * 模糊 CSS 变量映射，限定 CSS 属性的后缀匹配
  *
- * - key: CSS 属性名
- * - value: CSS 变量后缀
- *
- * @example
- * ```
- * {
- *   'card-bg': 'neutral.1',
- *   'card-border': 'neutral.5',
- *   'card-text': 'neutral.11',
- *   'card-title-color': 'neutral.12',
- * }
- *
- * `bg-card` -> `background-color: var(--card-bg)`
- * `text-card` -> `color: var(--card-text)`
- * `border-card` -> `border-color: var(--card-border)`
- * `fill-card` -> `fill: var(--card-bg)`
- * `text-card-title` -> `color: var(--card-title)`
- * ```
+ * @category Tokens
  */
 export const CUSTOM_CSSVAR_FUZZY_MAP: Record<string, string[]> = {
+  /**
+   * 颜色变量映射
+   *
+   * - **Priority**:
+   *   - `text` > `color`
+   * - **Examples**:
+   *   - `text-card` -> `color: var(--card-text)`
+   *   - `text-card` -> `color: var(--card-color)`
+   */
   'color': ['text', 'color'],
-  'background-color': ['background', 'bg', 'color', 'fill'],
-  'border-color': ['border', 'color'],
-  'fill': ['background', 'bg', 'color'],
+
+  /**
+   * 背景变量映射
+   *
+   * - **Priority**:
+   *   - `background` > `bg` > `color`
+   * - **Examples**:
+   *   - `bg-card` -> `background-color: var(--card-background)`
+   *   - `bg-card` -> `background-color: var(--card-bg)`
+   *   - `bg-card` -> `background-color: var(--card-color)`
+   */
+  'background-color': ['background', 'bg', 'color'],
+
+  /**
+   * 边框变量映射
+   *
+   * - **Priority**:
+   *   - `border-color` > `border`
+   * - **Examples**:
+   *   - `border-card` -> `border-color: var(--card-border-color)`
+   *   - `border-card` -> `border-color: var(--card-border)`
+   */
+  'border-color': ['border-color', 'border'],
+
+  /**
+   * 填充变量映射
+   *
+   * - **Priority**:
+   *   - `fill` > `background` > `bg` > `color`
+   * - **Examples**:
+   *   - `fill-card` -> `fill: var(--card-fill)`
+   *   - `fill-card` -> `fill: var(--card-background)`
+   *   - `fill-card` -> `fill: var(--card-bg)`
+   *   - `fill-card` -> `fill: var(--card-color)`
+   */
+  'fill': ['fill', 'background', 'bg', 'color'],
+
+  /**
+   * 边框宽度变量映射
+   *
+   * - **Priority**:
+   *   - `border-width`
+   * - **Examples**:
+   *   - `border-width-card` -> `border-width: var(--card-border-width)`
+   */
+  'border-width': ['border-width'],
+
+  /**
+   * 宽度变量映射
+   *
+   * - **Priority**:
+   *   - `width` > `w` > `size`
+   * - **Examples**:
+   *   - `width-card` -> `width: var(--card-width)`
+   *   - `width-card` -> `width: var(--card-w)`
+   *   - `width-card` -> `width: var(--card-size)`
+   */
+  'width': ['width', 'w', 'size'],
+
+  /**
+   * 高度变量映射
+   *
+   * - **Priority**:
+   *   - `height` > `h` > `size`
+   * - **Examples**:
+   *   - `height-card` -> `height: var(--card-height)`
+   *   - `height-card` -> `height: var(--card-h)`
+   *   - `height-card` -> `height: var(--card-size)`
+   */
+  'height': ['height', 'h', 'size'],
+
+  /**
+   * 内边距变量映射
+   *
+   * - **Priority**:
+   *   - `padding` > `p` > `space`
+   * - **Examples**:
+   *   - `p-card` -> `padding: var(--card-padding)`
+   *   - `p-card` -> `padding: var(--card-p)`
+   *   - `p-card` -> `padding: var(--card-space)`
+   */
+  'padding': ['padding', 'p', 'space'],
+
+  /**
+   * 外边距变量映射
+   *
+   * - **Priority**:
+   *   - `margin` > `m` > `space`
+   * - **Examples**:
+   *   - `m-card` -> `margin: var(--card-margin)`
+   *   - `m-card` -> `margin: var(--card-m)`
+   *   - `m-card` -> `margin: var(--card-space)`
+   */
+  'margin': ['margin', 'm', 'space'],
 }

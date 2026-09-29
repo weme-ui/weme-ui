@@ -54,13 +54,13 @@ export function propertyTracking(property: string, value: string) {
 
 // #endregion
 
-// #region Tokens
+// #region Custom CSS Vars
 
-export const trackedTokens = new Set<string>([])
+export const trackedCssVars = new Set<string>([])
 
-export function tokenTracking(token: string) {
-  if (!trackedTokens.has(token)) {
-    trackedTokens.add(token)
+export function cssVarTracking(name: string) {
+  if (!trackedCssVars.has(name)) {
+    trackedCssVars.add(name)
   }
 }
 

@@ -1,8 +1,11 @@
+import { symbols } from '@unocss/core'
 import { beforeEach, describe, expect, it } from 'vitest'
 import {
   CUSTOM_CSSVAR_FUZZY_MAP,
   CUSTOM_THEME_COLOR_ALIASES,
   CUSTOM_THEME_TOKENS_MAP,
+  customThemeCSSGenerator,
+  customThemeCssVarResolver,
   generateColorAliasCssVar,
   isRawColor,
   parseColorAlias,
@@ -10,7 +13,7 @@ import {
   parseCustomThemeToken,
   splitCustomThemeTokenKey,
 } from '~/tokens'
-import { trackedColorAliases } from '~/utils/track'
+import { trackedColorAliases, trackedProperties } from '~/utils/track'
 
 type FuzzyMapKey = keyof typeof CUSTOM_CSSVAR_FUZZY_MAP
 
@@ -349,6 +352,158 @@ describe('generateColorAliasCssVar', () => {
     expect(generateColorAliasCssVar('foreground.base')).toBe('var(--foreground-base)')
     expect(generateColorAliasCssVar('a.b.c')).toBe('var(--a-b-c)')
     expect(generateColorAliasCssVar('card-bg')).toBe('card-bg')
+  })
+})
+
+describe('customThemeCSSGenerator', () => {
+  beforeEach(() => {
+    trackedProperties.clear()
+  })
+
+  it('returns undefined when keys are empty', () => {
+    expect(customThemeCSSGenerator({ name: 'primary', keys: [], alpha: undefined }, 'color')).toBeUndefined()
+    expect(trackedProperties.size).toBe(0)
+  })
+
+  it('emits a theme variable and an opacity property without alpha', () => {
+    const result = customThemeCSSGenerator({
+      name: 'foreground-base',
+      keys: ['foreground', 'base'],
+      alpha: undefined,
+    }, 'border-color')
+
+    expect(result?.[0]).toEqual({ 'border-color': 'var(--foreground-base)' })
+    expect(result).toHaveLength(2)
+    expect(result?.[1]).toMatchObject({
+      'syntax': '"<percentage>"',
+      'inherits': 'false',
+      'initial-value': '100%',
+    })
+    expect(trackedProperties.get('--un-border-opacity')).toBe('100%')
+  })
+
+  it('mixes a positive alpha in oklab and adds a color-mix fallback', () => {
+    const result = customThemeCSSGenerator({
+      name: 'foreground-base',
+      keys: ['foreground', 'base'],
+      alpha: 50,
+    }, 'color')
+
+    expect(result?.[0]).toEqual({
+      color: 'color-mix(in oklab, var(--foreground-base) 50%, transparent)',
+    })
+    expect(result).toHaveLength(3)
+    expect(result?.[2]).toMatchObject({
+      [symbols.parent]: '@supports (color: color-mix(in lab, red, red))',
+      [symbols.noMerge]: true,
+      color: 'color-mix(in oklab, var(--foreground-base) 50%, transparent)',
+    })
+  })
+
+  it('mixes alpha 0 as a percentage', () => {
+    const result = customThemeCSSGenerator({
+      name: 'foreground-highlighted',
+      keys: ['foreground', 'highlighted'],
+      alpha: 0,
+    }, 'color')
+
+    expect(result?.[0]).toEqual({
+      color: 'color-mix(in oklab, var(--foreground-highlighted) 0%, transparent)',
+    })
+    expect(result).toHaveLength(3)
+  })
+
+  it('adds a color-mix fallback for shadow-like properties without alpha', () => {
+    for (const property of ['shadow-color', 'inset-shadow-color', 'text-shadow-color', 'drop-shadow-color'] as const) {
+      trackedProperties.clear()
+
+      const result = customThemeCSSGenerator({
+        name: 'foreground-base',
+        keys: ['foreground', 'base'],
+        alpha: undefined,
+      }, property)
+
+      const varName = property.replace(/-color/g, '')
+
+      expect(result?.[0]).toEqual({ [property]: 'var(--foreground-base)' })
+      expect(result).toHaveLength(3)
+      expect(result?.[2]).toMatchObject({
+        [symbols.parent]: '@supports (color: color-mix(in lab, red, red))',
+        [symbols.noMerge]: true,
+        [property]: `color-mix(in oklab, var(--foreground-base) var(--un-${varName}-opacity), transparent)`,
+      })
+      expect(trackedProperties.get(`--un-${varName}-opacity`)).toBe('100%')
+    }
+  })
+
+  it('nests a positive alpha inside the shadow fallback', () => {
+    const result = customThemeCSSGenerator({
+      name: 'foreground-base',
+      keys: ['foreground', 'base'],
+      alpha: 40,
+    }, 'shadow-color')
+
+    expect(result?.[0]).toEqual({
+      'shadow-color': 'color-mix(in oklab, var(--foreground-base) 40%, transparent)',
+    })
+    expect(result?.[2]).toMatchObject({
+      'shadow-color': 'color-mix(in oklab, color-mix(in oklab, var(--foreground-base) 40%, transparent) var(--un-shadow-opacity), transparent)',
+    })
+  })
+})
+
+describe('customThemeCssVarResolver', () => {
+  beforeEach(() => {
+    trackedProperties.clear()
+  })
+
+  it('returns undefined when the body cannot be parsed or matched', () => {
+    const resolve = customThemeCssVarResolver('color', 'color')
+
+    expect(resolve('var(--foreground)', {})).toBeUndefined()
+    expect(resolve('var(--foreground)/50', {})).toBeUndefined()
+    expect(resolve('primary/foo', {})).toBeUndefined()
+    expect(resolve('primary/101', {})).toBeUndefined()
+    expect(resolve('foreground-base/101', {})).toBeUndefined()
+    expect(resolve('primary', {})).toBeUndefined()
+    expect(resolve('card', {})).toBeUndefined()
+    expect(trackedProperties.has('--un-color-opacity')).toBe(false)
+  })
+
+  it('resolves a complete theme token', () => {
+    const result = customThemeCssVarResolver('border-color', 'border-color')('foreground-base', {})
+
+    expect(result?.[0]).toEqual({ 'border-color': 'var(--foreground-base)' })
+    expect(result).toHaveLength(2)
+    expect(trackedProperties.get('--un-border-opacity')).toBe('100%')
+  })
+
+  it('resolves a complete theme token with alpha', () => {
+    const result = customThemeCssVarResolver('color', 'color')('foreground-base/50', {})
+
+    expect(result?.[0]).toEqual({
+      color: 'color-mix(in oklab, var(--foreground-base) 50%, transparent)',
+    })
+    expect(result).toHaveLength(3)
+  })
+
+  it('falls through to parseCustomCssVar when the theme token has no keys', () => {
+    const result = customThemeCssVarResolver('color', 'color')('card/40', {
+      'card-text': 'foreground.base',
+    })
+
+    expect(result?.[0]).toEqual({
+      color: 'color-mix(in oklab, var(--card-text) 40%, transparent)',
+    })
+    expect(result).toHaveLength(3)
+  })
+
+  it('prefers a complete theme token over a css var with the same body', () => {
+    const result = customThemeCssVarResolver('color', 'color')('foreground-base', {
+      'foreground-base-text': 'primary.9',
+    })
+
+    expect(result?.[0]).toEqual({ color: 'var(--foreground-base)' })
   })
 })
 
@@ -1449,6 +1604,271 @@ describe('successful results snapshots', () => {
         "secondary.9": "var(--secondary-9)",
         "success.9": "var(--success-9)",
         "warning.9": "var(--warning-9)",
+      }
+    `)
+  })
+
+  it('customThemeCSSGenerator', () => {
+    trackedProperties.clear()
+
+    const cases: [string, { name: string, keys: string[], alpha: number | undefined }][] = [
+      ['color', { name: 'foreground-base', keys: ['foreground', 'base'], alpha: undefined }],
+      ['color', { name: 'foreground-base', keys: ['foreground', 'base'], alpha: 0 }],
+      ['color', { name: 'foreground-base', keys: ['foreground', 'base'], alpha: 50 }],
+      ['border-color', { name: 'border-inverted', keys: ['border', 'inverted'], alpha: undefined }],
+      ['shadow-color', { name: 'foreground-base', keys: ['foreground', 'base'], alpha: undefined }],
+      ['shadow-color', { name: 'foreground-base', keys: ['foreground', 'base'], alpha: 40 }],
+      ['color', { name: 'card', keys: ['card', 'text'], alpha: 40 }],
+    ]
+
+    expect(
+      Object.fromEntries(
+        cases.map(([property, data]) => [
+          `${property}:${data.keys.join('-')}${data.alpha === undefined ? '' : `/${data.alpha}`}`,
+          customThemeCSSGenerator(data, property),
+        ]),
+      ),
+    ).toMatchInlineSnapshot(`
+      {
+        "border-color:border-inverted": [
+          {
+            "border-color": "var(--border-inverted)",
+          },
+          {
+            "$$symbol-no-merge": true,
+            "$$symbol-no-scope": true,
+            "$$symbol-shortcut-no-merge": true,
+            "$$symbol-variants": [Function],
+            "inherits": "false",
+            "initial-value": "100%",
+            "syntax": ""<percentage>"",
+          },
+        ],
+        "color:card-text/40": [
+          {
+            "color": "color-mix(in oklab, var(--card-text) 40%, transparent)",
+          },
+          {
+            "$$symbol-no-merge": true,
+            "$$symbol-no-scope": true,
+            "$$symbol-shortcut-no-merge": true,
+            "$$symbol-variants": [Function],
+            "inherits": "false",
+            "initial-value": "100%",
+            "syntax": ""<percentage>"",
+          },
+          {
+            "$$symbol-no-merge": true,
+            "$$symbol-parent": "@supports (color: color-mix(in lab, red, red))",
+            "color": "color-mix(in oklab, var(--card-text) 40%, transparent)",
+          },
+        ],
+        "color:foreground-base": [
+          {
+            "color": "var(--foreground-base)",
+          },
+          {
+            "$$symbol-no-merge": true,
+            "$$symbol-no-scope": true,
+            "$$symbol-shortcut-no-merge": true,
+            "$$symbol-variants": [Function],
+            "inherits": "false",
+            "initial-value": "100%",
+            "syntax": ""<percentage>"",
+          },
+        ],
+        "color:foreground-base/0": [
+          {
+            "color": "color-mix(in oklab, var(--foreground-base) 0%, transparent)",
+          },
+          {
+            "$$symbol-no-merge": true,
+            "$$symbol-no-scope": true,
+            "$$symbol-shortcut-no-merge": true,
+            "$$symbol-variants": [Function],
+            "inherits": "false",
+            "initial-value": "100%",
+            "syntax": ""<percentage>"",
+          },
+          {
+            "$$symbol-no-merge": true,
+            "$$symbol-parent": "@supports (color: color-mix(in lab, red, red))",
+            "color": "color-mix(in oklab, var(--foreground-base) 0%, transparent)",
+          },
+        ],
+        "color:foreground-base/50": [
+          {
+            "color": "color-mix(in oklab, var(--foreground-base) 50%, transparent)",
+          },
+          {
+            "$$symbol-no-merge": true,
+            "$$symbol-no-scope": true,
+            "$$symbol-shortcut-no-merge": true,
+            "$$symbol-variants": [Function],
+            "inherits": "false",
+            "initial-value": "100%",
+            "syntax": ""<percentage>"",
+          },
+          {
+            "$$symbol-no-merge": true,
+            "$$symbol-parent": "@supports (color: color-mix(in lab, red, red))",
+            "color": "color-mix(in oklab, var(--foreground-base) 50%, transparent)",
+          },
+        ],
+        "shadow-color:foreground-base": [
+          {
+            "shadow-color": "var(--foreground-base)",
+          },
+          {
+            "$$symbol-no-merge": true,
+            "$$symbol-no-scope": true,
+            "$$symbol-shortcut-no-merge": true,
+            "$$symbol-variants": [Function],
+            "inherits": "false",
+            "initial-value": "100%",
+            "syntax": ""<percentage>"",
+          },
+          {
+            "$$symbol-no-merge": true,
+            "$$symbol-parent": "@supports (color: color-mix(in lab, red, red))",
+            "shadow-color": "color-mix(in oklab, var(--foreground-base) var(--un-shadow-opacity), transparent)",
+          },
+        ],
+        "shadow-color:foreground-base/40": [
+          {
+            "shadow-color": "color-mix(in oklab, var(--foreground-base) 40%, transparent)",
+          },
+          {
+            "$$symbol-no-merge": true,
+            "$$symbol-no-scope": true,
+            "$$symbol-shortcut-no-merge": true,
+            "$$symbol-variants": [Function],
+            "inherits": "false",
+            "initial-value": "100%",
+            "syntax": ""<percentage>"",
+          },
+          {
+            "$$symbol-no-merge": true,
+            "$$symbol-parent": "@supports (color: color-mix(in lab, red, red))",
+            "shadow-color": "color-mix(in oklab, color-mix(in oklab, var(--foreground-base) 40%, transparent) var(--un-shadow-opacity), transparent)",
+          },
+        ],
+      }
+    `)
+  })
+
+  it('customThemeCssVarResolver', () => {
+    trackedProperties.clear()
+
+    const resolveColor = customThemeCssVarResolver('color', 'color')
+    const resolveBorder = customThemeCssVarResolver('border-color', 'border-color')
+    const cssVars = { 'card-text': 'foreground.base', 'card-border-color': 'border.base' }
+
+    const cases = {
+      'color:foreground-base': resolveColor('foreground-base', {}),
+      'color:foreground-base/50': resolveColor('foreground-base/50', {}),
+      'color:card': resolveColor('card', cssVars),
+      'color:card/40': resolveColor('card/40', cssVars),
+      'border-color:border-inverted': resolveBorder('border-inverted', {}),
+      'border-color:card': resolveBorder('card', cssVars),
+    }
+
+    expect(cases).toMatchInlineSnapshot(`
+      {
+        "border-color:border-inverted": [
+          {
+            "border-color": "var(--border-inverted)",
+          },
+          {
+            "$$symbol-no-merge": true,
+            "$$symbol-no-scope": true,
+            "$$symbol-shortcut-no-merge": true,
+            "$$symbol-variants": [Function],
+            "inherits": "false",
+            "initial-value": "100%",
+            "syntax": ""<percentage>"",
+          },
+        ],
+        "border-color:card": [
+          {
+            "border-color": "var(--card-border-color)",
+          },
+          {
+            "$$symbol-no-merge": true,
+            "$$symbol-no-scope": true,
+            "$$symbol-shortcut-no-merge": true,
+            "$$symbol-variants": [Function],
+            "inherits": "false",
+            "initial-value": "100%",
+            "syntax": ""<percentage>"",
+          },
+        ],
+        "color:card": [
+          {
+            "color": "var(--card-text)",
+          },
+          {
+            "$$symbol-no-merge": true,
+            "$$symbol-no-scope": true,
+            "$$symbol-shortcut-no-merge": true,
+            "$$symbol-variants": [Function],
+            "inherits": "false",
+            "initial-value": "100%",
+            "syntax": ""<percentage>"",
+          },
+        ],
+        "color:card/40": [
+          {
+            "color": "color-mix(in oklab, var(--card-text) 40%, transparent)",
+          },
+          {
+            "$$symbol-no-merge": true,
+            "$$symbol-no-scope": true,
+            "$$symbol-shortcut-no-merge": true,
+            "$$symbol-variants": [Function],
+            "inherits": "false",
+            "initial-value": "100%",
+            "syntax": ""<percentage>"",
+          },
+          {
+            "$$symbol-no-merge": true,
+            "$$symbol-parent": "@supports (color: color-mix(in lab, red, red))",
+            "color": "color-mix(in oklab, var(--card-text) 40%, transparent)",
+          },
+        ],
+        "color:foreground-base": [
+          {
+            "color": "var(--foreground-base)",
+          },
+          {
+            "$$symbol-no-merge": true,
+            "$$symbol-no-scope": true,
+            "$$symbol-shortcut-no-merge": true,
+            "$$symbol-variants": [Function],
+            "inherits": "false",
+            "initial-value": "100%",
+            "syntax": ""<percentage>"",
+          },
+        ],
+        "color:foreground-base/50": [
+          {
+            "color": "color-mix(in oklab, var(--foreground-base) 50%, transparent)",
+          },
+          {
+            "$$symbol-no-merge": true,
+            "$$symbol-no-scope": true,
+            "$$symbol-shortcut-no-merge": true,
+            "$$symbol-variants": [Function],
+            "inherits": "false",
+            "initial-value": "100%",
+            "syntax": ""<percentage>"",
+          },
+          {
+            "$$symbol-no-merge": true,
+            "$$symbol-parent": "@supports (color: color-mix(in lab, red, red))",
+            "color": "color-mix(in oklab, var(--foreground-base) 50%, transparent)",
+          },
+        ],
       }
     `)
   })

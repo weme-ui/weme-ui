@@ -1,7 +1,9 @@
+import type { CSSObject, CSSValueInput } from '@unocss/core'
 import type { LooseAutocomplete } from '../utils'
 import type { CUSTOM_CSSVAR_FUZZY_MAP_KEYS } from './defaults'
 import type { CustomThemeTokens, ResolvedCustomThemeCSSVars } from './types'
-import { colorAliasTracking } from '../utils'
+import { symbols } from '@unocss/core'
+import { colorAliasTracking, defineProperty } from '../utils'
 import { CUSTOM_CSSVAR_FUZZY_MAP, CUSTOM_THEME_COLOR_ALIASES, CUSTOM_THEME_TOKENS_MAP } from './defaults'
 
 /**
@@ -90,6 +92,14 @@ export function splitCustomThemeTokenKey(match: string) {
   return { name, alpha }
 }
 
+type FuzzyMapKey = (typeof CUSTOM_CSSVAR_FUZZY_MAP_KEYS)[number]
+
+interface CustomThemeParsedResult {
+  name: string
+  keys: string[]
+  alpha: number | undefined
+}
+
 /**
  * 解析自定义主题令牌
  *
@@ -98,7 +108,7 @@ export function splitCustomThemeTokenKey(match: string) {
 export function parseCustomThemeToken(
   match: string,
   front?: LooseAutocomplete<keyof CustomThemeTokens>,
-) {
+): CustomThemeParsedResult | undefined {
   const splitted = splitCustomThemeTokenKey(match)
 
   if (!splitted)
@@ -125,8 +135,6 @@ export function parseCustomThemeToken(
   return { name, keys, alpha }
 }
 
-type FuzzyMapKey = (typeof CUSTOM_CSSVAR_FUZZY_MAP_KEYS)[number]
-
 /**
  * 解析自定义 CSS 变量
  *
@@ -136,7 +144,7 @@ export function parseCustomCssVar(
   varName: FuzzyMapKey,
   match: string,
   cssVars: ResolvedCustomThemeCSSVars,
-) {
+): CustomThemeParsedResult | undefined {
   const splitted = splitCustomThemeTokenKey(match)
 
   if (!splitted)
@@ -159,5 +167,68 @@ export function parseCustomCssVar(
     name,
     keys: variable.split('-'),
     alpha,
+  }
+}
+
+/**
+ * 生成自定义主题 CSS
+ *
+ * @category Tokens
+ */
+export function customThemeCSSGenerator(
+  data: CustomThemeParsedResult,
+  property: string,
+): [CSSObject, ...CSSValueInput[]] | undefined {
+  const { keys, alpha } = data
+
+  if (keys.length === 0)
+    return
+
+  const css: CSSObject = {}
+  const result: [CSSObject, ...CSSValueInput[]] = [css]
+
+  const value = `var(--${keys.join('-')})`
+  const varName = property.replace(/-color/g, '')
+  const alphaKey = `--un-${varName}-opacity`
+  const percentage = alpha === undefined ? undefined : `${alpha}%`
+  const shadowLike = ['shadow', 'inset-shadow', 'text-shadow', 'drop-shadow'].includes(varName)
+
+  css[property] = percentage === undefined
+    ? value
+    : `color-mix(in oklab, ${value} ${percentage}, transparent)`
+
+  result.push(defineProperty(alphaKey, { syntax: '<percentage>', initialValue: '100%' }))
+
+  const colorValue = shadowLike
+    ? `${percentage === undefined ? value : `color-mix(in oklab, ${value} ${percentage}, transparent)`} var(${alphaKey})`
+    : `${value} ${percentage ?? `var(${alphaKey})`}`
+
+  if (shadowLike || percentage !== undefined) {
+    result.push({
+      [symbols.parent]: '@supports (color: color-mix(in lab, red, red))',
+      [symbols.noMerge]: true,
+      [property]: `color-mix(in oklab, ${colorValue}, transparent)`,
+    })
+  }
+
+  return result
+}
+
+/**
+ * 自定义主题 CSS 变量解析器
+ *
+ * @category Tokens
+ */
+export function customThemeCssVarResolver(property: string, varName: FuzzyMapKey) {
+  return (match: string, cssVars: ResolvedCustomThemeCSSVars): [CSSObject, ...CSSValueInput[]] | undefined => {
+    const token = parseCustomThemeToken(match)
+    const data = token?.keys.length
+      ? token
+      : parseCustomCssVar(varName, match, cssVars)
+
+    if (!data?.keys.length)
+      return
+
+    return customThemeCSSGenerator(data, property)
   }
 }

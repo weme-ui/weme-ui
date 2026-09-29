@@ -1,57 +1,61 @@
 /* eslint-disable regexp/no-empty-group */
 /* eslint-disable regexp/no-empty-capturing-group */
 import type { CSSEntries, CSSObject, CSSValueInput, Rule, RuleContext } from '@unocss/core'
+import type { ResolvedWemeUIOptions } from '../options'
 import type { Theme } from '../theme'
 import { notNull } from '@unocss/core'
+import { customThemeCSSGenerator, parseCustomCssVar, parseCustomThemeToken } from '../tokens'
 import { colorCSSGenerator, cornerMap, directionMap, generateThemeVariable, globalKeywords, h, hasParseableColor, isSize, parseColor, SpecialColorKey, themeTracking } from '../utils'
 
 export const borderStyles = ['solid', 'dashed', 'dotted', 'double', 'hidden', 'none', 'groove', 'ridge', 'inset', 'outset', ...globalKeywords]
 
-export const borders: Rule<Theme>[] = [
-  // compound
-  [/^(?:border|b)()(?:-(.+))?$/, handlerBorderSize, { autocomplete: '(border|b)-<directions>' }],
-  [/^(?:border|b)-([xy])(?:-(.+))?$/, handlerBorderSize],
-  [/^(?:border|b)-([rltbse])(?:-(.+))?$/, handlerBorderSize],
-  [/^(?:border|b)-(block|inline)(?:-(.+))?$/, handlerBorderSize],
-  [/^(?:border|b)-([bi][se])(?:-(.+))?$/, handlerBorderSize],
+export function borders(options: ResolvedWemeUIOptions): Rule<Theme>[] {
+  return [
+    // compound
+    [/^(?:border|b)()(?:-(.+))?$/, handlerBorderSize, { autocomplete: '(border|b)-<directions>' }],
+    [/^(?:border|b)-([xy])(?:-(.+))?$/, handlerBorderSize],
+    [/^(?:border|b)-([rltbse])(?:-(.+))?$/, handlerBorderSize],
+    [/^(?:border|b)-(block|inline)(?:-(.+))?$/, handlerBorderSize],
+    [/^(?:border|b)-([bi][se])(?:-(.+))?$/, handlerBorderSize],
 
-  // size
-  [/^(?:border|b)-()(?:width|size)-(.+)$/, handlerBorderSize, { autocomplete: ['(border|b)-<num>', '(border|b)-<directions>-<num>'] }],
-  [/^(?:border|b)-([xy])-(?:width|size)-(.+)$/, handlerBorderSize],
-  [/^(?:border|b)-([rltbse])-(?:width|size)-(.+)$/, handlerBorderSize],
-  [/^(?:border|b)-(block|inline)-(?:width|size)-(.+)$/, handlerBorderSize],
-  [/^(?:border|b)-([bi][se])-(?:width|size)-(.+)$/, handlerBorderSize],
+    // size
+    [/^(?:border|b)-()(?:width|size)-(.+)$/, handlerBorderSize, { autocomplete: ['(border|b)-<num>', '(border|b)-<directions>-<num>'] }],
+    [/^(?:border|b)-([xy])-(?:width|size)-(.+)$/, handlerBorderSize],
+    [/^(?:border|b)-([rltbse])-(?:width|size)-(.+)$/, handlerBorderSize],
+    [/^(?:border|b)-(block|inline)-(?:width|size)-(.+)$/, handlerBorderSize],
+    [/^(?:border|b)-([bi][se])-(?:width|size)-(.+)$/, handlerBorderSize],
 
-  // colors
-  [/^(?:border|b)-()(?:color-)?(.+)$/, handlerBorderColorOrSize, { autocomplete: ['(border|b)-$colors', '(border|b)-<directions>-$colors'] }],
-  [/^(?:border|b)-([xy])-(?:color-)?(.+)$/, handlerBorderColorOrSize],
-  [/^(?:border|b)-([rltbse])-(?:color-)?(.+)$/, handlerBorderColorOrSize],
-  [/^(?:border|b)-(block|inline)-(?:color-)?(.+)$/, handlerBorderColorOrSize],
-  [/^(?:border|b)-([bi][se])-(?:color-)?(.+)$/, handlerBorderColorOrSize],
+    // colors
+    [/^(?:border|b)-()(?:color-)?(.+)$/, (match, ctx) => handlerBorderColorOrSize(match, ctx, options), { autocomplete: ['(border|b)-$colors', '(border|b)-<directions>-$colors'] }],
+    [/^(?:border|b)-([xy])-(?:color-)?(.+)$/, (match, ctx) => handlerBorderColorOrSize(match, ctx, options)],
+    [/^(?:border|b)-([rltbse])-(?:color-)?(.+)$/, (match, ctx) => handlerBorderColorOrSize(match, ctx, options)],
+    [/^(?:border|b)-(block|inline)-(?:color-)?(.+)$/, (match, ctx) => handlerBorderColorOrSize(match, ctx, options)],
+    [/^(?:border|b)-([bi][se])-(?:color-)?(.+)$/, (match, ctx) => handlerBorderColorOrSize(match, ctx, options)],
 
-  // opacity
-  [/^(?:border|b)-()op(?:acity)?-?(.+)$/, handlerBorderOpacity, { autocomplete: '(border|b)-(op|opacity)-<percent>' }],
-  [/^(?:border|b)-([xy])-op(?:acity)?-?(.+)$/, handlerBorderOpacity],
-  [/^(?:border|b)-([rltbse])-op(?:acity)?-?(.+)$/, handlerBorderOpacity],
-  [/^(?:border|b)-(block|inline)-op(?:acity)?-?(.+)$/, handlerBorderOpacity],
-  [/^(?:border|b)-([bi][se])-op(?:acity)?-?(.+)$/, handlerBorderOpacity],
+    // opacity
+    [/^(?:border|b)-()op(?:acity)?-?(.+)$/, handlerBorderOpacity, { autocomplete: '(border|b)-(op|opacity)-<percent>' }],
+    [/^(?:border|b)-([xy])-op(?:acity)?-?(.+)$/, handlerBorderOpacity],
+    [/^(?:border|b)-([rltbse])-op(?:acity)?-?(.+)$/, handlerBorderOpacity],
+    [/^(?:border|b)-(block|inline)-op(?:acity)?-?(.+)$/, handlerBorderOpacity],
+    [/^(?:border|b)-([bi][se])-op(?:acity)?-?(.+)$/, handlerBorderOpacity],
 
-  // radius
-  [/^(?:border-|b-)?(?:rounded|rd)()(?:-(.+))?$/, handlerRounded, { autocomplete: ['(border|b)-(rounded|rd)', '(border|b)-(rounded|rd)-$radius', '(rounded|rd)', '(rounded|rd)-$radius'] }],
-  [/^(?:border-|b-)?(?:rounded|rd)-([rltbse])(?:-(.+))?$/, handlerRounded],
-  [/^(?:border-|b-)?(?:rounded|rd)-([rltb]{2})(?:-(.+))?$/, handlerRounded],
-  [/^(?:border-|b-)?(?:rounded|rd)-([bise][se])(?:-(.+))?$/, handlerRounded],
-  [/^(?:border-|b-)?(?:rounded|rd)-([bi][se]-[bi][se])(?:-(.+))?$/, handlerRounded],
+    // radius
+    [/^(?:border-|b-)?(?:rounded|rd)()(?:-(.+))?$/, handlerRounded, { autocomplete: ['(border|b)-(rounded|rd)', '(border|b)-(rounded|rd)-$radius', '(rounded|rd)', '(rounded|rd)-$radius'] }],
+    [/^(?:border-|b-)?(?:rounded|rd)-([rltbse])(?:-(.+))?$/, handlerRounded],
+    [/^(?:border-|b-)?(?:rounded|rd)-([rltb]{2})(?:-(.+))?$/, handlerRounded],
+    [/^(?:border-|b-)?(?:rounded|rd)-([bise][se])(?:-(.+))?$/, handlerRounded],
+    [/^(?:border-|b-)?(?:rounded|rd)-([bi][se]-[bi][se])(?:-(.+))?$/, handlerRounded],
 
-  // style
-  [/^(?:border|b)-(?:style-)?()(.+)$/, handlerBorderStyle, { autocomplete: ['(border|b)-style', `(border|b)-(${borderStyles.join('|')})`, '(border|b)-<directions>-style', `(border|b)-<directions>-(${borderStyles.join('|')})`, `(border|b)-<directions>-style-(${borderStyles.join('|')})`, `(border|b)-style-(${borderStyles.join('|')})`] }],
-  [/^(?:border|b)-([xy])-(?:style-)?(.+)$/, handlerBorderStyle],
-  [/^(?:border|b)-([rltbse])-(?:style-)?(.+)$/, handlerBorderStyle],
-  [/^(?:border|b)-(block|inline)-(?:style-)?(.+)$/, handlerBorderStyle],
-  [/^(?:border|b)-([bi][se])-(?:style-)?(.+)$/, handlerBorderStyle],
-]
+    // style
+    [/^(?:border|b)-(?:style-)?()(.+)$/, handlerBorderStyle, { autocomplete: ['(border|b)-style', `(border|b)-(${borderStyles.join('|')})`, '(border|b)-<directions>-style', `(border|b)-<directions>-(${borderStyles.join('|')})`, `(border|b)-<directions>-style-(${borderStyles.join('|')})`, `(border|b)-style-(${borderStyles.join('|')})`] }],
+    [/^(?:border|b)-([xy])-(?:style-)?(.+)$/, handlerBorderStyle],
+    [/^(?:border|b)-([rltbse])-(?:style-)?(.+)$/, handlerBorderStyle],
+    [/^(?:border|b)-(block|inline)-(?:style-)?(.+)$/, handlerBorderStyle],
+    [/^(?:border|b)-([bi][se])-(?:style-)?(.+)$/, handlerBorderStyle],
+  ]
+}
 
-function borderColorResolver(direction: string) {
+function borderColorResolver(direction: string, options: ResolvedWemeUIOptions) {
   return ([, body]: string[], ctx: RuleContext<Theme>): [CSSObject, ...CSSValueInput[]] | undefined => {
     const data = parseColor(body, ctx.theme)
     const result = colorCSSGenerator(data, `border${direction}-color`, `border${direction}`, ctx)
@@ -68,6 +72,25 @@ function borderColorResolver(direction: string) {
 
       return result
     }
+
+    const token = parseCustomThemeToken(body)
+    const customThemeData = token?.keys.length
+      ? token
+      : parseCustomCssVar('border-color', body, options.cssVars)
+
+    if (!customThemeData?.keys.length)
+      return
+
+    const customTheme = customThemeCSSGenerator(customThemeData, `border${direction}-color`)
+
+    if (customTheme) {
+      const css = customTheme[0]
+      if (!customThemeData.alpha && direction && direction !== '') {
+        css[`--un-border${direction}-opacity`] = `var(--un-border-opacity)`
+      }
+
+      return customTheme
+    }
   }
 }
 
@@ -77,30 +100,34 @@ function handlerBorderSize([, a = '', b = '1']: string[], { theme }: RuleContext
     return directionMap[a].map(i => [`border${i}-width`, v])
 }
 
-function handlerBorderColorOrSize([, a = '', b]: string[], ctx: RuleContext<Theme>): CSSEntries | (CSSValueInput | string)[] | undefined {
+function handlerBorderColorOrSize([, a = '', b]: string[], ctx: RuleContext<Theme>, options: ResolvedWemeUIOptions): CSSEntries | (CSSValueInput | string)[] | undefined {
   if (a in directionMap) {
     if (isSize(b))
       return handlerBorderSize(['', a, b], ctx)
 
     const bracketColor = h.bracketOfColor(b, ctx.theme)
     b = bracketColor ?? b
-    if (bracketColor != null || hasParseableColor(b, ctx.theme)) {
-      const directions = directionMap[a].map(i =>
-        borderColorResolver(i)(['', b], ctx)
-        ?? colorCSSGenerator({ color: b, name: '_' } as unknown as ReturnType<typeof parseColor>, `border${i}-color`, `border${i}`, ctx))
-        .filter(notNull)
 
-      return [
-        directions
-          .map(d => d[0])
-          .reduce((acc, item) => {
-            // Merge multiple direction CSSObject into one
-            Object.assign(acc, item)
-            return acc
-          }, {}),
-        ...directions.flatMap(d => d.slice(1)),
-      ]
-    }
+    const directions = directionMap[a].map(i =>
+      borderColorResolver(i, options)(['', b], ctx)
+      ?? ((bracketColor != null || hasParseableColor(b, ctx.theme))
+        ? colorCSSGenerator({ color: b, name: '_' } as unknown as ReturnType<typeof parseColor>, `border${i}-color`, `border${i}`, ctx)
+        : undefined),
+    ).filter(notNull)
+
+    if (!directions.length)
+      return
+
+    return [
+      directions
+        .map(d => d[0])
+        .reduce((acc, item) => {
+          // Merge multiple direction CSSObject into one
+          Object.assign(acc, item)
+          return acc
+        }, {}),
+      ...directions.flatMap(d => d.slice(1)),
+    ]
   }
 }
 

@@ -57,7 +57,7 @@ export function rules(options: ResolvedWemeUIOptions): Rule<Theme>[] {
     overscrolls,
     scrollBehaviors,
 
-    borders,
+    borders(options),
     bgColors,
     opacity,
     colorScheme,

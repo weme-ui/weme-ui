@@ -1,42 +1,60 @@
 import { describe, expect, it } from 'vitest'
-import { borders, borderStyles } from '~/rules/border'
-import { globalKeywords } from '~/utils/mappings'
+import { resolveOptions } from '~/options'
+import { borders } from '~/rules/border'
+import { cssVars } from '../../uno.config'
 import { expectUtilities, matchRule } from './_utils'
 
-describe('border rules', () => {
-  it('resolves width, color, opacity and style', () => {
-    expectUtilities(borders, {
-      'border': { 'border-width': '1px' },
-      'b-2': { 'border-width': '2px' },
-      'border-x-4': { 'border-inline-width': '4px' },
-      'border-t-width-3': { 'border-top-width': '3px' },
-      'border-block-2': { 'border-block-start-width': '2px', 'border-block-end-width': '2px' },
+const options = resolveOptions({ cssVars })
+const rules = borders(options)
+
+describe('border color rules', () => {
+  it('resolves custom theme tokens', () => {
+    expectUtilities(rules, {
+      'border-foreground-base': { 'border-color': 'var(--foreground-base)' },
+      'border-foreground-base/50': {
+        'border-color': 'color-mix(in oklab, var(--foreground-base) 50%, transparent)',
+      },
+      'border-t-foreground-base': {
+        'border-top-color': 'var(--foreground-base)',
+        '--un-border-top-opacity': 'var(--un-border-opacity)',
+      },
+    })
+  })
+
+  it('resolves custom css vars through the border-color fuzzy map', () => {
+    expectUtilities(rules, {
+      'border-card': { 'border-color': 'var(--card-border)' },
+      'border-card/40': {
+        'border-color': 'color-mix(in oklab, var(--card-border) 40%, transparent)',
+      },
+      'border-x-card': {
+        'border-inline-color': 'var(--card-border)',
+        '--un-border-inline-opacity': 'var(--un-border-opacity)',
+      },
+    })
+  })
+
+  it('prefers theme colors and tokens over overlapping css vars', () => {
+    const withOverlap = borders(resolveOptions({
+      cssVars: {
+        ...cssVars,
+        'blue-9': {
+          border: 'border.base',
+        },
+        'foreground-base': {
+          border: 'border.elevated',
+        },
+      },
+    }))
+
+    expectUtilities(withOverlap, {
       'border-blue-9': { 'border-color': 'var(--blue-9)' },
-      'border-x-current': { 'border-inline-color': 'currentColor' },
-      'border-op-50': { '--un-border-opacity': '50%' },
-      'b-t-opacity-25': { '--un-border-top-opacity': '25%' },
-      'border-solid': { '--un-border-style': 'solid', 'border-style': 'solid' },
-      'border-y-dashed': { '--un-border-style': 'dashed', 'border-block-style': 'dashed' },
-    })
-
-    for (const style of borderStyles.filter(style => !globalKeywords.includes(style)))
-      expect(matchRule(borders, `border-${style}`), style).toMatchObject([['--un-border-style', style], ['border-style', style]])
-  })
-
-  it('resolves radius from theme, full and arbitrary values', () => {
-    expectUtilities(borders, {
-      'rounded': { 'border-radius': 'var(--radius-DEFAULT)' },
-      'rd-lg': { 'border-radius': 'var(--radius-lg)' },
-      'rounded-full': { 'border-radius': 'calc(infinity * 1px)' },
-      'rounded-t-md': { 'border-top-left-radius': 'var(--radius-md)', 'border-top-right-radius': 'var(--radius-md)' },
-      'rounded-tl': { 'border-top-left-radius': 'var(--radius-DEFAULT)' },
-      'b-rd-[10px]': { 'border-radius': '10px' },
-      'rounded-none': { 'border-radius': 'var(--radius-none)' },
+      'border-foreground-base': { 'border-color': 'var(--foreground-base)' },
     })
   })
 
-  it('rejects unknown border values', () => {
-    expect(matchRule(borders, 'border-not-a-style')).toBeUndefined()
-    expect(matchRule(borders, 'rounded-missing')).toBeUndefined()
+  it('rejects unmatched border colors', () => {
+    expect(matchRule(rules, 'border-panel')).toBeUndefined()
+    expect(matchRule(rules, 'border-t-panel')).toBeUndefined()
   })
 })

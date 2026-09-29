@@ -7,7 +7,7 @@ import { DEFAULT_NAME, isRawColor, resolveCustomThemeCssVars } from '../tokens'
 import { compressCSS, detectThemeValue, themeTracking, trackedColorAliases } from '../utils'
 
 export function custom(options: ResolvedWemeUIOptions): Preflight<Theme> | undefined {
-  if (options.themes?.length === 0) {
+  if (options.themes.length === 0) {
     return undefined
   }
 
@@ -17,11 +17,18 @@ export function custom(options: ResolvedWemeUIOptions): Preflight<Theme> | undef
         ? createCssBlock(':root', serializeCssVars(options.cssVars, theme))
         : ''
 
-      const themeCSS = options.themes?.map((customTheme) => {
+      const themeCSS = options.themes.map((customTheme) => {
         const colorAliasCSS = resolveCustomThemeColorAlias(customTheme, theme)
         const tokensCSS = resolveCustomThemeTokens(customTheme, theme)
 
-        return [colorAliasCSS, defaultCssVarsCSS, tokensCSS]
+        return [
+          '/* Custom theme color aliases */',
+          colorAliasCSS,
+          '/* Custom CSS variables */',
+          defaultCssVarsCSS,
+          '/* Custom theme tokens */',
+          tokensCSS,
+        ]
           .filter(Boolean)
           .join('\n')
       }).filter(Boolean).join('\n')
@@ -137,7 +144,7 @@ function resolveCustomThemeColorAlias(custom: CustomTheme<ResolvedCustomThemeCSS
 
 function resolveCustomThemeTokens(custom: CustomTheme<ResolvedCustomThemeCSSVars>, theme: Theme): string {
   const entries = [
-    ...serializeCssVars(custom.tokens as unknown as ResolvedCustomThemeCSSVars, theme),
+    ...serializeCssVars(custom.tokens, theme),
     ...(custom.cssVars ? serializeCssVars(custom.cssVars, theme) : []),
   ]
 

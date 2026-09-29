@@ -25,7 +25,7 @@ describe('custom preflight', () => {
   })
 
   it('returns undefined when themes is empty', () => {
-    expect(customPreflight({ themes: [] })).toBeUndefined()
+    expect(customPreflight({ ...resolveOptions({}), themes: [] })).toBeUndefined()
   })
 
   it('emits color aliases for tracked theme color names', () => {

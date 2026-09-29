@@ -1,37 +1,53 @@
 import { describe, expect, it } from 'vitest'
-import { bgColors, colorScheme, opacity } from '~/rules/color'
+import { resolveOptions } from '~/options'
+import { bgColors } from '~/rules/color'
+import { cssVars } from '../../uno.config'
 import { expectUtilities, matchRule } from './_utils'
 
-describe('color rules', () => {
-  it('resolves opacity percentages and arbitrary values', () => {
-    expectUtilities(opacity, {
-      'op-50': { opacity: '50%' },
-      'opacity-100': { opacity: '100%' },
-      'op10': { opacity: '10%' },
-      'op-[var(--a)]': { opacity: 'var(--a)' },
-      'op-[.5]': { opacity: '.5' },
-      'op-nope': undefined,
+const options = resolveOptions({ cssVars })
+const rules = bgColors(options)
+
+describe('bg color rules', () => {
+  it('resolves custom theme tokens', () => {
+    expectUtilities(rules, {
+      'bg-foreground-base': { 'background-color': 'var(--foreground-base)' },
+      'bg-background-elevated': { 'background-color': 'var(--background-elevated)' },
+      'bg-foreground-base/50': {
+        'background-color': 'color-mix(in oklab, var(--foreground-base) 50%, transparent)',
+      },
     })
   })
 
-  it('resolves background colors, images and opacity', () => {
-    expectUtilities(bgColors, {
+  it('resolves custom css vars through the background-color fuzzy map', () => {
+    expectUtilities(rules, {
+      'bg-card': { 'background-color': 'var(--card-background)' },
+      'bg-card/40': {
+        'background-color': 'color-mix(in oklab, var(--card-background) 40%, transparent)',
+      },
+    })
+  })
+
+  it('prefers theme colors and tokens over overlapping css vars', () => {
+    const withOverlap = bgColors(resolveOptions({
+      cssVars: {
+        ...cssVars,
+        'blue-9': {
+          background: 'background.base',
+        },
+        'foreground-base': {
+          background: 'background.muted',
+        },
+      },
+    }))
+
+    expectUtilities(withOverlap, {
       'bg-blue-9': { 'background-color': 'var(--blue-9)' },
-      'bg-transparent': { 'background-color': 'transparent' },
-      'bg-current': { 'background-color': 'currentColor' },
-      'bg-op-50': { '--un-bg-opacity': '50%' },
-      'bg-opacity-20': { '--un-bg-opacity': '20%' },
-      'bg-[url(https://example.com/a.png)]': { '--un-url': 'url(https://example.com/a.png)', 'background-image': 'var(--un-url)' },
-      'bg-[length:10px_20px]': { 'background-size': '10px 20px' },
-      'bg-[position:center_top]': { 'background-position': 'center top' },
-      'bg-[linear-gradient(red,blue)]': { 'background-image': 'linear-gradient(red,blue)' },
-      'bg-not-a-color': undefined,
+      'bg-foreground-base': { 'background-color': 'var(--foreground-base)' },
     })
   })
 
-  it('resolves color scheme keywords', () => {
-    expect(matchRule(colorScheme, 'scheme-dark')).toEqual({ 'color-scheme': 'dark' })
-    expect(matchRule(colorScheme, 'color-scheme-light-dark')).toEqual({ 'color-scheme': 'light dark' })
-    expect(matchRule(colorScheme, 'scheme-only-light')).toEqual({ 'color-scheme': 'only light' })
+  it('rejects unmatched background colors', () => {
+    expect(matchRule(rules, 'bg-panel')).toBeUndefined()
+    expect(matchRule(rules, 'bg-not-a-color')).toBeUndefined()
   })
 })

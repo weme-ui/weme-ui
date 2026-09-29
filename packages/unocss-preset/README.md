@@ -1,21 +1,14 @@
-<p align="center">
-  <img align="center" src="https://raw.githubusercontent.com/moujinet/assets/main/weme-ui/png/circle-128.png" alt="Weme UI" height="128" />
-  <h1 align="center">
-    Weme UI <sup style="color: #4CBBA5">UnoCSS Preset</sup>
-  </h1>
-</p>
+![Weme UI](https://raw.githubusercontent.com/moujinet/assets/main/weme-ui/png/circle-128.png)
 
-[![npm version][npm-version-src]][npm-version-href]
-[![License][license-src]][license-href]
-[![code style][code-style-src]][code-style-href]
+# Weme UI UnoCSS Preset
 
-<p align="center">
-  Re-usable UI components with Reka UI and UnoCSS.
-</p>
+![npm version](https://img.shields.io/npm/v/@weme-ui/weme-ui?style=flat&colorA=1d2129&colorB=4CBBA5)
+![License](https://img.shields.io/github/license/weme-ui/weme-ui.svg?style=flat&colorA=1d2129&colorB=4CBBA5)
+![code style](https://antfu.me/badge-code-style.svg)
 
-<p align="center">
-  ⚠️ Do not use in production. This project is still in early development.
-</p>
+Re-usable UI components with Reka UI and UnoCSS.
+
+⚠️ Do not use in production. This project is still in early development.
 
 ## 生成颜色 CSS 变量
 
@@ -75,29 +68,21 @@
 
 ## 规则调整清单
 
-- [ ] background
-- [ ] behaviors
-- [ ] border
-- [ ] color
-- [ ] decoration
-- [ ] divide
-- [ ] filters
-- [ ] gap
-- [ ] mask
-- [ ] placeholder
-- [ ] ring
-- [ ] shadow
-- [ ] svg
-- [ ] typography
+- [x] background
+- [x] behaviors
+- [x] border
+- [x] color
+- [x] decoration
+- [x] divide
+- [x] placeholder
+- [x] svg
+- [x] typography
+- [x] ~~filters~~
+- [x] ~~gap~~
+- [x] ~~mask~~
+- [x] ~~ring~~
+- [x] ~~shadow~~
 
 ## 许可证
 
-[MIT][license-href] License © 2025 [weme-ui][github-href]
-
-[npm-version-src]: https://img.shields.io/npm/v/@weme-ui/weme-ui?style=flat&colorA=1d2129&colorB=4CBBA5
-[npm-version-href]: https://npmjs.com/package/@weme-ui/weme-ui
-[license-src]: https://img.shields.io/github/license/weme-ui/weme-ui.svg?style=flat&colorA=1d2129&colorB=4CBBA5
-[license-href]: https://github.com/weme-ui/weme-ui/blob/main/LICENSE
-[github-href]: https://github.com/weme-ui/weme-ui
-[code-style-src]: https://antfu.me/badge-code-style.svg
-[code-style-href]: https://github.com/antfu/eslint-config
+[MIT](https://github.com/weme-ui/weme-ui/blob/main/LICENSE) License © 2025 [weme-ui](https://github.com/weme-ui/weme-ui)

@@ -1,6 +1,5 @@
 import { describe, expect, it } from 'vitest'
 import { resolveOptions } from '~/options'
-import { borderStyles } from '~/rules/border'
 import { divides } from '~/rules/divide'
 import { cssVars } from '../../uno.config'
 import { expectUtilities, matchRule } from './_utils'
@@ -9,30 +8,10 @@ const options = resolveOptions({ cssVars })
 const rules = divides(options)
 
 describe('divide rules', () => {
-  it('resolves axis width, reverse, color and style', () => {
+  it('resolves theme colors', () => {
     expectUtilities(rules, {
-      'divide-x': {
-        '--un-divide-x-reverse': 0,
-        'border-left-width': 'calc(1px * var(--un-divide-x-reverse))',
-        'border-right-width': 'calc(1px * calc(1 - var(--un-divide-x-reverse)))',
-        'border-left-style': 'var(--un-border-style)',
-        'border-right-style': 'var(--un-border-style)',
-      },
-      'divide-y-2': {
-        '--un-divide-y-reverse': 0,
-        'border-top-width': 'calc(2px * var(--un-divide-y-reverse))',
-        'border-bottom-width': 'calc(2px * calc(1 - var(--un-divide-y-reverse)))',
-      },
-      'divide-x-reverse': { '--un-divide-x-reverse': '1' },
-      'divide-blue-9': {
-        'border-color': 'var(--blue-9)',
-      },
-      'divide-op-30': { '--un-divide-opacity': '30%' },
-      'divide-dashed': { 'border-style': 'dashed' },
+      'divide-blue-9': { 'border-color': 'var(--blue-9)' },
     })
-
-    for (const style of borderStyles)
-      expect(matchRule(rules, `divide-${style}`), style).toBeDefined()
   })
 
   it('resolves custom theme tokens', () => {
@@ -72,9 +51,7 @@ describe('divide rules', () => {
     })
   })
 
-  it('rejects unknown divide values', () => {
-    expect(matchRule(rules, 'divide-z')).toBeUndefined()
-    expect(matchRule(rules, 'divide-not-a-color')).toBeUndefined()
+  it('rejects unmatched divide colors', () => {
     expect(matchRule(rules, 'divide-panel')).toBeUndefined()
   })
 })

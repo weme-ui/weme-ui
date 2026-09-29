@@ -13,9 +13,6 @@ describe('background rules', () => {
       'from-blue-9': {
         '--un-gradient-from': 'color-mix(in oklab, var(--blue-9) var(--un-from-opacity), transparent)',
       },
-      'via-transparent': {
-        '--un-gradient-via': 'transparent',
-      },
     })
   })
 

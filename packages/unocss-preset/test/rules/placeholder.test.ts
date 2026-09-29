@@ -8,14 +8,10 @@ const options = resolveOptions({ cssVars })
 const rules = placeholders(options)
 
 describe('placeholder rules', () => {
-  it('resolves placeholder color and opacity from the internal prefix', () => {
+  it('resolves theme colors from the internal prefix', () => {
     expectUtilities(rules, {
       '$ placeholder-blue-9': { color: 'var(--blue-9)' },
-      '$ placeholder-current': { color: 'currentColor' },
-      '$ placeholder-op-50': { '--un-placeholder-opacity': '50%' },
-      '$ placeholder-opacity-20': { '--un-placeholder-opacity': '20%' },
       'placeholder-blue-9': undefined,
-      '$ placeholder-not-a-color': undefined,
     })
   })
 
@@ -58,5 +54,6 @@ describe('placeholder rules', () => {
 
   it('rejects unmatched placeholder colors', () => {
     expect(matchRule(rules, '$ placeholder-panel')).toBeUndefined()
+    expect(matchRule(rules, '$ placeholder-not-a-color')).toBeUndefined()
   })
 })

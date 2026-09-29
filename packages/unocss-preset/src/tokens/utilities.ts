@@ -119,6 +119,8 @@ export function resolveCustomThemeCssVars(
   return result
 }
 
+export function resolveCustomCssVars() {}
+
 /**
  * 解析自定义主题令牌
  *

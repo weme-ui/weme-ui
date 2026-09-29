@@ -1,15 +1,21 @@
+import type { PresetWemeUIOptions } from '~/options'
 import { beforeEach, describe, expect, it } from 'vitest'
+import { resolveOptions } from '~/options'
 import { theme as themePreflight } from '~/preflights/theme'
 import { theme as buildTheme } from '~/theme/default'
 import { radius, spacing } from '~/theme/misc'
 import { trackedTheme } from '~/utils/track'
 import { createPreflightContext, resetTracking } from './_utils'
 
+function createThemePreflight(options: PresetWemeUIOptions = {}) {
+  return themePreflight(resolveOptions(options))
+}
+
 describe('theme preflight', () => {
   beforeEach(resetTracking)
 
   it('stays on the theme layer and emits nothing until tokens are used', () => {
-    const preflight = themePreflight({})
+    const preflight = createThemePreflight()
 
     expect(preflight.layer).toBe('theme')
     expect(preflight.getCSS(createPreflightContext())).toBeUndefined()
@@ -18,14 +24,14 @@ describe('theme preflight', () => {
   it('can be disabled', () => {
     trackedTheme.add('radius:lg')
 
-    expect(themePreflight({ preflights: { theme: false } }).getCSS(createPreflightContext())).toBeUndefined()
+    expect(createThemePreflight({ preflights: { theme: false } }).getCSS(createPreflightContext())).toBeUndefined()
   })
 
   it('emits only tracked theme variables in on-demand mode', () => {
     trackedTheme.add('radius:lg')
     trackedTheme.add('spacing:DEFAULT')
 
-    expect(themePreflight({ preflights: { theme: 'on-demand' } }).getCSS(createPreflightContext())).toBe(
+    expect(createThemePreflight({ preflights: { theme: 'on-demand' } }).getCSS(createPreflightContext())).toBe(
       `:root, :host { --radius-lg: ${radius.lg}; --spacing: ${spacing.DEFAULT}; }`,
     )
   })
@@ -35,7 +41,7 @@ describe('theme preflight', () => {
     trackedTheme.add('colors:gray-1')
 
     const gray = buildTheme({}).colors.gray
-    const css = themePreflight({ preflights: { theme: 'on-demand' } }).getCSS(createPreflightContext())
+    const css = createThemePreflight({ preflights: { theme: 'on-demand' } }).getCSS(createPreflightContext())
 
     expect(css).toBe(
       `:root, :host { --radius-lg: ${radius.lg}; } :root, .light { --gray-1: ${gray['1']}; } .dark { --gray-1: ${gray.dark['1']}; } @supports (color: color(display-p3 1 1 1)) { @media (color-gamut: p3) { :root, .light { --gray-1: ${gray.p3['1']}; } .dark { --gray-1: ${gray.p3.dark['1']}; } } }`,
@@ -44,7 +50,7 @@ describe('theme preflight', () => {
   })
 
   it('tracks safelist theme keys before generating on-demand variables', () => {
-    const css = themePreflight({}).getCSS(createPreflightContext({
+    const css = createThemePreflight().getCSS(createPreflightContext({
       safelist: ['radius:sm', () => ['leading:tight']],
     }))
 
@@ -55,7 +61,7 @@ describe('theme preflight', () => {
   })
 
   it('emits the full theme variable map when mode is enabled', () => {
-    const css = themePreflight({ preflights: { theme: true } }).getCSS(createPreflightContext())
+    const css = createThemePreflight({ preflights: { theme: true } }).getCSS(createPreflightContext())
 
     expect(css).toContain('--spacing:')
     expect(css).toContain('--radius-lg:')
@@ -69,7 +75,7 @@ describe('theme preflight', () => {
   it('lets process hooks rewrite entries before they are serialized', () => {
     trackedTheme.add('radius:md')
 
-    const css = themePreflight({
+    const css = createThemePreflight({
       preflights: {
         theme: {
           mode: 'on-demand',
@@ -86,7 +92,7 @@ describe('theme preflight', () => {
   it('keeps whitespace in development', () => {
     trackedTheme.add('radius:none')
 
-    const css = themePreflight({}).getCSS(createPreflightContext({ envMode: 'dev' }))
+    const css = createThemePreflight().getCSS(createPreflightContext({ envMode: 'dev' }))
 
     expect(css).toContain(':root, :host {')
     expect(css).toContain(`--radius-none: ${radius.none};`)

@@ -78,7 +78,7 @@ export const CUSTOM_THEME_TOKENS_MAP: Record<string, string[]> = {
  *
  * @category Tokens
  */
-export const CUSTOM_CSSVAR_FUZZY_MAP: Record<string, string[]> = {
+export const CUSTOM_CSSVAR_FUZZY_MAP = {
   /**
    * 颜色变量映射
    *
@@ -184,3 +184,10 @@ export const CUSTOM_CSSVAR_FUZZY_MAP: Record<string, string[]> = {
    */
   'margin': ['margin', 'm', 'space'],
 }
+
+/**
+ * 模糊 CSS 变量映射键
+ *
+ * @category Tokens
+ */
+export const CUSTOM_CSSVAR_FUZZY_MAP_KEYS = Object.keys(CUSTOM_CSSVAR_FUZZY_MAP) as (keyof typeof CUSTOM_CSSVAR_FUZZY_MAP)[]

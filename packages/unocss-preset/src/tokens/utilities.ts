@@ -1,9 +1,7 @@
-import type { CSSObject, CSSValueInput } from '@unocss/core'
-import type { Theme } from '../theme'
 import type { LooseAutocomplete } from '../utils'
-import type { CustomThemeCSSVars, CustomThemeTokens } from './types'
-import { symbols } from '@unocss/core'
-import { colorAliasTracking, defineProperty, generateThemeVariable, parseColor, themeTracking, trackedCssVars } from '../utils'
+import type { CUSTOM_CSSVAR_FUZZY_MAP_KEYS } from './defaults'
+import type { CustomThemeTokens, ResolvedCustomThemeCSSVars } from './types'
+import { colorAliasTracking } from '../utils'
 import { CUSTOM_CSSVAR_FUZZY_MAP, CUSTOM_THEME_COLOR_ALIASES, CUSTOM_THEME_TOKENS_MAP } from './defaults'
 
 /**
@@ -27,7 +25,7 @@ export function isRawColor(color: string): boolean {
  *
  * @category Tokens
  */
-export function parseCustomThemeColorAlias(keys: string[]) {
+export function parseColorAlias(keys: string[]) {
   const [alias] = keys
 
   if (!CUSTOM_THEME_COLOR_ALIASES.includes(alias)) {
@@ -38,7 +36,7 @@ export function parseCustomThemeColorAlias(keys: string[]) {
     keys.push('9')
   }
 
-  const color: string = resolveAliasCssVar(keys.join('.'))
+  const color: string = generateColorAliasCssVar(keys.join('.'))
   const no = keys.at(-1)
 
   colorAliasTracking(alias, no)
@@ -55,7 +53,7 @@ export function parseCustomThemeColorAlias(keys: string[]) {
  *
  * @category Tokens
  */
-export function resolveAliasCssVar(alias: string): string {
+export function generateColorAliasCssVar(alias: string): string {
   if (alias.includes('.')) {
     return `var(--${alias.split('.').join('-')})`
   }
@@ -63,83 +61,20 @@ export function resolveAliasCssVar(alias: string): string {
 }
 
 /**
- * 解析自定义主题 CSS 变量
- *
- * @example
- * ```
- * {
- *   'card': {
- *     // 主题颜色 -> `--card-background: var(--primary-1)`
- *     'background': 'primary.1',
- *     // 色卡颜色 -> `--card-error-color: var(--red-9)`
- *     'error-color': 'red.9',
- *     // 主题令牌 -> `--card-text: var(--foreground-base)`
- *     'text': 'foreground.base',
- *   }
- * }
- * ```
+ * 分割自定义主题令牌键
  *
  * @category Tokens
  */
-export function resolveCustomThemeCssVars(
-  cssVars: CustomThemeCSSVars | CustomThemeTokens,
-  theme: Theme,
-) {
-  const result: Record<string, string> = {}
-
-  Object.entries(cssVars).forEach(([scope, vars]) => {
-    if (typeof vars === 'string') {
-      const body = vars.replace(/\./g, '-')
-      const { keys } = parseColor(body, theme) ?? {}
-
-      if (keys && keys.length > 0) {
-        themeTracking('colors', keys)
-        result[`--${scope}`] = generateThemeVariable('colors', keys)
-      }
-      else {
-        result[`--${scope}`] = resolveAliasCssVar(vars)
-      }
-    }
-    else {
-      Object.entries(vars).forEach(([key, value]) => {
-        const body = String(value).replace(/\./g, '-')
-        const { keys } = parseColor(body, theme) ?? {}
-
-        if (keys && keys.length > 0) {
-          themeTracking('colors', keys)
-          result[`--${scope}-${key}`] = generateThemeVariable('colors', keys)
-        }
-        else {
-          result[`--${scope}-${key}`] = resolveAliasCssVar(value as string)
-        }
-      })
-    }
-  })
-
-  return result
-}
-
-export function resolveCustomCssVars() {}
-
-/**
- * 解析自定义主题令牌
- *
- * @category Tokens
- */
-export function parseCustomThemeToken(
-  property: string,
-  body: string,
-  token?: LooseAutocomplete<keyof CustomThemeTokens>,
-) {
-  if (body.startsWith('var('))
+export function splitCustomThemeTokenKey(match: string) {
+  if (match.startsWith('var('))
     return
 
-  const slash = body.indexOf('/')
-  let name = body
+  const slash = match.indexOf('/')
+  let name = match
   let alpha: number | undefined
 
   if (slash !== -1) {
-    const opacityStr = body.slice(slash + 1)
+    const opacityStr = match.slice(slash + 1)
 
     if (!/^\d+$/.test(opacityStr))
       return
@@ -149,97 +84,80 @@ export function parseCustomThemeToken(
     if (alpha > 100)
       return
 
-    name = body.slice(0, slash)
+    name = match.slice(0, slash)
   }
 
-  const keys = matchCustomThemeTokenKeys(name, property, token)
+  return { name, alpha }
+}
+
+/**
+ * 解析自定义主题令牌
+ *
+ * @category Tokens
+ */
+export function parseCustomThemeToken(
+  match: string,
+  front?: LooseAutocomplete<keyof CustomThemeTokens>,
+) {
+  const splitted = splitCustomThemeTokenKey(match)
+
+  if (!splitted)
+    return
+
+  const { name, alpha } = splitted
+
+  let keys: string[] = []
+
+  const dash = name.indexOf('-')
+
+  if (dash > 0) {
+    const k = name.slice(0, dash)
+    const v = name.slice(dash + 1)
+    const values = CUSTOM_THEME_TOKENS_MAP[k]
+
+    if (values?.includes(v))
+      keys = [k, v]
+  }
+
+  if (front && CUSTOM_THEME_TOKENS_MAP[front]?.includes(name))
+    keys = [front, name]
 
   return { name, keys, alpha }
 }
 
+type FuzzyMapKey = (typeof CUSTOM_CSSVAR_FUZZY_MAP_KEYS)[number]
+
 /**
- * 按完整口令、显式 token、属性后缀的顺序解析主题令牌键
+ * 解析自定义 CSS 变量
  *
  * @category Tokens
  */
-function matchCustomThemeTokenKeys(
-  name: string,
-  property: string,
-  token?: string,
+export function parseCustomCssVar(
+  varName: FuzzyMapKey,
+  match: string,
+  cssVars: ResolvedCustomThemeCSSVars,
 ) {
-  const dash = name.indexOf('-')
+  const splitted = splitCustomThemeTokenKey(match)
 
-  if (dash > 0) {
-    const scope = name.slice(0, dash)
-    const variant = name.slice(dash + 1)
-    const variants = CUSTOM_THEME_TOKENS_MAP[scope]
-
-    if (variants?.includes(variant))
-      return [scope, variant]
-  }
-
-  if (token && CUSTOM_THEME_TOKENS_MAP[token]?.includes(name))
-    return [token, name]
-
-  const suffixes = CUSTOM_CSSVAR_FUZZY_MAP[property]
-
-  if (suffixes) {
-    for (const suffix of suffixes) {
-      if (!token && CUSTOM_THEME_TOKENS_MAP[suffix]?.includes(name))
-        return [suffix, name]
-
-      if (trackedCssVars.has(`${name}-${suffix}`))
-        return [name, suffix]
-    }
-  }
-
-  return []
-}
-
-/**
- * 解析自定义主题令牌及自定义 CSS 变量
- *
- * @category Tokens
- */
-export function resolveCustomThemeToken(
-  property: string,
-  varName: string,
-  body: string,
-  token?: LooseAutocomplete<keyof CustomThemeTokens>,
-) {
-  const parsed = parseCustomThemeToken(property, body, token)
-  if (!parsed)
+  if (!splitted)
     return
 
-  const { alpha, keys } = parsed
-  const alphaKey = `--un-${varName}-opacity`
+  const { name, alpha } = splitted
 
-  const css: CSSObject = {}
-  const result: [CSSObject, ...CSSValueInput[]] = [css]
+  const suffixes = CUSTOM_CSSVAR_FUZZY_MAP[varName]
+  if (!suffixes)
+    return
 
-  if (keys.length > 0) {
-    const value = `var(--${keys.join('-')})`
-    const percentage = alpha === undefined ? undefined : `${alpha}%`
-    const shadowLike = ['shadow', 'inset-shadow', 'text-shadow', 'drop-shadow'].includes(varName)
+  const variable = Object.keys(cssVars).find(
+    k => suffixes.some(suffix => k === `${name}-${suffix}`),
+  )
 
-    css[property] = percentage === undefined
-      ? value
-      : `color-mix(in oklab, ${value} ${percentage}, transparent)`
+  if (!variable)
+    return
 
-    result.push(defineProperty(alphaKey, { syntax: '<percentage>', initialValue: '100%' }))
-
-    const colorValue = shadowLike
-      ? `${percentage === undefined ? value : `color-mix(in oklab, ${value} ${percentage}, transparent)`} var(${alphaKey})`
-      : `${value} ${percentage ?? `var(${alphaKey})`}`
-
-    if (shadowLike || percentage !== undefined) {
-      result.push({
-        [symbols.parent]: '@supports (color: color-mix(in lab, red, red))',
-        [symbols.noMerge]: true,
-        [property]: `color-mix(in oklab, ${colorValue}, transparent)`,
-      })
-    }
-
-    return result
+  return {
+    name,
+    keys: variable.split('-'),
+    alpha,
   }
 }

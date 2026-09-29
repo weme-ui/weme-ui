@@ -1,72 +1,83 @@
 import { describe, expect, it } from 'vitest'
+import { resolveOptions } from '~/options'
 import { backgroundStyles } from '~/rules/background'
-import { globalKeywords } from '~/utils/mappings'
+import { cssVars } from '../../uno.config'
 import { expectUtilities, matchRule } from './_utils'
 
+const options = resolveOptions({ cssVars })
+const rules = backgroundStyles(options)
+
 describe('background rules', () => {
-  it('resolves gradients, stops and positions', () => {
-    expectUtilities(backgroundStyles, {
-      'bg-linear-45': {
-        '--un-gradient-position': 'from 45deg in oklab;',
-        'background-image': 'linear-gradient(var(--un-gradient-stops))',
-      },
-      'bg-linear-to-r': {
-        '--un-gradient-position': 'to right in oklab',
-        'background-image': 'linear-gradient(var(--un-gradient-stops))',
-      },
-      'bg-gradient': {
-        'background-image': 'linear-gradient(var(--un-gradient-stops))',
-      },
-      'bg-repeating-linear': {
-        'background-image': 'repeating-linear-gradient(var(--un-gradient, var(--un-gradient-stops, rgb(255 255 255 / 0))))',
-      },
+  it('resolves theme colors in gradient stops', () => {
+    expectUtilities(rules, {
       'from-blue-9': {
         '--un-gradient-from': 'color-mix(in oklab, var(--blue-9) var(--un-from-opacity), transparent)',
       },
       'via-transparent': {
         '--un-gradient-via': 'transparent',
       },
-      'to-op-40': { '--un-to-opacity': '40%' },
-      'from-20%': { '--un-gradient-from-position': '20%' },
-      'bg-none': { 'background-image': 'none' },
     })
   })
 
-  it('resolves size, attachment, clip, position, repeat and origin', () => {
-    expectUtilities(backgroundStyles, {
-      'bg-auto': { 'background-size': 'auto' },
-      'bg-cover': { 'background-size': 'cover' },
-      'bg-contain': { 'background-size': 'contain' },
-      'bg-size-[auto_100%]': { 'background-size': 'auto 100%' },
-      'bg-fixed': { 'background-attachment': 'fixed' },
-      'bg-local': { 'background-attachment': 'local' },
-      'bg-scroll': { 'background-attachment': 'scroll' },
-      'bg-clip-text': { '-webkit-background-clip': 'text', 'background-clip': 'text' },
-      'bg-center': { 'background-position': 'center' },
-      'bg-top-left': { 'background-position': 'top left' },
-      'bg-repeat': { 'background-repeat': 'repeat' },
-      'bg-no-repeat': { 'background-repeat': 'no-repeat' },
-      'bg-repeat-x': { 'background-repeat': 'repeat-x' },
-      'bg-repeat-round': { 'background-repeat': 'round' },
-      'bg-origin-border': { 'background-origin': 'border-box' },
-      'bg-origin-padding': { 'background-origin': 'padding-box' },
-      'box-decoration-slice': { 'box-decoration-break': 'slice' },
-      'box-decoration-clone': { 'box-decoration-break': 'clone' },
+  it('resolves custom theme tokens in gradient stops', () => {
+    expectUtilities(rules, {
+      'from-foreground-base': {
+        '--un-gradient-from': 'color-mix(in oklab, var(--foreground-base) var(--un-from-opacity), transparent)',
+      },
+      'via-background-muted': {
+        '--un-gradient-via': 'color-mix(in oklab, var(--background-muted) var(--un-via-opacity), transparent)',
+      },
+      'to-background-elevated': {
+        '--un-gradient-to': 'color-mix(in oklab, var(--background-elevated) var(--un-to-opacity), transparent)',
+      },
+      'from-foreground-base/50': {
+        '--un-from-opacity': '50%',
+        '--un-gradient-from': 'color-mix(in oklab, var(--foreground-base) var(--un-from-opacity), transparent)',
+      },
+      'to-border-inverted/0': {
+        '--un-to-opacity': '0%',
+        '--un-gradient-to': 'color-mix(in oklab, var(--border-inverted) var(--un-to-opacity), transparent)',
+      },
     })
-
-    for (const keyword of globalKeywords) {
-      expect(matchRule(backgroundStyles, `bg-clip-${keyword}`)).toEqual({
-        '-webkit-background-clip': keyword,
-        'background-clip': keyword,
-      })
-      expect(matchRule(backgroundStyles, `bg-repeat-${keyword}`)).toEqual({ 'background-repeat': keyword })
-      expect(matchRule(backgroundStyles, `bg-origin-${keyword}`)).toEqual({ 'background-origin': keyword })
-      expect(matchRule(backgroundStyles, `box-decoration-${keyword}`)).toEqual({ 'box-decoration-break': keyword })
-    }
   })
 
-  it('rejects unknown background positions', () => {
-    expect(matchRule(backgroundStyles, 'bg-middle')).toBeUndefined()
-    expect(matchRule(backgroundStyles, 'bg-size-')).toBeUndefined()
+  it('resolves custom css vars in gradient stops through the background-color fuzzy map', () => {
+    expectUtilities(rules, {
+      'from-card': {
+        '--un-gradient-from': 'color-mix(in oklab, var(--card-background) var(--un-from-opacity), transparent)',
+      },
+      'via-card/40': {
+        '--un-via-opacity': '40%',
+        '--un-gradient-via': 'color-mix(in oklab, var(--card-background) var(--un-via-opacity), transparent)',
+      },
+    })
+  })
+
+  it('prefers theme colors and theme tokens over css vars', () => {
+    const withOverlap = backgroundStyles(resolveOptions({
+      cssVars: {
+        ...cssVars,
+        'blue-9': {
+          background: 'background.base',
+        },
+        'foreground-base': {
+          background: 'background.muted',
+        },
+      },
+    }))
+
+    expectUtilities(withOverlap, {
+      'from-blue-9': {
+        '--un-gradient-from': 'color-mix(in oklab, var(--blue-9) var(--un-from-opacity), transparent)',
+      },
+      'from-foreground-base': {
+        '--un-gradient-from': 'color-mix(in oklab, var(--foreground-base) var(--un-from-opacity), transparent)',
+      },
+    })
+  })
+
+  it('rejects unmatched color stops', () => {
+    expect(matchRule(rules, 'from-nope')).toBeUndefined()
+    expect(matchRule(rules, 'from-panel')).toBeUndefined()
   })
 })

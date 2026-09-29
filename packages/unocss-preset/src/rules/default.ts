@@ -36,7 +36,7 @@ import { fonts, fontVariantNumeric, tabSizes, textIndents, textShadows, textStro
 import { cssProperty, cssVariables } from './variables'
 import { viewTransition } from './view-transition'
 
-export function rules(_options: ResolvedWemeUIOptions): Rule<Theme>[] {
+export function rules(options: ResolvedWemeUIOptions): Rule<Theme>[] {
   return [
     fonts,
     tabSizes,
@@ -106,7 +106,7 @@ export function rules(_options: ResolvedWemeUIOptions): Rule<Theme>[] {
     overflows,
     svgUtilities,
     animations,
-    backgroundStyles,
+    backgroundStyles(options),
     hyphens,
     writingModes,
     writingOrientations,

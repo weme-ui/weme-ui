@@ -1,5 +1,7 @@
 import type { CSSObject, Rule, RuleContext } from '@unocss/core'
+import type { ResolvedWemeUIOptions } from '../options'
 import type { Theme } from '../theme'
+import { parseCustomCssVar, parseCustomThemeToken } from '../tokens'
 import { defineProperty, detectThemeValue, generateThemeVariable, globalKeywords, h, makeGlobalStaticRules, parseColor, positionMap, SpecialColorKey, themeTracking } from '../utils'
 
 const properties = {
@@ -38,33 +40,56 @@ function resolveModifier(modifier?: string) {
   return interpolationMethod
 }
 
-function bgGradientColorResolver() {
+function bgGradientColorResolver(options: ResolvedWemeUIOptions) {
   return function* ([, position, body]: string[], { theme }: RuleContext<Theme>) {
     const css: CSSObject = {}
     const data = parseColor(body, theme)
+    const token = parseCustomThemeToken(body)
+    const cssVar = parseCustomCssVar('background-color', body, options.cssVars)
 
-    if (data) {
-      const { color, keys, alpha } = data
+    if (data?.color) {
+      const { color } = data
+      const { keys, alpha } = data
 
-      if (color) {
-        if (Object.values(SpecialColorKey).includes(color)) {
-          css[`--un-gradient-${position}`] = color
-        }
-        else {
-          css[`--un-${position}-opacity`] = alpha
-          const value = keys ? generateThemeVariable('colors', keys) : color
-          css[`--un-gradient-${position}`] = `color-mix(in oklab, ${value} var(--un-${position}-opacity), transparent)`
-
-          yield defineProperty(`--un-${position}-opacity`, { syntax: '<percentage>', initialValue: '100%' })
-        }
-
-        if (keys) {
-          themeTracking(`colors`, keys)
-        }
-        if (theme) {
-          detectThemeValue(color, theme)
-        }
+      if (Object.values(SpecialColorKey).includes(color)) {
+        css[`--un-gradient-${position}`] = color
       }
+      else {
+        css[`--un-${position}-opacity`] = alpha
+        const value = keys ? generateThemeVariable('colors', keys) : color
+        css[`--un-gradient-${position}`] = `color-mix(in oklab, ${value} var(--un-${position}-opacity), transparent)`
+
+        yield defineProperty(`--un-${position}-opacity`, { syntax: '<percentage>', initialValue: '100%' })
+      }
+
+      if (keys) {
+        themeTracking(`colors`, keys)
+      }
+      if (theme) {
+        detectThemeValue(color, theme)
+      }
+    }
+    else if (token?.keys.length) {
+      const { keys, alpha } = token
+
+      if (alpha !== undefined)
+        css[`--un-${position}-opacity`] = `${alpha}%`
+
+      const value = `var(--${keys.join('-')})`
+      css[`--un-gradient-${position}`] = `color-mix(in oklab, ${value} var(--un-${position}-opacity), transparent)`
+
+      yield defineProperty(`--un-${position}-opacity`, { syntax: '<percentage>', initialValue: '100%' })
+    }
+    else if (cssVar?.keys.length) {
+      const { keys, alpha } = cssVar
+
+      if (alpha !== undefined)
+        css[`--un-${position}-opacity`] = `${alpha}%`
+
+      const value = `var(--${keys.join('-')})`
+      css[`--un-gradient-${position}`] = `color-mix(in oklab, ${value} var(--un-${position}-opacity), transparent)`
+
+      yield defineProperty(`--un-${position}-opacity`, { syntax: '<percentage>', initialValue: '100%' })
     }
     else {
       css[`--un-gradient-${position}`] = h.bracket.cssvar(body, theme)
@@ -113,90 +138,92 @@ function bgGradientPositionResolver() {
   }
 }
 
-export const backgroundStyles: Rule<Theme>[] = [
-  // gradients
-  [/^bg-(linear|radial|conic)-([^/]+)(?:\/(.+))?$/, ([, m, d, s], { theme }) => {
-    let v
+export function backgroundStyles(options: ResolvedWemeUIOptions): Rule<Theme>[] {
+  return [
+    // gradients
+    [/^bg-(linear|radial|conic)-([^/]+)(?:\/(.+))?$/, ([, m, d, s], { theme }) => {
+      let v
 
-    if (h.number(d) != null) {
-      v = `from ${h.number(d)}deg ${resolveModifier(s)};`
-    }
-    else {
-      v = h.bracket(d, theme)
-    }
-
-    if (v) {
-      return {
-        '--un-gradient-position': v,
-        'background-image': `${m}-gradient(var(--un-gradient-stops))`,
+      if (h.number(d) != null) {
+        v = `from ${h.number(d)}deg ${resolveModifier(s)};`
       }
-    }
-  }, {
-    autocomplete: ['bg-(linear|radial|conic)', '(from|to|via)-$colors', '(from|to|via)-(op|opacity)', '(from|to|via)-(op|opacity)-<percent>'],
-  }],
+      else {
+        v = h.bracket(d, theme)
+      }
 
-  [/^(from|via|to|stops)-(.+)$/, bgGradientColorResolver()],
-  [/^(from|via|to)-op(?:acity)?-?(.+)$/, ([, position, opacity], { theme }) => ({ [`--un-${position}-opacity`]: h.bracket.percent(opacity, theme) })],
-  [/^(from|via|to)-([\d.]+%)$/, bgGradientPositionResolver()],
-  // images
-  [/^bg-((?:repeating-)?(?:linear|radial|conic))$/, ([, s]) => ({
-    'background-image': `${s}-gradient(var(--un-gradient, var(--un-gradient-stops, rgb(255 255 255 / 0))))`,
-  }), { autocomplete: ['bg-gradient-repeating', 'bg-gradient-(linear|radial|conic)', 'bg-gradient-repeating-(linear|radial|conic)'] }],
-  [/^bg-(gradient|linear|radial|conic)(?:-to-([rltb]{1,2}))?(?:\/(.+))?$/, ([, m, d, s]) => {
-    return {
-      '--un-gradient-position': `${d in positionMap ? `to ${positionMap[d]} ` : ' '}${resolveModifier(s)}`,
-      'background-image': `${m === 'gradient' ? 'linear' : m}-gradient(var(--un-gradient-stops))`,
-    }
-  }, {
-    autocomplete: ['gradient', 'linear', 'radial', 'conic'].map((i) => {
-      return `bg-${i}-to-(${Object.keys(positionMap)
-        .filter(k => k.length <= 2 && Array.from(k).every(c => 'rltb'.includes(c)))
-        .join('|')})`
-    }),
-  }],
-  ['bg-none', { 'background-image': 'none' }],
+      if (v) {
+        return {
+          '--un-gradient-position': v,
+          'background-image': `${m}-gradient(var(--un-gradient-stops))`,
+        }
+      }
+    }, {
+      autocomplete: ['bg-(linear|radial|conic)', '(from|to|via)-$colors', '(from|to|via)-(op|opacity)', '(from|to|via)-(op|opacity)-<percent>'],
+    }],
 
-  ['box-decoration-slice', { 'box-decoration-break': 'slice' }],
-  ['box-decoration-clone', { 'box-decoration-break': 'clone' }],
-  ...makeGlobalStaticRules('box-decoration', 'box-decoration-break'),
+    [/^(from|via|to|stops)-(.+)$/, bgGradientColorResolver(options)],
+    [/^(from|via|to)-op(?:acity)?-?(.+)$/, ([, position, opacity], { theme }) => ({ [`--un-${position}-opacity`]: h.bracket.percent(opacity, theme) })],
+    [/^(from|via|to)-([\d.]+%)$/, bgGradientPositionResolver()],
+    // images
+    [/^bg-((?:repeating-)?(?:linear|radial|conic))$/, ([, s]) => ({
+      'background-image': `${s}-gradient(var(--un-gradient, var(--un-gradient-stops, rgb(255 255 255 / 0))))`,
+    }), { autocomplete: ['bg-gradient-repeating', 'bg-gradient-(linear|radial|conic)', 'bg-gradient-repeating-(linear|radial|conic)'] }],
+    [/^bg-(gradient|linear|radial|conic)(?:-to-([rltb]{1,2}))?(?:\/(.+))?$/, ([, m, d, s]) => {
+      return {
+        '--un-gradient-position': `${d in positionMap ? `to ${positionMap[d]} ` : ' '}${resolveModifier(s)}`,
+        'background-image': `${m === 'gradient' ? 'linear' : m}-gradient(var(--un-gradient-stops))`,
+      }
+    }, {
+      autocomplete: ['gradient', 'linear', 'radial', 'conic'].map((i) => {
+        return `bg-${i}-to-(${Object.keys(positionMap)
+          .filter(k => k.length <= 2 && Array.from(k).every(c => 'rltb'.includes(c)))
+          .join('|')})`
+      }),
+    }],
+    ['bg-none', { 'background-image': 'none' }],
 
-  // size
-  ['bg-auto', { 'background-size': 'auto' }],
-  ['bg-cover', { 'background-size': 'cover' }],
-  ['bg-contain', { 'background-size': 'contain' }],
-  [/^bg-size-(.+)$/, ([, v], { theme }) => ({ 'background-size': h.bracket.cssvar(v, theme) })],
+    ['box-decoration-slice', { 'box-decoration-break': 'slice' }],
+    ['box-decoration-clone', { 'box-decoration-break': 'clone' }],
+    ...makeGlobalStaticRules('box-decoration', 'box-decoration-break'),
 
-  // attachments
-  ['bg-fixed', { 'background-attachment': 'fixed' }],
-  ['bg-local', { 'background-attachment': 'local' }],
-  ['bg-scroll', { 'background-attachment': 'scroll' }],
+    // size
+    ['bg-auto', { 'background-size': 'auto' }],
+    ['bg-cover', { 'background-size': 'cover' }],
+    ['bg-contain', { 'background-size': 'contain' }],
+    [/^bg-size-(.+)$/, ([, v], { theme }) => ({ 'background-size': h.bracket.cssvar(v, theme) })],
 
-  // clips
-  ['bg-clip-border', { '-webkit-background-clip': 'border-box', 'background-clip': 'border-box' }],
-  ['bg-clip-content', { '-webkit-background-clip': 'content-box', 'background-clip': 'content-box' }],
-  ['bg-clip-padding', { '-webkit-background-clip': 'padding-box', 'background-clip': 'padding-box' }],
-  ['bg-clip-text', { '-webkit-background-clip': 'text', 'background-clip': 'text' }],
-  ...globalKeywords.map(keyword => [`bg-clip-${keyword}`, {
-    '-webkit-background-clip': keyword,
-    'background-clip': keyword,
-  }] as Rule<Theme>),
+    // attachments
+    ['bg-fixed', { 'background-attachment': 'fixed' }],
+    ['bg-local', { 'background-attachment': 'local' }],
+    ['bg-scroll', { 'background-attachment': 'scroll' }],
 
-  // positions
-  // skip 1 & 2 letters shortcut
-  [/^bg-([-\w]{3,})$/, ([, s]) => ({ 'background-position': positionMap[s] })],
+    // clips
+    ['bg-clip-border', { '-webkit-background-clip': 'border-box', 'background-clip': 'border-box' }],
+    ['bg-clip-content', { '-webkit-background-clip': 'content-box', 'background-clip': 'content-box' }],
+    ['bg-clip-padding', { '-webkit-background-clip': 'padding-box', 'background-clip': 'padding-box' }],
+    ['bg-clip-text', { '-webkit-background-clip': 'text', 'background-clip': 'text' }],
+    ...globalKeywords.map(keyword => [`bg-clip-${keyword}`, {
+      '-webkit-background-clip': keyword,
+      'background-clip': keyword,
+    }] as Rule<Theme>),
 
-  // repeats
-  ['bg-repeat', { 'background-repeat': 'repeat' }],
-  ['bg-no-repeat', { 'background-repeat': 'no-repeat' }],
-  ['bg-repeat-x', { 'background-repeat': 'repeat-x' }],
-  ['bg-repeat-y', { 'background-repeat': 'repeat-y' }],
-  ['bg-repeat-round', { 'background-repeat': 'round' }],
-  ['bg-repeat-space', { 'background-repeat': 'space' }],
-  ...makeGlobalStaticRules('bg-repeat', 'background-repeat'),
+    // positions
+    // skip 1 & 2 letters shortcut
+    [/^bg-([-\w]{3,})$/, ([, s]) => ({ 'background-position': positionMap[s] })],
 
-  // origins
-  ['bg-origin-border', { 'background-origin': 'border-box' }],
-  ['bg-origin-padding', { 'background-origin': 'padding-box' }],
-  ['bg-origin-content', { 'background-origin': 'content-box' }],
-  ...makeGlobalStaticRules('bg-origin', 'background-origin'),
-]
+    // repeats
+    ['bg-repeat', { 'background-repeat': 'repeat' }],
+    ['bg-no-repeat', { 'background-repeat': 'no-repeat' }],
+    ['bg-repeat-x', { 'background-repeat': 'repeat-x' }],
+    ['bg-repeat-y', { 'background-repeat': 'repeat-y' }],
+    ['bg-repeat-round', { 'background-repeat': 'round' }],
+    ['bg-repeat-space', { 'background-repeat': 'space' }],
+    ...makeGlobalStaticRules('bg-repeat', 'background-repeat'),
+
+    // origins
+    ['bg-origin-border', { 'background-origin': 'border-box' }],
+    ['bg-origin-padding', { 'background-origin': 'padding-box' }],
+    ['bg-origin-content', { 'background-origin': 'content-box' }],
+    ...makeGlobalStaticRules('bg-origin', 'background-origin'),
+  ]
+}

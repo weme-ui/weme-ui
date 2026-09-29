@@ -1,5 +1,5 @@
 import type { Preflight } from '@unocss/core'
-import type { PresetWemeUIOptions } from '../options'
+import type { ResolvedWemeUIOptions } from '../options'
 import type { Theme } from '../theme'
 import { compressCSS, themeTracking } from '../utils'
 
@@ -467,7 +467,7 @@ const wemeUIStyles = `
 }
 `
 
-export function reset(options: PresetWemeUIOptions): Preflight<Theme> | undefined {
+export function reset(options: ResolvedWemeUIOptions): Preflight<Theme> | undefined {
   if (options.preflights?.reset === false)
     return undefined
 

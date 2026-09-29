@@ -98,11 +98,18 @@ export interface CustomThemeTokens {
 export type CustomThemeCSSVars = Record<string, Record<string, string> | string>
 
 /**
+ * 解析后的自定义 CSS 变量
+ *
+ * @category Tokens
+ */
+export type ResolvedCustomThemeCSSVars = Record<string, string>
+
+/**
  * WemeUI 主题
  *
  * @category Tokens
  */
-export interface CustomTheme {
+export interface CustomTheme<T extends CustomThemeCSSVars = CustomThemeCSSVars> {
   /**
    * 主题名称
    *
@@ -118,9 +125,9 @@ export interface CustomTheme {
   /**
    * 主题令牌
    */
-  tokens: CustomThemeTokens
+  tokens: T extends ResolvedCustomThemeCSSVars ? T : CustomThemeTokens
   /**
    * CSS 变量
    */
-  cssVars: CustomThemeCSSVars
+  cssVars: T
 }

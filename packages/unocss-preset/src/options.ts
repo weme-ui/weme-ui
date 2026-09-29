@@ -1,7 +1,7 @@
 import type { Arrayable, CSSEntry, DeepPartial, PreflightContext } from '@unocss/core'
 import type { AdditionalColors } from './colors'
 import type { Theme } from './theme'
-import type { CustomTheme, CustomThemeCSSVars } from './tokens'
+import type { CustomTheme, CustomThemeColorAlias, CustomThemeCSSVars, CustomThemeTokens, ResolvedCustomThemeCSSVars } from './tokens'
 import type { Prettify } from './utils'
 import { defu } from 'defu'
 import { DEFAULT_COLOR_ALIASES, DEFAULT_NAME, DEFAULT_TOKENS } from './tokens'
@@ -168,12 +168,12 @@ export type ResolvedWemeUIOptions = Prettify<Omit<PresetWemeUIOptions, 'themes' 
   /**
    * 初始化后的主题
    */
-  themes: CustomTheme[]
+  themes: CustomTheme<ResolvedCustomThemeCSSVars>[]
 
   /**
    * 初始化后的 CSS 变量
    */
-  cssVars: Record<string, string>
+  cssVars: ResolvedCustomThemeCSSVars
 }>
 
 /**
@@ -184,45 +184,48 @@ export function resolveOptions(options: PresetWemeUIOptions): ResolvedWemeUIOpti
   options.variablePrefix = options.variablePrefix ?? 'un-'
   options.important = options.important ?? false
   options.colors = options.colors ?? {}
+
   options.themes = options.themes ?? []
-  options.cssVars = flattenCssVars(options.cssVars ?? {})
+  options.cssVars = options.cssVars ?? {}
+
+  const themes: CustomTheme<ResolvedCustomThemeCSSVars>[] = []
 
   if (options.themes?.length === 0) {
-    options.themes?.push({
+    themes.push({
       name: DEFAULT_NAME,
       colors: DEFAULT_COLOR_ALIASES,
-      tokens: DEFAULT_TOKENS,
+      tokens: flattenCssVars(DEFAULT_TOKENS),
       cssVars: {},
     })
   }
-
-  options.themes = options.themes.map(
-    (theme) => {
-      const tokens = defu(theme.tokens ?? {}, DEFAULT_TOKENS)
-      const cssVars = theme.cssVars ?? {}
-
-      return {
+  else {
+    options.themes?.forEach((theme) => {
+      themes.push({
         name: theme.name ?? DEFAULT_NAME,
-        colors: defu(theme.colors ?? {}, DEFAULT_COLOR_ALIASES),
-        tokens,
-        cssVars,
-      }
-    },
-  )
+        colors: defu(theme.colors ?? {}, DEFAULT_COLOR_ALIASES) as CustomThemeColorAlias,
+        tokens: flattenCssVars(theme.tokens ?? DEFAULT_TOKENS),
+        cssVars: theme.cssVars ? flattenCssVars(theme.cssVars as CustomThemeCSSVars) : {},
+      })
+    })
+  }
 
-  return options as ResolvedWemeUIOptions
+  return {
+    ...options,
+    themes,
+    cssVars: flattenCssVars(options.cssVars),
+  }
 }
 
-function flattenCssVars(cssVars: CustomThemeCSSVars) {
+function flattenCssVars(cssVars: CustomThemeTokens | CustomThemeCSSVars): ResolvedCustomThemeCSSVars {
   return Object.entries(cssVars).reduce((acc, [scope, vals]) => {
     if (typeof vals === 'string') {
       acc[scope] = vals
     }
     else {
       Object.entries(vals).forEach(([key, value]) => {
-        acc[`${scope}-${key}`] = value
+        acc[`${scope}-${key}`] = value as string
       })
     }
     return acc
-  }, {} as Record<string, string>)
+  }, {} as ResolvedCustomThemeCSSVars)
 }

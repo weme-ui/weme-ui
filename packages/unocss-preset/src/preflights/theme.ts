@@ -1,6 +1,6 @@
 import type { CSSEntry, Preflight } from '@unocss/core'
+import type { PreflightsTheme, ResolvedWemeUIOptions } from '../options'
 import type { Theme } from '../theme/types'
-import type { PreflightsTheme, PresetWemeUIOptions } from '~/options'
 import { escapeSelector, toArray, uniq } from '@unocss/core'
 import { alphaPlaceholdersRE } from '@unocss/rule-utils'
 import { compressCSS, detectThemeValue, getThemeByKey, themeTracking, trackedTheme } from '../utils'
@@ -53,7 +53,7 @@ function getThemeVarsMap(theme: Theme, keys: string[]): Map<string, string> {
   return themeMap
 }
 
-export function theme(options: PresetWemeUIOptions): Preflight<Theme> {
+export function theme(options: ResolvedWemeUIOptions): Preflight<Theme> {
   const preflightsTheme: PreflightsTheme = (typeof options.preflights?.theme === 'boolean' || typeof options.preflights?.theme === 'string')
     ? { mode: options.preflights.theme ?? 'on-demand' }
     : { mode: options.preflights?.theme?.mode ?? 'on-demand', ...options.preflights?.theme }

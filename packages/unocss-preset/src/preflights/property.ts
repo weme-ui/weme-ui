@@ -1,9 +1,9 @@
 import type { Preflight } from '@unocss/core'
+import type { ResolvedWemeUIOptions } from '../options'
 import type { Theme } from '../theme'
-import type { PresetWemeUIOptions } from '~/options'
 import { trackedProperties } from '../utils/track'
 
-export function property(options: PresetWemeUIOptions): Preflight<Theme> | undefined {
+export function property(options: ResolvedWemeUIOptions): Preflight<Theme> | undefined {
   if (options.preflights?.property === false)
     return undefined
 

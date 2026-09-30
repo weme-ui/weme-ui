@@ -110,8 +110,7 @@ function handlerBorderSize(
 
 function handlerBorderColorOrSize([, a = '', b]: string[], ctx: RuleContext<Theme>, options: ResolvedWemeUIOptions): CSSEntries | (CSSValueInput | string)[] | undefined {
   if (a in directionMap) {
-    const themeSize = parseCustomThemeSize(b, options.cssVars, 'border-width')
-    if (isSize(b) || themeSize)
+    if (isSize(b))
       return handlerBorderSize(['', a, b], ctx, options)
 
     const bracketColor = h.bracketOfColor(b, ctx.theme)

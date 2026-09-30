@@ -21,6 +21,25 @@ describe('size rules', () => {
     })
   })
 
+  it('resolves explicit min and max size css var names', () => {
+    expectUtilities(rules, {
+      'w-card-min': { width: 'var(--card-min-width)' },
+      'w-card-max': { width: 'var(--card-max-width)' },
+      'h-card-min': { height: 'var(--card-min-height)' },
+      'h-card-max': { height: 'var(--card-max-height)' },
+      'size-card-min': {
+        width: 'var(--card-min-width)',
+        height: 'var(--card-min-height)',
+      },
+      'size-card-max': {
+        width: 'var(--card-max-width)',
+        height: 'var(--card-max-height)',
+      },
+      'min-w-card-min': { 'min-width': 'var(--card-min-width)' },
+      'max-h-card-max': { 'max-height': 'var(--card-max-height)' },
+    })
+  })
+
   it('prefers theme spacing over size css vars when both exist', () => {
     const withOverlap = sizes(resolveOptions({
       cssVars: {

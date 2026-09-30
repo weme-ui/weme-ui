@@ -146,7 +146,7 @@ export const CUSTOM_CSSVAR_FUZZY_MAP = {
    *   - `width-card` -> `width: var(--card-w)`
    *   - `width-card` -> `width: var(--card-size)`
    */
-  'width': ['width', 'w', 'size'],
+  'width': ['width', 'w', 'max-width', 'max-w', 'min-width', 'min-w', 'size'],
 
   /**
    * 高度变量映射
@@ -158,7 +158,7 @@ export const CUSTOM_CSSVAR_FUZZY_MAP = {
    *   - `height-card` -> `height: var(--card-h)`
    *   - `height-card` -> `height: var(--card-size)`
    */
-  'height': ['height', 'h', 'size'],
+  'height': ['height', 'h', 'max-height', 'max-h', 'min-height', 'min-h', 'size'],
 
   /**
    * 内边距变量映射

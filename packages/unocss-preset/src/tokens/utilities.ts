@@ -1,5 +1,5 @@
 import type { CSSObject, CSSValueInput } from '@unocss/core'
-import type { LooseAutocomplete } from '../utils'
+import type { LooseAutocomplete, Prettify } from '../utils'
 import type { CUSTOM_CSSVAR_FUZZY_MAP_KEYS } from './defaults'
 import type { CustomThemeTokens, ResolvedCustomThemeCSSVars } from './types'
 import { symbols } from '@unocss/core'
@@ -92,7 +92,7 @@ export function splitCustomThemeTokenKey(match: string) {
   return { name, alpha }
 }
 
-type FuzzyMapKey = (typeof CUSTOM_CSSVAR_FUZZY_MAP_KEYS)[number]
+type FuzzyMapKey = Prettify<(typeof CUSTOM_CSSVAR_FUZZY_MAP_KEYS)[number]>
 
 interface CustomThemeParsedResult {
   name: string
@@ -140,7 +140,7 @@ export function parseCustomThemeToken(
  *
  * @category Tokens
  */
-export function parseCustomCssVar(
+export function parseCustomThemeColorCssVar(
   varName: FuzzyMapKey,
   match: string,
   cssVars: ResolvedCustomThemeCSSVars,
@@ -168,6 +168,43 @@ export function parseCustomCssVar(
     keys: variable.split('-'),
     alpha,
   }
+}
+
+const WidthKeys = ['border-width', 'width', 'height', 'padding', 'margin'] as const
+
+/**
+ * 解析自定义主题尺寸
+ *
+ * @category Tokens
+ */
+export function parseCustomThemeSize(
+  match: string,
+  cssVars: ResolvedCustomThemeCSSVars,
+  varName?: typeof WidthKeys[number],
+) {
+  const splitted = splitCustomThemeTokenKey(match)
+
+  if (!splitted)
+    return
+
+  const { name } = splitted
+
+  const widthKeys = (varName ? [varName] : WidthKeys) as string[]
+  const suffixes = Object.entries(CUSTOM_CSSVAR_FUZZY_MAP)
+    .filter(([key]) => widthKeys.includes(key))
+    .reduce((acc, [, value]) => {
+      acc.push(...value)
+      return acc
+    }, [] as string[])
+
+  const variable = Object.keys(cssVars).find(
+    k => suffixes.some(suffix => k === `${name}-${suffix}`),
+  )
+
+  if (!variable)
+    return
+
+  return `var(--${variable.split('-').join('-')})`
 }
 
 /**
@@ -224,7 +261,7 @@ export function customThemeColorResolver(property: string, varName: FuzzyMapKey)
     const token = parseCustomThemeToken(match)
     const data = token?.keys.length
       ? token
-      : parseCustomCssVar(varName, match, cssVars)
+      : parseCustomThemeColorCssVar(varName, match, cssVars)
 
     if (!data?.keys.length)
       return

@@ -1,7 +1,7 @@
 import type { CSSObject, Rule, RuleContext } from '@unocss/core'
 import type { ResolvedWemeUIOptions } from '../options'
 import type { Theme } from '../theme'
-import { parseCustomCssVar, parseCustomThemeToken } from '../tokens'
+import { parseCustomThemeColorCssVar, parseCustomThemeToken } from '../tokens'
 import { defineProperty, detectThemeValue, generateThemeVariable, globalKeywords, h, makeGlobalStaticRules, parseColor, positionMap, SpecialColorKey, themeTracking } from '../utils'
 
 const properties = {
@@ -45,7 +45,7 @@ function bgGradientColorResolver(options: ResolvedWemeUIOptions) {
     const css: CSSObject = {}
     const data = parseColor(body, theme)
     const token = parseCustomThemeToken(body)
-    const cssVar = parseCustomCssVar('background-color', body, options.cssVars)
+    const cssVar = parseCustomThemeColorCssVar('background-color', body, options.cssVars)
 
     if (data?.color) {
       const { color } = data

@@ -10,11 +10,11 @@
 [![code style][code-style-src]][code-style-href]
 
 <p align="center">
-  ⚠️ Do not use in production. This project is still in early development.
+  Re-usable UI components with Reka UI and UnoCSS.
 </p>
 
 <p align="center">
-  Re-usable UI components with Reka UI and UnoCSS.
+  ⚠️ Do not use in production. This project is still in early development.
 </p>
 
 ## 如何开始

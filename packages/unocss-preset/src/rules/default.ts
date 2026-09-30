@@ -67,7 +67,7 @@ export function rules(options: ResolvedWemeUIOptions): Rule<Theme>[] {
     flex,
     gaps,
     grids,
-    sizes,
+    sizes(options),
     aspectRatio,
     displays,
     appearances,

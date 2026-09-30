@@ -50,8 +50,8 @@
     "postcss"
   ],
 
-  // For vue-router generated files
   "files.readonlyInclude": {
+    "**/**.schema.json": true,
     "**/auto-imports.d.ts": true,
     "**/components.d.ts": true,
     "**/typed-router.d.ts": true
@@ -65,6 +65,10 @@
     "**/auto-imports.d.ts": true,
     "**/components.d.ts": true,
     "**/typed-router.d.ts": true
+  },
+
+  "explorer.fileNesting.patterns": {
+    "package.json": "*.schema.json,.editorconfig,bun.*,eslint.config.*,commitlint.config.*,turbo.*"
   },
 
   // For Tailwind CSS, we can ignore unknown at-rules like @tailwind and @apply.

@@ -9,7 +9,7 @@ import {
   generateColorAliasCssVar,
   isRawColor,
   parseColorAlias,
-  parseCustomCssVar,
+  parseCustomThemeColorCssVar,
   parseCustomThemeToken,
   splitCustomThemeTokenKey,
 } from '~/tokens'
@@ -240,52 +240,52 @@ describe('parseCustomCssVar', () => {
   it('rejects a css variable or invalid alpha before any match', () => {
     const cssVars = { 'card-text': 'foreground.base' }
 
-    expect(parseCustomCssVar('color', 'var(--foreground)', cssVars)).toBeUndefined()
-    expect(parseCustomCssVar('color', 'card/foo', cssVars)).toBeUndefined()
-    expect(parseCustomCssVar('color', 'card/101', cssVars)).toBeUndefined()
+    expect(parseCustomThemeColorCssVar('color', 'var(--foreground)', cssVars)).toBeUndefined()
+    expect(parseCustomThemeColorCssVar('color', 'card/foo', cssVars)).toBeUndefined()
+    expect(parseCustomThemeColorCssVar('color', 'card/101', cssVars)).toBeUndefined()
   })
 
   it('matches name-suffix keys from cssVars using the fuzzy map', () => {
-    expect(parseCustomCssVar('color', 'card', { 'card-text': 'foreground.base' })).toEqual({
+    expect(parseCustomThemeColorCssVar('color', 'card', { 'card-text': 'foreground.base' })).toEqual({
       name: 'card',
       keys: ['card', 'text'],
     })
-    expect(parseCustomCssVar('color', 'card', { 'card-color': 'primary.9' })).toEqual({
+    expect(parseCustomThemeColorCssVar('color', 'card', { 'card-color': 'primary.9' })).toEqual({
       name: 'card',
       keys: ['card', 'color'],
     })
-    expect(parseCustomCssVar('background-color', 'card', { 'card-background': 'background.base' })).toEqual({
+    expect(parseCustomThemeColorCssVar('background-color', 'card', { 'card-background': 'background.base' })).toEqual({
       name: 'card',
       keys: ['card', 'background'],
     })
-    expect(parseCustomCssVar('background-color', 'card', { 'card-bg': 'background.muted' })).toEqual({
+    expect(parseCustomThemeColorCssVar('background-color', 'card', { 'card-bg': 'background.muted' })).toEqual({
       name: 'card',
       keys: ['card', 'bg'],
     })
-    expect(parseCustomCssVar('border-color', 'card', { 'card-border-color': 'border.base' })).toEqual({
+    expect(parseCustomThemeColorCssVar('border-color', 'card', { 'card-border-color': 'border.base' })).toEqual({
       name: 'card',
       keys: ['card', 'border', 'color'],
     })
-    expect(parseCustomCssVar('border-color', 'card', { 'card-border': 'border.elevated' })).toEqual({
+    expect(parseCustomThemeColorCssVar('border-color', 'card', { 'card-border': 'border.elevated' })).toEqual({
       name: 'card',
       keys: ['card', 'border'],
     })
-    expect(parseCustomCssVar('fill', 'card', { 'card-fill': 'background.base' })).toEqual({
+    expect(parseCustomThemeColorCssVar('fill', 'card', { 'card-fill': 'background.base' })).toEqual({
       name: 'card',
       keys: ['card', 'fill'],
     })
-    expect(parseCustomCssVar('width', 'card', { 'card-w': '50%' })).toEqual({
+    expect(parseCustomThemeColorCssVar('width', 'card', { 'card-w': '50%' })).toEqual({
       name: 'card',
       keys: ['card', 'w'],
     })
-    expect(parseCustomCssVar('padding', 'card', { 'card-space': '1rem' })).toEqual({
+    expect(parseCustomThemeColorCssVar('padding', 'card', { 'card-space': '1rem' })).toEqual({
       name: 'card',
       keys: ['card', 'space'],
     })
   })
 
   it('keeps a valid alpha on the matched name', () => {
-    expect(parseCustomCssVar('color', 'card/50', { 'card-text': 'foreground.base' })).toEqual({
+    expect(parseCustomThemeColorCssVar('color', 'card/50', { 'card-text': 'foreground.base' })).toEqual({
       name: 'card',
       keys: ['card', 'text'],
       alpha: 50,
@@ -293,7 +293,7 @@ describe('parseCustomCssVar', () => {
   })
 
   it('prefers the first matching css var key when multiple suffixes exist', () => {
-    expect(parseCustomCssVar('color', 'card', {
+    expect(parseCustomThemeColorCssVar('color', 'card', {
       'card-color': 'primary.9',
       'card-text': 'foreground.base',
     })).toEqual({
@@ -301,7 +301,7 @@ describe('parseCustomCssVar', () => {
       keys: ['card', 'color'],
     })
 
-    expect(parseCustomCssVar('color', 'card', {
+    expect(parseCustomThemeColorCssVar('color', 'card', {
       'card-text': 'foreground.base',
       'card-color': 'primary.9',
     })).toEqual({
@@ -311,10 +311,10 @@ describe('parseCustomCssVar', () => {
   })
 
   it('returns undefined when no name-suffix key exists', () => {
-    expect(parseCustomCssVar('color', 'card', {})).toBeUndefined()
-    expect(parseCustomCssVar('color', 'card', { 'panel-text': 'foreground.base' })).toBeUndefined()
-    expect(parseCustomCssVar('color', 'card', { 'card-background': 'background.base' })).toBeUndefined()
-    expect(parseCustomCssVar('width', 'card', { 'card-text': 'foreground.base' })).toBeUndefined()
+    expect(parseCustomThemeColorCssVar('color', 'card', {})).toBeUndefined()
+    expect(parseCustomThemeColorCssVar('color', 'card', { 'panel-text': 'foreground.base' })).toBeUndefined()
+    expect(parseCustomThemeColorCssVar('color', 'card', { 'card-background': 'background.base' })).toBeUndefined()
+    expect(parseCustomThemeColorCssVar('width', 'card', { 'card-text': 'foreground.base' })).toBeUndefined()
   })
 })
 
@@ -978,13 +978,13 @@ describe('successful results snapshots', () => {
   })
 
   it('parseCustomCssVar', () => {
-    const results: Record<string, ReturnType<typeof parseCustomCssVar>> = {}
+    const results: Record<string, ReturnType<typeof parseCustomThemeColorCssVar>> = {}
 
     for (const [property, suffixes] of Object.entries(CUSTOM_CSSVAR_FUZZY_MAP) as [FuzzyMapKey, string[]][]) {
       for (const suffix of suffixes) {
         const cssVars = { [`card-${suffix}`]: 'token' }
-        results[`${property}:card-${suffix}`] = parseCustomCssVar(property, 'card', cssVars)
-        results[`${property}:card-${suffix}/50`] = parseCustomCssVar(property, 'card/50', cssVars)
+        results[`${property}:card-${suffix}`] = parseCustomThemeColorCssVar(property, 'card', cssVars)
+        results[`${property}:card-${suffix}/50`] = parseCustomThemeColorCssVar(property, 'card/50', cssVars)
       }
     }
 

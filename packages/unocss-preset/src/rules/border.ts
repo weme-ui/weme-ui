@@ -4,7 +4,7 @@ import type { CSSEntries, CSSObject, CSSValueInput, Rule, RuleContext } from '@u
 import type { ResolvedWemeUIOptions } from '../options'
 import type { Theme } from '../theme'
 import { notNull } from '@unocss/core'
-import { customThemeColorCSSGenerator, parseCustomCssVar, parseCustomThemeToken } from '../tokens'
+import { customThemeColorCSSGenerator, parseCustomThemeColorCssVar, parseCustomThemeSize, parseCustomThemeToken } from '../tokens'
 import { colorCSSGenerator, cornerMap, directionMap, generateThemeVariable, globalKeywords, h, hasParseableColor, isSize, parseColor, SpecialColorKey, themeTracking } from '../utils'
 
 export const borderStyles = ['solid', 'dashed', 'dotted', 'double', 'hidden', 'none', 'groove', 'ridge', 'inset', 'outset', ...globalKeywords]
@@ -12,18 +12,18 @@ export const borderStyles = ['solid', 'dashed', 'dotted', 'double', 'hidden', 'n
 export function borders(options: ResolvedWemeUIOptions): Rule<Theme>[] {
   return [
     // compound
-    [/^(?:border|b)()(?:-(.+))?$/, handlerBorderSize, { autocomplete: '(border|b)-<directions>' }],
-    [/^(?:border|b)-([xy])(?:-(.+))?$/, handlerBorderSize],
-    [/^(?:border|b)-([rltbse])(?:-(.+))?$/, handlerBorderSize],
-    [/^(?:border|b)-(block|inline)(?:-(.+))?$/, handlerBorderSize],
-    [/^(?:border|b)-([bi][se])(?:-(.+))?$/, handlerBorderSize],
+    [/^(?:border|b)()(?:-(.+))?$/, (match, ctx) => handlerBorderSize(match, ctx, options), { autocomplete: '(border|b)-<directions>' }],
+    [/^(?:border|b)-([xy])(?:-(.+))?$/, (match, ctx) => handlerBorderSize(match, ctx, options)],
+    [/^(?:border|b)-([rltbse])(?:-(.+))?$/, (match, ctx) => handlerBorderSize(match, ctx, options)],
+    [/^(?:border|b)-(block|inline)(?:-(.+))?$/, (match, ctx) => handlerBorderSize(match, ctx, options)],
+    [/^(?:border|b)-([bi][se])(?:-(.+))?$/, (match, ctx) => handlerBorderSize(match, ctx, options)],
 
     // size
-    [/^(?:border|b)-()(?:width|size)-(.+)$/, handlerBorderSize, { autocomplete: ['(border|b)-<num>', '(border|b)-<directions>-<num>'] }],
-    [/^(?:border|b)-([xy])-(?:width|size)-(.+)$/, handlerBorderSize],
-    [/^(?:border|b)-([rltbse])-(?:width|size)-(.+)$/, handlerBorderSize],
-    [/^(?:border|b)-(block|inline)-(?:width|size)-(.+)$/, handlerBorderSize],
-    [/^(?:border|b)-([bi][se])-(?:width|size)-(.+)$/, handlerBorderSize],
+    [/^(?:border|b)-()(?:width|size)-(.+)$/, (match, ctx) => handlerBorderSize(match, ctx, options), { autocomplete: ['(border|b)-<num>', '(border|b)-<directions>-<num>'] }],
+    [/^(?:border|b)-([xy])-(?:width|size)-(.+)$/, (match, ctx) => handlerBorderSize(match, ctx, options)],
+    [/^(?:border|b)-([rltbse])-(?:width|size)-(.+)$/, (match, ctx) => handlerBorderSize(match, ctx, options)],
+    [/^(?:border|b)-(block|inline)-(?:width|size)-(.+)$/, (match, ctx) => handlerBorderSize(match, ctx, options)],
+    [/^(?:border|b)-([bi][se])-(?:width|size)-(.+)$/, (match, ctx) => handlerBorderSize(match, ctx, options)],
 
     // colors
     [/^(?:border|b)-()(?:color-)?(.+)$/, (match, ctx) => handlerBorderColorOrSize(match, ctx, options), { autocomplete: ['(border|b)-$colors', '(border|b)-<directions>-$colors'] }],
@@ -76,7 +76,7 @@ function borderColorResolver(direction: string, options: ResolvedWemeUIOptions) 
     const token = parseCustomThemeToken(body)
     const customThemeData = token?.keys.length
       ? token
-      : parseCustomCssVar('border-color', body, options.cssVars)
+      : parseCustomThemeColorCssVar('border-color', body, options.cssVars)
 
     if (!customThemeData?.keys.length)
       return
@@ -94,16 +94,25 @@ function borderColorResolver(direction: string, options: ResolvedWemeUIOptions) 
   }
 }
 
-function handlerBorderSize([, a = '', b = '1']: string[], { theme }: RuleContext<Theme>): CSSEntries | undefined {
+function handlerBorderSize(
+  [, a = '', b = '1']: string[],
+  { theme }: RuleContext<Theme>,
+  options: ResolvedWemeUIOptions,
+): CSSEntries | undefined {
   const v = h.bracket.bracketOfLength.cssvar.global.px(b, theme)
   if (a in directionMap && v != null)
     return directionMap[a].map(i => [`border${i}-width`, v])
+
+  const themeSize = parseCustomThemeSize(b, options.cssVars, 'border-width')
+  if (a in directionMap && themeSize)
+    return directionMap[a].map(i => [`border${i}-width`, themeSize])
 }
 
 function handlerBorderColorOrSize([, a = '', b]: string[], ctx: RuleContext<Theme>, options: ResolvedWemeUIOptions): CSSEntries | (CSSValueInput | string)[] | undefined {
   if (a in directionMap) {
-    if (isSize(b))
-      return handlerBorderSize(['', a, b], ctx)
+    const themeSize = parseCustomThemeSize(b, options.cssVars, 'border-width')
+    if (isSize(b) || themeSize)
+      return handlerBorderSize(['', a, b], ctx, options)
 
     const bracketColor = h.bracketOfColor(b, ctx.theme)
     b = bracketColor ?? b

@@ -8,6 +8,16 @@ const options = resolveOptions({ cssVars })
 const rules = borders(options)
 
 describe('border color rules', () => {
+  it('resolves theme colors', () => {
+    expectUtilities(rules, {
+      'border-blue-9': { 'border-color': 'var(--blue-9)' },
+      'border-t-blue-9': {
+        'border-top-color': 'var(--blue-9)',
+        '--un-border-top-opacity': 'var(--un-border-opacity)',
+      },
+    })
+  })
+
   it('resolves custom theme tokens', () => {
     expectUtilities(rules, {
       'border-foreground-base': { 'border-color': 'var(--foreground-base)' },
@@ -22,7 +32,15 @@ describe('border color rules', () => {
   })
 
   it('resolves custom css vars through the border-color fuzzy map', () => {
-    expectUtilities(rules, {
+    const colorOnly = borders(resolveOptions({
+      cssVars: {
+        card: {
+          border: 'border.base',
+        },
+      },
+    }))
+
+    expectUtilities(colorOnly, {
       'border-card': { 'border-color': 'var(--card-border)' },
       'border-card/40': {
         'border-color': 'color-mix(in oklab, var(--card-border) 40%, transparent)',
@@ -37,7 +55,6 @@ describe('border color rules', () => {
   it('prefers theme colors and tokens over overlapping css vars', () => {
     const withOverlap = borders(resolveOptions({
       cssVars: {
-        ...cssVars,
         'blue-9': {
           border: 'border.base',
         },
@@ -56,5 +73,16 @@ describe('border color rules', () => {
   it('rejects unmatched border colors', () => {
     expect(matchRule(rules, 'border-panel')).toBeUndefined()
     expect(matchRule(rules, 'border-t-panel')).toBeUndefined()
+  })
+})
+
+describe('border size rules', () => {
+  it('resolves custom css vars through the size fuzzy map', () => {
+    expectUtilities(rules, {
+      'border-card': { 'border-width': 'var(--card-border-width)' },
+      'border-width-card': { 'border-width': 'var(--card-border-width)' },
+      'border-t-card': { 'border-top-width': 'var(--card-border-width)' },
+      'border-x-card': { 'border-inline-width': 'var(--card-border-width)' },
+    })
   })
 })

@@ -28,7 +28,7 @@ pnpm dlx @weme-ui/weme-ui init
 ### 添加组件
 
 ```bash
-pnpm dlx @weme-ui/weme-ui add slim/button
+pnpm dlx @weme-ui/weme-ui add weme-ui/slim/button
 ```
 
 ## 许可证

@@ -4,11 +4,9 @@
     "rootDir": ".",
     "module": "ESNext",
     "moduleResolution": "Bundler",
-    "paths": {
-      "~/*": ["./src/*"]
-    },
     "resolveJsonModule": true,
     "types": [
+      "node",
       "vitest"
     ],
     "allowJs": true,

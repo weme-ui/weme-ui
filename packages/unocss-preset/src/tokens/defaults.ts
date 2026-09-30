@@ -6,6 +6,7 @@ import type { CustomThemeColorAlias, CustomThemeTokens } from './types'
  * @category Tokens
  */
 export const DEFAULT_NAME = 'default'
+
 /**
  * 默认主题颜色
  *

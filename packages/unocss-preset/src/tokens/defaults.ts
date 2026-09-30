@@ -140,25 +140,27 @@ export const CUSTOM_CSSVAR_FUZZY_MAP = {
    * 宽度变量映射
    *
    * - **Priority**:
-   *   - `width` > `w` > `size`
+   *   - `width` > `w` > `size` > `max-width` > `max-w` > `min-width` > `min-w`
    * - **Examples**:
    *   - `width-card` -> `width: var(--card-width)`
    *   - `width-card` -> `width: var(--card-w)`
    *   - `width-card` -> `width: var(--card-size)`
+   *   - `width-card` -> `width: var(--card-max-width)`
    */
-  'width': ['width', 'w', 'max-width', 'max-w', 'min-width', 'min-w', 'size'],
+  'width': ['width', 'w', 'size', 'max-width', 'max-w', 'min-width', 'min-w'],
 
   /**
    * 高度变量映射
    *
    * - **Priority**:
-   *   - `height` > `h` > `size`
+   *   - `height` > `h` > `size` > `max-height` > `max-h` > `min-height` > `min-h`
    * - **Examples**:
    *   - `height-card` -> `height: var(--card-height)`
    *   - `height-card` -> `height: var(--card-h)`
    *   - `height-card` -> `height: var(--card-size)`
+   *   - `height-card` -> `height: var(--card-max-height)`
    */
-  'height': ['height', 'h', 'max-height', 'max-h', 'min-height', 'min-h', 'size'],
+  'height': ['height', 'h', 'size', 'max-height', 'max-h', 'min-height', 'min-h'],
 
   /**
    * 内边距变量映射

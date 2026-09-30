@@ -300,6 +300,7 @@ describe('parseCustomThemeColorCssVar', () => {
     })).toEqual({
       name: 'card',
       keys: ['card', 'color'],
+      alpha: undefined,
     })
 
     expect(parseCustomThemeColorCssVar('color', 'card', {
@@ -308,6 +309,7 @@ describe('parseCustomThemeColorCssVar', () => {
     })).toEqual({
       name: 'card',
       keys: ['card', 'text'],
+      alpha: undefined,
     })
   })
 
@@ -390,15 +392,22 @@ describe('parseCustomThemeSize', () => {
 
   it('prefers the first matching css var key when multiple size suffixes exist', () => {
     expect(parseCustomThemeSize('card', {
+      'card-width': '15rem',
+      'card-max-width': '20rem',
+      'card-min-width': '10rem',
+    }, 'width')).toBe('var(--card-width)')
+
+    expect(parseCustomThemeSize('card', {
+      'card-max-width': '20rem',
+      'card-min-width': '10rem',
+      'card-width': '15rem',
+    }, 'width')).toBe('var(--card-max-width)')
+
+    expect(parseCustomThemeSize('card', {
       'card-border-width': '2px',
       'card-width': '15rem',
       'card-height': '10rem',
     })).toBe('var(--card-border-width)')
-
-    expect(parseCustomThemeSize('card', {
-      'card-width': '15rem',
-      'card-border-width': '2px',
-    })).toBe('var(--card-width)')
   })
 
   it('ignores alpha and still resolves the size variable', () => {

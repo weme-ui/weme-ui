@@ -10,6 +10,7 @@ import {
   isRawColor,
   parseColorAlias,
   parseCustomThemeColorCssVar,
+  parseCustomThemeSize,
   parseCustomThemeToken,
   splitCustomThemeTokenKey,
 } from '~/tokens'
@@ -236,7 +237,7 @@ describe('parseCustomThemeToken', () => {
   })
 })
 
-describe('parseCustomCssVar', () => {
+describe('parseCustomThemeColorCssVar', () => {
   it('rejects a css variable or invalid alpha before any match', () => {
     const cssVars = { 'card-text': 'foreground.base' }
 
@@ -355,7 +356,63 @@ describe('generateColorAliasCssVar', () => {
   })
 })
 
-describe('customThemeCSSGenerator', () => {
+describe('parseCustomThemeSize', () => {
+  it('rejects a css variable or invalid alpha before matching', () => {
+    expect(parseCustomThemeSize('var(--card-border-width)', { 'card-border-width': '2px' })).toBeUndefined()
+    expect(parseCustomThemeSize('card/foo', { 'card-border-width': '2px' })).toBeUndefined()
+    expect(parseCustomThemeSize('card/101', { 'card-border-width': '2px' })).toBeUndefined()
+  })
+
+  it('resolves size keys across the default width fuzzy maps', () => {
+    expect(parseCustomThemeSize('card', { 'card-border-width': '2px' })).toBe('var(--card-border-width)')
+    expect(parseCustomThemeSize('card', { 'card-width': '15rem' })).toBe('var(--card-width)')
+    expect(parseCustomThemeSize('card', { 'card-w': '50%' })).toBe('var(--card-w)')
+    expect(parseCustomThemeSize('card', { 'card-height': '10rem' })).toBe('var(--card-height)')
+    expect(parseCustomThemeSize('card', { 'card-padding': '2rem' })).toBe('var(--card-padding)')
+    expect(parseCustomThemeSize('card', { 'card-margin': '1rem' })).toBe('var(--card-margin)')
+  })
+
+  it('restricts matching when a fuzzy map key is provided', () => {
+    expect(parseCustomThemeSize('card', {
+      'card-width': '15rem',
+      'card-border-width': '2px',
+    }, 'border-width')).toBe('var(--card-border-width)')
+
+    expect(parseCustomThemeSize('card', {
+      'card-border-width': '2px',
+      'card-width': '15rem',
+    }, 'width')).toBe('var(--card-width)')
+
+    expect(parseCustomThemeSize('card', {
+      'card-width': '15rem',
+    }, 'border-width')).toBeUndefined()
+  })
+
+  it('prefers the first matching css var key when multiple size suffixes exist', () => {
+    expect(parseCustomThemeSize('card', {
+      'card-border-width': '2px',
+      'card-width': '15rem',
+      'card-height': '10rem',
+    })).toBe('var(--card-border-width)')
+
+    expect(parseCustomThemeSize('card', {
+      'card-width': '15rem',
+      'card-border-width': '2px',
+    })).toBe('var(--card-width)')
+  })
+
+  it('ignores alpha and still resolves the size variable', () => {
+    expect(parseCustomThemeSize('card/40', { 'card-border-width': '2px' })).toBe('var(--card-border-width)')
+  })
+
+  it('returns undefined when no size key exists', () => {
+    expect(parseCustomThemeSize('card', {})).toBeUndefined()
+    expect(parseCustomThemeSize('card', { 'card-text': 'foreground.base' })).toBeUndefined()
+    expect(parseCustomThemeSize('panel', { 'card-border-width': '2px' })).toBeUndefined()
+  })
+})
+
+describe('customThemeColorCSSGenerator', () => {
   beforeEach(() => {
     trackedProperties.clear()
   })
@@ -413,7 +470,7 @@ describe('customThemeCSSGenerator', () => {
     expect(result).toHaveLength(3)
   })
 
-  it('adds a color-mix fallback for shadow-like properties without alpha', () => {
+  it('treats shadow-like properties the same as other colors without alpha', () => {
     for (const property of ['shadow-color', 'inset-shadow-color', 'text-shadow-color', 'drop-shadow-color'] as const) {
       trackedProperties.clear()
 
@@ -426,17 +483,12 @@ describe('customThemeCSSGenerator', () => {
       const varName = property.replace(/-color/g, '')
 
       expect(result?.[0]).toEqual({ [property]: 'var(--foreground-base)' })
-      expect(result).toHaveLength(3)
-      expect(result?.[2]).toMatchObject({
-        [symbols.parent]: '@supports (color: color-mix(in lab, red, red))',
-        [symbols.noMerge]: true,
-        [property]: `color-mix(in oklab, var(--foreground-base) var(--un-${varName}-opacity), transparent)`,
-      })
+      expect(result).toHaveLength(2)
       expect(trackedProperties.get(`--un-${varName}-opacity`)).toBe('100%')
     }
   })
 
-  it('nests a positive alpha inside the shadow fallback', () => {
+  it('mixes a positive alpha for shadow-like properties without nested opacity', () => {
     const result = customThemeColorCSSGenerator({
       name: 'foreground-base',
       keys: ['foreground', 'base'],
@@ -447,12 +499,12 @@ describe('customThemeCSSGenerator', () => {
       'shadow-color': 'color-mix(in oklab, var(--foreground-base) 40%, transparent)',
     })
     expect(result?.[2]).toMatchObject({
-      'shadow-color': 'color-mix(in oklab, color-mix(in oklab, var(--foreground-base) 40%, transparent) var(--un-shadow-opacity), transparent)',
+      'shadow-color': 'color-mix(in oklab, var(--foreground-base) 40%, transparent)',
     })
   })
 })
 
-describe('customThemeCssVarResolver', () => {
+describe('customThemeColorResolver', () => {
   beforeEach(() => {
     trackedProperties.clear()
   })
@@ -487,7 +539,7 @@ describe('customThemeCssVarResolver', () => {
     expect(result).toHaveLength(3)
   })
 
-  it('falls through to parseCustomCssVar when the theme token has no keys', () => {
+  it('falls through to parseCustomThemeColorCssVar when the theme token has no keys', () => {
     const result = customThemeColorResolver('color', 'color')('card/40', {
       'card-text': 'foreground.base',
     })
@@ -977,7 +1029,7 @@ describe('successful results snapshots', () => {
     `)
   })
 
-  it('parseCustomCssVar', () => {
+  it('parseCustomThemeColorCssVar', () => {
     const results: Record<string, ReturnType<typeof parseCustomThemeColorCssVar>> = {}
 
     for (const [property, suffixes] of Object.entries(CUSTOM_CSSVAR_FUZZY_MAP) as [FuzzyMapKey, string[]][]) {
@@ -1218,6 +1270,78 @@ describe('successful results snapshots', () => {
           ],
           "name": "card",
         },
+        "height:card-max-h": {
+          "alpha": undefined,
+          "keys": [
+            "card",
+            "max",
+            "h",
+          ],
+          "name": "card",
+        },
+        "height:card-max-h/50": {
+          "alpha": 50,
+          "keys": [
+            "card",
+            "max",
+            "h",
+          ],
+          "name": "card",
+        },
+        "height:card-max-height": {
+          "alpha": undefined,
+          "keys": [
+            "card",
+            "max",
+            "height",
+          ],
+          "name": "card",
+        },
+        "height:card-max-height/50": {
+          "alpha": 50,
+          "keys": [
+            "card",
+            "max",
+            "height",
+          ],
+          "name": "card",
+        },
+        "height:card-min-h": {
+          "alpha": undefined,
+          "keys": [
+            "card",
+            "min",
+            "h",
+          ],
+          "name": "card",
+        },
+        "height:card-min-h/50": {
+          "alpha": 50,
+          "keys": [
+            "card",
+            "min",
+            "h",
+          ],
+          "name": "card",
+        },
+        "height:card-min-height": {
+          "alpha": undefined,
+          "keys": [
+            "card",
+            "min",
+            "height",
+          ],
+          "name": "card",
+        },
+        "height:card-min-height/50": {
+          "alpha": 50,
+          "keys": [
+            "card",
+            "min",
+            "height",
+          ],
+          "name": "card",
+        },
         "height:card-size": {
           "alpha": undefined,
           "keys": [
@@ -1327,6 +1451,78 @@ describe('successful results snapshots', () => {
           "keys": [
             "card",
             "space",
+          ],
+          "name": "card",
+        },
+        "width:card-max-w": {
+          "alpha": undefined,
+          "keys": [
+            "card",
+            "max",
+            "w",
+          ],
+          "name": "card",
+        },
+        "width:card-max-w/50": {
+          "alpha": 50,
+          "keys": [
+            "card",
+            "max",
+            "w",
+          ],
+          "name": "card",
+        },
+        "width:card-max-width": {
+          "alpha": undefined,
+          "keys": [
+            "card",
+            "max",
+            "width",
+          ],
+          "name": "card",
+        },
+        "width:card-max-width/50": {
+          "alpha": 50,
+          "keys": [
+            "card",
+            "max",
+            "width",
+          ],
+          "name": "card",
+        },
+        "width:card-min-w": {
+          "alpha": undefined,
+          "keys": [
+            "card",
+            "min",
+            "w",
+          ],
+          "name": "card",
+        },
+        "width:card-min-w/50": {
+          "alpha": 50,
+          "keys": [
+            "card",
+            "min",
+            "w",
+          ],
+          "name": "card",
+        },
+        "width:card-min-width": {
+          "alpha": undefined,
+          "keys": [
+            "card",
+            "min",
+            "width",
+          ],
+          "name": "card",
+        },
+        "width:card-min-width/50": {
+          "alpha": 50,
+          "keys": [
+            "card",
+            "min",
+            "width",
           ],
           "name": "card",
         },
@@ -1608,7 +1804,7 @@ describe('successful results snapshots', () => {
     `)
   })
 
-  it('customThemeCSSGenerator', () => {
+  it('customThemeColorCSSGenerator', () => {
     trackedProperties.clear()
 
     const cases: [string, { name: string, keys: string[], alpha: number | undefined }][] = [
@@ -1728,11 +1924,6 @@ describe('successful results snapshots', () => {
             "initial-value": "100%",
             "syntax": ""<percentage>"",
           },
-          {
-            "$$symbol-no-merge": true,
-            "$$symbol-parent": "@supports (color: color-mix(in lab, red, red))",
-            "shadow-color": "color-mix(in oklab, var(--foreground-base) var(--un-shadow-opacity), transparent)",
-          },
         ],
         "shadow-color:foreground-base/40": [
           {
@@ -1750,14 +1941,14 @@ describe('successful results snapshots', () => {
           {
             "$$symbol-no-merge": true,
             "$$symbol-parent": "@supports (color: color-mix(in lab, red, red))",
-            "shadow-color": "color-mix(in oklab, color-mix(in oklab, var(--foreground-base) 40%, transparent) var(--un-shadow-opacity), transparent)",
+            "shadow-color": "color-mix(in oklab, var(--foreground-base) 40%, transparent)",
           },
         ],
       }
     `)
   })
 
-  it('customThemeCssVarResolver', () => {
+  it('customThemeColorResolver', () => {
     trackedProperties.clear()
 
     const resolveColor = customThemeColorResolver('color', 'color')

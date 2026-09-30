@@ -228,7 +228,6 @@ export function customThemeColorCSSGenerator(
   const varName = property.replace(/-color/g, '')
   const alphaKey = `--un-${varName}-opacity`
   const percentage = alpha === undefined ? undefined : `${alpha}%`
-  const shadowLike = ['shadow', 'inset-shadow', 'text-shadow', 'drop-shadow'].includes(varName)
 
   css[property] = percentage === undefined
     ? value
@@ -236,11 +235,9 @@ export function customThemeColorCSSGenerator(
 
   result.push(defineProperty(alphaKey, { syntax: '<percentage>', initialValue: '100%' }))
 
-  const colorValue = shadowLike
-    ? `${percentage === undefined ? value : `color-mix(in oklab, ${value} ${percentage}, transparent)`} var(${alphaKey})`
-    : `${value} ${percentage ?? `var(${alphaKey})`}`
+  const colorValue = `${value} ${percentage ?? `var(${alphaKey})`}`
 
-  if (shadowLike || percentage !== undefined) {
+  if (percentage !== undefined) {
     result.push({
       [symbols.parent]: '@supports (color: color-mix(in lab, red, red))',
       [symbols.noMerge]: true,

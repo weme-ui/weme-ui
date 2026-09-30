@@ -2,13 +2,13 @@ import type { CSSValueInput, Rule, RuleContext } from '@unocss/core'
 import type { ResolvedWemeUIOptions } from '../options'
 import type { Theme } from '../theme'
 import { symbols } from '@unocss/core'
-import { customThemeColorResolver } from '../tokens'
+import { customThemeColorResolver, parseCustomThemeSize } from '../tokens'
 import { colorResolver, defineProperty, globalKeywords, h, isSize, makeGlobalStaticRules } from '../utils'
 
 export function outline(options: ResolvedWemeUIOptions): Rule<Theme>[] {
   return [
     // size
-    [/^outline-(?:width-|size-)?(.+)$/, handleWidth, { autocomplete: 'outline-(width|size)-<num>' }],
+    [/^outline-(?:width-|size-)?(.+)$/, (match, ctx) => handleWidth(match, ctx, options), { autocomplete: 'outline-(width|size)-<num>' }],
 
     // color
     [/^outline-(?:color-)?(.+)$/, (match, ctx) => handleColorOrWidth(match, ctx, options), { autocomplete: 'outline-$colors' }],
@@ -39,12 +39,17 @@ export function outline(options: ResolvedWemeUIOptions): Rule<Theme>[] {
   ]
 }
 
-function* handleWidth([, b]: string[], { theme }: RuleContext<Theme>): Generator<CSSValueInput | undefined> {
+function* handleWidth(
+  [, b]: string[],
+  { theme }: RuleContext<Theme>,
+  options: ResolvedWemeUIOptions,
+): Generator<CSSValueInput | undefined> {
   const v = h.bracket.cssvar.global.px(b, theme)
-  if (v != null) {
+  const themeSize = parseCustomThemeSize(b, options.cssVars, 'border-width')
+  if (v != null || themeSize) {
     yield {
       'outline-style': 'var(--un-outline-style)',
-      'outline-width': v,
+      'outline-width': v ?? themeSize,
     }
     yield defineProperty('--un-outline-style', { initialValue: 'solid' })
   }
@@ -56,7 +61,7 @@ function* handleColorOrWidth(
   options: ResolvedWemeUIOptions,
 ): Generator<CSSValueInput | string | undefined> {
   if (isSize(match[1])) {
-    yield* handleWidth(match, ctx)
+    yield* handleWidth(match, ctx, options)
   }
   else {
     yield* handleColor('outline-color', 'outline', 'border-color', match, ctx, options)

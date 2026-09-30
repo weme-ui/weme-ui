@@ -1,26 +1,55 @@
 /* eslint-disable regexp/no-empty-group */
 /* eslint-disable regexp/no-empty-capturing-group */
-import type { Rule, RuleContext, VariantHandler } from '@unocss/core'
+import type { CSSEntries, Rule, RuleContext, VariantHandler } from '@unocss/core'
+import type { ResolvedWemeUIOptions } from '../options'
 import type { Theme } from '../theme'
+import { parseCustomThemeSize } from '../tokens'
 import { defineProperty, directionMap, directionSize, h, numberResolver, themeTracking } from '../utils'
 
-export const paddings: Rule<Theme>[] = [
-  [/^pa?()-?(.+)$/, directionSize('padding'), { autocomplete: ['(m|p)<num>', '(m|p)-<num>'] }],
-  [/^p-?xy()()$/, directionSize('padding'), { autocomplete: '(m|p)-(xy)' }],
-  [/^p-?([xy])(?:-?(.+))?$/, directionSize('padding')],
-  [/^p-?([rltbse])(?:-?(.+))?$/, directionSize('padding'), { autocomplete: '(m|p)<directions>-<num>' }],
-  [/^p-(block|inline)(?:-(.+))?$/, directionSize('padding'), { autocomplete: '(m|p)-(block|inline)-<num>' }],
-  [/^p-?([bi][se])(?:-?(.+))?$/, directionSize('padding'), { autocomplete: '(m|p)-(bs|be|is|ie)-<num>' }],
-]
+export function paddings(options: ResolvedWemeUIOptions): Rule<Theme>[] {
+  return [
+    [/^pa?()-?(.+)$/, handleDirectionSize('padding', options), { autocomplete: ['(m|p)<num>', '(m|p)-<num>'] }],
+    [/^p-?xy()()$/, handleDirectionSize('padding', options), { autocomplete: '(m|p)-(xy)' }],
+    [/^p-?([xy])(?:-?(.+))?$/, handleDirectionSize('padding', options)],
+    [/^p-?([rltbse])(?:-?(.+))?$/, handleDirectionSize('padding', options), { autocomplete: '(m|p)<directions>-<num>' }],
+    [/^p-(block|inline)(?:-(.+))?$/, handleDirectionSize('padding', options), { autocomplete: '(m|p)-(block|inline)-<num>' }],
+    [/^p-?([bi][se])(?:-?(.+))?$/, handleDirectionSize('padding', options), { autocomplete: '(m|p)-(bs|be|is|ie)-<num>' }],
+  ]
+}
 
-export const margins: Rule<Theme>[] = [
-  [/^ma?()-?(.+)$/, directionSize('margin')],
-  [/^m-?xy()()$/, directionSize('margin')],
-  [/^m-?([xy])(?:-?(.+))?$/, directionSize('margin')],
-  [/^m-?([rltbse])(?:-?(.+))?$/, directionSize('margin')],
-  [/^m-(block|inline)(?:-(.+))?$/, directionSize('margin')],
-  [/^m-?([bi][se])(?:-?(.+))?$/, directionSize('margin')],
-]
+export function margins(options: ResolvedWemeUIOptions): Rule<Theme>[] {
+  return [
+    [/^ma?()-?(.+)$/, handleDirectionSize('margin', options)],
+    [/^m-?xy()()$/, handleDirectionSize('margin', options)],
+    [/^m-?([xy])(?:-?(.+))?$/, handleDirectionSize('margin', options)],
+    [/^m-?([rltbse])(?:-?(.+))?$/, handleDirectionSize('margin', options)],
+    [/^m-(block|inline)(?:-(.+))?$/, handleDirectionSize('margin', options)],
+    [/^m-?([bi][se])(?:-?(.+))?$/, handleDirectionSize('margin', options)],
+  ]
+}
+
+function handleDirectionSize(
+  property: 'padding' | 'margin',
+  options: ResolvedWemeUIOptions,
+  map: Record<string, string[]> = directionMap,
+  formatter: (p: string, d: string) => string = (p, d) => `${p}${d}`,
+) {
+  return (match: RegExpMatchArray, ctx: RuleContext<Theme>): CSSEntries | undefined => {
+    const dynamic = directionSize(property)(match, ctx)
+    if (dynamic) {
+      return dynamic as CSSEntries
+    }
+
+    const [, direction, size] = match
+    if (size != null && direction != null) {
+      const v = parseCustomThemeSize(size, options.cssVars, property)
+
+      if (v !== undefined) {
+        return map[direction].map(i => [formatter(property, i), v])
+      }
+    }
+  }
+}
 
 export const spaces: Rule<Theme>[] = [
   [/^space-([xy])-(.+)$/, handlerSpace, { autocomplete: ['space-(x|y)', 'space-(x|y)-reverse', 'space-(x|y)-$spacing'] }],

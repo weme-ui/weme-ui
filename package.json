@@ -22,8 +22,9 @@
       "@antfu/eslint-config": "^9.0.0",
       "@commitlint/cli": "^21.0.2",
       "@commitlint/config-conventional": "^21.0.2",
-      "eslint-plugin-format": "^2.0.1",
       "@unocss/eslint-plugin": "^66.10.5",
+      "bumpp": "^12.3.0",
+      "eslint-plugin-format": "^2.0.1",
       "eslint": "^10.4.1",
       "lint-staged": "^17.0.7",
       "simple-git-hooks": "^2.13.1",
@@ -34,8 +35,6 @@
     "dev": {
       "@types/node": "^25.9.1",
       "@vitejs/plugin-vue": "^6.0.9",
-      "defu": "^6.1.7",
-      "type-fest": "^5.10.0",
       "unocss": "^66.10.5",
       "unplugin-auto-import": "^21.1.0",
       "unplugin-vue-components": "^32.1.0",
@@ -46,6 +45,9 @@
     },
     "utils": {
       "defu": "^6.1.7",
+      "premove": "^4.0.0",
+      "serve": "^14.2.6",
+      "type-fest": "^5.10.0",
       "zod": "^4.4.3"
     }
   },

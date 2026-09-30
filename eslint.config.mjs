@@ -10,5 +10,9 @@ export default antfu(
     rules: {
       'ts/no-redeclare': 'off',
     },
+    ignores: [
+      '**/*.schema.json',
+      'packages/schema/docs/**',
+    ],
   },
 )

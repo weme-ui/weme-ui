@@ -51,6 +51,7 @@
     "build:docs": "premove ./docs && jsonschema2md -d ./dist -x ../../ -o ./docs",
     "typecheck": "tsc --noEmit",
     "release": "bumpp",
+    "publish": "bun ../../scripts/publish.ts",
     "preview": "serve -l 3000"
   },
   "peerDependencies": {

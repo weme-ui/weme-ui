@@ -2,17 +2,9 @@
   "$schema": "https://turborepo.dev/schema.json",
   "extends": ["//"],
   "tasks": {
-    "build": {
-      "dependsOn": ["^build"],
-      "outputs": ["dist/**"]
-    },
-    "build:output": {
-      "dependsOn": ["build"],
-      "outputs": ["dist/**"]
-    },
-    "build:docs": {
-      "dependsOn": ["build:output"],
-      "outputs": ["docs/**"]
+    "publish": {
+      "dependsOn": ["build", "build:output", "^publish"],
+      "cache": false
     }
   }
 }

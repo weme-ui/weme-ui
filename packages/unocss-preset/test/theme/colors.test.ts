@@ -68,7 +68,7 @@ describe('colors', () => {
 
     it('snapshots generated scales for each color source', () => {
       const themeColors = colors({
-        accent: { brand: '#3b82f6' },
+        accent: { brand: '#03f' },
         neutral: { mist: '#94a3b8' },
       })
 

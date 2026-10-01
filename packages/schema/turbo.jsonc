@@ -1,5 +1,6 @@
 {
   "$schema": "https://turborepo.dev/schema.json",
+  "extends": ["//"],
   "tasks": {
     "build": {
       "dependsOn": ["^build"],
@@ -12,22 +13,6 @@
     "build:docs": {
       "dependsOn": ["build:output"],
       "outputs": ["docs/**"]
-    },
-    "dev": {
-      "dependsOn": ["^build", "build"],
-      "cache": false,
-      "persistent": true
-    },
-    "watch": {
-      "cache": false,
-      "persistent": true
-    },
-    "typecheck": {
-      "cache": false
-    },
-    "test": {
-      "dependsOn": ["^typecheck"],
-      "cache": false
     }
   }
 }

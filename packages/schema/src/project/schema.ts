@@ -131,12 +131,14 @@ export const ProjectConfigSchema = z.object({
    *
    * @default CONFIG_SCHEMA_URL
    */
-  $schema: TrimmedURLString.default(CONFIG_SCHEMA_URL).meta({
-    title: 'Schema',
-    description:
+  $schema: TrimmedURLString
+    .default(CONFIG_SCHEMA_URL)
+    .meta({
+      title: 'Schema',
+      description:
       'URL of the JSON Schema used to validate this project config. Editors and tooling use it for autocomplete and validation.',
-    examples: [CONFIG_SCHEMA_URL],
-  }),
+      examples: [CONFIG_SCHEMA_URL],
+    }),
 
   /**
    * 路径配置

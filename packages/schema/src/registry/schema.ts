@@ -176,6 +176,34 @@ export const RegistryConfigSchema = z.object({
   access: RegistryAccessEnum.optional(),
 
   /**
+   * 默认 NPM 依赖项，以当前 registry 初始化项目时，会自动安装这些依赖项
+   *
+   * @optional
+   */
+  dependencies: z.array(NonEmptyTrimmedString.lowercase())
+    .optional()
+    .meta({
+      title: 'Dependencies',
+      description:
+        'Default runtime NPM packages installed into a consumer project when this registry is initialized. Unlike item-level dependencies, these apply once for the whole registry. Entries may include a version range or tag, e.g. "vue^3.4.0" or "lodash@latest".',
+      examples: ['vue^3.4.0', 'class-variance-authority@latest'],
+    }),
+
+  /**
+   * 默认 NPM 开发依赖项，以当前 registry 初始化项目时，会自动安装这些依赖项
+   *
+   * @optional
+   */
+  devDependencies: z.array(NonEmptyTrimmedString.lowercase())
+    .optional()
+    .meta({
+      title: 'Dev dependencies',
+      description:
+        'Default development-only NPM packages installed into a consumer project when this registry is initialized. Use for tooling shared across the registry (e.g. test helpers), not for packages required at application runtime. Entries may include a version range or tag.',
+      examples: ['vitest^2.0.0', '@vue/test-utils@latest'],
+    }),
+
+  /**
    * 注册项清单
    */
   items: z.array(RegistryItemSchema)

@@ -18,12 +18,14 @@ export const RegistryManifestSchema = z.object({
    *
    * @default MANIFEST_SCHEMA_URL
    */
-  $schema: TrimmedURLString.default(MANIFEST_SCHEMA_URL).meta({
-    title: 'Schema',
-    description:
+  $schema: TrimmedURLString
+    .default(MANIFEST_SCHEMA_URL)
+    .meta({
+      title: 'Schema',
+      description:
       'URL of the JSON Schema used to validate this registry manifest. Editors and tooling use it for autocomplete and validation.',
-    examples: [MANIFEST_SCHEMA_URL],
-  }),
+      examples: [MANIFEST_SCHEMA_URL],
+    }),
 
   /**
    * 已注册的注册中心名称与目录路径的映射

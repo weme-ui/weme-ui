@@ -138,6 +138,8 @@ export const RegistryItemSchema = z.object({
 
   /**
    * 注册项显示名称
+   *
+   * @optional
    */
   title: NonEmptyTrimmedString
     .optional()
@@ -150,6 +152,8 @@ export const RegistryItemSchema = z.object({
 
   /**
    * 注册项描述
+   *
+   * @optional
    */
   description: NonEmptyTrimmedString
     .optional()
@@ -203,6 +207,8 @@ export const RegistryItemSchema = z.object({
 
   /**
    * 注册项待注入 CSS 变量，将注入至 UnoCSS Preset Options 中
+   *
+   * @optional
    */
   cssVars: CSSVariables
     .optional()
@@ -215,6 +221,8 @@ export const RegistryItemSchema = z.object({
 
   /**
    * 注册项 NPM 依赖项
+   *
+   * @optional
    */
   dependencies: z.array(NonEmptyTrimmedString.lowercase())
     .optional()
@@ -227,6 +235,8 @@ export const RegistryItemSchema = z.object({
 
   /**
    * 注册项 NPM 开发依赖项
+   *
+   * @optional
    */
   devDependencies: z.array(NonEmptyTrimmedString.lowercase())
     .optional()
@@ -239,6 +249,8 @@ export const RegistryItemSchema = z.object({
 
   /**
    * 注册项依赖的注册项
+   *
+   * @optional
    */
   registryDependencies: z.array(NonEmptyTrimmedString.lowercase())
     .optional()

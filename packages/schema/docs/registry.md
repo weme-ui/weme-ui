@@ -39,21 +39,23 @@ Configuration for a Weme UI registry. Declares identity, access, default install
 
 # Registry configuration Properties
 
-| Property                      | Type     | Required | Nullable       | Defined by                                                                                         |
-| :---------------------------- | :------- | :------- | :------------- | :------------------------------------------------------------------------------------------------- |
-| [$schema](#schema)            | `string` | Required | cannot be null | [Registry configuration](registry-properties-schema.md "undefined#/properties/$schema")            |
-| [name](#name)                 | `string` | Required | cannot be null | [Registry configuration](registry-properties-registry-name.md "undefined#/properties/name")        |
-| [description](#description)   | `string` | Optional | cannot be null | [Registry configuration](registry-properties-description.md "undefined#/properties/description")   |
-| [version](#version)           | `string` | Optional | cannot be null | [Registry configuration](registry-properties-version.md "undefined#/properties/version")           |
-| [homepage](#homepage)         | `string` | Optional | cannot be null | [Registry configuration](registry-properties-homepage.md "undefined#/properties/homepage")         |
-| [repository](#repository)     | `string` | Optional | cannot be null | [Registry configuration](registry-properties-repository.md "undefined#/properties/repository")     |
-| [issues](#issues)             | `string` | Optional | cannot be null | [Registry configuration](registry-properties-issues.md "undefined#/properties/issues")             |
-| [contributors](#contributors) | `array`  | Optional | cannot be null | [Registry configuration](registry-properties-contributors.md "undefined#/properties/contributors") |
-| [access](#access)             | `string` | Optional | cannot be null | [Registry configuration](registry-properties-access.md "undefined#/properties/access")             |
-| [items](#items)               | `array`  | Required | cannot be null | [Registry configuration](registry-properties-items.md "undefined#/properties/items")               |
-| [meta](#meta)                 | `object` | Optional | cannot be null | [Registry configuration](registry-properties-metadata.md "undefined#/properties/meta")             |
-| [exclude](#exclude)           | `array`  | Optional | cannot be null | [Registry configuration](registry-properties-exclude.md "undefined#/properties/exclude")           |
-| [defaultPaths](#defaultpaths) | `object` | Optional | cannot be null | [Registry configuration](registry-properties-paths.md "undefined#/properties/defaultPaths")        |
+| Property                            | Type     | Required | Nullable       | Defined by                                                                                                |
+| :---------------------------------- | :------- | :------- | :------------- | :-------------------------------------------------------------------------------------------------------- |
+| [$schema](#schema)                  | `string` | Required | cannot be null | [Registry configuration](registry-properties-schema.md "undefined#/properties/$schema")                   |
+| [name](#name)                       | `string` | Required | cannot be null | [Registry configuration](registry-properties-registry-name.md "undefined#/properties/name")               |
+| [description](#description)         | `string` | Optional | cannot be null | [Registry configuration](registry-properties-description.md "undefined#/properties/description")          |
+| [version](#version)                 | `string` | Optional | cannot be null | [Registry configuration](registry-properties-version.md "undefined#/properties/version")                  |
+| [homepage](#homepage)               | `string` | Optional | cannot be null | [Registry configuration](registry-properties-homepage.md "undefined#/properties/homepage")                |
+| [repository](#repository)           | `string` | Optional | cannot be null | [Registry configuration](registry-properties-repository.md "undefined#/properties/repository")            |
+| [issues](#issues)                   | `string` | Optional | cannot be null | [Registry configuration](registry-properties-issues.md "undefined#/properties/issues")                    |
+| [contributors](#contributors)       | `array`  | Optional | cannot be null | [Registry configuration](registry-properties-contributors.md "undefined#/properties/contributors")        |
+| [access](#access)                   | `string` | Optional | cannot be null | [Registry configuration](registry-properties-access.md "undefined#/properties/access")                    |
+| [dependencies](#dependencies)       | `array`  | Optional | cannot be null | [Registry configuration](registry-properties-dependencies.md "undefined#/properties/dependencies")        |
+| [devDependencies](#devdependencies) | `array`  | Optional | cannot be null | [Registry configuration](registry-properties-dev-dependencies.md "undefined#/properties/devDependencies") |
+| [items](#items)                     | `array`  | Required | cannot be null | [Registry configuration](registry-properties-items.md "undefined#/properties/items")                      |
+| [meta](#meta)                       | `object` | Optional | cannot be null | [Registry configuration](registry-properties-metadata.md "undefined#/properties/meta")                    |
+| [exclude](#exclude)                 | `array`  | Optional | cannot be null | [Registry configuration](registry-properties-exclude.md "undefined#/properties/exclude")                  |
+| [defaultPaths](#defaultpaths)       | `object` | Optional | cannot be null | [Registry configuration](registry-properties-paths.md "undefined#/properties/defaultPaths")               |
 
 ## $schema
 
@@ -340,6 +342,62 @@ The default value is:
 
 ```json
 "private"
+```
+
+## dependencies
+
+Default runtime NPM packages installed into a consumer project when this registry is initialized. Unlike item-level dependencies, these apply once for the whole registry. Entries may include a version range or tag, e.g. "vue^3.4.0" or "lodash\@latest".
+
+`dependencies`
+
+* is optional
+
+* Type: `string[]`
+
+* cannot be null
+
+* defined in: [Registry configuration](registry-properties-dependencies.md "undefined#/properties/dependencies")
+
+### dependencies Type
+
+`string[]`
+
+### dependencies Examples
+
+```json
+"vue^3.4.0"
+```
+
+```json
+"class-variance-authority@latest"
+```
+
+## devDependencies
+
+Default development-only NPM packages installed into a consumer project when this registry is initialized. Use for tooling shared across the registry (e.g. test helpers), not for packages required at application runtime. Entries may include a version range or tag.
+
+`devDependencies`
+
+* is optional
+
+* Type: `string[]`
+
+* cannot be null
+
+* defined in: [Registry configuration](registry-properties-dev-dependencies.md "undefined#/properties/devDependencies")
+
+### devDependencies Type
+
+`string[]`
+
+### devDependencies Examples
+
+```json
+"vitest^2.0.0"
+```
+
+```json
+"@vue/test-utils@latest"
 ```
 
 ## items

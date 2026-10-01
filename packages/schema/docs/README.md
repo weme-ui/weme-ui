@@ -50,7 +50,11 @@
 
 * [Contributors](./registry-properties-contributors.md "A list of people who have contributed to this registry") – `undefined#/properties/contributors`
 
+* [Dependencies](./registry-properties-dependencies.md "Default runtime NPM packages installed into a consumer project when this registry is initialized") – `undefined#/properties/dependencies`
+
 * [Dependencies](./registry-properties-items-registry-item-properties-dependencies.md "NPM packages required at runtime by this item") – `undefined#/properties/items/items/properties/dependencies`
+
+* [Dev dependencies](./registry-properties-dev-dependencies.md "Default development-only NPM packages installed into a consumer project when this registry is initialized") – `undefined#/properties/devDependencies`
 
 * [Dev dependencies](./registry-properties-items-registry-item-properties-dev-dependencies.md "NPM packages required only for developing or testing this item") – `undefined#/properties/items/items/properties/devDependencies`
 

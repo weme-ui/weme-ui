@@ -118,12 +118,14 @@ export const ProjectLockFileSchema = z.object({
    *
    * @default LOCKFILE_SCHEMA_URL
    */
-  $schema: TrimmedURLString.default(LOCKFILE_SCHEMA_URL).meta({
-    title: 'Schema',
-    description:
+  $schema: TrimmedURLString
+    .default(LOCKFILE_SCHEMA_URL)
+    .meta({
+      title: 'Schema',
+      description:
       'URL of the JSON Schema used to validate this project lock file. Editors and tooling use it for autocomplete and validation.',
-    examples: [LOCKFILE_SCHEMA_URL],
-  }),
+      examples: [LOCKFILE_SCHEMA_URL],
+    }),
 
   /**
    * 已添加的注册项目列表

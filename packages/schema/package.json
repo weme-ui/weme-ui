@@ -48,7 +48,7 @@
   "scripts": {
     "build": "tsdown",
     "build:output": "bun run scripts/build.ts",
-    "build:docs": "premove ./docs && jsonschema2md -d ./dist -x ../../ -o ./docs",
+    "build:docs": "premove ./docs && jsonschema2md -d ./dist -x ../../docs -o ./docs",
     "typecheck": "tsc --noEmit",
     "release": "bumpp",
     "publish": "bun ../../scripts/publish.ts",

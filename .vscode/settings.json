@@ -68,7 +68,7 @@
   },
 
   "explorer.fileNesting.patterns": {
-    "package.json": "*.schema.json,.editorconfig,bun.*,eslint.config.*,commitlint.config.*,turbo.*"
+    "config.schema.json": "*.schema.json"
   },
 
   // For Tailwind CSS, we can ignore unknown at-rules like @tailwind and @apply.

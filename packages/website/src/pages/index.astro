@@ -1,0 +1,23 @@
+---
+import DocsLayout from '../layouts/DocsLayout.astro'
+import { getLibraries } from '../lib/registry'
+
+const libraries = getLibraries()
+---
+
+<DocsLayout
+  title="Weme UI Registries"
+  description="Registry 驱动的组件文档站。组件源码、文档与示例共存于 registry。"
+>
+  {libraries.map(library => (
+    <a class="library-card" href={library.href}>
+      <strong>{library.name}</strong>
+      {library.description && <p>{library.description}</p>}
+      {library.version && <small>v{library.version}</small>}
+    </a>
+  ))}
+
+  {libraries.length === 0 && (
+    <p>暂无可用 registry。</p>
+  )}
+</DocsLayout>

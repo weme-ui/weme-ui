@@ -1,0 +1,43 @@
+{
+  "name": "@weme-ui/website",
+  "type": "module",
+  "version": "0.0.0",
+  "private": true,
+  "packageManager": "bun@1.4.2",
+  "description": "Astro documentation website for Weme UI registries.",
+  "author": "Allen Luo <luoyi@mouji.net>",
+  "license": "MIT",
+  "homepage": "https://mouji.net/weme-ui",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/weme-ui/weme-ui.git",
+    "directory": "packages/website"
+  },
+  "bugs": {
+    "url": "https://github.com/weme-ui/weme-ui/issues"
+  },
+  "engines": {
+    "node": ">=22.14.0",
+    "bun": ">=1.3.12"
+  },
+  "scripts": {
+    "dev": "astro dev",
+    "build:docs": "astro build",
+    "preview": "astro preview",
+    "typecheck": "astro check"
+  },
+  "dependencies": {
+    "@astrojs/check": "^0.9.10",
+    "@astrojs/vue": "^7.0.3",
+    "@unocss/astro": "^66.10.5",
+    "@weme-ui/unocss-preset": "workspace:*",
+    "astro": "^7.3.5",
+    "marked": "^18.0.14",
+    "unocss": "catalog:dev",
+    "vue": "catalog:dev"
+  },
+  "devDependencies": {
+    "@types/node": "catalog:dev",
+    "typescript": "catalog:build"
+  }
+}

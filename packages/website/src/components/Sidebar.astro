@@ -1,0 +1,96 @@
+---
+import type { ComponentTreeSection, DocNavItem } from '../lib/registry'
+
+interface Props {
+  docs?: DocNavItem[]
+  tree?: ComponentTreeSection[]
+  currentPath: string
+}
+
+const { docs = [], tree = [], currentPath } = Astro.props
+
+function isActive(href: string) {
+  const normalizedCurrent = currentPath.replace(/\/$/, '') || '/'
+  const normalizedHref = href.replace(/\/$/, '') || '/'
+  return normalizedCurrent === normalizedHref
+}
+---
+
+<div class="docs-nav">
+  <label class="docs-nav-search">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="2" />
+      <path d="M20 20l-3.5-3.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+    </svg>
+    <input
+      type="search"
+      placeholder="搜索…"
+      data-docs-search
+      autocomplete="off"
+      spellcheck="false"
+    />
+  </label>
+
+  {docs.length > 0 && (
+    <section class="docs-nav-section" data-nav-section>
+      <div class="nav-section-title">Docs</div>
+      {docs.map(item => (
+        <a
+          class="nav-link"
+          href={item.href}
+          data-nav-item
+          data-nav-label={item.title}
+          aria-current={isActive(item.href) ? 'page' : undefined}
+        >
+          {item.title}
+        </a>
+      ))}
+    </section>
+  )}
+
+  {tree.map(section => (
+    <section class="docs-nav-section" data-nav-section>
+      <div class="nav-section-title">{section.label}</div>
+      {section.categories.map(category => (
+        <div class="docs-nav-category" data-nav-category>
+          <div class="nav-category">{category.label}</div>
+          {category.items.map(item => (
+            <a
+              class="nav-link"
+              href={item.href}
+              data-nav-item
+              data-nav-label={`${item.title} ${item.name}`}
+              aria-current={isActive(item.href) ? 'page' : undefined}
+            >
+              {item.title}
+            </a>
+          ))}
+        </div>
+      ))}
+    </section>
+  ))}
+</div>
+
+<script>
+  const input = document.querySelector<HTMLInputElement>('[data-docs-search]')
+  if (input) {
+    const filter = () => {
+      const query = input.value.trim().toLowerCase()
+      document.querySelectorAll<HTMLElement>('[data-nav-item]').forEach((link) => {
+        const label = (link.dataset.navLabel || link.textContent || '').toLowerCase()
+        link.hidden = query.length > 0 && !label.includes(query)
+      })
+      document.querySelectorAll<HTMLElement>('[data-nav-category]').forEach((category) => {
+        const visible = [...category.querySelectorAll<HTMLElement>('[data-nav-item]')]
+          .some(link => !link.hidden)
+        category.hidden = query.length > 0 && !visible
+      })
+      document.querySelectorAll<HTMLElement>('[data-nav-section]').forEach((section) => {
+        const visible = [...section.querySelectorAll<HTMLElement>('[data-nav-item]')]
+          .some(link => !link.hidden)
+        section.hidden = query.length > 0 && !visible
+      })
+    }
+    input.addEventListener('input', filter)
+  }
+</script>

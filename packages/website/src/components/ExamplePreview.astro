@@ -1,0 +1,24 @@
+---
+import ExampleHost from './ExampleHost.vue'
+
+interface Props {
+  title?: string
+  examplePath: string
+}
+
+const { title, examplePath } = Astro.props
+const shortPath = examplePath.split('/').slice(-2).join('/')
+---
+
+<section class="example-block">
+  {title && <h3>{title}</h3>}
+  <div class="example-frame">
+    <div class="example-frame-body">
+      <ExampleHost client:load examplePath={examplePath} />
+    </div>
+    <div class="example-frame-meta">
+      <span>{shortPath}</span>
+      <span>Live preview</span>
+    </div>
+  </div>
+</section>

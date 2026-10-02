@@ -1,0 +1,34 @@
+---
+interface NavLink {
+  title: string
+  href: string
+}
+
+interface Props {
+  prev?: NavLink | null
+  next?: NavLink | null
+}
+
+const { prev, next } = Astro.props
+---
+
+{(prev || next) && (
+  <nav class="docs-pager" aria-label="Page navigation">
+    {prev
+      ? (
+        <a class="docs-pager-link docs-pager-prev" href={prev.href}>
+          <span class="docs-pager-label">上一页</span>
+          <span class="docs-pager-title">{prev.title}</span>
+        </a>
+      )
+      : <span class="docs-pager-link docs-pager-placeholder" />}
+    {next
+      ? (
+        <a class="docs-pager-link docs-pager-next" href={next.href}>
+          <span class="docs-pager-label">下一页</span>
+          <span class="docs-pager-title">{next.title}</span>
+        </a>
+      )
+      : <span class="docs-pager-link docs-pager-placeholder" />}
+  </nav>
+)}

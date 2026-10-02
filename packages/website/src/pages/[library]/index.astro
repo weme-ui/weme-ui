@@ -1,0 +1,38 @@
+---
+import DocsLayout from '../../layouts/DocsLayout.astro'
+import { getLibraries, getLibrary, withBase } from '../../lib/registry'
+
+export function getStaticPaths() {
+  return getLibraries().map(library => ({
+    params: { library: library.id },
+  }))
+}
+
+const { library: libraryId } = Astro.params
+const library = getLibrary(libraryId!)
+
+if (!library) {
+  throw new Error(`Unknown library: ${libraryId}`)
+}
+---
+
+<DocsLayout
+  title={library.name}
+  description={library.description}
+  library={library.id}
+  docs={library.docs}
+  tree={library.tree}
+  breadcrumbs={[
+    { label: 'Home', href: withBase('/') },
+    { label: library.id },
+  ]}
+>
+  <p>从左侧选择文档或组件开始浏览。</p>
+  <ul>
+    {library.docs.map(doc => (
+      <li>
+        <a href={doc.href}>{doc.title}</a>
+      </li>
+    ))}
+  </ul>
+</DocsLayout>

@@ -1,0 +1,64 @@
+---
+import DocsLayout from '../../../layouts/DocsLayout.astro'
+import { extractToc, injectHeadingIds, renderMarkdown, stripLeadingH1 } from '../../../lib/markdown'
+import {
+  getAdjacentNav,
+  getLibraries,
+  getLibrary,
+  getLibraryDocPage,
+  getLibraryDocPages,
+  withBase,
+} from '../../../lib/registry'
+
+export function getStaticPaths() {
+  return getLibraries().flatMap((library) => {
+    const pages = getLibraryDocPages(library.id)
+    if (pages.length === 0) {
+      return [{
+        params: { library: library.id, slug: undefined },
+      }]
+    }
+
+    return pages.map(page => ({
+      params: {
+        library: library.id,
+        slug: page.slug.length > 0 ? page.slug.join('/') : undefined,
+      },
+    }))
+  })
+}
+
+const { library: libraryId, slug } = Astro.params
+const library = getLibrary(libraryId!)
+const slugParts = typeof slug === 'string' && slug.length > 0
+  ? slug.split('/')
+  : []
+const page = getLibraryDocPage(libraryId!, slugParts)
+
+if (!library || !page) {
+  throw new Error(`Unknown docs page: ${libraryId}/${slug || 'index'}`)
+}
+
+const body = stripLeadingH1(page.body)
+const toc = extractToc(body)
+const html = injectHeadingIds(renderMarkdown(body), toc)
+const adjacent = getAdjacentNav(library.id, page.href)
+---
+
+<DocsLayout
+  title={page.title}
+  library={library.id}
+  docs={library.docs}
+  tree={library.tree}
+  toc={toc}
+  breadcrumbs={[
+    { label: 'Home', href: withBase('/') },
+    { label: library.id, href: withBase(`/${library.id}/`) },
+    { label: 'Docs', href: withBase(`/${library.id}/docs/`) },
+    { label: page.title },
+  ]}
+  prev={adjacent.prev}
+  next={adjacent.next}
+>
+  <Fragment set:html={html} />
+</DocsLayout>

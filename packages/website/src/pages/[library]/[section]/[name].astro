@@ -1,0 +1,92 @@
+---
+import ExamplePreview from '../../../components/ExamplePreview.astro'
+import DocsLayout from '../../../layouts/DocsLayout.astro'
+import { extractToc, injectHeadingIds, renderMarkdown, stripLeadingH1 } from '../../../lib/markdown'
+import {
+  getAdjacentNav,
+  getAllItemPages,
+  getItemPage,
+  getLibrary,
+  withBase,
+} from '../../../lib/registry'
+
+export function getStaticPaths() {
+  return getAllItemPages().map(page => ({
+    params: {
+      library: page.library,
+      section: page.section,
+      name: page.name,
+    },
+  }))
+}
+
+const { library: libraryId, section, name } = Astro.params
+const library = getLibrary(libraryId!)
+const page = getItemPage(libraryId!, section!, name!)
+
+if (!library || !page) {
+  throw new Error(`Unknown item page: ${libraryId}/${section}/${name}`)
+}
+
+const readmeBody = page.readme ? stripLeadingH1(page.readme) : ''
+const toc = extractToc(readmeBody)
+const html = readmeBody
+  ? injectHeadingIds(renderMarkdown(readmeBody), toc)
+  : '<p>暂无 README。</p>'
+
+const adjacent = getAdjacentNav(library.id, page.href)
+const sectionLabel = section === 'composables'
+  ? 'Composables'
+  : section === 'utilities'
+    ? 'Utilities'
+    : 'Components'
+---
+
+<DocsLayout
+  title={page.title}
+  description={page.description}
+  library={library.id}
+  docs={library.docs}
+  tree={library.tree}
+  toc={[
+    ...(page.exampleModules.length > 0
+      ? [{ id: 'live-preview', text: 'Live Preview', level: 2 }]
+      : []),
+    ...toc,
+    ...(page.sourceFiles.length > 0
+      ? [{ id: 'files', text: 'Files', level: 2 }]
+      : []),
+  ]}
+  breadcrumbs={[
+    { label: 'Home', href: withBase('/') },
+    { label: library.id, href: withBase(`/${library.id}/`) },
+    { label: sectionLabel },
+    { label: page.title },
+  ]}
+  prev={adjacent.prev}
+  next={adjacent.next}
+>
+  {page.exampleModules.length > 0 && (
+    <section>
+      <h2 id="live-preview">Live Preview</h2>
+      {page.exampleModules.map(example => (
+        <ExamplePreview title={example.name} examplePath={example.path} />
+      ))}
+    </section>
+  )}
+
+  <Fragment set:html={html} />
+
+  {page.sourceFiles.length > 0 && (
+    <section>
+      <h2 id="files">Files</h2>
+      <ul>
+        {page.sourceFiles.map(file => (
+          <li>
+            <code>{file.path}</code>
+          </li>
+        ))}
+      </ul>
+    </section>
+  )}
+</DocsLayout>

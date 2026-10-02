@@ -1,0 +1,67 @@
+---
+interface TocItem {
+  id: string
+  text: string
+  level: number
+}
+
+interface Props {
+  items?: TocItem[]
+}
+
+const { items = [] } = Astro.props
+---
+
+{items.length > 0 && (
+  <nav class="docs-toc-nav" aria-label="On this page">
+    <div class="toc-title">On this page</div>
+    <div class="toc-list">
+      {items.map(item => (
+        <a class="toc-link" data-level={item.level} data-toc-link href={`#${item.id}`}>
+          {item.text}
+        </a>
+      ))}
+    </div>
+  </nav>
+)}
+
+{items.length > 0 && (
+  <script>
+    const links = [...document.querySelectorAll<HTMLAnchorElement>('[data-toc-link]')]
+    if (links.length > 0) {
+      const idFromHref = (href: string) => decodeURIComponent(href.replace(/^#/, ''))
+      const headings = links
+        .map(link => document.getElementById(idFromHref(link.getAttribute('href') || '')))
+        .filter((el): el is HTMLElement => !!el)
+
+      const setActive = (id: string) => {
+        links.forEach((link) => {
+          const active = idFromHref(link.getAttribute('href') || '') === id
+          link.classList.toggle('is-active', active)
+          if (active)
+            link.setAttribute('aria-current', 'location')
+          else
+            link.removeAttribute('aria-current')
+        })
+      }
+
+      const observer = new IntersectionObserver(
+        (entries) => {
+          const visible = entries
+            .filter(entry => entry.isIntersecting)
+            .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top)
+          if (visible[0]?.target?.id)
+            setActive(visible[0].target.id)
+        },
+        {
+          rootMargin: '-20% 0px -65% 0px',
+          threshold: [0, 1],
+        },
+      )
+
+      headings.forEach(heading => observer.observe(heading))
+      if (headings[0])
+        setActive(headings[0].id)
+    }
+  </script>
+)}

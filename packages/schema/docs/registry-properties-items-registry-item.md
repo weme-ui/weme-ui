@@ -6,9 +6,9 @@ undefined#/properties/items/items
 
 A single installable unit in a registry. Describes identity, type, files, CSS variables, and both NPM and registry-level dependencies.
 
-| Abstract            | Extensible | Status         | Identifiable | Custom Properties | Additional Properties | Access Restrictions | Defined In                                                                          |
-| :------------------ | :--------- | :------------- | :----------- | :---------------- | :-------------------- | :------------------ | :---------------------------------------------------------------------------------- |
-| Can be instantiated | No         | Unknown status | No           | Forbidden         | Forbidden             | none                | [registry.schema.json\*](../../../docs/registry.schema.json "open original schema") |
+| Abstract            | Extensible | Status         | Identifiable | Custom Properties | Additional Properties | Access Restrictions | Defined In                                                                                 |
+| :------------------ | :--------- | :------------- | :----------- | :---------------- | :-------------------- | :------------------ | :----------------------------------------------------------------------------------------- |
+| Can be instantiated | No         | Unknown status | No           | Forbidden         | Forbidden             | none                | [registry.schema.json\*](../../website/public/registry.schema.json "open original schema") |
 
 ## items Type
 
@@ -29,7 +29,11 @@ A single installable unit in a registry. Describes identity, type, files, CSS va
   ],
   "registryDependencies": [
     "utils"
-  ]
+  ],
+  "meta": {
+    "docs.category": "actions",
+    "docs.categoryLabel": "Actions"
+  }
 }
 ```
 
@@ -47,6 +51,7 @@ A single installable unit in a registry. Describes identity, type, files, CSS va
 | [dependencies](#dependencies)                 | `array`  | Optional | cannot be null | [Registry configuration](registry-properties-items-registry-item-properties-dependencies.md "undefined#/properties/items/items/properties/dependencies")                  |
 | [devDependencies](#devdependencies)           | `array`  | Optional | cannot be null | [Registry configuration](registry-properties-items-registry-item-properties-dev-dependencies.md "undefined#/properties/items/items/properties/devDependencies")           |
 | [registryDependencies](#registrydependencies) | `array`  | Optional | cannot be null | [Registry configuration](registry-properties-items-registry-item-properties-registry-dependencies.md "undefined#/properties/items/items/properties/registryDependencies") |
+| [meta](#meta)                                 | `object` | Optional | cannot be null | [Registry configuration](registry-properties-items-registry-item-properties-metadata.md "undefined#/properties/items/items/properties/meta")                              |
 
 ## name
 
@@ -401,4 +406,31 @@ Other registry items that must be installed alongside this one. Referenced by it
 
 ```json
 "utils"
+```
+
+## meta
+
+Arbitrary key-value metadata for tooling and documentation. Docs display fields use the "docs.\*" namespace, e.g. "docs.category" and "docs.categoryLabel".
+
+`meta`
+
+* is optional
+
+* Type: `object` ([Metadata](registry-properties-items-registry-item-properties-metadata.md))
+
+* cannot be null
+
+* defined in: [Registry configuration](registry-properties-items-registry-item-properties-metadata.md "undefined#/properties/items/items/properties/meta")
+
+### meta Type
+
+`object` ([Metadata](registry-properties-items-registry-item-properties-metadata.md))
+
+### meta Examples
+
+```json
+{
+  "docs.category": "actions",
+  "docs.categoryLabel": "Actions"
+}
 ```

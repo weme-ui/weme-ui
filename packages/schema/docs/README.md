@@ -24,7 +24,7 @@
 
 * [Installed item](./lockfile-properties-items-installed-item.md "A registry item that has been installed into the project") – `undefined#/properties/items/items`
 
-* [Metadata](./registry-properties-metadata.md "Arbitrary key-value metadata for tooling and discovery") – `undefined#/properties/meta`
+* [Metadata](./registry-properties-items-registry-item-properties-metadata.md "Arbitrary key-value metadata for tooling and documentation") – `undefined#/properties/items/items/properties/meta`
 
 * [Neutral colors](./config-properties-unocss-extensions-properties-neutral-colors.md "Neutral (gray-scale) color tokens for the project theme") – `undefined#/properties/unocss/properties/neutral`
 

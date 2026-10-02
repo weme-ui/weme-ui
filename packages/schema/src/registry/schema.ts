@@ -215,20 +215,6 @@ export const RegistryConfigSchema = z.object({
     }),
 
   /**
-   * 元数据
-   *
-   * @optional
-   */
-  meta: z.record(NonEmptyTrimmedString, NonEmptyTrimmedString)
-    .optional()
-    .meta({
-      title: 'Metadata',
-      description:
-        'Arbitrary key-value metadata for tooling and discovery. Values are free-form strings and are not interpreted by the schema itself.',
-      examples: [{ category: 'component', framework: 'vue' }],
-    }),
-
-  /**
    * 排除的注册项
    *
    * @optional

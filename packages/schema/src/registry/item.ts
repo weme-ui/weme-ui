@@ -260,6 +260,23 @@ export const RegistryItemSchema = z.object({
         'Other registry items that must be installed alongside this one. Referenced by item name within the same or a resolved registry.',
       examples: ['button', 'utils'],
     }),
+
+  /**
+   * 注册项元数据
+   *
+   * @optional
+   */
+  meta: z.record(NonEmptyTrimmedString, NonEmptyTrimmedString)
+    .optional()
+    .meta({
+      title: 'Metadata',
+      description:
+        'Arbitrary key-value metadata for tooling and documentation. Docs display fields use the "docs.*" namespace, e.g. "docs.category" and "docs.categoryLabel".',
+      examples: [{
+        'docs.category': 'actions',
+        'docs.categoryLabel': 'Actions',
+      }],
+    }),
 }).meta({
   title: 'Registry item',
   description:
@@ -271,5 +288,9 @@ export const RegistryItemSchema = z.object({
     type: 'component',
     files: [{ path: 'button/button.vue' }],
     registryDependencies: ['utils'],
+    meta: {
+      'docs.category': 'actions',
+      'docs.categoryLabel': 'Actions',
+    },
   }],
 })

@@ -6,9 +6,9 @@ undefined
 
 Configuration for a Weme UI registry. Declares identity, access, default install paths, and the items the registry exposes.
 
-| Abstract            | Extensible | Status         | Identifiable | Custom Properties | Additional Properties | Access Restrictions | Defined In                                                                        |
-| :------------------ | :--------- | :------------- | :----------- | :---------------- | :-------------------- | :------------------ | :-------------------------------------------------------------------------------- |
-| Can be instantiated | No         | Unknown status | No           | Forbidden         | Forbidden             | none                | [registry.schema.json](../../../docs/registry.schema.json "open original schema") |
+| Abstract            | Extensible | Status         | Identifiable | Custom Properties | Additional Properties | Access Restrictions | Defined In                                                                               |
+| :------------------ | :--------- | :------------- | :----------- | :---------------- | :-------------------- | :------------------ | :--------------------------------------------------------------------------------------- |
+| Can be instantiated | No         | Unknown status | No           | Forbidden         | Forbidden             | none                | [registry.schema.json](../../website/public/registry.schema.json "open original schema") |
 
 ## Registry configuration Type
 
@@ -53,7 +53,6 @@ Configuration for a Weme UI registry. Declares identity, access, default install
 | [dependencies](#dependencies)       | `array`  | Optional | cannot be null | [Registry configuration](registry-properties-dependencies.md "undefined#/properties/dependencies")        |
 | [devDependencies](#devdependencies) | `array`  | Optional | cannot be null | [Registry configuration](registry-properties-dev-dependencies.md "undefined#/properties/devDependencies") |
 | [items](#items)                     | `array`  | Required | cannot be null | [Registry configuration](registry-properties-items.md "undefined#/properties/items")                      |
-| [meta](#meta)                       | `object` | Optional | cannot be null | [Registry configuration](registry-properties-metadata.md "undefined#/properties/meta")                    |
 | [exclude](#exclude)                 | `array`  | Optional | cannot be null | [Registry configuration](registry-properties-exclude.md "undefined#/properties/exclude")                  |
 | [defaultPaths](#defaultpaths)       | `object` | Optional | cannot be null | [Registry configuration](registry-properties-paths.md "undefined#/properties/defaultPaths")               |
 
@@ -425,33 +424,6 @@ The catalog of registry items published by this registry. Each item describes an
   "name": "button",
   "title": "Button",
   "description": "A button component"
-}
-```
-
-## meta
-
-Arbitrary key-value metadata for tooling and discovery. Values are free-form strings and are not interpreted by the schema itself.
-
-`meta`
-
-* is optional
-
-* Type: `object` ([Metadata](registry-properties-metadata.md))
-
-* cannot be null
-
-* defined in: [Registry configuration](registry-properties-metadata.md "undefined#/properties/meta")
-
-### meta Type
-
-`object` ([Metadata](registry-properties-metadata.md))
-
-### meta Examples
-
-```json
-{
-  "category": "component",
-  "framework": "vue"
 }
 ```
 

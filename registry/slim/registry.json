@@ -1,0 +1,18 @@
+{
+  "$schema": "https://weme-ui.github.io/weme-ui/registry.schema.json",
+  "name": "weme-ui/slim",
+  "description": "The slim registry of Weme UI",
+  "version": "1.0.0",
+  "homepage": "https://github.com/weme-ui/weme-ui",
+  "repository": "https://github.com/weme-ui/weme-ui.git",
+  "issues": "https://github.com/weme-ui/weme-ui/issues",
+  "contributors": [
+    "Luo Yi <luoyi@mouji.com>"
+  ],
+  "access": "public",
+  "dependencies": [
+    "unocss",
+    "vue"
+  ],
+  "items": []
+}

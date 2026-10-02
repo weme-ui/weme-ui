@@ -1,0 +1,56 @@
+{
+  "name": "@weme-ui/slim",
+  "type": "module",
+  "version": "0.0.0",
+  "packageManager": "bun@1.4.2",
+  "description": "The slim registry of Weme UI.",
+  "author": "Allen Luo <luoyi@mouji.net>",
+  "license": "MIT",
+  "homepage": "https://mouji.net/weme-ui",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/weme-ui/weme-ui.git",
+    "directory": "registry/slim"
+  },
+  "bugs": {
+    "url": "https://github.com/weme-ui/weme-ui/issues"
+  },
+  "keywords": [
+    "weme-ui",
+    "registry",
+    "component",
+    "composable",
+    "unocss",
+    "vue"
+  ],
+  "sideEffects": false,
+  "engines": {
+    "node": ">=22.14.0",
+    "bun": ">=1.3.12"
+  },
+  "scripts": {
+    "build": "NODE_ENV=deploy tsdown",
+    "dev": "NODE_ENV=development tsdown --watch",
+    "typecheck": "tsc --noEmit"
+  },
+  "peerDependencies": {
+    "nuxt": "^4.0.0",
+    "unocss": "^66.0.0",
+    "vue": "^3.0.0"
+  },
+  "peerDependenciesMeta": {
+    "nuxt": {
+      "optional": true
+    },
+    "vue": {
+      "optional": true
+    }
+  },
+  "dependencies": {
+    "unocss": "catalog:dev",
+    "vue": "catalog:dev"
+  },
+  "devDependencies": {
+    "vitest": "catalog:dev"
+  }
+}

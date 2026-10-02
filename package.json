@@ -61,6 +61,7 @@
     "build": "turbo run build build:docs",
     "dev": "turbo run dev",
     "dev:preset": "turbo run dev --ui=tui --filter=@weme-ui/unocss-preset",
+    "dev:website": "turbo run dev --ui=tui --filter=@weme-ui/website",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "typecheck": "turbo run typecheck",
@@ -79,8 +80,7 @@
     "lint-staged": "catalog:build",
     "simple-git-hooks": "catalog:build",
     "tsdown": "catalog:build",
-    "turbo": "catalog:build",
-    "typescript": "catalog:build"
+    "turbo": "catalog:build"
   },
   "simple-git-hooks": {
     "pre-commit": "bunx lint-staged",

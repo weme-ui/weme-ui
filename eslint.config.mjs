@@ -13,6 +13,8 @@ export default antfu(
     ignores: [
       '**/*.schema.json',
       'packages/schema/docs/**',
+      'docs/**',
+      'packages/website/.astro/**',
     ],
   },
 )

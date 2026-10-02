@@ -15,7 +15,8 @@
     "url": "https://github.com/weme-ui/weme-ui/issues"
   },
   "workspaces": [
-    "packages/*"
+    "packages/*",
+    "registry/*"
   ],
   "catalogs": {
     "build": {

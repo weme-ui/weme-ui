@@ -13,7 +13,8 @@ export default defineConfig([
     },
     unbundle: false,
     dts: true,
-    clean: true,
+    // eslint-disable-next-line node/prefer-global/process
+    clean: process.env.NODE_ENV === 'deploy',
     sourcemap: true,
     minify: false,
     shims: true,

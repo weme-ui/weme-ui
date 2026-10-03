@@ -15,11 +15,7 @@
       "outputs": ["../../docs/**"]
     },
     "dev": {
-      "dependsOn": ["^build", "build"],
-      "cache": false,
-      "persistent": true
-    },
-    "watch": {
+      "dependsOn": ["^build"],
       "cache": false,
       "persistent": true
     },

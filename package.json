@@ -59,7 +59,7 @@
   },
   "scripts": {
     "build": "turbo run build build:docs",
-    "dev": "turbo run dev",
+    "dev": "turbo run dev --ui=tui",
     "dev:preset": "turbo run dev --ui=tui --filter=@weme-ui/unocss-preset",
     "dev:website": "turbo run dev --ui=tui --filter=@weme-ui/website",
     "lint": "eslint .",

@@ -23,7 +23,9 @@ export default defineConfig([
     },
     unbundle: false,
     dts: true,
-    clean: true,
+    // Avoid wiping dist while website/playground are already importing it in watch mode.
+    // eslint-disable-next-line node/prefer-global/process
+    clean: process.env.NODE_ENV === 'deploy',
     sourcemap: true,
     minify: false,
     shims: true,

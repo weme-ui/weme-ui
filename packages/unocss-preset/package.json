@@ -65,8 +65,8 @@
   },
   "scripts": {
     "build": "NODE_ENV=deploy tsdown",
-    "watch": "NODE_ENV=development tsdown --watch",
-    "dev": "NODE_ENV=development bun run --cwd playground dev",
+    "dev": "NODE_ENV=development tsdown --watch",
+    "play": "NODE_ENV=development bun run --cwd playground dev",
     "typecheck": "tsc --noEmit",
     "test": "NODE_ENV=test vitest run"
   },

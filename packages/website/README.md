@@ -19,13 +19,15 @@
 
 ## 职责
 
-`packages/website` 不维护组件实现，也不单独存放组件文档。组件、工具函数、组合式函数的源码、README 与示例放在 `registry/<library>/`。文档站通过 `@registry` alias 读取本地 registry，不将组件库作为 npm 依赖安装。
+`packages/website` 不维护组件实现，也不单独存放业务文档。组件、工具函数、组合式函数放在 `registry/<library>/`；部分 packages（如 `unocss-preset`）的说明文档放在各自的 `docs/`。文档站通过文件 glob 读取本地内容，不将组件库作为 npm 依赖安装。
 
-不同 library（如 `slim`、`std`）各自维护介绍文档与侧栏结构。构建产物输出到仓库根目录 `docs/`，用于 GitHub Pages 等静态托管。
+不同 library 各自维护介绍文档与侧栏结构。构建产物输出到仓库根目录 `docs/`，用于 GitHub Pages 等静态托管。
 
-目录与路由约定以本文为准。使用 AI 编写或更新 item 文档时，参见 [registry-docs-author](../../.cursor/skills/registry-docs-author/SKILL.md)。
+目录与路由约定以本文为准。使用 AI 编写或更新 registry item 文档时，参见 [registry-docs-author](../../.cursor/skills/registry-docs-author/SKILL.md)。
 
 ## 目录结构
+
+Registry 组件库：
 
 ```text
 registry/<library>
@@ -35,6 +37,14 @@ registry/<library>
     ├── components/
     ├── composables/
     └── utils/
+```
+
+Package 文档（与 registry 的 `docs/` 约定相同，当前允许列表见 `src/lib/registry.ts` 中的 `PACKAGE_DOC_IDS`）：
+
+```text
+packages/unocss-preset
+├── docs/              # 显示在侧栏顶部；README.md / index.md 为默认页
+└── package.json       # 提供名称、描述、版本
 ```
 
 单个 component 建议将源码、文档与示例放在同一目录：
@@ -54,14 +64,19 @@ composable 与 util 采用相同方式：文档与示例与源码同目录，并
 
 ## 侧栏与路由
 
-侧栏上方来自 `registry/<library>/docs/**/*.{md,mdx}`：
+侧栏上方来自：
+
+- `registry/<library>/docs/**/*.{md,mdx}`
+- 或 `packages/<id>/docs/**/*.{md,mdx}`（需在 `PACKAGE_DOC_IDS` 中登记）
+
+规则：
 
 - 导航标题优先取 Markdown 第一个 `h1`，否则由文件名推导
 - 顺序按文件路径排序
-- `index.md` 对应 `/<library>/docs/`
+- `index.md` 或 `README.md` 对应 `/<library>/docs/`
 - 当前不要求用 frontmatter 控制顺序或标题
 
-侧栏下方来自 `registry.json` 的 `items`，分为三层：
+侧栏下方仅 registry 有：来自 `registry.json` 的 `items`，分为三层：
 
 - `type` → 大类：`component` → Components，`composable` → Composables，`util` → Utilities
 - `meta["docs.category"]` / `meta["docs.categoryLabel"]` → 分类
@@ -72,12 +87,13 @@ composable 与 util 采用相同方式：文档与示例与源码同目录，并
 路由：
 
 ```text
-/                              # registry 总览
-/<library>/                    # 单个 library 首页
-/<library>/docs/...            # 库级文档
-/<library>/components/button/
+/                              # 总览（registry + package docs）
+/<library>/                    # 单个 library / package 首页
+/<library>/docs/...            # 库级或 package 文档
+/<library>/components/button/  # 仅 registry
 /<library>/composables/use-form/
 /<library>/utilities/utils/
+/unocss-preset/docs/           # package docs 示例
 ```
 
 ## 登记 item

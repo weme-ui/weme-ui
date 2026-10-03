@@ -6,18 +6,21 @@ const libraries = getLibraries()
 ---
 
 <DocsLayout
-  title="Weme UI Registries"
-  description="Registry 驱动的组件文档站。组件源码、文档与示例共存于 registry。"
+  title="Weme UI Docs"
+  description="Registry 组件库与 packages 文档统一由文档站展示。"
 >
   {libraries.map(library => (
     <a class="library-card" href={library.href}>
       <strong>{library.name}</strong>
       {library.description && <p>{library.description}</p>}
-      {library.version && <small>v{library.version}</small>}
+      <small>
+        {library.source === 'package' ? 'package' : 'registry'}
+        {library.version ? ` · v${library.version}` : ''}
+      </small>
     </a>
   ))}
 
   {libraries.length === 0 && (
-    <p>暂无可用 registry。</p>
+    <p>暂无可用文档。</p>
   )}
 </DocsLayout>

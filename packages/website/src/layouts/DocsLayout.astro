@@ -4,7 +4,7 @@ import OnThisPage from '../components/OnThisPage.astro'
 import PrevNext from '../components/PrevNext.astro'
 import Sidebar from '../components/Sidebar.astro'
 import type { AdjacentNavLink, DocNavItem, ComponentTreeSection } from '../lib/registry'
-import { withBase } from '../lib/registry'
+import { getLibraries, withBase } from '../lib/registry'
 import type { TocItem } from '../lib/markdown'
 
 export interface BreadcrumbItem {
@@ -37,8 +37,9 @@ const {
 } = Astro.props
 
 const homeHref = withBase('/')
-const libraryHref = library ? withBase(`/${library}/`) : homeHref
 const githubHref = 'https://github.com/weme-ui/weme-ui'
+const logoHref = withBase('/weme.svg')
+const libraries = getLibraries()
 ---
 
 <!doctype html>
@@ -48,26 +49,51 @@ const githubHref = 'https://github.com/weme-ui/weme-ui'
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{title}</title>
     {description && <meta name="description" content={description} />}
-    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="icon" type="image/svg+xml" href={logoHref} />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Outfit:wght@500;600;700&family=Public+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap"
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap"
       rel="stylesheet"
     />
   </head>
-  <body class="min-h-screen antialiased">
-    <div class="docs-atmosphere" aria-hidden="true"></div>
-
+  <body>
     <header class="docs-topbar">
       <div class="docs-topbar-inner">
         <a href={homeHref} class="docs-brand-mark">
-          <span class="docs-brand-glyph" aria-hidden="true"></span>
+          <svg
+            class="docs-brand-logo"
+            width="28"
+            height="28"
+            viewBox="0 0 32 32"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            aria-hidden="true"
+          >
+            <rect width="32" height="32" rx="16" fill="#1D2129"></rect>
+            <path
+              fill-rule="evenodd"
+              clip-rule="evenodd"
+              d="M26 16C26 16.492 25.8045 16.9839 25.4135 17.3593L21.1659 21.437C20.3839 22.1877 19.1161 22.1877 18.3341 21.437L16.5304 19.7053L16.5024 19.6798C16.2086 19.425 15.7554 19.433 15.4716 19.7036L13.6659 21.437C12.8839 22.1877 11.6161 22.1877 10.8341 21.437L6.58648 17.3593C6.1955 16.9839 6 16.492 6 16C6 15.508 6.1955 15.0161 6.58648 14.6407L10.8341 10.563C11.6161 9.81233 12.8839 9.81233 13.6659 10.563L15.4716 12.2965C15.7554 12.567 16.2086 12.575 16.5024 12.3202L16.5304 12.2947L18.3341 10.563C19.1161 9.81233 20.3839 9.81234 21.1659 10.563L25.4135 14.6407C25.8045 15.0161 26 15.508 26 16ZM15.9015 16C15.9015 15.835 15.836 15.6701 15.7051 15.5444L13.9071 13.8183C13.9054 13.8166 13.9036 13.815 13.9018 13.8133L12.7204 12.679C12.4603 12.4293 12.0397 12.4293 11.7796 12.679L8.79481 15.5444C8.66394 15.6701 8.59841 15.835 8.59842 16C8.59842 16.165 8.66394 16.3299 8.79481 16.4556L11.7796 19.321C12.0397 19.5707 12.4603 19.5707 12.7204 19.321L13.9018 18.1867C13.9036 18.185 13.9054 18.1834 13.9071 18.1817L15.7051 16.4556C15.836 16.3299 15.9015 16.165 15.9015 16ZM18.5 16C18.5 16.492 18.3045 16.9839 17.9135 17.3593L17.5091 17.7475C17.7192 17.8669 17.9175 18.0133 18.0982 18.1868L19.2795 19.321C19.5396 19.5707 19.9602 19.5707 20.2203 19.321L23.2051 16.4556C23.336 16.3299 23.4015 16.165 23.4015 16C23.4015 15.835 23.336 15.6701 23.2051 15.5444L20.2203 12.679C19.9602 12.4293 19.5396 12.4293 19.2795 12.679L18.0982 13.8132C17.9175 13.9867 17.7192 14.1331 17.5091 14.2525L17.9135 14.6407C18.3045 15.0161 18.5 15.508 18.5 16Z"
+              fill="white"
+            ></path>
+          </svg>
           <span class="docs-brand-text">Weme UI</span>
         </a>
-        {library && (
-          <a href={libraryHref} class="docs-topbar-library">{library}</a>
+
+        {libraries.length > 0 && (
+          <nav class="docs-product-nav" aria-label="Libraries">
+            {libraries.map(item => (
+              <a
+                href={item.href}
+                class:list={['docs-product-link', library === item.id && 'is-active']}
+              >
+                {item.id}
+              </a>
+            ))}
+          </nav>
         )}
+
         <div class="docs-topbar-spacer"></div>
         <a class="docs-topbar-link" href={githubHref} target="_blank" rel="noreferrer">
           GitHub
@@ -105,18 +131,22 @@ const githubHref = 'https://github.com/weme-ui/weme-ui'
         const button = document.createElement('button')
         button.type = 'button'
         button.className = 'docs-copy-btn'
-        button.textContent = 'Copy'
+        button.setAttribute('aria-label', 'Copy code to clipboard')
+        button.innerHTML = '<svg width="15" height="15" viewBox="0 0 15 15" fill="none" aria-hidden="true"><path d="M1 9.5A1.5 1.5 0 002.5 11H6v1H2.5A2.5 2.5 0 010 9.5v-7A2.5 2.5 0 012.5 0H9a2.5 2.5 0 012.5 2.5V5h-1V2.5A1.5 1.5 0 009 1H2.5A1.5 1.5 0 001 2.5v7zM5.5 4A1.5 1.5 0 004 5.5v7A1.5 1.5 0 005.5 14h7a1.5 1.5 0 001.5-1.5v-7A1.5 1.5 0 0012.5 4h-7zM5 5.5A.5.5 0 015.5 5h7a.5.5 0 01.5.5v7a.5.5 0 01-.5.5h-7a.5.5 0 01-.5-.5v-7z" fill="currentColor"/></svg>'
         button.addEventListener('click', async () => {
           const code = pre.querySelector('code')?.textContent || pre.textContent || ''
           try {
             await navigator.clipboard.writeText(code)
-            button.textContent = 'Copied'
+            button.classList.add('is-copied')
             window.setTimeout(() => {
-              button.textContent = 'Copy'
+              button.classList.remove('is-copied')
             }, 1400)
           }
           catch {
-            button.textContent = 'Failed'
+            button.classList.add('is-failed')
+            window.setTimeout(() => {
+              button.classList.remove('is-failed')
+            }, 1400)
           }
         })
         pre.appendChild(button)
@@ -127,31 +157,25 @@ const githubHref = 'https://github.com/weme-ui/weme-ui'
 
 <style is:global>
   :root {
-    --docs-ink: #1d2129;
-    --docs-ink-soft: #4e5969;
-    --docs-muted: #86909c;
-    --docs-border: #e5e6eb;
-    --docs-border-strong: #c9cdd4;
-    --docs-bg: #ffffff;
-    --docs-bg-soft: #f7f8fa;
-    --docs-bg-code: #f2f3f5;
-    --docs-accent: #0055ff;
-    --docs-accent-soft: #e8efff;
-    --docs-accent-ink: #003bb8;
-    --docs-success-bg: #e8f7ef;
-    --docs-success-border: #00b42a;
-    --docs-warning-bg: #fff7e8;
-    --docs-warning-border: #ff7d00;
-    --docs-error-bg: #ffece8;
-    --docs-error-border: #f53f3f;
-    --docs-info-bg: #e8f3ff;
-    --docs-info-border: #3491fa;
-    --docs-sidebar-width: 268px;
-    --docs-toc-width: 228px;
+    --docs-bg: #09090b;
+    --docs-bg-panel: #0c0c0e;
+    --docs-bg-soft: #151518;
+    --docs-bg-hover: #1c1c21;
+    --docs-bg-code: #111113;
+    --docs-bg-example: #ffffff;
+    --docs-ink: #ededef;
+    --docs-ink-soft: #b2b3bd;
+    --docs-muted: #7e808a;
+    --docs-border: #232328;
+    --docs-border-strong: #2e2e36;
+    --docs-accent: #6e9eff;
+    --docs-accent-soft: rgba(110, 158, 255, 0.14);
+    --docs-accent-ink: #9dbbff;
+    --docs-sidebar-width: 256px;
+    --docs-toc-width: 220px;
     --docs-topbar-height: 56px;
     --docs-radius: 8px;
-    --docs-font-sans: "Public Sans", "PingFang SC", "Noto Sans SC", sans-serif;
-    --docs-font-display: "Outfit", "Public Sans", sans-serif;
+    --docs-font-sans: "IBM Plex Sans", "PingFang SC", "Noto Sans SC", sans-serif;
     --docs-font-mono: "IBM Plex Mono", "SFMono-Regular", Menlo, Consolas, monospace;
   }
 
@@ -160,30 +184,17 @@ const githubHref = 'https://github.com/weme-ui/weme-ui'
   }
 
   html {
+    color-scheme: dark;
     scroll-behavior: smooth;
   }
 
   body {
     margin: 0;
+    min-height: 100vh;
     color: var(--docs-ink);
-    background:
-      radial-gradient(1200px 480px at 12% -10%, rgba(0, 85, 255, 0.06), transparent 55%),
-      radial-gradient(900px 420px at 90% 0%, rgba(29, 33, 41, 0.04), transparent 50%),
-      var(--docs-bg);
+    background: var(--docs-bg);
     font-family: var(--docs-font-sans);
-  }
-
-  .docs-atmosphere {
-    pointer-events: none;
-    position: fixed;
-    inset: 0;
-    z-index: 0;
-    opacity: 0.35;
-    background-image:
-      linear-gradient(rgba(29, 33, 41, 0.03) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(29, 33, 41, 0.03) 1px, transparent 1px);
-    background-size: 48px 48px;
-    mask-image: radial-gradient(ellipse at center, black 20%, transparent 75%);
+    -webkit-font-smoothing: antialiased;
   }
 
   a {
@@ -197,15 +208,17 @@ const githubHref = 'https://github.com/weme-ui/weme-ui'
     z-index: 40;
     height: var(--docs-topbar-height);
     border-bottom: 1px solid var(--docs-border);
-    background: rgba(255, 255, 255, 0.86);
-    backdrop-filter: blur(12px);
+    background: rgba(9, 9, 11, 0.82);
+    backdrop-filter: blur(14px);
   }
 
   .docs-topbar-inner {
     display: flex;
     align-items: center;
-    gap: 0.75rem;
+    gap: 1rem;
     height: 100%;
+    max-width: 1600px;
+    margin: 0 auto;
     padding: 0 1.25rem;
   }
 
@@ -213,37 +226,49 @@ const githubHref = 'https://github.com/weme-ui/weme-ui'
     display: inline-flex;
     align-items: center;
     gap: 0.55rem;
+    flex-shrink: 0;
   }
 
-  .docs-brand-glyph {
-    width: 1.1rem;
-    height: 1.1rem;
-    border-radius: 0.3rem;
-    background:
-      linear-gradient(135deg, var(--docs-accent) 0%, #1d2129 100%);
-    box-shadow: 0 0 0 1px rgba(0, 85, 255, 0.15);
+  .docs-brand-logo {
+    display: block;
+    width: 1.75rem;
+    height: 1.75rem;
+    flex-shrink: 0;
   }
 
   .docs-brand-text {
-    font-family: var(--docs-font-display);
-    font-weight: 700;
-    font-size: 1.05rem;
+    font-weight: 600;
+    font-size: 0.95rem;
     letter-spacing: -0.02em;
   }
 
-  .docs-topbar-library {
-    color: var(--docs-muted);
-    font-size: 0.85rem;
-    padding: 0.2rem 0.55rem;
-    border: 1px solid var(--docs-border);
+  .docs-product-nav {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.15rem;
+    padding: 0.18rem;
     border-radius: 999px;
-    text-transform: lowercase;
+    background: var(--docs-bg-soft);
+    border: 1px solid var(--docs-border);
   }
 
-  .docs-topbar-library:hover {
-    color: var(--docs-accent);
-    border-color: color-mix(in srgb, var(--docs-accent) 35%, white);
-    background: var(--docs-accent-soft);
+  .docs-product-link {
+    padding: 0.28rem 0.7rem;
+    border-radius: 999px;
+    color: var(--docs-muted);
+    font-size: 0.8125rem;
+    font-weight: 500;
+    text-transform: lowercase;
+    transition: background 120ms ease, color 120ms ease;
+  }
+
+  .docs-product-link:hover {
+    color: var(--docs-ink);
+  }
+
+  .docs-product-link.is-active {
+    background: #fff;
+    color: #111;
   }
 
   .docs-topbar-spacer {
@@ -257,15 +282,15 @@ const githubHref = 'https://github.com/weme-ui/weme-ui'
   }
 
   .docs-topbar-link:hover {
-    color: var(--docs-accent);
+    color: var(--docs-ink);
   }
 
   .docs-shell {
-    position: relative;
-    z-index: 1;
     display: grid;
     grid-template-columns: var(--docs-sidebar-width) minmax(0, 1fr) var(--docs-toc-width);
     min-height: calc(100vh - var(--docs-topbar-height));
+    max-width: 1600px;
+    margin: 0 auto;
   }
 
   .docs-sidebar,
@@ -274,26 +299,25 @@ const githubHref = 'https://github.com/weme-ui/weme-ui'
     top: var(--docs-topbar-height);
     height: calc(100vh - var(--docs-topbar-height));
     overflow: auto;
-    background: rgba(255, 255, 255, 0.72);
-    backdrop-filter: blur(8px);
+    background: var(--docs-bg-panel);
   }
 
   .docs-sidebar {
     border-right: 1px solid var(--docs-border);
-    padding: 1rem 0.85rem 2rem;
+    padding: 1.1rem 0.75rem 2.5rem;
   }
 
   .docs-toc {
     border-left: 1px solid var(--docs-border);
-    padding: 1.5rem 1rem 2rem;
+    padding: 1.5rem 0.9rem 2.5rem;
   }
 
   .docs-nav-search {
     display: flex;
     align-items: center;
     gap: 0.5rem;
-    margin-bottom: 1rem;
-    padding: 0.55rem 0.7rem;
+    margin: 0 0.25rem 1.1rem;
+    padding: 0.5rem 0.65rem;
     border: 1px solid var(--docs-border);
     border-radius: var(--docs-radius);
     background: var(--docs-bg-soft);
@@ -301,9 +325,9 @@ const githubHref = 'https://github.com/weme-ui/weme-ui'
   }
 
   .docs-nav-search:focus-within {
-    border-color: color-mix(in srgb, var(--docs-accent) 45%, white);
-    box-shadow: 0 0 0 3px var(--docs-accent-soft);
-    color: var(--docs-accent);
+    border-color: color-mix(in srgb, var(--docs-accent) 45%, var(--docs-border));
+    box-shadow: 0 0 0 2px var(--docs-accent-soft);
+    color: var(--docs-accent-ink);
   }
 
   .docs-nav-search input {
@@ -313,7 +337,7 @@ const githubHref = 'https://github.com/weme-ui/weme-ui'
     background: transparent;
     color: var(--docs-ink);
     font: inherit;
-    font-size: 0.875rem;
+    font-size: 0.85rem;
   }
 
   .docs-nav-search input::placeholder {
@@ -321,71 +345,57 @@ const githubHref = 'https://github.com/weme-ui/weme-ui'
   }
 
   .docs-nav-section + .docs-nav-section {
-    margin-top: 0.35rem;
+    margin-top: 1.15rem;
   }
 
   .nav-section-title {
-    margin: 1rem 0 0.4rem;
+    margin: 0 0 0.35rem;
     padding: 0 0.65rem;
-    font-size: 0.7rem;
+    font-size: 0.9rem;
     font-weight: 600;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--docs-muted);
+    letter-spacing: -0.01em;
+    color: var(--docs-ink);
   }
 
   .nav-category {
-    margin: 0.65rem 0 0.2rem;
+    margin: 0.55rem 0 0.15rem;
     padding: 0 0.65rem;
-    font-size: 0.78rem;
-    font-weight: 600;
-    color: var(--docs-ink-soft);
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: var(--docs-muted);
   }
 
   .nav-link {
-    position: relative;
     display: block;
-    margin: 0.1rem 0;
-    padding: 0.4rem 0.65rem 0.4rem 0.75rem;
+    margin: 0.05rem 0;
+    padding: 0.38rem 0.65rem;
     border-radius: 0.45rem;
     color: var(--docs-ink-soft);
-    font-size: 0.9rem;
+    font-size: 0.875rem;
     line-height: 1.35;
     transition: background 120ms ease, color 120ms ease;
   }
 
   .nav-link:hover {
-    background: var(--docs-bg-soft);
+    background: var(--docs-bg-hover);
     color: var(--docs-ink);
   }
 
   .nav-link[aria-current="page"] {
     background: var(--docs-accent-soft);
     color: var(--docs-accent-ink);
-    font-weight: 600;
-  }
-
-  .nav-link[aria-current="page"]::before {
-    content: "";
-    position: absolute;
-    left: 0;
-    top: 0.35rem;
-    bottom: 0.35rem;
-    width: 3px;
-    border-radius: 999px;
-    background: var(--docs-accent);
+    font-weight: 500;
   }
 
   .docs-main {
-    padding: 1.75rem 2.5rem 4rem;
-    max-width: 920px;
+    padding: 2rem 2.75rem 4.5rem;
+    max-width: 780px;
     width: 100%;
     justify-self: center;
   }
 
   .docs-header {
-    margin-bottom: 1.75rem;
-    animation: docs-rise 420ms ease both;
+    margin-bottom: 2rem;
   }
 
   .docs-breadcrumb ol {
@@ -393,11 +403,11 @@ const githubHref = 'https://github.com/weme-ui/weme-ui'
     flex-wrap: wrap;
     align-items: center;
     gap: 0.15rem;
-    margin: 0 0 0.85rem;
+    margin: 0 0 0.9rem;
     padding: 0;
     list-style: none;
     color: var(--docs-muted);
-    font-size: 0.8125rem;
+    font-size: 0.8rem;
   }
 
   .docs-breadcrumb li {
@@ -407,7 +417,7 @@ const githubHref = 'https://github.com/weme-ui/weme-ui'
   }
 
   .docs-breadcrumb a:hover {
-    color: var(--docs-accent);
+    color: var(--docs-accent-ink);
   }
 
   .docs-breadcrumb [aria-current="page"] {
@@ -416,29 +426,23 @@ const githubHref = 'https://github.com/weme-ui/weme-ui'
 
   .docs-breadcrumb-sep {
     margin: 0 0.2rem;
-    opacity: 0.55;
+    opacity: 0.5;
   }
 
   .docs-title {
     margin: 0;
-    font-family: var(--docs-font-display);
-    font-size: clamp(1.9rem, 2.4vw, 2.35rem);
+    font-size: clamp(1.85rem, 2.5vw, 2.2rem);
     font-weight: 700;
-    letter-spacing: -0.03em;
+    letter-spacing: -0.035em;
     line-height: 1.15;
   }
 
   .docs-description {
-    margin: 0.7rem 0 0;
+    margin: 0.65rem 0 0;
     color: var(--docs-ink-soft);
     font-size: 1.05rem;
-    line-height: 1.6;
-    max-width: 46rem;
-  }
-
-  .docs-content {
-    animation: docs-rise 520ms ease both;
-    animation-delay: 60ms;
+    line-height: 1.55;
+    max-width: 40rem;
   }
 
   .prose > :first-child {
@@ -452,15 +456,12 @@ const githubHref = 'https://github.com/weme-ui/weme-ui'
   .prose h2,
   .prose h3 {
     scroll-margin-top: calc(var(--docs-topbar-height) + 1rem);
-    font-family: var(--docs-font-display);
     letter-spacing: -0.02em;
   }
 
   .prose h2 {
-    margin: 2.4rem 0 0.85rem;
-    padding-top: 0.35rem;
-    border-top: 1px solid transparent;
-    font-size: 1.35rem;
+    margin: 2.5rem 0 0.7rem;
+    font-size: 1.25rem;
     font-weight: 600;
   }
 
@@ -469,22 +470,22 @@ const githubHref = 'https://github.com/weme-ui/weme-ui'
   }
 
   .prose h3 {
-    margin: 1.6rem 0 0.55rem;
-    font-size: 1.08rem;
+    margin: 1.65rem 0 0.45rem;
+    font-size: 1.05rem;
     font-weight: 600;
   }
 
   .prose p,
   .prose li {
-    line-height: 1.75;
+    line-height: 1.7;
     color: var(--docs-ink-soft);
   }
 
   .prose a {
     color: var(--docs-accent);
     text-decoration: underline;
-    text-decoration-color: color-mix(in srgb, var(--docs-accent) 35%, transparent);
-    text-underline-offset: 0.18em;
+    text-decoration-color: color-mix(in srgb, var(--docs-accent) 40%, transparent);
+    text-underline-offset: 0.16em;
   }
 
   .prose a:hover {
@@ -499,22 +500,22 @@ const githubHref = 'https://github.com/weme-ui/weme-ui'
   .prose code {
     font-family: var(--docs-font-mono);
     font-size: 0.86em;
-    background: var(--docs-bg-code);
+    background: var(--docs-bg-soft);
     color: var(--docs-accent-ink);
-    padding: 0.12rem 0.35rem;
+    padding: 0.1rem 0.35rem;
     border-radius: 0.3rem;
-    border: 1px solid color-mix(in srgb, var(--docs-border) 80%, white);
+    border: 1px solid var(--docs-border);
   }
 
   .prose pre {
     position: relative;
-    margin: 1rem 0 1.35rem;
-    padding: 1rem 1.1rem;
+    margin: 0.9rem 0 1.35rem;
+    padding: 0.95rem 1.05rem;
     overflow: auto;
-    border: 1px solid var(--docs-border);
+    border: 1px solid var(--docs-border-strong);
     border-radius: var(--docs-radius);
     background: var(--docs-bg-code);
-    color: var(--docs-ink);
+    color: #d8dae3;
     font-family: var(--docs-font-mono);
     font-size: 0.84rem;
     line-height: 1.65;
@@ -532,22 +533,31 @@ const githubHref = 'https://github.com/weme-ui/weme-ui'
     position: absolute;
     top: 0.55rem;
     right: 0.55rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.85rem;
+    height: 1.85rem;
     appearance: none;
-    border: 1px solid var(--docs-border);
+    border: 1px solid transparent;
     border-radius: 0.4rem;
-    background: rgba(255, 255, 255, 0.9);
-    color: var(--docs-ink-soft);
-    font: inherit;
-    font-size: 0.72rem;
-    font-weight: 600;
-    letter-spacing: 0.02em;
-    padding: 0.28rem 0.5rem;
+    background: transparent;
+    color: var(--docs-muted);
     cursor: pointer;
   }
 
   .docs-copy-btn:hover {
-    color: var(--docs-accent);
-    border-color: color-mix(in srgb, var(--docs-accent) 40%, white);
+    color: var(--docs-ink);
+    background: var(--docs-bg-soft);
+    border-color: var(--docs-border);
+  }
+
+  .docs-copy-btn.is-copied {
+    color: #70d2a4;
+  }
+
+  .docs-copy-btn.is-failed {
+    color: #f07676;
   }
 
   .prose table {
@@ -555,9 +565,9 @@ const githubHref = 'https://github.com/weme-ui/weme-ui'
     border-collapse: collapse;
     margin: 1rem 0 1.5rem;
     font-size: 0.9rem;
-    overflow: hidden;
     border: 1px solid var(--docs-border);
     border-radius: var(--docs-radius);
+    overflow: hidden;
   }
 
   .prose thead {
@@ -575,7 +585,7 @@ const githubHref = 'https://github.com/weme-ui/weme-ui'
   .prose th {
     color: var(--docs-ink);
     font-weight: 600;
-    font-size: 0.82rem;
+    font-size: 0.8rem;
   }
 
   .prose tbody tr:last-child td {
@@ -583,7 +593,7 @@ const githubHref = 'https://github.com/weme-ui/weme-ui'
   }
 
   .prose tbody tr:hover td {
-    background: color-mix(in srgb, var(--docs-accent-soft) 45%, white);
+    background: rgba(110, 158, 255, 0.05);
   }
 
   .prose td code {
@@ -593,9 +603,9 @@ const githubHref = 'https://github.com/weme-ui/weme-ui'
   .prose blockquote {
     margin: 1.1rem 0;
     padding: 0.85rem 1rem;
-    border-left: 3px solid var(--docs-info-border);
+    border-left: 2px solid var(--docs-accent);
     border-radius: 0 var(--docs-radius) var(--docs-radius) 0;
-    background: var(--docs-info-bg);
+    background: var(--docs-accent-soft);
     color: var(--docs-ink-soft);
   }
 
@@ -610,24 +620,23 @@ const githubHref = 'https://github.com/weme-ui/weme-ui'
   }
 
   .example-block h3 {
-    margin: 0 0 0.7rem;
-    font-size: 0.95rem;
-    font-weight: 600;
+    margin: 0 0 0.65rem;
+    font-size: 0.9rem;
+    font-weight: 500;
     color: var(--docs-ink-soft);
   }
 
   .example-frame {
-    border: 1px solid var(--docs-border);
+    border: 1px solid var(--docs-border-strong);
     border-radius: calc(var(--docs-radius) + 2px);
-    background:
-      linear-gradient(180deg, #fff 0%, #fbfbfc 100%);
-    box-shadow: 0 1px 0 rgba(29, 33, 41, 0.02);
+    background: var(--docs-bg-example);
     overflow: hidden;
   }
 
   .example-frame-body {
     padding: 1.35rem 1.25rem;
     min-height: 4.5rem;
+    color: #1d2129;
   }
 
   .example-frame-meta {
@@ -635,42 +644,31 @@ const githubHref = 'https://github.com/weme-ui/weme-ui'
     align-items: center;
     justify-content: space-between;
     gap: 0.75rem;
-    padding: 0.55rem 0.85rem;
-    border-top: 1px solid var(--docs-border);
-    background: var(--docs-bg-soft);
-    color: var(--docs-muted);
-    font-size: 0.75rem;
+    padding: 0.5rem 0.85rem;
+    border-top: 1px solid #e8e8ec;
+    background: #f7f7f8;
+    color: #6b6f7a;
+    font-size: 0.72rem;
     font-family: var(--docs-font-mono);
   }
 
   .toc-title {
-    font-size: 0.7rem;
+    margin: 0 0 0.75rem;
+    font-size: 0.9rem;
     font-weight: 600;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--docs-muted);
-    margin-bottom: 0.85rem;
+    letter-spacing: -0.01em;
+    color: var(--docs-ink);
   }
 
   .toc-list {
-    position: relative;
-    padding-left: 0.75rem;
-  }
-
-  .toc-list::before {
-    content: "";
-    position: absolute;
-    left: 0;
-    top: 0.2rem;
-    bottom: 0.2rem;
-    width: 1px;
-    background: var(--docs-border);
+    display: flex;
+    flex-direction: column;
+    gap: 0.1rem;
   }
 
   .toc-link {
-    position: relative;
     display: block;
-    padding: 0.28rem 0 0.28rem 0.7rem;
+    padding: 0.28rem 0;
     color: var(--docs-muted);
     font-size: 0.84rem;
     line-height: 1.4;
@@ -678,7 +676,7 @@ const githubHref = 'https://github.com/weme-ui/weme-ui'
   }
 
   .toc-link[data-level="3"] {
-    padding-left: 1.2rem;
+    padding-left: 0.85rem;
     font-size: 0.8rem;
   }
 
@@ -687,21 +685,10 @@ const githubHref = 'https://github.com/weme-ui/weme-ui'
     color: var(--docs-accent-ink);
   }
 
-  .toc-link.is-active::before {
-    content: "";
-    position: absolute;
-    left: -0.75rem;
-    top: 0.35rem;
-    bottom: 0.35rem;
-    width: 2px;
-    border-radius: 999px;
-    background: var(--docs-accent);
-  }
-
   .docs-pager {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 0.85rem;
+    gap: 0.75rem;
     margin-top: 3rem;
     padding-top: 1.5rem;
     border-top: 1px solid var(--docs-border);
@@ -710,18 +697,17 @@ const githubHref = 'https://github.com/weme-ui/weme-ui'
   .docs-pager-link {
     display: flex;
     flex-direction: column;
-    gap: 0.25rem;
-    padding: 1rem 1.1rem;
+    gap: 0.2rem;
+    padding: 0.95rem 1rem;
     border: 1px solid var(--docs-border);
     border-radius: var(--docs-radius);
-    background: #fff;
-    transition: border-color 140ms ease, box-shadow 140ms ease, transform 140ms ease;
+    background: var(--docs-bg-soft);
+    transition: border-color 140ms ease, background 140ms ease;
   }
 
   .docs-pager-link:hover {
-    border-color: color-mix(in srgb, var(--docs-accent) 40%, white);
-    box-shadow: 0 8px 24px rgba(0, 85, 255, 0.06);
-    transform: translateY(-1px);
+    border-color: var(--docs-border-strong);
+    background: var(--docs-bg-hover);
   }
 
   .docs-pager-prev {
@@ -741,8 +727,7 @@ const githubHref = 'https://github.com/weme-ui/weme-ui'
 
   .docs-pager-title {
     color: var(--docs-ink);
-    font-family: var(--docs-font-display);
-    font-size: 1rem;
+    font-size: 0.95rem;
     font-weight: 600;
     letter-spacing: -0.01em;
   }
@@ -755,22 +740,20 @@ const githubHref = 'https://github.com/weme-ui/weme-ui'
   .library-card {
     display: block;
     border: 1px solid var(--docs-border);
-    border-radius: calc(var(--docs-radius) + 2px);
-    padding: 1.15rem 1.25rem;
-    margin-bottom: 0.9rem;
-    background: rgba(255, 255, 255, 0.8);
-    transition: border-color 140ms ease, box-shadow 140ms ease, transform 140ms ease;
+    border-radius: var(--docs-radius);
+    padding: 1.1rem 1.2rem;
+    margin-bottom: 0.85rem;
+    background: var(--docs-bg-soft);
+    transition: border-color 140ms ease, background 140ms ease;
   }
 
   .library-card:hover {
-    border-color: color-mix(in srgb, var(--docs-accent) 45%, white);
-    box-shadow: 0 10px 28px rgba(0, 85, 255, 0.07);
-    transform: translateY(-1px);
+    border-color: var(--docs-border-strong);
+    background: var(--docs-bg-hover);
   }
 
   .library-card strong {
-    font-family: var(--docs-font-display);
-    font-size: 1.05rem;
+    font-size: 1.02rem;
   }
 
   .library-card p {
@@ -780,20 +763,9 @@ const githubHref = 'https://github.com/weme-ui/weme-ui'
 
   .library-card small {
     display: inline-block;
-    margin-top: 0.55rem;
+    margin-top: 0.5rem;
     color: var(--docs-muted);
     font-family: var(--docs-font-mono);
-  }
-
-  @keyframes docs-rise {
-    from {
-      opacity: 0;
-      transform: translateY(8px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
   }
 
   @media (max-width: 1100px) {
@@ -811,6 +783,10 @@ const githubHref = 'https://github.com/weme-ui/weme-ui'
       grid-template-columns: 1fr;
     }
 
+    .docs-product-nav {
+      display: none;
+    }
+
     .docs-sidebar {
       position: relative;
       top: 0;
@@ -820,7 +796,7 @@ const githubHref = 'https://github.com/weme-ui/weme-ui'
     }
 
     .docs-main {
-      padding: 1.35rem 1rem 3rem;
+      padding: 1.4rem 1rem 3rem;
     }
 
     .docs-pager {
@@ -836,15 +812,6 @@ const githubHref = 'https://github.com/weme-ui/weme-ui'
   @media (prefers-reduced-motion: reduce) {
     html {
       scroll-behavior: auto;
-    }
-
-    .docs-header,
-    .docs-content,
-    .docs-pager-link,
-    .library-card {
-      animation: none !important;
-      transition: none !important;
-      transform: none !important;
     }
   }
 </style>

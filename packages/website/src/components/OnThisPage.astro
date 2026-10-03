@@ -13,8 +13,8 @@ const { items = [] } = Astro.props
 ---
 
 {items.length > 0 && (
-  <nav class="docs-toc-nav" aria-label="On this page">
-    <div class="toc-title">On this page</div>
+  <nav class="docs-toc-nav" aria-label="Quick nav">
+    <div class="toc-title">Quick nav</div>
     <div class="toc-list">
       {items.map(item => (
         <a class="toc-link" data-level={item.level} data-toc-link href={`#${item.id}`}>

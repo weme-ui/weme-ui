@@ -14,5 +14,11 @@ export default defineConfig({
       resolve(rootDir, 'packages/website/src/**/*.{astro,vue,ts,tsx,md,mdx}'),
       resolve(rootDir, 'registry/**/src/**/*.{vue,ts,tsx,md}'),
     ],
+    // registry.ts eagerly imports markdown as raw strings; do not extract utilities from those blobs.
+    pipeline: {
+      exclude: [
+        /packages\/website\/src\/lib\/registry\.ts/,
+      ],
+    },
   },
 })

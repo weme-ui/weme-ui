@@ -60,14 +60,30 @@ export interface ComponentTreeSection {
   categories: ComponentTreeCategory[]
 }
 
+export type LibrarySource = 'registry' | 'package'
+
 export interface LibrarySummary {
   id: string
+  source: LibrarySource
   name: string
   description?: string
   version?: string
   href: string
   docs: DocNavItem[]
   tree: ComponentTreeSection[]
+}
+
+/**
+ * Packages that publish docs through the website.
+ * Same `docs/` convention as `registry/<library>/docs`.
+ * Keep as an allowlist so generated packages (e.g. schema) are not picked up.
+ */
+const PACKAGE_DOC_IDS = ['unocss-preset'] as const
+
+interface PackageManifest {
+  name?: string
+  description?: string
+  version?: string
 }
 
 export interface ItemPageModel {
@@ -98,6 +114,18 @@ const libraryDocModules = import.meta.glob<string>(
   { eager: true, query: '?raw', import: 'default' },
 )
 
+// Keep globs scoped to PACKAGE_DOC_IDS so generated package docs (e.g. schema) stay out.
+// When adding a package, append another glob pattern and PACKAGE_DOC_IDS entry.
+const packageDocModules = import.meta.glob<string>(
+  '../../../../packages/unocss-preset/docs/**/*.{md,mdx}',
+  { eager: true, query: '?raw', import: 'default' },
+)
+
+const packageManifestModules = import.meta.glob<PackageManifest>(
+  '../../../../packages/unocss-preset/package.json',
+  { eager: true, import: 'default' },
+)
+
 const itemReadmeModules = import.meta.glob<string>(
   '../../../../registry/*/src/**/README.md',
   { eager: true, query: '?raw', import: 'default' },
@@ -122,6 +150,77 @@ function libraryIdFromPath(path: string): string {
   if (!match)
     throw new Error(`Unable to resolve library from path: ${path}`)
   return match[1]
+}
+
+function packageIdFromPath(path: string): string | undefined {
+  // Prefer explicit packages/… keys, then normalized sibling keys like ../../../unocss-preset/…
+  const packagesMatch = path.match(/packages\/([^/]+)\//)
+  if (packagesMatch)
+    return packagesMatch[1]
+
+  for (const id of PACKAGE_DOC_IDS) {
+    if (path.includes(`/${id}/`) || path.includes(`/${id}/package.json`) || path.endsWith(`/${id}/package.json`))
+      return id
+  }
+
+  return undefined
+}
+
+function isPackageDocLibrary(id: string): boolean {
+  return (PACKAGE_DOC_IDS as readonly string[]).includes(id)
+}
+
+function getPackageManifest(id: string): PackageManifest | undefined {
+  const entry = Object.entries(packageManifestModules).find(([path]) => {
+    return packageIdFromPath(path) === id
+  })
+  return entry?.[1]
+}
+
+function findDocSegment(modules: Record<string, string>, marker: string): string | undefined {
+  const sample = Object.keys(modules).find(path => path.includes(marker))
+  if (!sample)
+    return undefined
+  const index = sample.indexOf(marker)
+  return sample.slice(0, index + marker.length)
+}
+
+function resolveDocSource(library: string): {
+  modules: Record<string, string>
+  segment: string
+} | undefined {
+  const registryMarker = `/registry/${library}/docs/`
+  const registrySegment = findDocSegment(libraryDocModules, registryMarker)
+  if (registrySegment) {
+    return {
+      modules: libraryDocModules,
+      segment: registrySegment,
+    }
+  }
+
+  if (!isPackageDocLibrary(library))
+    return undefined
+
+  // Vite may normalize `../../../../packages/<id>/docs` to `../../../<id>/docs`.
+  const packageMarker = `/${library}/docs/`
+  const packageSegment = findDocSegment(packageDocModules, packageMarker)
+  if (packageSegment) {
+    return {
+      modules: packageDocModules,
+      segment: packageSegment,
+    }
+  }
+
+  return undefined
+}
+
+function slugFromDocRelativePath(relative: string): string[] {
+  const withoutExt = relative.replace(/\.(md|mdx)$/, '')
+  const parts = withoutExt.split('/').filter(Boolean)
+  const leaf = parts[parts.length - 1]
+  if (leaf === 'index' || leaf === 'README')
+    return parts.slice(0, -1)
+  return parts
 }
 
 function titleFromMarkdown(body: string, fallback: string): string {
@@ -219,20 +318,40 @@ function resolveExamples(library: string, item: RegistryItem) {
 }
 
 export function getLibraries(): LibrarySummary[] {
-  return Object.entries(registryModules)
-    .map(([path, config]) => {
-      const id = libraryIdFromPath(path)
-      return {
-        id,
-        name: config.name,
-        description: config.description,
-        version: config.version,
-        href: withBase(`/${id}/`),
-        docs: getLibraryDocNav(id),
-        tree: getComponentTree(id, config),
-      }
+  const registries = Object.entries(registryModules).map(([path, config]) => {
+    const id = libraryIdFromPath(path)
+    return {
+      id,
+      source: 'registry' as const,
+      name: config.name,
+      description: config.description,
+      version: config.version,
+      href: withBase(`/${id}/`),
+      docs: getLibraryDocNav(id),
+      tree: getComponentTree(id, config),
+    }
+  })
+
+  const packages: LibrarySummary[] = []
+  for (const id of PACKAGE_DOC_IDS) {
+    const docs = getLibraryDocNav(id)
+    if (docs.length === 0)
+      continue
+
+    const manifest = getPackageManifest(id)
+    packages.push({
+      id,
+      source: 'package',
+      name: manifest?.name || id,
+      description: manifest?.description,
+      version: manifest?.version,
+      href: withBase(`/${id}/`),
+      docs,
+      tree: [],
     })
-    .sort((a, b) => a.id.localeCompare(b.id))
+  }
+
+  return [...registries, ...packages].sort((a, b) => a.id.localeCompare(b.id))
 }
 
 export function getLibrary(library: string): LibrarySummary | undefined {
@@ -240,14 +359,15 @@ export function getLibrary(library: string): LibrarySummary | undefined {
 }
 
 export function getLibraryDocPages(library: string): LibraryDocPage[] {
-  return Object.entries(libraryDocModules)
-    .filter(([path]) => path.includes(`/registry/${library}/docs/`))
+  const source = resolveDocSource(library)
+  if (!source)
+    return []
+
+  return Object.entries(source.modules)
+    .filter(([path]) => path.includes(source.segment))
     .map(([path, body]) => {
-      const relative = path.split(`/registry/${library}/docs/`)[1]
-      const withoutExt = relative.replace(/\.(md|mdx)$/, '')
-      const slug = withoutExt === 'index'
-        ? []
-        : withoutExt.split('/')
+      const relative = path.split(source.segment)[1]
+      const slug = slugFromDocRelativePath(relative)
       const href = slug.length === 0
         ? withBase(`/${library}/docs/`)
         : withBase(`/${library}/docs/${slug.join('/')}/`)
@@ -356,13 +476,11 @@ export function getItemPage(library: string, section: string, name: string): Ite
 }
 
 export function getAllItemPages(): ItemPageModel[] {
-  return getLibraries().flatMap((library) => {
-    const entry = Object.entries(registryModules).find(([path]) => libraryIdFromPath(path) === library.id)
-    if (!entry)
-      return []
-    return entry[1].items
+  return Object.entries(registryModules).flatMap(([path, config]) => {
+    const library = libraryIdFromPath(path)
+    return config.items
       .filter(item => !item.name.startsWith('#'))
-      .map(item => getItemPage(library.id, typeToSection(item.type), item.name))
+      .map(item => getItemPage(library, typeToSection(item.type), item.name))
       .filter((page): page is ItemPageModel => !!page)
   })
 }

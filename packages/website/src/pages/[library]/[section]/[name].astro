@@ -7,6 +7,7 @@ import {
   getAllItemPages,
   getItemPage,
   getLibrary,
+  getSectionLabel,
   withBase,
 } from '../../../lib/registry'
 
@@ -35,11 +36,7 @@ const html = readmeBody
   : '<p>暂无 README。</p>'
 
 const adjacent = getAdjacentNav(library.id, page.href)
-const sectionLabel = section === 'composables'
-  ? 'Composables'
-  : section === 'utilities'
-    ? 'Utilities'
-    : 'Components'
+const sectionLabel = getSectionLabel(section!)
 ---
 
 <DocsLayout

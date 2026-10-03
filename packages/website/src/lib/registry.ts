@@ -247,6 +247,10 @@ function typeToSection(type = 'block'): string {
   switch (type) {
     case 'composable':
       return 'composables'
+    case 'layout':
+      return 'layouts'
+    case 'block':
+      return 'blocks'
     case 'util':
       return 'utilities'
     default:
@@ -254,10 +258,22 @@ function typeToSection(type = 'block'): string {
   }
 }
 
-function sectionLabel(section: string): string {
+/**
+ * `util` stays in registry.json for install semantics, but is not shown in the docs site.
+ * Components, composables, layouts, and blocks load co-located README + examples.
+ */
+function isDocsItem(item: RegistryItem): boolean {
+  return !item.name.startsWith('#') && item.type !== 'util'
+}
+
+export function getSectionLabel(section: string): string {
   switch (section) {
     case 'composables':
       return 'Composables'
+    case 'layouts':
+      return 'Layouts'
+    case 'blocks':
+      return 'Blocks'
     case 'utilities':
       return 'Utilities'
     default:
@@ -269,6 +285,10 @@ function defaultCategoryForType(type = 'block'): { id: string, label: string } {
   switch (type) {
     case 'composable':
       return { id: 'composables', label: 'Composables' }
+    case 'layout':
+      return { id: 'layouts', label: 'Layouts' }
+    case 'block':
+      return { id: 'blocks', label: 'Blocks' }
     case 'util':
       return { id: 'utilities', label: 'Utilities' }
     default:
@@ -412,7 +432,7 @@ export function getComponentTree(library: string, config?: RegistryConfig): Comp
   const sectionMap = new Map<string, Map<string, ComponentTreeCategory>>()
 
   for (const item of registry.items) {
-    if (item.name.startsWith('#'))
+    if (!isDocsItem(item))
       continue
 
     const section = typeToSection(item.type)
@@ -442,7 +462,7 @@ export function getComponentTree(library: string, config?: RegistryConfig): Comp
 
   return [...sectionMap.entries()].map(([section, categories]) => ({
     id: section,
-    label: sectionLabel(section),
+    label: getSectionLabel(section),
     categories: [...categories.values()],
   }))
 }
@@ -456,7 +476,7 @@ export function getItemPage(library: string, section: string, name: string): Ite
   const item = config.items.find((candidate) => {
     return candidate.name === name && typeToSection(candidate.type) === section
   })
-  if (!item)
+  if (!item || !isDocsItem(item))
     return undefined
 
   return {
@@ -479,7 +499,7 @@ export function getAllItemPages(): ItemPageModel[] {
   return Object.entries(registryModules).flatMap(([path, config]) => {
     const library = libraryIdFromPath(path)
     return config.items
-      .filter(item => !item.name.startsWith('#'))
+      .filter(isDocsItem)
       .map(item => getItemPage(library, typeToSection(item.type), item.name))
       .filter((page): page is ItemPageModel => !!page)
   })

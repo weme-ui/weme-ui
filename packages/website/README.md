@@ -36,6 +36,8 @@ registry/<library>
 └── src/
     ├── components/
     ├── composables/
+    ├── layouts/
+    ├── blocks/
     └── utils/
 ```
 
@@ -47,7 +49,7 @@ packages/unocss-preset
 └── package.json       # 提供名称、描述、版本
 ```
 
-单个 component 建议将源码、文档与示例放在同一目录：
+单个 component / composable / layout / block 建议将源码、文档与示例放在同一目录：
 
 ```text
 registry/slim/src/components/button
@@ -60,7 +62,7 @@ registry/slim/src/components/button
     └── button-1.vue
 ```
 
-composable 与 util 采用相同方式：文档与示例与源码同目录，并在 `registry.json` 中登记。
+`util` 仍登记在 `registry.json`（安装语义），但不进入文档站侧栏与详情页。`component`、`composable`、`layout`、`block` 会加载同目录 README 与 examples。
 
 ## 侧栏与路由
 
@@ -78,7 +80,7 @@ composable 与 util 采用相同方式：文档与示例与源码同目录，并
 
 侧栏下方仅 registry 有：来自 `registry.json` 的 `items`，分为三层：
 
-- `type` → 大类：`component` → Components，`composable` → Composables，`util` → Utilities
+- `type` → 大类：`component` → Components，`composable` → Composables，`layout` → Layouts，`block` → Blocks（`util` 不进入侧栏）
 - `meta["docs.category"]` / `meta["docs.categoryLabel"]` → 分类
 - `items[]` 中的每一项 → 链接
 
@@ -90,9 +92,10 @@ composable 与 util 采用相同方式：文档与示例与源码同目录，并
 /                              # 总览（registry + package docs）
 /<library>/                    # 单个 library / package 首页
 /<library>/docs/...            # 库级或 package 文档
-/<library>/components/button/  # 仅 registry
+/<library>/components/button/
 /<library>/composables/use-form/
-/<library>/utilities/utils/
+/<library>/layouts/...
+/<library>/blocks/...
 /unocss-preset/docs/           # package docs 示例
 ```
 

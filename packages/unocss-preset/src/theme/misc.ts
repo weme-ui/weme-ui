@@ -8,16 +8,16 @@ import type { Theme } from './types'
  * @link {@see https://www.radix-ui.com/themes/docs/theme/spacing}
  */
 export const spacing = {
-  'DEFAULT': 'calc(0.25rem * var(--scaling))',
-  'xs': 'calc(0.25rem * var(--scaling))',
-  'sm': 'calc(0.5rem * var(--scaling))',
-  'md': 'calc(0.75rem * var(--scaling))',
-  'lg': 'calc(1rem * var(--scaling))',
-  'xl': 'calc(1.5rem * var(--scaling))',
-  '2xl': 'calc(2rem * var(--scaling))',
-  '3xl': 'calc(2.5rem * var(--scaling))',
-  '4xl': 'calc(3rem * var(--scaling))',
-  '5xl': 'calc(4rem * var(--scaling))',
+  'DEFAULT': 'calc(0.25rem * var(--scaling, 1))',
+  'xs': 'calc(0.25rem * var(--scaling, 1))',
+  'sm': 'calc(0.5rem * var(--scaling, 1))',
+  'md': 'calc(0.75rem * var(--scaling, 1))',
+  'lg': 'calc(1rem * var(--scaling, 1))',
+  'xl': 'calc(1.5rem * var(--scaling, 1))',
+  '2xl': 'calc(2rem * var(--scaling, 1))',
+  '3xl': 'calc(2.5rem * var(--scaling, 1))',
+  '4xl': 'calc(3rem * var(--scaling, 1))',
+  '5xl': 'calc(4rem * var(--scaling, 1))',
 } satisfies Theme['spacing']
 
 /**
@@ -28,14 +28,14 @@ export const spacing = {
  * @link {@see https://www.radix-ui.com/themes/docs/theme/radius}
  */
 export const radius = {
-  'DEFAULT': 'calc(0.25rem * var(--scaling) * var(--radius-factor))',
+  'DEFAULT': 'calc(0.25rem * var(--scaling, 1) * var(--radius-factor, 0.5))',
   'none': '0',
-  'xs': 'calc(0.125rem * var(--scaling) * var(--radius-factor))',
-  'sm': 'calc(0.25rem * var(--scaling) * var(--radius-factor))',
-  'md': 'calc(0.375rem * var(--scaling) * var(--radius-factor))',
-  'lg': 'calc(0.5rem * var(--scaling) * var(--radius-factor))',
-  'xl': 'calc(0.75rem * var(--scaling) * var(--radius-factor))',
-  '2xl': 'calc(1rem * var(--scaling) * var(--radius-factor))',
+  'xs': 'calc(0.125rem * var(--scaling, 1) * var(--radius-factor, 0.5))',
+  'sm': 'calc(0.25rem * var(--scaling, 1) * var(--radius-factor, 0.5))',
+  'md': 'calc(0.375rem * var(--scaling, 1) * var(--radius-factor, 0.5))',
+  'lg': 'calc(0.5rem * var(--scaling, 1) * var(--radius-factor, 0.5))',
+  'xl': 'calc(0.75rem * var(--scaling, 1) * var(--radius-factor, 0.5))',
+  '2xl': 'calc(1rem * var(--scaling, 1) * var(--radius-factor, 0.5))',
 } satisfies Theme['radius']
 
 /**

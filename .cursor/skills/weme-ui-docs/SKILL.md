@@ -2,21 +2,19 @@
 name: weme-ui-docs
 description: >-
   Generates or syncs Weme UI registry item docs from a given component path:
-  README.md, the first examples/*.vue, and registry.json doc/example file entries;
-  or syncs Props/Events/Slots after API changes. Use when the user names
+  README.md, feature-based examples/*.vue, and registry.json doc/example file
+  entries; or syncs Props/Events/Slots after API changes. Use when the user names
   weme-ui-docs, points at registry/<library>/src/<section>/<name>/, prepares
   website preview, or asks to sync props/slots/events documentation.
 ---
 
 # Weme UI Docs
 
-本 skill **替换**已移除的 `registry-docs-author`。目录、路由与侧栏约定见 `packages/website/README.md`。
+目录、路由与侧栏约定见 `packages/website/README.md`。详情页展示风格对齐 [HeroUI Button docs](https://heroui.com/en/docs/react/components/button)：标题 + 简介 + UI 依赖 badge，Examples 按属性/场景分块 Live Preview。
 
 用户通常已手写空文件与 `registry.json` 基础条目，并完成约 80% 组件实现。本 skill 不 scaffold、不写组件实现、不生成测试、不安装包。
 
 ## 输入
-
-用户指定 item 目录，例如：
 
 ```text
 registry/slim/src/components/icon/
@@ -24,13 +22,11 @@ registry/slim/src/components/icon/
 
 ## 编写前必读
 
-先读再写，不要猜测 API：
-
 ```text
 packages/website/README.md
 rfcs/0002-registry-driven-website-docs.md
 registry/<library>/registry.json
-registry/<library>/src/<section>/<name>/   # *.vue、*.props.ts、*.style.ts（若有）、现有 README、examples
+registry/<library>/src/<section>/<name>/
 ```
 
 文件不存在则跳过，标「待补充」。
@@ -46,12 +42,12 @@ registry/<library>/src/<section>/<name>/   # *.vue、*.props.ts、*.style.ts（�
 
 ## 模式 A：首次生成
 
-1. 根据源码确认 Props、Events、Slots
-2. 写入同目录 `README.md`（模板见下；无 Events/Slots 则省略对应章节）
-3. 若无 `examples/<name>-1.vue`，创建首个可运行示例（相对导入 sibling 组件；对齐同 library 已有 `examples/*-1.vue`）
+1. 根据源码确认 Props、Events、Slots，以及值得单独演示的属性/状态
+2. 写入同目录 `README.md`（模板见下；**不要**写 Preview / Examples / Source）
+3. 按属性/场景创建多个 `examples/<feature>.vue`（见下方 Examples 规则）
 4. 在 `registry.json` 对应 item 的 `files` 中追加（已存在则跳过）：
    - `kind: "doc"` → `.../README.md`
-   - `kind: "example"` → `.../examples/<name>-1.vue`
+   - 每个示例一条 `kind: "example"`（顺序 = 详情页展示顺序）
 5. **不改**已有 `name` / `title` / `description` / `meta` / `dependencies` / `registryDependencies` / 主源码 paths（除非文件已存在而 path 缺失）
 
 ## 模式 B：API 同步
@@ -59,13 +55,13 @@ registry/<library>/src/<section>/<name>/   # *.vue、*.props.ts、*.style.ts（�
 以源码为准更新 README 中的 API 章节：
 
 - 始终同步 `## Props`
-- 有可核对的 Events → 写入/更新 `## Events`；没有则**删除**该章节（不要写「无」）
-- 有可核对的 Slots → 写入/更新 `## Slots`；没有则**删除**该章节（不要写「无」）
-- **不要**写入或保留 `## Source`
+- 有可核对的 Events → 写入/更新 `## Events`；没有则**删除**该章节
+- 有可核对的 Slots → 写入/更新 `## Slots`；没有则**删除**该章节
+- **不要**写入 Preview / Examples / Source
 
-**默认保留**：简介、`## Preview`、`## Installation`、`## Usage`、`## Examples`，以及已有 `examples/*.vue`。
+**默认保留**：简介、`## Installation`、`## Usage`，以及已有 `examples/*.vue`。
 
-仅当用户明确要求时，才改 Preview / Usage / Examples 或示例文件。API 变更导致示例明显失效时，可简短提示用户，不擅自大改。
+仅当用户明确要求时，才改 Usage 或增删/重写 example 文件。API 变更导致示例明显失效时，可简短提示用户。
 
 ## README 模板
 
@@ -74,13 +70,9 @@ registry/<library>/src/<section>/<name>/   # *.vue、*.props.ts、*.style.ts（�
 
 <Description>
 
-## Preview
-
 ## Installation
 
 ## Usage
-
-## Examples
 
 ## Props
 
@@ -89,18 +81,61 @@ registry/<library>/src/<section>/<name>/   # *.vue、*.props.ts、*.style.ts（�
 ## Slots
 ```
 
-`## Events` / `## Slots` 仅在有内容时输出。不要写 `## Source`。
+- `## Events` / `## Slots` 仅在有内容时输出
+- **不要**写 `## Preview`、`## Examples`、`## Source`（Examples 由 website 根据 `kind: "example"` 文件自动渲染）
+
+## Examples 规则（对齐 HeroUI）
+
+- `examples/usage.vue`：**挂在文档 `## Usage` 标题下**（preview 在上、Shiki 高亮源码在下，默认展开），不进入 Examples 列表；README 的 `## Usage` 正文可留空（避免与面板重复）
+- 其余 `examples/<feature>.vue`：详情页在 Usage 与 Props 之间插入 `## Examples`，每个文件一个 `###` 小节 + preview/code 面板（代码默认折叠）
+
+### 文件命名
+
+使用 **feature slug**（kebab-case），不要用 `<name>-1.vue`：
+
+```text
+examples/
+  usage.vue      # 跟随 ## Usage
+  sizes.vue      # 进入 ## Examples
+  with-icon.vue
+  loading.vue
+  disabled.vue
+```
+
+Examples 小节标题由文件名生成：`with-icon` → `With Icon`（`usage` 不再作为 Examples 子标题）。
+
+### 拆分原则
+
+根据组件 **可演示的 props / 状态** 拆文件，参考 HeroUI Button（Usage / Variants / Sizes / With Icons / Loading / Disabled…）：
+
+| 典型 prop / 状态 | 建议文件 |
+| --- | --- |
+| 默认用法 | `usage.vue`（必有，跟随 Usage） |
+| `size` | `sizes.vue` |
+| `radius` / `variant` 等外观枚举 | `radius.vue` / `variants.vue` |
+| `icon` / 图标相关 | `with-icon.vue` |
+| `loading` / pending | `loading.vue` |
+| `disabled` | `disabled.vue` |
+| `color` / 色彩 | `color.vue` |
+
+- 一个文件聚焦一个属性或紧密相关的一组状态
+- 相对导入 sibling 组件：`import Button from '../button.vue'`
+- 在 `registry.json` 按展示顺序登记每条 `kind: "example"`（建议 `usage.vue` 排第一）
+
+### UI 依赖 badge
+
+website 会从 item 的 `dependencies` 中识别 **UI 类**依赖并显示 badge（如 `@iconify/vue` → Iconify，`reka-ui` → Reka UI）。工具库（`clsx`、`defu`、`vue` 等）不会显示。
+
+生成文档时**不要**为 badge 改 README；确保 `registry.json` 的 `dependencies` 正确即可。新增 UI 库时需同步 `packages/website/src/lib/ui-dependencies.ts` 白名单。
 
 ## 规则
 
 - Props、Events、Slots 须能在源码或类型中核对；无法确认时写「待补充」
-- 无自定义事件 / 插槽时省略对应章节，不要用「无」占位
+- 无自定义事件 / 插槽时省略对应章节
 - Installation：`pnpm dlx @weme-ui/weme-ui add weme-ui/<library>/<name>`
 - Usage 中 `~/...` 指向同一 library 的 `src` 根
-- 可运行示例放在 `examples/`；README 引用说明即可
 - `files[].type`：`component | composable | ui | block | layout | page | util`
-- `files[].kind`：文档与示例用 `doc | example`（本 skill 不写 `test`）
-- 分组字段由用户维护：`meta["docs.category"]`、`meta["docs.categoryLabel"]`
+- `files[].kind`：`doc | example`（本 skill 不写 `test`）
 - 说明用中文；Vue、TypeScript、UnoCSS 等专有名词保持英文
 
 ## 本地验证（用户侧）

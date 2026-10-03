@@ -1,10 +1,8 @@
 # Variants
 
-> 返回 [文档索引](./README.md)
-
 Variants 用来描述一个工具类在什么条件下生效。它可以改 selector，也可以把规则放进 `@media`、`@supports`、`@container`、`@layer` 这类父级规则里。
 
-这份文档的结构参考 Tailwind CSS 文档的写法：先给你一个快速索引，再给常见场景的例子。为了避免编造 UnoCSS 最终转义后的 class 名，下面统一用 `.x` 表示“当前工具类最终生成的选择器”。真实 CSS 中，`.x` 会替换成 UnoCSS 生成的 selector；声明部分由具体工具类决定。
+先给你一个快速索引，再给常见场景的例子。为了避免编造 UnoCSS 最终转义后的 class 名，下面统一用 `.x` 表示“当前工具类最终生成的选择器”。真实 CSS 中，`.x` 会替换成 UnoCSS 生成的 selector；声明部分由具体工具类决定。
 
 ```html
 <button class="dark:mobile:hover:bg-blue-9">Button</button>
@@ -47,7 +45,7 @@ Variants 用来描述一个工具类在什么条件下生效。它可以改 sele
 
 ### 颜色模式
 
-完整说明见 [Dark Mode](./dark-mode.md)。
+完整说明见 [Dark mode](../theme/dark-mode.md)。
 
 - `dark:*` -> `.dark $$ .x`，或 `@media (prefers-color-scheme: dark)`，取决于 `dark` 配置
 - `light:*` -> `.light $$ .x`，或 `@media (prefers-color-scheme: light)`，取决于 `dark` 配置

@@ -1,6 +1,6 @@
 # Rules
 
-Rules 是具体工具类到 CSS 声明的映射。下列写法按源码模块分组；颜色相关规则同时消费 [Colors](./colors.md)、[Tokens & CssVars](./tokens.md)。
+Rules 是具体工具类到 CSS 声明的映射。下列写法按源码模块分组；颜色相关规则同时消费 [Color](../theme/color.md)、[Tokens](../theme/tokens.md)。
 
 约定：
 
@@ -293,7 +293,7 @@ Rules 是具体工具类到 CSS 声明的映射。下列写法按源码模块分
 | `animate-direction-reverse`                      | `animation-direction`       |
 | `animate-fill-forwards`                          | `animation-fill-mode`       |
 
-完整 keyframes 名称见 [Theme — Animation](./theme.md#animation-keyframes)。
+完整 keyframes 名称见 [Theme overview — Animation](../theme/index.md#animation-keyframes)。
 
 ### Columns — `columns`
 

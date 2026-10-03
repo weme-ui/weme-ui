@@ -1,27 +1,10 @@
-# Introduction
+# Getting started
 
-`@weme-ui/unocss-preset`（`presetWemeUI`）基于 UnoCSS，提供颜色刻度、语义 Tokens、Theme 变量、工具类 Rules 与 Variants。
+安装 `@weme-ui/unocss-preset`（`presetWemeUI`），几分钟内接入颜色刻度、语义 Tokens、Theme 变量、工具类 Rules 与 Variants。
 
-Layer 顺序：
+## Installation
 
-| Layer        | 优先级 | 内容                            |
-| ------------ | ------ | ------------------------------- |
-| `properties` | -200   | `@property` 声明                |
-| `theme`      | -150   | 颜色 / Theme / Tokens / CssVars |
-| `base`       | -100   | CSS Reset                       |
-
-## 文档索引
-
-| 文档                            | 内容                                                                |
-| ------------------------------- | ------------------------------------------------------------------- |
-| [Colors](./colors.md)           | 色板、刻度、亮暗色与 P3、工具类颜色解析                             |
-| [Dark Mode](./dark-mode.md)     | class / media 切换、色板覆盖、Variants、推荐实践                    |
-| [Theme](./theme.md)             | Spacing、Radius、Breakpoint、Typography、Shadow、Animation 等主题值 |
-| [Tokens & CssVars](./tokens.md) | 颜色别名、语义 Tokens、自定义 CssVars、模糊匹配                     |
-| [Rules](./rules.md)             | 全部工具类规则速查                                                  |
-| [Variants](./variants.md)       | 断点、暗色、伪类、ARIA、容器查询等变体                              |
-
-## 快速上手
+### 1. 配置 UnoCSS
 
 ```ts
 import { presetWemeUI } from '@weme-ui/unocss-preset'
@@ -40,6 +23,8 @@ export default defineConfig({
 })
 ```
 
+### 2. 在页面上挂载主题
+
 ```html
 <div
   data-theme="default"
@@ -51,7 +36,11 @@ export default defineConfig({
 </div>
 ```
 
-## 配置项摘要
+## Customizing your theme
+
+配置通过 `presetWemeUI(options)` 管理与应用。
+
+### 配置项摘要
 
 | 选项                  | 默认          | 说明                                       |
 | --------------------- | ------------- | ------------------------------------------ |
@@ -66,3 +55,22 @@ export default defineConfig({
 | `colors`              | `{}`          | 额外 accent / neutral 单色                 |
 | `themes`              | `[]`          | 空则注入默认 `default` 主题                |
 | `cssVars`             | `{}`          | 全局自定义 CSS 变量                        |
+
+### Layer 顺序
+
+| Layer        | 优先级 | 内容                            |
+| ------------ | ------ | ------------------------------- |
+| `properties` | -200   | `@property` 声明                |
+| `theme`      | -150   | 颜色 / Theme / Tokens / CssVars |
+| `base`       | -100   | CSS Reset                       |
+
+## Take it further
+
+继续了解主题与工具类能力：
+
+- [Theme overview](./theme/index.md) — Theme 解剖结构、Preflight 与断点等主题值
+- [Color](./theme/color.md) — 色板、刻度、亮暗色与 P3、工具类颜色解析
+- [Dark mode](./theme/dark-mode.md) — class / media 切换、色板覆盖、Variants、推荐实践
+- [Tokens](./theme/tokens.md) — 颜色别名、语义 Tokens、自定义 CssVars、模糊匹配
+- [Rules](./utilities/rules.md) — 全部工具类规则速查
+- [Variants](./utilities/variants.md) — 断点、暗色、伪类、ARIA、容器查询等变体

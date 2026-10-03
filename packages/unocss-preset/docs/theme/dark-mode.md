@@ -1,4 +1,8 @@
-# Dark Mode
+# Dark mode
+
+用 appearance 管理并集成暗色模式。
+
+## Overview
 
 Weme 的暗色模式分三层：
 
@@ -6,9 +10,24 @@ Weme 的暗色模式分三层：
 2. **语义别名 / Tokens**：挂在 `[data-theme]` 上，暗色用 `.dark` 前缀再写一遍
 3. **工具类 Variants**：`dark:` / `light:` / `@dark:` 等，按配置决定用 class 还是 media
 
-默认 `options.dark = 'class'`，以 `.dark` / `.light` 切换。
+默认 `options.dark = 'class'`，以 `.dark` / `.light` 切换。亮暗切换开箱即用，无需额外设计一套样式。
 
-## Quick reference
+### color-scheme（Reset）
+
+```css
+:root,
+.light {
+  color-scheme: light;
+}
+
+.dark {
+  color-scheme: dark;
+}
+```
+
+也可用工具类：`scheme-light`、`scheme-dark`、`scheme-light dark`。
+
+## Basic usage
 
 ### 配置
 
@@ -38,20 +57,31 @@ presetWemeUI({
 
 `$$` 表示 UnoCSS 的父级选择器拼接：`.dark .x`（暗色祖先下的当前元素）。
 
-### color-scheme（Reset）
+### Class 模式（推荐默认）
 
-```css
-:root,
-.light {
-  color-scheme: light;
-}
+在根节点切换 `.dark` / `.light`：
 
-.dark {
-  color-scheme: dark;
-}
+```html
+<html class="light">
+  <body class="bg-background-base text-foreground-base">
+    <button class="bg-primary text-white">Primary</button>
+    <!-- 仅在暗色下额外覆盖时才用 dark: -->
+    <div class="border-border-base dark:shadow-lg">…</div>
+  </body>
+</html>
 ```
 
-也可用工具类：`scheme-light`、`scheme-dark`、`scheme-light dark`。
+```js
+document.documentElement.classList.toggle('dark', isDark)
+document.documentElement.classList.toggle('light', !isDark)
+```
+
+输出大致为：
+
+```text
+.dark .border-border-base { … }   /* 若写了 dark: 前缀 */
+.dark { --blue-9: <dark value>; } /* 色板变量覆盖 */
+```
 
 ### 颜色 CSS 变量（Theme preflight）
 
@@ -103,33 +133,7 @@ presetWemeUI({
 
 语义 Tokens（`--foreground-base` 等）写在主题选择器上；它们引用的 `--neutral-11` 等会随 `.dark` 变，因此通常也不需要 `dark:text-…`。
 
-## 使用方式
-
-### Class 模式（推荐默认）
-
-在根节点切换 `.dark` / `.light`：
-
-```html
-<html class="light">
-  <body class="bg-background-base text-foreground-base">
-    <button class="bg-primary text-white">Primary</button>
-    <!-- 仅在暗色下额外覆盖时才用 dark: -->
-    <div class="border-border-base dark:shadow-lg">…</div>
-  </body>
-</html>
-```
-
-```js
-document.documentElement.classList.toggle('dark', isDark)
-document.documentElement.classList.toggle('light', !isDark)
-```
-
-输出大致为：
-
-```text
-.dark .border-border-base { … }   /* 若写了 dark: 前缀 */
-.dark { --blue-9: <dark value>; } /* 色板变量覆盖 */
-```
+## Inheriting system appearance
 
 ### Media 模式
 
@@ -212,7 +216,7 @@ Theme 里还有 `media.os_dark` / `media.os_light`，可用：
 <div class="media-os_dark:opacity-90">…</div>
 ```
 
-这与 `@dark:` 同类，走 `@media (prefers-color-scheme: …)`，不依赖 `options.dark`。详见 [Variants](./variants.md)。
+这与 `@dark:` 同类，走 `@media (prefers-color-scheme: …)`，不依赖 `options.dark`。详见 [Variants](../utilities/variants.md)。
 
 ## 小结
 

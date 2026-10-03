@@ -21,12 +21,14 @@
 
 完整能力说明见 [`docs/`](./docs/)：
 
-- [Colors](./docs/colors.md) — 色板、刻度、亮暗色与 P3
-- [Dark Mode](./docs/dark-mode.md) — class / media 切换与推荐实践
-- [Theme](./docs/theme.md) — Spacing、Radius、Breakpoint、Typography 等
-- [Tokens & CssVars](./docs/tokens.md) — 颜色别名、语义 Tokens、自定义变量
-- [Rules](./docs/rules.md) — 全部工具类规则速查
-- [Variants](./docs/variants.md) — 断点、暗色、伪类、ARIA 等变体
+- [Getting started](./docs/index.md) — 安装与配置
+- [Theme overview](./docs/theme/index.md) — Theme 解剖结构与 Preflight
+- [Color](./docs/theme/color.md) — 色板、刻度、亮暗色与 P3
+- [Dark mode](./docs/theme/dark-mode.md) — class / media 切换与推荐实践
+- [Tokens](./docs/theme/tokens.md) — 颜色别名、语义 Tokens、自定义变量
+- [Typography](./docs/theme/typography.md) / [Spacing](./docs/theme/spacing.md) / [Radius](./docs/theme/radius.md) / [Shadows](./docs/theme/shadows.md)
+- [Rules](./docs/utilities/rules.md) — 全部工具类规则速查
+- [Variants](./docs/utilities/variants.md) — 断点、暗色、伪类、ARIA 等变体
 
 ## 生成颜色 CSS 变量
 

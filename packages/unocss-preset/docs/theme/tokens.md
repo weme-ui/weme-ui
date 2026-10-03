@@ -1,10 +1,8 @@
-# Tokens & CssVars
+# Tokens
 
 Tokens 层把「色板」映射成「产品语义」：颜色别名（`primary`）、前景/背景/边框语义色，以及可自定义的组件级 CssVars。它们由 `custom` preflight 写入 `[data-theme='…']`，再由颜色 / 间距类规则消费。
 
-## Quick reference
-
-### 默认主题
+## Anatomy
 
 未传 `themes` 时自动注入：
 
@@ -64,7 +62,7 @@ export const DEFAULT_TOKENS: CustomThemeTokens = {
 - 暗色：`.dark:where([data-theme='default'])`
 - 其它主题：`:where([data-theme='name'])` / `.dark:where([data-theme='name'])`
 
-### 颜色别名（Color Alias）
+## Color aliases
 
 | 别名        | 默认指向   |
 | ----------- | ---------- |
@@ -99,7 +97,7 @@ export const DEFAULT_TOKENS: CustomThemeTokens = {
 
 未写刻度时默认补 **9**：`bg-primary` ≡ `bg-primary-9`。
 
-### 语义 Tokens
+## Semantic tokens
 
 | Token                      | 默认值                             |
 | -------------------------- | ---------------------------------- |
@@ -136,7 +134,7 @@ background: base | muted | elevated | inverted
 border: base | elevated | inverted
 ```
 
-### CssVars（自定义变量）
+## CssVars
 
 两处可声明：
 
@@ -177,7 +175,7 @@ presetWemeUI({
 })
 ```
 
-## 模糊匹配（Fuzzy Map）
+## Fuzzy map
 
 当工具类写 `bg-card`、`text-card`、`p-card` 时，会按 CSS 属性在已声明的扁平 CssVars 里找 `{name}-{suffix}`，**后缀按优先级从左到右**取第一个命中：
 

@@ -1,10 +1,12 @@
-# Colors
+# Color
+
+理解颜色体系及其在主题中的用法。
 
 Weme 的颜色体系以 [Radix Colors](https://www.radix-ui.com/colors) 为基础，每色提供 **1–12** 阶刻度，并同时输出 **OKLCH**（默认）与 **Display P3** 两套值，亮色 / 暗色分开存放。
 
-## Quick reference
+## Accents
 
-### 内置色板
+Accent 是主题中最突出的颜色，常用于主按钮、链接与交互元素。内置色板如下。
 
 **Radix 主色 / 中性色：**
 
@@ -26,7 +28,21 @@ Weme 的颜色体系以 [Radix Colors](https://www.radix-ui.com/colors) 为基�
 
 另有 `black` / `white`（走 Radix A 系列刻度）。
 
-### 工具类写法
+## Scale anatomy
+
+| 阶    | 用途               |
+| ----- | ------------------ |
+| 1–2   | 应用背景           |
+| 3–5   | 组件背景 / 悬停    |
+| 6–8   | 边框               |
+| 9–10  | 实心控件（按钮等） |
+| 11–12 | 文本               |
+
+按钮实心色常用 `*-9`，hover 常用 `*-10`，正文常用 `*-11` / `*-12`。
+
+## Color tokens
+
+工具类写法：
 
 - `bg-blue-9` → `background-color: var(--blue-9)`
 - `text-red-11` → `color: var(--red-11)`
@@ -67,19 +83,7 @@ Weme 的颜色体系以 [Radix Colors](https://www.radix-ui.com/colors) 为基�
 
 默认 `preflights.theme` 为 `'on-demand'`：只生成当前构建实际用到的颜色变量；设为 `true` 则全量输出。
 
-## 刻度语义（Radix 约定）
-
-| 阶    | 用途               |
-| ----- | ------------------ |
-| 1–2   | 应用背景           |
-| 3–5   | 组件背景 / 悬停    |
-| 6–8   | 边框               |
-| 9–10  | 实心控件（按钮等） |
-| 11–12 | 文本               |
-
-按钮实心色常用 `*-9`，hover 常用 `*-10`，正文常用 `*-11` / `*-12`。
-
-## 自定义颜色
+## Customization
 
 通过 `colors.accent` / `colors.neutral` 传入单色 hex，会自动生成完整 12 阶（含亮暗与 P3）：
 
@@ -131,6 +135,6 @@ presetWemeUI({
 - **Tokens 别名**：`--primary-9` → `var(--custom-primary-9, var(--gunmetal-9))`（由 custom theme preflight 写入）
 - **语义 Tokens**：`--foreground-base` → `var(--neutral-11)` 等
 
-亮暗切换、`dark:` Variants 与 `.dark` 覆盖见 [Dark Mode](./dark-mode.md)。
+亮暗切换、`dark:` Variants 与 `.dark` 覆盖见 [Dark mode](./dark-mode.md)。
 
-详见 [Theme](./theme.md) 与 [Tokens & CssVars](./tokens.md)。
+详见 [Theme overview](./index.md) 与 [Tokens](./tokens.md)。

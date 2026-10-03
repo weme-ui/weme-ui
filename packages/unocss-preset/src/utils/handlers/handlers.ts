@@ -304,6 +304,9 @@ export function bracketOfNumber(str: string, theme?: Theme) {
 }
 
 export function cssvar(str: string) {
+  if (str == null || typeof str !== 'string')
+    return
+
   if (str.startsWith('var('))
     return str
 

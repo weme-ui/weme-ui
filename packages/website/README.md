@@ -23,7 +23,7 @@
 
 不同 library 各自维护介绍文档与侧栏结构。构建产物输出到仓库根目录 `docs/`，用于 GitHub Pages 等静态托管。
 
-目录与路由约定以本文为准。使用 AI 编写或更新 registry item 文档时，参见 [registry-docs-author](../../.cursor/skills/registry-docs-author/SKILL.md)。
+目录与路由约定以本文为准。使用 AI 编写或更新 registry item 文档时，参见 [weme-ui-docs](../../.cursor/skills/weme-ui-docs/SKILL.md)（首次生成 README/example，或同步 Props/Events/Slots）。
 
 ## 目录结构
 
@@ -59,7 +59,9 @@ registry/slim/src/components/button
 ├── button.style.ts
 ├── button.test.ts
 └── examples/
-    └── button-1.vue
+    ├── usage.vue
+    ├── sizes.vue
+    └── with-icon.vue
 ```
 
 `util` 仍登记在 `registry.json`（安装语义），但不进入文档站侧栏与详情页。`component`、`composable`、`layout`、`block` 会加载同目录 README 与 examples。
@@ -120,7 +122,9 @@ registry/slim/src/components/button
     { "type": "component", "path": "src/components/button/button.props.ts" },
     { "type": "component", "path": "src/components/button/button.style.ts" },
     { "type": "component", "kind": "doc", "path": "src/components/button/README.md" },
-    { "type": "component", "kind": "example", "path": "src/components/button/examples/button-1.vue" },
+    { "type": "component", "kind": "example", "path": "src/components/button/examples/usage.vue" },
+    { "type": "component", "kind": "example", "path": "src/components/button/examples/sizes.vue" },
+    { "type": "component", "kind": "example", "path": "src/components/button/examples/with-icon.vue" },
     { "type": "component", "kind": "test", "path": "src/components/button/button.test.ts" }
   ]
 }
@@ -142,26 +146,22 @@ registry/slim/src/components/button
 
 简要说明组件用途。
 
-## Preview
-
 ## Installation
 
 ## Usage
-
-## Examples
 
 ## Props
 
 ## Events
 
 ## Slots
-
-## Source
 ```
 
-Props、Events、Slots 须依据源码或类型填写；信息不足时标注「待补充」，不要编造。可运行示例放在 `examples/*.vue`，README 中说明或引用即可；详情页会渲染 Live Preview。说明使用中文，Vue、TypeScript、UnoCSS 等专有名词保持英文。详情页布局会渲染标题，并去除 README 顶部重复的 `h1`。
+Props、Events、Slots 须依据源码或类型填写；信息不足时标注「待补充」，不要编造。无 Events / Slots 时省略对应章节。不要写 `## Preview`、`## Examples`、`## Source`。
 
-使用 AI 编写时，应先阅读源码与 `registry.json`，再更新 README、examples 与 catalog。具体流程见 [registry-docs-author](../../.cursor/skills/registry-docs-author/SKILL.md)。
+可运行示例放在 `examples/<feature>.vue`（如 `usage.vue`、`sizes.vue`），并在 `files` 中按展示顺序声明多条 `kind: "example"`。`usage.vue` 挂在文档 `## Usage` 下（preview + 高亮源码，默认展开）；其余 example 在 Usage 与 Props 之间插入 `## Examples`（preview + 可折叠高亮源码）。README 的 `## Usage` 正文可留空。标题下方会根据 item `dependencies` 显示 UI 类依赖 badge（如 Iconify、Reka UI；不含工具库）。说明使用中文，Vue、TypeScript、UnoCSS 等专有名词保持英文。详情页布局会渲染标题，并去除 README 顶部重复的 `h1`。
+
+使用 AI 编写时，应先阅读源码与 `registry.json`，再更新 README、examples 与 catalog。具体流程见 [weme-ui-docs](../../.cursor/skills/weme-ui-docs/SKILL.md)。
 
 示例中的 `~/...` 解析到同一 library 的 `src` 根路径，不支持跨 library。
 
@@ -182,7 +182,7 @@ bun --filter @weme-ui/website dev
 
 ## 相关链接
 
-- [registry-docs-author](../../.cursor/skills/registry-docs-author/SKILL.md)
+- [weme-ui-docs](../../.cursor/skills/weme-ui-docs/SKILL.md)
 - [RFC 0002](../../rfcs/0002-registry-driven-website-docs.md)
 - [registry/README.md](../../registry/README.md)
 

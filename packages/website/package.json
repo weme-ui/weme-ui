@@ -36,6 +36,7 @@
     "@weme-ui/unocss-preset": "workspace:*",
     "astro": "^7.3.5",
     "marked": "^18.0.14",
+    "shiki": "^4.5.0",
     "unocss": "catalog:dev",
     "vue": "catalog:dev"
   },

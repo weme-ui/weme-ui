@@ -98,6 +98,7 @@ export interface ItemPageModel {
   readme?: string
   exampleModules: Array<{
     name: string
+    title: string
     path: string
   }>
   sourceFiles: RegistryFile[]
@@ -318,6 +319,18 @@ function resolveReadme(library: string, item: RegistryItem): string | undefined 
   return fallbackKey ? itemReadmeModules[fallbackKey] : undefined
 }
 
+/** `with-icon` → `With Icon`; strips legacy `<item>-` prefixes when present. */
+export function humanizeExampleName(slug: string, itemName?: string): string {
+  let value = slug
+  if (itemName && value.startsWith(`${itemName}-`))
+    value = value.slice(itemName.length + 1)
+  return value
+    .split(/[-_]/)
+    .filter(Boolean)
+    .map(part => part.charAt(0).toUpperCase() + part.slice(1))
+    .join(' ')
+}
+
 function resolveExamples(library: string, item: RegistryItem) {
   const exampleFiles = item.files.filter(file => file.kind === 'example')
   const paths = exampleFiles.length > 0
@@ -330,8 +343,10 @@ function resolveExamples(library: string, item: RegistryItem) {
         })
 
   return paths.map((relativePath) => {
+    const name = relativePath.split('/').pop()?.replace(/\.vue$/, '') || relativePath
     return {
-      name: relativePath.split('/').pop()?.replace(/\.vue$/, '') || relativePath,
+      name,
+      title: humanizeExampleName(name, item.name),
       path: `${library}/${relativePath}`,
     }
   })

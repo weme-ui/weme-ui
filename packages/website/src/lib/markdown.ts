@@ -64,3 +64,49 @@ export function injectHeadingIds(html: string, toc: TocItem[]): string {
     return `<h${level} id="${id}">${inner}</h${level}>`
   })
 }
+
+export interface MarkdownH2Section {
+  title: string
+  body: string
+}
+
+/** Split markdown into `##` sections (leading content without h2 is dropped). */
+export function splitMarkdownH2(markdown = ''): MarkdownH2Section[] {
+  const lines = markdown.split('\n')
+  const sections: MarkdownH2Section[] = []
+  let current: MarkdownH2Section | null = null
+
+  for (const line of lines) {
+    if (/^## (?!#)/.test(line)) {
+      if (current)
+        sections.push(current)
+      current = {
+        title: line.slice(3).trim(),
+        body: '',
+      }
+      continue
+    }
+    if (!current)
+      continue
+    current.body += `${current.body ? '\n' : ''}${line}`
+  }
+
+  if (current)
+    sections.push(current)
+
+  return sections.map(section => ({
+    ...section,
+    body: section.body.replace(/^\n+/, '').replace(/\n+$/, ''),
+  }))
+}
+
+export function slugifyHeading(text: string, used = new Map<string, number>()): string {
+  const base = text
+    .toLowerCase()
+    .replace(/[^\w\u4E00-\u9FFF\s-]/g, '')
+    .trim()
+    .replace(/\s+/g, '-')
+  const count = used.get(base) || 0
+  used.set(base, count + 1)
+  return count === 0 ? base : `${base}-${count}`
+}

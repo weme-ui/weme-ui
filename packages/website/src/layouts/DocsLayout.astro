@@ -6,6 +6,7 @@ import Sidebar from '../components/Sidebar.astro'
 import type { AdjacentNavLink, DocNavItem, ComponentTreeSection } from '../lib/registry'
 import { getLibraries, withBase } from '../lib/registry'
 import type { TocItem } from '../lib/markdown'
+import type { UiDependencyBadge } from '../lib/ui-dependencies'
 
 export interface BreadcrumbItem {
   label: string
@@ -15,6 +16,7 @@ export interface BreadcrumbItem {
 interface Props {
   title: string
   description?: string
+  badges?: UiDependencyBadge[]
   library?: string
   docs?: DocNavItem[]
   tree?: ComponentTreeSection[]
@@ -27,6 +29,7 @@ interface Props {
 const {
   title,
   description,
+  badges = [],
   library,
   docs = [],
   tree = [],
@@ -111,6 +114,20 @@ const libraries = getLibraries()
           <Breadcrumb items={breadcrumbs} />
           <h1 class="docs-title">{title}</h1>
           {description && <p class="docs-description">{description}</p>}
+          {badges.length > 0 && (
+            <div class="docs-badges" aria-label="UI dependencies">
+              {badges.map(badge => (
+                <a
+                  class="docs-badge"
+                  href={badge.href}
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  {badge.label}
+                </a>
+              ))}
+            </div>
+          )}
         </header>
         <div class="docs-content prose">
           <slot />
@@ -162,7 +179,7 @@ const libraries = getLibraries()
     --docs-bg-soft: #121217;
     --docs-bg-hover: #1a1a21;
     --docs-bg-code: #07080a;
-    --docs-bg-example: #ffffff;
+    --docs-bg-example: #121217;
     --docs-ink: #f4f4f6;
     --docs-ink-soft: #b4b6c0;
     --docs-muted: #7c7e8a;
@@ -445,6 +462,33 @@ const libraries = getLibraries()
     max-width: 40rem;
   }
 
+  .docs-badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.45rem;
+    margin-top: 0.95rem;
+  }
+
+  .docs-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.22rem 0.65rem;
+    border: 1px solid var(--docs-border-strong);
+    border-radius: 999px;
+    background: var(--docs-bg-soft);
+    color: var(--docs-ink-soft);
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.01em;
+    transition: border-color 120ms ease, color 120ms ease, background 120ms ease;
+  }
+
+  .docs-badge:hover {
+    border-color: color-mix(in srgb, var(--docs-accent) 45%, var(--docs-border-strong));
+    color: var(--docs-accent-ink);
+    background: var(--docs-accent-soft);
+  }
+
   .prose > :first-child {
     margin-top: 0;
   }
@@ -613,43 +657,6 @@ const libraries = getLibraries()
     border: 0;
     border-top: 1px solid var(--docs-border);
     margin: 2rem 0;
-  }
-
-  .example-block {
-    margin: 1.25rem 0 1.85rem;
-  }
-
-  .example-block h3 {
-    margin: 0 0 0.65rem;
-    font-size: 0.9rem;
-    font-weight: 500;
-    color: var(--docs-ink-soft);
-  }
-
-  .example-frame {
-    border: 1px solid var(--docs-border-strong);
-    border-radius: calc(var(--docs-radius) + 2px);
-    background: var(--docs-bg-example);
-    overflow: hidden;
-  }
-
-  .example-frame-body {
-    padding: 1.35rem 1.25rem;
-    min-height: 4.5rem;
-    color: #1d2129;
-  }
-
-  .example-frame-meta {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 0.75rem;
-    padding: 0.5rem 0.85rem;
-    border-top: 1px solid #e8e8ec;
-    background: #f7f7f8;
-    color: #6b6f7a;
-    font-size: 0.72rem;
-    font-family: var(--docs-font-mono);
   }
 
   .toc-title {

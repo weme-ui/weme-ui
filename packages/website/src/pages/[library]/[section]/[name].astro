@@ -1,7 +1,13 @@
 ---
 import ExamplePreview from '../../../components/ExamplePreview.astro'
 import DocsLayout from '../../../layouts/DocsLayout.astro'
-import { extractToc, injectHeadingIds, renderMarkdown, stripLeadingH1 } from '../../../lib/markdown'
+import {
+  renderMarkdown,
+  slugifyHeading,
+  splitMarkdownH2,
+  stripLeadingH1,
+  type TocItem,
+} from '../../../lib/markdown'
 import {
   getAdjacentNav,
   getAllItemPages,
@@ -10,6 +16,7 @@ import {
   getSectionLabel,
   withBase,
 } from '../../../lib/registry'
+import { resolveUiDependencyBadges } from '../../../lib/ui-dependencies'
 
 export function getStaticPaths() {
   return getAllItemPages().map(page => ({
@@ -29,31 +36,96 @@ if (!library || !page) {
   throw new Error(`Unknown item page: ${libraryId}/${section}/${name}`)
 }
 
-const readmeBody = page.readme ? stripLeadingH1(page.readme) : ''
-const toc = extractToc(readmeBody)
-const html = readmeBody
-  ? injectHeadingIds(renderMarkdown(readmeBody), toc)
-  : '<p>暂无 README。</p>'
+const OMIT_SECTIONS = new Set(['preview', 'examples', 'source'])
+const API_SECTIONS = new Set(['props', 'events', 'slots'])
 
+const readmeBody = page.readme ? stripLeadingH1(page.readme) : ''
+const sections = splitMarkdownH2(readmeBody).filter((section) => {
+  return !OMIT_SECTIONS.has(section.title.trim().toLowerCase())
+})
+const beforeApi = sections.filter(section => !API_SECTIONS.has(section.title.trim().toLowerCase()))
+const apiSections = sections.filter(section => API_SECTIONS.has(section.title.trim().toLowerCase()))
+
+const usageExample = page.exampleModules.find(example => example.name === 'usage')
+const featureExamples = page.exampleModules.filter(example => example.name !== 'usage')
+
+const usedIds = new Map<string, number>()
+const toc: TocItem[] = []
+
+function pushToc(text: string, level: number): string {
+  const id = slugifyHeading(text, usedIds)
+  toc.push({ id, text, level })
+  return id
+}
+
+function renderHeading(title: string): { id: string, html: string } {
+  const id = pushToc(title, 2)
+  return {
+    id,
+    html: `<h2 id="${id}">${title}</h2>`,
+  }
+}
+
+function renderBody(body: string): string {
+  return body.trim() ? renderMarkdown(body) : ''
+}
+
+function renderSection(title: string, body: string): string {
+  const { html: heading } = renderHeading(title)
+  const bodyHtml = renderBody(body)
+  return bodyHtml ? `${heading}\n${bodyHtml}` : heading
+}
+
+const beforeApiBlocks = beforeApi.map((section) => {
+  const isUsage = section.title.trim().toLowerCase() === 'usage'
+  const attachUsage = isUsage ? usageExample : undefined
+
+  if (attachUsage) {
+    return {
+      headingHtml: renderHeading(section.title).html,
+      previewPath: attachUsage.path,
+      // Source lives in the example panel (preview + highlighted code).
+      bodyHtml: '',
+      codeOpen: true,
+    }
+  }
+
+  return {
+    headingHtml: '',
+    previewPath: undefined as string | undefined,
+    bodyHtml: renderSection(section.title, section.body),
+    codeOpen: false,
+  }
+})
+
+const hasUsageSection = beforeApi.some(section => section.title.trim().toLowerCase() === 'usage')
+const orphanUsageId = usageExample && !hasUsageSection ? pushToc('Usage', 2) : null
+
+const examplesId = featureExamples.length > 0 ? pushToc('Examples', 2) : null
+const exampleHeadingIds = featureExamples.map(example => pushToc(example.title, 3))
+const apiHtml = apiSections.map(section => renderSection(section.title, section.body)).join('\n')
+const filesId = page.sourceFiles.length > 0 ? pushToc('Files', 2) : null
+
+const badges = resolveUiDependencyBadges(page.item.dependencies)
 const adjacent = getAdjacentNav(library.id, page.href)
 const sectionLabel = getSectionLabel(section!)
+
+const emptyHtml = beforeApiBlocks.length === 0
+  && !usageExample
+  && featureExamples.length === 0
+  && !apiHtml
+  ? '<p>暂无 README。</p>'
+  : ''
 ---
 
 <DocsLayout
   title={page.title}
   description={page.description}
+  badges={badges}
   library={library.id}
   docs={library.docs}
   tree={library.tree}
-  toc={[
-    ...(page.exampleModules.length > 0
-      ? [{ id: 'live-preview', text: 'Live Preview', level: 2 }]
-      : []),
-    ...toc,
-    ...(page.sourceFiles.length > 0
-      ? [{ id: 'files', text: 'Files', level: 2 }]
-      : []),
-  ]}
+  toc={toc}
   breadcrumbs={[
     { label: 'Home', href: withBase('/') },
     { label: library.id, href: withBase(`/${library.id}/`) },
@@ -63,20 +135,44 @@ const sectionLabel = getSectionLabel(section!)
   prev={adjacent.prev}
   next={adjacent.next}
 >
-  {page.exampleModules.length > 0 && (
+  {beforeApiBlocks.map(block => (
+    <Fragment>
+      {block.headingHtml && <Fragment set:html={block.headingHtml} />}
+      {block.previewPath && (
+        <ExamplePreview
+          examplePath={block.previewPath}
+          codeOpen={block.codeOpen}
+        />
+      )}
+      {block.bodyHtml && <Fragment set:html={block.bodyHtml} />}
+    </Fragment>
+  ))}
+
+  {orphanUsageId && usageExample && (
     <section>
-      <h2 id="live-preview">Live Preview</h2>
-      {page.exampleModules.map(example => (
-        <ExamplePreview title={example.name} examplePath={example.path} />
+      <h2 id={orphanUsageId}>Usage</h2>
+      <ExamplePreview examplePath={usageExample.path} codeOpen />
+    </section>
+  )}
+
+  {featureExamples.length > 0 && examplesId && (
+    <section>
+      <h2 id={examplesId}>Examples</h2>
+      {featureExamples.map((example, index) => (
+        <Fragment>
+          <h3 id={exampleHeadingIds[index]}>{example.title}</h3>
+          <ExamplePreview examplePath={example.path} />
+        </Fragment>
       ))}
     </section>
   )}
 
-  <Fragment set:html={html} />
+  <Fragment set:html={apiHtml} />
+  <Fragment set:html={emptyHtml} />
 
-  {page.sourceFiles.length > 0 && (
+  {page.sourceFiles.length > 0 && filesId && (
     <section>
-      <h2 id="files">Files</h2>
+      <h2 id={filesId}>Files</h2>
       <ul>
         {page.sourceFiles.map(file => (
           <li>

@@ -1,24 +1,306 @@
 ---
 import ExampleHost from './ExampleHost.vue'
+import { highlightCode } from '../lib/highlight'
 
 interface Props {
   title?: string
   examplePath: string
+  /** When true, code panel starts expanded (e.g. Usage). */
+  codeOpen?: boolean
 }
 
-const { title, examplePath } = Astro.props
+const { title, examplePath, codeOpen = false } = Astro.props
+
+const rawModules = import.meta.glob<string>(
+  '../../../../registry/*/src/**/examples/*.vue',
+  { eager: true, query: '?raw', import: 'default' },
+)
+
+function resolveRaw(path: string): string | undefined {
+  const key = Object.keys(rawModules).find(modulePath =>
+    modulePath.endsWith(`/registry/${path}`)
+    || modulePath.endsWith(path)
+    || modulePath.includes(path),
+  )
+  return key ? rawModules[key] : undefined
+}
+
+const source = resolveRaw(examplePath) ?? ''
+const highlighted = source
+  ? await highlightCode(source, 'vue')
+  : ''
 const shortPath = examplePath.split('/').slice(-2).join('/')
+const copyId = `example-copy-${Math.random().toString(36).slice(2, 10)}`
 ---
 
-<section class="example-block">
-  {title && <h3>{title}</h3>}
-  <div class="example-frame">
-    <div class="example-frame-body">
-      <ExampleHost client:load examplePath={examplePath} />
+<section class="example-panel">
+  {title && <h3 class="example-panel-title">{title}</h3>}
+
+  <div class="example-panel-shell">
+    <div class="example-panel-stage">
+      <div class="example-panel-stage-glow" aria-hidden="true"></div>
+      <div class="example-panel-stage-body">
+        <ExampleHost client:load examplePath={examplePath} />
+      </div>
     </div>
-    <div class="example-frame-meta">
-      <span>{shortPath}</span>
-      <span>Live preview</span>
-    </div>
+
+    {source && (
+      <details class="example-panel-code" open={codeOpen || undefined}>
+        <summary class="example-panel-toolbar">
+          <span class="example-panel-toolbar-left">
+            <span class="example-panel-lang">Vue</span>
+            <span class="example-panel-path">{shortPath}</span>
+          </span>
+          <span class="example-panel-toolbar-right">
+            <button
+              type="button"
+              class="example-panel-copy"
+              data-copy-target={copyId}
+              aria-label="Copy code"
+            >
+              Copy
+            </button>
+            <span class="example-panel-toggle" data-closed-label="Expand code" data-open-label="Hide code">
+              Expand code
+            </span>
+          </span>
+        </summary>
+
+        <textarea id={`${copyId}-raw`} class="example-panel-raw" readonly hidden>{source}</textarea>
+        <div class="example-panel-code-body" id={copyId}>
+          <Fragment set:html={highlighted} />
+        </div>
+      </details>
+    )}
   </div>
 </section>
+
+<script>
+  function bindExamplePanels() {
+    document.querySelectorAll<HTMLDetailsElement>('.example-panel-code').forEach((details) => {
+      if (details.dataset.bound === 'true')
+        return
+      details.dataset.bound = 'true'
+
+      const toggle = details.querySelector<HTMLElement>('.example-panel-toggle')
+      const updateLabel = () => {
+        if (!toggle)
+          return
+        toggle.textContent = details.open
+          ? (toggle.dataset.openLabel || 'Hide code')
+          : (toggle.dataset.closedLabel || 'Expand code')
+      }
+      updateLabel()
+      details.addEventListener('toggle', updateLabel)
+
+      const copyBtn = details.querySelector<HTMLButtonElement>('.example-panel-copy')
+      copyBtn?.addEventListener('click', async (event) => {
+        event.preventDefault()
+        event.stopPropagation()
+        const targetId = copyBtn.dataset.copyTarget
+        const rawEl = targetId
+          ? document.getElementById(`${targetId}-raw`) as HTMLTextAreaElement | null
+          : null
+        const raw = rawEl?.value || ''
+        try {
+          await navigator.clipboard.writeText(raw)
+          copyBtn.classList.add('is-copied')
+          copyBtn.textContent = 'Copied'
+          window.setTimeout(() => {
+            copyBtn.classList.remove('is-copied')
+            copyBtn.textContent = 'Copy'
+          }, 1400)
+        }
+        catch {
+          copyBtn.classList.add('is-failed')
+          window.setTimeout(() => copyBtn.classList.remove('is-failed'), 1400)
+        }
+      })
+    })
+  }
+
+  bindExamplePanels()
+  document.addEventListener('astro:page-load', () => bindExamplePanels())
+</script>
+
+<style>
+  .example-panel {
+    margin: 0.55rem 0 1.85rem;
+  }
+
+  .example-panel-title {
+    margin: 0 0 0.65rem;
+    font-size: 1.05rem;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    color: var(--docs-ink);
+  }
+
+  .example-panel-shell {
+    border: 1px solid var(--docs-border-strong);
+    border-radius: calc(var(--docs-radius) + 4px);
+    overflow: hidden;
+    background: var(--docs-bg-panel);
+    box-shadow:
+      0 0 0 1px color-mix(in srgb, var(--docs-ink) 4%, transparent) inset,
+      0 18px 40px -28px rgba(0, 0, 0, 0.75);
+  }
+
+  .example-panel-stage {
+    position: relative;
+    background:
+      radial-gradient(120% 80% at 0% 0%, var(--docs-accent-soft), transparent 50%),
+      var(--docs-bg-example);
+  }
+
+  .example-panel-stage-glow {
+    pointer-events: none;
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(color-mix(in srgb, var(--docs-border-strong) 65%, transparent) 1px, transparent 1px),
+      linear-gradient(90deg, color-mix(in srgb, var(--docs-border-strong) 65%, transparent) 1px, transparent 1px);
+    background-size: 24px 24px;
+    mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.7), transparent 90%);
+    opacity: 0.55;
+  }
+
+  .example-panel-stage-body {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem 1.5rem;
+    min-height: 8.5rem;
+    color: var(--docs-ink);
+  }
+
+  .example-panel-code {
+    border-top: 1px solid var(--docs-border);
+    background: var(--docs-bg-code);
+  }
+
+  .example-panel-toolbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    padding: 0.55rem 0.85rem;
+    list-style: none;
+    cursor: pointer;
+    user-select: none;
+    color: var(--docs-muted);
+    font-size: 0.75rem;
+    font-weight: 500;
+    background: linear-gradient(180deg, var(--docs-bg-soft), var(--docs-bg-code));
+  }
+
+  .example-panel-toolbar::-webkit-details-marker {
+    display: none;
+  }
+
+  .example-panel-toolbar::marker {
+    content: '';
+  }
+
+  .example-panel-toolbar:hover {
+    color: var(--docs-ink-soft);
+  }
+
+  .example-panel-toolbar-left,
+  .example-panel-toolbar-right {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.55rem;
+    min-width: 0;
+  }
+
+  .example-panel-lang {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.12rem 0.45rem;
+    border-radius: 999px;
+    border: 1px solid color-mix(in srgb, var(--docs-accent) 35%, var(--docs-border));
+    background: var(--docs-accent-soft);
+    color: var(--docs-accent-ink);
+    font-family: var(--docs-font-mono);
+    font-size: 0.68rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  .example-panel-path {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-family: var(--docs-font-mono);
+    font-size: 0.7rem;
+    color: var(--docs-muted);
+  }
+
+  .example-panel-copy {
+    appearance: none;
+    border: 1px solid transparent;
+    border-radius: 0.35rem;
+    padding: 0.18rem 0.45rem;
+    background: transparent;
+    color: inherit;
+    font: inherit;
+    font-size: 0.72rem;
+    cursor: pointer;
+  }
+
+  .example-panel-copy:hover {
+    border-color: var(--docs-border);
+    background: var(--docs-bg-hover);
+    color: var(--docs-ink);
+  }
+
+  .example-panel-copy.is-copied {
+    color: var(--docs-accent-ink);
+  }
+
+  .example-panel-copy.is-failed {
+    color: #f07676;
+  }
+
+  .example-panel-toggle {
+    color: var(--docs-ink-soft);
+  }
+
+  .example-panel-code[open] .example-panel-toggle {
+    color: var(--docs-accent-ink);
+  }
+
+  .example-panel-code-body {
+    border-top: 1px solid var(--docs-border);
+    max-height: min(28rem, 70vh);
+    overflow: auto;
+    background: var(--docs-bg-code);
+  }
+
+  .example-panel-code-body :global(pre) {
+    margin: 0 !important;
+    padding: 1rem 1.05rem 1.15rem !important;
+    border: 0 !important;
+    border-radius: 0 !important;
+    background: transparent !important;
+    font-family: var(--docs-font-mono) !important;
+    font-size: 0.82rem !important;
+    line-height: 1.65 !important;
+  }
+
+  .example-panel-code-body :global(pre code) {
+    font-family: inherit !important;
+    font-size: inherit !important;
+    background: transparent !important;
+    border: 0 !important;
+    padding: 0 !important;
+    color: inherit !important;
+  }
+
+  .example-panel-code-body :global(.shiki) {
+    background: transparent !important;
+  }
+</style>

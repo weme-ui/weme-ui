@@ -56,7 +56,6 @@ export default defineConfig({
   integrations: [
     vue(),
     UnoCSS({
-      injectReset: false,
     }),
   ],
   vite: {

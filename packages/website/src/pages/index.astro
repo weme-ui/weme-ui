@@ -1,26 +1,914 @@
 ---
-import DocsLayout from '../layouts/DocsLayout.astro'
-import { getLibraries } from '../lib/registry'
+import CopyCommand from '../components/landing/CopyCommand.vue'
+import Icon from '../components/landing/Icon.vue'
+import WorkflowPanel from '../components/landing/WorkflowPanel.vue'
+import LandingLayout from '../layouts/LandingLayout.astro'
+import { homeIcons } from '../lib/icons'
+import { getLibrary, withBase } from '../lib/registry'
 
-const libraries = getLibraries()
+const githubHref = 'https://github.com/weme-ui/weme-ui'
+const slim = getLibrary('slim')
+const preset = getLibrary('unocss-preset')
+const componentsHref = slim?.docs[0]?.href ?? slim?.href ?? withBase('/slim/')
+const presetHref = preset?.docs[0]?.href ?? preset?.href ?? withBase('/unocss-preset/')
+const installCommand = 'bun add -D @weme-ui/unocss-preset'
+
+const stack = [
+  { name: 'Vue', icon: homeIcons.vue },
+  { name: 'UnoCSS', icon: homeIcons.unocss },
+  { name: 'TypeScript', icon: homeIcons.typescript },
+  { name: 'Reka UI', icon: homeIcons.component },
+] as const
+
+const workflowSteps = [
+  {
+    id: 'init',
+    label: '01 Init',
+    title: '初始化项目',
+    description: '写入配置、安装 UnoCSS Preset 与基础依赖。CLI 仍在实现中，Preset 现已可用。',
+    status: 'soon' as const,
+    prompt: '> pnpm dlx @weme-ui/weme-ui init',
+    lines: [
+      { kind: 'ok' as const, text: 'Wrote config' },
+      { kind: 'ok' as const, text: 'Installed @weme-ui/unocss-preset' },
+      { kind: 'muted' as const, text: 'CLI 开发中 · Preset 可先单独安装' },
+    ],
+  },
+  {
+    id: 'add',
+    label: '02 Add',
+    title: '添加组件',
+    description: '从 Registry 按需拉取组件源码到你的项目，而不是安装一个黑盒 npm 包。',
+    status: 'soon' as const,
+    prompt: '> pnpm dlx @weme-ui/weme-ui add slim/button',
+    lines: [
+      { kind: 'ok' as const, text: 'Added slim/button' },
+      { kind: 'code' as const, text: '→ components/ui/button.vue' },
+      { kind: 'muted' as const, text: '源码、样式与依赖一并落地' },
+    ],
+  },
+  {
+    id: 'theme',
+    label: '03 Theme',
+    title: '接入主题',
+    description: '用 UnoCSS Preset 统一颜色刻度、语义 Tokens、暗色模式与工具类。',
+    status: 'ready' as const,
+    prompt: '> bun add -D @weme-ui/unocss-preset',
+    lines: [
+      { kind: 'ok' as const, text: 'presetWemeUI() ready' },
+      { kind: 'code' as const, text: 'colors · tokens · dark mode · rules' },
+      { kind: 'muted' as const, text: '与 Registry 组件同一套设计语言' },
+    ],
+  },
+]
+
+const cores = [
+  {
+    icon: homeIcons.folderTree,
+    badge: 'core',
+    title: 'Registry',
+    href: componentsHref,
+    body: '可复用的 Vue 组件以源码形式发布。每个 item 自包含实现、文档与示例，按需拷贝进你的仓库。',
+    points: [
+      '组件、composables、utils 统一 catalog',
+      '依赖与 registryDependencies 可解析',
+      '你拥有源码，定制不再靠覆盖样式',
+    ],
+  },
+  {
+    icon: homeIcons.palette,
+    badge: 'core',
+    title: 'UnoCSS Preset',
+    href: presetHref,
+    body: '为组件库提供颜色、Tokens、暗色与工具类规则。主题变量开箱可用，和 Registry 样式对齐。',
+    points: [
+      '色板刻度、语义 Tokens、P3 支持',
+      'class / media 暗色切换',
+      'Rules 与 Variants 覆盖常用场景',
+    ],
+  },
+] as const
+
+const supports = [
+  {
+    icon: homeIcons.terminal,
+    badge: 'soon',
+    title: 'CLI',
+    body: '初始化项目、添加与更新 Registry item。命令形态已定，实现推进中。',
+    points: [
+      'init 写入配置与依赖',
+      'add <registry>/<item> 拉取源码',
+    ],
+  },
+  {
+    icon: homeIcons.fileJson,
+    badge: 'contract',
+    title: 'Schema',
+    body: 'Registry、配置与 lockfile 的契约。保证 catalog、安装路径与已装 item 可被工具可靠解析。',
+    points: [
+      'registry / config / lockfile 契约',
+      '让 CLI 与工具共享同一套格式',
+    ],
+  },
+] as const
+
+const explores = [
+  {
+    href: componentsHref,
+    badge: 'registry',
+    title: 'Slim Components',
+    description: slim?.description || '基于 Vue 与 UnoCSS 的轻量组件 registry。',
+    cta: '浏览组件',
+  },
+  {
+    href: presetHref,
+    badge: 'preset',
+    title: 'UnoCSS Preset',
+    description: preset?.description || '颜色、Tokens、暗色与工具类规则。',
+    cta: '阅读主题文档',
+  },
+] as const
 ---
 
-<DocsLayout
-  title="Weme UI Docs"
-  description="Registry 组件库与 packages 文档统一由文档站展示。"
+<LandingLayout
+  title="Weme UI — 可拷贝的 Vue 组件库"
+  description="基于 Registry 与 UnoCSS Preset 的 Vue 组件库。组件以源码交付，主题与工具类开箱可用。"
 >
-  {libraries.map(library => (
-    <a class="library-card" href={library.href}>
-      <strong>{library.name}</strong>
-      {library.description && <p>{library.description}</p>}
-      <small>
-        {library.source === 'package' ? 'package' : 'registry'}
-        {library.version ? ` · v${library.version}` : ''}
-      </small>
-    </a>
-  ))}
+  <div class="home">
+    <div class="home-grid" aria-hidden="true"></div>
 
-  {libraries.length === 0 && (
-    <p>暂无可用文档。</p>
-  )}
-</DocsLayout>
+    <div class="announce">
+      <a class="announce-link" href={githubHref} target="_blank" rel="noreferrer">
+        <span>早期开发中 · CLI 即将推出 · 请勿用于生产</span>
+        <Icon icon={homeIcons.arrowRight} width={14} height={14} />
+      </a>
+    </div>
+
+    <header class="nav">
+      <div class="nav-inner">
+        <a class="brand" href={withBase('/')}>
+          <img class="brand-logo" src={withBase('/weme.svg')} width="28" height="28" alt="" />
+          <span class="brand-text">Weme UI</span>
+        </a>
+
+        <nav class="nav-links" aria-label="主导航">
+          <a href={componentsHref}>Components</a>
+          <a href={presetHref}>Preset</a>
+          <a href="#workflow">CLI</a>
+        </nav>
+
+        <div class="nav-actions">
+          <a class="nav-icon" href={githubHref} target="_blank" rel="noreferrer" aria-label="GitHub">
+            <Icon icon={homeIcons.github} width={18} height={18} />
+          </a>
+          <a class="nav-cta" href={componentsHref}>
+            浏览组件
+            <Icon icon={homeIcons.arrowRight} width={14} height={14} />
+          </a>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="hero-copy reveal">
+          <p class="comment">// vue · registry · unocss</p>
+          <p class="hero-brand">Weme UI</p>
+          <h1 class="hero-title">可拷贝的 Vue 组件库</h1>
+          <p class="hero-lead">
+            以 Registry 交付源码，以 UnoCSS Preset 统一主题。组件进你的仓库，样式跟同一套设计语言。
+          </p>
+
+          <div class="hero-actions">
+            <a class="btn btn-primary" href={componentsHref}>
+              浏览组件
+              <Icon icon={homeIcons.arrowRight} width={16} height={16} />
+            </a>
+            <a class="btn btn-ghost" href={presetHref}>
+              <Icon icon={homeIcons.palette} width={16} height={16} />
+              UnoCSS Preset
+            </a>
+          </div>
+
+          <div class="hero-command">
+            <CopyCommand
+              client:load
+              command={installCommand}
+              copyIcon={homeIcons.copy}
+              checkIcon={homeIcons.check}
+            />
+            <p class="hero-command-hint">
+              Preset 现已可用 · CLI <code>add</code> 即将推出
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section id="workflow" class="hero-stage reveal reveal-delay-2">
+        <p class="comment">// workflow</p>
+        <WorkflowPanel
+          client:load
+          steps={workflowSteps}
+          checkIcon={homeIcons.check}
+        />
+      </section>
+
+      <section class="stack">
+        <p class="comment center">// built with</p>
+        <ul class="stack-list">
+          {stack.map(item => (
+            <li>
+              <Icon icon={item.icon} width={18} height={18} />
+              <span>{item.name}</span>
+            </li>
+          ))}
+        </ul>
+      </section>
+
+      <section class="section">
+        <div class="section-head reveal">
+          <p class="comment">// core</p>
+          <h2>两个核心：Registry 与 Preset</h2>
+          <p class="section-lead">
+            组件库的主体是可安装的源码单元，以及它们共同依赖的主题与工具类体系。
+          </p>
+        </div>
+
+        <div class="core-grid">
+          {cores.map((item, index) => (
+            <a class={`core-card reveal reveal-delay-${index + 1}`} href={item.href}>
+              <div class="core-card-top">
+                <span class="feature-icon">
+                  <Icon icon={item.icon} width={18} height={18} />
+                </span>
+                <span class="library-badge">{item.badge}</span>
+              </div>
+              <h3>{item.title}</h3>
+              <p>{item.body}</p>
+              <ul>
+                {item.points.map(point => (
+                  <li>
+                    <Icon icon={homeIcons.chevronRight} width={14} height={14} />
+                    <span>{point}</span>
+                  </li>
+                ))}
+              </ul>
+              <span class="library-cta">
+                了解更多
+                <Icon icon={homeIcons.arrowUpRight} width={15} height={15} />
+              </span>
+            </a>
+          ))}
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-head reveal">
+          <p class="comment">// toolchain</p>
+          <h2>CLI 与 Schema 托住工作流</h2>
+          <p class="section-lead">
+            Schema 定义契约；CLI 负责把 Registry item 装进项目。工具链服务组件库，而不是反过来。
+          </p>
+        </div>
+
+        <div class="support-grid">
+          {supports.map((item, index) => (
+            <article class={`support-card reveal reveal-delay-${index + 1}`}>
+              <div class="core-card-top">
+                <span class="feature-icon">
+                  <Icon icon={item.icon} width={18} height={18} />
+                </span>
+                <span class="library-badge" data-kind={item.badge}>{item.badge}</span>
+              </div>
+              <h3>{item.title}</h3>
+              <p>{item.body}</p>
+              <ul>
+                {item.points.map(point => (
+                  <li>
+                    <Icon icon={homeIcons.chevronRight} width={14} height={14} />
+                    <span>{point}</span>
+                  </li>
+                ))}
+              </ul>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-head reveal">
+          <p class="comment">// explore</p>
+          <h2>从核心能力开始</h2>
+          <p class="section-lead">
+            先看组件与主题文档。CLI 就绪后，同一套 Registry 可直接 `add` 进项目。
+          </p>
+        </div>
+
+        <div class="library-grid">
+          {explores.map((item, index) => (
+            <a class={`library-card reveal reveal-delay-${index + 1}`} href={item.href}>
+              <div class="library-card-top">
+                <span class="library-badge">{item.badge}</span>
+              </div>
+              <h3>{item.title}</h3>
+              <p>{item.description}</p>
+              <span class="library-cta">
+                {item.cta}
+                <Icon icon={homeIcons.arrowUpRight} width={15} height={15} />
+              </span>
+            </a>
+          ))}
+        </div>
+      </section>
+
+      <section class="cta-band">
+        <div class="cta-inner reveal">
+          <p class="comment">// get started</p>
+          <h2>先装主题，再接组件</h2>
+          <p>
+            现在就可以接入 UnoCSS Preset，并阅读 Slim 组件文档。CLI 推出后，安装路径会与文档中的 item 一一对应。
+          </p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href={presetHref}>
+              安装 Preset
+              <Icon icon={homeIcons.palette} width={16} height={16} />
+            </a>
+            <a class="btn btn-ghost" href={componentsHref}>
+              浏览组件
+              <Icon icon={homeIcons.bookOpen} width={16} height={16} />
+            </a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        <div class="footer-brand">
+          <span class="brand-text">Weme UI</span>
+          <p>MIT Licensed · © {new Date().getFullYear()} weme-ui</p>
+        </div>
+        <div class="footer-cols">
+          <div>
+            <h4>组件库</h4>
+            <a href={componentsHref}>Components</a>
+            <a href={presetHref}>UnoCSS Preset</a>
+          </div>
+          <div>
+            <h4>工具链</h4>
+            <a href="#workflow">CLI</a>
+            <a href={githubHref} target="_blank" rel="noreferrer">Schema / GitHub</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </div>
+</LandingLayout>
+
+<style>
+  .home {
+    position: relative;
+    isolation: isolate;
+    overflow-x: clip;
+  }
+
+  .home-grid {
+    pointer-events: none;
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background-image:
+      linear-gradient(to right, var(--home-grid) 1px, transparent 1px),
+      linear-gradient(to bottom, var(--home-grid) 1px, transparent 1px),
+      radial-gradient(ellipse 80% 50% at 50% -10%, rgba(76, 187, 165, 0.16), transparent 55%),
+      radial-gradient(ellipse 40% 30% at 90% 20%, rgba(76, 187, 165, 0.06), transparent 50%);
+    background-size: 72px 72px, 72px 72px, auto, auto;
+    mask-image: linear-gradient(to bottom, black 0%, black 55%, transparent 100%);
+  }
+
+  .announce {
+    border-bottom: 1px solid var(--home-border);
+    background: #000;
+  }
+
+  .announce-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.45rem;
+    padding: 0.55rem 1rem;
+    color: var(--home-ink-soft);
+    font-size: 0.8125rem;
+    font-weight: 500;
+    letter-spacing: 0.01em;
+    transition: color 140ms ease;
+  }
+
+  .announce-link:hover {
+    color: var(--home-ink);
+  }
+
+  .nav {
+    position: sticky;
+    top: 0;
+    z-index: 40;
+    border-bottom: 1px solid var(--home-border);
+    background: rgba(5, 5, 6, 0.78);
+    backdrop-filter: blur(16px);
+  }
+
+  .nav-inner,
+  .section,
+  .stack,
+  .cta-inner,
+  .footer-inner {
+    width: min(100% - 2rem, var(--home-max));
+    margin-inline: auto;
+  }
+
+  .nav-inner {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+    height: 3.65rem;
+  }
+
+  .brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.55rem;
+    flex-shrink: 0;
+  }
+
+  .brand-logo {
+    display: block;
+  }
+
+  .brand-text {
+    font-weight: 700;
+    font-size: 1rem;
+    letter-spacing: -0.03em;
+  }
+
+  .nav-links {
+    display: none;
+    align-items: center;
+    gap: 1.15rem;
+    margin-left: 0.5rem;
+  }
+
+  .nav-links a {
+    color: var(--home-muted);
+    font-size: 0.875rem;
+    font-weight: 500;
+    transition: color 140ms ease;
+  }
+
+  .nav-links a:hover {
+    color: var(--home-ink);
+  }
+
+  .nav-actions {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.55rem;
+    margin-left: auto;
+  }
+
+  .nav-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.1rem;
+    height: 2.1rem;
+    border-radius: 0.45rem;
+    color: var(--home-ink-soft);
+    transition:
+      color 140ms ease,
+      background 140ms ease;
+  }
+
+  .nav-icon:hover {
+    color: var(--home-ink);
+    background: var(--home-bg-soft);
+  }
+
+  .nav-cta {
+    display: none;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.4rem 0.8rem;
+    border-radius: 999px;
+    background: var(--home-ink);
+    color: #0b0b0d;
+    font-size: 0.8125rem;
+    font-weight: 600;
+  }
+
+  .hero {
+    width: min(100% - 2rem, var(--home-max));
+    margin: 0 auto;
+    padding: 4.75rem 0 2.25rem;
+  }
+
+  .hero-stage {
+    width: min(100% - 2rem, var(--home-max));
+    margin: 0 auto 1.5rem;
+    scroll-margin-top: 5rem;
+  }
+
+  .comment {
+    margin: 0 0 0.85rem;
+    color: var(--home-muted);
+    font-family: var(--home-font-mono);
+    font-size: 0.78rem;
+    letter-spacing: 0.04em;
+    text-transform: lowercase;
+  }
+
+  .comment.center {
+    text-align: center;
+  }
+
+  .hero-copy {
+    max-width: 40rem;
+  }
+
+  .hero-brand {
+    margin: 0;
+    color: var(--home-accent-ink);
+    font-size: clamp(3.2rem, 9vw, 5.6rem);
+    font-weight: 800;
+    letter-spacing: -0.055em;
+    line-height: 0.92;
+  }
+
+  .hero-title {
+    margin: 1rem 0 0;
+    max-width: 18ch;
+    font-size: clamp(1.45rem, 3vw, 1.95rem);
+    font-weight: 600;
+    letter-spacing: -0.035em;
+    line-height: 1.25;
+    color: var(--home-ink);
+  }
+
+  .hero-lead {
+    margin: 1rem 0 0;
+    max-width: 34rem;
+    color: var(--home-ink-soft);
+    font-size: 1.05rem;
+    line-height: 1.65;
+  }
+
+  .hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.7rem;
+    margin-top: 1.75rem;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    padding: 0.72rem 1.05rem;
+    border-radius: 0.55rem;
+    font-size: 0.925rem;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    transition:
+      transform 140ms ease,
+      background 140ms ease,
+      border-color 140ms ease,
+      color 140ms ease;
+  }
+
+  .btn:hover {
+    transform: translateY(-1px);
+  }
+
+  .btn-primary {
+    background: var(--home-accent);
+    color: #062019;
+  }
+
+  .btn-primary:hover {
+    background: #5fcbb4;
+  }
+
+  .btn-ghost {
+    border: 1px solid var(--home-border-strong);
+    background: var(--home-bg-elevated);
+    color: var(--home-ink);
+  }
+
+  .btn-ghost:hover {
+    border-color: color-mix(in srgb, var(--home-accent) 40%, var(--home-border-strong));
+    background: var(--home-bg-soft);
+  }
+
+  .hero-command {
+    margin-top: 1.35rem;
+  }
+
+  .hero-command-hint {
+    margin: 0.65rem 0 0;
+    color: var(--home-muted);
+    font-size: 0.8rem;
+  }
+
+  .hero-command-hint code {
+    font-family: var(--home-font-mono);
+    color: var(--home-accent-ink);
+  }
+
+  .stack {
+    padding: 0.5rem 0 3rem;
+  }
+
+  .stack-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.65rem 1.75rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .stack-list li {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    color: var(--home-muted);
+    font-size: 0.9rem;
+    font-weight: 500;
+  }
+
+  .section {
+    padding: 3.5rem 0;
+    border-top: 1px solid var(--home-border);
+  }
+
+  .section-head {
+    max-width: 40rem;
+    margin-bottom: 2rem;
+  }
+
+  .section-head h2,
+  .cta-inner h2 {
+    margin: 0;
+    font-size: clamp(1.7rem, 3vw, 2.2rem);
+    font-weight: 700;
+    letter-spacing: -0.035em;
+    line-height: 1.15;
+  }
+
+  .section-lead,
+  .cta-inner p {
+    margin: 0.85rem 0 0;
+    color: var(--home-ink-soft);
+    font-size: 1.02rem;
+    line-height: 1.65;
+  }
+
+  .core-grid,
+  .support-grid,
+  .library-grid {
+    display: grid;
+    gap: 1px;
+    border: 1px solid var(--home-border);
+    background: var(--home-border);
+    border-radius: var(--home-radius);
+    overflow: hidden;
+  }
+
+  .core-card,
+  .support-card,
+  .library-card {
+    display: flex;
+    flex-direction: column;
+    background: var(--home-bg-elevated);
+    padding: 1.4rem 1.3rem 1.5rem;
+    min-height: 100%;
+  }
+
+  .core-card {
+    transition: background 160ms ease;
+  }
+
+  .core-card:hover,
+  .library-card:hover {
+    background: var(--home-bg-soft);
+  }
+
+  .core-card-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+  }
+
+  .feature-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 0.45rem;
+    background: var(--home-accent-soft);
+    color: var(--home-accent-ink);
+  }
+
+  .core-card h3,
+  .support-card h3,
+  .library-card h3 {
+    margin: 0;
+    font-size: 1.15rem;
+    font-weight: 650;
+    letter-spacing: -0.02em;
+  }
+
+  .core-card > p,
+  .support-card > p,
+  .library-card > p {
+    margin: 0.65rem 0 0;
+    color: var(--home-ink-soft);
+    font-size: 0.94rem;
+    line-height: 1.6;
+    flex: 1;
+  }
+
+  .core-card ul,
+  .support-card ul {
+    margin: 1rem 0 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .core-card li,
+  .support-card li {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.35rem;
+    margin-top: 0.4rem;
+    color: var(--home-ink-soft);
+    font-size: 0.9rem;
+    line-height: 1.5;
+  }
+
+  .core-card li :global(svg),
+  .support-card li :global(svg) {
+    margin-top: 0.2rem;
+    color: var(--home-accent);
+    flex-shrink: 0;
+  }
+
+  .library-card-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+  }
+
+  .library-badge {
+    padding: 0.18rem 0.45rem;
+    border: 1px solid var(--home-border-strong);
+    border-radius: 999px;
+    font-family: var(--home-font-mono);
+    font-size: 0.7rem;
+    color: var(--home-muted);
+    text-transform: lowercase;
+  }
+
+  .library-badge[data-kind="soon"],
+  .library-badge[data-kind="core"] {
+    border-color: color-mix(in srgb, var(--home-accent) 40%, var(--home-border));
+    color: var(--home-accent-ink);
+  }
+
+  .library-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    margin-top: 1.25rem;
+    color: var(--home-accent-ink);
+    font-size: 0.875rem;
+    font-weight: 600;
+  }
+
+  .cta-band {
+    border-top: 1px solid var(--home-border);
+    background:
+      radial-gradient(ellipse 70% 80% at 50% 120%, rgba(76, 187, 165, 0.14), transparent 60%),
+      var(--home-bg);
+  }
+
+  .cta-inner {
+    padding: 4rem 0 4.5rem;
+    text-align: center;
+  }
+
+  .cta-inner .comment,
+  .cta-inner .hero-actions {
+    justify-content: center;
+  }
+
+  .cta-inner p {
+    max-width: 34rem;
+    margin-inline: auto;
+  }
+
+  .footer {
+    border-top: 1px solid var(--home-border);
+    background: #000;
+  }
+
+  .footer-inner {
+    display: grid;
+    gap: 2rem;
+    padding: 2.5rem 0 3rem;
+  }
+
+  .footer-brand p {
+    margin: 0.45rem 0 0;
+    color: var(--home-muted);
+    font-size: 0.82rem;
+  }
+
+  .footer-cols {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.5rem;
+  }
+
+  .footer-cols h4 {
+    margin: 0 0 0.7rem;
+    color: var(--home-ink);
+    font-size: 0.8rem;
+    font-weight: 600;
+  }
+
+  .footer-cols a {
+    display: block;
+    margin-top: 0.4rem;
+    color: var(--home-muted);
+    font-size: 0.875rem;
+  }
+
+  .footer-cols a:hover {
+    color: var(--home-accent-ink);
+  }
+
+  .reveal {
+    animation: rise 700ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+
+  .reveal-delay-1 { animation-delay: 80ms; }
+  .reveal-delay-2 { animation-delay: 160ms; }
+  .reveal-delay-3 { animation-delay: 240ms; }
+  .reveal-delay-4 { animation-delay: 320ms; }
+
+  @keyframes rise {
+    from {
+      opacity: 0;
+      transform: translateY(14px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @media (min-width: 720px) {
+    .nav-links,
+    .nav-cta {
+      display: inline-flex;
+    }
+
+    .core-grid,
+    .support-grid,
+    .library-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .footer-inner {
+      grid-template-columns: 1.2fr 1fr;
+      align-items: start;
+    }
+  }
+
+  @media (min-width: 960px) {
+    .hero {
+      padding-top: 5.75rem;
+      padding-bottom: 2.75rem;
+    }
+
+    .hero-stage {
+      margin-bottom: 2rem;
+    }
+  }
+</style>

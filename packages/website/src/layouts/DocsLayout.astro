@@ -53,7 +53,7 @@ const libraries = getLibraries()
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap"
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Outfit:wght@400;500;600;700;800&display=swap"
       rel="stylesheet"
     />
   </head>
@@ -157,25 +157,25 @@ const libraries = getLibraries()
 
 <style is:global>
   :root {
-    --docs-bg: #09090b;
-    --docs-bg-panel: #0c0c0e;
-    --docs-bg-soft: #151518;
-    --docs-bg-hover: #1c1c21;
-    --docs-bg-code: #111113;
+    --docs-bg: #050506;
+    --docs-bg-panel: #0a0a0d;
+    --docs-bg-soft: #121217;
+    --docs-bg-hover: #1a1a21;
+    --docs-bg-code: #07080a;
     --docs-bg-example: #ffffff;
-    --docs-ink: #ededef;
-    --docs-ink-soft: #b2b3bd;
-    --docs-muted: #7e808a;
-    --docs-border: #232328;
-    --docs-border-strong: #2e2e36;
-    --docs-accent: #6e9eff;
-    --docs-accent-soft: rgba(110, 158, 255, 0.14);
-    --docs-accent-ink: #9dbbff;
+    --docs-ink: #f4f4f6;
+    --docs-ink-soft: #b4b6c0;
+    --docs-muted: #7c7e8a;
+    --docs-border: #1c1c22;
+    --docs-border-strong: #2a2a33;
+    --docs-accent: #4cbba5;
+    --docs-accent-soft: rgba(76, 187, 165, 0.14);
+    --docs-accent-ink: #7ad9c4;
     --docs-sidebar-width: 256px;
     --docs-toc-width: 220px;
     --docs-topbar-height: 56px;
-    --docs-radius: 8px;
-    --docs-font-sans: "IBM Plex Sans", "PingFang SC", "Noto Sans SC", sans-serif;
+    --docs-radius: 0.65rem;
+    --docs-font-sans: "Outfit", "PingFang SC", "Noto Sans SC", sans-serif;
     --docs-font-mono: "IBM Plex Mono", "SFMono-Regular", Menlo, Consolas, monospace;
   }
 
@@ -208,7 +208,7 @@ const libraries = getLibraries()
     z-index: 40;
     height: var(--docs-topbar-height);
     border-bottom: 1px solid var(--docs-border);
-    background: rgba(9, 9, 11, 0.82);
+    background: rgba(5, 5, 6, 0.82);
     backdrop-filter: blur(14px);
   }
 
@@ -267,8 +267,8 @@ const libraries = getLibraries()
   }
 
   .docs-product-link.is-active {
-    background: #fff;
-    color: #111;
+    background: var(--docs-accent);
+    color: #062019;
   }
 
   .docs-topbar-spacer {
@@ -515,7 +515,7 @@ const libraries = getLibraries()
     border: 1px solid var(--docs-border-strong);
     border-radius: var(--docs-radius);
     background: var(--docs-bg-code);
-    color: #d8dae3;
+    color: var(--docs-ink-soft);
     font-family: var(--docs-font-mono);
     font-size: 0.84rem;
     line-height: 1.65;
@@ -553,7 +553,7 @@ const libraries = getLibraries()
   }
 
   .docs-copy-btn.is-copied {
-    color: #70d2a4;
+    color: var(--docs-accent-ink);
   }
 
   .docs-copy-btn.is-failed {
@@ -593,7 +593,7 @@ const libraries = getLibraries()
   }
 
   .prose tbody tr:hover td {
-    background: rgba(110, 158, 255, 0.05);
+    background: rgba(76, 187, 165, 0.05);
   }
 
   .prose td code {

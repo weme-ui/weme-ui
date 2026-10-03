@@ -20,6 +20,11 @@ jobs:
       - name: Install dependencies
         run: bun install --frozen-lockfile
 
+      # @unocss/eslint-plugin loads uno.config via jiti (CJS resolve),
+      # which needs a built @weme-ui/unocss-preset (dist is gitignored).
+      - name: Build UnoCSS preset
+        run: bun run --filter @weme-ui/unocss-preset build
+
       - name: Lint
         run: bun run lint
 

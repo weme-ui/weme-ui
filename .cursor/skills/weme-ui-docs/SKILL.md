@@ -86,7 +86,7 @@ registry/<library>/src/<section>/<name>/
 
 ## Examples 规则（对齐 HeroUI）
 
-- `examples/usage.vue`：**挂在文档 `## Usage` 标题下**（preview 在上、Shiki 高亮源码在下，默认展开），不进入 Examples 列表；README 的 `## Usage` 正文可留空（避免与面板重复）
+- `examples/usage.vue`：**挂在文档 `## Usage` 标题下**（preview 在上、可折叠高亮源码在下，默认折叠），不进入 Examples 列表；README 的 `## Usage` 正文可留空（避免与面板重复）
 - 其余 `examples/<feature>.vue`：详情页在 Usage 与 Props 之间插入 `## Examples`，每个文件一个 `###` 小节 + preview/code 面板（代码默认折叠）
 
 ### 文件命名

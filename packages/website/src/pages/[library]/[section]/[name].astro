@@ -86,7 +86,6 @@ const beforeApiBlocks = beforeApi.map((section) => {
       previewPath: attachUsage.path,
       // Source lives in the example panel (preview + highlighted code).
       bodyHtml: '',
-      codeOpen: true,
     }
   }
 
@@ -94,7 +93,6 @@ const beforeApiBlocks = beforeApi.map((section) => {
     headingHtml: '',
     previewPath: undefined as string | undefined,
     bodyHtml: renderSection(section.title, section.body),
-    codeOpen: false,
   }
 })
 
@@ -139,10 +137,7 @@ const emptyHtml = beforeApiBlocks.length === 0
     <Fragment>
       {block.headingHtml && <Fragment set:html={block.headingHtml} />}
       {block.previewPath && (
-        <ExamplePreview
-          examplePath={block.previewPath}
-          codeOpen={block.codeOpen}
-        />
+        <ExamplePreview examplePath={block.previewPath} />
       )}
       {block.bodyHtml && <Fragment set:html={block.bodyHtml} />}
     </Fragment>
@@ -151,7 +146,7 @@ const emptyHtml = beforeApiBlocks.length === 0
   {orphanUsageId && usageExample && (
     <section>
       <h2 id={orphanUsageId}>Usage</h2>
-      <ExamplePreview examplePath={usageExample.path} codeOpen />
+      <ExamplePreview examplePath={usageExample.path} />
     </section>
   )}
 

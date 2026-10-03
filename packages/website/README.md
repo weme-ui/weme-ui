@@ -159,7 +159,7 @@ registry/slim/src/components/button
 
 Props、Events、Slots 须依据源码或类型填写；信息不足时标注「待补充」，不要编造。无 Events / Slots 时省略对应章节。不要写 `## Preview`、`## Examples`、`## Source`。
 
-可运行示例放在 `examples/<feature>.vue`（如 `usage.vue`、`sizes.vue`），并在 `files` 中按展示顺序声明多条 `kind: "example"`。`usage.vue` 挂在文档 `## Usage` 下（preview + 高亮源码，默认展开）；其余 example 在 Usage 与 Props 之间插入 `## Examples`（preview + 可折叠高亮源码）。README 的 `## Usage` 正文可留空。标题下方会根据 item `dependencies` 显示 UI 类依赖 badge（如 Iconify、Reka UI；不含工具库）。说明使用中文，Vue、TypeScript、UnoCSS 等专有名词保持英文。详情页布局会渲染标题，并去除 README 顶部重复的 `h1`。
+可运行示例放在 `examples/<feature>.vue`（如 `usage.vue`、`sizes.vue`），并在 `files` 中按展示顺序声明多条 `kind: "example"`。`usage.vue` 挂在文档 `## Usage` 下（preview + 可折叠高亮源码，默认折叠）；其余 example 在 Usage 与 Props 之间插入 `## Examples`（同样默认折叠）。README 的 `## Usage` 正文可留空。标题下方会根据 item `dependencies` 显示 UI 类依赖 badge（如 Iconify、Reka UI；不含工具库）。说明使用中文，Vue、TypeScript、UnoCSS 等专有名词保持英文。详情页布局会渲染标题，并去除 README 顶部重复的 `h1`。
 
 使用 AI 编写时，应先阅读源码与 `registry.json`，再更新 README、examples 与 catalog。具体流程见 [weme-ui-docs](../../.cursor/skills/weme-ui-docs/SKILL.md)。
 

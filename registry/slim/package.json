@@ -58,6 +58,9 @@
   },
   "devDependencies": {
     "@iconify-json/ri": "^1.2.10",
+    "@vitejs/plugin-vue": "^6.0.9",
+    "@vue/test-utils": "^2.5.1",
+    "happy-dom": "^20.14.5",
     "vitest": "catalog:dev"
   }
 }

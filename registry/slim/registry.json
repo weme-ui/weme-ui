@@ -14,5 +14,154 @@
     "unocss",
     "vue"
   ],
-  "items": []
+  "items": [
+    {
+      "name": "utils",
+      "type": "util",
+      "title": "Utils",
+      "description": "Shared utilities for Slim components.",
+      "when": "on-init",
+      "dependencies": [
+        "clsx",
+        "defu",
+        "tailwind-merge",
+        "tailwind-variants"
+      ],
+      "files": [
+        {
+          "type": "util",
+          "path": "src/utils/props.ts"
+        },
+        {
+          "type": "util",
+          "path": "src/utils/styles.ts"
+        }
+      ]
+    },
+    {
+      "name": "button",
+      "type": "component",
+      "title": "Button",
+      "description": "Used to trigger an action or event.",
+      "meta": {
+        "docs.category": "general",
+        "docs.categoryLabel": "General"
+      },
+      "registryDependencies": [
+        "icon"
+      ],
+      "files": [
+        {
+          "type": "component",
+          "path": "src/components/button/button.vue"
+        },
+        {
+          "type": "component",
+          "path": "src/components/button/button.props.ts"
+        },
+        {
+          "type": "component",
+          "path": "src/components/button/button.style.ts"
+        },
+        {
+          "type": "component",
+          "kind": "doc",
+          "path": "src/components/button/README.md"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/button/examples/usage.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/button/examples/color.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/button/examples/variants.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/button/examples/sizes.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/button/examples/radius.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/button/examples/with-icon.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/button/examples/loading.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/button/examples/disabled.vue"
+        },
+        {
+          "type": "component",
+          "kind": "test",
+          "path": "src/components/button/button.test.ts"
+        }
+      ]
+    },
+    {
+      "name": "icon",
+      "type": "component",
+      "title": "Icon",
+      "description": "Used to display an icon.",
+      "meta": {
+        "docs.category": "general",
+        "docs.categoryLabel": "General"
+      },
+      "dependencies": [
+        "@iconify/vue"
+      ],
+      "files": [
+        {
+          "type": "component",
+          "path": "src/components/icon/icon.vue"
+        },
+        {
+          "type": "component",
+          "path": "src/components/icon/icon.props.ts"
+        },
+        {
+          "type": "component",
+          "kind": "doc",
+          "path": "src/components/icon/README.md"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/icon/examples/usage.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/icon/examples/sizes.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/icon/examples/color.vue"
+        },
+        {
+          "type": "component",
+          "kind": "test",
+          "path": "src/components/icon/icon.test.ts"
+        }
+      ]
+    }
+  ]
 }

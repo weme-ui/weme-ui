@@ -1,5 +1,6 @@
 import type { IconifyIcon } from '@iconify/types'
 import { icons as lucide } from '@iconify-json/lucide'
+import { icons as ri } from '@iconify-json/ri'
 import { icons as simpleIcons } from '@iconify-json/simple-icons'
 
 interface IconCollection {
@@ -41,6 +42,9 @@ export const homeIcons = {
   vue: pick(simpleIcons, 'vuedotjs'),
   typescript: pick(simpleIcons, 'typescript'),
   unocss: pick(simpleIcons, 'unocss'),
+  moonLine: pick(ri, 'moon-line'),
+  sunLine: pick(ri, 'sun-line'),
+  githubFill: pick(ri, 'github-fill'),
 } as const
 
 export type HomeIconName = keyof typeof homeIcons

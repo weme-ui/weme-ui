@@ -55,8 +55,7 @@ export default defineConfig({
   outDir: '../../docs',
   integrations: [
     vue(),
-    UnoCSS({
-    }),
+    UnoCSS(),
   ],
   vite: {
     plugins: [registryTildeAlias()],

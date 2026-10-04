@@ -33,7 +33,7 @@ export const presetWemeUI = definePreset<PresetWemeUIOptions, Theme>((userOption
       shorthands,
     },
     rules: rules(options),
-    shortcuts: shortcuts(options),
+    shortcuts,
     theme: theme(options),
     variants: variants(options),
     preflights: preflights(options),

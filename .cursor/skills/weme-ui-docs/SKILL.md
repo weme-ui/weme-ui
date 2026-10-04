@@ -12,7 +12,7 @@ description: >-
 
 目录、路由与侧栏约定见 `packages/website/README.md`。详情页展示风格对齐 [HeroUI Button docs](https://heroui.com/en/docs/react/components/button)：标题 + 简介 + UI 依赖 badge，Examples 按属性/场景分块 Live Preview。
 
-用户通常已手写空文件与 `registry.json` 基础条目，并完成约 80% 组件实现。本 skill 不 scaffold、不写组件实现、不生成测试、不安装包。
+用户通常已手写空文件与 `registry.json` 基础条目，并完成约 80% 组件实现。本 skill 不 scaffold、不写组件实现、**不生成测试**、不安装包。测试请用 `weme-ui-tests`。
 
 ## 输入
 

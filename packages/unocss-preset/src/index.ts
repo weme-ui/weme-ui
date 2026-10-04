@@ -2,6 +2,7 @@ import type { PresetWemeUIOptions } from './options'
 import type { Theme } from './theme'
 import { definePreset } from '@unocss/core'
 import { extractorArbitraryVariants } from '@unocss/extractor-arbitrary-variants'
+import transformerVariantGroup from '@unocss/transformer-variant-group'
 import { resolveOptions } from './options'
 import { postprocessors } from './postprocess'
 import { preflights } from './preflights'
@@ -38,6 +39,9 @@ export const presetWemeUI = definePreset<PresetWemeUIOptions, Theme>((userOption
     variants: variants(options),
     preflights: preflights(options),
     postprocess: postprocessors(options),
+    transformers: [
+      transformerVariantGroup(),
+    ],
     extractorDefault: options.arbitraryVariants === false
       ? undefined
       : extractorArbitraryVariants(),

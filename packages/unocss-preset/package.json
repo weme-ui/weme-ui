@@ -80,6 +80,7 @@
     "@unocss/core": "^66.10.5",
     "@unocss/extractor-arbitrary-variants": "^66.10.5",
     "@unocss/rule-utils": "^66.10.5",
+    "@unocss/transformer-variant-group": "^66.10.5",
     "bezier-easing": "^3.1.0",
     "colorjs.io": "^0.7.1",
     "defu": "catalog:utils",

@@ -20,10 +20,6 @@ export const ADDITIONAL_ACCENT_COLORS = {
    * 海洋蓝
    */
   ocean: '#05f',
-  /**
-   * 枪金属色
-   */
-  gunmetal: '#1d2129',
 } as const
 
 /**
@@ -34,6 +30,10 @@ export const ADDITIONAL_NEUTRAL_COLORS = {
    * 铁色
    */
   iron: '#86909c',
+  /**
+   * 枪金属色
+   */
+  gunmetal: '#1d2129',
 } as const
 
 /**

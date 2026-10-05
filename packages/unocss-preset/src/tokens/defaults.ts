@@ -13,13 +13,13 @@ export const DEFAULT_NAME = 'default'
  * @category Tokens
  */
 export const DEFAULT_COLOR_ALIASES: CustomThemeColorAlias = {
-  primary: 'gunmetal',
-  secondary: 'clay',
+  primary: 'clay',
+  secondary: 'gunmetal',
   neutral: 'iron',
   success: 'green',
-  info: 'blue',
-  warning: 'orange',
-  error: 'red',
+  info: 'indigo',
+  warning: 'brown',
+  error: 'tomato',
 }
 
 /**

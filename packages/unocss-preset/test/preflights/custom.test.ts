@@ -29,7 +29,7 @@ describe('custom preflight', () => {
   })
 
   it('emits color aliases for tracked theme color names', () => {
-    trackedColorAliases.add('primary:9')
+    trackedColorAliases.add('accent:9')
     trackedColorAliases.add('error:1')
 
     const options = resolveOptions({
@@ -42,7 +42,7 @@ describe('custom preflight', () => {
 
     const css = customPreflight(options)?.getCSS(createPreflightContext())
 
-    expect(css).toContain('--primary-9: var(--custom-primary-9, var(--clay-9))')
+    expect(css).toContain('--accent-9: var(--custom-accent-9, var(--clay-9))')
     expect(css).toContain('--error-1: var(--custom-error-1, var(--tomato-1))')
     expect(css).toContain(`.dark:where([data-theme='${DEFAULT_NAME}'])`)
     expect(trackedTheme.has('colors:clay-9')).toBe(true)
@@ -50,7 +50,7 @@ describe('custom preflight', () => {
   })
 
   it('emits raw color aliases with light and dark scales', () => {
-    trackedColorAliases.add('primary:9')
+    trackedColorAliases.add('accent:9')
 
     const raw = '#3b82f6'
     const lightScales = resolveRadixColorScales({ color: raw, mode: 'light' })
@@ -61,7 +61,7 @@ describe('custom preflight', () => {
         name: DEFAULT_NAME,
         colors: {
           ...DEFAULT_COLOR_ALIASES,
-          primary: raw,
+          accent: raw,
         },
         tokens: DEFAULT_TOKENS,
       }],
@@ -69,12 +69,12 @@ describe('custom preflight', () => {
 
     const css = customPreflight(options)?.getCSS(createPreflightContext())
 
-    expect(css).toContain(`--primary-9: var(--custom-primary-9, ${lightScales.p3[8]})`)
-    expect(css).toContain(`--primary-9: var(--custom-primary-9, ${darkScales.p3[8]})`)
+    expect(css).toContain(`--accent-9: var(--custom-accent-9, ${lightScales.p3[8]})`)
+    expect(css).toContain(`--accent-9: var(--custom-accent-9, ${darkScales.p3[8]})`)
   })
 
   it('emits named theme selectors without :root', () => {
-    trackedColorAliases.add('primary:9')
+    trackedColorAliases.add('accent:9')
 
     const options = resolveOptions({
       themes: [{
@@ -103,21 +103,21 @@ describe('custom preflight', () => {
           name: 'brand',
           colors: {
             ...DEFAULT_COLOR_ALIASES,
-            primary: 'blue',
+            accent: 'blue',
           },
           tokens: DEFAULT_TOKENS,
         },
       ],
     })
 
-    trackedColorAliases.add('primary:9')
+    trackedColorAliases.add('accent:9')
 
     const css = customPreflight(options)?.getCSS(createPreflightContext())
 
     expect(css).toContain(`:root, :where([data-theme='${DEFAULT_NAME}'])`)
     expect(css).toContain(':where([data-theme=\'brand\'])')
-    expect(css).toContain('--primary-9: var(--custom-primary-9, var(--clay-9))')
-    expect(css).toContain('--primary-9: var(--custom-primary-9, var(--blue-9))')
+    expect(css).toContain('--accent-9: var(--custom-accent-9, var(--clay-9))')
+    expect(css).toContain('--accent-9: var(--custom-accent-9, var(--blue-9))')
   })
 
   it('emits global cssVars under :root', () => {
@@ -145,7 +145,7 @@ describe('custom preflight', () => {
         colors: DEFAULT_COLOR_ALIASES,
         tokens: DEFAULT_TOKENS,
         cssVars: {
-          label: 'primary.9',
+          label: 'accent.9',
         },
       }],
     })
@@ -153,18 +153,18 @@ describe('custom preflight', () => {
     const css = customPreflight(options)?.getCSS(createPreflightContext())
 
     expect(css).toContain(':where([data-theme=\'brand\'])')
-    expect(css).toContain('--label: var(--primary-9)')
+    expect(css).toContain('--label: var(--accent-9)')
     expect(css).toContain('--foreground-base: var(--neutral-11)')
   })
 
   it('keeps whitespace in development', () => {
-    trackedColorAliases.add('primary:9')
+    trackedColorAliases.add('accent:9')
 
     const options = resolveOptions({})
     const css = customPreflight(options)?.getCSS(createPreflightContext({ envMode: 'dev' }))
 
     expect(css).toContain(`:root, :where([data-theme='${DEFAULT_NAME}']) {`)
-    expect(css).toContain('--primary-9: var(--custom-primary-9, var(--clay-9));')
+    expect(css).toContain('--accent-9: var(--custom-accent-9, var(--clay-9));')
     expect(css).toContain('\n')
   })
 })

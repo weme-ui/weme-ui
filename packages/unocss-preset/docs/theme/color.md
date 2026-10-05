@@ -14,17 +14,18 @@ Accent 是主题中最突出的颜色，常用于主按钮、链接与交互元�
 
 **额外 accent：**
 
-| 名称    | 源色      |
-| ------- | --------- |
-| `clay`  | `#d97757` |
-| `ocean` | `#05f`    |
+| 名称       | 源色      |
+| ---------- | --------- |
+| `clay`     | `#d97757` |
+| `moroccan` | `#065aed` |
+| `puerto`   | `#3fc1aa` |
 
 **额外 neutral：**
 
-| 名称       | 源色      |
-| ---------- | --------- |
-| `iron`     | `#86909c` |
-| `gunmetal` | `#1d2129` |
+| 名称     | 源色      |
+| -------- | --------- |
+| `iron`   | `#53595d` |
+| `covert` | `#13151a` |
 
 另有 `black` / `white`（走 Radix A 系列刻度）。完整色卡预览见 [Palette](./palette.md)。
 
@@ -48,8 +49,8 @@ Accent 是主题中最突出的颜色，常用于主按钮、链接与交互元�
 - `text-red-11` → `color: var(--red-11)`
 - `border-amber-6` → `border-color: var(--amber-6)`
 - `text-blue-9/50` → `color-mix` 50% 透明
-- `bg-primary` → `var(--primary-9)`（语义别名，未写刻度时默认 **9**）
-- `text-primary-11` → `var(--primary-11)`
+- `bg-accent` → `var(--accent-9)`（语义别名，未写刻度时默认 **9**）
+- `text-accent-11` → `var(--accent-11)`
 - `bg-transparent` / `text-current` / `text-inherit`
 
 特殊值：`transparent`、`current`（→ `currentColor`）、`inherit`；也支持 `#hex`、`[rgb(...)]`、`$cssvar`、任意 bracket 颜色。
@@ -107,7 +108,7 @@ presetWemeUI({
 工具类解析颜色时大致按以下路径：
 
 1. Theme 色板键：`blue-9`、`red-12`
-2. 语义别名：`primary`、`error-9`（见 [Tokens](./tokens.md)）
+2. 语义别名：`accent`、`error-9`（见 [Tokens](./tokens.md)）
 3. 语义 Tokens：`foreground-base`、`background-muted`
 4. CssVars 模糊匹配：`card` → `--card-bg` / `--card-color` 等
 5. 任意值：`[#fff]`、`[oklch(...)]`、`$my-var`
@@ -132,7 +133,7 @@ presetWemeUI({
 ## 与 Theme / Tokens 的关系
 
 - **Theme `colors`**：原始色板 `--blue-9`、`--iron-1`（由 color preflight 写入）
-- **Tokens 别名**：`--primary-9` → `var(--custom-primary-9, var(--clay-9))`（由 custom theme preflight 写入）
+- **Tokens 别名**：`--accent-9` → `var(--custom-accent-9, var(--clay-9))`（由 custom theme preflight 写入）
 - **语义 Tokens**：`--foreground-base` → `var(--neutral-11)` 等
 
 亮暗切换、`dark:` Variants 与 `.dark` 覆盖见 [Dark mode](./dark-mode.md)。

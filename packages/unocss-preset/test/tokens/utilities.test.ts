@@ -28,7 +28,7 @@ describe('isRawColor', () => {
     expect(isRawColor('oklch(0% 0 0)')).toBe(true)
     expect(isRawColor('color(display-p3 0 0 0)')).toBe(true)
     expect(isRawColor('var(--brand)')).toBe(true)
-    expect(isRawColor('primary')).toBe(false)
+    expect(isRawColor('accent')).toBe(false)
     expect(isRawColor('red.9')).toBe(false)
   })
 })
@@ -41,10 +41,10 @@ describe('splitCustomThemeTokenKey', () => {
   })
 
   it('rejects an alpha outside 0 to 100', () => {
-    expect(splitCustomThemeTokenKey('primary/foo')).toBeUndefined()
-    expect(splitCustomThemeTokenKey('primary/101')).toBeUndefined()
-    expect(splitCustomThemeTokenKey('primary/-1')).toBeUndefined()
-    expect(splitCustomThemeTokenKey('primary/')).toBeUndefined()
+    expect(splitCustomThemeTokenKey('accent/foo')).toBeUndefined()
+    expect(splitCustomThemeTokenKey('accent/101')).toBeUndefined()
+    expect(splitCustomThemeTokenKey('accent/-1')).toBeUndefined()
+    expect(splitCustomThemeTokenKey('accent/')).toBeUndefined()
     expect(splitCustomThemeTokenKey('foreground-base/101')).toBeUndefined()
   })
 
@@ -61,8 +61,8 @@ describe('splitCustomThemeTokenKey', () => {
       name: 'foreground-base',
       alpha: 50,
     })
-    expect(splitCustomThemeTokenKey('primary/100')).toEqual({
-      name: 'primary',
+    expect(splitCustomThemeTokenKey('accent/100')).toEqual({
+      name: 'accent',
       alpha: 100,
     })
   })
@@ -77,10 +77,10 @@ describe('parseCustomThemeToken', () => {
     })
 
     it('rejects an alpha outside 0 to 100, including on a complete token', () => {
-      expect(parseCustomThemeToken('primary/foo')).toBeUndefined()
-      expect(parseCustomThemeToken('primary/101')).toBeUndefined()
-      expect(parseCustomThemeToken('primary/-1')).toBeUndefined()
-      expect(parseCustomThemeToken('primary/')).toBeUndefined()
+      expect(parseCustomThemeToken('accent/foo')).toBeUndefined()
+      expect(parseCustomThemeToken('accent/101')).toBeUndefined()
+      expect(parseCustomThemeToken('accent/-1')).toBeUndefined()
+      expect(parseCustomThemeToken('accent/')).toBeUndefined()
       expect(parseCustomThemeToken('foreground-base/101')).toBeUndefined()
     })
   })
@@ -198,8 +198,8 @@ describe('parseCustomThemeToken', () => {
         name: 'card-title',
         keys: [],
       })
-      expect(parseCustomThemeToken('primary-9')).toEqual({
-        name: 'primary-9',
+      expect(parseCustomThemeToken('accent-9')).toEqual({
+        name: 'accent-9',
         keys: [],
       })
       expect(parseCustomThemeToken('foreground-nope')).toEqual({
@@ -213,23 +213,23 @@ describe('parseCustomThemeToken', () => {
     })
 
     it('splits a valid alpha without inventing keys', () => {
-      expect(parseCustomThemeToken('primary/0')).toEqual({
-        name: 'primary',
+      expect(parseCustomThemeToken('accent/0')).toEqual({
+        name: 'accent',
         keys: [],
         alpha: 0,
       })
-      expect(parseCustomThemeToken('primary/50')).toEqual({
-        name: 'primary',
+      expect(parseCustomThemeToken('accent/50')).toEqual({
+        name: 'accent',
         keys: [],
         alpha: 50,
       })
-      expect(parseCustomThemeToken('primary/100')).toEqual({
-        name: 'primary',
+      expect(parseCustomThemeToken('accent/100')).toEqual({
+        name: 'accent',
         keys: [],
         alpha: 100,
       })
-      expect(parseCustomThemeToken('primary-9/50')).toEqual({
-        name: 'primary-9',
+      expect(parseCustomThemeToken('accent-9/50')).toEqual({
+        name: 'accent-9',
         keys: [],
         alpha: 50,
       })
@@ -251,7 +251,7 @@ describe('parseCustomThemeColorCssVar', () => {
       name: 'card',
       keys: ['card', 'text'],
     })
-    expect(parseCustomThemeColorCssVar('color', 'card', { 'card-color': 'primary.9' })).toEqual({
+    expect(parseCustomThemeColorCssVar('color', 'card', { 'card-color': 'accent.9' })).toEqual({
       name: 'card',
       keys: ['card', 'color'],
     })
@@ -295,7 +295,7 @@ describe('parseCustomThemeColorCssVar', () => {
 
   it('prefers the first matching css var key when multiple suffixes exist', () => {
     expect(parseCustomThemeColorCssVar('color', 'card', {
-      'card-color': 'primary.9',
+      'card-color': 'accent.9',
       'card-text': 'foreground.base',
     })).toEqual({
       name: 'card',
@@ -305,7 +305,7 @@ describe('parseCustomThemeColorCssVar', () => {
 
     expect(parseCustomThemeColorCssVar('color', 'card', {
       'card-text': 'foreground.base',
-      'card-color': 'primary.9',
+      'card-color': 'accent.9',
     })).toEqual({
       name: 'card',
       keys: ['card', 'text'],
@@ -327,15 +327,15 @@ describe('parseColorAlias', () => {
   })
 
   it('defaults a bare alias to step 9 and tracks it', () => {
-    const keys = ['primary']
+    const keys = ['accent']
 
     expect(parseColorAlias(keys)).toEqual({
-      color: 'var(--primary-9)',
+      color: 'var(--accent-9)',
       no: '9',
-      keys: ['primary', '9'],
+      keys: ['accent', '9'],
     })
-    expect(keys).toEqual(['primary', '9'])
-    expect([...trackedColorAliases]).toEqual(['primary:9'])
+    expect(keys).toEqual(['accent', '9'])
+    expect([...trackedColorAliases]).toEqual(['accent:9'])
   })
 
   it('keeps an explicit step and ignores unknown aliases', () => {
@@ -351,7 +351,7 @@ describe('parseColorAlias', () => {
 
 describe('generateColorAliasCssVar', () => {
   it('turns dotted aliases into css variables and leaves plain values alone', () => {
-    expect(generateColorAliasCssVar('primary.1')).toBe('var(--primary-1)')
+    expect(generateColorAliasCssVar('accent.1')).toBe('var(--accent-1)')
     expect(generateColorAliasCssVar('foreground.base')).toBe('var(--foreground-base)')
     expect(generateColorAliasCssVar('a.b.c')).toBe('var(--a-b-c)')
     expect(generateColorAliasCssVar('card-bg')).toBe('card-bg')
@@ -427,7 +427,7 @@ describe('customThemeColorCSSGenerator', () => {
   })
 
   it('returns undefined when keys are empty', () => {
-    expect(customThemeColorCSSGenerator({ name: 'primary', keys: [], alpha: undefined }, 'color')).toBeUndefined()
+    expect(customThemeColorCSSGenerator({ name: 'accent', keys: [], alpha: undefined }, 'color')).toBeUndefined()
     expect(trackedProperties.size).toBe(0)
   })
 
@@ -523,10 +523,10 @@ describe('customThemeColorResolver', () => {
 
     expect(resolve('var(--foreground)', {})).toBeUndefined()
     expect(resolve('var(--foreground)/50', {})).toBeUndefined()
-    expect(resolve('primary/foo', {})).toBeUndefined()
-    expect(resolve('primary/101', {})).toBeUndefined()
+    expect(resolve('accent/foo', {})).toBeUndefined()
+    expect(resolve('accent/101', {})).toBeUndefined()
     expect(resolve('foreground-base/101', {})).toBeUndefined()
-    expect(resolve('primary', {})).toBeUndefined()
+    expect(resolve('accent', {})).toBeUndefined()
     expect(resolve('card', {})).toBeUndefined()
     expect(trackedProperties.has('--un-color-opacity')).toBe(false)
   })
@@ -561,7 +561,7 @@ describe('customThemeColorResolver', () => {
 
   it('prefers a complete theme token over a css var with the same body', () => {
     const result = customThemeColorResolver('color', 'color')('foreground-base', {
-      'foreground-base-text': 'primary.9',
+      'foreground-base-text': 'accent.9',
     })
 
     expect(result?.[0]).toEqual({ color: 'var(--foreground-base)' })
@@ -575,16 +575,32 @@ describe('successful results snapshots', () => {
       'foreground-base/0',
       'foreground-base/50',
       'foreground-base/100',
-      'primary',
-      'primary/0',
-      'primary/50',
-      'primary/100',
+      'accent',
+      'accent/0',
+      'accent/50',
+      'accent/100',
     ]
 
     expect(
       Object.fromEntries(inputs.map(input => [input, splitCustomThemeTokenKey(input)])),
     ).toMatchInlineSnapshot(`
       {
+        "accent": {
+          "alpha": undefined,
+          "name": "accent",
+        },
+        "accent/0": {
+          "alpha": 0,
+          "name": "accent",
+        },
+        "accent/100": {
+          "alpha": 100,
+          "name": "accent",
+        },
+        "accent/50": {
+          "alpha": 50,
+          "name": "accent",
+        },
         "foreground-base": {
           "alpha": undefined,
           "name": "foreground-base",
@@ -600,22 +616,6 @@ describe('successful results snapshots', () => {
         "foreground-base/50": {
           "alpha": 50,
           "name": "foreground-base",
-        },
-        "primary": {
-          "alpha": undefined,
-          "name": "primary",
-        },
-        "primary/0": {
-          "alpha": 0,
-          "name": "primary",
-        },
-        "primary/100": {
-          "alpha": 100,
-          "name": "primary",
-        },
-        "primary/50": {
-          "alpha": 50,
-          "name": "primary",
         },
       }
     `)
@@ -1600,6 +1600,30 @@ describe('successful results snapshots', () => {
 
     expect(results).toMatchInlineSnapshot(`
       {
+        "accent": {
+          "color": "var(--accent-9)",
+          "keys": [
+            "accent",
+            "9",
+          ],
+          "no": "9",
+        },
+        "accent.1": {
+          "color": "var(--accent-1)",
+          "keys": [
+            "accent",
+            "1",
+          ],
+          "no": "1",
+        },
+        "accent.9": {
+          "color": "var(--accent-9)",
+          "keys": [
+            "accent",
+            "9",
+          ],
+          "no": "9",
+        },
         "error": {
           "color": "var(--error-9)",
           "keys": [
@@ -1668,54 +1692,6 @@ describe('successful results snapshots', () => {
           "color": "var(--neutral-9)",
           "keys": [
             "neutral",
-            "9",
-          ],
-          "no": "9",
-        },
-        "primary": {
-          "color": "var(--primary-9)",
-          "keys": [
-            "primary",
-            "9",
-          ],
-          "no": "9",
-        },
-        "primary.1": {
-          "color": "var(--primary-1)",
-          "keys": [
-            "primary",
-            "1",
-          ],
-          "no": "1",
-        },
-        "primary.9": {
-          "color": "var(--primary-9)",
-          "keys": [
-            "primary",
-            "9",
-          ],
-          "no": "9",
-        },
-        "secondary": {
-          "color": "var(--secondary-9)",
-          "keys": [
-            "secondary",
-            "9",
-          ],
-          "no": "9",
-        },
-        "secondary.1": {
-          "color": "var(--secondary-1)",
-          "keys": [
-            "secondary",
-            "1",
-          ],
-          "no": "1",
-        },
-        "secondary.9": {
-          "color": "var(--secondary-9)",
-          "keys": [
-            "secondary",
             "9",
           ],
           "no": "9",
@@ -1789,6 +1765,7 @@ describe('successful results snapshots', () => {
       {
         "#fff": "#fff",
         "a.b.c": "var(--a-b-c)",
+        "accent.9": "var(--accent-9)",
         "background.base": "var(--background-base)",
         "background.elevated": "var(--background-elevated)",
         "background.inverted": "var(--background-inverted)",
@@ -1805,8 +1782,6 @@ describe('successful results snapshots', () => {
         "foreground.subtle": "var(--foreground-subtle)",
         "info.9": "var(--info-9)",
         "neutral.9": "var(--neutral-9)",
-        "primary.9": "var(--primary-9)",
-        "secondary.9": "var(--secondary-9)",
         "success.9": "var(--success-9)",
         "warning.9": "var(--warning-9)",
       }

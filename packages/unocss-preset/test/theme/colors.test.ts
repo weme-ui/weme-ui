@@ -77,7 +77,7 @@ describe('colors', () => {
         gray: themeColors.gray,
         black: themeColors.black,
         white: themeColors.white,
-        ocean: themeColors.ocean,
+        moroccan: themeColors.moroccan,
         iron: themeColors.iron,
         brand: themeColors.brand,
         mist: themeColors.mist,
@@ -207,17 +207,17 @@ describe('colors', () => {
       expect(themeColors.danger).toBeDefined()
       expect(themeColors.mist).toBeDefined()
       expect(themeColors.stone).toBeDefined()
-      expect(themeColors.ocean).toBeDefined()
+      expect(themeColors.moroccan).toBeDefined()
       expect(themeColors.iron).toBeDefined()
     })
 
     it('overrides additional built-in accent and neutral colors', () => {
       const themeColors = colors({
-        accent: { ocean: '#112233' },
+        accent: { moroccan: '#112233' },
         neutral: { iron: '#445566' },
       })
 
-      expectThemeColor(themeColors.ocean, { color: '#112233', kind: 'accent' })
+      expectThemeColor(themeColors.moroccan, { color: '#112233', kind: 'accent' })
       expectThemeColor(themeColors.iron, { color: '#445566', kind: 'neutral' })
     })
 
@@ -250,7 +250,7 @@ describe('colors', () => {
 
       expect(themeColors.brand).toBeDefined()
       expect(themeColors.blue).toBeDefined()
-      expect(themeColors.ocean).toBeDefined()
+      expect(themeColors.moroccan).toBeDefined()
       expect(themeColors.iron).toBeDefined()
       expect(themeColors.black).toBeDefined()
       expect(themeColors.white).toBeDefined()
@@ -263,7 +263,7 @@ describe('colors', () => {
 
       expect(themeColors.mist).toBeDefined()
       expect(themeColors.gray).toBeDefined()
-      expect(themeColors.ocean).toBeDefined()
+      expect(themeColors.moroccan).toBeDefined()
       expect(themeColors.iron).toBeDefined()
     })
   })
@@ -273,7 +273,7 @@ describe('colors', () => {
       const themeColors = colors()
 
       expect(themeColors.blue?.['1']).not.toBe(themeColors.blue?.dark?.['1'])
-      expect(themeColors.ocean?.['1']).not.toBe(themeColors.ocean?.dark?.['1'])
+      expect(themeColors.moroccan?.['1']).not.toBe(themeColors.moroccan?.dark?.['1'])
       expect(themeColors.iron?.['1']).not.toBe(themeColors.iron?.dark?.['1'])
     })
 
@@ -282,7 +282,7 @@ describe('colors', () => {
 
       expect(themeColors.blue).not.toHaveProperty('light')
       expect(themeColors.black).not.toHaveProperty('light')
-      expect(themeColors.ocean).not.toHaveProperty('light')
+      expect(themeColors.moroccan).not.toHaveProperty('light')
     })
 
     it('always nests dark scales under dark', () => {
@@ -291,7 +291,7 @@ describe('colors', () => {
         neutral: { mist: '#94a3b8' },
       })
 
-      for (const name of ['blue', 'black', 'white', 'ocean', 'iron', 'brand', 'mist'] as const) {
+      for (const name of ['blue', 'black', 'white', 'moroccan', 'iron', 'brand', 'mist'] as const) {
         expect(themeColors[name]?.dark).toBeDefined()
         expect(themeColors[name]?.p3?.dark).toBeDefined()
       }

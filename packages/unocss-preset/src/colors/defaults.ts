@@ -14,12 +14,22 @@ export const RADIX_COLOR_NAMES = [...RADIX_NEUTRAL_COLOR_NAMES, 'gold', 'bronze'
 export const ADDITIONAL_ACCENT_COLORS = {
   /**
    * 粘土色
+   *
+   * @see {@link https://www.color-name.com/hex/d97757}
    */
   clay: '#d97757',
   /**
-   * 海洋蓝
+   * 摩洛哥蓝
+   *
+   * @see {@link https://www.color-name.com/hex/065aed}
    */
-  ocean: '#05f',
+  moroccan: '#065aed',
+  /**
+   * 波多黎各绿
+   *
+   * @see {@link https://www.color-name.com/hex/3fc1aa}
+   */
+  puerto: '#3fc1aa',
 } as const
 
 /**
@@ -27,13 +37,17 @@ export const ADDITIONAL_ACCENT_COLORS = {
  */
 export const ADDITIONAL_NEUTRAL_COLORS = {
   /**
-   * 铁色
+   * 铁灰色
+   *
+   * @see {@link https://www.color-name.com/hex/53595d}
    */
-  iron: '#86909c',
+  iron: '#53595d',
   /**
-   * 枪金属色
+   *  covert 黑色
+   *
+   * @see {@link https://www.color-name.com/hex/13151a}
    */
-  gunmetal: '#1d2129',
+  covert: '#13151a',
 } as const
 
 /**

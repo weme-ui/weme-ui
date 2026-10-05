@@ -4,7 +4,7 @@ import { presetWemeUI } from './src'
 export const cssVars = {
   card: {
     'text': 'foreground.base',
-    'background': 'primary.1',
+    'background': 'accent.1',
     'border': 'border.base',
     'fill': 'background.base',
     'border-width': '2px',

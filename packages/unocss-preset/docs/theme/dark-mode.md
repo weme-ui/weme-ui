@@ -64,7 +64,7 @@ presetWemeUI({
 ```html
 <html class="light">
   <body class="bg-background-base text-foreground-base">
-    <button class="bg-primary text-white">Primary</button>
+    <button class="bg-accent text-white">Accent</button>
     <!-- 仅在暗色下额外覆盖时才用 dark: -->
     <div class="border-border-base dark:shadow-lg">…</div>
   </body>
@@ -120,11 +120,11 @@ document.documentElement.classList.toggle('light', !isDark)
 ```css
 :root,
 :where([data-theme='default']) {
-  --primary-9: var(--custom-primary-9, var(--clay-9));
+  --accent-9: var(--custom-accent-9, var(--clay-9));
 }
 
 .dark:where([data-theme='default']) {
-  --primary-9: var(--custom-primary-9, var(--clay-9));
+  --accent-9: var(--custom-accent-9, var(--clay-9));
 }
 ```
 
@@ -197,7 +197,7 @@ dark:* -> [data-mode="dark"] $$ .x
 
 ## 推荐实践
 
-1. **优先用语义色 / Tokens**：`bg-background-base`、`text-foreground-base`、`border-border-base`、`bg-primary`。切换 `.dark` 后变量自动换值。
+1. **优先用语义色 / Tokens**：`bg-background-base`、`text-foreground-base`、`border-border-base`、`bg-accent`。切换 `.dark` 后变量自动换值。
 2. **`dark:` 留给结构差异**：例如暗色下加深阴影、换边框、显示不同装饰，而不是给每个颜色再写一套。
 3. **根节点同时维护 class 与 `color-scheme`**：Reset 已在 `.dark` 上设置 `color-scheme: dark`，有利于原生控件与滚动条。
 4. **与 `data-theme` 组合**：

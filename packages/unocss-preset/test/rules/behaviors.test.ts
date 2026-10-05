@@ -72,7 +72,7 @@ describe('behavior color rules', () => {
           border: 'border.base',
         },
         'foreground-base': {
-          text: 'primary.9',
+          text: 'accent.9',
           border: 'border.elevated',
         },
       },

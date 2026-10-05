@@ -15,7 +15,7 @@ export default defineConfig({
     presetWemeUI({
       // dark: 'class' | 'media' | { light: '.light', dark: '.dark' }
       // variablePrefix: 'un-'
-      // themes: [{ name: 'default', colors: { primary: 'blue' }, tokens: {...}, cssVars: {...} }]
+      // themes: [{ name: 'default', colors: { accent: 'blue' }, tokens: {...}, cssVars: {...} }]
       // cssVars: { card: { bg: 'neutral.2', padding: '1rem' } }
       // colors: { accent: { brand: '#3366ff' } }
     }),
@@ -32,7 +32,7 @@ export default defineConfig({
   data-radius="md"
   class="bg-background-base text-foreground-base p-4 rounded-md"
 >
-  <button class="bg-primary text-white hover:bg-primary-10">Primary</button>
+  <button class="bg-accent text-white hover:bg-accent-10">Accent</button>
 </div>
 ```
 

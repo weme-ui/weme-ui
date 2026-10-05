@@ -41,11 +41,12 @@ describe('additional colors', () => {
   it('exposes accent and neutral extras', () => {
     expect(ADDITIONAL_ACCENT_COLORS).toEqual({
       clay: '#d97757',
-      ocean: '#05f',
+      moroccan: '#065aed',
+      puerto: '#3fc1aa',
     })
     expect(ADDITIONAL_NEUTRAL_COLORS).toEqual({
-      iron: '#86909c',
-      gunmetal: '#1d2129',
+      iron: '#53595d',
+      covert: '#13151a',
     })
   })
 })

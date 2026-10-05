@@ -99,11 +99,11 @@ describe('parseColor', () => {
     expect(step?.keys).toEqual(['error', '1'])
     expect(step?.no).toBe('1')
 
-    const faded = parseColor('primary/20', theme)
-    expect(faded?.color).toBe('var(--primary-9)')
+    const faded = parseColor('accent/20', theme)
+    expect(faded?.color).toBe('var(--accent-9)')
     expect(faded?.opacity).toBe('20')
     expect(faded?.alpha).toBe('20%')
-    expect(faded?.keys).toEqual(['primary', '9'])
+    expect(faded?.keys).toEqual(['accent', '9'])
 
     expect([...trackedColorAliases]).toEqual([
       ...CUSTOM_THEME_COLOR_ALIASES.map(alias => `${alias}:9`),
@@ -216,14 +216,14 @@ describe('colorCSSGenerator and colorResolver', () => {
   })
 
   it('emits alias colors as css variables and mixes alpha in srgb', () => {
-    const plain = colorCSSGenerator(parseColor('primary', theme), 'color', 'text', context)
-    expect(plain?.[0]).toEqual({ color: 'var(--primary-9)' })
+    const plain = colorCSSGenerator(parseColor('accent', theme), 'color', 'text', context)
+    expect(plain?.[0]).toEqual({ color: 'var(--accent-9)' })
     expect(plain).toHaveLength(2)
     expect(trackedTheme.size).toBe(0)
-    expect(trackedColorAliases.has('primary:9')).toBe(true)
+    expect(trackedColorAliases.has('accent:9')).toBe(true)
 
-    const faded = colorCSSGenerator(parseColor('primary-9/50', theme), 'color', 'text', context)
-    expect(faded?.[0].color).toBe('color-mix(in srgb, var(--primary-9) 50%, transparent)')
+    const faded = colorCSSGenerator(parseColor('accent-9/50', theme), 'color', 'text', context)
+    expect(faded?.[0].color).toBe('color-mix(in srgb, var(--accent-9) 50%, transparent)')
     expect(faded).toHaveLength(2)
 
     const dev = colorCSSGenerator(parseColor('error-1/20', theme), 'color', 'text', {
@@ -265,7 +265,7 @@ describe('hasParseableColor', () => {
   it('checks whether a color body resolves to a concrete value', () => {
     expect(hasParseableColor('blue', theme)).toBe(true)
     expect(hasParseableColor('blue-p3-dark-9', theme)).toBe(true)
-    expect(hasParseableColor('primary', theme)).toBe(true)
+    expect(hasParseableColor('accent', theme)).toBe(true)
     expect(hasParseableColor('error-3', theme)).toBe(true)
     expect(hasParseableColor('transparent', theme)).toBe(true)
     expect(hasParseableColor('foreground', theme)).toBe(false)

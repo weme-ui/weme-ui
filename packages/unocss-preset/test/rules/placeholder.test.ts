@@ -41,7 +41,7 @@ describe('placeholder rules', () => {
           text: 'foreground.base',
         },
         'foreground-base': {
-          text: 'primary.9',
+          text: 'accent.9',
         },
       },
     }))

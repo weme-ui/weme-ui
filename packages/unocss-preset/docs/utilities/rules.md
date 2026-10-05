@@ -35,7 +35,7 @@ Rules 是具体工具类到 CSS 声明的映射。下列写法按源码模块分
 | ---------------------------------------------------------- | --------------------------------- |
 | `op-50` / `opacity-50`                                     | `opacity`                         |
 | `bg-blue-9`                                                | `background-color: var(--blue-9)` |
-| `bg-primary` / `bg-background-base`                        | 别名 / Token                      |
+| `bg-accent` / `bg-background-base`                         | 别名 / Token                      |
 | `bg-card`                                                  | CssVars → `--card-bg` 等          |
 | `bg-blue-9/10`                                             | color-mix 透明度                  |
 | `bg-op-50`                                                 | `--un-bg-opacity`                 |
@@ -46,23 +46,23 @@ Rules 是具体工具类到 CSS 声明的映射。下列写法按源码模块分
 
 ### Typography — `fonts` / `tabSizes` / `textIndents` / `textStrokes` / `textShadows` / `fontVariantNumeric`
 
-| 示例                                                                  | CSS                                                    |
-| --------------------------------------------------------------------- | ------------------------------------------------------ |
-| `text-sm` / `text-2xl`                                                | theme.text 的 font-size + line-height + letter-spacing |
-| `text-base/tight`                                                     | font-size + 自定义 leading                             |
-| `text-blue-9` / `text-foreground-base` / `c-red-11` / `color-primary` | `color`                                                |
-| `text-op-80`                                                          | `--un-text-opacity`                                    |
-| `font-sans` / `font-mono`                                             | `font-family`                                          |
-| `fw-medium` / `font-bold`                                             | `font-weight`                                          |
-| `leading-tight` / `lh-6`                                              | `line-height`                                          |
-| `tracking-wide`                                                       | `letter-spacing`                                       |
-| `font-stretch-expanded`                                               | `font-stretch`                                         |
-| `tab-4` / `tab-size-4`                                                | `tab-size`                                             |
-| `indent-4`                                                            | `text-indent`                                          |
-| `text-stroke` / `text-stroke-sm`                                      | `-webkit-text-stroke-width`                            |
-| `text-stroke-blue-9`                                                  | stroke color                                           |
-| `text-shadow-md`                                                      | theme textShadow                                       |
-| `ordinal` `lining-nums` `tabular-nums` `slashed-zero` …               | `font-variant-numeric`                                 |
+| 示例                                                                 | CSS                                                    |
+| -------------------------------------------------------------------- | ------------------------------------------------------ |
+| `text-sm` / `text-2xl`                                               | theme.text 的 font-size + line-height + letter-spacing |
+| `text-base/tight`                                                    | font-size + 自定义 leading                             |
+| `text-blue-9` / `text-foreground-base` / `c-red-11` / `color-accent` | `color`                                                |
+| `text-op-80`                                                         | `--un-text-opacity`                                    |
+| `font-sans` / `font-mono`                                            | `font-family`                                          |
+| `fw-medium` / `font-bold`                                            | `font-weight`                                          |
+| `leading-tight` / `lh-6`                                             | `line-height`                                          |
+| `tracking-wide`                                                      | `letter-spacing`                                       |
+| `font-stretch-expanded`                                              | `font-stretch`                                         |
+| `tab-4` / `tab-size-4`                                               | `tab-size`                                             |
+| `indent-4`                                                           | `text-indent`                                          |
+| `text-stroke` / `text-stroke-sm`                                     | `-webkit-text-stroke-width`                            |
+| `text-stroke-blue-9`                                                 | stroke color                                           |
+| `text-shadow-md`                                                     | theme textShadow                                       |
+| `ordinal` `lining-nums` `tabular-nums` `slashed-zero` …              | `font-variant-numeric`                                 |
 
 ### Align — `textAligns` / `verticalAligns`
 
@@ -196,7 +196,7 @@ Rules 是具体工具类到 CSS 声明的映射。下列写法按源码模块分
 | `list-disc` `list-decimal` `list-none`       | `list-style-type`       |
 | `list-inside` `list-outside`                 | `list-style-position`   |
 | `list-image-[url(…)]`                        | `list-style-image`      |
-| `accent-primary`                             | `accent-color`          |
+| `accent-info`                                | `accent-color`          |
 | `caret-blue-9`                               | `caret-color`           |
 | `image-render-pixel`                         | `image-rendering`       |
 | `overscroll-contain` `overscroll-x-none`     | `overscroll-behavior`   |
@@ -450,7 +450,7 @@ Autocomplete shorthands：`position`（relative/absolute/…）、`globalKeyword
 >
   <h2 class="text-lg fw-semibold text-foreground-highlighted">Title</h2>
   <p class="text-sm text-foreground-subtle mt-2">Supporting text</p>
-  <button class="mt-4 bg-primary text-white px-3 py-1.5 rounded-sm hover:bg-primary-10">Action</button>
+  <button class="mt-4 bg-accent text-white px-3 py-1.5 rounded-sm hover:bg-accent-10">Action</button>
 </article>
 ```
 

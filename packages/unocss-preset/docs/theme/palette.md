@@ -628,22 +628,42 @@
   </div>
   <div class="color-scale">
     <div class="color-scale-name">
-      <span>Ocean</span>
-      <code>#05f</code>
+      <span>Moroccan</span>
+      <code>#065aed</code>
     </div>
     <div class="color-scale-steps">
-      <div class="color-step bg-ocean-1" title="bg-ocean-1"></div>
-      <div class="color-step bg-ocean-2" title="bg-ocean-2"></div>
-      <div class="color-step bg-ocean-3" title="bg-ocean-3"></div>
-      <div class="color-step bg-ocean-4" title="bg-ocean-4"></div>
-      <div class="color-step bg-ocean-5" title="bg-ocean-5"></div>
-      <div class="color-step bg-ocean-6" title="bg-ocean-6"></div>
-      <div class="color-step bg-ocean-7" title="bg-ocean-7"></div>
-      <div class="color-step bg-ocean-8" title="bg-ocean-8"></div>
-      <div class="color-step bg-ocean-9" title="bg-ocean-9"></div>
-      <div class="color-step bg-ocean-10" title="bg-ocean-10"></div>
-      <div class="color-step bg-ocean-11" title="bg-ocean-11"></div>
-      <div class="color-step bg-ocean-12" title="bg-ocean-12"></div>
+      <div class="color-step bg-moroccan-1" title="bg-moroccan-1"></div>
+      <div class="color-step bg-moroccan-2" title="bg-moroccan-2"></div>
+      <div class="color-step bg-moroccan-3" title="bg-moroccan-3"></div>
+      <div class="color-step bg-moroccan-4" title="bg-moroccan-4"></div>
+      <div class="color-step bg-moroccan-5" title="bg-moroccan-5"></div>
+      <div class="color-step bg-moroccan-6" title="bg-moroccan-6"></div>
+      <div class="color-step bg-moroccan-7" title="bg-moroccan-7"></div>
+      <div class="color-step bg-moroccan-8" title="bg-moroccan-8"></div>
+      <div class="color-step bg-moroccan-9" title="bg-moroccan-9"></div>
+      <div class="color-step bg-moroccan-10" title="bg-moroccan-10"></div>
+      <div class="color-step bg-moroccan-11" title="bg-moroccan-11"></div>
+      <div class="color-step bg-moroccan-12" title="bg-moroccan-12"></div>
+    </div>
+  </div>
+  <div class="color-scale">
+    <div class="color-scale-name">
+      <span>Puerto</span>
+      <code>#3fc1aa</code>
+    </div>
+    <div class="color-scale-steps">
+      <div class="color-step bg-puerto-1" title="bg-puerto-1"></div>
+      <div class="color-step bg-puerto-2" title="bg-puerto-2"></div>
+      <div class="color-step bg-puerto-3" title="bg-puerto-3"></div>
+      <div class="color-step bg-puerto-4" title="bg-puerto-4"></div>
+      <div class="color-step bg-puerto-5" title="bg-puerto-5"></div>
+      <div class="color-step bg-puerto-6" title="bg-puerto-6"></div>
+      <div class="color-step bg-puerto-7" title="bg-puerto-7"></div>
+      <div class="color-step bg-puerto-8" title="bg-puerto-8"></div>
+      <div class="color-step bg-puerto-9" title="bg-puerto-9"></div>
+      <div class="color-step bg-puerto-10" title="bg-puerto-10"></div>
+      <div class="color-step bg-puerto-11" title="bg-puerto-11"></div>
+      <div class="color-step bg-puerto-12" title="bg-puerto-12"></div>
     </div>
   </div>
 </div>
@@ -672,7 +692,7 @@
   <div class="color-scale">
     <div class="color-scale-name">
       <span>Iron</span>
-      <code>#86909c</code>
+      <code>#53595d</code>
     </div>
     <div class="color-scale-steps">
       <div class="color-step bg-iron-1" title="bg-iron-1"></div>
@@ -691,22 +711,22 @@
   </div>
   <div class="color-scale">
     <div class="color-scale-name">
-      <span>Gunmetal</span>
-      <code>#1d2129</code>
+      <span>Covert</span>
+      <code>#13151a</code>
     </div>
     <div class="color-scale-steps">
-      <div class="color-step bg-gunmetal-1" title="bg-gunmetal-1"></div>
-      <div class="color-step bg-gunmetal-2" title="bg-gunmetal-2"></div>
-      <div class="color-step bg-gunmetal-3" title="bg-gunmetal-3"></div>
-      <div class="color-step bg-gunmetal-4" title="bg-gunmetal-4"></div>
-      <div class="color-step bg-gunmetal-5" title="bg-gunmetal-5"></div>
-      <div class="color-step bg-gunmetal-6" title="bg-gunmetal-6"></div>
-      <div class="color-step bg-gunmetal-7" title="bg-gunmetal-7"></div>
-      <div class="color-step bg-gunmetal-8" title="bg-gunmetal-8"></div>
-      <div class="color-step bg-gunmetal-9" title="bg-gunmetal-9"></div>
-      <div class="color-step bg-gunmetal-10" title="bg-gunmetal-10"></div>
-      <div class="color-step bg-gunmetal-11" title="bg-gunmetal-11"></div>
-      <div class="color-step bg-gunmetal-12" title="bg-gunmetal-12"></div>
+      <div class="color-step bg-covert-1" title="bg-covert-1"></div>
+      <div class="color-step bg-covert-2" title="bg-covert-2"></div>
+      <div class="color-step bg-covert-3" title="bg-covert-3"></div>
+      <div class="color-step bg-covert-4" title="bg-covert-4"></div>
+      <div class="color-step bg-covert-5" title="bg-covert-5"></div>
+      <div class="color-step bg-covert-6" title="bg-covert-6"></div>
+      <div class="color-step bg-covert-7" title="bg-covert-7"></div>
+      <div class="color-step bg-covert-8" title="bg-covert-8"></div>
+      <div class="color-step bg-covert-9" title="bg-covert-9"></div>
+      <div class="color-step bg-covert-10" title="bg-covert-10"></div>
+      <div class="color-step bg-covert-11" title="bg-covert-11"></div>
+      <div class="color-step bg-covert-12" title="bg-covert-12"></div>
     </div>
   </div>
 </div>

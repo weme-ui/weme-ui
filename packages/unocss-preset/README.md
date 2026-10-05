@@ -59,11 +59,11 @@
 }
 
 :where([data-theme='default']) {
-  --primary-1: var(--amber-1);
+  --accent-1: var(--amber-1);
 }
 
 .dark:where([data-theme='default']) {
-  --primary-1: var(--amber-1);
+  --accent-1: var(--amber-1);
 }
 
 :where([data-theme='default']) {

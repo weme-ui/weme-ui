@@ -13,8 +13,7 @@ export const DEFAULT_NAME = 'default'
  * @category Tokens
  */
 export const DEFAULT_COLOR_ALIASES: CustomThemeColorAlias = {
-  primary: 'clay',
-  secondary: 'gunmetal',
+  accent: 'clay',
   neutral: 'iron',
   success: 'green',
   info: 'indigo',
@@ -54,8 +53,7 @@ export const DEFAULT_TOKENS: CustomThemeTokens = {
  * @category Tokens
  */
 export const CUSTOM_THEME_COLOR_ALIASES: string[] = [
-  'primary',
-  'secondary',
+  'accent',
   'neutral',
   'success',
   'info',

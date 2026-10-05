@@ -13,8 +13,10 @@ function isLightColor(color: string) {
   ].includes(color)
 }
 
+const neutrals = [...NEUTRAL_COLOR_NAMES, 'neutral']
+
 function isNeutralColor(color: string) {
-  return NEUTRAL_COLOR_NAMES.includes(color as (typeof NEUTRAL_COLOR_NAMES)[number])
+  return neutrals.includes(color)
 }
 /**
  * Fancy shortcuts
@@ -45,8 +47,15 @@ export const fancyShortcuts: Shortcut<Theme>[] = [
   [/^fancy-(.+)-soft$/, ([, color], { theme }) => {
     if (hasParseableColor(color, theme)) {
       const classNames: string[] = [
-        `text-${color} bg-${color}-3 hover:(text-${color}-10 bg-${color}-4) focus-visible:(outline-${color}-7 z-high)`,
+        `focus-visible:(outline-${color}-7 z-high)`,
       ]
+
+      if (isNeutralColor(color)) {
+        classNames.push(`text-${color}-11 bg-${color}-4 hover:text-${color}-12 hover:bg-${color}-5`)
+      }
+      else {
+        classNames.push(`text-${color} bg-${color}-3 hover:text-${color}-10 hover:bg-${color}-4`)
+      }
 
       return classNames.join(' ')
     }

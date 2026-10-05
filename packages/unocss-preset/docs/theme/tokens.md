@@ -1,6 +1,6 @@
 # Tokens
 
-Tokens 层把「色板」映射成「产品语义」：颜色别名（`primary`）、前景/背景/边框语义色，以及可自定义的组件级 CssVars。它们由 `custom` preflight 写入 `[data-theme='…']`，再由颜色 / 间距类规则消费。
+Tokens 层把「色板」映射成「产品语义」：颜色别名（`accent`）、前景/背景/边框语义色，以及可自定义的组件级 CssVars。它们由 `custom` preflight 写入 `[data-theme='…']`，再由颜色 / 间距类规则消费。
 
 ## Anatomy
 
@@ -20,8 +20,7 @@ export const DEFAULT_NAME = 'default'
  * @category Tokens
  */
 export const DEFAULT_COLOR_ALIASES: CustomThemeColorAlias = {
-  primary: 'clay',
-  secondary: 'gunmetal',
+  accent: 'clay',
   neutral: 'iron',
   success: 'green',
   info: 'indigo',
@@ -64,25 +63,24 @@ export const DEFAULT_TOKENS: CustomThemeTokens = {
 
 ## Color aliases
 
-| 别名        | 默认指向   |
-| ----------- | ---------- |
-| `primary`   | `clay`     |
-| `secondary` | `gunmetal` |
-| `neutral`   | `iron`     |
-| `success`   | `green`    |
-| `info`      | `indigo`   |
-| `warning`   | `brown`    |
-| `error`     | `tomato`   |
+| 别名      | 默认指向 |
+| --------- | -------- |
+| `accent`  | `clay`   |
+| `neutral` | `iron`   |
+| `success` | `green`  |
+| `info`    | `indigo` |
+| `warning` | `brown`  |
+| `error`   | `tomato` |
 
 生成的 CSS（按需，仅跟踪到的刻度）：
 
 ```css
 :where([data-theme='default']) {
-  --primary-9: var(--custom-primary-9, var(--clay-9));
+  --accent-9: var(--custom-accent-9, var(--clay-9));
 }
 
 .dark:where([data-theme='default']) {
-  --primary-9: var(--custom-primary-9, var(--clay-9));
+  --accent-9: var(--custom-accent-9, var(--clay-9));
 }
 ```
 
@@ -91,11 +89,11 @@ export const DEFAULT_TOKENS: CustomThemeTokens = {
 - 可用 `--custom-{alias}-{n}` 覆盖单阶
 
 ```html
-<button class="bg-primary text-white hover:bg-primary-10">Save</button>
+<button class="bg-accent text-white hover:bg-accent-10">Save</button>
 <span class="text-error-11">Error</span>
 ```
 
-未写刻度时默认补 **9**：`bg-primary` ≡ `bg-primary-9`。
+未写刻度时默认补 **9**：`bg-accent` ≡ `bg-accent-9`。
 
 ## Semantic tokens
 
@@ -146,7 +144,7 @@ border: base | elevated | inverted
 值可以是：
 
 - 色板引用：`neutral.2` → `var(--neutral-2)`（并跟踪颜色依赖）
-- 别名引用：`primary.9` → `var(--primary-9)`
+- 别名引用：`accent.9` → `var(--accent-9)`
 - 任意 CSS 值：`1rem`、`#fff`、`var(--x)`
 
 ```ts
@@ -163,12 +161,12 @@ presetWemeUI({
   themes: [
     {
       name: 'default',
-      colors: { primary: 'blue' },
+      colors: { accent: 'blue' },
       tokens: {
         /* 可覆盖 DEFAULT_TOKENS */
       },
       cssVars: {
-        button: { bg: 'primary.9', color: 'white' },
+        button: { bg: 'accent.9', color: 'white' },
       },
     },
   ],
@@ -215,8 +213,7 @@ presetWemeUI({
     {
       name: 'marketing',
       colors: {
-        primary: 'amber',
-        secondary: 'sky',
+        accent: 'amber',
         neutral: 'slate',
         success: 'green',
         info: 'blue',
@@ -244,7 +241,7 @@ presetWemeUI({
         },
       },
       cssVars: {
-        hero: { bg: 'primary.3', text: 'primary.12' },
+        hero: { bg: 'accent.3', text: 'accent.12' },
       },
     },
   ],
@@ -262,7 +259,7 @@ presetWemeUI({
 颜色工具类（如 `text-*` / `bg-*` / `border-*` / `fill-*`）大致顺序：
 
 1. Theme 色板 / 任意颜色值
-2. Color Alias（`primary` … `error`）
+2. Color Alias（`accent` … `error`）
 3. 语义 Token（`foreground-*` / `background-*` / `border-*`）
 4. CssVars 模糊匹配
 

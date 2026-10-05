@@ -110,6 +110,7 @@ margin: calc(0.75rem * var(--scaling))
 Tokens 提供对主题值的直接访问，便于自建组件并与主题保持一致。
 
 - [Color](./color.md) — 色板、刻度与工具类颜色解析
+- [Palette](./palette.md) — 色卡预览
 - [Dark mode](./dark-mode.md) — 亮暗切换与推荐实践
 - [Tokens](./tokens.md) — 颜色别名、语义 Tokens、CssVars
 - [Typography](./typography.md) — 字族、字重、字号与字距

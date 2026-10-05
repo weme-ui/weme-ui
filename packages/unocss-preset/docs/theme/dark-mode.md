@@ -120,11 +120,11 @@ document.documentElement.classList.toggle('light', !isDark)
 ```css
 :root,
 :where([data-theme='default']) {
-  --primary-9: var(--custom-primary-9, var(--gunmetal-9));
+  --primary-9: var(--custom-primary-9, var(--clay-9));
 }
 
 .dark:where([data-theme='default']) {
-  --primary-9: var(--custom-primary-9, var(--gunmetal-9));
+  --primary-9: var(--custom-primary-9, var(--clay-9));
 }
 ```
 

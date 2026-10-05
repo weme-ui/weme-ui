@@ -70,6 +70,7 @@ export default defineConfig({
 
 - [Theme overview](./theme/index.md) — Theme 解剖结构、Preflight 与断点等主题值
 - [Color](./theme/color.md) — 色板、刻度、亮暗色与 P3、工具类颜色解析
+- [Palette](./theme/palette.md) — 色卡预览（Radix + 额外 accent / neutral）
 - [Dark mode](./theme/dark-mode.md) — class / media 切换、色板覆盖、Variants、推荐实践
 - [Tokens](./theme/tokens.md) — 颜色别名、语义 Tokens、自定义 CssVars、模糊匹配
 - [Rules](./utilities/rules.md) — 全部工具类规则速查

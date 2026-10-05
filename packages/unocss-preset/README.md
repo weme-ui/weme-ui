@@ -24,10 +24,12 @@
 - [Getting started](./docs/index.md) — 安装与配置
 - [Theme overview](./docs/theme/index.md) — Theme 解剖结构与 Preflight
 - [Color](./docs/theme/color.md) — 色板、刻度、亮暗色与 P3
+- [Palette](./docs/theme/palette.md) — 色卡预览
 - [Dark mode](./docs/theme/dark-mode.md) — class / media 切换与推荐实践
 - [Tokens](./docs/theme/tokens.md) — 颜色别名、语义 Tokens、自定义变量
 - [Typography](./docs/theme/typography.md) / [Spacing](./docs/theme/spacing.md) / [Radius](./docs/theme/radius.md) / [Shadows](./docs/theme/shadows.md)
 - [Rules](./docs/utilities/rules.md) — 全部工具类规则速查
+- [Animation](./docs/utilities/animate.md) — 完整 keyframe 与组合 Enter / Exit
 - [Variants](./docs/utilities/variants.md) — 断点、暗色、伪类、ARIA 等变体
 
 ## 生成颜色 CSS 变量

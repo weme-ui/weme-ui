@@ -11,3 +11,4 @@ pnpm dlx @weme-ui/weme-ui add weme-ui/slim/button
 
 - 组件源码、文档与示例共存于同一个 item 目录。
 - 文档站通过 alias 直接读取 registry 源码，无需把组件库安装为 npm 依赖。
+- 色板 / Theme / Tokens 见 unocss-preset 文档（色卡：`/unocss-preset/docs/theme/palette/`）。

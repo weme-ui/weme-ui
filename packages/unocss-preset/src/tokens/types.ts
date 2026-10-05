@@ -38,7 +38,7 @@ export type CustomThemeScaling = '90%' | '95%' | '100%' | '105%' | '110%'
 /**
  * 主题颜色别名
  *
- * 自定义颜色规则：--colors-primary: var(--custom-colors-primary-9, var(--colors-gunmetal-9))
+ * 自定义颜色规则：--primary-9: var(--custom-primary-9, var(--clay-9))
  *
  * @category Tokens
  */

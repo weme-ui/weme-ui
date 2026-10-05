@@ -14,19 +14,19 @@ Accent 是主题中最突出的颜色，常用于主按钮、链接与交互元�
 
 **额外 accent：**
 
-| 名称       | 源色      |
-| ---------- | --------- |
-| `clay`     | `#d97757` |
-| `ocean`    | `#05f`    |
-| `gunmetal` | `#1d2129` |
+| 名称    | 源色      |
+| ------- | --------- |
+| `clay`  | `#d97757` |
+| `ocean` | `#05f`    |
 
 **额外 neutral：**
 
-| 名称   | 源色      |
-| ------ | --------- |
-| `iron` | `#86909c` |
+| 名称       | 源色      |
+| ---------- | --------- |
+| `iron`     | `#86909c` |
+| `gunmetal` | `#1d2129` |
 
-另有 `black` / `white`（走 Radix A 系列刻度）。
+另有 `black` / `white`（走 Radix A 系列刻度）。完整色卡预览见 [Palette](./palette.md)。
 
 ## Scale anatomy
 
@@ -132,9 +132,9 @@ presetWemeUI({
 ## 与 Theme / Tokens 的关系
 
 - **Theme `colors`**：原始色板 `--blue-9`、`--iron-1`（由 color preflight 写入）
-- **Tokens 别名**：`--primary-9` → `var(--custom-primary-9, var(--gunmetal-9))`（由 custom theme preflight 写入）
+- **Tokens 别名**：`--primary-9` → `var(--custom-primary-9, var(--clay-9))`（由 custom theme preflight 写入）
 - **语义 Tokens**：`--foreground-base` → `var(--neutral-11)` 等
 
 亮暗切换、`dark:` Variants 与 `.dark` 覆盖见 [Dark mode](./dark-mode.md)。
 
-详见 [Theme overview](./index.md) 与 [Tokens](./tokens.md)。
+详见 [Theme overview](./index.md)、[Tokens](./tokens.md) 与 [Palette](./palette.md)。

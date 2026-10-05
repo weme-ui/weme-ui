@@ -1,6 +1,8 @@
-# Colors
+# Palette
 
-基于 [Radix Colors](https://www.radix-ui.com/colors) 的色板：每色 **1–12** 阶，工具类为 `bg-{color}-{step}`；省略刻度时（如 `bg-blue`）默认 **9** 阶。
+基于 [Radix Colors](https://www.radix-ui.com/colors) 的色板预览：每色 **1–12** 阶，工具类为 `bg-{color}-{step}`；省略刻度时（如 `bg-blue`）默认 **9** 阶。
+
+概念说明（刻度用途、解析优先级、自定义色）见 [Color](./color.md)。
 
 ## Neutral
 
@@ -644,26 +646,6 @@
       <div class="color-step bg-ocean-12" title="bg-ocean-12"></div>
     </div>
   </div>
-  <div class="color-scale">
-    <div class="color-scale-name">
-      <span>Gunmetal</span>
-      <code>#1d2129</code>
-    </div>
-    <div class="color-scale-steps">
-      <div class="color-step bg-gunmetal-1" title="bg-gunmetal-1"></div>
-      <div class="color-step bg-gunmetal-2" title="bg-gunmetal-2"></div>
-      <div class="color-step bg-gunmetal-3" title="bg-gunmetal-3"></div>
-      <div class="color-step bg-gunmetal-4" title="bg-gunmetal-4"></div>
-      <div class="color-step bg-gunmetal-5" title="bg-gunmetal-5"></div>
-      <div class="color-step bg-gunmetal-6" title="bg-gunmetal-6"></div>
-      <div class="color-step bg-gunmetal-7" title="bg-gunmetal-7"></div>
-      <div class="color-step bg-gunmetal-8" title="bg-gunmetal-8"></div>
-      <div class="color-step bg-gunmetal-9" title="bg-gunmetal-9"></div>
-      <div class="color-step bg-gunmetal-10" title="bg-gunmetal-10"></div>
-      <div class="color-step bg-gunmetal-11" title="bg-gunmetal-11"></div>
-      <div class="color-step bg-gunmetal-12" title="bg-gunmetal-12"></div>
-    </div>
-  </div>
 </div>
 
 ### Additional Neutral
@@ -705,6 +687,26 @@
       <div class="color-step bg-iron-10" title="bg-iron-10"></div>
       <div class="color-step bg-iron-11" title="bg-iron-11"></div>
       <div class="color-step bg-iron-12" title="bg-iron-12"></div>
+    </div>
+  </div>
+  <div class="color-scale">
+    <div class="color-scale-name">
+      <span>Gunmetal</span>
+      <code>#1d2129</code>
+    </div>
+    <div class="color-scale-steps">
+      <div class="color-step bg-gunmetal-1" title="bg-gunmetal-1"></div>
+      <div class="color-step bg-gunmetal-2" title="bg-gunmetal-2"></div>
+      <div class="color-step bg-gunmetal-3" title="bg-gunmetal-3"></div>
+      <div class="color-step bg-gunmetal-4" title="bg-gunmetal-4"></div>
+      <div class="color-step bg-gunmetal-5" title="bg-gunmetal-5"></div>
+      <div class="color-step bg-gunmetal-6" title="bg-gunmetal-6"></div>
+      <div class="color-step bg-gunmetal-7" title="bg-gunmetal-7"></div>
+      <div class="color-step bg-gunmetal-8" title="bg-gunmetal-8"></div>
+      <div class="color-step bg-gunmetal-9" title="bg-gunmetal-9"></div>
+      <div class="color-step bg-gunmetal-10" title="bg-gunmetal-10"></div>
+      <div class="color-step bg-gunmetal-11" title="bg-gunmetal-11"></div>
+      <div class="color-step bg-gunmetal-12" title="bg-gunmetal-12"></div>
     </div>
   </div>
 </div>

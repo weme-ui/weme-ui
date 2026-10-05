@@ -20,13 +20,13 @@ export const DEFAULT_NAME = 'default'
  * @category Tokens
  */
 export const DEFAULT_COLOR_ALIASES: CustomThemeColorAlias = {
-  primary: 'gunmetal',
-  secondary: 'clay',
+  primary: 'clay',
+  secondary: 'gunmetal',
   neutral: 'iron',
   success: 'green',
-  info: 'blue',
-  warning: 'orange',
-  error: 'red',
+  info: 'indigo',
+  warning: 'brown',
+  error: 'tomato',
 }
 
 /**
@@ -66,23 +66,23 @@ export const DEFAULT_TOKENS: CustomThemeTokens = {
 
 | 别名        | 默认指向   |
 | ----------- | ---------- |
-| `primary`   | `gunmetal` |
-| `secondary` | `clay`     |
+| `primary`   | `clay`     |
+| `secondary` | `gunmetal` |
 | `neutral`   | `iron`     |
 | `success`   | `green`    |
-| `info`      | `blue`     |
-| `warning`   | `orange`   |
-| `error`     | `red`      |
+| `info`      | `indigo`   |
+| `warning`   | `brown`    |
+| `error`     | `tomato`   |
 
 生成的 CSS（按需，仅跟踪到的刻度）：
 
 ```css
 :where([data-theme='default']) {
-  --primary-9: var(--custom-primary-9, var(--gunmetal-9));
+  --primary-9: var(--custom-primary-9, var(--clay-9));
 }
 
 .dark:where([data-theme='default']) {
-  --primary-9: var(--custom-primary-9, var(--gunmetal-9));
+  --primary-9: var(--custom-primary-9, var(--clay-9));
 }
 ```
 

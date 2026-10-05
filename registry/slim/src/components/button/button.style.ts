@@ -47,7 +47,7 @@ export const useButtonStyle = createVariants({
       variant: ['primary', 'secondary', 'soft', 'outline', 'ghost', 'inverse', 'danger'],
       disabled: false,
       loading: false,
-      class: { root: 'transition-transform duration-200 ease-out data-[pressed]:scale-96' },
+      class: { root: 'transition-all duration-200 ease-out data-[pressed]:scale-96' },
     },
   ],
 

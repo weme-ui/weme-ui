@@ -3,7 +3,7 @@ import { createVariants } from '~/utils/styles'
 
 export const useButtonStyle = createVariants({
   slots: {
-    root: 'flex-(inline center) cursor-default select-none',
+    root: 'relative w-fit flex-(inline center) cursor-pointer select-none',
     icon: 'shrink-0',
     label: 'font-medium select-none',
   },

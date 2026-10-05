@@ -11,6 +11,8 @@
   ],
   "access": "public",
   "dependencies": [
+    "@weme-ui/unocss-preset",
+    "@vueuse/core",
     "unocss",
     "vue"
   ],

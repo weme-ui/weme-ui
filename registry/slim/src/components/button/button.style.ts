@@ -3,14 +3,14 @@ import { createVariants } from '~/utils/styles'
 
 export const useButtonStyle = createVariants({
   slots: {
-    root: 'flex-(inline center) cursor-default select-none transition-colors',
+    root: 'flex-(inline center) cursor-default select-none',
     icon: 'shrink-0',
     label: 'font-medium select-none',
   },
 
   variants: {
     color: { primary: '', secondary: '', info: '', success: '', warning: '', error: '' },
-    variant: { solid: '', soft: '', outline: '', ghost: '', inverse: '', unstyled: '' },
+    variant: { solid: '', soft: '', outline: '', ghost: '', plain: '', inverse: '', unstyled: '' },
     size: {
       sm: { root: 'h-6 px-sm gap-xs text-xs', icon: 'size-3' },
       md: { root: 'h-8 px-md gap-sm text-sm', icon: 'size-3.5' },
@@ -62,12 +62,26 @@ export const useButtonStyle = createVariants({
     { color: 'warning', variant: 'ghost', class: { root: 'fancy-warning-ghost' } },
     { color: 'error', variant: 'ghost', class: { root: 'fancy-error-ghost' } },
 
+    { color: 'primary', variant: 'plain', class: { root: 'fancy-primary-plain' } },
+    { color: 'secondary', variant: 'plain', class: { root: 'fancy-secondary-plain' } },
+    { color: 'info', variant: 'plain', class: { root: 'fancy-info-plain' } },
+    { color: 'success', variant: 'plain', class: { root: 'fancy-success-plain' } },
+    { color: 'warning', variant: 'plain', class: { root: 'fancy-warning-plain' } },
+    { color: 'error', variant: 'plain', class: { root: 'fancy-error-plain' } },
+
     { color: 'primary', variant: 'inverse', class: { root: 'fancy-primary-inverse' } },
     { color: 'secondary', variant: 'inverse', class: { root: 'fancy-secondary-inverse' } },
     { color: 'info', variant: 'inverse', class: { root: 'fancy-info-inverse' } },
     { color: 'success', variant: 'inverse', class: { root: 'fancy-success-inverse' } },
     { color: 'warning', variant: 'inverse', class: { root: 'fancy-warning-inverse' } },
     { color: 'error', variant: 'inverse', class: { root: 'fancy-error-inverse' } },
+
+    {
+      variant: ['solid', 'soft', 'outline', 'ghost', 'inverse'],
+      disabled: false,
+      loading: false,
+      class: { root: 'transition-transform duration-200 ease-out data-[pressed]:scale-96' },
+    },
   ],
 
   defaultVariants: {

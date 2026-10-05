@@ -1,6 +1,8 @@
 <script lang="ts" setup>
 import type { ButtonProps } from './button.props'
-import { computed, ref, toRef } from 'vue'
+import { useMousePressed } from '@vueuse/core'
+import { computed, ref, toRef, useTemplateRef } from 'vue'
+import { toBoolDataAttrValue } from '~/utils/props'
 import { cn } from '~/utils/styles'
 import Icon from '../icon/icon.vue'
 import { useButtonStyle } from './button.style'
@@ -9,6 +11,9 @@ const props = withDefaults(defineProps<ButtonProps>(), {
   type: 'button',
   loadingIcon: 'ri:loader-line',
 })
+
+const buttonRef = useTemplateRef<HTMLButtonElement>('buttonRef')
+const { pressed } = useMousePressed({ target: buttonRef })
 
 const loadingState = ref(false)
 const isLoading = toRef(() => !!props.loading || loadingState.value)
@@ -41,6 +46,8 @@ async function handleClick(event: MouseEvent) {
 
 <template>
   <button
+    ref="buttonRef"
+    :data-pressed="toBoolDataAttrValue(pressed)"
     :type="type"
     :disabled="isDisabled"
     :class="cn(ui.root(), props.ui?.root, props.class)"

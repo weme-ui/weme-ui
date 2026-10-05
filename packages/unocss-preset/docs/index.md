@@ -73,4 +73,5 @@ export default defineConfig({
 - [Dark mode](./theme/dark-mode.md) — class / media 切换、色板覆盖、Variants、推荐实践
 - [Tokens](./theme/tokens.md) — 颜色别名、语义 Tokens、自定义 CssVars、模糊匹配
 - [Rules](./utilities/rules.md) — 全部工具类规则速查
+- [Animation](./utilities/animate.md) — 完整 keyframe 与组合 Enter / Exit
 - [Variants](./utilities/variants.md) — 断点、暗色、伪类、ARIA、容器查询等变体

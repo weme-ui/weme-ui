@@ -42,11 +42,11 @@ describe('custom preflight', () => {
 
     const css = customPreflight(options)?.getCSS(createPreflightContext())
 
-    expect(css).toContain('--primary-9: var(--custom-primary-9, var(--gunmetal-9))')
-    expect(css).toContain('--error-1: var(--custom-error-1, var(--red-1))')
+    expect(css).toContain('--primary-9: var(--custom-primary-9, var(--clay-9))')
+    expect(css).toContain('--error-1: var(--custom-error-1, var(--tomato-1))')
     expect(css).toContain(`.dark:where([data-theme='${DEFAULT_NAME}'])`)
-    expect(trackedTheme.has('colors:gunmetal-9')).toBe(true)
-    expect(trackedTheme.has('colors:red-1')).toBe(true)
+    expect(trackedTheme.has('colors:clay-9')).toBe(true)
+    expect(trackedTheme.has('colors:tomato-1')).toBe(true)
   })
 
   it('emits raw color aliases with light and dark scales', () => {
@@ -116,7 +116,7 @@ describe('custom preflight', () => {
 
     expect(css).toContain(`:root, :where([data-theme='${DEFAULT_NAME}'])`)
     expect(css).toContain(':where([data-theme=\'brand\'])')
-    expect(css).toContain('--primary-9: var(--custom-primary-9, var(--gunmetal-9))')
+    expect(css).toContain('--primary-9: var(--custom-primary-9, var(--clay-9))')
     expect(css).toContain('--primary-9: var(--custom-primary-9, var(--blue-9))')
   })
 
@@ -164,7 +164,7 @@ describe('custom preflight', () => {
     const css = customPreflight(options)?.getCSS(createPreflightContext({ envMode: 'dev' }))
 
     expect(css).toContain(`:root, :where([data-theme='${DEFAULT_NAME}']) {`)
-    expect(css).toContain('--primary-9: var(--custom-primary-9, var(--gunmetal-9));')
+    expect(css).toContain('--primary-9: var(--custom-primary-9, var(--clay-9));')
     expect(css).toContain('\n')
   })
 })

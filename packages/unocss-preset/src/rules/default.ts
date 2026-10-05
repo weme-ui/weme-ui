@@ -2,6 +2,7 @@ import type { Rule } from '@unocss/core'
 import type { ResolvedWemeUIOptions } from '../options'
 import type { Theme } from '../theme'
 import { textAligns, verticalAligns } from './align'
+import { animateModifiers, animatePropertyRules } from './animate'
 import { animations } from './animation'
 import { backgroundStyles } from './background'
 import { accents, appearance, carets, imageRenderings, listStyle, outline, overscrolls, scrollBehaviors, willChange } from './behaviors'
@@ -103,6 +104,8 @@ export function rules(options: ResolvedWemeUIOptions): Rule<Theme>[] {
     zIndexes,
     overflows,
     svgUtilities(options),
+    animatePropertyRules,
+    animateModifiers,
     animations,
     backgroundStyles(options),
     hyphens,

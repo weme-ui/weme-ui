@@ -81,31 +81,9 @@ Theme 定义应用的整体视觉基线。可通过少量配置定制外观；�
 
 **default.transition：** duration `150ms`，timingFunction 同 ease DEFAULT。
 
-## Animation keyframes
+## Animation
 
-可用 `animate-{name}`，内置名称包括：
-
-`pulse`、`bounce`、`spin`、`ping`、`bounce-alt`、`flash`、`pulse-alt`、`rubber-band`、`shake-x`、`shake-y`、`head-shake`、`swing`、`tada`、`wobble`、`jello`、`heart-beat`、`hinge`、`jack-in-the-box`、
-
-`light-speed-in-left/right`、`light-speed-out-left/right`、
-
-`flip`、`flip-in-x/y`、`flip-out-x/y`、
-
-`rotate-in`、`rotate-in-down-left/right`、`rotate-in-up-left/right`、`rotate-out` 及对应 down/up 方向、
-
-`roll-in/out`、
-
-`zoom-in`、`zoom-in-down/left/right/up`、`zoom-out` 及对应方向、
-
-`bounce-in`、`bounce-in-down/left/right/up`、`bounce-out` 及对应方向、
-
-`slide-in-down/left/right/up`、`slide-out-down/left/right/up`、
-
-`fade-in`、`fade-in-down/up/left/right`（含 `-big` 与对角）、`fade-out` 同系列、
-
-`back-in-down/left/right/up`、`back-out-down/left/right/up`
-
-完整 keyframes 字符串见 `src/theme/animation.ts`。
+Theme 存完整 `@keyframes` 字符串与 Enter / Exit 用的 `un-enter` / `un-exit`。两套模型边界、工具类 API 与内置名称见 [Animation](../utilities/animate.md)。
 
 ## Aria / Media / Supports（供 Variants）
 
@@ -138,3 +116,4 @@ Tokens 提供对主题值的直接访问，便于自建组件并与主题保持�
 - [Spacing](./spacing.md) — 间距刻度与 `data-scaling`
 - [Radius](./radius.md) — 圆角刻度与 `data-radius`
 - [Shadows](./shadows.md) — Shadow、Blur、Perspective
+- [Animation](../utilities/animate.md) — 完整 keyframe 与组合 Enter / Exit

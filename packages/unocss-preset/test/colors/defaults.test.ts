@@ -42,10 +42,10 @@ describe('additional colors', () => {
     expect(ADDITIONAL_ACCENT_COLORS).toEqual({
       clay: '#d97757',
       ocean: '#05f',
-      gunmetal: '#1d2129',
     })
     expect(ADDITIONAL_NEUTRAL_COLORS).toEqual({
       iron: '#86909c',
+      gunmetal: '#1d2129',
     })
   })
 })

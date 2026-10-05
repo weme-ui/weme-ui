@@ -7,6 +7,10 @@ import type { Theme } from './types'
  */
 export const animation = {
   keyframes: {
+    // RFC 0003 — composable enter/exit (tw-animate-css model)
+    'un-enter': '{from{opacity:var(--un-enter-opacity,1);transform:translate3d(var(--un-enter-translate-x,0),var(--un-enter-translate-y,0),0) scale3d(var(--un-enter-scale,1),var(--un-enter-scale,1),var(--un-enter-scale,1)) rotate(var(--un-enter-rotate,0));filter:blur(var(--un-enter-blur,0))}}',
+    'un-exit': '{to{opacity:var(--un-exit-opacity,1);transform:translate3d(var(--un-exit-translate-x,0),var(--un-exit-translate-y,0),0) scale3d(var(--un-exit-scale,1),var(--un-exit-scale,1),var(--un-exit-scale,1)) rotate(var(--un-exit-rotate,0));filter:blur(var(--un-exit-blur,0))}}',
+
     // https://github.com/unocss/unocss/blob/main/packages-presets/preset-wind4/src/theme/animate.ts
     'pulse': '{0%, 100% {opacity:1} 50% {opacity:.5}}',
     'bounce': '{0%, 100% {transform:translateY(-25%);animation-timing-function:cubic-bezier(0.8,0,1,1)} 50% {transform:translateY(0);animation-timing-function:cubic-bezier(0,0,0.2,1)}}',
@@ -173,6 +177,10 @@ export const animation = {
   },
 
   category: {
+    // RFC 0003 — composable enter/exit
+    'un-enter': 'Enter/Exit',
+    'un-exit': 'Enter/Exit',
+
     // https://github.com/unocss/unocss/blob/main/packages-presets/preset-wind4/src/theme/animate.ts
     'pulse': 'Attention Seekers',
     'bounce': 'Attention Seekers',

@@ -279,21 +279,15 @@ Rules 是具体工具类到 CSS 声明的映射。下列写法按源码模块分
 | `ease-out` `ease-linear`                                        | `transition-timing-function` |
 | `transition-discrete`                                           | `transition-behavior`        |
 
-### Animation — `animations`
+### Animation — `animations` / `animateModifiers` / `animateInOutShortcuts`
 
-| 示例                                             | CSS                         |
-| ------------------------------------------------ | --------------------------- |
-| `animate-spin` `animate-pulse` `animate-fade-in` | animation + `@keyframes`    |
-| `animate-none`                                   | `animation: none`           |
-| `animate-duration-500`                           | `animation-duration`        |
-| `animate-delay-200`                              | `animation-delay`           |
-| `animate-ease-in`                                | `animation-timing-function` |
-| `animate-paused` `animate-running`               | `animation-play-state`      |
-| `animate-count-infinite`                         | `animation-iteration-count` |
-| `animate-direction-reverse`                      | `animation-direction`       |
-| `animate-fill-forwards`                          | `animation-fill-mode`       |
+完整文档见 [Animation](./animate.md)（两套模型边界、Enter / Exit 修饰符、内置 keyframe 名称）。
 
-完整 keyframes 名称见 [Theme overview — Animation](../theme/index.md#animation-keyframes)。
+| 示例                                             | CSS                               |
+| ------------------------------------------------ | --------------------------------- |
+| `animate-spin` `animate-fade-in`                 | 模型 A：完整 keyframe             |
+| `animate-in fade-in zoom-in slide-in-from-top-8` | 模型 B：组合 Enter / Exit         |
+| `animate-duration-500` `animate-ease-in`         | 参数类（双写 `--un-animation-*`） |
 
 ### Columns — `columns`
 

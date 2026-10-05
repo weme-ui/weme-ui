@@ -2,7 +2,6 @@ import type { IconifyIconProps } from '@iconify/vue'
 import type { ButtonStyleProps, ButtonStyleSlots } from './button.style'
 
 export interface ButtonProps {
-  color?: ButtonStyleProps['color']
   variant?: ButtonStyleProps['variant']
   size?: ButtonStyleProps['size']
   radius?: ButtonStyleProps['radius']

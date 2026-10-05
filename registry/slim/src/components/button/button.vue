@@ -20,7 +20,6 @@ const isLoading = toRef(() => !!props.loading || loadingState.value)
 const isDisabled = toRef(() => !!props.disabled || isLoading.value)
 
 const ui = computed(() => useButtonStyle({
-  color: props.color,
   variant: props.variant,
   size: props.size,
   radius: props.radius,

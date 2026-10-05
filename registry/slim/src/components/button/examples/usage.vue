@@ -4,6 +4,6 @@ import Button from '../button.vue'
 
 <template>
   <div class="flex flex-wrap gap-3 items-center">
-    <Button label="Primary" />
+    <Button label="Button" />
   </div>
 </template>

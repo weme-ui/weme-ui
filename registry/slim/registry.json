@@ -78,11 +78,6 @@
         {
           "type": "component",
           "kind": "example",
-          "path": "src/components/button/examples/color.vue"
-        },
-        {
-          "type": "component",
-          "kind": "example",
           "path": "src/components/button/examples/variants.vue"
         },
         {

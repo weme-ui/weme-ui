@@ -4,11 +4,14 @@ import Button from '../button.vue'
 
 <template>
   <div class="flex flex-wrap gap-3 items-center">
-    <Button label="Solid" variant="solid" />
+    <Button label="Primary" variant="primary" />
+    <Button label="Secondary" variant="secondary" />
     <Button label="Soft" variant="soft" />
     <Button label="Outline" variant="outline" />
     <Button label="Ghost" variant="ghost" />
+    <Button label="Plain" variant="plain" />
     <Button label="Inverse" variant="inverse" />
+    <Button label="Danger" variant="danger" />
     <Button label="Unstyled" variant="unstyled" />
   </div>
 </template>

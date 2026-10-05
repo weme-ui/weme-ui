@@ -5,7 +5,7 @@ export const useButtonStyle = createVariants({
   slots: {
     root: 'relative w-fit flex-(inline center) cursor-pointer select-none',
     icon: 'shrink-0',
-    label: 'font-medium select-none',
+    label: 'font-medium',
   },
 
   variants: {

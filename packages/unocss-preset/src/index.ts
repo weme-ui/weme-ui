@@ -21,6 +21,12 @@ import { variants } from './variants'
 export const presetWemeUI = definePreset<PresetWemeUIOptions, Theme>((userOptions = {}) => {
   const options = resolveOptions(userOptions)
 
+  const transformers = []
+
+  if (options.transformerVariantGroup) {
+    transformers.push(transformerVariantGroup())
+  }
+
   return {
     name: PRESET_NAME,
     prefix: options.prefix,
@@ -39,9 +45,7 @@ export const presetWemeUI = definePreset<PresetWemeUIOptions, Theme>((userOption
     variants: variants(options),
     preflights: preflights(options),
     postprocess: postprocessors(options),
-    transformers: [
-      transformerVariantGroup(),
-    ],
+    transformers,
     extractorDefault: options.arbitraryVariants === false
       ? undefined
       : extractorArbitraryVariants(),

@@ -87,6 +87,13 @@ export interface PresetWemeUIOptions {
   arbitraryVariants?: boolean
 
   /**
+   * 启用变体组，例如 `<div class="b-(~ default)"></div>`
+   *
+   * @default true
+   */
+  transformerVariantGroup?: boolean
+
+  /**
    * 重要选项，控制 UnoCSS 的工具是否应该标记为 `!important`
    * 当使用 UnoCSS 与具有高特异性的现有 CSS 时，这非常有用
    * 你也可以将 `important` 设置为一个选择器，比如 `#app`，这将生成 `#app :is(.m-1) { ... }`
@@ -184,7 +191,8 @@ export function resolveOptions(options: PresetWemeUIOptions): ResolvedWemeUIOpti
   options.variablePrefix = options.variablePrefix ?? 'un-'
   options.important = options.important ?? false
   options.colors = options.colors ?? {}
-
+  options.arbitraryVariants = options.arbitraryVariants ?? true
+  options.transformerVariantGroup = options.transformerVariantGroup ?? true
   options.themes = options.themes ?? []
   options.cssVars = options.cssVars ?? {}
 

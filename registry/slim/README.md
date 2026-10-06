@@ -33,7 +33,18 @@ pnpm dlx @weme-ui/weme-ui add weme-ui/slim/button
 
 ## 组件列表
 
+- **General**
+  - [x] `button`
+  - [ ] `button-group`
+  - [x] `icon`
+
 - **Form**
+  - [ ] `form`
+  - [ ] `input`
+  - [ ] `form`
+  - [ ] `form`
+  - [ ] `form`
+  - [ ] `form`
   - [ ] `form`
 
 ## 组合式函数

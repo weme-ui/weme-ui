@@ -48,7 +48,7 @@ registry/<library>/src/<section>/<name>/
 4. 在 `registry.json` 对应 item 的 `files` 中追加（已存在则跳过）：
    - `kind: "doc"` → `.../README.md`
    - 每个示例一条 `kind: "example"`（顺序 = 详情页展示顺序）
-5. **不改**已有 `name` / `title` / `description` / `meta` / `dependencies` / `registryDependencies` / 主源码 paths（除非文件已存在而 path 缺失）
+5. **不改**已有 `name` / `title` / `description` / `meta` / `dependencies` / `registryDependencies` / `when` / 主源码 paths（除非文件已存在而 path 缺失）。依赖规则见下方「依赖判断」
 
 ## 模式 B：API 同步
 
@@ -122,11 +122,31 @@ Examples 小节标题由文件名生成：`with-icon` → `With Icon`（`usage` 
 - 相对导入 sibling 组件：`import Button from '../button.vue'`
 - 在 `registry.json` 按展示顺序登记每条 `kind: "example"`（建议 `usage.vue` 排第一）
 
+### 依赖判断（`registry.json`）
+
+写文档或登记依赖前，先读该 library 的 `registry.json` 顶层与目标 item。
+
+| 位置 | 含义 | 安装时机 |
+| --- | --- | --- |
+| 顶层 `dependencies` / `devDependencies` | **全局依赖**，所有组件共用 | 项目 **初始化** 时首先安装 |
+| `items[].when: "on-init"` | 初始化必装的 registry item（如 `utils`） | 与全局依赖同阶段，随 init 安装 |
+| `items[].dependencies` / `devDependencies` | **仅该组件**额外需要的包 | 用户 `add` 该组件时安装 |
+| `items[].registryDependencies` | 依赖的其他 registry item | 随该组件一并拉取 |
+
+规则：
+
+1. **先查顶层**：源码用到的包若已在顶层 `dependencies` / `devDependencies` 中，**不要**再写入 item 的 `dependencies`。
+2. **`when: "on-init"` 不要随意增加**：只有真正「每个项目初始化都必须装」的共享项才用；误加会让无关文件在 init 时被安装。
+3. **item 级依赖**：仅登记顶层没有、且该组件独有的包（例如 Icon 的 `@iconify/vue`）。
+4. Mode A / B **默认不改**已有 `dependencies` / `registryDependencies` / `when`；确需增删时先对照顶层列表，避免重复或扩大 init 面。
+
 ### UI 依赖 badge
 
-website 会从 item 的 `dependencies` 中识别 **UI 类**依赖并显示 badge（如 `@iconify/vue` → Iconify，`reka-ui` → Reka UI）。工具库（`clsx`、`defu`、`vue` 等）不会显示。
+website 从 **item** 的 `dependencies` 识别 UI 类依赖并显示 badge（如 `@iconify/vue` → Iconify，`reka-ui` → Reka UI）。工具库（`clsx`、`defu`、`vue` 等）不会显示。
 
-生成文档时**不要**为 badge 改 README；确保 `registry.json` 的 `dependencies` 正确即可。新增 UI 库时需同步 `packages/website/src/lib/ui-dependencies.ts` 白名单。
+- 生成文档时**不要**为 badge 改 README。
+- 仅当包**不在**顶层全局依赖、且应出现在该组件 badge 上时，才写入 item `dependencies`。
+- 新增 UI 库白名单时同步 `packages/website/src/lib/ui-dependencies.ts`。
 
 ## 规则
 
@@ -136,6 +156,7 @@ website 会从 item 的 `dependencies` 中识别 **UI 类**依赖并显示 badge
 - Usage 中 `~/...` 指向同一 library 的 `src` 根
 - `files[].type`：`component | composable | ui | block | layout | page | util`
 - `files[].kind`：`doc | example`（本 skill 不写 `test`）
+- 依赖登记遵循上文「依赖判断」；**禁止**把已是全局的包装进 item，**禁止**随意加 `when: "on-init"`
 - 说明用中文；Vue、TypeScript、UnoCSS 等专有名词保持英文
 
 ## 本地验证（用户侧）

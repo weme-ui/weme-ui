@@ -14,6 +14,8 @@ pnpm dlx @weme-ui/weme-ui add weme-ui/slim/button
 
 | 属性          | 说明                                               | 类型                                                                                                           | 默认值             |
 | ------------- | -------------------------------------------------- | -------------------------------------------------------------------------------------------------------------- | ------------------ |
+| `as`          | 渲染为的元素或组件（Reka UI `Primitive`）          | `AsTag \| Component`                                                                                           | `'button'`         |
+| `asChild`     | 合并到子元素上渲染（Reka UI composition）          | `boolean`                                                                                                      | —                  |
 | `variant`     | 外观变体                                           | `'primary' \| 'secondary' \| 'soft' \| 'outline' \| 'ghost' \| 'plain' \| 'inverse' \| 'danger' \| 'unstyled'` | `'primary'`        |
 | `size`        | 尺寸                                               | `'sm' \| 'md' \| 'lg'`                                                                                         | `'md'`             |
 | `radius`      | 圆角                                               | `'none' \| 'xs' \| 'sm' \| 'md' \| 'lg' \| 'xl' \| 'full'`                                                     | `'sm'`             |
@@ -22,18 +24,19 @@ pnpm dlx @weme-ui/weme-ui add weme-ui/slim/button
 | `label`       | 按钮文案                                           | `string`                                                                                                       | —                  |
 | `loadingIcon` | 加载中图标（Iconify）                              | `IconifyIconProps['icon']`                                                                                     | `'ri:loader-line'` |
 | `loadingText` | 加载中文案；未传时回退到 `label`                   | `string`                                                                                                       | —                  |
+| `tabIndex`    | 焦点顺序                                           | `number`                                                                                                       | `0`                |
 | `disabled`    | 是否禁用                                           | `boolean`                                                                                                      | —                  |
 | `loading`     | 是否加载中                                         | `boolean`                                                                                                      | —                  |
 | `unstyled`    | 是否去掉默认样式                                   | `boolean`                                                                                                      | —                  |
 | `class`       | 根节点额外 class                                   | `any`                                                                                                          | —                  |
-| `ui`          | 覆盖 slots 样式（`root` / `icon` / `label`）       | `Partial<ButtonStyleSlots>`                                                                                    | —                  |
+| `ui`          | 覆盖 slots 样式（`root` / `icon`）                 | `Partial<ButtonStyleSlots>`                                                                                    | —                  |
 | `onClick`     | 点击回调（支持异步；异步执行期间自动进入 loading） | `((event: MouseEvent) => void \| Promise<void>) \| Array<((event: MouseEvent) => void \| Promise<void>)>`      | —                  |
 
 ## Slots
 
 | 插槽           | 说明                                                 |
 | -------------- | ---------------------------------------------------- |
+| `default`      | 自定义文案，作用域参数：`{ label }`                  |
 | `icon`         | 自定义前置图标，作用域参数：`{ icon }`               |
-| `label`        | 自定义文案，作用域参数：`{ label }`                  |
 | `loading-icon` | 自定义加载图标，作用域参数：`{ loadingIcon }`        |
 | `loading-text` | 自定义加载文案，作用域参数：`{ label, loadingText }` |

@@ -13,6 +13,11 @@
   "dependencies": [
     "@weme-ui/unocss-preset",
     "@vueuse/core",
+    "clsx",
+    "defu",
+    "reka-ui",
+    "tailwind-merge",
+    "tailwind-variants",
     "unocss",
     "vue"
   ],
@@ -23,12 +28,6 @@
       "title": "Utils",
       "description": "Shared utilities for Slim components.",
       "when": "on-init",
-      "dependencies": [
-        "clsx",
-        "defu",
-        "tailwind-merge",
-        "tailwind-variants"
-      ],
       "files": [
         {
           "type": "util",

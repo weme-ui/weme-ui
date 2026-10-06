@@ -46,21 +46,22 @@
     }
   },
   "dependencies": {
-    "@iconify/vue": "^5.0.3",
+    "@iconify/vue": "catalog:utils",
     "@vueuse/core": "catalog:utils",
     "@weme-ui/unocss-preset": "workspace:*",
-    "clsx": "^2.1.1",
+    "clsx": "catalog:utils",
     "defu": "catalog:utils",
-    "tailwind-merge": "^3.7.0",
-    "tailwind-variants": "^3.3.1",
+    "reka-ui": "catalog:utils",
+    "tailwind-merge": "catalog:utils",
+    "tailwind-variants": "catalog:utils",
     "unocss": "catalog:dev",
     "vue": "catalog:dev"
   },
   "devDependencies": {
-    "@iconify-json/ri": "^1.2.10",
-    "@vitejs/plugin-vue": "^6.0.9",
-    "@vue/test-utils": "^2.5.1",
-    "happy-dom": "^20.14.5",
+    "@iconify-json/ri": "catalog:utils",
+    "@vitejs/plugin-vue": "catalog:dev",
+    "@vue/test-utils": "catalog:dev",
+    "happy-dom": "catalog:dev",
     "typescript": "catalog:build",
     "vitest": "catalog:dev"
   }

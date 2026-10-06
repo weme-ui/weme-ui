@@ -27,6 +27,18 @@ export function toBoolDataAttrValue(value: any) {
 }
 
 /**
+ * 转换为布尔 aria 值
+ *
+ * @category Utils
+ *
+ * @param value - 值
+ * @returns 布尔 aria 值
+ */
+export function toBoolAriaValue(value: any) {
+  return toBoolValue(value) ? true : undefined
+}
+
+/**
  * 合并到引用
  *
  * @category Utils

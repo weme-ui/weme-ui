@@ -37,6 +37,8 @@
     "dev": {
       "@types/node": "^25.9.1",
       "@vitejs/plugin-vue": "^6.0.9",
+      "@vue/test-utils": "^2.5.1",
+      "happy-dom": "^20.14.5",
       "unocss": "^66.10.5",
       "unplugin-auto-import": "^21.1.0",
       "unplugin-vue-components": "^32.1.0",
@@ -46,10 +48,16 @@
       "vue": "^3.5.43"
     },
     "utils": {
+      "@iconify-json/ri": "^1.2.10",
+      "@iconify/vue": "^5.0.3",
       "@vueuse/core": "^15.0.0",
+      "clsx": "^2.1.1",
       "defu": "^6.1.7",
       "premove": "^4.0.0",
+      "reka-ui": "^2.11.0",
       "serve": "^14.2.6",
+      "tailwind-merge": "^3.7.0",
+      "tailwind-variants": "^3.3.1",
       "type-fest": "^5.10.0",
       "zod": "^4.4.3"
     }

@@ -3,9 +3,8 @@ import { createVariants } from '~/utils/styles'
 
 export const useButtonStyle = createVariants({
   slots: {
-    root: 'relative w-fit flex-(inline center) cursor-pointer select-none',
+    root: 'relative w-fit flex-(inline center) cursor-pointer select-none font-medium',
     icon: 'shrink-0',
-    label: 'font-medium',
   },
 
   variants: {
@@ -47,7 +46,7 @@ export const useButtonStyle = createVariants({
       variant: ['primary', 'secondary', 'soft', 'outline', 'ghost', 'inverse', 'danger'],
       disabled: false,
       loading: false,
-      class: { root: 'transition-all duration-200 ease-out data-[pressed]:scale-96' },
+      class: { root: 'transition-all duration-200 ease-out aria-[pressed=true]:scale-96' },
     },
   ],
 

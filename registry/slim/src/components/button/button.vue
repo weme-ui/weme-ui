@@ -1,13 +1,15 @@
 <script lang="ts" setup>
 import type { ButtonProps } from './button.props'
 import { useMousePressed } from '@vueuse/core'
+import { Primitive } from 'reka-ui'
 import { computed, ref, toRef, useTemplateRef } from 'vue'
-import { toBoolDataAttrValue } from '~/utils/props'
+import { toBoolAriaValue } from '~/utils/props'
 import { cn } from '~/utils/styles'
 import Icon from '../icon/icon.vue'
 import { useButtonStyle } from './button.style'
 
 const props = withDefaults(defineProps<ButtonProps>(), {
+  as: 'button',
   type: 'button',
   loadingIcon: 'ri:loader-line',
 })
@@ -44,33 +46,36 @@ async function handleClick(event: MouseEvent) {
 </script>
 
 <template>
-  <button
+  <Primitive
     ref="buttonRef"
-    :data-pressed="toBoolDataAttrValue(pressed)"
+    :as="as"
+    :as-child="asChild"
     :type="type"
+    :aria-pressed="toBoolAriaValue(pressed)"
+    :aria-busy="toBoolAriaValue(isLoading)"
+    :aria-disabled="toBoolAriaValue(isDisabled)"
+    :tabindex="tabIndex || 0"
     :disabled="isDisabled"
     :class="cn(ui.root(), props.ui?.root, props.class)"
     @click="handleClick"
   >
     <template v-if="isLoading">
-      <slot name="loading-icon" :loading-icon="loadingIcon">
+      <slot name="loading-icon" v-bind="{ loadingIcon }">
         <Icon :name="loadingIcon" :class="cn(ui.icon(), props.ui?.icon)" />
       </slot>
-      <span v-if="loadingText || label" :class="cn(ui.label(), props.ui?.label)">
-        <slot name="loading-text" :label="label" :loading-text="loadingText">
+      <template v-if="loadingText || label">
+        <slot name="loading-text" v-bind="{ label, loadingText }">
           {{ loadingText || label }}
         </slot>
-      </span>
+      </template>
     </template>
     <template v-else>
       <slot name="icon" :icon="icon">
-        <Icon v-if="props.icon" :name="props.icon" :class="cn(ui.icon(), props.ui?.icon)" />
+        <Icon v-if="icon" :name="icon" :class="cn(ui.icon(), props.ui?.icon)" />
       </slot>
-      <span v-if="props.label" :class="cn(ui.label(), props.ui?.label)">
-        <slot name="label" :label="label">
-          {{ props.label }}
-        </slot>
-      </span>
+      <slot :label="label">
+        {{ label }}
+      </slot>
     </template>
-  </button>
+  </Primitive>
 </template>

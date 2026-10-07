@@ -42,6 +42,7 @@ pnpm dlx @weme-ui/weme-ui add weme-ui/slim/button
 
 - **Navigation**
   - [x] `link`
+  - [x] `link-overlay`
 
 - **Form**
   - [ ] `form`

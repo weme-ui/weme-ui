@@ -409,6 +409,50 @@
           "path": "src/components/link/examples/unstyled.vue"
         }
       ]
+    },
+    {
+      "name": "link-overlay",
+      "type": "component",
+      "title": "Link Overlay",
+      "description": "Expands a link hit area over a positioned ancestor so entire cards or sections are clickable.",
+      "meta": {
+        "docs.category": "navigation",
+        "docs.categoryLabel": "Navigation"
+      },
+      "files": [
+        {
+          "type": "component",
+          "path": "src/components/link-overlay/link-overlay.vue"
+        },
+        {
+          "type": "component",
+          "path": "src/components/link-overlay/link-overlay.props.ts"
+        },
+        {
+          "type": "component",
+          "path": "src/components/link-overlay/link-overlay.style.ts"
+        },
+        {
+          "type": "component",
+          "kind": "test",
+          "path": "src/components/link-overlay/link-overlay.test.ts"
+        },
+        {
+          "type": "component",
+          "kind": "doc",
+          "path": "src/components/link-overlay/README.md"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/link-overlay/examples/usage.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/link-overlay/examples/as-child.vue"
+        }
+      ]
     }
   ]
 }

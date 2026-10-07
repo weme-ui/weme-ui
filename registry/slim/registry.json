@@ -292,6 +292,58 @@
           "path": "src/components/icon-tile/icon-tile.test.ts"
         }
       ]
+    },
+    {
+      "name": "icon-stack",
+      "type": "component",
+      "title": "Icon Stack",
+      "description": "A decorative stacked-paper icon display for empty states and feature callouts.",
+      "meta": {
+        "docs.category": "general",
+        "docs.categoryLabel": "General"
+      },
+      "registryDependencies": [
+        "icon"
+      ],
+      "files": [
+        {
+          "type": "component",
+          "path": "src/components/icon-stack/icon-stack.vue"
+        },
+        {
+          "type": "component",
+          "path": "src/components/icon-stack/icon-stack.props.ts"
+        },
+        {
+          "type": "component",
+          "path": "src/components/icon-stack/icon-stack.style.ts"
+        },
+        {
+          "type": "component",
+          "kind": "doc",
+          "path": "src/components/icon-stack/README.md"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/icon-stack/examples/usage.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/icon-stack/examples/colors.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/icon-stack/examples/sizes.vue"
+        },
+        {
+          "type": "component",
+          "kind": "test",
+          "path": "src/components/icon-stack/icon-stack.test.ts"
+        }
+      ]
     }
   ]
 }

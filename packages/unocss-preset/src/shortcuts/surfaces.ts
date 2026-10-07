@@ -133,8 +133,15 @@ export const plainShortcuts: Shortcut<Theme>[] = [
   [/^plain-(.+)$/, ([, color], { theme }) => {
     if (hasParseableColor(color, theme)) {
       const classNames: string[] = [
-        `bg-${color} text-${color}-1 selection:(bg-${color}-5)`,
+        `bg-${color} text-${color}-1 selection:bg-${color}-5`,
       ]
+
+      if (isLightColor(color)) {
+        classNames.push(`dark:text-${color}-8`)
+      }
+      else {
+        classNames.push(`dark:text-${color}-12`)
+      }
 
       return classNames.join(' ')
     }
@@ -144,7 +151,7 @@ export const plainShortcuts: Shortcut<Theme>[] = [
   [/^plain-(.+)-soft$/, ([, color], { theme }) => {
     if (hasParseableColor(color, theme)) {
       const classNames: string[] = [
-        `bg-${color}-3 selection:(bg-${color}-5)`,
+        `bg-${color}-3 selection:bg-${color}-5`,
       ]
 
       if (isLightColor(color) || isNeutralColor(color)) {
@@ -158,11 +165,30 @@ export const plainShortcuts: Shortcut<Theme>[] = [
     }
   }, { autocomplete: `plain-$color-soft` }],
 
+  // elevated : plain-$color-elevated
+  [/^plain-(.+)-elevated$/, ([, color], { theme }) => {
+    if (hasParseableColor(color, theme)) {
+      const classNames: string[] = [
+        `isolate bg-${color}-3 p-0.75 selection:bg-${color}-5`,
+        `after:content-[""] after:absolute after:inset-0.75 after:z-[-1] after:b-(~ ${color}-5) after:bg-${color}-3 after:rounded-inherit`,
+      ]
+
+      if (isLightColor(color) || isNeutralColor(color)) {
+        classNames.push(`text-${color}-11`)
+      }
+      else {
+        classNames.push(`text-${color}`)
+      }
+
+      return classNames.join(' ')
+    }
+  }, { autocomplete: `plain-$color-elevated` }],
+
   // outline : plain-$color-outline
   [/^plain-(.+)-outline$/, ([, color], { theme }) => {
     if (hasParseableColor(color, theme)) {
       const classNames: string[] = [
-        `bg-transparent b-(~ ${color}-4) selection:(bg-${color}-5)`,
+        `bg-transparent b-(~ ${color}-4) selection:bg-${color}-5`,
       ]
 
       if (isLightColor(color) || isNeutralColor(color)) {
@@ -175,6 +201,25 @@ export const plainShortcuts: Shortcut<Theme>[] = [
       return classNames.join(' ')
     }
   }, { autocomplete: `plain-$color-outline` }],
+
+  // frame : plain-$color-frame
+  [/^plain-(.+)-frame$/, ([, color], { theme }) => {
+    if (hasParseableColor(color, theme)) {
+      const classNames: string[] = [
+        `isolate bg-${color}-3 p-0.75 b-(~ ${color}-5) selection:bg-${color}-5`,
+        `after:content-[""] after:absolute after:inset-0.75 after:z-[-1] after:b-(~ ${color}-5) after:bg-${color}-3 after:rounded-inherit`,
+      ]
+
+      if (isLightColor(color) || isNeutralColor(color)) {
+        classNames.push(`text-${color}-11`)
+      }
+      else {
+        classNames.push(`text-${color}`)
+      }
+
+      return classNames.join(' ')
+    }
+  }, { autocomplete: `plain-$color-frame` }],
 
   // inverse : plain-$color-inverse
   [/^plain-(.+)-inverse$/, ([, color], { theme }) => {

@@ -230,6 +230,68 @@
           "path": "src/components/icon/icon.test.ts"
         }
       ]
+    },
+    {
+      "name": "icon-tile",
+      "type": "component",
+      "title": "Icon Tile",
+      "description": "A colored tile container for decorative icons.",
+      "meta": {
+        "docs.category": "general",
+        "docs.categoryLabel": "General"
+      },
+      "registryDependencies": [
+        "icon"
+      ],
+      "files": [
+        {
+          "type": "component",
+          "path": "src/components/icon-tile/icon-tile.vue"
+        },
+        {
+          "type": "component",
+          "path": "src/components/icon-tile/icon-tile.props.ts"
+        },
+        {
+          "type": "component",
+          "path": "src/components/icon-tile/icon-tile.style.ts"
+        },
+        {
+          "type": "component",
+          "kind": "doc",
+          "path": "src/components/icon-tile/README.md"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/icon-tile/examples/usage.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/icon-tile/examples/colors.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/icon-tile/examples/variants.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/icon-tile/examples/sizes.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/icon-tile/examples/radius.vue"
+        },
+        {
+          "type": "component",
+          "kind": "test",
+          "path": "src/components/icon-tile/icon-tile.test.ts"
+        }
+      ]
     }
   ]
 }

@@ -299,12 +299,13 @@ typescript
 5. Props
 6. Events（有内容时）
 7. Slots（有内容时）
+8. Accessibility（有内容时；含可选的 Keyboard Interactions）
 
 缺少结构化数据时显示空态，不阻塞文档页生成。不要求 Preview / Source 区块；README 不写 Examples，由 website 根据 catalog example 文件注入。
 
 ## API 文档编写流
 
-Props、Events、Slots 第一版不做自动 TypeScript AST 解析，也不要求在 frontmatter 中手写结构化数据。它们由 AI 基于组件源码辅助编写到就近 README 中。
+Props、Events、Slots、Accessibility 第一版不做自动 TypeScript AST 解析，也不要求在 frontmatter 中手写结构化数据。它们由 AI 基于组件源码辅助编写到就近 README 中。
 
 建议创建项目级 skill：
 
@@ -316,7 +317,7 @@ Props、Events、Slots 第一版不做自动 TypeScript AST 解析，也不要�
 
 1. 新增或修改 registry 组件后准备 website 预览。
 2. 需要生成组件 README 与首个 example。
-3. 联调中改了 API，需要同步 Props、Events、Slots。
+3. 联调中改了 API，需要同步 Props、Events、Slots、Accessibility。
 4. 需要让 `registry.json.items[].files` 的 doc/example 与实际文件保持一致。
 
 Skill 应要求 AI 读取并核对：
@@ -345,17 +346,21 @@ README 建议模板：
 ## Events
 
 ## Slots
+
+## Accessibility
+
+### Keyboard Interactions
 ```
 
-无 Events / Slots 时省略对应章节；不要写 Preview / Examples / Source。示例使用 `examples/<feature>.vue`，在 `registry.json` 登记多条 `kind: "example"`。
+无 Events / Slots / Accessibility 时省略对应章节；`### Keyboard Interactions` 仅在有可核对键盘交互时写入，并挂在 Accessibility 下（格式对齐 [Reka UI Checkbox](https://reka-ui.com/docs/components/checkbox)：简介 + `Key` / `Description` 表）。不要写 Preview / Examples / Source。示例使用 `examples/<feature>.vue`，在 `registry.json` 登记多条 `kind: "example"`。
 
 约束：
 
-1. 不凭空编写 props、events、slots；必须从源码、类型或示例中确认。
+1. 不凭空编写 props、events、slots、accessibility；必须从源码、类型或示例中确认。
 2. 缺少信息时写空态或待补充说明，不伪造 API。
 3. 示例优先落到 `examples/<feature>.vue`，按属性/场景拆分；README 不写 Examples 章节。
 4. 同步检查 `registry.json.items[].files`，确保 doc、example、test 使用 `kind` 字段。
-5. 生成内容保持中文说明，Vue、TypeScript、UnoCSS 等技术名词保持英文。
+5. 生成内容保持中文说明，Vue、TypeScript、UnoCSS、WAI-ARIA 等技术名词保持英文。
 
 这类 skill 应放在项目级 `.cursor/skills` 中，随仓库共享；不放入 Cursor 内置 skills 目录。
 
@@ -438,7 +443,7 @@ typecheck
 6. website 使用 UnoCSS，并复用 `@weme-ui/unocss-preset`。
 7. website 专用依赖放在 `packages/website/package.json`。
 8. Astro 构建产物输出到根目录 `docs`。
-9. Props、Events、Slots 第一版由 AI 基于源码辅助编写到就近 README，不做自动 AST 解析。
+9. Props、Events、Slots、Accessibility 第一版由 AI 基于源码辅助编写到就近 README，不做自动 AST 解析。
 10. 建议创建项目级 `weme-ui-docs` skill 固化 AI 文档编写与 API 同步流程。
 11. `registry/docs` 第一版不要求 `order`、`title` 等 frontmatter。
 12. registry metadata 完全对齐当前 `@weme-ui/schema`，不兼容旧版 `hash` 字段。

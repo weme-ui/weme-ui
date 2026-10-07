@@ -12,7 +12,7 @@ export const useButtonStyle = createVariants({
       primary: { root: 'fancy-accent' },
       secondary: { root: 'fancy-neutral-soft' },
       soft: { root: 'fancy-accent-soft' },
-      outline: { root: 'fancy-accent-outline' },
+      outline: { root: 'fancy-neutral-outline' },
       ghost: { root: 'fancy-accent-ghost' },
       plain: { root: 'fancy-accent-plain' },
       inverse: { root: 'fancy-accent-inverse' },
@@ -39,6 +39,7 @@ export const useButtonStyle = createVariants({
     loading: {
       true: { root: 'is-loading', icon: 'animate-spin' },
     },
+    scalable: { true: {} },
   },
 
   compoundVariants: [
@@ -46,6 +47,7 @@ export const useButtonStyle = createVariants({
       variant: ['primary', 'secondary', 'soft', 'outline', 'ghost', 'inverse', 'danger'],
       disabled: false,
       loading: false,
+      scalable: true,
       class: { root: 'transition-all duration-200 ease-out aria-[pressed=true]:scale-96' },
     },
   ],
@@ -54,6 +56,7 @@ export const useButtonStyle = createVariants({
     variant: 'primary',
     size: 'md',
     radius: 'sm',
+    scalable: true,
   },
 })
 

@@ -112,6 +112,78 @@
       ]
     },
     {
+      "name": "button-group",
+      "type": "component",
+      "title": "Button Group",
+      "description": "Groups related buttons with shared size, radius, and keyboard navigation.",
+      "meta": {
+        "docs.category": "general",
+        "docs.categoryLabel": "General"
+      },
+      "registryDependencies": [
+        "button"
+      ],
+      "files": [
+        {
+          "type": "component",
+          "path": "src/components/button-group/button-group.vue"
+        },
+        {
+          "type": "component",
+          "path": "src/components/button-group/button-group.props.ts"
+        },
+        {
+          "type": "component",
+          "path": "src/components/button-group/button-group.style.ts"
+        },
+        {
+          "type": "component",
+          "kind": "doc",
+          "path": "src/components/button-group/README.md"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/button-group/examples/usage.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/button-group/examples/orientation.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/button-group/examples/sizes.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/button-group/examples/radius.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/button-group/examples/gap.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/button-group/examples/separator.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/button-group/examples/disabled.vue"
+        },
+        {
+          "type": "component",
+          "kind": "test",
+          "path": "src/components/button-group/button-group.test.ts"
+        }
+      ]
+    },
+    {
       "name": "icon",
       "type": "component",
       "title": "Icon",

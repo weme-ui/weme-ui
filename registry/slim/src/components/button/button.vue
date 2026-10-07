@@ -3,7 +3,7 @@ import type { ButtonProps } from './button.props'
 import { useMousePressed } from '@vueuse/core'
 import { Primitive } from 'reka-ui'
 import { computed, ref, toRef, useTemplateRef } from 'vue'
-import { toBoolAriaValue } from '~/utils/props'
+import { toBoolAriaValue, toBoolValue } from '~/utils/props'
 import { cn } from '~/utils/styles'
 import Icon from '../icon/icon.vue'
 import { useButtonStyle } from './button.style'
@@ -12,6 +12,7 @@ const props = withDefaults(defineProps<ButtonProps>(), {
   as: 'button',
   type: 'button',
   loadingIcon: 'ri:loader-line',
+  scalable: true,
 })
 
 const buttonRef = useTemplateRef<HTMLButtonElement>('buttonRef')
@@ -27,6 +28,7 @@ const ui = computed(() => useButtonStyle({
   radius: props.radius,
   disabled: isDisabled.value,
   loading: isLoading.value,
+  scalable: toBoolValue(props.scalable),
 }))
 
 async function handleClick(event: MouseEvent) {

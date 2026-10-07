@@ -19,6 +19,7 @@ pnpm dlx @weme-ui/weme-ui add weme-ui/slim/button
 | `variant`     | 外观变体                                           | `'primary' \| 'secondary' \| 'soft' \| 'outline' \| 'ghost' \| 'plain' \| 'inverse' \| 'danger' \| 'unstyled'` | `'primary'`        |
 | `size`        | 尺寸                                               | `'sm' \| 'md' \| 'lg'`                                                                                         | `'md'`             |
 | `radius`      | 圆角                                               | `'none' \| 'xs' \| 'sm' \| 'md' \| 'lg' \| 'xl' \| 'full'`                                                     | `'sm'`             |
+| `scalable`    | 按下时是否启用缩放动效（禁用 / loading 时不生效）  | `boolean`                                                                                                      | `true`             |
 | `type`        | 原生 button 类型                                   | `'button' \| 'submit' \| 'reset'`                                                                              | `'button'`         |
 | `icon`        | 前置图标（Iconify）                                | `IconifyIconProps['icon']`                                                                                     | —                  |
 | `label`       | 按钮文案                                           | `string`                                                                                                       | —                  |
@@ -40,3 +41,14 @@ pnpm dlx @weme-ui/weme-ui add weme-ui/slim/button
 | `icon`         | 自定义前置图标，作用域参数：`{ icon }`               |
 | `loading-icon` | 自定义加载图标，作用域参数：`{ loadingIcon }`        |
 | `loading-text` | 自定义加载文案，作用域参数：`{ label, loadingText }` |
+
+## Accessibility
+
+默认渲染为原生 `button`（Reka UI `Primitive`），并暴露 `aria-pressed`（按下）、`aria-busy`（加载中）、`aria-disabled`（禁用或加载中）。
+
+### Keyboard Interactions
+
+| Key     | Description                         |
+| ------- | ----------------------------------- |
+| `Enter` | 激活按钮（`as` 为原生 `button` 时） |
+| `Space` | 激活按钮（`as` 为原生 `button` 时） |

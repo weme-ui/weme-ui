@@ -1,6 +1,6 @@
 import type { VNode } from 'vue'
 import { defu } from 'defu'
-import { Fragment, isVNode, toRef } from 'vue'
+import { Comment, Fragment, isVNode, toRef } from 'vue'
 
 /**
  * 转换为布尔值

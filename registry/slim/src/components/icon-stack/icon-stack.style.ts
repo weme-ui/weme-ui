@@ -3,7 +3,7 @@ import { createVariants } from '~/utils/styles'
 
 export const useIconStackStyle = createVariants({
   slots: {
-    root: 'relative text-foreground-base **:data-[slot=icon-stack-layer]:fill-background-base',
+    root: 'relative text-foreground **:data-[slot=icon-stack-layer]:fill-background-base',
     layerWrapper: 'size-full overflow-visible',
     layer: '',
     ellipse: 'blur-xs',

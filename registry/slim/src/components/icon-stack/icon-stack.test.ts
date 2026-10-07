@@ -6,7 +6,7 @@ describe('icon-stack', () => {
     const ui = useIconStackStyle({})
     expect(ui.root()).toContain('w-14')
     expect(ui.root()).toContain('h-16')
-    expect(ui.root()).toContain('text-foreground-base')
+    expect(ui.root()).toContain('text-foreground')
     expect(ui.icon()).toContain('size-3.5')
     expect(ui.layerWrapper()).toContain('size-full')
     expect(ui.ellipse()).toContain('blur-xs')

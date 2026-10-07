@@ -30,6 +30,6 @@ describe('link', () => {
 
   it('applies muted suffix icon when external', () => {
     const ui = useLinkStyle({ external: true })
-    expect(ui.suffixIcon()).toContain('text-foreground-muted')
+    expect(ui.suffixIcon()).toContain('text-muted')
   })
 })

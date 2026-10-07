@@ -12,7 +12,7 @@ export const useLinkStyle = createVariants({
     color: { accent: {}, neutral: {}, info: {}, success: {}, warning: {}, error: {} },
     unstyled: { true: {} },
     external: {
-      true: { suffixIcon: 'text-foreground-muted' },
+      true: { suffixIcon: 'text-muted' },
     },
   },
 

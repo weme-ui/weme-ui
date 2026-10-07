@@ -23,7 +23,7 @@
 
 不同 library 各自维护介绍文档与侧栏结构。构建产物输出到仓库根目录 `docs/`，用于 GitHub Pages 等静态托管。
 
-目录与路由约定以本文为准。使用 AI 编写或更新 registry item 文档时，参见 [weme-ui-docs](../../.cursor/skills/weme-ui-docs/SKILL.md)（首次生成 README/example，或同步 Props/Events/Slots）。
+目录与路由约定以本文为准。使用 AI 编写或更新 registry item 文档时，参见 [weme-ui-docs](../../.cursor/skills/weme-ui-docs/SKILL.md)（首次生成 README/example，或同步 Props/Events/Slots/Accessibility）。
 
 ## 目录结构
 
@@ -155,9 +155,13 @@ registry/slim/src/components/button
 ## Events
 
 ## Slots
+
+## Accessibility
+
+### Keyboard Interactions
 ```
 
-Props、Events、Slots 须依据源码或类型填写；信息不足时标注「待补充」，不要编造。无 Events / Slots 时省略对应章节。不要写 `## Preview`、`## Examples`、`## Source`。
+Props、Events、Slots、Accessibility 须依据源码或类型填写；信息不足时标注「待补充」，不要编造。无 Events / Slots / Accessibility 时省略对应章节；`### Keyboard Interactions` 仅在有可核对键盘交互时写入，并挂在 Accessibility 下（格式对齐 [Reka UI Checkbox](https://reka-ui.com/docs/components/checkbox)）。不要写 `## Preview`、`## Examples`、`## Source`。
 
 可运行示例放在 `examples/<feature>.vue`（如 `usage.vue`、`sizes.vue`），并在 `files` 中按展示顺序声明多条 `kind: "example"`。`usage.vue` 挂在文档 `## Usage` 下（preview + 可折叠高亮源码，默认折叠）；其余 example 在 Usage 与 Props 之间插入 `## Examples`（同样默认折叠）。README 的 `## Usage` 正文可留空。标题下方会根据 item `dependencies` 显示 UI 类依赖 badge（如 Iconify、Reka UI；不含工具库）。说明使用中文，Vue、TypeScript、UnoCSS 等专有名词保持英文。详情页布局会渲染标题，并去除 README 顶部重复的 `h1`。
 

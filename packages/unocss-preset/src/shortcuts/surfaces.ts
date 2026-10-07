@@ -65,9 +65,16 @@ export const fancyShortcuts: Shortcut<Theme>[] = [
   [/^fancy-(.+)-outline$/, ([, color], { theme }) => {
     if (hasParseableColor(color, theme)) {
       const classNames: string[] = [
-        `text-${color} bg-transparent hover:(text-${color}-10 bg-${color}-4) focus-visible:(outline-${color}-7 z-high)`,
+        `bg-transparent hover:(text-${color}-10 bg-${color}-4) focus-visible:(outline-${color}-7 z-high)`,
         `b-(~ ${color}-4) hover:b-${color}-5`,
       ]
+
+      if (isNeutralColor(color)) {
+        classNames.push(`text-${color}-11 hover:text-${color}-12`)
+      }
+      else {
+        classNames.push(`text-${color} hover:text-${color}-10`)
+      }
 
       return classNames.join(' ')
     }

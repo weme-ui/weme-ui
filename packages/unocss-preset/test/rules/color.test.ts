@@ -11,11 +11,21 @@ describe('bg color rules', () => {
   it('resolves custom theme tokens', () => {
     expectUtilities(rules, {
       'bg-foreground-base': { 'background-color': 'var(--foreground-base)' },
+      'bg-foreground': { 'background-color': 'var(--foreground-base)' },
       'bg-background-elevated': { 'background-color': 'var(--background-elevated)' },
+      'bg-elevated': { 'background-color': 'var(--background-elevated)' },
+      'bg-base': { 'background-color': 'var(--background-base)' },
+      'bg-elevated/50': {
+        'background-color': 'color-mix(in oklab, var(--background-elevated) 50%, transparent)',
+      },
       'bg-foreground-base/50': {
         'background-color': 'color-mix(in oklab, var(--foreground-base) 50%, transparent)',
       },
     })
+  })
+
+  it('does not shorthand cross-group tokens under bg', () => {
+    expect(matchRule(rules, 'bg-highlighted')).toBeUndefined()
   })
 
   it('resolves custom css vars through the background-color fuzzy map', () => {

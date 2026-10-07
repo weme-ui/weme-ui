@@ -64,6 +64,15 @@ export const CUSTOM_THEME_COLOR_ALIASES: string[] = [
 /**
  * 主题令牌映射，限定颜色相关的类名匹配
  *
+ * - **全称**：`{group}-{variant}`，如 `background-elevated`、`foreground-base`
+ * - **同源简写**：utility 传入对应 `front` 后，裸 `variant` 等价于全称
+ *   - `bg-elevated` ≡ `bg-background-elevated`（`front: background`）
+ *   - `text-highlighted` ≡ `text-foreground-highlighted`（`front: foreground`）
+ *   - `border-elevated` ≡ `border-border-elevated`（`front: border`）
+ * - **foreground 特例**：`text-foreground` ≡ `text-foreground-base`
+ *   （规避 `text-base` 被字号占用；`c-base` / 全称仍可用）
+ * - **跨组无简写**：`bg-foreground-base` 只能写全称
+ *
  * @category Tokens
  */
 export const CUSTOM_THEME_TOKENS_MAP: Record<string, string[]> = {

@@ -103,6 +103,15 @@ interface CustomThemeParsedResult {
 /**
  * 解析自定义主题令牌
  *
+ * 支持三种匹配：
+ * 1. 全称 `{group}-{variant}`，如 `background-elevated` / `foreground-base`
+ * 2. 同源简写：传入 `front` 后，裸 `variant` 会补全为该 group
+ *    （如 `front: 'background'` 时 `elevated` → `background-elevated`）
+ * 3. foreground 特例：裸 `foreground` ≡ `foreground-base`
+ *    （规避 `text-base` 字号占用，可用 `text-foreground`）
+ *
+ * 跨组无简写：`bg-foreground-base` 只能走全称，不会被 `front: 'background'` 改写。
+ *
  * @category Tokens
  */
 export function parseCustomThemeToken(
@@ -128,6 +137,10 @@ export function parseCustomThemeToken(
     if (values?.includes(v))
       keys = [k, v]
   }
+
+  // foreground 特例：`text-foreground` ≡ `text-foreground-base`
+  if (!keys.length && name === 'foreground' && CUSTOM_THEME_TOKENS_MAP.foreground?.includes('base'))
+    keys = ['foreground', 'base']
 
   if (front && CUSTOM_THEME_TOKENS_MAP[front]?.includes(name))
     keys = [front, name]
@@ -251,11 +264,22 @@ export function customThemeColorCSSGenerator(
 /**
  * 自定义主题 CSS 变量解析器
  *
+ * @param property - 输出的 CSS 属性名
+ * @param varName - CssVars 模糊匹配键
+ * @param front - 同源简写的 token group（见 {@link CUSTOM_THEME_TOKENS_MAP}）
+ *   - `bg-*` → `background`（`bg-elevated` ≡ `bg-background-elevated`）
+ *   - `text-*` / `placeholder-*` → `foreground`
+ *   - `border-*` / `divide-*` → `border`
+ *
  * @category Tokens
  */
-export function customThemeColorResolver(property: string, varName: FuzzyMapKey) {
+export function customThemeColorResolver(
+  property: string,
+  varName: FuzzyMapKey,
+  front?: LooseAutocomplete<keyof CustomThemeTokens>,
+) {
   return (match: string, cssVars: ResolvedCustomThemeCSSVars): [CSSObject, ...CSSValueInput[]] | undefined => {
-    const token = parseCustomThemeToken(match)
+    const token = parseCustomThemeToken(match, front)
     const data = token?.keys.length
       ? token
       : parseCustomThemeColorCssVar(varName, match, cssVars)

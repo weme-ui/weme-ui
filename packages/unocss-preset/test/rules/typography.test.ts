@@ -27,12 +27,25 @@ describe('typography rules', () => {
   it('resolves custom theme tokens', () => {
     expectUtilities(fontRules, {
       'text-foreground-base': { color: 'var(--foreground-base)' },
+      'text-foreground': { color: 'var(--foreground-base)' },
+      'text-foreground/50': {
+        color: 'color-mix(in oklab, var(--foreground-base) 50%, transparent)',
+      },
       'text-foreground-base/50': {
         color: 'color-mix(in oklab, var(--foreground-base) 50%, transparent)',
       },
+      'text-highlighted': { color: 'var(--foreground-highlighted)' },
+      'c-foreground': { color: 'var(--foreground-base)' },
       'c-foreground-muted': { color: 'var(--foreground-muted)' },
+      'c-muted': { color: 'var(--foreground-muted)' },
+      'c-base': { color: 'var(--foreground-base)' },
       'color-background-elevated': { color: 'var(--background-elevated)' },
     })
+  })
+
+  it('does not shorthand cross-group tokens under text/c', () => {
+    expect(matchRule(fontRules, 'c-elevated')).toBeUndefined()
+    expect(matchRule(fontRules, 'color-elevated')).toBeUndefined()
   })
 
   it('resolves custom css vars through the color fuzzy map', () => {

@@ -24,7 +24,13 @@ describe('background rules', () => {
       'via-background-muted': {
         '--un-gradient-via': 'color-mix(in oklab, var(--background-muted) var(--un-via-opacity), transparent)',
       },
+      'via-muted': {
+        '--un-gradient-via': 'color-mix(in oklab, var(--background-muted) var(--un-via-opacity), transparent)',
+      },
       'to-background-elevated': {
+        '--un-gradient-to': 'color-mix(in oklab, var(--background-elevated) var(--un-to-opacity), transparent)',
+      },
+      'to-elevated': {
         '--un-gradient-to': 'color-mix(in oklab, var(--background-elevated) var(--un-to-opacity), transparent)',
       },
       'from-foreground-base/50': {
@@ -36,6 +42,10 @@ describe('background rules', () => {
         '--un-gradient-to': 'color-mix(in oklab, var(--border-inverted) var(--un-to-opacity), transparent)',
       },
     })
+  })
+
+  it('does not shorthand cross-group tokens in gradient stops', () => {
+    expect(matchRule(rules, 'from-highlighted')).toBeUndefined()
   })
 
   it('resolves custom css vars in gradient stops through the background-color fuzzy map', () => {

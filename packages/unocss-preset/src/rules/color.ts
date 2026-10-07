@@ -41,7 +41,7 @@ export function bgColors(options: ResolvedWemeUIOptions): Rule<Theme>[] {
       if (color)
         return color
 
-      return customThemeColorResolver('background-color', 'background-color')(d, options.cssVars)
+      return customThemeColorResolver('background-color', 'background-color', 'background')(d, options.cssVars)
     }, { autocomplete: 'bg-$colors' }],
     [/^bg-op(?:acity)?-?(.+)$/, ([, opacity], { theme }) => ({ '--un-bg-opacity': h.bracket.percent.cssvar(opacity, theme) }), { autocomplete: 'bg-(op|opacity)-<percent>' }],
   ]

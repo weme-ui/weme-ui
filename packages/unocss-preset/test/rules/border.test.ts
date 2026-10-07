@@ -21,6 +21,9 @@ describe('border color rules', () => {
   it('resolves custom theme tokens', () => {
     expectUtilities(rules, {
       'border-foreground-base': { 'border-color': 'var(--foreground-base)' },
+      'border-border-elevated': { 'border-color': 'var(--border-elevated)' },
+      'border-elevated': { 'border-color': 'var(--border-elevated)' },
+      'border-base': { 'border-color': 'var(--border-base)' },
       'border-foreground-base/50': {
         'border-color': 'color-mix(in oklab, var(--foreground-base) 50%, transparent)',
       },
@@ -28,7 +31,16 @@ describe('border color rules', () => {
         'border-top-color': 'var(--foreground-base)',
         '--un-border-top-opacity': 'var(--un-border-opacity)',
       },
+      'border-t-elevated': {
+        'border-top-color': 'var(--border-elevated)',
+        '--un-border-top-opacity': 'var(--un-border-opacity)',
+      },
     })
+  })
+
+  it('does not shorthand cross-group tokens under border', () => {
+    expect(matchRule(rules, 'border-highlighted')).toBeUndefined()
+    expect(matchRule(rules, 'border-muted')).toBeUndefined()
   })
 
   it('resolves custom css vars through the border-color fuzzy map', () => {

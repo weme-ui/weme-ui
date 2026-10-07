@@ -35,7 +35,7 @@ Rules 是具体工具类到 CSS 声明的映射。下列写法按源码模块分
 | ---------------------------------------------------------- | --------------------------------- |
 | `op-50` / `opacity-50`                                     | `opacity`                         |
 | `bg-blue-9`                                                | `background-color: var(--blue-9)` |
-| `bg-accent` / `bg-background-base`                         | 别名 / Token                      |
+| `bg-accent` / `bg-background-base` / `bg-elevated`         | 别名 / Token（同源可简写）        |
 | `bg-card`                                                  | CssVars → `--card-bg` 等          |
 | `bg-blue-9/10`                                             | color-mix 透明度                  |
 | `bg-op-50`                                                 | `--un-bg-opacity`                 |
@@ -50,7 +50,7 @@ Rules 是具体工具类到 CSS 声明的映射。下列写法按源码模块分
 | -------------------------------------------------------------------- | ------------------------------------------------------ |
 | `text-sm` / `text-2xl`                                               | theme.text 的 font-size + line-height + letter-spacing |
 | `text-base/tight`                                                    | font-size + 自定义 leading                             |
-| `text-blue-9` / `text-foreground-base` / `c-red-11` / `color-accent` | `color`                                                |
+| `text-blue-9` / `text-foreground` / `c-highlighted` / `color-accent` | `color`（`text-foreground` ≡ `text-foreground-base`）  |
 | `text-op-80`                                                         | `--un-text-opacity`                                    |
 | `font-sans` / `font-mono`                                            | `font-family`                                          |
 | `fw-medium` / `font-bold`                                            | `font-weight`                                          |
@@ -73,16 +73,16 @@ Rules 是具体工具类到 CSS 声明的映射。下列写法按源码模块分
 
 ### Border — `borders`
 
-| 示例                                         | CSS                                |
-| -------------------------------------------- | ---------------------------------- |
-| `border` / `b` / `border-2`                  | `border-width`（默认 style solid） |
-| `border-t` `border-x` `border-s` …           | 方向宽度                           |
-| `border-blue-9` / `border-border-base`       | `border-*-color`                   |
-| `border-op-50`                               | opacity 变量                       |
-| `rounded` / `rounded-md` / `rd-lg`           | `border-radius`                    |
-| `rounded-t-md` / `rd-tl-lg`                  | 单角 / 方向圆角                    |
-| `rounded-full`                               | `calc(infinity * 1px)`             |
-| `border-dashed` `border-solid` `border-none` | `border-style`                     |
+| 示例                                                       | CSS                                |
+| ---------------------------------------------------------- | ---------------------------------- |
+| `border` / `b` / `border-2`                                | `border-width`（默认 style solid） |
+| `border-t` `border-x` `border-s` …                         | 方向宽度                           |
+| `border-blue-9` / `border-border-base` / `border-elevated` | `border-*-color`（同源可简写）     |
+| `border-op-50`                                             | opacity 变量                       |
+| `rounded` / `rounded-md` / `rd-lg`                         | `border-radius`                    |
+| `rounded-t-md` / `rd-tl-lg`                                | 单角 / 方向圆角                    |
+| `rounded-full`                                             | `calc(infinity * 1px)`             |
+| `border-dashed` `border-solid` `border-none`               | `border-style`                     |
 
 ### Size — `sizes` / `aspectRatio`
 

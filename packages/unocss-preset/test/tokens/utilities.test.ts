@@ -188,12 +188,33 @@ describe('parseCustomThemeToken', () => {
     })
   })
 
-  describe('unmatched name', () => {
-    it('keeps names that are not theme tokens', () => {
+  describe('foreground bare group', () => {
+    it('maps bare foreground to foreground-base', () => {
       expect(parseCustomThemeToken('foreground')).toEqual({
         name: 'foreground',
+        keys: ['foreground', 'base'],
+      })
+      expect(parseCustomThemeToken('foreground/50')).toEqual({
+        name: 'foreground',
+        keys: ['foreground', 'base'],
+        alpha: 50,
+      })
+    })
+
+    it('does not map other bare groups', () => {
+      expect(parseCustomThemeToken('background')).toEqual({
+        name: 'background',
         keys: [],
       })
+      expect(parseCustomThemeToken('border')).toEqual({
+        name: 'border',
+        keys: [],
+      })
+    })
+  })
+
+  describe('unmatched name', () => {
+    it('keeps names that are not theme tokens', () => {
       expect(parseCustomThemeToken('card-title')).toEqual({
         name: 'card-title',
         keys: [],
@@ -546,6 +567,37 @@ describe('customThemeColorResolver', () => {
       color: 'color-mix(in oklab, var(--foreground-base) 50%, transparent)',
     })
     expect(result).toHaveLength(3)
+  })
+
+  it('resolves bare variants when front is provided', () => {
+    const bg = customThemeColorResolver('background-color', 'background-color', 'background')
+    const text = customThemeColorResolver('color', 'color', 'foreground')
+    const border = customThemeColorResolver('border-color', 'border-color', 'border')
+
+    expect(bg('elevated', {})?.[0]).toEqual({ 'background-color': 'var(--background-elevated)' })
+    expect(bg('background-elevated', {})?.[0]).toEqual({ 'background-color': 'var(--background-elevated)' })
+    expect(bg('elevated/50', {})?.[0]).toEqual({
+      'background-color': 'color-mix(in oklab, var(--background-elevated) 50%, transparent)',
+    })
+    expect(text('highlighted', {})?.[0]).toEqual({ color: 'var(--foreground-highlighted)' })
+    expect(border('elevated', {})?.[0]).toEqual({ 'border-color': 'var(--border-elevated)' })
+  })
+
+  it('keeps cross-group full tokens when front does not match the bare name', () => {
+    const bg = customThemeColorResolver('background-color', 'background-color', 'background')
+
+    expect(bg('foreground-base', {})?.[0]).toEqual({ 'background-color': 'var(--foreground-base)' })
+    expect(bg('foreground', {})?.[0]).toEqual({ 'background-color': 'var(--foreground-base)' })
+    expect(bg('highlighted', {})).toBeUndefined()
+  })
+
+  it('maps bare foreground to foreground-base via resolver', () => {
+    const text = customThemeColorResolver('color', 'color', 'foreground')
+
+    expect(text('foreground', {})?.[0]).toEqual({ color: 'var(--foreground-base)' })
+    expect(text('foreground/40', {})?.[0]).toEqual({
+      color: 'color-mix(in oklab, var(--foreground-base) 40%, transparent)',
+    })
   })
 
   it('falls through to parseCustomThemeColorCssVar when the theme token has no keys', () => {

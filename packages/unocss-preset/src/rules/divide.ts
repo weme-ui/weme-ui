@@ -20,7 +20,7 @@ export function divides(options: ResolvedWemeUIOptions): Rule<Theme>[] {
         return
       }
 
-      const customTheme = customThemeColorResolver('border-color', 'border-color')(match[1], options.cssVars)
+      const customTheme = customThemeColorResolver('border-color', 'border-color', 'border')(match[1], options.cssVars)
       if (customTheme) {
         yield {
           [ctx.symbols.variants]: [notLastChildSelectorVariant(match[0])],

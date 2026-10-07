@@ -388,7 +388,7 @@ function handleColor(
     return result
   }
 
-  const customTheme = customThemeColorResolver('color', 'color')(match[1], options.cssVars)
+  const customTheme = customThemeColorResolver('color', 'color', 'foreground')(match[1], options.cssVars)
   if (customTheme) {
     return customTheme
   }

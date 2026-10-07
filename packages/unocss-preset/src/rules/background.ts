@@ -44,7 +44,7 @@ function bgGradientColorResolver(options: ResolvedWemeUIOptions) {
   return function* ([, position, body]: string[], { theme }: RuleContext<Theme>) {
     const css: CSSObject = {}
     const data = parseColor(body, theme)
-    const token = parseCustomThemeToken(body)
+    const token = parseCustomThemeToken(body, 'background')
     const cssVar = parseCustomThemeColorCssVar('background-color', body, options.cssVars)
 
     if (data?.color) {

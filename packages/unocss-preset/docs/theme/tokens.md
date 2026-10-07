@@ -118,11 +118,18 @@ export const DEFAULT_TOKENS: CustomThemeTokens = {
 </section>
 ```
 
-匹配形式：
+匹配形式（映射见 `CUSTOM_THEME_TOKENS_MAP`）：
 
-- `text-foreground-base` / `bg-background-muted` / `border-border-elevated`
-- 必须写完整 `{group}-{variant}`（如 `foreground-base`），不会单独匹配裸的 `base` / `highlighted`
-- 透明度：`bg-background-base/50`
+- **全称** `{group}-{variant}`：`text-foreground-base` / `bg-background-muted` / `border-border-elevated`
+- **同源简写**：utility 对应 group 时可省略 group 名
+  - `bg-elevated` ≡ `bg-background-elevated`
+  - `border-elevated` ≡ `border-border-elevated`
+  - `divide-base` ≡ `divide-border-base`
+  - `text-highlighted` ≡ `text-foreground-highlighted`
+  - `placeholder-muted` ≡ `placeholder-foreground-muted`
+- **foreground 特例**：`text-foreground` ≡ `text-foreground-base`（规避 `text-base` 字号；`c-base` / 全称仍可用）
+- **跨组无简写**：`bg-foreground-base` 只能写全称（`bg-base` 是 `background-base`，不是 foreground）
+- 透明度：`bg-elevated/50` / `bg-background-base/50`
 
 Token 键集合固定为：
 

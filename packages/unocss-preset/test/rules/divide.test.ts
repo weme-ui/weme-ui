@@ -17,10 +17,18 @@ describe('divide rules', () => {
   it('resolves custom theme tokens', () => {
     expectUtilities(rules, {
       'divide-foreground-base': { 'border-color': 'var(--foreground-base)' },
+      'divide-border-elevated': { 'border-color': 'var(--border-elevated)' },
+      'divide-elevated': { 'border-color': 'var(--border-elevated)' },
+      'divide-base': { 'border-color': 'var(--border-base)' },
       'divide-foreground-base/50': {
         'border-color': 'color-mix(in oklab, var(--foreground-base) 50%, transparent)',
       },
     })
+  })
+
+  it('does not shorthand cross-group tokens under divide', () => {
+    expect(matchRule(rules, 'divide-highlighted')).toBeUndefined()
+    expect(matchRule(rules, 'divide-muted')).toBeUndefined()
   })
 
   it('resolves custom css vars through the border-color fuzzy map', () => {

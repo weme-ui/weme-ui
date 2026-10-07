@@ -73,7 +73,7 @@ function borderColorResolver(direction: string, options: ResolvedWemeUIOptions) 
       return result
     }
 
-    const token = parseCustomThemeToken(body)
+    const token = parseCustomThemeToken(body, 'border')
     const customThemeData = token?.keys.length
       ? token
       : parseCustomThemeColorCssVar('border-color', body, options.cssVars)

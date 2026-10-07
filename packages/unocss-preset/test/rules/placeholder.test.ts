@@ -18,10 +18,17 @@ describe('placeholder rules', () => {
   it('resolves custom theme tokens', () => {
     expectUtilities(rules, {
       '$ placeholder-foreground-base': { color: 'var(--foreground-base)' },
+      '$ placeholder-foreground': { color: 'var(--foreground-base)' },
+      '$ placeholder-base': { color: 'var(--foreground-base)' },
+      '$ placeholder-muted': { color: 'var(--foreground-muted)' },
       '$ placeholder-foreground-base/50': {
         color: 'color-mix(in oklab, var(--foreground-base) 50%, transparent)',
       },
     })
+  })
+
+  it('does not shorthand cross-group tokens under placeholder', () => {
+    expect(matchRule(rules, '$ placeholder-elevated')).toBeUndefined()
   })
 
   it('resolves custom css vars through the color fuzzy map', () => {

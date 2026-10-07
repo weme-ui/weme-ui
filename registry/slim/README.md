@@ -35,17 +35,17 @@ pnpm dlx @weme-ui/weme-ui add weme-ui/slim/button
 
 - **General**
   - [x] `button`
-  - [ ] `button-group`
+  - [x] `button-group`
   - [x] `icon`
+  - [x] `icon-tile`
+  - [x] `icon-stack`
+
+- **Navigation**
+  - [x] `link`
 
 - **Form**
   - [ ] `form`
   - [ ] `input`
-  - [ ] `form`
-  - [ ] `form`
-  - [ ] `form`
-  - [ ] `form`
-  - [ ] `form`
 
 ## 组合式函数
 

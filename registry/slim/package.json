@@ -55,7 +55,8 @@
     "tailwind-merge": "catalog:utils",
     "tailwind-variants": "catalog:utils",
     "unocss": "catalog:dev",
-    "vue": "catalog:dev"
+    "vue": "catalog:dev",
+    "vue-router": "catalog:dev"
   },
   "devDependencies": {
     "@iconify-json/ri": "catalog:utils",

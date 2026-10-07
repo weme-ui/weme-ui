@@ -344,6 +344,71 @@
           "path": "src/components/icon-stack/icon-stack.test.ts"
         }
       ]
+    },
+    {
+      "name": "link",
+      "type": "component",
+      "title": "Link",
+      "description": "A Vue Router link with optional icons and color variants.",
+      "meta": {
+        "docs.category": "navigation",
+        "docs.categoryLabel": "Navigation"
+      },
+      "dependencies": [
+        "vue-router"
+      ],
+      "registryDependencies": [
+        "icon"
+      ],
+      "files": [
+        {
+          "type": "component",
+          "path": "src/components/link/link.vue"
+        },
+        {
+          "type": "component",
+          "path": "src/components/link/link.props.ts"
+        },
+        {
+          "type": "component",
+          "path": "src/components/link/link.style.ts"
+        },
+        {
+          "type": "component",
+          "kind": "test",
+          "path": "src/components/link/link.test.ts"
+        },
+        {
+          "type": "component",
+          "kind": "doc",
+          "path": "src/components/link/README.md"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/link/examples/usage.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/link/examples/colors.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/link/examples/with-icon.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/link/examples/external.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/link/examples/unstyled.vue"
+        }
+      ]
     }
   ]
 }

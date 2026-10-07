@@ -568,21 +568,25 @@ const libraries = getLibraries()
     background: var(--docs-accent-soft);
   }
 
+  /*
+   * Docs typography must not cascade into component previews.
+   * Mark preview islands with `.not-prose` (see ExamplePreview stage body)
+   * and exclude them via `:not(:where(.not-prose, .not-prose *))`.
+   */
   .prose > :first-child {
     margin-top: 0;
   }
 
-  .prose h1 {
+  .prose :where(h1):not(:where(.not-prose, .not-prose *)) {
     display: none;
   }
 
-  .prose h2,
-  .prose h3 {
+  .prose :where(h2, h3):not(:where(.not-prose, .not-prose *)) {
     scroll-margin-top: calc(var(--docs-topbar-height) + 1rem);
     letter-spacing: -0.02em;
   }
 
-  .prose h2 {
+  .prose :where(h2):not(:where(.not-prose, .not-prose *)) {
     margin: 2.5rem 0 0.7rem;
     font-size: 1.25rem;
     font-weight: 600;
@@ -597,39 +601,38 @@ const libraries = getLibraries()
     margin-top: 0;
   }
 
-  .prose h2:first-child {
+  .prose :where(h2):not(:where(.not-prose, .not-prose *)):first-child {
     margin-top: 0;
   }
 
-  .prose h3 {
+  .prose :where(h3):not(:where(.not-prose, .not-prose *)) {
     margin: 1.65rem 0 0.45rem;
     font-size: 1.05rem;
     font-weight: 600;
   }
 
-  .prose p,
-  .prose li {
+  .prose :where(p, li):not(:where(.not-prose, .not-prose *)) {
     line-height: 1.7;
     color: var(--docs-ink-soft);
   }
 
-  .prose a {
+  .prose :where(a):not(:where(.not-prose, .not-prose *)) {
     color: var(--docs-accent);
     text-decoration: underline;
     text-decoration-color: color-mix(in srgb, var(--docs-accent) 40%, transparent);
     text-underline-offset: 0.16em;
   }
 
-  .prose a:hover {
+  .prose :where(a):not(:where(.not-prose, .not-prose *)):hover {
     text-decoration-color: var(--docs-accent);
   }
 
-  .prose strong {
+  .prose :where(strong):not(:where(.not-prose, .not-prose *)) {
     color: var(--docs-ink);
     font-weight: 600;
   }
 
-  .prose code {
+  .prose :where(code):not(:where(.not-prose, .not-prose *)) {
     font-family: var(--docs-font-mono);
     font-size: 0.86em;
     background: var(--docs-bg-soft);
@@ -639,7 +642,7 @@ const libraries = getLibraries()
     border: 1px solid var(--docs-border);
   }
 
-  .prose pre {
+  .prose :where(pre):not(:where(.not-prose, .not-prose *)) {
     position: relative;
     margin: 0.9rem 0 1.35rem;
     padding: 0.95rem 1.05rem;
@@ -653,7 +656,7 @@ const libraries = getLibraries()
     line-height: 1.65;
   }
 
-  .prose pre code {
+  .prose :where(pre code):not(:where(.not-prose, .not-prose *)) {
     background: transparent;
     border: 0;
     padding: 0;
@@ -692,7 +695,7 @@ const libraries = getLibraries()
     color: #f07676;
   }
 
-  .prose table {
+  .prose :where(table):not(:where(.not-prose, .not-prose *)) {
     width: 100%;
     border-collapse: collapse;
     margin: 1rem 0 1.5rem;
@@ -702,37 +705,36 @@ const libraries = getLibraries()
     overflow: hidden;
   }
 
-  .prose thead {
+  .prose :where(thead):not(:where(.not-prose, .not-prose *)) {
     background: var(--docs-bg-soft);
   }
 
-  .prose th,
-  .prose td {
+  .prose :where(th, td):not(:where(.not-prose, .not-prose *)) {
     padding: 0.7rem 0.85rem;
     border-bottom: 1px solid var(--docs-border);
     text-align: left;
     vertical-align: top;
   }
 
-  .prose th {
+  .prose :where(th):not(:where(.not-prose, .not-prose *)) {
     color: var(--docs-ink);
     font-weight: 600;
     font-size: 0.8rem;
   }
 
-  .prose tbody tr:last-child td {
+  .prose :where(tbody tr:last-child td):not(:where(.not-prose, .not-prose *)) {
     border-bottom: 0;
   }
 
-  .prose tbody tr:hover td {
+  .prose :where(tbody tr:hover td):not(:where(.not-prose, .not-prose *)) {
     background: rgba(76, 187, 165, 0.05);
   }
 
-  .prose td code {
+  .prose :where(td code):not(:where(.not-prose, .not-prose *)) {
     color: var(--docs-accent-ink);
   }
 
-  .prose blockquote {
+  .prose :where(blockquote):not(:where(.not-prose, .not-prose *)) {
     margin: 1.1rem 0;
     padding: 0.85rem 1rem;
     border-left: 2px solid var(--docs-accent);
@@ -741,7 +743,7 @@ const libraries = getLibraries()
     color: var(--docs-ink-soft);
   }
 
-  .prose hr {
+  .prose :where(hr):not(:where(.not-prose, .not-prose *)) {
     border: 0;
     border-top: 1px solid var(--docs-border);
     margin: 2rem 0;

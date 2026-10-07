@@ -22,6 +22,11 @@ const UI_DEPENDENCY_BADGES: Array<{
     label: 'Reka UI',
     href: 'https://reka-ui.com/',
   },
+  {
+    match: pkg => pkg === 'vue-router' || pkg.startsWith('vue-router/'),
+    label: 'Vue Router',
+    href: 'https://router.vuejs.org/',
+  },
 ]
 
 function packageName(entry: string): string {

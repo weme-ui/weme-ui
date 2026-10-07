@@ -39,7 +39,8 @@
     "marked": "^18.1.0",
     "shiki": "^4.5.0",
     "unocss": "catalog:dev",
-    "vue": "catalog:dev"
+    "vue": "catalog:dev",
+    "vue-router": "catalog:dev"
   },
   "devDependencies": {
     "@iconify/types": "^2.0.0",

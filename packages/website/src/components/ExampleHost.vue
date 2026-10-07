@@ -1,5 +1,6 @@
 <script lang="ts" setup>
-import { computed } from 'vue'
+import { computed, getCurrentInstance } from 'vue'
+import { createMemoryHistory, createRouter } from 'vue-router'
 
 const props = defineProps<{
   examplePath: string
@@ -18,6 +19,17 @@ const Example = computed(() => {
   )
   return key ? exampleModules[key]?.default : null
 })
+
+const app = getCurrentInstance()?.appContext.app
+if (app && !app.config.globalProperties.$router) {
+  const router = createRouter({
+    history: createMemoryHistory(),
+    routes: [
+      { path: '/:pathMatch(.*)*', component: { render: () => null } },
+    ],
+  })
+  app.use(router)
+}
 </script>
 
 <template>

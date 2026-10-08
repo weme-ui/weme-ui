@@ -41,7 +41,7 @@ pnpm dlx @weme-ui/weme-ui add weme-ui/slim/button
   - [x] `icon`
   - [x] `link-overlay`
   - [x] `link`
-  - [ ] `separator`
+  - [x] `separator`
 
 - **Navigation**
   - [ ] `activity-bar`

@@ -453,6 +453,65 @@
           "path": "src/components/link-overlay/examples/as-child.vue"
         }
       ]
+    },
+    {
+      "name": "separator",
+      "type": "component",
+      "title": "Separator",
+      "description": "Visually or semantically separates content.",
+      "meta": {
+        "docs.category": "general",
+        "docs.categoryLabel": "General"
+      },
+      "files": [
+        {
+          "type": "component",
+          "path": "src/components/separator/separator.vue"
+        },
+        {
+          "type": "component",
+          "path": "src/components/separator/separator.props.ts"
+        },
+        {
+          "type": "component",
+          "path": "src/components/separator/separator.style.ts"
+        },
+        {
+          "type": "component",
+          "kind": "doc",
+          "path": "src/components/separator/README.md"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/separator/examples/usage.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/separator/examples/color.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/separator/examples/variants.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/separator/examples/orientation.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/separator/examples/with-label.vue"
+        },
+        {
+          "type": "component",
+          "kind": "test",
+          "path": "src/components/separator/separator.test.ts"
+        }
+      ]
     }
   ]
 }

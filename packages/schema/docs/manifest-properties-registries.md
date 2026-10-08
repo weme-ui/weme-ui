@@ -4,7 +4,7 @@
 undefined#/properties/registries
 ```
 
-A map of registered registry names to their directory paths on disk. Keys use the "owner/registry" form; values are relative or absolute paths to each registry root.
+已注册 registry 名称到磁盘目录路径的映射。键为 "owner/registry" 形式；值为各 registry 根目录的相对或绝对路径。
 
 | Abstract            | Extensible | Status         | Identifiable            | Custom Properties | Additional Properties | Access Restrictions | Defined In                                                                                 |
 | :------------------ | :--------- | :------------- | :---------------------- | :---------------- | :-------------------- | :------------------ | :----------------------------------------------------------------------------------------- |

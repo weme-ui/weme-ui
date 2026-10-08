@@ -4,7 +4,7 @@
 undefined#/properties/items/items
 ```
 
-A single installable unit in a registry. Describes identity, type, files, CSS variables, and both NPM and registry-level dependencies.
+registry 中的一个可安装单元。描述标识、类型、文件、CSS 变量，以及 NPM 与 registry 级依赖。
 
 | Abstract            | Extensible | Status         | Identifiable | Custom Properties | Additional Properties | Access Restrictions | Defined In                                                                                 |
 | :------------------ | :--------- | :------------- | :----------- | :---------------- | :-------------------- | :------------------ | :----------------------------------------------------------------------------------------- |
@@ -20,7 +20,7 @@ A single installable unit in a registry. Describes identity, type, files, CSS va
 {
   "name": "button",
   "title": "Button",
-  "description": "A versatile button component with multiple variants.",
+  "description": "支持多种变体的通用按钮 component。",
   "type": "component",
   "files": [
     {
@@ -39,51 +39,41 @@ A single installable unit in a registry. Describes identity, type, files, CSS va
 
 # items Properties
 
-| Property                                      | Type     | Required | Nullable       | Defined by                                                                                                                                                                |
-| :-------------------------------------------- | :------- | :------- | :------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| [name](#name)                                 | `string` | Required | cannot be null | [Registry configuration](registry-properties-items-registry-item-properties-name.md "undefined#/properties/items/items/properties/name")                                  |
-| [title](#title)                               | `string` | Optional | cannot be null | [Registry configuration](registry-properties-items-registry-item-properties-display-name.md "undefined#/properties/items/items/properties/title")                         |
-| [description](#description)                   | `string` | Optional | cannot be null | [Registry configuration](registry-properties-items-registry-item-properties-description.md "undefined#/properties/items/items/properties/description")                    |
-| [type](#type)                                 | `string` | Optional | cannot be null | [Registry configuration](registry-properties-items-registry-item-properties-type.md "undefined#/properties/items/items/properties/type")                                  |
-| [when](#when)                                 | `string` | Optional | cannot be null | [Registry configuration](registry-properties-items-registry-item-properties-install-timing.md "undefined#/properties/items/items/properties/when")                        |
-| [files](#files)                               | `array`  | Required | cannot be null | [Registry configuration](registry-properties-items-registry-item-properties-files.md "undefined#/properties/items/items/properties/files")                                |
-| [cssVars](#cssvars)                           | `object` | Optional | cannot be null | [Registry configuration](registry-properties-items-registry-item-properties-css-variables.md "undefined#/properties/items/items/properties/cssVars")                      |
-| [dependencies](#dependencies)                 | `array`  | Optional | cannot be null | [Registry configuration](registry-properties-items-registry-item-properties-dependencies.md "undefined#/properties/items/items/properties/dependencies")                  |
-| [devDependencies](#devdependencies)           | `array`  | Optional | cannot be null | [Registry configuration](registry-properties-items-registry-item-properties-dev-dependencies.md "undefined#/properties/items/items/properties/devDependencies")           |
-| [registryDependencies](#registrydependencies) | `array`  | Optional | cannot be null | [Registry configuration](registry-properties-items-registry-item-properties-registry-dependencies.md "undefined#/properties/items/items/properties/registryDependencies") |
-| [meta](#meta)                                 | `object` | Optional | cannot be null | [Registry configuration](registry-properties-items-registry-item-properties-metadata.md "undefined#/properties/items/items/properties/meta")                              |
+| Property                                      | Type     | Required | Nullable       | Defined by                                                                                                                                           |
+| :-------------------------------------------- | :------- | :------- | :------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [name](#name)                                 | `string` | Required | cannot be null | [Registry 配置](registry-properties-items-registry-item-properties-名称.md "undefined#/properties/items/items/properties/name")                          |
+| [title](#title)                               | `string` | Optional | cannot be null | [Registry 配置](registry-properties-items-registry-item-properties-显示名称.md "undefined#/properties/items/items/properties/title")                       |
+| [description](#description)                   | `string` | Optional | cannot be null | [Registry 配置](registry-properties-items-registry-item-properties-描述.md "undefined#/properties/items/items/properties/description")                   |
+| [type](#type)                                 | `string` | Optional | cannot be null | [Registry 配置](registry-properties-items-registry-item-properties-类型.md "undefined#/properties/items/items/properties/type")                          |
+| [when](#when)                                 | `string` | Optional | cannot be null | [Registry 配置](registry-properties-items-registry-item-properties-安装时机.md "undefined#/properties/items/items/properties/when")                        |
+| [files](#files)                               | `array`  | Required | cannot be null | [Registry 配置](registry-properties-items-registry-item-properties-文件.md "undefined#/properties/items/items/properties/files")                         |
+| [cssVars](#cssvars)                           | `object` | Optional | cannot be null | [Registry 配置](registry-properties-items-registry-item-properties-css-变量.md "undefined#/properties/items/items/properties/cssVars")                   |
+| [dependencies](#dependencies)                 | `array`  | Optional | cannot be null | [Registry 配置](registry-properties-items-registry-item-properties-依赖.md "undefined#/properties/items/items/properties/dependencies")                  |
+| [devDependencies](#devdependencies)           | `array`  | Optional | cannot be null | [Registry 配置](registry-properties-items-registry-item-properties-开发依赖.md "undefined#/properties/items/items/properties/devDependencies")             |
+| [registryDependencies](#registrydependencies) | `array`  | Optional | cannot be null | [Registry 配置](registry-properties-items-registry-item-properties-registry-依赖.md "undefined#/properties/items/items/properties/registryDependencies") |
+| [meta](#meta)                                 | `object` | Optional | cannot be null | [Registry 配置](registry-properties-items-registry-item-properties-元数据.md "undefined#/properties/items/items/properties/meta")                         |
 
 ## name
 
-The unique identifier of the registry item within its registry. Must be lowercase.
+registry item 在所属 registry 内的唯一标识，必须为小写。
 
 `name`
 
 * is required
 
-* Type: `string` ([Name](registry-properties-items-registry-item-properties-name.md))
+* Type: `string` ([名称](registry-properties-items-registry-item-properties-名称.md))
 
 * cannot be null
 
-* defined in: [Registry configuration](registry-properties-items-registry-item-properties-name.md "undefined#/properties/items/items/properties/name")
+* defined in: [Registry 配置](registry-properties-items-registry-item-properties-名称.md "undefined#/properties/items/items/properties/name")
 
 ### name Type
 
-`string` ([Name](registry-properties-items-registry-item-properties-name.md))
+`string` ([名称](registry-properties-items-registry-item-properties-名称.md))
 
 ### name Constraints
 
 **minimum length**: the minimum number of characters for this string is: `1`
-
-**pattern**: the string must match the following regular expression:&#x20;
-
-```regexp
-^[^A-Z]*$
-```
-
-[try pattern](https://regexr.com/?expression=%5E%5B%5EA-Z%5D*%24 "try regular expression with regexr.com")
-
-**unknown format**: the value of this string must follow the format: `lowercase`
 
 ### name Examples
 
@@ -97,21 +87,21 @@ The unique identifier of the registry item within its registry. Must be lowercas
 
 ## title
 
-A human-friendly display name for the item, shown in UIs and documentation. Falls back to the name when omitted.
+用于界面与文档展示的友好名称；省略时回退为 name。
 
 `title`
 
 * is optional
 
-* Type: `string` ([Display name](registry-properties-items-registry-item-properties-display-name.md))
+* Type: `string` ([显示名称](registry-properties-items-registry-item-properties-显示名称.md))
 
 * cannot be null
 
-* defined in: [Registry configuration](registry-properties-items-registry-item-properties-display-name.md "undefined#/properties/items/items/properties/title")
+* defined in: [Registry 配置](registry-properties-items-registry-item-properties-显示名称.md "undefined#/properties/items/items/properties/title")
 
 ### title Type
 
-`string` ([Display name](registry-properties-items-registry-item-properties-display-name.md))
+`string` ([显示名称](registry-properties-items-registry-item-properties-显示名称.md))
 
 ### title Constraints
 
@@ -129,21 +119,21 @@ A human-friendly display name for the item, shown in UIs and documentation. Fall
 
 ## description
 
-A short summary of what this registry item provides, useful for discovery and documentation.
+对该 registry item 能力的简短说明，便于发现与文档展示。
 
 `description`
 
 * is optional
 
-* Type: `string` ([Description](registry-properties-items-registry-item-properties-description.md))
+* Type: `string` ([描述](registry-properties-items-registry-item-properties-描述.md))
 
 * cannot be null
 
-* defined in: [Registry configuration](registry-properties-items-registry-item-properties-description.md "undefined#/properties/items/items/properties/description")
+* defined in: [Registry 配置](registry-properties-items-registry-item-properties-描述.md "undefined#/properties/items/items/properties/description")
 
 ### description Type
 
-`string` ([Description](registry-properties-items-registry-item-properties-description.md))
+`string` ([描述](registry-properties-items-registry-item-properties-描述.md))
 
 ### description Constraints
 
@@ -152,26 +142,26 @@ A short summary of what this registry item provides, useful for discovery and do
 ### description Examples
 
 ```json
-"A versatile button component with multiple variants."
+"支持多种变体的通用按钮 component。"
 ```
 
 ## type
 
-The category of this registry item. Defaults to "block" when omitted. Used for classification and to select the matching default install path.
+该 registry item 的分类。省略时默认为 "block"。用于归类，并选择对应的默认安装路径。
 
 `type`
 
 * is optional
 
-* Type: `string` ([Type](registry-properties-items-registry-item-properties-type.md))
+* Type: `string` ([类型](registry-properties-items-registry-item-properties-类型.md))
 
 * cannot be null
 
-* defined in: [Registry configuration](registry-properties-items-registry-item-properties-type.md "undefined#/properties/items/items/properties/type")
+* defined in: [Registry 配置](registry-properties-items-registry-item-properties-类型.md "undefined#/properties/items/items/properties/type")
 
 ### type Type
 
-`string` ([Type](registry-properties-items-registry-item-properties-type.md))
+`string` ([类型](registry-properties-items-registry-item-properties-类型.md))
 
 ### type Constraints
 
@@ -196,6 +186,34 @@ The default value is:
 ```
 
 ### type Examples
+
+```json
+"component"
+```
+
+```json
+"composable"
+```
+
+```json
+"ui"
+```
+
+```json
+"block"
+```
+
+```json
+"layout"
+```
+
+```json
+"page"
+```
+
+```json
+"util"
+```
 
 ```json
 "block"
@@ -227,21 +245,21 @@ The default value is:
 
 ## when
 
-Controls when this item is installed during passive (automatic) installation. "on-init" installs as soon as the registry is initialized; "on-depended" installs only when another item depends on it. Explicit installs are unaffected.
+控制被动（自动）安装时该 item 何时被安装。"on-init" 表示 registry 初始化后立即安装；"on-depended" 表示仅在其他 item 依赖它时才安装。显式安装不受影响。
 
 `when`
 
 * is optional
 
-* Type: `string` ([Install timing](registry-properties-items-registry-item-properties-install-timing.md))
+* Type: `string` ([安装时机](registry-properties-items-registry-item-properties-安装时机.md))
 
 * cannot be null
 
-* defined in: [Registry configuration](registry-properties-items-registry-item-properties-install-timing.md "undefined#/properties/items/items/properties/when")
+* defined in: [Registry 配置](registry-properties-items-registry-item-properties-安装时机.md "undefined#/properties/items/items/properties/when")
 
 ### when Type
 
-`string` ([Install timing](registry-properties-items-registry-item-properties-install-timing.md))
+`string` ([安装时机](registry-properties-items-registry-item-properties-安装时机.md))
 
 ### when Constraints
 
@@ -270,23 +288,31 @@ The default value is:
 "on-depended"
 ```
 
+```json
+"on-init"
+```
+
+```json
+"on-depended"
+```
+
 ## files
 
-The files that make up this registry item. At least the primary source files should be listed here.
+构成该 registry item 的文件列表。至少应列出主要源文件。
 
 `files`
 
 * is required
 
-* Type: `object[]` ([Registry item file](registry-properties-items-registry-item-properties-files-registry-item-file.md))
+* Type: `object[]` ([Registry item 文件](registry-properties-items-registry-item-properties-文件-registry-item-文件.md))
 
 * cannot be null
 
-* defined in: [Registry configuration](registry-properties-items-registry-item-properties-files.md "undefined#/properties/items/items/properties/files")
+* defined in: [Registry 配置](registry-properties-items-registry-item-properties-文件.md "undefined#/properties/items/items/properties/files")
 
 ### files Type
 
-`object[]` ([Registry item file](registry-properties-items-registry-item-properties-files-registry-item-file.md))
+`object[]` ([Registry item 文件](registry-properties-items-registry-item-properties-文件-registry-item-文件.md))
 
 ### files Examples
 
@@ -298,21 +324,21 @@ The files that make up this registry item. At least the primary source files sho
 
 ## cssVars
 
-CSS custom properties to inject when this item is installed. Values are merged into UnoCSS preset options, nested as theme-key → variable-name → value.
+安装该 item 时注入的 CSS 自定义属性。取值会合并进 UnoCSS preset options，嵌套结构为 theme-key → variable-name → value。
 
 `cssVars`
 
 * is optional
 
-* Type: `object` ([CSS variables](registry-properties-items-registry-item-properties-css-variables.md))
+* Type: `object` ([CSS 变量](registry-properties-items-registry-item-properties-css-变量.md))
 
 * cannot be null
 
-* defined in: [Registry configuration](registry-properties-items-registry-item-properties-css-variables.md "undefined#/properties/items/items/properties/cssVars")
+* defined in: [Registry 配置](registry-properties-items-registry-item-properties-css-变量.md "undefined#/properties/items/items/properties/cssVars")
 
 ### cssVars Type
 
-`object` ([CSS variables](registry-properties-items-registry-item-properties-css-variables.md))
+`object` ([CSS 变量](registry-properties-items-registry-item-properties-css-变量.md))
 
 ### cssVars Examples
 
@@ -324,9 +350,17 @@ CSS custom properties to inject when this item is installed. Values are merged i
 }
 ```
 
+```json
+{
+  "theme": {
+    "color-primary": "oklch(0.55 0.2 250)"
+  }
+}
+```
+
 ## dependencies
 
-NPM packages required at runtime by this item. Entries may include a version range or tag, e.g. "vue^3.0.0" or "lodash\@latest".
+该 item 运行时所需的 NPM 包。条目可带版本范围或 tag，例如 "vue^3.0.0" 或 "lodash\@latest"。
 
 `dependencies`
 
@@ -336,7 +370,7 @@ NPM packages required at runtime by this item. Entries may include a version ran
 
 * cannot be null
 
-* defined in: [Registry configuration](registry-properties-items-registry-item-properties-dependencies.md "undefined#/properties/items/items/properties/dependencies")
+* defined in: [Registry 配置](registry-properties-items-registry-item-properties-依赖.md "undefined#/properties/items/items/properties/dependencies")
 
 ### dependencies Type
 
@@ -354,7 +388,7 @@ NPM packages required at runtime by this item. Entries may include a version ran
 
 ## devDependencies
 
-NPM packages required only for developing or testing this item. These are not needed in production.
+仅用于开发或测试该 item 的 NPM 包，生产环境不需要。
 
 `devDependencies`
 
@@ -364,7 +398,7 @@ NPM packages required only for developing or testing this item. These are not ne
 
 * cannot be null
 
-* defined in: [Registry configuration](registry-properties-items-registry-item-properties-dev-dependencies.md "undefined#/properties/items/items/properties/devDependencies")
+* defined in: [Registry 配置](registry-properties-items-registry-item-properties-开发依赖.md "undefined#/properties/items/items/properties/devDependencies")
 
 ### devDependencies Type
 
@@ -382,7 +416,7 @@ NPM packages required only for developing or testing this item. These are not ne
 
 ## registryDependencies
 
-Other registry items that must be installed alongside this one. Referenced by item name within the same or a resolved registry.
+必须与该 item 一并安装的其他 registry item。按同一或已解析 registry 内的 item 名称引用。
 
 `registryDependencies`
 
@@ -392,7 +426,7 @@ Other registry items that must be installed alongside this one. Referenced by it
 
 * cannot be null
 
-* defined in: [Registry configuration](registry-properties-items-registry-item-properties-registry-dependencies.md "undefined#/properties/items/items/properties/registryDependencies")
+* defined in: [Registry 配置](registry-properties-items-registry-item-properties-registry-依赖.md "undefined#/properties/items/items/properties/registryDependencies")
 
 ### registryDependencies Type
 
@@ -410,21 +444,21 @@ Other registry items that must be installed alongside this one. Referenced by it
 
 ## meta
 
-Arbitrary key-value metadata for tooling and documentation. Docs display fields use the "docs.\*" namespace, e.g. "docs.category" and "docs.categoryLabel".
+供工具链与文档使用的任意键值元数据。文档展示字段使用 "docs.\*" 命名空间，例如 "docs.category" 与 "docs.categoryLabel"。
 
 `meta`
 
 * is optional
 
-* Type: `object` ([Metadata](registry-properties-items-registry-item-properties-metadata.md))
+* Type: `object` ([元数据](registry-properties-items-registry-item-properties-元数据.md))
 
 * cannot be null
 
-* defined in: [Registry configuration](registry-properties-items-registry-item-properties-metadata.md "undefined#/properties/items/items/properties/meta")
+* defined in: [Registry 配置](registry-properties-items-registry-item-properties-元数据.md "undefined#/properties/items/items/properties/meta")
 
 ### meta Type
 
-`object` ([Metadata](registry-properties-items-registry-item-properties-metadata.md))
+`object` ([元数据](registry-properties-items-registry-item-properties-元数据.md))
 
 ### meta Examples
 

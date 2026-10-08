@@ -56,15 +56,16 @@
     "preview": "serve -l 3000"
   },
   "peerDependencies": {
-    "zod": "^4.4.3"
+    "valibot": "^1.5.0"
   },
   "devDependencies": {
     "@adobe/jsonschema2md": "^8.0.11",
     "@types/node": "catalog:dev",
+    "@valibot/to-json-schema": "^1.8.0",
     "bumpp": "catalog:build",
     "premove": "catalog:utils",
     "serve": "catalog:utils",
     "tsdown": "catalog:build",
-    "zod": "catalog:utils"
+    "valibot": "catalog:utils"
   }
 }

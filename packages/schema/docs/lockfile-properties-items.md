@@ -4,7 +4,7 @@
 undefined#/properties/items
 ```
 
-The registry items currently installed in the project. Used to track provenance and installed file locations across updates.
+当前已安装进项目的 registry items。用于在更新时追踪来源与已安装文件位置。
 
 | Abstract            | Extensible | Status         | Identifiable            | Custom Properties | Additional Properties | Access Restrictions | Defined In                                                                                 |
 | :------------------ | :--------- | :------------- | :---------------------- | :---------------- | :-------------------- | :------------------ | :----------------------------------------------------------------------------------------- |
@@ -12,7 +12,7 @@ The registry items currently installed in the project. Used to track provenance 
 
 ## items Type
 
-`object[]` ([Installed item](lockfile-properties-items-installed-item.md))
+`object[]` ([已安装 item](lockfile-properties-items-已安装-item.md))
 
 ## items Examples
 

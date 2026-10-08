@@ -4,7 +4,7 @@
 undefined#/properties/issues
 ```
 
-The URL of the issue tracker where people can report problems with this registry.
+用于反馈该 registry 问题的 issue 跟踪地址。
 
 | Abstract            | Extensible | Status         | Identifiable            | Custom Properties | Additional Properties | Access Restrictions | Defined In                                                                                 |
 | :------------------ | :--------- | :------------- | :---------------------- | :---------------- | :-------------------- | :------------------ | :----------------------------------------------------------------------------------------- |

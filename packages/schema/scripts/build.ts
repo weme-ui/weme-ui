@@ -1,6 +1,7 @@
+import type { GenericSchema } from 'valibot'
 import { existsSync, mkdirSync, writeFileSync } from 'node:fs'
 import { join, resolve } from 'node:path'
-import * as z from 'zod'
+import { toJsonSchema } from '@valibot/to-json-schema'
 import {
   CONFIG_SCHEMA_FILENAME,
   LOCKFILE_SCHEMA_FILENAME,
@@ -14,7 +15,7 @@ import {
 
 interface BuildInfo {
   name: string
-  schema: z.ZodObject<any>
+  schema: GenericSchema
 }
 
 const tasks: BuildInfo[] = [
@@ -35,6 +36,33 @@ function error(message: string, err: unknown) {
   console.log('')
 }
 
+/**
+ * Recursively set `additionalProperties: false` on object schemas that omit it,
+ * matching prior Zod JSON Schema output for IDE validation.
+ */
+function enforceNoAdditionalProperties(node: unknown): void {
+  if (!node || typeof node !== 'object' || Array.isArray(node)) {
+    return
+  }
+
+  const schema = node as Record<string, unknown>
+
+  if (schema.type === 'object' && schema.additionalProperties === undefined) {
+    schema.additionalProperties = false
+  }
+
+  for (const value of Object.values(schema)) {
+    if (Array.isArray(value)) {
+      for (const item of value) {
+        enforceNoAdditionalProperties(item)
+      }
+    }
+    else {
+      enforceNoAdditionalProperties(value)
+    }
+  }
+}
+
 function build(info: BuildInfo) {
   const { name, schema } = info
 
@@ -45,7 +73,14 @@ function build(info: BuildInfo) {
   }
 
   try {
-    const schemaJSON = z.toJSONSchema(schema, { target: 'draft-07' })
+    const schemaJSON = toJsonSchema(schema, {
+      target: 'draft-07',
+      typeMode: 'input',
+      errorMode: 'ignore',
+    })
+
+    enforceNoAdditionalProperties(schemaJSON)
+
     const output = JSON.stringify(schemaJSON, null, 2).replaceAll('"$schema": "http://', '"$schema": "https://')
 
     writeFileSync(join(destRoot, name), `${output}\n`, 'utf-8')

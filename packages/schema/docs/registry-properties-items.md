@@ -4,7 +4,7 @@
 undefined#/properties/items
 ```
 
-The catalog of registry items published by this registry. Each item describes an installable unit such as a component, block, or utility.
+该 registry 发布的 item 目录。每个 item 描述一个可安装单元，例如 component、block 或工具。
 
 | Abstract            | Extensible | Status         | Identifiable            | Custom Properties | Additional Properties | Access Restrictions | Defined In                                                                                 |
 | :------------------ | :--------- | :------------- | :---------------------- | :---------------- | :-------------------- | :------------------ | :----------------------------------------------------------------------------------------- |
@@ -20,6 +20,6 @@ The catalog of registry items published by this registry. Each item describes an
 {
   "name": "button",
   "title": "Button",
-  "description": "A button component"
+  "description": "按钮 component"
 }
 ```

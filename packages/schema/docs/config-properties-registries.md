@@ -4,7 +4,7 @@
 undefined#/properties/registries
 ```
 
-Registries registered with this project. Each entry selects a registry and may specify a repository source and install prefix.
+已向本项目注册的 registries。每项选择一个 registry，并可指定仓库来源与安装前缀。
 
 | Abstract            | Extensible | Status         | Identifiable            | Custom Properties | Additional Properties | Access Restrictions | Defined In                                                                             |
 | :------------------ | :--------- | :------------- | :---------------------- | :---------------- | :-------------------- | :------------------ | :------------------------------------------------------------------------------------- |
@@ -12,7 +12,7 @@ Registries registered with this project. Each entry selects a registry and may s
 
 ## registries Type
 
-`object[]` ([Registered registry](config-properties-registries-registered-registry.md))
+`object[]` ([已注册的 Registry](config-properties-registries-已注册的-registry.md))
 
 ## registries Examples
 

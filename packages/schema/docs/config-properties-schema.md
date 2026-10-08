@@ -4,7 +4,7 @@
 undefined#/properties/$schema
 ```
 
-URL of the JSON Schema used to validate this project config. Editors and tooling use it for autocomplete and validation.
+用于校验该项目配置的 JSON Schema URL。编辑器与工具链据此提供补全与校验。
 
 | Abstract            | Extensible | Status         | Identifiable            | Custom Properties | Additional Properties | Access Restrictions | Defined In                                                                             |
 | :------------------ | :--------- | :------------- | :---------------------- | :---------------- | :-------------------- | :------------------ | :------------------------------------------------------------------------------------- |

@@ -1,20 +1,20 @@
-# Registry configuration Schema
+# Registry 配置 Schema
 
 ```txt
 undefined
 ```
 
-Configuration for a Weme UI registry. Declares identity, access, default install paths, and the items the registry exposes.
+Weme UI registry 的配置。声明标识、访问权限、默认安装路径，以及对外暴露的 items。
 
 | Abstract            | Extensible | Status         | Identifiable | Custom Properties | Additional Properties | Access Restrictions | Defined In                                                                               |
 | :------------------ | :--------- | :------------- | :----------- | :---------------- | :-------------------- | :------------------ | :--------------------------------------------------------------------------------------- |
 | Can be instantiated | No         | Unknown status | No           | Forbidden         | Forbidden             | none                | [registry.schema.json](../../website/public/registry.schema.json "open original schema") |
 
-## Registry configuration Type
+## Registry 配置 Type
 
-`object` ([Registry configuration](registry.md))
+`object` ([Registry 配置](registry.md))
 
-## Registry configuration Examples
+## Registry 配置 Examples
 
 ```json
 {
@@ -37,38 +37,38 @@ Configuration for a Weme UI registry. Declares identity, access, default install
 }
 ```
 
-# Registry configuration Properties
+# Registry 配置 Properties
 
-| Property                            | Type     | Required | Nullable       | Defined by                                                                                                |
-| :---------------------------------- | :------- | :------- | :------------- | :-------------------------------------------------------------------------------------------------------- |
-| [$schema](#schema)                  | `string` | Required | cannot be null | [Registry configuration](registry-properties-schema.md "undefined#/properties/$schema")                   |
-| [name](#name)                       | `string` | Required | cannot be null | [Registry configuration](registry-properties-registry-name.md "undefined#/properties/name")               |
-| [description](#description)         | `string` | Optional | cannot be null | [Registry configuration](registry-properties-description.md "undefined#/properties/description")          |
-| [version](#version)                 | `string` | Optional | cannot be null | [Registry configuration](registry-properties-version.md "undefined#/properties/version")                  |
-| [homepage](#homepage)               | `string` | Optional | cannot be null | [Registry configuration](registry-properties-homepage.md "undefined#/properties/homepage")                |
-| [repository](#repository)           | `string` | Optional | cannot be null | [Registry configuration](registry-properties-repository.md "undefined#/properties/repository")            |
-| [issues](#issues)                   | `string` | Optional | cannot be null | [Registry configuration](registry-properties-issues.md "undefined#/properties/issues")                    |
-| [contributors](#contributors)       | `array`  | Optional | cannot be null | [Registry configuration](registry-properties-contributors.md "undefined#/properties/contributors")        |
-| [access](#access)                   | `string` | Optional | cannot be null | [Registry configuration](registry-properties-access.md "undefined#/properties/access")                    |
-| [dependencies](#dependencies)       | `array`  | Optional | cannot be null | [Registry configuration](registry-properties-dependencies.md "undefined#/properties/dependencies")        |
-| [devDependencies](#devdependencies) | `array`  | Optional | cannot be null | [Registry configuration](registry-properties-dev-dependencies.md "undefined#/properties/devDependencies") |
-| [items](#items)                     | `array`  | Required | cannot be null | [Registry configuration](registry-properties-items.md "undefined#/properties/items")                      |
-| [exclude](#exclude)                 | `array`  | Optional | cannot be null | [Registry configuration](registry-properties-exclude.md "undefined#/properties/exclude")                  |
-| [defaultPaths](#defaultpaths)       | `object` | Optional | cannot be null | [Registry configuration](registry-properties-paths.md "undefined#/properties/defaultPaths")               |
+| Property                            | Type     | Required | Nullable       | Defined by                                                                         |
+| :---------------------------------- | :------- | :------- | :------------- | :--------------------------------------------------------------------------------- |
+| [$schema](#schema)                  | `string` | Optional | cannot be null | [Registry 配置](registry-properties-schema.md "undefined#/properties/$schema")       |
+| [name](#name)                       | `string` | Required | cannot be null | [Registry 配置](registry-properties-registry-名称.md "undefined#/properties/name")     |
+| [description](#description)         | `string` | Optional | cannot be null | [Registry 配置](registry-properties-描述.md "undefined#/properties/description")       |
+| [version](#version)                 | `string` | Optional | cannot be null | [Registry 配置](registry-properties-版本.md "undefined#/properties/version")           |
+| [homepage](#homepage)               | `string` | Optional | cannot be null | [Registry 配置](registry-properties-主页.md "undefined#/properties/homepage")          |
+| [repository](#repository)           | `string` | Optional | cannot be null | [Registry 配置](registry-properties-仓库.md "undefined#/properties/repository")        |
+| [issues](#issues)                   | `string` | Optional | cannot be null | [Registry 配置](registry-properties-issues.md "undefined#/properties/issues")        |
+| [contributors](#contributors)       | `array`  | Optional | cannot be null | [Registry 配置](registry-properties-贡献者.md "undefined#/properties/contributors")     |
+| [access](#access)                   | `string` | Optional | cannot be null | [Registry 配置](registry-properties-访问权限.md "undefined#/properties/access")          |
+| [dependencies](#dependencies)       | `array`  | Optional | cannot be null | [Registry 配置](registry-properties-依赖.md "undefined#/properties/dependencies")      |
+| [devDependencies](#devdependencies) | `array`  | Optional | cannot be null | [Registry 配置](registry-properties-开发依赖.md "undefined#/properties/devDependencies") |
+| [items](#items)                     | `array`  | Required | cannot be null | [Registry 配置](registry-properties-items.md "undefined#/properties/items")          |
+| [exclude](#exclude)                 | `array`  | Optional | cannot be null | [Registry 配置](registry-properties-排除.md "undefined#/properties/exclude")           |
+| [defaultPaths](#defaultpaths)       | `object` | Optional | cannot be null | [Registry 配置](registry-properties-路径.md "undefined#/properties/defaultPaths")      |
 
 ## $schema
 
-URL of the JSON Schema used to validate this registry config. Editors and tooling use it for autocomplete and validation.
+用于校验该 registry 配置的 JSON Schema URL。编辑器与工具链据此提供补全与校验。
 
 `$schema`
 
-* is required
+* is optional
 
 * Type: `string` ([Schema](registry-properties-schema.md))
 
 * cannot be null
 
-* defined in: [Registry configuration](registry-properties-schema.md "undefined#/properties/$schema")
+* defined in: [Registry 配置](registry-properties-schema.md "undefined#/properties/$schema")
 
 ### $schema Type
 
@@ -94,31 +94,33 @@ The default value is:
 
 ## name
 
-The unique name of the registry in the form "owner/registry". Used to identify and resolve this registry across the ecosystem.
+registry 的唯一名称，形式为 "owner/registry"。用于在生态中标识并解析该 registry。
 
 `name`
 
 * is required
 
-* Type: `string` ([Registry name](registry-properties-registry-name.md))
+* Type: `string` ([Registry 名称](registry-properties-registry-名称.md))
 
 * cannot be null
 
-* defined in: [Registry configuration](registry-properties-registry-name.md "undefined#/properties/name")
+* defined in: [Registry 配置](registry-properties-registry-名称.md "undefined#/properties/name")
 
 ### name Type
 
-`string` ([Registry name](registry-properties-registry-name.md))
+`string` ([Registry 名称](registry-properties-registry-名称.md))
 
 ### name Constraints
+
+**minimum length**: the minimum number of characters for this string is: `1`
 
 **pattern**: the string must match the following regular expression:&#x20;
 
 ```regexp
-^[^A-Z]*(\/)[^A-Z]*$
+^[^/]+\/[^/]+$
 ```
 
-[try pattern](https://regexr.com/?expression=%5E%5B%5EA-Z%5D*\(%5C%2F\)%5B%5EA-Z%5D*%24 "try regular expression with regexr.com")
+[try pattern](https://regexr.com/?expression=%5E%5B%5E%2F%5D%2B%5C%2F%5B%5E%2F%5D%2B%24 "try regular expression with regexr.com")
 
 ### name Examples
 
@@ -132,21 +134,21 @@ The unique name of the registry in the form "owner/registry". Used to identify a
 
 ## description
 
-A short human-readable summary of what this registry contains and what it is for.
+对该 registry 内容与用途的简短说明。
 
 `description`
 
 * is optional
 
-* Type: `string` ([Description](registry-properties-description.md))
+* Type: `string` ([描述](registry-properties-描述.md))
 
 * cannot be null
 
-* defined in: [Registry configuration](registry-properties-description.md "undefined#/properties/description")
+* defined in: [Registry 配置](registry-properties-描述.md "undefined#/properties/description")
 
 ### description Type
 
-`string` ([Description](registry-properties-description.md))
+`string` ([描述](registry-properties-描述.md))
 
 ### description Constraints
 
@@ -155,26 +157,26 @@ A short human-readable summary of what this registry contains and what it is for
 ### description Examples
 
 ```json
-"The slim registry of Weme UI"
+"Weme UI 的 slim registry"
 ```
 
 ## version
 
-The version of this registry. Prefer a semver-compatible string so consumers can reason about upgrades.
+该 registry 的版本。建议使用兼容 semver 的字符串，便于消费方判断升级。
 
 `version`
 
 * is optional
 
-* Type: `string` ([Version](registry-properties-version.md))
+* Type: `string` ([版本](registry-properties-版本.md))
 
 * cannot be null
 
-* defined in: [Registry configuration](registry-properties-version.md "undefined#/properties/version")
+* defined in: [Registry 配置](registry-properties-版本.md "undefined#/properties/version")
 
 ### version Type
 
-`string` ([Version](registry-properties-version.md))
+`string` ([版本](registry-properties-版本.md))
 
 ### version Constraints
 
@@ -192,21 +194,21 @@ The version of this registry. Prefer a semver-compatible string so consumers can
 
 ## homepage
 
-The URL of the project homepage for this registry.
+该 registry 所属项目的主页 URL。
 
 `homepage`
 
 * is optional
 
-* Type: `string` ([Homepage](registry-properties-homepage.md))
+* Type: `string` ([主页](registry-properties-主页.md))
 
 * cannot be null
 
-* defined in: [Registry configuration](registry-properties-homepage.md "undefined#/properties/homepage")
+* defined in: [Registry 配置](registry-properties-主页.md "undefined#/properties/homepage")
 
 ### homepage Type
 
-`string` ([Homepage](registry-properties-homepage.md))
+`string` ([主页](registry-properties-主页.md))
 
 ### homepage Constraints
 
@@ -220,21 +222,21 @@ The URL of the project homepage for this registry.
 
 ## repository
 
-The URL of the source code repository for this registry.
+该 registry 源代码仓库的 URL。
 
 `repository`
 
 * is optional
 
-* Type: `string` ([Repository](registry-properties-repository.md))
+* Type: `string` ([仓库](registry-properties-仓库.md))
 
 * cannot be null
 
-* defined in: [Registry configuration](registry-properties-repository.md "undefined#/properties/repository")
+* defined in: [Registry 配置](registry-properties-仓库.md "undefined#/properties/repository")
 
 ### repository Type
 
-`string` ([Repository](registry-properties-repository.md))
+`string` ([仓库](registry-properties-仓库.md))
 
 ### repository Constraints
 
@@ -248,7 +250,7 @@ The URL of the source code repository for this registry.
 
 ## issues
 
-The URL of the issue tracker where people can report problems with this registry.
+用于反馈该 registry 问题的 issue 跟踪地址。
 
 `issues`
 
@@ -258,7 +260,7 @@ The URL of the issue tracker where people can report problems with this registry
 
 * cannot be null
 
-* defined in: [Registry configuration](registry-properties-issues.md "undefined#/properties/issues")
+* defined in: [Registry 配置](registry-properties-issues.md "undefined#/properties/issues")
 
 ### issues Type
 
@@ -276,7 +278,7 @@ The URL of the issue tracker where people can report problems with this registry
 
 ## contributors
 
-A list of people who have contributed to this registry. Each entry is typically a name, optionally followed by an email address.
+参与该 registry 的贡献者列表。通常为姓名，可选附带邮箱。
 
 `contributors`
 
@@ -286,7 +288,7 @@ A list of people who have contributed to this registry. Each entry is typically 
 
 * cannot be null
 
-* defined in: [Registry configuration](registry-properties-contributors.md "undefined#/properties/contributors")
+* defined in: [Registry 配置](registry-properties-贡献者.md "undefined#/properties/contributors")
 
 ### contributors Type
 
@@ -300,21 +302,21 @@ A list of people who have contributed to this registry. Each entry is typically 
 
 ## access
 
-Controls who can access this registry. "public" registries are open to everyone; "private" registries require authorization.
+控制谁可以访问该 registry。"public" 对所有人开放；"private" 需要授权。
 
 `access`
 
 * is optional
 
-* Type: `string` ([Access](registry-properties-access.md))
+* Type: `string` ([访问权限](registry-properties-访问权限.md))
 
 * cannot be null
 
-* defined in: [Registry configuration](registry-properties-access.md "undefined#/properties/access")
+* defined in: [Registry 配置](registry-properties-访问权限.md "undefined#/properties/access")
 
 ### access Type
 
-`string` ([Access](registry-properties-access.md))
+`string` ([访问权限](registry-properties-访问权限.md))
 
 ### access Constraints
 
@@ -345,7 +347,7 @@ The default value is:
 
 ## dependencies
 
-Default runtime NPM packages installed into a consumer project when this registry is initialized. Unlike item-level dependencies, these apply once for the whole registry. Entries may include a version range or tag, e.g. "vue^3.4.0" or "lodash\@latest".
+以该 registry 初始化消费方项目时默认安装的运行时 NPM 包。与 item 级依赖不同，这些依赖对整个 registry 只应用一次。条目可带版本范围或 tag，例如 "vue^3.4.0" 或 "lodash\@latest"。
 
 `dependencies`
 
@@ -355,7 +357,7 @@ Default runtime NPM packages installed into a consumer project when this registr
 
 * cannot be null
 
-* defined in: [Registry configuration](registry-properties-dependencies.md "undefined#/properties/dependencies")
+* defined in: [Registry 配置](registry-properties-依赖.md "undefined#/properties/dependencies")
 
 ### dependencies Type
 
@@ -373,7 +375,7 @@ Default runtime NPM packages installed into a consumer project when this registr
 
 ## devDependencies
 
-Default development-only NPM packages installed into a consumer project when this registry is initialized. Use for tooling shared across the registry (e.g. test helpers), not for packages required at application runtime. Entries may include a version range or tag.
+以该 registry 初始化消费方项目时默认安装的开发用 NPM 包。适用于 registry 共享的工具链（例如测试辅助），而非应用运行时所需的包。条目可带版本范围或 tag。
 
 `devDependencies`
 
@@ -383,7 +385,7 @@ Default development-only NPM packages installed into a consumer project when thi
 
 * cannot be null
 
-* defined in: [Registry configuration](registry-properties-dev-dependencies.md "undefined#/properties/devDependencies")
+* defined in: [Registry 配置](registry-properties-开发依赖.md "undefined#/properties/devDependencies")
 
 ### devDependencies Type
 
@@ -401,7 +403,7 @@ Default development-only NPM packages installed into a consumer project when thi
 
 ## items
 
-The catalog of registry items published by this registry. Each item describes an installable unit such as a component, block, or utility.
+该 registry 发布的 item 目录。每个 item 描述一个可安装单元，例如 component、block 或工具。
 
 `items`
 
@@ -411,7 +413,7 @@ The catalog of registry items published by this registry. Each item describes an
 
 * cannot be null
 
-* defined in: [Registry configuration](registry-properties-items.md "undefined#/properties/items")
+* defined in: [Registry 配置](registry-properties-items.md "undefined#/properties/items")
 
 ### items Type
 
@@ -423,13 +425,13 @@ The catalog of registry items published by this registry. Each item describes an
 {
   "name": "button",
   "title": "Button",
-  "description": "A button component"
+  "description": "按钮 component"
 }
 ```
 
 ## exclude
 
-A list of registry item names to omit from resolution or installation. Useful for temporarily hiding unfinished or deprecated items.
+在解析或安装时忽略的 registry item 名称列表。适合临时隐藏未完成或已弃用的 item。
 
 `exclude`
 
@@ -439,7 +441,7 @@ A list of registry item names to omit from resolution or installation. Useful fo
 
 * cannot be null
 
-* defined in: [Registry configuration](registry-properties-exclude.md "undefined#/properties/exclude")
+* defined in: [Registry 配置](registry-properties-排除.md "undefined#/properties/exclude")
 
 ### exclude Type
 
@@ -457,21 +459,21 @@ A list of registry item names to omit from resolution or installation. Useful fo
 
 ## defaultPaths
 
-Maps registry item types to install destinations. Use "\*" as a catch-all for types without an explicit path. Paths may use aliases such as "\~/components".
+将 registry item 类型映射到安装目标路径。用 "\*" 作为未显式配置类型的兜底。路径可使用别名，例如 "\~/components"。
 
 `defaultPaths`
 
 * is optional
 
-* Type: `object` ([Paths](registry-properties-paths.md))
+* Type: `object` ([路径](registry-properties-路径.md))
 
 * cannot be null
 
-* defined in: [Registry configuration](registry-properties-paths.md "undefined#/properties/defaultPaths")
+* defined in: [Registry 配置](registry-properties-路径.md "undefined#/properties/defaultPaths")
 
 ### defaultPaths Type
 
-`object` ([Paths](registry-properties-paths.md))
+`object` ([路径](registry-properties-路径.md))
 
 ### defaultPaths Examples
 

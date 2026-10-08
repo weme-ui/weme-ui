@@ -1,20 +1,20 @@
-# Project lock file Schema
+# 项目锁定文件 Schema
 
 ```txt
 undefined
 ```
 
-Records which registry items have been installed into a Weme UI project, including their source registry and the exact files written on disk.
+记录已安装进 Weme UI 项目的 registry items，包括来源 registry 以及磁盘上写入的具体文件。
 
 | Abstract            | Extensible | Status         | Identifiable | Custom Properties | Additional Properties | Access Restrictions | Defined In                                                                               |
 | :------------------ | :--------- | :------------- | :----------- | :---------------- | :-------------------- | :------------------ | :--------------------------------------------------------------------------------------- |
 | Can be instantiated | No         | Unknown status | No           | Forbidden         | Forbidden             | none                | [lockfile.schema.json](../../website/public/lockfile.schema.json "open original schema") |
 
-## Project lock file Type
+## 项目锁定文件 Type
 
-`object` ([Project lock file](lockfile.md))
+`object` ([项目锁定文件](lockfile.md))
 
-## Project lock file Examples
+## 项目锁定文件 Examples
 
 ```json
 {
@@ -34,26 +34,26 @@ Records which registry items have been installed into a Weme UI project, includi
 }
 ```
 
-# Project lock file Properties
+# 项目锁定文件 Properties
 
-| Property           | Type     | Required | Nullable       | Defined by                                                                         |
-| :----------------- | :------- | :------- | :------------- | :--------------------------------------------------------------------------------- |
-| [$schema](#schema) | `string` | Required | cannot be null | [Project lock file](lockfile-properties-schema.md "undefined#/properties/$schema") |
-| [items](#items)    | `array`  | Required | cannot be null | [Project lock file](lockfile-properties-items.md "undefined#/properties/items")    |
+| Property           | Type     | Required | Nullable       | Defined by                                                              |
+| :----------------- | :------- | :------- | :------------- | :---------------------------------------------------------------------- |
+| [$schema](#schema) | `string` | Optional | cannot be null | [项目锁定文件](lockfile-properties-schema.md "undefined#/properties/$schema") |
+| [items](#items)    | `array`  | Required | cannot be null | [项目锁定文件](lockfile-properties-items.md "undefined#/properties/items")    |
 
 ## $schema
 
-URL of the JSON Schema used to validate this project lock file. Editors and tooling use it for autocomplete and validation.
+用于校验该项目锁定文件的 JSON Schema URL。编辑器与工具链据此提供补全与校验。
 
 `$schema`
 
-* is required
+* is optional
 
 * Type: `string` ([Schema](lockfile-properties-schema.md))
 
 * cannot be null
 
-* defined in: [Project lock file](lockfile-properties-schema.md "undefined#/properties/$schema")
+* defined in: [项目锁定文件](lockfile-properties-schema.md "undefined#/properties/$schema")
 
 ### $schema Type
 
@@ -79,21 +79,21 @@ The default value is:
 
 ## items
 
-The registry items currently installed in the project. Used to track provenance and installed file locations across updates.
+当前已安装进项目的 registry items。用于在更新时追踪来源与已安装文件位置。
 
 `items`
 
 * is required
 
-* Type: `object[]` ([Installed item](lockfile-properties-items-installed-item.md))
+* Type: `object[]` ([已安装 item](lockfile-properties-items-已安装-item.md))
 
 * cannot be null
 
-* defined in: [Project lock file](lockfile-properties-items.md "undefined#/properties/items")
+* defined in: [项目锁定文件](lockfile-properties-items.md "undefined#/properties/items")
 
 ### items Type
 
-`object[]` ([Installed item](lockfile-properties-items-installed-item.md))
+`object[]` ([已安装 item](lockfile-properties-items-已安装-item.md))
 
 ### items Examples
 

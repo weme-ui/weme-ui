@@ -4,7 +4,7 @@
 undefined
 ```
 
-An index of registries available in a repository or workspace. Maps each registry name to the directory that contains its configuration and items.
+仓库或 workspace 中可用 registry 的索引。将每个 registry 名称映射到包含其配置与 items 的目录。
 
 | Abstract            | Extensible | Status         | Identifiable | Custom Properties | Additional Properties | Access Restrictions | Defined In                                                                               |
 | :------------------ | :--------- | :------------- | :----------- | :---------------- | :-------------------- | :------------------ | :--------------------------------------------------------------------------------------- |
@@ -30,16 +30,16 @@ An index of registries available in a repository or workspace. Maps each registr
 
 | Property                  | Type     | Required | Nullable       | Defined by                                                                                |
 | :------------------------ | :------- | :------- | :------------- | :---------------------------------------------------------------------------------------- |
-| [$schema](#schema)        | `string` | Required | cannot be null | [Registry manifest](manifest-properties-schema.md "undefined#/properties/$schema")        |
+| [$schema](#schema)        | `string` | Optional | cannot be null | [Registry manifest](manifest-properties-schema.md "undefined#/properties/$schema")        |
 | [registries](#registries) | `object` | Required | cannot be null | [Registry manifest](manifest-properties-registries.md "undefined#/properties/registries") |
 
 ## $schema
 
-URL of the JSON Schema used to validate this registry manifest. Editors and tooling use it for autocomplete and validation.
+用于校验该 registry manifest 的 JSON Schema URL。编辑器与工具链据此提供补全与校验。
 
 `$schema`
 
-* is required
+* is optional
 
 * Type: `string` ([Schema](manifest-properties-schema.md))
 
@@ -71,7 +71,7 @@ The default value is:
 
 ## registries
 
-A map of registered registry names to their directory paths on disk. Keys use the "owner/registry" form; values are relative or absolute paths to each registry root.
+已注册 registry 名称到磁盘目录路径的映射。键为 "owner/registry" 形式；值为各 registry 根目录的相对或绝对路径。
 
 `registries`
 

@@ -1,20 +1,20 @@
-# Project configuration Schema
+# 项目配置 Schema
 
 ```txt
 undefined
 ```
 
-Configuration for a Weme UI project. Declares install paths, registered registries, and optional UnoCSS theme extensions.
+Weme UI 项目配置。声明安装路径、已注册的 registries，以及可选的 UnoCSS 主题扩展。
 
 | Abstract            | Extensible | Status         | Identifiable | Custom Properties | Additional Properties | Access Restrictions | Defined In                                                                           |
 | :------------------ | :--------- | :------------- | :----------- | :---------------- | :-------------------- | :------------------ | :----------------------------------------------------------------------------------- |
 | Can be instantiated | No         | Unknown status | No           | Forbidden         | Forbidden             | none                | [config.schema.json](../../website/public/config.schema.json "open original schema") |
 
-## Project configuration Type
+## 项目配置 Type
 
-`object` ([Project configuration](config.md))
+`object` ([项目配置](config.md))
 
-## Project configuration Examples
+## 项目配置 Examples
 
 ```json
 {
@@ -31,28 +31,28 @@ Configuration for a Weme UI project. Declares install paths, registered registri
 }
 ```
 
-# Project configuration Properties
+# 项目配置 Properties
 
-| Property                  | Type     | Required | Nullable       | Defined by                                                                                     |
-| :------------------------ | :------- | :------- | :------------- | :--------------------------------------------------------------------------------------------- |
-| [$schema](#schema)        | `string` | Required | cannot be null | [Project configuration](config-properties-schema.md "undefined#/properties/$schema")           |
-| [paths](#paths)           | `object` | Optional | cannot be null | [Project configuration](config-properties-paths.md "undefined#/properties/paths")              |
-| [registries](#registries) | `array`  | Optional | cannot be null | [Project configuration](config-properties-registries.md "undefined#/properties/registries")    |
-| [unocss](#unocss)         | `object` | Optional | cannot be null | [Project configuration](config-properties-unocss-extensions.md "undefined#/properties/unocss") |
+| Property                  | Type     | Required | Nullable       | Defined by                                                                 |
+| :------------------------ | :------- | :------- | :------------- | :------------------------------------------------------------------------- |
+| [$schema](#schema)        | `string` | Optional | cannot be null | [项目配置](config-properties-schema.md "undefined#/properties/$schema")        |
+| [paths](#paths)           | `object` | Optional | cannot be null | [项目配置](config-properties-路径.md "undefined#/properties/paths")              |
+| [registries](#registries) | `array`  | Optional | cannot be null | [项目配置](config-properties-registries.md "undefined#/properties/registries") |
+| [unocss](#unocss)         | `object` | Optional | cannot be null | [项目配置](config-properties-unocss-扩展.md "undefined#/properties/unocss")      |
 
 ## $schema
 
-URL of the JSON Schema used to validate this project config. Editors and tooling use it for autocomplete and validation.
+用于校验该项目配置的 JSON Schema URL。编辑器与工具链据此提供补全与校验。
 
 `$schema`
 
-* is required
+* is optional
 
 * Type: `string` ([Schema](config-properties-schema.md))
 
 * cannot be null
 
-* defined in: [Project configuration](config-properties-schema.md "undefined#/properties/$schema")
+* defined in: [项目配置](config-properties-schema.md "undefined#/properties/$schema")
 
 ### $schema Type
 
@@ -78,21 +78,21 @@ The default value is:
 
 ## paths
 
-Maps registry item types to install destinations. Use "\*" as a catch-all for types without an explicit path. Paths may use aliases such as "\~/components".
+将 registry item 类型映射到安装目标路径。用 "\*" 作为未显式配置类型的兜底。路径可使用别名，例如 "\~/components"。
 
 `paths`
 
 * is optional
 
-* Type: `object` ([Paths](config-properties-paths.md))
+* Type: `object` ([路径](config-properties-路径.md))
 
 * cannot be null
 
-* defined in: [Project configuration](config-properties-paths.md "undefined#/properties/paths")
+* defined in: [项目配置](config-properties-路径.md "undefined#/properties/paths")
 
 ### paths Type
 
-`object` ([Paths](config-properties-paths.md))
+`object` ([路径](config-properties-路径.md))
 
 ### paths Examples
 
@@ -106,21 +106,21 @@ Maps registry item types to install destinations. Use "\*" as a catch-all for ty
 
 ## registries
 
-Registries registered with this project. Each entry selects a registry and may specify a repository source and install prefix.
+已向本项目注册的 registries。每项选择一个 registry，并可指定仓库来源与安装前缀。
 
 `registries`
 
 * is optional
 
-* Type: `object[]` ([Registered registry](config-properties-registries-registered-registry.md))
+* Type: `object[]` ([已注册的 Registry](config-properties-registries-已注册的-registry.md))
 
 * cannot be null
 
-* defined in: [Project configuration](config-properties-registries.md "undefined#/properties/registries")
+* defined in: [项目配置](config-properties-registries.md "undefined#/properties/registries")
 
 ### registries Type
 
-`object[]` ([Registered registry](config-properties-registries-registered-registry.md))
+`object[]` ([已注册的 Registry](config-properties-registries-已注册的-registry.md))
 
 ### registries Examples
 
@@ -134,18 +134,18 @@ Registries registered with this project. Each entry selects a registry and may s
 
 ## unocss
 
-Project-level UnoCSS theme extensions. Use this to customize accent colors, neutral colors, and additional CSS variables injected into the UnoCSS preset.
+项目级 UnoCSS 主题扩展。用于自定义强调色、中性色，以及注入 UnoCSS preset 的额外 CSS 变量。
 
 `unocss`
 
 * is optional
 
-* Type: `object` ([UnoCSS extensions](config-properties-unocss-extensions.md))
+* Type: `object` ([UnoCSS 扩展](config-properties-unocss-扩展.md))
 
 * cannot be null
 
-* defined in: [Project configuration](config-properties-unocss-extensions.md "undefined#/properties/unocss")
+* defined in: [项目配置](config-properties-unocss-扩展.md "undefined#/properties/unocss")
 
 ### unocss Type
 
-`object` ([UnoCSS extensions](config-properties-unocss-extensions.md))
+`object` ([UnoCSS 扩展](config-properties-unocss-扩展.md))

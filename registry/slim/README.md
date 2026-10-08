@@ -34,23 +34,87 @@ pnpm dlx @weme-ui/weme-ui add weme-ui/slim/button
 ## 组件列表
 
 - **General**
-  - [x] `button`
   - [x] `button-group`
-  - [x] `icon`
-  - [x] `icon-tile`
+  - [x] `button`
   - [x] `icon-stack`
+  - [x] `icon-tile`
+  - [x] `icon`
+  - [x] `link-overlay`
+  - [x] `link`
+  - [ ] `separator`
 
 - **Navigation**
-  - [x] `link`
-  - [x] `link-overlay`
+  - [ ] `activity-bar`
+  - [ ] `breadcrumb`
+  - [ ] `command-palette`
+  - [ ] `pagination`
+  - [ ] `steps`
+  - [ ] `tabs`
+
+- **Data**
+  - [ ] `alert`
+  - [ ] `avatar-group`
+  - [ ] `avatar`
+  - [ ] `badge`
+  - [ ] `banner`
+  - [ ] `calendar`
+  - [ ] `card`
+  - [ ] `chip`
+  - [ ] `empty`
+  - [ ] `image-viewer`
+  - [ ] `image`
+  - [ ] `kbd`
+  - [ ] `marquee`
+  - [ ] `progress`
+  - [ ] `scroll-area`
+  - [ ] `skeleton`
+  - [ ] `table`
+  - [ ] `timeline`
+  - [ ] `tree`
+
+- **Overlay**
+  - [ ] `action-sheet`
+  - [ ] `context-menu`
+  - [ ] `drawer`
+  - [ ] `dropdown`
+  - [ ] `modal`
+  - [ ] `pop-confirm`
+  - [ ] `popover`
+  - [ ] `toast`
+  - [ ] `tooltip`
 
 - **Form**
   - [ ] `form`
+  - [ ] `form-field`
+  - [ ] `autocomplete`
+  - [ ] `cascader`
+  - [ ] `filters`
+  - [ ] `checkbox-group`
+  - [ ] `checkbox`
+  - [ ] `color-picker`
+  - [ ] `color-swatch-picker`
+  - [ ] `date-picker`
+  - [ ] `file-upload`
+  - [ ] `input-group`
   - [ ] `input`
+  - [ ] `label`
+  - [ ] `listbox`
+  - [ ] `number-input`
+  - [ ] `pin-input`
+  - [ ] `radio-group`
+  - [ ] `range-input`
+  - [ ] `richtext`
+  - [ ] `select`
+  - [ ] `slider`
+  - [ ] `switch`
+  - [ ] `tag-group`
+  - [ ] `tags-input`
+  - [ ] `textarea`
 
 ## 组合式函数
 
-- [ ] `useForm`
+- [ ] `useForm()`
+- [ ] `useToast()`
 
 ## 许可证
 

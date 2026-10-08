@@ -47,6 +47,7 @@
   },
   "dependencies": {
     "@iconify/vue": "catalog:utils",
+    "@tanstack/vue-form": "catalog:dev",
     "@vueuse/core": "catalog:utils",
     "@weme-ui/unocss-preset": "workspace:*",
     "clsx": "catalog:utils",

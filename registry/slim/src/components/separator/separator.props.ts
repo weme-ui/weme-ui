@@ -1,7 +1,7 @@
 import type { SeparatorProps as SeparatorPrimitiveProps } from 'reka-ui'
 import type { SeparatorStyleProps, SeparatorStyleSlots } from './separator.style'
 
-export interface SeparatorProps extends SeparatorPrimitiveProps {
+export interface SeparatorProps extends Omit<SeparatorPrimitiveProps, 'asChild'> {
   color?: SeparatorStyleProps['color']
   variant?: SeparatorStyleProps['variant']
   labelPosition?: SeparatorStyleProps['labelPosition']

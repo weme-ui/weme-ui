@@ -50,6 +50,7 @@ const [DefineIconStackLayer, IconStackLayer] = createReusableTemplate()
   </DefineIconStackLayer>
 
   <Primitive
+    data-slot="icon-stack"
     :as="as"
     :as-child="asChild"
     :class="cn(ui.root(), props.ui?.root, props.class)"

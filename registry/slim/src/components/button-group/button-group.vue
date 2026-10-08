@@ -29,6 +29,7 @@ const ui = computed(() => useButtonGroupStyle({
   <RovingFocusGroup
     v-bind="forwarded"
     role="group"
+    data-slot="button-group"
     :aria-orientation="orientation"
     :aria-disabled="toBoolAriaValue(disabled)"
     :class="cn(ui.root(), props.ui?.root, props.class)"

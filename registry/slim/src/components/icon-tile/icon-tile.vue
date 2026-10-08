@@ -23,7 +23,13 @@ const ui = computed(() => useIconTileStyle({
 </script>
 
 <template>
-  <Primitive :as="as" :as-child="asChild" :class="cn(ui.root(), props.ui?.root, props.class)" aria-hidden="true">
+  <Primitive
+    data-slot="icon-tile"
+    aria-hidden="true"
+    :as="as"
+    :as-child="asChild"
+    :class="cn(ui.root(), props.ui?.root, props.class)"
+  >
     <slot>
       <Icon v-if="icon" :name="icon" :class="cn(ui.icon(), props.ui?.icon)" />
     </slot>

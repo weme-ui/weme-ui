@@ -15,7 +15,6 @@ pnpm dlx @weme-ui/weme-ui add weme-ui/slim/separator
 | 属性            | 说明                                                              | 类型                                                        | 默认值         |
 | --------------- | ----------------------------------------------------------------- | ----------------------------------------------------------- | -------------- |
 | `as`            | 渲染为的元素或组件（Reka UI `Primitive`）                         | `AsTag \| Component`                                        | `'div'`        |
-| `asChild`       | 合并到子元素上渲染（Reka UI composition）                         | `boolean`                                                   | —              |
 | `orientation`   | 方向                                                              | `'horizontal' \| 'vertical'`                                | `'horizontal'` |
 | `decorative`    | 是否为纯装饰；为 `true` 时从无障碍树中移除（仅无 `label` 时生效） | `boolean`                                                   | —              |
 | `color`         | 颜色                                                              | `'base' \| 'elevated' \| 'inverted'`                        | `'base'`       |

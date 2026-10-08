@@ -33,6 +33,7 @@ const ui = computed(() => useLinkStyle({
   <RouterLink
     v-slot="{ href, navigate }"
     v-bind="delegated"
+    data-slot="link"
     :class="cn(ui.root(), props.ui?.root, props.class)"
     custom
   >

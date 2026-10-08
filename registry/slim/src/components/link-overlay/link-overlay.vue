@@ -14,6 +14,7 @@ const ui = useLinkOverlayStyle()
 
 <template>
   <Primitive
+    data-slot="link-overlay"
     :as="as"
     :as-child="asChild"
     v-bind="{ ...$attrs }"

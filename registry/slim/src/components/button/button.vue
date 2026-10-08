@@ -50,6 +50,7 @@ async function handleClick(event: MouseEvent) {
 <template>
   <Primitive
     ref="buttonRef"
+    data-slot="button"
     :as="as"
     :as-child="asChild"
     :type="type"

@@ -34,7 +34,7 @@ const ui = computed(() => useSeparatorStyle({
 </script>
 
 <template>
-  <div v-if="label" v-bind="$attrs" role="separator" :class="cn(ui.root(), props.ui?.root, props.class)">
+  <div v-if="label" v-bind="$attrs" data-slot="separator" role="separator" :class="cn(ui.root(), props.ui?.root, props.class)">
     <Separator
       v-if="labelPosition !== 'start'"
       v-bind="delegated"
@@ -55,6 +55,7 @@ const ui = computed(() => useSeparatorStyle({
   </div>
   <Separator
     v-else
+    data-slot="separator"
     v-bind="{ ...delegated, ...$attrs }"
     :class="cn(ui.line(), props.ui?.line, props.class)"
   />

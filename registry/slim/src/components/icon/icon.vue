@@ -11,5 +11,5 @@ const resolvedIcon = computed(() => props.icon ?? props.name)
 </script>
 
 <template>
-  <Icon v-bind="delegated" :icon="resolvedIcon" :class="props.class" />
+  <Icon v-bind="delegated" data-slot="icon" :icon="resolvedIcon" :class="props.class" />
 </template>

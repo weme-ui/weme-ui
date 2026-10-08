@@ -9,7 +9,7 @@ describe('separator', () => {
     expect(ui.line()).toContain('b-t')
     expect(ui.line()).toContain('w-full')
     expect(ui.line()).toContain('h-px')
-    expect(ui.label()).toContain('text-muted')
+    expect(ui.label()).toContain('text-subtle')
   })
 
   it('applies orientation variants', () => {

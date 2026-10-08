@@ -34,19 +34,23 @@ const ui = computed(() => useSeparatorStyle({
 </script>
 
 <template>
-  <div v-if="label" v-bind="$attrs" :class="cn(ui.root(), props.ui?.root, props.class)">
+  <div v-if="label" v-bind="$attrs" role="separator" :class="cn(ui.root(), props.ui?.root, props.class)">
     <Separator
       v-if="labelPosition !== 'start'"
       v-bind="delegated"
       :class="cn(ui.line({ labelPosition: 'end' }), props.ui?.line)"
+      decorative
     />
-    <span :class="cn(ui.label(), props.ui?.label)">
-      {{ label }}
+    <span :aria-label="label" :class="cn(ui.label(), props.ui?.label)">
+      <slot>
+        {{ label }}
+      </slot>
     </span>
     <Separator
       v-if="labelPosition !== 'end'"
       v-bind="delegated"
       :class="cn(ui.line({ labelPosition: 'start' }), props.ui?.line)"
+      decorative
     />
   </div>
   <Separator

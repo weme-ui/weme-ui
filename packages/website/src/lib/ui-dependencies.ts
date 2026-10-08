@@ -27,6 +27,11 @@ const UI_DEPENDENCY_BADGES: Array<{
     label: 'Vue Router',
     href: 'https://router.vuejs.org/',
   },
+  {
+    match: pkg => pkg === '@tanstack/vue-form' || pkg.startsWith('@tanstack/vue-form/'),
+    label: 'TanStack Form',
+    href: 'https://tanstack.com/form',
+  },
 ]
 
 function packageName(entry: string): string {

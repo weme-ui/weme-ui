@@ -32,6 +32,11 @@ const UI_DEPENDENCY_BADGES: Array<{
     label: 'TanStack Form',
     href: 'https://tanstack.com/form',
   },
+  {
+    match: pkg => pkg === 'valibot' || pkg.startsWith('@valibot/'),
+    label: 'Valibot',
+    href: 'https://valibot.dev/',
+  },
 ]
 
 function packageName(entry: string): string {

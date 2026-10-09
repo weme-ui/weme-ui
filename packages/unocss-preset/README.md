@@ -79,11 +79,11 @@
   background-color: var(--amber-1);
 }
 .bg-amber-1\/10 {
-  background-color: color-mix(in srgb, var(--amber-1) var(--un-bg-opacity), transparent);
+  background-color: color-mix(in srgb, var(--amber-1) 10%, transparent);
 }
 @supports (color: color-mix(in lab, red, red)) {
   .bg-amber-1\/10 {
-    background-color: color-mix(in oklab, var(--amber-1) var(--un-bg-opacity), transparent);
+    background-color: color-mix(in oklab, var(--amber-1) 10%, transparent);
   }
 }
 ```

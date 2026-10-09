@@ -282,20 +282,21 @@ export function colorCSSGenerator(
       ? `color-mix(${method}, ${value} ${alpha ?? `var(${alphaKey})`}, transparent)${rawColorComment}`
       : `${value}${rawColorComment}`
 
-    result.push(defineProperty(alphaKey, { syntax: '<percentage>', initialValue: '100%' }))
+    const isShadowColor = ['shadow', 'inset-shadow', 'text-shadow', 'drop-shadow'].includes(varName)
+
+    // 无透明度时不注册 @property；shadow 族 @supports 仍引用 opacity 变量
+    if (alpha || isShadowColor)
+      result.push(defineProperty(alphaKey, { syntax: '<percentage>', initialValue: '100%' }))
 
     if (!isSpecial) {
       if (keys && !isCSSVar) {
         themeTracking(`colors`, keys)
         if (!modifier) {
-          const colorValue = ['shadow', 'inset-shadow', 'text-shadow', 'drop-shadow'].includes(varName)
+          const colorValue = isShadowColor
             ? `${alpha ? `color-mix(in oklab, ${value} ${alpha}, transparent)` : `${value}`} var(${alphaKey})`
             : `${value} ${alpha ?? `var(${alphaKey})`}`
 
-          if (
-            ['shadow', 'inset-shadow', 'text-shadow', 'drop-shadow'].includes(varName)
-            || alpha
-          ) {
+          if (isShadowColor || alpha) {
             result.push({
               [symbols.parent]: '@supports (color: color-mix(in lab, red, red))',
               [symbols.noMerge]: true,

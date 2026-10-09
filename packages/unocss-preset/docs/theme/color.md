@@ -113,19 +113,22 @@ presetWemeUI({
 4. CssVars 模糊匹配：`card` → `--card-bg` / `--card-color` 等
 5. 任意值：`[#fff]`、`[oklch(...)]`、`$my-var`
 
-透明度用 `/N`（0–100 整数），会生成 `color-mix`，并在支持时优先 `oklab`：
+透明度用 `/N`（0–100 整数），会生成 `color-mix`（百分比写死在声明里），并在支持时优先 `oklab`。无透明度时直接输出 `var(--…)`，**不会**注册 `@property --un-*-opacity`：
 
 ```html
 <div class="bg-blue-9/10 text-foreground-base/80">...</div>
 ```
 
 ```css
+.bg-blue-9 {
+  background-color: var(--blue-9);
+}
 .bg-blue-9\/10 {
-  background-color: color-mix(in srgb, var(--blue-9) var(--un-bg-opacity), transparent);
+  background-color: color-mix(in srgb, var(--blue-9) 10%, transparent);
 }
 @supports (color: color-mix(in lab, red, red)) {
   .bg-blue-9\/10 {
-    background-color: color-mix(in oklab, var(--blue-9) var(--un-bg-opacity), transparent);
+    background-color: color-mix(in oklab, var(--blue-9) 10%, transparent);
   }
 }
 ```

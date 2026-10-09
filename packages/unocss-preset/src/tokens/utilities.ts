@@ -246,15 +246,12 @@ export function customThemeColorCSSGenerator(
     ? value
     : `color-mix(in oklab, ${value} ${percentage}, transparent)`
 
-  result.push(defineProperty(alphaKey, { syntax: '<percentage>', initialValue: '100%' }))
-
-  const colorValue = `${value} ${percentage ?? `var(${alphaKey})`}`
-
   if (percentage !== undefined) {
+    result.push(defineProperty(alphaKey, { syntax: '<percentage>', initialValue: '100%' }))
     result.push({
       [symbols.parent]: '@supports (color: color-mix(in lab, red, red))',
       [symbols.noMerge]: true,
-      [property]: `color-mix(in oklab, ${colorValue}, transparent)`,
+      [property]: `color-mix(in oklab, ${value} ${percentage}, transparent)`,
     })
   }
 

@@ -146,18 +146,13 @@ describe('colorCSSGenerator and colorResolver', () => {
 
   it('emits theme colors as variables and mixes them only when alpha is set', () => {
     const plain = colorCSSGenerator(parseColor('blue', theme), 'color', 'text', context)
-    expect(plain?.[0]).toEqual({ color: 'var(--blue-9)' })
-    expect(plain).toHaveLength(2)
-    expect(plain?.[1]).toMatchObject({
-      'syntax': '"<percentage>"',
-      'inherits': 'false',
-      'initial-value': '100%',
-    })
-    expect(trackedProperties.get('--un-text-opacity')).toBe('100%')
+    expect(plain).toEqual([{ color: 'var(--blue-9)' }])
+    expect(trackedProperties.has('--un-text-opacity')).toBe(false)
     expect([...trackedTheme]).toEqual(['colors:blue-9'])
 
     const faded = colorCSSGenerator(parseColor('blue-9/50', theme), 'color', 'text', context)
     expect(faded?.[0].color).toBe('color-mix(in srgb, var(--blue-9) 50%, transparent)')
+    expect(trackedProperties.get('--un-text-opacity')).toBe('100%')
     expect(faded?.[2]).toMatchObject({
       [symbols.parent]: '@supports (color: color-mix(in lab, red, red))',
       [symbols.noMerge]: true,
@@ -217,8 +212,7 @@ describe('colorCSSGenerator and colorResolver', () => {
 
   it('emits alias colors as css variables and mixes alpha in srgb', () => {
     const plain = colorCSSGenerator(parseColor('accent', theme), 'color', 'text', context)
-    expect(plain?.[0]).toEqual({ color: 'var(--accent-9)' })
-    expect(plain).toHaveLength(2)
+    expect(plain).toEqual([{ color: 'var(--accent-9)' }])
     expect(trackedTheme.size).toBe(0)
     expect(trackedColorAliases.has('accent:9')).toBe(true)
 
@@ -237,8 +231,7 @@ describe('colorCSSGenerator and colorResolver', () => {
     const resolve = colorResolver('background-color', 'bg')
     const result = resolve(['', 'blue-9'], context)
 
-    expect(result?.[0]).toEqual({ 'background-color': 'var(--blue-9)' })
-    expect(result).toHaveLength(2)
+    expect(result).toEqual([{ 'background-color': 'var(--blue-9)' }])
     expect(resolve(['', 'not-a-color'], context)).toBeUndefined()
   })
 })

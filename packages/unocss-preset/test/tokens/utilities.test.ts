@@ -452,21 +452,15 @@ describe('customThemeColorCSSGenerator', () => {
     expect(trackedProperties.size).toBe(0)
   })
 
-  it('emits a theme variable and an opacity property without alpha', () => {
+  it('emits a theme variable without an opacity property when alpha is unset', () => {
     const result = customThemeColorCSSGenerator({
       name: 'foreground-base',
       keys: ['foreground', 'base'],
       alpha: undefined,
     }, 'border-color')
 
-    expect(result?.[0]).toEqual({ 'border-color': 'var(--foreground-base)' })
-    expect(result).toHaveLength(2)
-    expect(result?.[1]).toMatchObject({
-      'syntax': '"<percentage>"',
-      'inherits': 'false',
-      'initial-value': '100%',
-    })
-    expect(trackedProperties.get('--un-border-opacity')).toBe('100%')
+    expect(result).toEqual([{ 'border-color': 'var(--foreground-base)' }])
+    expect(trackedProperties.has('--un-border-opacity')).toBe(false)
   })
 
   it('mixes a positive alpha in oklab and adds a color-mix fallback', () => {
@@ -512,9 +506,8 @@ describe('customThemeColorCSSGenerator', () => {
 
       const varName = property.replace(/-color/g, '')
 
-      expect(result?.[0]).toEqual({ [property]: 'var(--foreground-base)' })
-      expect(result).toHaveLength(2)
-      expect(trackedProperties.get(`--un-${varName}-opacity`)).toBe('100%')
+      expect(result).toEqual([{ [property]: 'var(--foreground-base)' }])
+      expect(trackedProperties.has(`--un-${varName}-opacity`)).toBe(false)
     }
   })
 
@@ -555,9 +548,8 @@ describe('customThemeColorResolver', () => {
   it('resolves a complete theme token', () => {
     const result = customThemeColorResolver('border-color', 'border-color')('foreground-base', {})
 
-    expect(result?.[0]).toEqual({ 'border-color': 'var(--foreground-base)' })
-    expect(result).toHaveLength(2)
-    expect(trackedProperties.get('--un-border-opacity')).toBe('100%')
+    expect(result).toEqual([{ 'border-color': 'var(--foreground-base)' }])
+    expect(trackedProperties.has('--un-border-opacity')).toBe(false)
   })
 
   it('resolves a complete theme token with alpha', () => {
@@ -1866,15 +1858,6 @@ describe('successful results snapshots', () => {
           {
             "border-color": "var(--border-inverted)",
           },
-          {
-            "$$symbol-no-merge": true,
-            "$$symbol-no-scope": true,
-            "$$symbol-shortcut-no-merge": true,
-            "$$symbol-variants": [Function],
-            "inherits": "false",
-            "initial-value": "100%",
-            "syntax": ""<percentage>"",
-          },
         ],
         "color:card-text/40": [
           {
@@ -1898,15 +1881,6 @@ describe('successful results snapshots', () => {
         "color:foreground-base": [
           {
             "color": "var(--foreground-base)",
-          },
-          {
-            "$$symbol-no-merge": true,
-            "$$symbol-no-scope": true,
-            "$$symbol-shortcut-no-merge": true,
-            "$$symbol-variants": [Function],
-            "inherits": "false",
-            "initial-value": "100%",
-            "syntax": ""<percentage>"",
           },
         ],
         "color:foreground-base/0": [
@@ -1950,15 +1924,6 @@ describe('successful results snapshots', () => {
         "shadow-color:foreground-base": [
           {
             "shadow-color": "var(--foreground-base)",
-          },
-          {
-            "$$symbol-no-merge": true,
-            "$$symbol-no-scope": true,
-            "$$symbol-shortcut-no-merge": true,
-            "$$symbol-variants": [Function],
-            "inherits": "false",
-            "initial-value": "100%",
-            "syntax": ""<percentage>"",
           },
         ],
         "shadow-color:foreground-base/40": [
@@ -2006,42 +1971,15 @@ describe('successful results snapshots', () => {
           {
             "border-color": "var(--border-inverted)",
           },
-          {
-            "$$symbol-no-merge": true,
-            "$$symbol-no-scope": true,
-            "$$symbol-shortcut-no-merge": true,
-            "$$symbol-variants": [Function],
-            "inherits": "false",
-            "initial-value": "100%",
-            "syntax": ""<percentage>"",
-          },
         ],
         "border-color:card": [
           {
             "border-color": "var(--card-border-color)",
           },
-          {
-            "$$symbol-no-merge": true,
-            "$$symbol-no-scope": true,
-            "$$symbol-shortcut-no-merge": true,
-            "$$symbol-variants": [Function],
-            "inherits": "false",
-            "initial-value": "100%",
-            "syntax": ""<percentage>"",
-          },
         ],
         "color:card": [
           {
             "color": "var(--card-text)",
-          },
-          {
-            "$$symbol-no-merge": true,
-            "$$symbol-no-scope": true,
-            "$$symbol-shortcut-no-merge": true,
-            "$$symbol-variants": [Function],
-            "inherits": "false",
-            "initial-value": "100%",
-            "syntax": ""<percentage>"",
           },
         ],
         "color:card/40": [
@@ -2066,15 +2004,6 @@ describe('successful results snapshots', () => {
         "color:foreground-base": [
           {
             "color": "var(--foreground-base)",
-          },
-          {
-            "$$symbol-no-merge": true,
-            "$$symbol-no-scope": true,
-            "$$symbol-shortcut-no-merge": true,
-            "$$symbol-variants": [Function],
-            "inherits": "false",
-            "initial-value": "100%",
-            "syntax": ""<percentage>"",
           },
         ],
         "color:foreground-base/50": [

@@ -35,7 +35,6 @@
       "typescript": "6.0.3"
     },
     "dev": {
-      "@tanstack/vue-form": "^1.33.5",
       "@types/node": "^25.9.1",
       "@vitejs/plugin-vue": "^6.0.9",
       "@vue/test-utils": "^2.5.1",
@@ -51,6 +50,7 @@
     "utils": {
       "@iconify-json/ri": "^1.2.10",
       "@iconify/vue": "^5.0.3",
+      "@tanstack/vue-form": "^1.33.5",
       "@vueuse/core": "^15.0.0",
       "clsx": "^2.1.1",
       "defu": "^6.1.7",

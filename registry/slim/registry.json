@@ -184,6 +184,39 @@
       ]
     },
     {
+      "name": "form",
+      "type": "component",
+      "title": "Form",
+      "description": "A TanStack Form container that provides submit handling and form context.",
+      "meta": {
+        "docs.category": "form",
+        "docs.categoryLabel": "Form"
+      },
+      "dependencies": [
+        "@tanstack/vue-form",
+        "valibot"
+      ],
+      "files": [
+        {
+          "type": "component",
+          "path": "src/components/form/form.vue"
+        },
+        {
+          "type": "component",
+          "path": "src/components/form/form.props.ts"
+        },
+        {
+          "type": "composable",
+          "path": "src/composables/use-form-context.ts"
+        },
+        {
+          "type": "component",
+          "kind": "doc",
+          "path": "src/components/form/README.md"
+        }
+      ]
+    },
+    {
       "name": "icon",
       "type": "component",
       "title": "Icon",
@@ -351,8 +384,8 @@
       "title": "Link",
       "description": "A Vue Router link with optional icons and color variants.",
       "meta": {
-        "docs.category": "navigation",
-        "docs.categoryLabel": "Navigation"
+        "docs.category": "general",
+        "docs.categoryLabel": "General"
       },
       "dependencies": [
         "vue-router"
@@ -416,8 +449,8 @@
       "title": "Link Overlay",
       "description": "Expands a link hit area over a positioned ancestor so entire cards or sections are clickable.",
       "meta": {
-        "docs.category": "navigation",
-        "docs.categoryLabel": "Navigation"
+        "docs.category": "general",
+        "docs.categoryLabel": "General"
       },
       "files": [
         {

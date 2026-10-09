@@ -84,8 +84,8 @@ pnpm dlx @weme-ui/weme-ui add weme-ui/slim/button
   - [ ] `tooltip`
 
 - **Form**
-  - [ ] `form`
-  - [ ] `form-field`
+  - [x] `form`
+  - [ ] `field`
   - [ ] `autocomplete`
   - [ ] `cascader`
   - [ ] `filters`
@@ -113,7 +113,7 @@ pnpm dlx @weme-ui/weme-ui add weme-ui/slim/button
 
 ## 组合式函数
 
-- [ ] `useForm()`
+- [x] `useFormContext()`
 - [ ] `useToast()`
 
 ## 许可证

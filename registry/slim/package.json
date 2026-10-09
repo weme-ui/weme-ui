@@ -47,7 +47,7 @@
   },
   "dependencies": {
     "@iconify/vue": "catalog:utils",
-    "@tanstack/vue-form": "catalog:dev",
+    "@tanstack/vue-form": "catalog:utils",
     "@vueuse/core": "catalog:utils",
     "@weme-ui/unocss-preset": "workspace:*",
     "clsx": "catalog:utils",
@@ -56,6 +56,7 @@
     "tailwind-merge": "catalog:utils",
     "tailwind-variants": "catalog:utils",
     "unocss": "catalog:dev",
+    "valibot": "catalog:utils",
     "vue": "catalog:dev",
     "vue-router": "catalog:dev"
   },

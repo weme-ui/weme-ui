@@ -30,8 +30,8 @@ export const DEFAULT_TOKENS: CustomThemeTokens = {
   foreground: {
     highlighted: 'neutral.12',
     base: 'neutral.11',
-    subtle: 'neutral.6',
-    muted: 'neutral.4',
+    subtle: 'neutral.9',
+    muted: 'neutral.7',
     inverted: 'neutral.1',
   },
   background: {

@@ -217,6 +217,77 @@
       ]
     },
     {
+      "name": "form-field",
+      "type": "component",
+      "title": "Form Field",
+      "description": "A form field layout that binds TanStack Form state and provides label, help, and error slots.",
+      "meta": {
+        "docs.category": "form",
+        "docs.categoryLabel": "Form"
+      },
+      "registryDependencies": [
+        "form"
+      ],
+      "files": [
+        {
+          "type": "component",
+          "path": "src/components/form-field/form-field.vue"
+        },
+        {
+          "type": "component",
+          "path": "src/components/form-field/form-field.props.ts"
+        },
+        {
+          "type": "component",
+          "path": "src/components/form-field/form-field.style.ts"
+        },
+        {
+          "type": "composable",
+          "path": "src/composables/use-form-field-context.ts"
+        },
+        {
+          "type": "component",
+          "kind": "test",
+          "path": "src/components/form-field/form-field.test.ts"
+        },
+        {
+          "type": "component",
+          "kind": "doc",
+          "path": "src/components/form-field/README.md"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/form-field/examples/usage.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/form-field/examples/orientation.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/form-field/examples/required.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/form-field/examples/with-description.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/form-field/examples/with-hint.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/form-field/examples/with-help.vue"
+        }
+      ]
+    },
+    {
       "name": "icon",
       "type": "component",
       "title": "Icon",

@@ -27,6 +27,18 @@ export function toBoolDataAttrValue(value: any) {
 }
 
 /**
+ * 是否为布尔数据属性值
+ *
+ * @category Utils
+ *
+ * @param value - 值
+ * @returns 是否为布尔数据属性值
+ */
+export function isBoolDataAttrValue(value: unknown) {
+  return value !== undefined && value !== false && value !== 'false'
+}
+
+/**
  * 转换为布尔 aria 值
  *
  * @category Utils

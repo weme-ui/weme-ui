@@ -2,7 +2,7 @@ import { describe, expect, it } from 'vitest'
 import { resolveOptions } from '~/options'
 import { fonts, textShadows, textStrokes } from '~/rules/typography'
 import { cssVars } from '../../uno.config'
-import { expectUtilities, matchRule } from './_utils'
+import { css, expectUtilities, matchAllRules, matchRule } from './_utils'
 
 const options = resolveOptions({ cssVars })
 const fontRules = fonts(options)
@@ -35,12 +35,29 @@ describe('typography rules', () => {
         color: 'color-mix(in oklab, var(--foreground-base) 50%, transparent)',
       },
       'text-highlighted': { color: 'var(--foreground-highlighted)' },
+      'text-color-base': { color: 'var(--foreground-base)' },
       'c-foreground': { color: 'var(--foreground-base)' },
       'c-foreground-muted': { color: 'var(--foreground-muted)' },
       'c-muted': { color: 'var(--foreground-muted)' },
       'c-base': { color: 'var(--foreground-base)' },
       'color-background-elevated': { color: 'var(--background-elevated)' },
     })
+  })
+
+  it('keeps text-base as font-size and never emits foreground color', () => {
+    expectUtilities(fontRules, {
+      'text-base': {
+        'font-size': 'var(--text-base-fontSize)',
+        'line-height': 'var(--un-leading, var(--text-base-lineHeight))',
+      },
+    })
+
+    for (const utility of ['text-base', 'text-base/50'] as const) {
+      const results = matchAllRules(fontRules, utility)
+      expect(results.length, utility).toBeGreaterThan(0)
+      for (const result of results)
+        expect(css(result), utility).not.toHaveProperty('color', 'var(--foreground-base)')
+    }
   })
 
   it('does not shorthand cross-group tokens under text/c', () => {

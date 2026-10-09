@@ -44,8 +44,9 @@ function isEmpty(result: unknown) {
   return values.length === 0 || values.every(value => value == null)
 }
 
-export function matchRule(rules: Rule<Theme>[], matcher: string, overrides: Record<string, unknown> = {}) {
+export function matchAllRules(rules: Rule<Theme>[], matcher: string, overrides: Record<string, unknown> = {}) {
   const context = createRuleContext(overrides)
+  const results: unknown[] = []
 
   for (const rule of rules) {
     const [pattern, body] = rule
@@ -66,8 +67,14 @@ export function matchRule(rules: Rule<Theme>[], matcher: string, overrides: Reco
     if (isEmpty(result))
       continue
 
-    return result
+    results.push(result)
   }
+
+  return results
+}
+
+export function matchRule(rules: Rule<Theme>[], matcher: string, overrides: Record<string, unknown> = {}) {
+  return matchAllRules(rules, matcher, overrides)[0]
 }
 
 export function css(result: unknown): Record<string, unknown> {

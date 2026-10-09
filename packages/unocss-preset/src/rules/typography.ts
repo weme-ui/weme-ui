@@ -25,7 +25,12 @@ export function fonts(options: ResolvedWemeUIOptions): Rule<Theme>[] {
     [/^(?:text|font)-size-(.+)$/, handleSize, { autocomplete: 'text-size-$text' }],
 
     // text colors
-    [/^text-(?:color-)?(.+)$/, (match, ctx) => handlerColorOrSize(match, ctx, options), { autocomplete: 'text-$colors' }],
+    // text-base 保留给字号；颜色用 text-foreground / text-foreground-base / c-base
+    [/^text-(?:color-)?(.+)$/, (match, ctx) => {
+      if (/^text-base(?:\/\d+)?$/.test(match[0]))
+        return
+      return handlerColorOrSize(match, ctx, options)
+    }, { autocomplete: 'text-$colors' }],
 
     // colors
     [/^(?:color|c)-(.+)$/, (match, ctx) => handleColor(match, ctx, options)],

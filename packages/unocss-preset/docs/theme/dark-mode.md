@@ -120,11 +120,11 @@ document.documentElement.classList.toggle('light', !isDark)
 ```css
 :root,
 :where([data-theme='default']) {
-  --accent-9: var(--custom-accent-9, var(--clay-9));
+  --accent-9: var(--custom-accent-9, var(--puerto-9));
 }
 
 .dark:where([data-theme='default']) {
-  --accent-9: var(--custom-accent-9, var(--clay-9));
+  --accent-9: var(--custom-accent-9, var(--puerto-9));
 }
 ```
 

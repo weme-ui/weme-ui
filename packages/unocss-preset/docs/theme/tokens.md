@@ -20,7 +20,7 @@ export const DEFAULT_NAME = 'default'
  * @category Tokens
  */
 export const DEFAULT_COLOR_ALIASES: CustomThemeColorAlias = {
-  accent: 'clay',
+  accent: 'puerto',
   neutral: 'iron',
   success: 'green',
   info: 'indigo',
@@ -65,7 +65,7 @@ export const DEFAULT_TOKENS: CustomThemeTokens = {
 
 | 别名      | 默认指向 |
 | --------- | -------- |
-| `accent`  | `clay`   |
+| `accent`  | `puerto` |
 | `neutral` | `iron`   |
 | `success` | `green`  |
 | `info`    | `indigo` |
@@ -76,11 +76,11 @@ export const DEFAULT_TOKENS: CustomThemeTokens = {
 
 ```css
 :where([data-theme='default']) {
-  --accent-9: var(--custom-accent-9, var(--clay-9));
+  --accent-9: var(--custom-accent-9, var(--puerto-9));
 }
 
 .dark:where([data-theme='default']) {
-  --accent-9: var(--custom-accent-9, var(--clay-9));
+  --accent-9: var(--custom-accent-9, var(--puerto-9));
 }
 ```
 

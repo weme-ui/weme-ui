@@ -136,7 +136,7 @@ presetWemeUI({
 ## 与 Theme / Tokens 的关系
 
 - **Theme `colors`**：原始色板 `--blue-9`、`--iron-1`（由 color preflight 写入）
-- **Tokens 别名**：`--accent-9` → `var(--custom-accent-9, var(--clay-9))`（由 custom theme preflight 写入）
+- **Tokens 别名**：`--accent-9` → `var(--custom-accent-9, var(--puerto-9))`（由 custom theme preflight 写入）
 - **语义 Tokens**：`--foreground-base` → `var(--neutral-11)` 等
 
 亮暗切换、`dark:` Variants 与 `.dark` 覆盖见 [Dark mode](./dark-mode.md)。

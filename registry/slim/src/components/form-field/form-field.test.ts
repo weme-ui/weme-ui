@@ -85,5 +85,19 @@ describe('form-field', () => {
       expect(await axe(wrapper.element)).toHaveNoViolations()
       wrapper.unmount()
     })
+
+    it('sets data-invalid when invalid prop is true', () => {
+      const wrapper = mountFormField({ invalid: true })
+      const root = wrapper.find('[data-slot="form-field"]')
+      expect(root.attributes('data-invalid')).toBe('')
+      wrapper.unmount()
+    })
+
+    it('sets data-disabled when disabled prop is true', () => {
+      const wrapper = mountFormField({ disabled: true })
+      const root = wrapper.find('[data-slot="form-field"]')
+      expect(root.attributes('data-disabled')).toBe('')
+      wrapper.unmount()
+    })
   })
 })

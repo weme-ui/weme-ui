@@ -9,7 +9,7 @@ export const useFormFieldStyle = createVariants({
     label: 'text-(base highlighted nowrap) font-medium',
     description: 'text-(sm subtle)',
     required: 'text-red align-middle',
-    content: 'flex flex-col',
+    content: 'flex flex-col gap-2',
     hint: 'text-(xs muted)',
     help: 'text-(xs muted)',
     errors: 'text-(xs error)',

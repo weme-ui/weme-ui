@@ -48,7 +48,7 @@ const isDisabled = computed(() => disabled.value ?? form.disabled.value)
 const isTouched = computed(() => field.state.meta.isTouched)
 const isDirty = computed(() => field.state.meta.isDirty)
 const isValid = computed(() => field.state.meta.isValid)
-const isInvalid = computed(() => invalid.value ?? isValid.value === false)
+const isInvalid = computed(() => invalid.value || isValid.value === false)
 const isFilled = computed(() => isFilledValue(field.state.value))
 
 const focused = ref(false)

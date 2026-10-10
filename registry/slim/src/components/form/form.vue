@@ -25,7 +25,7 @@ provideFormContext({
     :id="formId"
     data-slot="form"
     :name="name"
-    :class="cn('flex-(~ col) gap-4 p-4', props.class)"
+    :class="cn('flex flex-col gap-4 p-4', props.class)"
     method="post"
     novalidate
     @submit.prevent="form.handleSubmit"

@@ -2,6 +2,6 @@ import { createVariants } from '~/utils/styles'
 
 export const useLinkOverlayStyle = createVariants({
   slots: {
-    base: 'static before:(abs block inset-0 content-[""] cursor-inherit)',
+    base: 'static before:(block cursor-inherit content-[""] inset-0 abs)',
   },
 })

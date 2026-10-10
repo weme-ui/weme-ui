@@ -4,15 +4,15 @@ import { createVariants } from '~/utils/styles'
 export const useFormFieldStyle = createVariants({
   slots: {
     root: 'flex gap-2',
-    header: 'flex-(~ col)',
+    header: 'flex flex-col',
     labelWrapper: 'flex gap-1',
     label: 'text-(base highlighted nowrap) font-medium',
-    description: 'text-(subtle sm)',
+    description: 'text-(sm subtle)',
     required: 'text-red align-middle',
-    content: 'flex-(~ col)',
-    hint: 'text-(muted xs)',
-    help: 'text-(muted xs)',
-    errors: 'text-(error xs)',
+    content: 'flex flex-col',
+    hint: 'text-(xs muted)',
+    help: 'text-(xs muted)',
+    errors: 'text-(xs error)',
   },
 
   variants: {

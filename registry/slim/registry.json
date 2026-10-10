@@ -213,6 +213,11 @@
           "type": "component",
           "kind": "doc",
           "path": "src/components/form/README.md"
+        },
+        {
+          "type": "component",
+          "kind": "test",
+          "path": "src/components/form/form.test.ts"
         }
       ]
     },
@@ -284,6 +289,89 @@
           "type": "component",
           "kind": "example",
           "path": "src/components/form-field/examples/with-help.vue"
+        }
+      ]
+    },
+    {
+      "name": "input",
+      "type": "component",
+      "title": "Input",
+      "description": "A single-line text input with prefix, suffix, clear, and character count support.",
+      "meta": {
+        "docs.category": "form",
+        "docs.categoryLabel": "Form"
+      },
+      "registryDependencies": [
+        "form-field",
+        "icon"
+      ],
+      "files": [
+        {
+          "type": "component",
+          "path": "src/components/input/input.vue"
+        },
+        {
+          "type": "component",
+          "path": "src/components/input/input.props.ts"
+        },
+        {
+          "type": "component",
+          "path": "src/components/input/input.style.ts"
+        },
+        {
+          "type": "component",
+          "kind": "doc",
+          "path": "src/components/input/README.md"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/input/examples/usage.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/input/examples/variants.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/input/examples/sizes.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/input/examples/radius.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/input/examples/with-affix.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/input/examples/clearable.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/input/examples/countable.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/input/examples/loading.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/input/examples/disabled.vue"
+        },
+        {
+          "type": "component",
+          "kind": "test",
+          "path": "src/components/input/input.test.ts"
         }
       ]
     },

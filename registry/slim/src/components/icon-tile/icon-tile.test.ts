@@ -1,5 +1,8 @@
+import { mount } from '@vue/test-utils'
 import { describe, expect, it } from 'vitest'
+import { axe } from 'vitest-axe'
 import { useIconTileStyle } from './icon-tile.style'
+import IconTile from './icon-tile.vue'
 
 describe('icon-tile', () => {
   it('applies default color, variant, size, and radius', () => {
@@ -37,5 +40,18 @@ describe('icon-tile', () => {
 
   it('skips surface classes for unstyled variant', () => {
     expect(useIconTileStyle({ variant: 'unstyled' }).root()).not.toContain('plain-')
+  })
+
+  describe('given a decorative icon tile', () => {
+    it('is aria-hidden and has no accessibility violations', async () => {
+      const wrapper = mount(IconTile, {
+        attachTo: document.body,
+        props: { icon: 'ri:discord-line' },
+      })
+      expect(wrapper.attributes('aria-hidden')).toBe('true')
+      expect(wrapper.attributes('data-slot')).toBe('icon-tile')
+      expect(await axe(wrapper.element)).toHaveNoViolations()
+      wrapper.unmount()
+    })
   })
 })

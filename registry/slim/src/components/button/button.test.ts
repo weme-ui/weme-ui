@@ -1,5 +1,8 @@
-import { describe, expect, it } from 'vitest'
+import { mount } from '@vue/test-utils'
+import { describe, expect, it, vi } from 'vitest'
+import { axe } from 'vitest-axe'
 import { useButtonStyle } from './button.style'
+import Button from './button.vue'
 
 describe('button', () => {
   it('applies default size, radius, primary variant, and scalable press style', () => {
@@ -51,5 +54,54 @@ describe('button', () => {
     expect(loading.root()).toContain('is-loading')
     expect(loading.icon()).toContain('animate-spin')
     expect(loading.root()).not.toContain('aria-[pressed=true]:scale-96')
+  })
+
+  describe('given a default button', () => {
+    it('has no accessibility violations', async () => {
+      const wrapper = mount(Button, {
+        attachTo: document.body,
+        props: { label: 'Save' },
+      })
+      expect(await axe(wrapper.element)).toHaveNoViolations()
+      wrapper.unmount()
+    })
+
+    it('invokes onClick when pressed', async () => {
+      const onClick = vi.fn()
+      const wrapper = mount(Button, {
+        attachTo: document.body,
+        props: { label: 'Save', onClick },
+      })
+      await wrapper.trigger('click')
+      expect(onClick).toHaveBeenCalledTimes(1)
+      wrapper.unmount()
+    })
+  })
+
+  describe('given a disabled button', () => {
+    it('exposes aria-disabled and does not invoke onClick', async () => {
+      const onClick = vi.fn()
+      const wrapper = mount(Button, {
+        attachTo: document.body,
+        props: { label: 'Save', disabled: true, onClick },
+      })
+      expect(wrapper.attributes('aria-disabled')).toBe('true')
+      expect(wrapper.attributes('disabled')).toBeDefined()
+      await wrapper.trigger('click')
+      expect(onClick).not.toHaveBeenCalled()
+      wrapper.unmount()
+    })
+  })
+
+  describe('given a loading button', () => {
+    it('exposes aria-busy and aria-disabled', () => {
+      const wrapper = mount(Button, {
+        attachTo: document.body,
+        props: { label: 'Save', loading: true },
+      })
+      expect(wrapper.attributes('aria-busy')).toBe('true')
+      expect(wrapper.attributes('aria-disabled')).toBe('true')
+      wrapper.unmount()
+    })
   })
 })

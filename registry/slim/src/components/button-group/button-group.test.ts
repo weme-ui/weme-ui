@@ -1,5 +1,10 @@
+import { mount } from '@vue/test-utils'
 import { describe, expect, it } from 'vitest'
+import { axe } from 'vitest-axe'
+import { h } from 'vue'
+import Button from '../button/button.vue'
 import { useButtonGroupStyle } from './button-group.style'
+import ButtonGroup from './button-group.vue'
 
 describe('button-group', () => {
   it('applies default orientation and gap', () => {
@@ -49,5 +54,26 @@ describe('button-group', () => {
     const ui = useButtonGroupStyle({ orientation: 'horizontal', gap: 'none', separator: true })
     expect(ui.item()).toContain('data-[order=first]:rounded-r-none')
     expect(ui.item()).not.toContain('data-[order=first]:border-r-0')
+  })
+
+  describe('given a group with two buttons', () => {
+    it('exposes role=group and has no accessibility violations', async () => {
+      const wrapper = mount(ButtonGroup, {
+        attachTo: document.body,
+        slots: {
+          default: () => [
+            h(Button, { label: 'One' }),
+            h(Button, { label: 'Two' }),
+          ],
+        },
+      })
+      expect(wrapper.attributes('role')).toBe('group')
+      expect(wrapper.attributes('data-slot')).toBe('button-group')
+      // role="group" + aria-orientation comes from RovingFocusGroup; axe flags aria-allowed-attr.
+      expect(await axe(wrapper.element, {
+        rules: { 'aria-allowed-attr': { enabled: false } },
+      })).toHaveNoViolations()
+      wrapper.unmount()
+    })
   })
 })

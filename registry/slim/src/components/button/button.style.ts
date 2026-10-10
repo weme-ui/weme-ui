@@ -3,7 +3,7 @@ import { createVariants } from '~/utils/styles'
 
 export const useButtonStyle = createVariants({
   slots: {
-    root: 'relative w-fit flex-(inline center) cursor-pointer select-none font-medium',
+    root: 'font-medium flex-(inline center) w-fit cursor-pointer select-none relative',
     icon: 'shrink-0',
   },
 
@@ -20,9 +20,9 @@ export const useButtonStyle = createVariants({
       unstyled: '',
     },
     size: {
-      sm: { root: 'h-6 px-sm gap-xs text-xs', icon: 'size-3' },
-      md: { root: 'h-8 px-md gap-sm text-sm', icon: 'size-3.5' },
-      lg: { root: 'h-10 px-lg gap-md text-base', icon: 'size-4' },
+      sm: { root: 'text-xs px-sm gap-xs h-6', icon: 'size-3' },
+      md: { root: 'text-sm px-md gap-sm h-8', icon: 'size-3.5' },
+      lg: { root: 'text-base px-lg gap-md h-10', icon: 'size-4' },
     },
     radius: {
       none: '',

@@ -1,7 +1,7 @@
 import type { ComputedRef, Ref } from 'vue'
 import { createContext } from 'reka-ui'
 import { useAttrs } from 'vue'
-import { isBoolDataAttrValue } from '~/utils/props'
+import { isBoolDataAttrValue, toBoolAriaValue } from '~/utils/props'
 
 export type FormFieldDataAttributes = Record<`data-${'disabled' | 'valid' | 'invalid' | 'focused' | 'touched' | 'dirty' | 'filled'}`, '' | undefined>
 
@@ -52,9 +52,11 @@ export function useFormFieldBindings() {
     'aria-describedby': describedBy,
     'aria-labelledby': labelledBy,
     'aria-invalid': ariaInvalid,
+    id,
     name,
     disabled,
     required,
+    class: className,
     ...rest
   } = attrs
 
@@ -64,11 +66,12 @@ export function useFormFieldBindings() {
   return {
     ...rest,
     ...field.dataAttributes.value,
-    'name': field.name.value ?? name,
+    'id': field.fieldId.value ?? id as string,
+    'name': field.name.value ?? name as string,
     'disabled': isDisabled || undefined,
     'required': (field.required.value || isBoolDataAttrValue(required)) || undefined,
     'aria-labelledby': mergeIds(labelledBy, field.labelId.value),
     'aria-describedby': mergeIds(describedBy, field.descriptionId.value),
-    'aria-invalid': ariaInvalid ?? ((field.invalid.value && !isDisabled) || undefined),
+    'aria-invalid': ariaInvalid ? toBoolAriaValue(ariaInvalid) : ((field.invalid.value && !isDisabled) || undefined),
   }
 }

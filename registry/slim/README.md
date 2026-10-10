@@ -85,7 +85,7 @@ pnpm dlx @weme-ui/weme-ui add weme-ui/slim/button
 
 - **Form**
   - [x] `form`
-  - [ ] `field`
+  - [x] `form-field`
   - [ ] `autocomplete`
   - [ ] `cascader`
   - [ ] `filters`
@@ -96,7 +96,7 @@ pnpm dlx @weme-ui/weme-ui add weme-ui/slim/button
   - [ ] `date-picker`
   - [ ] `file-upload`
   - [ ] `input-group`
-  - [ ] `input`
+  - [x] `input`
   - [ ] `label`
   - [ ] `listbox`
   - [ ] `number-input`
@@ -114,6 +114,7 @@ pnpm dlx @weme-ui/weme-ui add weme-ui/slim/button
 ## 组合式函数
 
 - [x] `useFormContext()`
+- [x] `useFormFieldContext()`
 - [ ] `useToast()`
 
 ## 许可证

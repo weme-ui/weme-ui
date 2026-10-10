@@ -3,11 +3,11 @@ import { createVariants } from '~/utils/styles'
 
 export const useIconStackStyle = createVariants({
   slots: {
-    root: 'relative text-foreground **:data-[slot=icon-stack-layer]:fill-background-base',
+    root: 'text-foreground relative **:data-[slot=icon-stack-layer]:fill-background-base',
     layerWrapper: 'size-full overflow-visible',
     layer: '',
     ellipse: 'blur-xs',
-    iconWrapper: 'abs top-$icon-stack-content-y left-$icon-stack-content-x -translate-x-1/2 -translate-y-1/2 scale-x-90 skew-y--26 flex-(~ center) pointer-events-none',
+    iconWrapper: 'flex pointer-events-none skew-y--26 scale-x-90 flex-center left-$icon-stack-content-x top-$icon-stack-content-y abs -translate-x-1/2 -translate-y-1/2',
     icon: '',
   },
 
@@ -21,10 +21,10 @@ export const useIconStackStyle = createVariants({
       error: { root: 'text-error' },
     },
     size: {
-      xs: { root: 'w-11 h-12', icon: 'size-3' },
-      sm: { root: 'w-14 h-16', icon: 'size-3.5' },
-      md: { root: 'w-18 h-20', icon: 'size-4' },
-      lg: { root: 'w-24 h-28', icon: 'size-6' },
+      xs: { root: 'h-12 w-11', icon: 'size-3' },
+      sm: { root: 'h-16 w-14', icon: 'size-3.5' },
+      md: { root: 'h-20 w-18', icon: 'size-4' },
+      lg: { root: 'h-28 w-24', icon: 'size-6' },
     },
   },
 

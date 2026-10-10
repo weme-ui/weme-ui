@@ -17,11 +17,17 @@
     "skipLibCheck": true,
     "ignoreDeprecations": "6.0"
   },
-  "include": ["src/**/*.ts", "src/**/*.vue"],
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.vue",
+    "vitest.setup.ts",
+    "vitest.config.ts",
+    "vitest-env.d.ts",
+    "vue-shim.d.ts"
+  ],
   "exclude": [
     "node_modules",
     "dist",
-    "src/**/*.test.ts",
     "src/**/examples/**"
   ]
 }

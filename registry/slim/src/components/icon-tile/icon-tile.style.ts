@@ -3,8 +3,8 @@ import { createVariants } from '~/utils/styles'
 
 export const useIconTileStyle = createVariants({
   slots: {
-    root: 'relative flex-(inline center) align-middle shrink-0',
-    icon: 'pointer-events-none shrink-0',
+    root: 'align-middle flex-(inline center) shrink-0 relative',
+    icon: 'shrink-0 pointer-events-none',
   },
 
   variants: {

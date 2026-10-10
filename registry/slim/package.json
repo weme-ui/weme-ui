@@ -62,10 +62,13 @@
   },
   "devDependencies": {
     "@iconify-json/ri": "catalog:utils",
+    "@testing-library/vue": "catalog:dev",
     "@vitejs/plugin-vue": "catalog:dev",
+    "@vue/server-renderer": "catalog:dev",
     "@vue/test-utils": "catalog:dev",
     "happy-dom": "catalog:dev",
     "typescript": "catalog:build",
-    "vitest": "catalog:dev"
+    "vitest": "catalog:dev",
+    "vitest-axe": "catalog:dev"
   }
 }

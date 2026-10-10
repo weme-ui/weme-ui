@@ -1,5 +1,8 @@
+import { mount } from '@vue/test-utils'
 import { describe, expect, it } from 'vitest'
+import { axe } from 'vitest-axe'
 import { useIconStackStyle } from './icon-stack.style'
+import IconStack from './icon-stack.vue'
 
 describe('icon-stack', () => {
   it('applies default size and base slots', () => {
@@ -31,5 +34,22 @@ describe('icon-stack', () => {
     expect(useIconStackStyle({ color: 'success' }).root()).toContain('text-success')
     expect(useIconStackStyle({ color: 'warning' }).root()).toContain('text-warning')
     expect(useIconStackStyle({ color: 'error' }).root()).toContain('text-error')
+  })
+
+  describe('given a decorative icon stack', () => {
+    it('renders data-slot and has no accessibility violations', async () => {
+      const wrapper = mount(IconStack, {
+        attachTo: document.body,
+        props: { icon: 'ri:discord-line' },
+        attrs: { 'aria-hidden': 'true' },
+      })
+      const root = wrapper.find('[data-slot="icon-stack"]')
+      expect(root.exists()).toBe(true)
+      // Decorative stack SVG layers are aria-hidden on the svg child; root may still need svg-img-alt skipped if Iconify icon is present.
+      expect(await axe(root.element, {
+        rules: { 'svg-img-alt': { enabled: false } },
+      })).toHaveNoViolations()
+      wrapper.unmount()
+    })
   })
 })

@@ -1,5 +1,8 @@
+import { mount } from '@vue/test-utils'
 import { describe, expect, it } from 'vitest'
+import { axe } from 'vitest-axe'
 import { useSeparatorStyle } from './separator.style'
+import Separator from './separator.vue'
 
 describe('separator', () => {
   it('applies default color, variant, and orientation', () => {
@@ -77,5 +80,26 @@ describe('separator', () => {
     expect(center.line()).toContain('flex-1')
 
     expect(useSeparatorStyle({ labelPosition: 'none' }).root() || '').not.toContain('flex')
+  })
+
+  describe('given a plain separator', () => {
+    it('renders data-slot and has no accessibility violations', async () => {
+      const wrapper = mount(Separator, { attachTo: document.body })
+      expect(wrapper.attributes('data-slot')).toBe('separator')
+      expect(await axe(wrapper.element)).toHaveNoViolations()
+      wrapper.unmount()
+    })
+  })
+
+  describe('given a labeled separator', () => {
+    it('renders the label and has no accessibility violations', async () => {
+      const wrapper = mount(Separator, {
+        attachTo: document.body,
+        props: { label: 'Or' },
+      })
+      expect(wrapper.text()).toContain('Or')
+      expect(await axe(wrapper.element)).toHaveNoViolations()
+      wrapper.unmount()
+    })
   })
 })

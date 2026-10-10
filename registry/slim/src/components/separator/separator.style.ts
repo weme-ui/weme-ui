@@ -4,7 +4,7 @@ import { createVariants } from '~/utils/styles'
 export const useSeparatorStyle = createVariants({
   slots: {
     root: '',
-    label: 'px-sm select-none text-xs text-subtle',
+    label: 'text-xs text-subtle px-sm select-none',
     line: '',
   },
 
@@ -18,8 +18,8 @@ export const useSeparatorStyle = createVariants({
       gradient: {},
     },
     orientation: {
-      horizontal: { line: 'w-full h-px' },
-      vertical: { line: 'w-px h-full' },
+      horizontal: { line: 'h-px w-full' },
+      vertical: { line: 'h-full w-px' },
     },
     labelPosition: { none: {}, start: {}, center: {}, end: {} },
   },

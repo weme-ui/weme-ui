@@ -3,7 +3,7 @@ import { createVariants } from '~/utils/styles'
 
 export const useButtonGroupStyle = createVariants({
   slots: {
-    root: 'flex w-fit h-fit',
+    root: 'flex h-fit w-fit',
     item: '',
     separator: 'bg-border-base',
   },

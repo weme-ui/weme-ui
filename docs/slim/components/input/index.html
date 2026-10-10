@@ -1,0 +1,771 @@
+<!DOCTYPE html><html lang="zh-CN" class="dark" data-scaling="100%" data-radius="xs"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Input</title><meta name="description" content="A single-line text input with prefix, suffix, clear, and character count support."><link rel="icon" type="image/svg+xml" href="/weme-ui/weme.svg"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet"><script>
+      (() => {
+        const key = 'weme-docs-theme'
+        const stored = localStorage.getItem(key)
+        const dark = stored ? stored === 'dark' : true
+        document.documentElement.classList.toggle('dark', dark)
+        document.documentElement.classList.toggle('light', !dark)
+      })()
+    </script><link rel="stylesheet" href="/weme-ui/_astro/registry.B7TmAdjY.css"><link rel="stylesheet" href="/weme-ui/_astro/DocsLayout.DVwfQSnk.css"><style>.example-panel[data-astro-cid-r2jpjjbh]{margin:.55rem 0 1.85rem}.example-panel-title[data-astro-cid-r2jpjjbh]{letter-spacing:-.02em;color:var(--docs-ink);margin:0 0 .65rem;font-size:1.05rem;font-weight:600}.example-panel-shell[data-astro-cid-r2jpjjbh]{border:1px solid var(--docs-border-strong);border-radius:calc(var(--docs-radius) + 4px);background:var(--docs-bg-panel);box-shadow:0 0 0 1px color-mix(in srgb, var(--docs-ink) 4%, transparent) inset, 0 18px 40px -28px #000000bf;overflow:hidden}.example-panel-stage[data-astro-cid-r2jpjjbh]{background:radial-gradient(120% 80% at 0% 0%, var(--docs-accent-soft), transparent 50%), var(--docs-bg-example);position:relative}.example-panel-stage-glow[data-astro-cid-r2jpjjbh]{pointer-events:none;background-image:linear-gradient(color-mix(in srgb, var(--docs-border-strong) 65%, transparent) 1px, transparent 1px), linear-gradient(90deg, color-mix(in srgb, var(--docs-border-strong) 65%, transparent) 1px, transparent 1px);opacity:.55;background-size:24px 24px;position:absolute;inset:0;mask-image:linear-gradient(#000000b3,#0000 90%)}.example-panel-stage-body[data-astro-cid-r2jpjjbh]{z-index:1;min-height:8.5rem;color:var(--docs-ink);justify-content:center;align-items:center;padding:2rem 1.5rem;display:flex;position:relative}.example-panel-code[data-astro-cid-r2jpjjbh]{border-top:1px solid var(--docs-border);background:var(--docs-bg-code)}.example-panel-toolbar[data-astro-cid-r2jpjjbh]{cursor:pointer;user-select:none;color:var(--docs-muted);background:linear-gradient(180deg, var(--docs-bg-soft), var(--docs-bg-code));justify-content:space-between;align-items:center;gap:.75rem;padding:.55rem .85rem;font-size:.75rem;font-weight:500;list-style:none;display:flex}.example-panel-toolbar[data-astro-cid-r2jpjjbh]::-webkit-details-marker{display:none}.example-panel-toolbar[data-astro-cid-r2jpjjbh]::marker{content:""}.example-panel-toolbar[data-astro-cid-r2jpjjbh]:hover{color:var(--docs-ink-soft)}.example-panel-toolbar-left[data-astro-cid-r2jpjjbh],.example-panel-toolbar-right[data-astro-cid-r2jpjjbh]{align-items:center;gap:.55rem;min-width:0;display:inline-flex}.example-panel-lang[data-astro-cid-r2jpjjbh]{border:1px solid color-mix(in srgb, var(--docs-accent) 35%, var(--docs-border));background:var(--docs-accent-soft);color:var(--docs-accent-ink);font-family:var(--docs-font-mono);letter-spacing:.04em;text-transform:uppercase;border-radius:999px;align-items:center;padding:.12rem .45rem;font-size:.68rem;display:inline-flex}.example-panel-path[data-astro-cid-r2jpjjbh]{text-overflow:ellipsis;white-space:nowrap;font-family:var(--docs-font-mono);color:var(--docs-muted);font-size:.7rem;overflow:hidden}.example-panel-copy[data-astro-cid-r2jpjjbh]{appearance:none;color:inherit;font:inherit;cursor:pointer;background:0 0;border:1px solid #0000;border-radius:.35rem;padding:.18rem .45rem;font-size:.72rem}.example-panel-copy[data-astro-cid-r2jpjjbh]:hover{border-color:var(--docs-border);background:var(--docs-bg-hover);color:var(--docs-ink)}.example-panel-copy[data-astro-cid-r2jpjjbh].is-copied{color:var(--docs-accent-ink)}.example-panel-copy[data-astro-cid-r2jpjjbh].is-failed{color:#f07676}.example-panel-toggle[data-astro-cid-r2jpjjbh]{color:var(--docs-ink-soft)}.example-panel-code[data-astro-cid-r2jpjjbh][open] .example-panel-toggle[data-astro-cid-r2jpjjbh]{color:var(--docs-accent-ink)}.example-panel-code-body[data-astro-cid-r2jpjjbh]{border-top:1px solid var(--docs-border);background:var(--docs-bg-code);max-height:min(28rem,70vh);overflow:auto}.example-panel-code-body[data-astro-cid-r2jpjjbh] pre{font-family:var(--docs-font-mono)!important;background:0 0!important;border:0!important;border-radius:0!important;margin:0!important;padding:1rem 1.05rem 1.15rem!important;font-size:.82rem!important;line-height:1.65!important}.example-panel-code-body[data-astro-cid-r2jpjjbh] pre code{font-family:inherit!important;font-size:inherit!important;color:inherit!important;background:0 0!important;border:0!important;padding:0!important}.example-panel-code-body[data-astro-cid-r2jpjjbh] .shiki{background:0 0!important}
+</style></head><body><header class="docs-topbar"><div class="docs-topbar-inner"><a href="/weme-ui/" class="docs-brand-mark"><svg class="docs-brand-logo" width="28" height="28" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect width="32" height="32" rx="16" fill="#1D2129"></rect><path fill-rule="evenodd" clip-rule="evenodd" d="M26 16C26 16.492 25.8045 16.9839 25.4135 17.3593L21.1659 21.437C20.3839 22.1877 19.1161 22.1877 18.3341 21.437L16.5304 19.7053L16.5024 19.6798C16.2086 19.425 15.7554 19.433 15.4716 19.7036L13.6659 21.437C12.8839 22.1877 11.6161 22.1877 10.8341 21.437L6.58648 17.3593C6.1955 16.9839 6 16.492 6 16C6 15.508 6.1955 15.0161 6.58648 14.6407L10.8341 10.563C11.6161 9.81233 12.8839 9.81233 13.6659 10.563L15.4716 12.2965C15.7554 12.567 16.2086 12.575 16.5024 12.3202L16.5304 12.2947L18.3341 10.563C19.1161 9.81233 20.3839 9.81234 21.1659 10.563L25.4135 14.6407C25.8045 15.0161 26 15.508 26 16ZM15.9015 16C15.9015 15.835 15.836 15.6701 15.7051 15.5444L13.9071 13.8183C13.9054 13.8166 13.9036 13.815 13.9018 13.8133L12.7204 12.679C12.4603 12.4293 12.0397 12.4293 11.7796 12.679L8.79481 15.5444C8.66394 15.6701 8.59841 15.835 8.59842 16C8.59842 16.165 8.66394 16.3299 8.79481 16.4556L11.7796 19.321C12.0397 19.5707 12.4603 19.5707 12.7204 19.321L13.9018 18.1867C13.9036 18.185 13.9054 18.1834 13.9071 18.1817L15.7051 16.4556C15.836 16.3299 15.9015 16.165 15.9015 16ZM18.5 16C18.5 16.492 18.3045 16.9839 17.9135 17.3593L17.5091 17.7475C17.7192 17.8669 17.9175 18.0133 18.0982 18.1868L19.2795 19.321C19.5396 19.5707 19.9602 19.5707 20.2203 19.321L23.2051 16.4556C23.336 16.3299 23.4015 16.165 23.4015 16C23.4015 15.835 23.336 15.6701 23.2051 15.5444L20.2203 12.679C19.9602 12.4293 19.5396 12.4293 19.2795 12.679L18.0982 13.8132C17.9175 13.9867 17.7192 14.1331 17.5091 14.2525L17.9135 14.6407C18.3045 15.0161 18.5 15.508 18.5 16Z" fill="white"></path></svg><span class="docs-brand-text">Weme UI</span></a><nav class="docs-product-nav" aria-label="Libraries"><a href="/weme-ui/slim/" class="docs-product-link is-active">slim</a><a href="/weme-ui/unocss-preset/" class="docs-product-link">unocss-preset</a></nav><div class="docs-topbar-spacer"></div><div class="docs-topbar-actions"><style>astro-island,astro-slot,astro-static-slot{display:contents}</style><script>(function(){let e=async e=>{await(await e())()};(self.Astro||(self.Astro={})).load=e,window.dispatchEvent(new Event(`astro:load`))})();</script><script>(function(){function e(t){"@babel/helpers - typeof";return e=typeof Symbol==`function`&&typeof Symbol.iterator==`symbol`?function(e){return typeof e}:function(e){return e&&typeof Symbol==`function`&&e.constructor===Symbol&&e!==Symbol.prototype?`symbol`:typeof e},e(t)}function t(t,n){if(e(t)!=`object`||!t)return t;var r=t[Symbol.toPrimitive];if(r!==void 0){var i=r.call(t,n||`default`);if(e(i)!=`object`)return i;throw TypeError(`@@toPrimitive must return a primitive value.`)}return(n===`string`?String:Number)(t)}function n(n){var r=t(n,`string`);return e(r)==`symbol`?r:r+``}function r(e,t,r){return(t=n(t))in e?Object.defineProperty(e,t,{value:r,enumerable:!0,configurable:!0,writable:!0}):e[t]=r,e}let i=/* @__PURE__ */ new Set([`__proto__`,`constructor`,`prototype`]);{let e={0:e=>a(e),1:e=>n(e),2:e=>new RegExp(e),3:e=>new Date(e),4:e=>new Map(n(e)),5:e=>new Set(n(e)),6:e=>BigInt(e),7:e=>new URL(e),8:e=>new Uint8Array(e),9:e=>new Uint16Array(e),10:e=>new Uint32Array(e),11:e=>1/0*e},t=t=>{let[n,r]=t;return n in e?e[n](r):void 0},n=e=>e.map(t),a=e=>typeof e!=`object`||!e?e:Object.fromEntries(Object.entries(e).map(([e,n])=>[e,t(n)]));class o extends HTMLElement{constructor(...e){super(...e),r(this,`Component`,void 0),r(this,`hydrator`,void 0),r(this,`hydrate`,async()=>{var e;if(!this.hydrator||!this.isConnected)return;let t=(e=this.parentElement)==null?void 0:e.closest(`astro-island[ssr]`);if(t){t.addEventListener(`astro:hydrate`,this.hydrate,{once:!0});return}let n=this.querySelectorAll(`astro-slot`),r={},i=this.querySelectorAll(`template[data-astro-template]`);for(let e of i){let t=e.closest(this.tagName);t!=null&&t.isSameNode(this)&&(r[e.getAttribute(`data-astro-template`)||`default`]=e.innerHTML,e.remove())}for(let e of n){let t=e.closest(this.tagName);t!=null&&t.isSameNode(this)&&(r[e.getAttribute(`name`)||`default`]=e.innerHTML)}let o;try{o=this.hasAttribute(`props`)?a(JSON.parse(this.getAttribute(`props`))):{}}catch(e){let t=this.getAttribute(`component-url`)||`<unknown>`,n=this.getAttribute(`component-export`);throw n&&(t+=` (export ${n})`),console.error(`[hydrate] Error parsing props for component ${t}`,this.getAttribute(`props`),e),e}await this.hydrator(this)(this.Component,o,r,{client:this.getAttribute(`client`)}),this.removeAttribute(`ssr`),this.dispatchEvent(new CustomEvent(`astro:hydrate`))}),r(this,`unmount`,()=>{this.isConnected||this.dispatchEvent(new CustomEvent(`astro:unmount`))})}disconnectedCallback(){document.removeEventListener(`astro:after-swap`,this.unmount),document.addEventListener(`astro:after-swap`,this.unmount,{once:!0})}connectedCallback(){if(!this.hasAttribute(`await-children`)||document.readyState===`interactive`||document.readyState===`complete`)this.childrenConnectedCallback();else{let e=()=>{document.removeEventListener(`DOMContentLoaded`,e),t.disconnect(),this.childrenConnectedCallback()},t=new MutationObserver(()=>{var t;((t=this.lastChild)==null?void 0:t.nodeType)===Node.COMMENT_NODE&&this.lastChild.nodeValue===`astro:end`&&(this.lastChild.remove(),e())});t.observe(this,{childList:!0}),document.addEventListener(`DOMContentLoaded`,e)}}async childrenConnectedCallback(){let e=this.getAttribute(`before-hydration-url`);e&&await import(e),this.start()}getRetryImportUrl(e){let t=new URL(e,document.baseURI);return t.searchParams.set(`astro-retry`,Date.now().toString()),t.toString()}async importWithRetry(e){try{return await import(e)}catch(t){return await new Promise(e=>setTimeout(e,1e3)),import(this.getRetryImportUrl(e))}}handleHydrationError(e){let t=this.getAttribute(`component-url`),n=new CustomEvent(`astro:hydration-error`,{cancelable:!0,bubbles:!0,composed:!0,detail:{error:e,componentUrl:t}});this.dispatchEvent(n)&&console.error(`[astro-island] Error hydrating ${t}`,e)}async start(){let e=JSON.parse(this.getAttribute(`opts`)),t=this.getAttribute(`client`);if(Astro[t]===void 0){window.addEventListener(`astro:${t}`,()=>this.start(),{once:!0});return}try{await Astro[t](async()=>{let e=this.getAttribute(`renderer-url`);try{let[t,{default:n}]=await Promise.all([this.importWithRetry(this.getAttribute(`component-url`)),e?this.importWithRetry(e):Promise.resolve({default:()=>()=>{}})]),r=this.getAttribute(`component-export`)||`default`;if(r.includes(`.`)){this.Component=t;for(let e of r.split(`.`)){if(i.has(e)||!this.Component||typeof this.Component!=`object`&&typeof this.Component!=`function`||!Object.hasOwn(this.Component,e))throw Error(`Invalid component export path: ${r}`);this.Component=this.Component[e]}}else{if(i.has(r))throw Error(`Invalid component export path: ${r}`);this.Component=t[r]}return this.hydrator=n,this.hydrate}catch(e){return this.handleHydrationError(e),()=>{}}},e,this)}catch(e){this.handleHydrationError(e)}}attributeChangedCallback(){this.hydrate()}}r(o,`observedAttributes`,[`props`]),customElements.get(`astro-island`)||customElements.define(`astro-island`,o)}})();</script><astro-island uid="Zz5nvU" prefix="s0" component-url="/weme-ui/_astro/ThemeToggle.DbkE3Zrx.js" component-export="default" renderer-url="/weme-ui/_astro/client.BqjT1N1a.js" props="{}" ssr client="load" opts="{&quot;name&quot;:&quot;ThemeToggle&quot;,&quot;value&quot;:true}" await-children><button type="button" class="docs-theme-toggle" aria-label="切换到亮色模式" title="切换到亮色模式"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img" style="" width="18" height="18" viewBox="0 0 24 24"><path fill="currentColor" d="M12 18a6 6 0 1 1 0-12a6 6 0 0 1 0 12m0-2a4 4 0 1 0 0-8a4 4 0 0 0 0 8M11 1h2v3h-2zm0 19h2v3h-2zM3.515 4.929l1.414-1.414L7.05 5.636L5.636 7.05zM16.95 18.364l1.414-1.414l2.121 2.121l-1.414 1.414zm2.121-14.85l1.414 1.415l-2.121 2.121l-1.414-1.414zM5.636 16.95l1.414 1.414l-2.121 2.121l-1.414-1.414zM23 11v2h-3v-2zM4 11v2H1v-2z"/></svg></button><!--astro:end--></astro-island><a class="docs-topbar-icon-link" href="https://github.com/weme-ui/weme-ui" target="_blank" rel="noreferrer" aria-label="GitHub" title="GitHub"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img" style="" width="18" height="18" viewBox="0 0 24 24"><path fill="currentColor" d="M12.001 2c-5.525 0-10 4.475-10 10a9.99 9.99 0 0 0 6.837 9.488c.5.087.688-.213.688-.476c0-.237-.013-1.024-.013-1.862c-2.512.463-3.162-.612-3.362-1.175c-.113-.288-.6-1.175-1.025-1.413c-.35-.187-.85-.65-.013-.662c.788-.013 1.35.725 1.538 1.025c.9 1.512 2.337 1.087 2.912.825c.088-.65.35-1.087.638-1.337c-2.225-.25-4.55-1.113-4.55-4.938c0-1.088.387-1.987 1.025-2.687c-.1-.25-.45-1.275.1-2.65c0 0 .837-.263 2.75 1.024a9.3 9.3 0 0 1 2.5-.337c.85 0 1.7.112 2.5.337c1.913-1.3 2.75-1.024 2.75-1.024c.55 1.375.2 2.4.1 2.65c.637.7 1.025 1.587 1.025 2.687c0 3.838-2.337 4.688-4.562 4.938c.362.312.675.912.675 1.85c0 1.337-.013 2.412-.013 2.75c0 .262.188.574.688.474A10.02 10.02 0 0 0 22 12c0-5.525-4.475-10-10-10"/></svg></a></div></div></header><div class="docs-shell"><aside class="docs-sidebar"><div class="docs-nav"><label class="docs-nav-search"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="2"></circle><path d="M20 20l-3.5-3.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path></svg><input type="search" placeholder="搜索…" data-docs-search autocomplete="off" spellcheck="false"></label><section class="docs-nav-section" data-nav-section><div class="nav-section-title">Docs</div><a class="nav-link" href="/weme-ui/slim/docs/" data-nav-item data-nav-label="Introduction">Introduction</a><a class="nav-link" href="/weme-ui/slim/docs/guide/" data-nav-item data-nav-label="Guide">Guide</a></section><section class="docs-nav-section" data-nav-section><div class="nav-section-title">Components</div><div class="docs-nav-category" data-nav-category><div class="nav-category">General</div><a class="nav-link" href="/weme-ui/slim/components/button/" data-nav-item data-nav-label="Button button">Button</a><a class="nav-link" href="/weme-ui/slim/components/button-group/" data-nav-item data-nav-label="Button Group button-group">Button Group</a><a class="nav-link" href="/weme-ui/slim/components/icon/" data-nav-item data-nav-label="Icon icon">Icon</a><a class="nav-link" href="/weme-ui/slim/components/icon-tile/" data-nav-item data-nav-label="Icon Tile icon-tile">Icon Tile</a><a class="nav-link" href="/weme-ui/slim/components/icon-stack/" data-nav-item data-nav-label="Icon Stack icon-stack">Icon Stack</a><a class="nav-link" href="/weme-ui/slim/components/link/" data-nav-item data-nav-label="Link link">Link</a><a class="nav-link" href="/weme-ui/slim/components/link-overlay/" data-nav-item data-nav-label="Link Overlay link-overlay">Link Overlay</a><a class="nav-link" href="/weme-ui/slim/components/separator/" data-nav-item data-nav-label="Separator separator">Separator</a></div><div class="docs-nav-category" data-nav-category><div class="nav-category">Form</div><a class="nav-link" href="/weme-ui/slim/components/form/" data-nav-item data-nav-label="Form form">Form</a><a class="nav-link" href="/weme-ui/slim/components/form-field/" data-nav-item data-nav-label="Form Field form-field">Form Field</a><a class="nav-link" href="/weme-ui/slim/components/input/" data-nav-item data-nav-label="Input input" aria-current="page">Input</a></div></section></div><script type="module">var e=document.querySelector(`[data-docs-search]`);e&&e.addEventListener(`input`,()=>{let t=e.value.trim().toLowerCase();document.querySelectorAll(`[data-nav-item]`).forEach(e=>{let n=(e.dataset.navLabel||e.textContent||``).toLowerCase();e.hidden=t.length>0&&!n.includes(t)}),document.querySelectorAll(`[data-nav-category]`).forEach(e=>{let n=[...e.querySelectorAll(`[data-nav-item]`)].some(e=>!e.hidden);e.hidden=t.length>0&&!n}),document.querySelectorAll(`[data-nav-section]`).forEach(e=>{let n=[...e.querySelectorAll(`[data-nav-item]`)].some(e=>!e.hidden);e.hidden=t.length>0&&!n})});</script></aside><main class="docs-main"><header class="docs-header"><nav class="docs-breadcrumb" aria-label="Breadcrumb"><ol><li><a href="/weme-ui/">Home</a></li><li><span class="docs-breadcrumb-sep" aria-hidden="true">/</span><a href="/weme-ui/slim/">slim</a></li><li><span class="docs-breadcrumb-sep" aria-hidden="true">/</span><span>Components</span></li><li><span class="docs-breadcrumb-sep" aria-hidden="true">/</span><span aria-current="page">Input</span></li></ol></nav><h1 class="docs-title">Input</h1><p class="docs-description">A single-line text input with prefix, suffix, clear, and character count support.</p></header><div class="docs-content prose"><h2 id="installation">Installation</h2>
+<pre><code class="language-bash">pnpm dlx @weme-ui/weme-ui add weme-ui/slim/input
+</code></pre>
+<h2 id="usage">Usage</h2><section class="example-panel" data-astro-cid-r2jpjjbh><div class="example-panel-shell" data-astro-cid-r2jpjjbh><div class="example-panel-stage" data-astro-cid-r2jpjjbh><div class="example-panel-stage-glow" aria-hidden="true" data-astro-cid-r2jpjjbh></div><div class="example-panel-stage-body not-prose" data-astro-cid-r2jpjjbh><astro-island uid="ZtShVr" prefix="s2" component-url="/weme-ui/_astro/ExampleHost.Ck47miSS.js" component-export="default" renderer-url="/weme-ui/_astro/client.BqjT1N1a.js" props="{&quot;examplePath&quot;:[0,&quot;slim/src/components/input/examples/usage.vue&quot;],&quot;data-astro-cid-r2jpjjbh&quot;:[0,true]}" ssr client="load" opts="{&quot;name&quot;:&quot;ExampleHost&quot;,&quot;value&quot;:true}" await-children><form id="s2-1" data-slot="form" class="flex flex-col gap-4 p-4 max-w-sm w-full" method="post" novalidate data-astro-cid-r2jpjjbh="true"><!--[--><div data-slot="form-field" data-valid data-orientation="vertical" class="flex gap-2 flex-col"><div class="flex flex-col"><div class="flex gap-1"><!----><label for="form-field-s2-2" id="form-field-s2-2-label" class="text-base text-highlighted text-nowrap font-medium"><!--[--><!--[-->Email<!--]--><!--]--></label><!----></div><!----></div><div class="flex flex-col"><!--[--><div data-valid data-slot="input" class="group flex flex-y-center relative b b-base bg-base rounded-full text-3.5 gap-2 h-8 data-[focused]:bg-base data-[focused]:b-accent data-[focused]:outline-2 data-[focused]:outline-accent-4 hover:not-[[data-focused]]:b-elevated px-3.5 transition-colors"><span class="transition-colors group-data-[focused]:text-highlighted not-[[data-focused]]:text-subtle"><!--[--><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" role="img" style="" width="1em" height="1em" viewBox="0 0 16 16" data-slot="icon" class=""></svg><!--]--></span><input data-valid id="form-field-s2-2" name="email" aria-labelledby="form-field-s2-2-label" type="email" value placeholder="You@example.com" autocomplete="off" class="leading-none outline-none size-full placeholder:text-subtle"><!--[--><!--]--><!----><!----><!----></div><!--]--><!----><!----></div></div><!--]--></form><!--astro:end--></astro-island></div></div><details class="example-panel-code" data-astro-cid-r2jpjjbh><summary class="example-panel-toolbar" data-astro-cid-r2jpjjbh><span class="example-panel-toolbar-left" data-astro-cid-r2jpjjbh><span class="example-panel-lang" data-astro-cid-r2jpjjbh>Vue</span><span class="example-panel-path" data-astro-cid-r2jpjjbh>examples/usage.vue</span></span><span class="example-panel-toolbar-right" data-astro-cid-r2jpjjbh><button type="button" class="example-panel-copy" data-copy-target="example-copy-y2dld7oc" aria-label="Copy code" data-astro-cid-r2jpjjbh>Copy</button><span class="example-panel-toggle" data-closed-label="Expand code" data-open-label="Hide code" data-astro-cid-r2jpjjbh>Expand code</span></span></summary><textarea id="example-copy-y2dld7oc-raw" class="example-panel-raw" readonly hidden data-astro-cid-r2jpjjbh>&lt;script lang=&quot;ts&quot; setup&gt;
+import { useForm } from &#39;~/composables/use-form-context&#39;
+import FormField from &#39;../../form-field/form-field.vue&#39;
+import Form from &#39;../../form/form.vue&#39;
+import Input from &#39;../input.vue&#39;
+
+const form = useForm({
+  defaultValues: {
+    email: &#39;&#39;,
+  },
+})
+&lt;/script&gt;
+
+&lt;template&gt;
+  &lt;Form :form=&quot;form&quot; class=&quot;max-w-sm w-full&quot;&gt;
+    &lt;FormField v-slot=&quot;{ field }&quot; name=&quot;email&quot; label=&quot;Email&quot;&gt;
+      &lt;Input
+        :model-value=&quot;field.state.value&quot;
+        type=&quot;email&quot;
+        radius=&quot;full&quot;
+        size=&quot;md&quot;
+        variant=&quot;outline&quot;
+        prefix-icon=&quot;ri:mail-line&quot;
+        placeholder=&quot;You@example.com&quot;
+        @change=&quot;field.api.handleChange($event.target.value)&quot;
+      /&gt;
+    &lt;/FormField&gt;
+  &lt;/Form&gt;
+&lt;/template&gt;
+</textarea><div class="example-panel-code-body" id="example-copy-y2dld7oc" data-astro-cid-r2jpjjbh><pre class="shiki vitesse-dark" style="background-color:#121212;color:#dbd7caee" tabindex="0"><code><span class="line"><span style="color:#666666">&#x3C;</span><span style="color:#4D9375">script</span><span style="color:#BD976A"> lang</span><span style="color:#666666">=</span><span style="color:#C98A7D77">"</span><span style="color:#C98A7D">ts</span><span style="color:#C98A7D77">"</span><span style="color:#BD976A"> setup</span><span style="color:#666666">></span></span>
+<span class="line"><span style="color:#4D9375">import</span><span style="color:#666666"> {</span><span style="color:#BD976A"> useForm</span><span style="color:#666666"> }</span><span style="color:#4D9375"> from</span><span style="color:#C98A7D77"> '</span><span style="color:#C98A7D">~/composables/use-form-context</span><span style="color:#C98A7D77">'</span></span>
+<span class="line"><span style="color:#4D9375">import</span><span style="color:#BD976A"> FormField</span><span style="color:#4D9375"> from</span><span style="color:#C98A7D77"> '</span><span style="color:#C98A7D">../../form-field/form-field.vue</span><span style="color:#C98A7D77">'</span></span>
+<span class="line"><span style="color:#4D9375">import</span><span style="color:#BD976A"> Form</span><span style="color:#4D9375"> from</span><span style="color:#C98A7D77"> '</span><span style="color:#C98A7D">../../form/form.vue</span><span style="color:#C98A7D77">'</span></span>
+<span class="line"><span style="color:#4D9375">import</span><span style="color:#BD976A"> Input</span><span style="color:#4D9375"> from</span><span style="color:#C98A7D77"> '</span><span style="color:#C98A7D">../input.vue</span><span style="color:#C98A7D77">'</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#CB7676">const </span><span style="color:#BD976A">form</span><span style="color:#666666"> =</span><span style="color:#80A665"> useForm</span><span style="color:#666666">({</span></span>
+<span class="line"><span style="color:#B8A965">  defaultValues</span><span style="color:#666666">: {</span></span>
+<span class="line"><span style="color:#B8A965">    email</span><span style="color:#666666">: </span><span style="color:#C98A7D77">''</span><span style="color:#666666">,</span></span>
+<span class="line"><span style="color:#666666">  },</span></span>
+<span class="line"><span style="color:#666666">})</span></span>
+<span class="line"><span style="color:#666666">&#x3C;/</span><span style="color:#4D9375">script</span><span style="color:#666666">></span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#666666">&#x3C;</span><span style="color:#4D9375">template</span><span style="color:#666666">></span></span>
+<span class="line"><span style="color:#666666">  &#x3C;</span><span style="color:#4D9375">Form</span><span style="color:#666666"> :</span><span style="color:#80A665">form</span><span style="color:#666666">=</span><span style="color:#666666">"</span><span style="color:#BD976A">form</span><span style="color:#666666">"</span><span style="color:#BD976A"> class</span><span style="color:#666666">=</span><span style="color:#C98A7D77">"</span><span style="color:#C98A7D">max-w-sm w-full</span><span style="color:#C98A7D77">"</span><span style="color:#666666">></span></span>
+<span class="line"><span style="color:#666666">    &#x3C;</span><span style="color:#4D9375">FormField</span><span style="color:#80A665"> v-slot</span><span style="color:#666666">=</span><span style="color:#666666">"</span><span style="color:#666666">{ </span><span style="color:#BD976A">field</span><span style="color:#666666"> }</span><span style="color:#666666">"</span><span style="color:#BD976A"> name</span><span style="color:#666666">=</span><span style="color:#C98A7D77">"</span><span style="color:#C98A7D">email</span><span style="color:#C98A7D77">"</span><span style="color:#BD976A"> label</span><span style="color:#666666">=</span><span style="color:#C98A7D77">"</span><span style="color:#C98A7D">Email</span><span style="color:#C98A7D77">"</span><span style="color:#666666">></span></span>
+<span class="line"><span style="color:#666666">      &#x3C;</span><span style="color:#4D9375">Input</span></span>
+<span class="line"><span style="color:#666666">        :</span><span style="color:#80A665">model-value</span><span style="color:#666666">=</span><span style="color:#666666">"</span><span style="color:#BD976A">field</span><span style="color:#666666">.</span><span style="color:#BD976A">state</span><span style="color:#666666">.</span><span style="color:#BD976A">value</span><span style="color:#666666">"</span></span>
+<span class="line"><span style="color:#BD976A">        type</span><span style="color:#666666">=</span><span style="color:#C98A7D77">"</span><span style="color:#C98A7D">email</span><span style="color:#C98A7D77">"</span></span>
+<span class="line"><span style="color:#BD976A">        radius</span><span style="color:#666666">=</span><span style="color:#C98A7D77">"</span><span style="color:#C98A7D">full</span><span style="color:#C98A7D77">"</span></span>
+<span class="line"><span style="color:#BD976A">        size</span><span style="color:#666666">=</span><span style="color:#C98A7D77">"</span><span style="color:#C98A7D">md</span><span style="color:#C98A7D77">"</span></span>
+<span class="line"><span style="color:#BD976A">        variant</span><span style="color:#666666">=</span><span style="color:#C98A7D77">"</span><span style="color:#C98A7D">outline</span><span style="color:#C98A7D77">"</span></span>
+<span class="line"><span style="color:#BD976A">        prefix-icon</span><span style="color:#666666">=</span><span style="color:#C98A7D77">"</span><span style="color:#C98A7D">ri:mail-line</span><span style="color:#C98A7D77">"</span></span>
+<span class="line"><span style="color:#BD976A">        placeholder</span><span style="color:#666666">=</span><span style="color:#C98A7D77">"</span><span style="color:#C98A7D">You@example.com</span><span style="color:#C98A7D77">"</span></span>
+<span class="line"><span style="color:#666666">        @</span><span style="color:#80A665">change</span><span style="color:#666666">=</span><span style="color:#666666">"</span><span style="color:#BD976A">field</span><span style="color:#666666">.</span><span style="color:#BD976A">api</span><span style="color:#666666">.</span><span style="color:#80A665">handleChange</span><span style="color:#666666">(</span><span style="color:#BD976A">$event</span><span style="color:#666666">.</span><span style="color:#BD976A">target</span><span style="color:#666666">.</span><span style="color:#BD976A">value</span><span style="color:#666666">)</span><span style="color:#666666">"</span></span>
+<span class="line"><span style="color:#666666">      /></span></span>
+<span class="line"><span style="color:#666666">    &#x3C;/</span><span style="color:#4D9375">FormField</span><span style="color:#666666">></span></span>
+<span class="line"><span style="color:#666666">  &#x3C;/</span><span style="color:#4D9375">Form</span><span style="color:#666666">></span></span>
+<span class="line"><span style="color:#666666">&#x3C;/</span><span style="color:#4D9375">template</span><span style="color:#666666">></span></span></code></pre></div></details></div></section><script type="module">function e(){document.querySelectorAll(`.example-panel-code`).forEach(e=>{if(e.dataset.bound===`true`)return;e.dataset.bound=`true`;let t=e.querySelector(`.example-panel-toggle`),n=()=>{t&&(t.textContent=e.open?t.dataset.openLabel||`Hide code`:t.dataset.closedLabel||`Expand code`)};n(),e.addEventListener(`toggle`,n);let r=e.querySelector(`.example-panel-copy`);r?.addEventListener(`click`,async e=>{e.preventDefault(),e.stopPropagation();let t=r.dataset.copyTarget,n=(t?document.getElementById(`${t}-raw`):null)?.value||``;try{await navigator.clipboard.writeText(n),r.classList.add(`is-copied`),r.textContent=`Copied`,window.setTimeout(()=>{r.classList.remove(`is-copied`),r.textContent=`Copy`},1400)}catch{r.classList.add(`is-failed`),window.setTimeout(()=>r.classList.remove(`is-failed`),1400)}})})}e(),document.addEventListener(`astro:page-load`,()=>e());</script><h2 id="accessibility">Accessibility</h2>
+<p>原生 <code>&lt;input&gt;</code> 控件。通过 <code>useFormFieldBindings</code> 合并 FormField Context 的 <code>id</code>、<code>name</code>、<code>disabled</code>、<code>required</code>、<code>aria-labelledby</code>、<code>aria-describedby</code>、<code>aria-invalid</code> 与字段 <code>data-*</code>。根节点为 Reka UI <code>Primitive</code>（默认 <code>div</code>），并设置 <code>data-slot=&quot;input&quot;</code>、<code>data-readonly</code>。</p>
+<h3>Keyboard Interactions</h3>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>Enter</code></td>
+<td>触发 <code>enter</code> 事件；若使用 <code>lazy</code> modifier，同时提交当前输入值</td>
+</tr>
+</tbody></table>
+<section><h2 id="examples">Examples</h2><h3 id="variants">Variants</h3><section class="example-panel" data-astro-cid-r2jpjjbh><div class="example-panel-shell" data-astro-cid-r2jpjjbh><div class="example-panel-stage" data-astro-cid-r2jpjjbh><div class="example-panel-stage-glow" aria-hidden="true" data-astro-cid-r2jpjjbh></div><div class="example-panel-stage-body not-prose" data-astro-cid-r2jpjjbh><astro-island uid="zBqQf" prefix="s3" component-url="/weme-ui/_astro/ExampleHost.Ck47miSS.js" component-export="default" renderer-url="/weme-ui/_astro/client.BqjT1N1a.js" props="{&quot;examplePath&quot;:[0,&quot;slim/src/components/input/examples/variants.vue&quot;],&quot;data-astro-cid-r2jpjjbh&quot;:[0,true]}" ssr client="load" opts="{&quot;name&quot;:&quot;ExampleHost&quot;,&quot;value&quot;:true}" await-children><form id="s3-1" data-slot="form" class="p-4 flex flex-col gap-3 max-w-sm w-full" method="post" novalidate data-astro-cid-r2jpjjbh="true"><!--[--><div data-slot="form-field" data-valid data-orientation="vertical" class="flex gap-2 flex-col"><div class="flex flex-col"><div class="flex gap-1"><!----><label for="form-field-s3-2" id="form-field-s3-2-label" class="text-base text-highlighted text-nowrap font-medium"><!--[--><!--[-->Soft<!--]--><!--]--></label><!----></div><!----></div><div class="flex flex-col"><!--[--><div data-valid data-slot="input" class="group flex flex-y-center relative b b-transparent rounded-md text-3.5 gap-2 h-8 bg-muted data-[focused]:bg-base data-[focused]:b-accent data-[focused]:outline-2 data-[focused]:outline-accent-4 hover:not-[[data-focused]]:bg-elevated px-2.5 transition-colors"><!----><input data-valid id="form-field-s3-2" name="soft" aria-labelledby="form-field-s3-2-label" type="text" placeholder="Soft" autocomplete="off" class="leading-none outline-none size-full placeholder:text-subtle"><!--[--><!--]--><!----><!----><!----></div><!--]--><!----><!----></div></div><div data-slot="form-field" data-valid data-orientation="vertical" class="flex gap-2 flex-col"><div class="flex flex-col"><div class="flex gap-1"><!----><label for="form-field-s3-3" id="form-field-s3-3-label" class="text-base text-highlighted text-nowrap font-medium"><!--[--><!--[-->Outline<!--]--><!--]--></label><!----></div><!----></div><div class="flex flex-col"><!--[--><div data-valid data-slot="input" class="group flex flex-y-center relative b b-base bg-base rounded-md text-3.5 gap-2 h-8 data-[focused]:bg-base data-[focused]:b-accent data-[focused]:outline-2 data-[focused]:outline-accent-4 hover:not-[[data-focused]]:b-elevated px-2.5 transition-colors"><!----><input data-valid id="form-field-s3-3" name="outline" aria-labelledby="form-field-s3-3-label" type="text" placeholder="Outline" autocomplete="off" class="leading-none outline-none size-full placeholder:text-subtle"><!--[--><!--]--><!----><!----><!----></div><!--]--><!----><!----></div></div><div data-slot="form-field" data-valid data-orientation="vertical" class="flex gap-2 flex-col"><div class="flex flex-col"><div class="flex gap-1"><!----><label for="form-field-s3-4" id="form-field-s3-4-label" class="text-base text-highlighted text-nowrap font-medium"><!--[--><!--[-->Unstyled<!--]--><!--]--></label><!----></div><!----></div><div class="flex flex-col"><!--[--><div data-valid data-slot="input" class="group flex flex-y-center relative rounded-md text-3.5 gap-2 h-8"><!----><input data-valid id="form-field-s3-4" name="unstyled" aria-labelledby="form-field-s3-4-label" type="text" placeholder="Unstyled" autocomplete="off" class="leading-none outline-none size-full placeholder:text-subtle"><!--[--><!--]--><!----><!----><!----></div><!--]--><!----><!----></div></div><!--]--></form><!--astro:end--></astro-island></div></div><details class="example-panel-code" data-astro-cid-r2jpjjbh><summary class="example-panel-toolbar" data-astro-cid-r2jpjjbh><span class="example-panel-toolbar-left" data-astro-cid-r2jpjjbh><span class="example-panel-lang" data-astro-cid-r2jpjjbh>Vue</span><span class="example-panel-path" data-astro-cid-r2jpjjbh>examples/variants.vue</span></span><span class="example-panel-toolbar-right" data-astro-cid-r2jpjjbh><button type="button" class="example-panel-copy" data-copy-target="example-copy-2xgah05h" aria-label="Copy code" data-astro-cid-r2jpjjbh>Copy</button><span class="example-panel-toggle" data-closed-label="Expand code" data-open-label="Hide code" data-astro-cid-r2jpjjbh>Expand code</span></span></summary><textarea id="example-copy-2xgah05h-raw" class="example-panel-raw" readonly hidden data-astro-cid-r2jpjjbh>&lt;script lang=&quot;ts&quot; setup&gt;
+import { useForm } from &#39;~/composables/use-form-context&#39;
+import FormField from &#39;../../form-field/form-field.vue&#39;
+import Form from &#39;../../form/form.vue&#39;
+import Input from &#39;../input.vue&#39;
+
+const form = useForm({
+  defaultValues: {
+    soft: &#39;&#39;,
+    outline: &#39;&#39;,
+    unstyled: &#39;&#39;,
+  },
+})
+&lt;/script&gt;
+
+&lt;template&gt;
+  &lt;Form :form=&quot;form&quot; class=&quot;flex flex-col gap-3 max-w-sm w-full&quot;&gt;
+    &lt;FormField name=&quot;soft&quot; label=&quot;Soft&quot;&gt;
+      &lt;Input variant=&quot;soft&quot; placeholder=&quot;Soft&quot; /&gt;
+    &lt;/FormField&gt;
+    &lt;FormField name=&quot;outline&quot; label=&quot;Outline&quot;&gt;
+      &lt;Input variant=&quot;outline&quot; placeholder=&quot;Outline&quot; /&gt;
+    &lt;/FormField&gt;
+    &lt;FormField name=&quot;unstyled&quot; label=&quot;Unstyled&quot;&gt;
+      &lt;Input variant=&quot;unstyled&quot; placeholder=&quot;Unstyled&quot; /&gt;
+    &lt;/FormField&gt;
+  &lt;/Form&gt;
+&lt;/template&gt;
+</textarea><div class="example-panel-code-body" id="example-copy-2xgah05h" data-astro-cid-r2jpjjbh><pre class="shiki vitesse-dark" style="background-color:#121212;color:#dbd7caee" tabindex="0"><code><span class="line"><span style="color:#666666">&#x3C;</span><span style="color:#4D9375">script</span><span style="color:#BD976A"> lang</span><span style="color:#666666">=</span><span style="color:#C98A7D77">"</span><span style="color:#C98A7D">ts</span><span style="color:#C98A7D77">"</span><span style="color:#BD976A"> setup</span><span style="color:#666666">></span></span>
+<span class="line"><span style="color:#4D9375">import</span><span style="color:#666666"> {</span><span style="color:#BD976A"> useForm</span><span style="color:#666666"> }</span><span style="color:#4D9375"> from</span><span style="color:#C98A7D77"> '</span><span style="color:#C98A7D">~/composables/use-form-context</span><span style="color:#C98A7D77">'</span></span>
+<span class="line"><span style="color:#4D9375">import</span><span style="color:#BD976A"> FormField</span><span style="color:#4D9375"> from</span><span style="color:#C98A7D77"> '</span><span style="color:#C98A7D">../../form-field/form-field.vue</span><span style="color:#C98A7D77">'</span></span>
+<span class="line"><span style="color:#4D9375">import</span><span style="color:#BD976A"> Form</span><span style="color:#4D9375"> from</span><span style="color:#C98A7D77"> '</span><span style="color:#C98A7D">../../form/form.vue</span><span style="color:#C98A7D77">'</span></span>
+<span class="line"><span style="color:#4D9375">import</span><span style="color:#BD976A"> Input</span><span style="color:#4D9375"> from</span><span style="color:#C98A7D77"> '</span><span style="color:#C98A7D">../input.vue</span><span style="color:#C98A7D77">'</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#CB7676">const </span><span style="color:#BD976A">form</span><span style="color:#666666"> =</span><span style="color:#80A665"> useForm</span><span style="color:#666666">({</span></span>
+<span class="line"><span style="color:#B8A965">  defaultValues</span><span style="color:#666666">: {</span></span>
+<span class="line"><span style="color:#B8A965">    soft</span><span style="color:#666666">: </span><span style="color:#C98A7D77">''</span><span style="color:#666666">,</span></span>
+<span class="line"><span style="color:#B8A965">    outline</span><span style="color:#666666">: </span><span style="color:#C98A7D77">''</span><span style="color:#666666">,</span></span>
+<span class="line"><span style="color:#B8A965">    unstyled</span><span style="color:#666666">: </span><span style="color:#C98A7D77">''</span><span style="color:#666666">,</span></span>
+<span class="line"><span style="color:#666666">  },</span></span>
+<span class="line"><span style="color:#666666">})</span></span>
+<span class="line"><span style="color:#666666">&#x3C;/</span><span style="color:#4D9375">script</span><span style="color:#666666">></span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#666666">&#x3C;</span><span style="color:#4D9375">template</span><span style="color:#666666">></span></span>
+<span class="line"><span style="color:#666666">  &#x3C;</span><span style="color:#4D9375">Form</span><span style="color:#666666"> :</span><span style="color:#80A665">form</span><span style="color:#666666">=</span><span style="color:#666666">"</span><span style="color:#BD976A">form</span><span style="color:#666666">"</span><span style="color:#BD976A"> class</span><span style="color:#666666">=</span><span style="color:#C98A7D77">"</span><span style="color:#C98A7D">flex flex-col gap-3 max-w-sm w-full</span><span style="color:#C98A7D77">"</span><span style="color:#666666">></span></span>
+<span class="line"><span style="color:#666666">    &#x3C;</span><span style="color:#4D9375">FormField</span><span style="color:#BD976A"> name</span><span style="color:#666666">=</span><span style="color:#C98A7D77">"</span><span style="color:#C98A7D">soft</span><span style="color:#C98A7D77">"</span><span style="color:#BD976A"> label</span><span style="color:#666666">=</span><span style="color:#C98A7D77">"</span><span style="color:#C98A7D">Soft</span><span style="color:#C98A7D77">"</span><span style="color:#666666">></span></span>
+<span class="line"><span style="color:#666666">      &#x3C;</span><span style="color:#4D9375">Input</span><span style="color:#BD976A"> variant</span><span style="color:#666666">=</span><span style="color:#C98A7D77">"</span><span style="color:#C98A7D">soft</span><span style="color:#C98A7D77">"</span><span style="color:#BD976A"> placeholder</span><span style="color:#666666">=</span><span style="color:#C98A7D77">"</span><span style="color:#C98A7D">Soft</span><span style="color:#C98A7D77">"</span><span style="color:#666666"> /></span></span>
+<span class="line"><span style="color:#666666">    &#x3C;/</span><span style="color:#4D9375">FormField</span><span style="color:#666666">></span></span>
+<span class="line"><span style="color:#666666">    &#x3C;</span><span style="color:#4D9375">FormField</span><span style="color:#BD976A"> name</span><span style="color:#666666">=</span><span style="color:#C98A7D77">"</span><span style="color:#C98A7D">outline</span><span style="color:#C98A7D77">"</span><span style="color:#BD976A"> label</span><span style="color:#666666">=</span><span style="color:#C98A7D77">"</span><span style="color:#C98A7D">Outline</span><span style="color:#C98A7D77">"</span><span style="color:#666666">></span></span>
+<span class="line"><span style="color:#666666">      &#x3C;</span><span style="color:#4D9375">Input</span><span style="color:#BD976A"> variant</span><span style="color:#666666">=</span><span style="color:#C98A7D77">"</span><span style="color:#C98A7D">outline</span><span style="color:#C98A7D77">"</span><span style="color:#BD976A"> placeholder</span><span style="color:#666666">=</span><span style="color:#C98A7D77">"</span><span style="color:#C98A7D">Outline</span><span style="color:#C98A7D77">"</span><span style="color:#666666"> /></span></span>
+<span class="line"><span style="color:#666666">    &#x3C;/</span><span style="color:#4D9375">FormField</span><span style="color:#666666">></span></span>
+<span class="line"><span style="color:#666666">    &#x3C;</span><span style="color:#4D9375">FormField</span><span style="color:#BD976A"> name</span><span style="color:#666666">=</span><span style="color:#C98A7D77">"</span><span style="color:#C98A7D">unstyled</span><span style="color:#C98A7D77">"</span><span style="color:#BD976A"> label</span><span style="color:#666666">=</span><span style="color:#C98A7D77">"</span><span style="color:#C98A7D">Unstyled</span><span style="color:#C98A7D77">"</span><span style="color:#666666">></span></span>
+<span class="line"><span style="color:#666666">      &#x3C;</span><span style="color:#4D9375">Input</span><span style="color:#BD976A"> variant</span><span style="color:#666666">=</span><span style="color:#C98A7D77">"</span><span style="color:#C98A7D">unstyled</span><span style="color:#C98A7D77">"</span><span style="color:#BD976A"> placeholder</span><span style="color:#666666">=</span><span style="color:#C98A7D77">"</span><span style="color:#C98A7D">Unstyled</span><span style="color:#C98A7D77">"</span><span style="color:#666666"> /></span></span>
+<span class="line"><span style="color:#666666">    &#x3C;/</span><span style="color:#4D9375">FormField</span><span style="color:#666666">></span></span>
+<span class="line"><span style="color:#666666">  &#x3C;/</span><span style="color:#4D9375">Form</span><span style="color:#666666">></span></span>
+<span class="line"><span style="color:#666666">&#x3C;/</span><span style="color:#4D9375">template</span><span style="color:#666666">></span></span></code></pre></div></details></div></section><h3 id="sizes">Sizes</h3><section class="example-panel" data-astro-cid-r2jpjjbh><div class="example-panel-shell" data-astro-cid-r2jpjjbh><div class="example-panel-stage" data-astro-cid-r2jpjjbh><div class="example-panel-stage-glow" aria-hidden="true" data-astro-cid-r2jpjjbh></div><div class="example-panel-stage-body not-prose" data-astro-cid-r2jpjjbh><astro-island uid="11JEqz" prefix="s4" component-url="/weme-ui/_astro/ExampleHost.Ck47miSS.js" component-export="default" renderer-url="/weme-ui/_astro/client.BqjT1N1a.js" props="{&quot;examplePath&quot;:[0,&quot;slim/src/components/input/examples/sizes.vue&quot;],&quot;data-astro-cid-r2jpjjbh&quot;:[0,true]}" ssr client="load" opts="{&quot;name&quot;:&quot;ExampleHost&quot;,&quot;value&quot;:true}" await-children><form id="s4-1" data-slot="form" class="p-4 flex flex-col gap-3 max-w-sm w-full" method="post" novalidate data-astro-cid-r2jpjjbh="true"><!--[--><div data-slot="form-field" data-valid data-orientation="vertical" class="flex gap-2 flex-col"><div class="flex flex-col"><div class="flex gap-1"><!----><label for="form-field-s4-2" id="form-field-s4-2-label" class="text-base text-highlighted text-nowrap font-medium"><!--[--><!--[-->SM<!--]--><!--]--></label><!----></div><!----></div><div class="flex flex-col"><!--[--><div data-valid data-slot="input" class="group flex flex-y-center relative b b-transparent rounded-md text-3 gap-1.5 h-6 bg-muted data-[focused]:bg-base data-[focused]:b-accent data-[focused]:outline-2 data-[focused]:outline-accent-4 hover:not-[[data-focused]]:bg-elevated px-1.5 transition-colors"><!----><input data-valid id="form-field-s4-2" name="sm" aria-labelledby="form-field-s4-2-label" type="text" placeholder="Small" autocomplete="off" class="leading-none outline-none size-full placeholder:text-subtle"><!--[--><!--]--><!----><!----><!----></div><!--]--><!----><!----></div></div><div data-slot="form-field" data-valid data-orientation="vertical" class="flex gap-2 flex-col"><div class="flex flex-col"><div class="flex gap-1"><!----><label for="form-field-s4-3" id="form-field-s4-3-label" class="text-base text-highlighted text-nowrap font-medium"><!--[--><!--[-->MD<!--]--><!--]--></label><!----></div><!----></div><div class="flex flex-col"><!--[--><div data-valid data-slot="input" class="group flex flex-y-center relative b b-transparent rounded-md text-3.5 gap-2 h-8 bg-muted data-[focused]:bg-base data-[focused]:b-accent data-[focused]:outline-2 data-[focused]:outline-accent-4 hover:not-[[data-focused]]:bg-elevated px-2.5 transition-colors"><!----><input data-valid id="form-field-s4-3" name="md" aria-labelledby="form-field-s4-3-label" type="text" placeholder="Medium" autocomplete="off" class="leading-none outline-none size-full placeholder:text-subtle"><!--[--><!--]--><!----><!----><!----></div><!--]--><!----><!----></div></div><div data-slot="form-field" data-valid data-orientation="vertical" class="flex gap-2 flex-col"><div class="flex flex-col"><div class="flex gap-1"><!----><label for="form-field-s4-4" id="form-field-s4-4-label" class="text-base text-highlighted text-nowrap font-medium"><!--[--><!--[-->LG<!--]--><!--]--></label><!----></div><!----></div><div class="flex flex-col"><!--[--><div data-valid data-slot="input" class="group flex flex-y-center relative b b-transparent rounded-md text-4 gap-2.5 h-10 bg-muted data-[focused]:bg-base data-[focused]:b-accent data-[focused]:outline-2 data-[focused]:outline-accent-4 hover:not-[[data-focused]]:bg-elevated px-3 transition-colors"><!----><input data-valid id="form-field-s4-4" name="lg" aria-labelledby="form-field-s4-4-label" type="text" placeholder="Large" autocomplete="off" class="leading-none outline-none size-full placeholder:text-subtle"><!--[--><!--]--><!----><!----><!----></div><!--]--><!----><!----></div></div><!--]--></form><!--astro:end--></astro-island></div></div><details class="example-panel-code" data-astro-cid-r2jpjjbh><summary class="example-panel-toolbar" data-astro-cid-r2jpjjbh><span class="example-panel-toolbar-left" data-astro-cid-r2jpjjbh><span class="example-panel-lang" data-astro-cid-r2jpjjbh>Vue</span><span class="example-panel-path" data-astro-cid-r2jpjjbh>examples/sizes.vue</span></span><span class="example-panel-toolbar-right" data-astro-cid-r2jpjjbh><button type="button" class="example-panel-copy" data-copy-target="example-copy-msg94py2" aria-label="Copy code" data-astro-cid-r2jpjjbh>Copy</button><span class="example-panel-toggle" data-closed-label="Expand code" data-open-label="Hide code" data-astro-cid-r2jpjjbh>Expand code</span></span></summary><textarea id="example-copy-msg94py2-raw" class="example-panel-raw" readonly hidden data-astro-cid-r2jpjjbh>&lt;script lang=&quot;ts&quot; setup&gt;
+import { useForm } from &#39;~/composables/use-form-context&#39;
+import FormField from &#39;../../form-field/form-field.vue&#39;
+import Form from &#39;../../form/form.vue&#39;
+import Input from &#39;../input.vue&#39;
+
+const form = useForm({
+  defaultValues: {
+    sm: &#39;&#39;,
+    md: &#39;&#39;,
+    lg: &#39;&#39;,
+  },
+})
+&lt;/script&gt;
+
+&lt;template&gt;
+  &lt;Form :form=&quot;form&quot; class=&quot;flex flex-col gap-3 max-w-sm w-full&quot;&gt;
+    &lt;FormField name=&quot;sm&quot; label=&quot;SM&quot;&gt;
+      &lt;Input size=&quot;sm&quot; placeholder=&quot;Small&quot; /&gt;
+    &lt;/FormField&gt;
+    &lt;FormField name=&quot;md&quot; label=&quot;MD&quot;&gt;
+      &lt;Input size=&quot;md&quot; placeholder=&quot;Medium&quot; /&gt;
+    &lt;/FormField&gt;
+    &lt;FormField name=&quot;lg&quot; label=&quot;LG&quot;&gt;
+      &lt;Input size=&quot;lg&quot; placeholder=&quot;Large&quot; /&gt;
+    &lt;/FormField&gt;
+  &lt;/Form&gt;
+&lt;/template&gt;
+</textarea><div class="example-panel-code-body" id="example-copy-msg94py2" data-astro-cid-r2jpjjbh><pre class="shiki vitesse-dark" style="background-color:#121212;color:#dbd7caee" tabindex="0"><code><span class="line"><span style="color:#666666">&#x3C;</span><span style="color:#4D9375">script</span><span style="color:#BD976A"> lang</span><span style="color:#666666">=</span><span style="color:#C98A7D77">"</span><span style="color:#C98A7D">ts</span><span style="color:#C98A7D77">"</span><span style="color:#BD976A"> setup</span><span style="color:#666666">></span></span>
+<span class="line"><span style="color:#4D9375">import</span><span style="color:#666666"> {</span><span style="color:#BD976A"> useForm</span><span style="color:#666666"> }</span><span style="color:#4D9375"> from</span><span style="color:#C98A7D77"> '</span><span style="color:#C98A7D">~/composables/use-form-context</span><span style="color:#C98A7D77">'</span></span>
+<span class="line"><span style="color:#4D9375">import</span><span style="color:#BD976A"> FormField</span><span style="color:#4D9375"> from</span><span style="color:#C98A7D77"> '</span><span style="color:#C98A7D">../../form-field/form-field.vue</span><span style="color:#C98A7D77">'</span></span>
+<span class="line"><span style="color:#4D9375">import</span><span style="color:#BD976A"> Form</span><span style="color:#4D9375"> from</span><span style="color:#C98A7D77"> '</span><span style="color:#C98A7D">../../form/form.vue</span><span style="color:#C98A7D77">'</span></span>
+<span class="line"><span style="color:#4D9375">import</span><span style="color:#BD976A"> Input</span><span style="color:#4D9375"> from</span><span style="color:#C98A7D77"> '</span><span style="color:#C98A7D">../input.vue</span><span style="color:#C98A7D77">'</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#CB7676">const </span><span style="color:#BD976A">form</span><span style="color:#666666"> =</span><span style="color:#80A665"> useForm</span><span style="color:#666666">({</span></span>
+<span class="line"><span style="color:#B8A965">  defaultValues</span><span style="color:#666666">: {</span></span>
+<span class="line"><span style="color:#B8A965">    sm</span><span style="color:#666666">: </span><span style="color:#C98A7D77">''</span><span style="color:#666666">,</span></span>
+<span class="line"><span style="color:#B8A965">    md</span><span style="color:#666666">: </span><span style="color:#C98A7D77">''</span><span style="color:#666666">,</span></span>
+<span class="line"><span style="color:#B8A965">    lg</span><span style="color:#666666">: </span><span style="color:#C98A7D77">''</span><span style="color:#666666">,</span></span>
+<span class="line"><span style="color:#666666">  },</span></span>
+<span class="line"><span style="color:#666666">})</span></span>
+<span class="line"><span style="color:#666666">&#x3C;/</span><span style="color:#4D9375">script</span><span style="color:#666666">></span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#666666">&#x3C;</span><span style="color:#4D9375">template</span><span style="color:#666666">></span></span>
+<span class="line"><span style="color:#666666">  &#x3C;</span><span style="color:#4D9375">Form</span><span style="color:#666666"> :</span><span style="color:#80A665">form</span><span style="color:#666666">=</span><span style="color:#666666">"</span><span style="color:#BD976A">form</span><span style="color:#666666">"</span><span style="color:#BD976A"> class</span><span style="color:#666666">=</span><span style="color:#C98A7D77">"</span><span style="color:#C98A7D">flex flex-col gap-3 max-w-sm w-full</span><span style="color:#C98A7D77">"</span><span style="color:#666666">></span></span>
+<span class="line"><span style="color:#666666">    &#x3C;</span><span style="color:#4D9375">FormField</span><span style="color:#BD976A"> name</span><span style="color:#666666">=</span><span style="color:#C98A7D77">"</span><span style="color:#C98A7D">sm</span><span style="color:#C98A7D77">"</span><span style="color:#BD976A"> label</span><span style="color:#666666">=</span><span style="color:#C98A7D77">"</span><span style="color:#C98A7D">SM</span><span style="color:#C98A7D77">"</span><span style="color:#666666">></span></span>
+<span class="line"><span style="color:#666666">      &#x3C;</span><span style="color:#4D9375">Input</span><span style="color:#BD976A"> size</span><span style="color:#666666">=</span><span style="color:#C98A7D77">"</span><span style="color:#C98A7D">sm</span><span style="color:#C98A7D77">"</span><span style="color:#BD976A"> placeholder</span><span style="color:#666666">=</span><span style="color:#C98A7D77">"</span><span style="color:#C98A7D">Small</span><span style="color:#C98A7D77">"</span><span style="color:#666666"> /></span></span>
+<span class="line"><span style="color:#666666">    &#x3C;/</span><span style="color:#4D9375">FormField</span><span style="color:#666666">></span></span>
+<span class="line"><span style="color:#666666">    &#x3C;</span><span style="color:#4D9375">FormField</span><span style="color:#BD976A"> name</span><span style="color:#666666">=</span><span style="color:#C98A7D77">"</span><span style="color:#C98A7D">md</span><span style="color:#C98A7D77">"</span><span style="color:#BD976A"> label</span><span style="color:#666666">=</span><span style="color:#C98A7D77">"</span><span style="color:#C98A7D">MD</span><span style="color:#C98A7D77">"</span><span style="color:#666666">></span></span>
+<span class="line"><span style="color:#666666">      &#x3C;</span><span style="color:#4D9375">Input</span><span style="color:#BD976A"> size</span><span style="color:#666666">=</span><span style="color:#C98A7D77">"</span><span style="color:#C98A7D">md</span><span style="color:#C98A7D77">"</span><span style="color:#BD976A"> placeholder</span><span style="color:#666666">=</span><span style="color:#C98A7D77">"</span><span style="color:#C98A7D">Medium</span><span style="color:#C98A7D77">"</span><span style="color:#666666"> /></span></span>
+<span class="line"><span style="color:#666666">    &#x3C;/</span><span style="color:#4D9375">FormField</span><span style="color:#666666">></span></span>
+<span class="line"><span style="color:#666666">    &#x3C;</span><span style="color:#4D9375">FormField</span><span style="color:#BD976A"> name</span><span style="color:#666666">=</span><span style="color:#C98A7D77">"</span><span style="color:#C98A7D">lg</span><span style="color:#C98A7D77">"</span><span style="color:#BD976A"> label</span><span style="color:#666666">=</span><span style="color:#C98A7D77">"</span><span style="color:#C98A7D">LG</span><span style="color:#C98A7D77">"</span><span style="color:#666666">></span></span>
+<span class="line"><span style="color:#666666">      &#x3C;</span><span style="color:#4D9375">Input</span><span style="color:#BD976A"> size</span><span style="color:#666666">=</span><span style="color:#C98A7D77">"</span><span style="color:#C98A7D">lg</span><span style="color:#C98A7D77">"</span><span style="color:#BD976A"> placeholder</span><span style="color:#666666">=</span><span style="color:#C98A7D77">"</span><span style="color:#C98A7D">Large</span><span style="color:#C98A7D77">"</span><span style="color:#666666"> /></span></span>
+<span class="line"><span style="color:#666666">    &#x3C;/</span><span style="color:#4D9375">FormField</span><span style="color:#666666">></span></span>
+<span class="line"><span style="color:#666666">  &#x3C;/</span><span style="color:#4D9375">Form</span><span style="color:#666666">></span></span>
+<span class="line"><span style="color:#666666">&#x3C;/</span><span style="color:#4D9375">template</span><span style="color:#666666">></span></span></code></pre></div></details></div></section><h3 id="radius">Radius</h3><section class="example-panel" data-astro-cid-r2jpjjbh><div class="example-panel-shell" data-astro-cid-r2jpjjbh><div class="example-panel-stage" data-astro-cid-r2jpjjbh><div class="example-panel-stage-glow" aria-hidden="true" data-astro-cid-r2jpjjbh></div><div class="example-panel-stage-body not-prose" data-astro-cid-r2jpjjbh><astro-island uid="1xlnFT" prefix="s5" component-url="/weme-ui/_astro/ExampleHost.Ck47miSS.js" component-export="default" renderer-url="/weme-ui/_astro/client.BqjT1N1a.js" props="{&quot;examplePath&quot;:[0,&quot;slim/src/components/input/examples/radius.vue&quot;],&quot;data-astro-cid-r2jpjjbh&quot;:[0,true]}" ssr client="load" opts="{&quot;name&quot;:&quot;ExampleHost&quot;,&quot;value&quot;:true}" await-children><form id="s5-1" data-slot="form" class="p-4 flex flex-col gap-3 max-w-sm w-full" method="post" novalidate data-astro-cid-r2jpjjbh="true"><!--[--><div data-slot="form-field" data-valid data-orientation="vertical" class="flex gap-2 flex-col"><div class="flex flex-col"><div class="flex gap-1"><!----><label for="form-field-s5-2" id="form-field-s5-2-label" class="text-base text-highlighted text-nowrap font-medium"><!--[--><!--[-->None<!--]--><!--]--></label><!----></div><!----></div><div class="flex flex-col"><!--[--><div data-valid data-slot="input" class="group flex flex-y-center relative b b-transparent rounded-none text-3.5 gap-2 h-8 bg-muted data-[focused]:bg-base data-[focused]:b-accent data-[focused]:outline-2 data-[focused]:outline-accent-4 hover:not-[[data-focused]]:bg-elevated px-2.5 transition-colors"><!----><input data-valid id="form-field-s5-2" name="none" aria-labelledby="form-field-s5-2-label" type="text" placeholder="None" autocomplete="off" class="leading-none outline-none size-full placeholder:text-subtle"><!--[--><!--]--><!----><!----><!----></div><!--]--><!----><!----></div></div><div data-slot="form-field" data-valid data-orientation="vertical" class="flex gap-2 flex-col"><div class="flex flex-col"><div class="flex gap-1"><!----><label for="form-field-s5-3" id="form-field-s5-3-label" class="text-base text-highlighted text-nowrap font-medium"><!--[--><!--[-->XS<!--]--><!--]--></label><!----></div><!----></div><div class="flex flex-col"><!--[--><div data-valid data-slot="input" class="group flex flex-y-center relative b b-transparent rounded-xs text-3.5 gap-2 h-8 bg-muted data-[focused]:bg-base data-[focused]:b-accent data-[focused]:outline-2 data-[focused]:outline-accent-4 hover:not-[[data-focused]]:bg-elevated px-2.5 transition-colors"><!----><input data-valid id="form-field-s5-3" name="xs" aria-labelledby="form-field-s5-3-label" type="text" placeholder="XS" autocomplete="off" class="leading-none outline-none size-full placeholder:text-subtle"><!--[--><!--]--><!----><!----><!----></div><!--]--><!----><!----></div></div><div data-slot="form-field" data-valid data-orientation="vertical" class="flex gap-2 flex-col"><div class="flex flex-col"><div class="flex gap-1"><!----><label for="form-field-s5-4" id="form-field-s5-4-label" class="text-base text-highlighted text-nowrap font-medium"><!--[--><!--[-->SM<!--]--><!--]--></label><!----></div><!----></div><div class="flex flex-col"><!--[--><div data-valid data-slot="input" class="group flex flex-y-center relative b b-transparent rounded-sm text-3.5 gap-2 h-8 bg-muted data-[focused]:bg-base data-[focused]:b-accent data-[focused]:outline-2 data-[focused]:outline-accent-4 hover:not-[[data-focused]]:bg-elevated px-2.5 transition-colors"><!----><input data-valid id="form-field-s5-4" name="sm" aria-labelledby="form-field-s5-4-label" type="text" placeholder="SM" autocomplete="off" class="leading-none outline-none size-full placeholder:text-subtle"><!--[--><!--]--><!----><!----><!----></div><!--]--><!----><!----></div></div><div data-slot="form-field" data-valid data-orientation="vertical" class="flex gap-2 flex-col"><div class="flex flex-col"><div class="flex gap-1"><!----><label for="form-field-s5-5" id="form-field-s5-5-label" class="text-base text-highlighted text-nowrap font-medium"><!--[--><!--[-->MD<!--]--><!--]--></label><!----></div><!----></div><div class="flex flex-col"><!--[--><div data-valid data-slot="input" class="group flex flex-y-center relative b b-transparent rounded-md text-3.5 gap-2 h-8 bg-muted data-[focused]:bg-base data-[focused]:b-accent data-[focused]:outline-2 data-[focused]:outline-accent-4 hover:not-[[data-focused]]:bg-elevated px-2.5 transition-colors"><!----><input data-valid id="form-field-s5-5" name="md" aria-labelledby="form-field-s5-5-label" type="text" placeholder="MD" autocomplete="off" class="leading-none outline-none size-full placeholder:text-subtle"><!--[--><!--]--><!----><!----><!----></div><!--]--><!----><!----></div></div><div data-slot="form-field" data-valid data-orientation="vertical" class="flex gap-2 flex-col"><div class="flex flex-col"><div class="flex gap-1"><!----><label for="form-field-s5-6" id="form-field-s5-6-label" class="text-base text-highlighted text-nowrap font-medium"><!--[--><!--[-->LG<!--]--><!--]--></label><!----></div><!----></div><div class="flex flex-col"><!--[--><div data-valid data-slot="input" class="group flex flex-y-center relative b b-transparent rounded-lg text-3.5 gap-2 h-8 bg-muted data-[focused]:bg-base data-[focused]:b-accent data-[focused]:outline-2 data-[focused]:outline-accent-4 hover:not-[[data-focused]]:bg-elevated px-2.5 transition-colors"><!----><input data-valid id="form-field-s5-6" name="lg" aria-labelledby="form-field-s5-6-label" type="text" placeholder="LG" autocomplete="off" class="leading-none outline-none size-full placeholder:text-subtle"><!--[--><!--]--><!----><!----><!----></div><!--]--><!----><!----></div></div><div data-slot="form-field" data-valid data-orientation="vertical" class="flex gap-2 flex-col"><div class="flex flex-col"><div class="flex gap-1"><!----><label for="form-field-s5-7" id="form-field-s5-7-label" class="text-base text-highlighted text-nowrap font-medium"><!--[--><!--[-->XL<!--]--><!--]--></label><!----></div><!----></div><div class="flex flex-col"><!--[--><div data-valid data-slot="input" class="group flex flex-y-center relative b b-transparent rounded-xl text-3.5 gap-2 h-8 bg-muted data-[focused]:bg-base data-[focused]:b-accent data-[focused]:outline-2 data-[focused]:outline-accent-4 hover:not-[[data-focused]]:bg-elevated px-2.5 transition-colors"><!----><input data-valid id="form-field-s5-7" name="xl" aria-labelledby="form-field-s5-7-label" type="text" placeholder="XL" autocomplete="off" class="leading-none outline-none size-full placeholder:text-subtle"><!--[--><!--]--><!----><!----><!----></div><!--]--><!----><!----></div></div><div data-slot="form-field" data-valid data-orientation="vertical" class="flex gap-2 flex-col"><div class="flex flex-col"><div class="flex gap-1"><!----><label for="form-field-s5-8" id="form-field-s5-8-label" class="text-base text-highlighted text-nowrap font-medium"><!--[--><!--[-->Full<!--]--><!--]--></label><!----></div><!----></div><div class="flex flex-col"><!--[--><div data-valid data-slot="input" class="group flex flex-y-center relative b b-transparent rounded-full text-3.5 gap-2 h-8 bg-muted data-[focused]:bg-base data-[focused]:b-accent data-[focused]:outline-2 data-[focused]:outline-accent-4 hover:not-[[data-focused]]:bg-elevated px-3.5 transition-colors"><!----><input data-valid id="form-field-s5-8" name="full" aria-labelledby="form-field-s5-8-label" type="text" placeholder="Full" autocomplete="off" class="leading-none outline-none size-full placeholder:text-subtle"><!--[--><!--]--><!----><!----><!----></div><!--]--><!----><!----></div></div><!--]--></form><!--astro:end--></astro-island></div></div><details class="example-panel-code" data-astro-cid-r2jpjjbh><summary class="example-panel-toolbar" data-astro-cid-r2jpjjbh><span class="example-panel-toolbar-left" data-astro-cid-r2jpjjbh><span class="example-panel-lang" data-astro-cid-r2jpjjbh>Vue</span><span class="example-panel-path" data-astro-cid-r2jpjjbh>examples/radius.vue</span></span><span class="example-panel-toolbar-right" data-astro-cid-r2jpjjbh><button type="button" class="example-panel-copy" data-copy-target="example-copy-kb8law3x" aria-label="Copy code" data-astro-cid-r2jpjjbh>Copy</button><span class="example-panel-toggle" data-closed-label="Expand code" data-open-label="Hide code" data-astro-cid-r2jpjjbh>Expand code</span></span></summary><textarea id="example-copy-kb8law3x-raw" class="example-panel-raw" readonly hidden data-astro-cid-r2jpjjbh>&lt;script lang=&quot;ts&quot; setup&gt;
+import { useForm } from &#39;~/composables/use-form-context&#39;
+import FormField from &#39;../../form-field/form-field.vue&#39;
+import Form from &#39;../../form/form.vue&#39;
+import Input from &#39;../input.vue&#39;
+
+const form = useForm({
+  defaultValues: {
+    none: &#39;&#39;,
+    xs: &#39;&#39;,
+    sm: &#39;&#39;,
+    md: &#39;&#39;,
+    lg: &#39;&#39;,
+    xl: &#39;&#39;,
+    full: &#39;&#39;,
+  },
+})
+&lt;/script&gt;
+
+&lt;template&gt;
+  &lt;Form :form=&quot;form&quot; class=&quot;flex flex-col gap-3 max-w-sm w-full&quot;&gt;
+    &lt;FormField name=&quot;none&quot; label=&quot;None&quot;&gt;
+      &lt;Input radius=&quot;none&quot; placeholder=&quot;None&quot; /&gt;
+    &lt;/FormField&gt;
+    &lt;FormField name=&quot;xs&quot; label=&quot;XS&quot;&gt;
+      &lt;Input radius=&quot;xs&quot; placeholder=&quot;XS&quot; /&gt;
+    &lt;/FormField&gt;
+    &lt;FormField name=&quot;sm&quot; label=&quot;SM&quot;&gt;
+      &lt;Input radius=&quot;sm&quot; placeholder=&quot;SM&quot; /&gt;
+    &lt;/FormField&gt;
+    &lt;FormField name=&quot;md&quot; label=&quot;MD&quot;&gt;
+      &lt;Input radius=&quot;md&quot; placeholder=&quot;MD&quot; /&gt;
+    &lt;/FormField&gt;
+    &lt;FormField name=&quot;lg&quot; label=&quot;LG&quot;&gt;
+      &lt;Input radius=&quot;lg&quot; placeholder=&quot;LG&quot; /&gt;
+    &lt;/FormField&gt;
+    &lt;FormField name=&quot;xl&quot; label=&quot;XL&quot;&gt;
+      &lt;Input radius=&quot;xl&quot; placeholder=&quot;XL&quot; /&gt;
+    &lt;/FormField&gt;
+    &lt;FormField name=&quot;full&quot; label=&quot;Full&quot;&gt;
+      &lt;Input radius=&quot;full&quot; placeholder=&quot;Full&quot; /&gt;
+    &lt;/FormField&gt;
+  &lt;/Form&gt;
+&lt;/template&gt;
+</textarea><div class="example-panel-code-body" id="example-copy-kb8law3x" data-astro-cid-r2jpjjbh><pre class="shiki vitesse-dark" style="background-color:#121212;color:#dbd7caee" tabindex="0"><code><span class="line"><span style="color:#666666">&#x3C;</span><span style="color:#4D9375">script</span><span style="color:#BD976A"> lang</span><span style="color:#666666">=</span><span style="color:#C98A7D77">"</span><span style="color:#C98A7D">ts</span><span style="color:#C98A7D77">"</span><span style="color:#BD976A"> setup</span><span style="color:#666666">></span></span>
+<span class="line"><span style="color:#4D9375">import</span><span style="color:#666666"> {</span><span style="color:#BD976A"> useForm</span><span style="color:#666666"> }</span><span style="color:#4D9375"> from</span><span style="color:#C98A7D77"> '</span><span style="color:#C98A7D">~/composables/use-form-context</span><span style="color:#C98A7D77">'</span></span>
+<span class="line"><span style="color:#4D9375">import</span><span style="color:#BD976A"> FormField</span><span style="color:#4D9375"> from</span><span style="color:#C98A7D77"> '</span><span style="color:#C98A7D">../../form-field/form-field.vue</span><span style="color:#C98A7D77">'</span></span>
+<span class="line"><span style="color:#4D9375">import</span><span style="color:#BD976A"> Form</span><span style="color:#4D9375"> from</span><span style="color:#C98A7D77"> '</span><span style="color:#C98A7D">../../form/form.vue</span><span style="color:#C98A7D77">'</span></span>
+<span class="line"><span style="color:#4D9375">import</span><span style="color:#BD976A"> Input</span><span style="color:#4D9375"> from</span><span style="color:#C98A7D77"> '</span><span style="color:#C98A7D">../input.vue</span><span style="color:#C98A7D77">'</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#CB7676">const </span><span style="color:#BD976A">form</span><span style="color:#666666"> =</span><span style="color:#80A665"> useForm</span><span style="color:#666666">({</span></span>
+<span class="line"><span style="color:#B8A965">  defaultValues</span><span style="color:#666666">: {</span></span>
+<span class="line"><span style="color:#B8A965">    none</span><span style="color:#666666">: </span><span style="color:#C98A7D77">''</span><span style="color:#666666">,</span></span>
+<span class="line"><span style="color:#B8A965">    xs</span><span style="color:#666666">: </span><span style="color:#C98A7D77">''</span><span style="color:#666666">,</span></span>
+<span class="line"><span style="color:#B8A965">    sm</span><span style="color:#666666">: </span><span style="color:#C98A7D77">''</span><span style="color:#666666">,</span></span>
+<span class="line"><span style="color:#B8A965">    md</span><span style="color:#666666">: </span><span style="color:#C98A7D77">''</span><span style="color:#666666">,</span></span>
+<span class="line"><span style="color:#B8A965">    lg</span><span style="color:#666666">: </span><span style="color:#C98A7D77">''</span><span style="color:#666666">,</span></span>
+<span class="line"><span style="color:#B8A965">    xl</span><span style="color:#666666">: </span><span style="color:#C98A7D77">''</span><span style="color:#666666">,</span></span>
+<span class="line"><span style="color:#B8A965">    full</span><span style="color:#666666">: </span><span style="color:#C98A7D77">''</span><span style="color:#666666">,</span></span>
+<span class="line"><span style="color:#666666">  },</span></span>
+<span class="line"><span style="color:#666666">})</span></span>
+<span class="line"><span style="color:#666666">&#x3C;/</span><span style="color:#4D9375">script</span><span style="color:#666666">></span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#666666">&#x3C;</span><span style="color:#4D9375">template</span><span style="color:#666666">></span></span>
+<span class="line"><span style="color:#666666">  &#x3C;</span><span style="color:#4D9375">Form</span><span style="color:#666666"> :</span><span style="color:#80A665">form</span><span style="color:#666666">=</span><span style="color:#666666">"</span><span style="color:#BD976A">form</span><span style="color:#666666">"</span><span style="color:#BD976A"> class</span><span style="color:#666666">=</span><span style="color:#C98A7D77">"</span><span style="color:#C98A7D">flex flex-col gap-3 max-w-sm w-full</span><span style="color:#C98A7D77">"</span><span style="color:#666666">></span></span>
+<span class="line"><span style="color:#666666">    &#x3C;</span><span style="color:#4D9375">FormField</span><span style="color:#BD976A"> name</span><span style="color:#666666">=</span><span style="color:#C98A7D77">"</span><span style="color:#C98A7D">none</span><span style="color:#C98A7D77">"</span><span style="color:#BD976A"> label</span><span style="color:#666666">=</span><span style="color:#C98A7D77">"</span><span style="color:#C98A7D">None</span><span style="color:#C98A7D77">"</span><span style="color:#666666">></span></span>
+<span class="line"><span style="color:#666666">      &#x3C;</span><span style="color:#4D9375">Input</span><span style="color:#BD976A"> radius</span><span style="color:#666666">=</span><span style="color:#C98A7D77">"</span><span style="color:#C98A7D">none</span><span style="color:#C98A7D77">"</span><span style="color:#BD976A"> placeholder</span><span style="color:#666666">=</span><span style="color:#C98A7D77">"</span><span style="color:#C98A7D">None</span><span style="color:#C98A7D77">"</span><span style="color:#666666"> /></span></span>
+<span class="line"><span style="color:#666666">    &#x3C;/</span><span style="color:#4D9375">FormField</span><span style="color:#666666">></span></span>
+<span class="line"><span style="color:#666666">    &#x3C;</span><span style="color:#4D9375">FormField</span><span style="color:#BD976A"> name</span><span style="color:#666666">=</span><span style="color:#C98A7D77">"</span><span style="color:#C98A7D">xs</span><span style="color:#C98A7D77">"</span><span style="color:#BD976A"> label</span><span style="color:#666666">=</span><span style="color:#C98A7D77">"</span><span style="color:#C98A7D">XS</span><span style="color:#C98A7D77">"</span><span style="color:#666666">></span></span>
+<span class="line"><span style="color:#666666">      &#x3C;</span><span style="color:#4D9375">Input</span><span style="color:#BD976A"> radius</span><span style="color:#666666">=</span><span style="color:#C98A7D77">"</span><span style="color:#C98A7D">xs</span><span style="color:#C98A7D77">"</span><span style="color:#BD976A"> placeholder</span><span style="color:#666666">=</span><span style="color:#C98A7D77">"</span><span style="color:#C98A7D">XS</span><span style="color:#C98A7D77">"</span><span style="color:#666666"> /></span></span>
+<span class="line"><span style="color:#666666">    &#x3C;/</span><span style="color:#4D9375">FormField</span><span style="color:#666666">></span></span>
+<span class="line"><span style="color:#666666">    &#x3C;</span><span style="color:#4D9375">FormField</span><span style="color:#BD976A"> name</span><span style="color:#666666">=</span><span style="color:#C98A7D77">"</span><span style="color:#C98A7D">sm</span><span style="color:#C98A7D77">"</span><span style="color:#BD976A"> label</span><span style="color:#666666">=</span><span style="color:#C98A7D77">"</span><span style="color:#C98A7D">SM</span><span style="color:#C98A7D77">"</span><span style="color:#666666">></span></span>
+<span class="line"><span style="color:#666666">      &#x3C;</span><span style="color:#4D9375">Input</span><span style="color:#BD976A"> radius</span><span style="color:#666666">=</span><span style="color:#C98A7D77">"</span><span style="color:#C98A7D">sm</span><span style="color:#C98A7D77">"</span><span style="color:#BD976A"> placeholder</span><span style="color:#666666">=</span><span style="color:#C98A7D77">"</span><span style="color:#C98A7D">SM</span><span style="color:#C98A7D77">"</span><span style="color:#666666"> /></span></span>
+<span class="line"><span style="color:#666666">    &#x3C;/</span><span style="color:#4D9375">FormField</span><span style="color:#666666">></span></span>
+<span class="line"><span style="color:#666666">    &#x3C;</span><span style="color:#4D9375">FormField</span><span style="color:#BD976A"> name</span><span style="color:#666666">=</span><span style="color:#C98A7D77">"</span><span style="color:#C98A7D">md</span><span style="color:#C98A7D77">"</span><span style="color:#BD976A"> label</span><span style="color:#666666">=</span><span style="color:#C98A7D77">"</span><span style="color:#C98A7D">MD</span><span style="color:#C98A7D77">"</span><span style="color:#666666">></span></span>
+<span class="line"><span style="color:#666666">      &#x3C;</span><span style="color:#4D9375">Input</span><span style="color:#BD976A"> radius</span><span style="color:#666666">=</span><span style="color:#C98A7D77">"</span><span style="color:#C98A7D">md</span><span style="color:#C98A7D77">"</span><span style="color:#BD976A"> placeholder</span><span style="color:#666666">=</span><span style="color:#C98A7D77">"</span><span style="color:#C98A7D">MD</span><span style="color:#C98A7D77">"</span><span style="color:#666666"> /></span></span>
+<span class="line"><span style="color:#666666">    &#x3C;/</span><span style="color:#4D9375">FormField</span><span style="color:#666666">></span></span>
+<span class="line"><span style="color:#666666">    &#x3C;</span><span style="color:#4D9375">FormField</span><span style="color:#BD976A"> name</span><span style="color:#666666">=</span><span style="color:#C98A7D77">"</span><span style="color:#C98A7D">lg</span><span style="color:#C98A7D77">"</span><span style="color:#BD976A"> label</span><span style="color:#666666">=</span><span style="color:#C98A7D77">"</span><span style="color:#C98A7D">LG</span><span style="color:#C98A7D77">"</span><span style="color:#666666">></span></span>
+<span class="line"><span style="color:#666666">      &#x3C;</span><span style="color:#4D9375">Input</span><span style="color:#BD976A"> radius</span><span style="color:#666666">=</span><span style="color:#C98A7D77">"</span><span style="color:#C98A7D">lg</span><span style="color:#C98A7D77">"</span><span style="color:#BD976A"> placeholder</span><span style="color:#666666">=</span><span style="color:#C98A7D77">"</span><span style="color:#C98A7D">LG</span><span style="color:#C98A7D77">"</span><span style="color:#666666"> /></span></span>
+<span class="line"><span style="color:#666666">    &#x3C;/</span><span style="color:#4D9375">FormField</span><span style="color:#666666">></span></span>
+<span class="line"><span style="color:#666666">    &#x3C;</span><span style="color:#4D9375">FormField</span><span style="color:#BD976A"> name</span><span style="color:#666666">=</span><span style="color:#C98A7D77">"</span><span style="color:#C98A7D">xl</span><span style="color:#C98A7D77">"</span><span style="color:#BD976A"> label</span><span style="color:#666666">=</span><span style="color:#C98A7D77">"</span><span style="color:#C98A7D">XL</span><span style="color:#C98A7D77">"</span><span style="color:#666666">></span></span>
+<span class="line"><span style="color:#666666">      &#x3C;</span><span style="color:#4D9375">Input</span><span style="color:#BD976A"> radius</span><span style="color:#666666">=</span><span style="color:#C98A7D77">"</span><span style="color:#C98A7D">xl</span><span style="color:#C98A7D77">"</span><span style="color:#BD976A"> placeholder</span><span style="color:#666666">=</span><span style="color:#C98A7D77">"</span><span style="color:#C98A7D">XL</span><span style="color:#C98A7D77">"</span><span style="color:#666666"> /></span></span>
+<span class="line"><span style="color:#666666">    &#x3C;/</span><span style="color:#4D9375">FormField</span><span style="color:#666666">></span></span>
+<span class="line"><span style="color:#666666">    &#x3C;</span><span style="color:#4D9375">FormField</span><span style="color:#BD976A"> name</span><span style="color:#666666">=</span><span style="color:#C98A7D77">"</span><span style="color:#C98A7D">full</span><span style="color:#C98A7D77">"</span><span style="color:#BD976A"> label</span><span style="color:#666666">=</span><span style="color:#C98A7D77">"</span><span style="color:#C98A7D">Full</span><span style="color:#C98A7D77">"</span><span style="color:#666666">></span></span>
+<span class="line"><span style="color:#666666">      &#x3C;</span><span style="color:#4D9375">Input</span><span style="color:#BD976A"> radius</span><span style="color:#666666">=</span><span style="color:#C98A7D77">"</span><span style="color:#C98A7D">full</span><span style="color:#C98A7D77">"</span><span style="color:#BD976A"> placeholder</span><span style="color:#666666">=</span><span style="color:#C98A7D77">"</span><span style="color:#C98A7D">Full</span><span style="color:#C98A7D77">"</span><span style="color:#666666"> /></span></span>
+<span class="line"><span style="color:#666666">    &#x3C;/</span><span style="color:#4D9375">FormField</span><span style="color:#666666">></span></span>
+<span class="line"><span style="color:#666666">  &#x3C;/</span><span style="color:#4D9375">Form</span><span style="color:#666666">></span></span>
+<span class="line"><span style="color:#666666">&#x3C;/</span><span style="color:#4D9375">template</span><span style="color:#666666">></span></span></code></pre></div></details></div></section><h3 id="with-affix">With Affix</h3><section class="example-panel" data-astro-cid-r2jpjjbh><div class="example-panel-shell" data-astro-cid-r2jpjjbh><div class="example-panel-stage" data-astro-cid-r2jpjjbh><div class="example-panel-stage-glow" aria-hidden="true" data-astro-cid-r2jpjjbh></div><div class="example-panel-stage-body not-prose" data-astro-cid-r2jpjjbh><astro-island uid="Z3nDQc" prefix="s6" component-url="/weme-ui/_astro/ExampleHost.Ck47miSS.js" component-export="default" renderer-url="/weme-ui/_astro/client.BqjT1N1a.js" props="{&quot;examplePath&quot;:[0,&quot;slim/src/components/input/examples/with-affix.vue&quot;],&quot;data-astro-cid-r2jpjjbh&quot;:[0,true]}" ssr client="load" opts="{&quot;name&quot;:&quot;ExampleHost&quot;,&quot;value&quot;:true}" await-children><form id="s6-1" data-slot="form" class="p-4 flex flex-col gap-3 max-w-sm w-full" method="post" novalidate data-astro-cid-r2jpjjbh="true"><!--[--><div data-slot="form-field" data-valid data-orientation="vertical" class="flex gap-2 flex-col"><div class="flex flex-col"><div class="flex gap-1"><!----><label for="form-field-s6-2" id="form-field-s6-2-label" class="text-base text-highlighted text-nowrap font-medium"><!--[--><!--[-->With icons<!--]--><!--]--></label><!----></div><!----></div><div class="flex flex-col"><!--[--><div data-valid data-slot="input" class="group flex flex-y-center relative b b-transparent rounded-md text-3.5 gap-2 h-8 bg-muted data-[focused]:bg-base data-[focused]:b-accent data-[focused]:outline-2 data-[focused]:outline-accent-4 hover:not-[[data-focused]]:bg-elevated px-2.5 transition-colors"><span class="transition-colors group-data-[focused]:text-highlighted not-[[data-focused]]:text-subtle"><!--[--><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" role="img" style="" width="1em" height="1em" viewBox="0 0 16 16" data-slot="icon" class=""></svg><!--]--></span><input data-valid id="form-field-s6-2" name="icons" aria-labelledby="form-field-s6-2-label" type="text" placeholder="Search mail" autocomplete="off" class="leading-none outline-none size-full placeholder:text-subtle"><!--[--><!--]--><!----><!----><span class="transition-colors group-data-[focused]:text-highlighted not-[[data-focused]]:text-subtle"><!--[--><!--[--><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" role="img" style="" width="1em" height="1em" viewBox="0 0 16 16" data-slot="icon" class=""></svg><!--]--><!--]--></span></div><!--]--><!----><!----></div></div><div data-slot="form-field" data-valid data-orientation="vertical" class="flex gap-2 flex-col"><div class="flex flex-col"><div class="flex gap-1"><!----><label for="form-field-s6-3" id="form-field-s6-3-label" class="text-base text-highlighted text-nowrap font-medium"><!--[--><!--[-->With text<!--]--><!--]--></label><!----></div><!----></div><div class="flex flex-col"><!--[--><div data-valid data-slot="input" class="group flex flex-y-center relative b b-transparent rounded-md text-3.5 gap-2 h-8 bg-muted data-[focused]:bg-base data-[focused]:b-accent data-[focused]:outline-2 data-[focused]:outline-accent-4 hover:not-[[data-focused]]:bg-elevated px-2.5 transition-colors"><span class="transition-colors group-data-[focused]:text-highlighted not-[[data-focused]]:text-subtle"><!--[--><!--[-->https://<!--]--><!--]--></span><input data-valid id="form-field-s6-3" name="text" aria-labelledby="form-field-s6-3-label" type="text" placeholder="example" autocomplete="off" class="leading-none outline-none size-full placeholder:text-subtle"><!--[--><!--]--><!----><!----><span class="transition-colors group-data-[focused]:text-highlighted not-[[data-focused]]:text-subtle"><!--[--><!--[-->.com<!--]--><!--]--></span></div><!--]--><!----><!----></div></div><!--]--></form><!--astro:end--></astro-island></div></div><details class="example-panel-code" data-astro-cid-r2jpjjbh><summary class="example-panel-toolbar" data-astro-cid-r2jpjjbh><span class="example-panel-toolbar-left" data-astro-cid-r2jpjjbh><span class="example-panel-lang" data-astro-cid-r2jpjjbh>Vue</span><span class="example-panel-path" data-astro-cid-r2jpjjbh>examples/with-affix.vue</span></span><span class="example-panel-toolbar-right" data-astro-cid-r2jpjjbh><button type="button" class="example-panel-copy" data-copy-target="example-copy-08ync9yn" aria-label="Copy code" data-astro-cid-r2jpjjbh>Copy</button><span class="example-panel-toggle" data-closed-label="Expand code" data-open-label="Hide code" data-astro-cid-r2jpjjbh>Expand code</span></span></summary><textarea id="example-copy-08ync9yn-raw" class="example-panel-raw" readonly hidden data-astro-cid-r2jpjjbh>&lt;script lang=&quot;ts&quot; setup&gt;
+import { useForm } from &#39;~/composables/use-form-context&#39;
+import FormField from &#39;../../form-field/form-field.vue&#39;
+import Form from &#39;../../form/form.vue&#39;
+import Input from &#39;../input.vue&#39;
+
+const form = useForm({
+  defaultValues: {
+    icons: &#39;&#39;,
+    text: &#39;&#39;,
+  },
+})
+&lt;/script&gt;
+
+&lt;template&gt;
+  &lt;Form :form=&quot;form&quot; class=&quot;flex flex-col gap-3 max-w-sm w-full&quot;&gt;
+    &lt;FormField name=&quot;icons&quot; label=&quot;With icons&quot;&gt;
+      &lt;Input
+        prefix-icon=&quot;ri:mail-line&quot;
+        suffix-icon=&quot;ri:search-line&quot;
+        placeholder=&quot;Search mail&quot;
+      /&gt;
+    &lt;/FormField&gt;
+    &lt;FormField name=&quot;text&quot; label=&quot;With text&quot;&gt;
+      &lt;Input prefix=&quot;https://&quot; suffix=&quot;.com&quot; placeholder=&quot;example&quot; /&gt;
+    &lt;/FormField&gt;
+  &lt;/Form&gt;
+&lt;/template&gt;
+</textarea><div class="example-panel-code-body" id="example-copy-08ync9yn" data-astro-cid-r2jpjjbh><pre class="shiki vitesse-dark" style="background-color:#121212;color:#dbd7caee" tabindex="0"><code><span class="line"><span style="color:#666666">&#x3C;</span><span style="color:#4D9375">script</span><span style="color:#BD976A"> lang</span><span style="color:#666666">=</span><span style="color:#C98A7D77">"</span><span style="color:#C98A7D">ts</span><span style="color:#C98A7D77">"</span><span style="color:#BD976A"> setup</span><span style="color:#666666">></span></span>
+<span class="line"><span style="color:#4D9375">import</span><span style="color:#666666"> {</span><span style="color:#BD976A"> useForm</span><span style="color:#666666"> }</span><span style="color:#4D9375"> from</span><span style="color:#C98A7D77"> '</span><span style="color:#C98A7D">~/composables/use-form-context</span><span style="color:#C98A7D77">'</span></span>
+<span class="line"><span style="color:#4D9375">import</span><span style="color:#BD976A"> FormField</span><span style="color:#4D9375"> from</span><span style="color:#C98A7D77"> '</span><span style="color:#C98A7D">../../form-field/form-field.vue</span><span style="color:#C98A7D77">'</span></span>
+<span class="line"><span style="color:#4D9375">import</span><span style="color:#BD976A"> Form</span><span style="color:#4D9375"> from</span><span style="color:#C98A7D77"> '</span><span style="color:#C98A7D">../../form/form.vue</span><span style="color:#C98A7D77">'</span></span>
+<span class="line"><span style="color:#4D9375">import</span><span style="color:#BD976A"> Input</span><span style="color:#4D9375"> from</span><span style="color:#C98A7D77"> '</span><span style="color:#C98A7D">../input.vue</span><span style="color:#C98A7D77">'</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#CB7676">const </span><span style="color:#BD976A">form</span><span style="color:#666666"> =</span><span style="color:#80A665"> useForm</span><span style="color:#666666">({</span></span>
+<span class="line"><span style="color:#B8A965">  defaultValues</span><span style="color:#666666">: {</span></span>
+<span class="line"><span style="color:#B8A965">    icons</span><span style="color:#666666">: </span><span style="color:#C98A7D77">''</span><span style="color:#666666">,</span></span>
+<span class="line"><span style="color:#B8A965">    text</span><span style="color:#666666">: </span><span style="color:#C98A7D77">''</span><span style="color:#666666">,</span></span>
+<span class="line"><span style="color:#666666">  },</span></span>
+<span class="line"><span style="color:#666666">})</span></span>
+<span class="line"><span style="color:#666666">&#x3C;/</span><span style="color:#4D9375">script</span><span style="color:#666666">></span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#666666">&#x3C;</span><span style="color:#4D9375">template</span><span style="color:#666666">></span></span>
+<span class="line"><span style="color:#666666">  &#x3C;</span><span style="color:#4D9375">Form</span><span style="color:#666666"> :</span><span style="color:#80A665">form</span><span style="color:#666666">=</span><span style="color:#666666">"</span><span style="color:#BD976A">form</span><span style="color:#666666">"</span><span style="color:#BD976A"> class</span><span style="color:#666666">=</span><span style="color:#C98A7D77">"</span><span style="color:#C98A7D">flex flex-col gap-3 max-w-sm w-full</span><span style="color:#C98A7D77">"</span><span style="color:#666666">></span></span>
+<span class="line"><span style="color:#666666">    &#x3C;</span><span style="color:#4D9375">FormField</span><span style="color:#BD976A"> name</span><span style="color:#666666">=</span><span style="color:#C98A7D77">"</span><span style="color:#C98A7D">icons</span><span style="color:#C98A7D77">"</span><span style="color:#BD976A"> label</span><span style="color:#666666">=</span><span style="color:#C98A7D77">"</span><span style="color:#C98A7D">With icons</span><span style="color:#C98A7D77">"</span><span style="color:#666666">></span></span>
+<span class="line"><span style="color:#666666">      &#x3C;</span><span style="color:#4D9375">Input</span></span>
+<span class="line"><span style="color:#BD976A">        prefix-icon</span><span style="color:#666666">=</span><span style="color:#C98A7D77">"</span><span style="color:#C98A7D">ri:mail-line</span><span style="color:#C98A7D77">"</span></span>
+<span class="line"><span style="color:#BD976A">        suffix-icon</span><span style="color:#666666">=</span><span style="color:#C98A7D77">"</span><span style="color:#C98A7D">ri:search-line</span><span style="color:#C98A7D77">"</span></span>
+<span class="line"><span style="color:#BD976A">        placeholder</span><span style="color:#666666">=</span><span style="color:#C98A7D77">"</span><span style="color:#C98A7D">Search mail</span><span style="color:#C98A7D77">"</span></span>
+<span class="line"><span style="color:#666666">      /></span></span>
+<span class="line"><span style="color:#666666">    &#x3C;/</span><span style="color:#4D9375">FormField</span><span style="color:#666666">></span></span>
+<span class="line"><span style="color:#666666">    &#x3C;</span><span style="color:#4D9375">FormField</span><span style="color:#BD976A"> name</span><span style="color:#666666">=</span><span style="color:#C98A7D77">"</span><span style="color:#C98A7D">text</span><span style="color:#C98A7D77">"</span><span style="color:#BD976A"> label</span><span style="color:#666666">=</span><span style="color:#C98A7D77">"</span><span style="color:#C98A7D">With text</span><span style="color:#C98A7D77">"</span><span style="color:#666666">></span></span>
+<span class="line"><span style="color:#666666">      &#x3C;</span><span style="color:#4D9375">Input</span><span style="color:#BD976A"> prefix</span><span style="color:#666666">=</span><span style="color:#C98A7D77">"</span><span style="color:#C98A7D">https://</span><span style="color:#C98A7D77">"</span><span style="color:#BD976A"> suffix</span><span style="color:#666666">=</span><span style="color:#C98A7D77">"</span><span style="color:#C98A7D">.com</span><span style="color:#C98A7D77">"</span><span style="color:#BD976A"> placeholder</span><span style="color:#666666">=</span><span style="color:#C98A7D77">"</span><span style="color:#C98A7D">example</span><span style="color:#C98A7D77">"</span><span style="color:#666666"> /></span></span>
+<span class="line"><span style="color:#666666">    &#x3C;/</span><span style="color:#4D9375">FormField</span><span style="color:#666666">></span></span>
+<span class="line"><span style="color:#666666">  &#x3C;/</span><span style="color:#4D9375">Form</span><span style="color:#666666">></span></span>
+<span class="line"><span style="color:#666666">&#x3C;/</span><span style="color:#4D9375">template</span><span style="color:#666666">></span></span></code></pre></div></details></div></section><h3 id="clearable">Clearable</h3><section class="example-panel" data-astro-cid-r2jpjjbh><div class="example-panel-shell" data-astro-cid-r2jpjjbh><div class="example-panel-stage" data-astro-cid-r2jpjjbh><div class="example-panel-stage-glow" aria-hidden="true" data-astro-cid-r2jpjjbh></div><div class="example-panel-stage-body not-prose" data-astro-cid-r2jpjjbh><astro-island uid="Zn0x9I" prefix="s7" component-url="/weme-ui/_astro/ExampleHost.Ck47miSS.js" component-export="default" renderer-url="/weme-ui/_astro/client.BqjT1N1a.js" props="{&quot;examplePath&quot;:[0,&quot;slim/src/components/input/examples/clearable.vue&quot;],&quot;data-astro-cid-r2jpjjbh&quot;:[0,true]}" ssr client="load" opts="{&quot;name&quot;:&quot;ExampleHost&quot;,&quot;value&quot;:true}" await-children><form id="s7-1" data-slot="form" class="flex flex-col gap-4 p-4 max-w-sm w-full" method="post" novalidate data-astro-cid-r2jpjjbh="true"><!--[--><div data-slot="form-field" data-valid data-filled data-orientation="vertical" class="flex gap-2 flex-col"><div class="flex flex-col"><div class="flex gap-1"><!----><label for="form-field-s7-2" id="form-field-s7-2-label" class="text-base text-highlighted text-nowrap font-medium"><!--[--><!--[-->Name<!--]--><!--]--></label><!----></div><!----></div><div class="flex flex-col"><!--[--><div data-valid data-filled data-slot="input" class="group flex flex-y-center relative b b-transparent rounded-md text-3.5 gap-2 h-8 bg-muted data-[focused]:bg-base data-[focused]:b-accent data-[focused]:outline-2 data-[focused]:outline-accent-4 hover:not-[[data-focused]]:bg-elevated px-2.5 transition-colors"><!----><input data-valid data-filled id="form-field-s7-2" name="name" aria-labelledby="form-field-s7-2-label" type="text" value="Weme UI" placeholder="Clearable" autocomplete="off" class="leading-none outline-none size-full placeholder:text-subtle"><!--[--><!--]--><button type="button" class="p-0.5 rounded-full op-0 flex transition-[opacity,background-color] flex-center hover:bg-accent-3 group-data-[focused]:op-100"><!--[--><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" role="img" style="" width="1em" height="1em" viewBox="0 0 16 16" data-slot="icon"></svg><!--]--></button><!----><!----></div><!--]--><!----><!----></div></div><!--]--></form><!--astro:end--></astro-island></div></div><details class="example-panel-code" data-astro-cid-r2jpjjbh><summary class="example-panel-toolbar" data-astro-cid-r2jpjjbh><span class="example-panel-toolbar-left" data-astro-cid-r2jpjjbh><span class="example-panel-lang" data-astro-cid-r2jpjjbh>Vue</span><span class="example-panel-path" data-astro-cid-r2jpjjbh>examples/clearable.vue</span></span><span class="example-panel-toolbar-right" data-astro-cid-r2jpjjbh><button type="button" class="example-panel-copy" data-copy-target="example-copy-7vqh2rer" aria-label="Copy code" data-astro-cid-r2jpjjbh>Copy</button><span class="example-panel-toggle" data-closed-label="Expand code" data-open-label="Hide code" data-astro-cid-r2jpjjbh>Expand code</span></span></summary><textarea id="example-copy-7vqh2rer-raw" class="example-panel-raw" readonly hidden data-astro-cid-r2jpjjbh>&lt;script lang=&quot;ts&quot; setup&gt;
+import { useForm } from &#39;~/composables/use-form-context&#39;
+import FormField from &#39;../../form-field/form-field.vue&#39;
+import Form from &#39;../../form/form.vue&#39;
+import Input from &#39;../input.vue&#39;
+
+const form = useForm({
+  defaultValues: {
+    name: &#39;Weme UI&#39;,
+  },
+})
+&lt;/script&gt;
+
+&lt;template&gt;
+  &lt;Form :form=&quot;form&quot; class=&quot;max-w-sm w-full&quot;&gt;
+    &lt;FormField v-slot=&quot;{ field }&quot; name=&quot;name&quot; label=&quot;Name&quot;&gt;
+      &lt;Input
+        clearable
+        :model-value=&quot;field.state.value&quot;
+        placeholder=&quot;Clearable&quot;
+        @change=&quot;field.api.handleChange($event.target?.value)&quot;
+        @clean=&quot;field.api.handleChange(&#39;&#39;)&quot;
+      /&gt;
+    &lt;/FormField&gt;
+  &lt;/Form&gt;
+&lt;/template&gt;
+</textarea><div class="example-panel-code-body" id="example-copy-7vqh2rer" data-astro-cid-r2jpjjbh><pre class="shiki vitesse-dark" style="background-color:#121212;color:#dbd7caee" tabindex="0"><code><span class="line"><span style="color:#666666">&#x3C;</span><span style="color:#4D9375">script</span><span style="color:#BD976A"> lang</span><span style="color:#666666">=</span><span style="color:#C98A7D77">"</span><span style="color:#C98A7D">ts</span><span style="color:#C98A7D77">"</span><span style="color:#BD976A"> setup</span><span style="color:#666666">></span></span>
+<span class="line"><span style="color:#4D9375">import</span><span style="color:#666666"> {</span><span style="color:#BD976A"> useForm</span><span style="color:#666666"> }</span><span style="color:#4D9375"> from</span><span style="color:#C98A7D77"> '</span><span style="color:#C98A7D">~/composables/use-form-context</span><span style="color:#C98A7D77">'</span></span>
+<span class="line"><span style="color:#4D9375">import</span><span style="color:#BD976A"> FormField</span><span style="color:#4D9375"> from</span><span style="color:#C98A7D77"> '</span><span style="color:#C98A7D">../../form-field/form-field.vue</span><span style="color:#C98A7D77">'</span></span>
+<span class="line"><span style="color:#4D9375">import</span><span style="color:#BD976A"> Form</span><span style="color:#4D9375"> from</span><span style="color:#C98A7D77"> '</span><span style="color:#C98A7D">../../form/form.vue</span><span style="color:#C98A7D77">'</span></span>
+<span class="line"><span style="color:#4D9375">import</span><span style="color:#BD976A"> Input</span><span style="color:#4D9375"> from</span><span style="color:#C98A7D77"> '</span><span style="color:#C98A7D">../input.vue</span><span style="color:#C98A7D77">'</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#CB7676">const </span><span style="color:#BD976A">form</span><span style="color:#666666"> =</span><span style="color:#80A665"> useForm</span><span style="color:#666666">({</span></span>
+<span class="line"><span style="color:#B8A965">  defaultValues</span><span style="color:#666666">: {</span></span>
+<span class="line"><span style="color:#B8A965">    name</span><span style="color:#666666">: </span><span style="color:#C98A7D77">'</span><span style="color:#C98A7D">Weme UI</span><span style="color:#C98A7D77">'</span><span style="color:#666666">,</span></span>
+<span class="line"><span style="color:#666666">  },</span></span>
+<span class="line"><span style="color:#666666">})</span></span>
+<span class="line"><span style="color:#666666">&#x3C;/</span><span style="color:#4D9375">script</span><span style="color:#666666">></span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#666666">&#x3C;</span><span style="color:#4D9375">template</span><span style="color:#666666">></span></span>
+<span class="line"><span style="color:#666666">  &#x3C;</span><span style="color:#4D9375">Form</span><span style="color:#666666"> :</span><span style="color:#80A665">form</span><span style="color:#666666">=</span><span style="color:#666666">"</span><span style="color:#BD976A">form</span><span style="color:#666666">"</span><span style="color:#BD976A"> class</span><span style="color:#666666">=</span><span style="color:#C98A7D77">"</span><span style="color:#C98A7D">max-w-sm w-full</span><span style="color:#C98A7D77">"</span><span style="color:#666666">></span></span>
+<span class="line"><span style="color:#666666">    &#x3C;</span><span style="color:#4D9375">FormField</span><span style="color:#80A665"> v-slot</span><span style="color:#666666">=</span><span style="color:#666666">"</span><span style="color:#666666">{ </span><span style="color:#BD976A">field</span><span style="color:#666666"> }</span><span style="color:#666666">"</span><span style="color:#BD976A"> name</span><span style="color:#666666">=</span><span style="color:#C98A7D77">"</span><span style="color:#C98A7D">name</span><span style="color:#C98A7D77">"</span><span style="color:#BD976A"> label</span><span style="color:#666666">=</span><span style="color:#C98A7D77">"</span><span style="color:#C98A7D">Name</span><span style="color:#C98A7D77">"</span><span style="color:#666666">></span></span>
+<span class="line"><span style="color:#666666">      &#x3C;</span><span style="color:#4D9375">Input</span></span>
+<span class="line"><span style="color:#BD976A">        clearable</span></span>
+<span class="line"><span style="color:#666666">        :</span><span style="color:#80A665">model-value</span><span style="color:#666666">=</span><span style="color:#666666">"</span><span style="color:#BD976A">field</span><span style="color:#666666">.</span><span style="color:#BD976A">state</span><span style="color:#666666">.</span><span style="color:#BD976A">value</span><span style="color:#666666">"</span></span>
+<span class="line"><span style="color:#BD976A">        placeholder</span><span style="color:#666666">=</span><span style="color:#C98A7D77">"</span><span style="color:#C98A7D">Clearable</span><span style="color:#C98A7D77">"</span></span>
+<span class="line"><span style="color:#666666">        @</span><span style="color:#80A665">change</span><span style="color:#666666">=</span><span style="color:#666666">"</span><span style="color:#BD976A">field</span><span style="color:#666666">.</span><span style="color:#BD976A">api</span><span style="color:#666666">.</span><span style="color:#80A665">handleChange</span><span style="color:#666666">(</span><span style="color:#BD976A">$event</span><span style="color:#666666">.</span><span style="color:#BD976A">target</span><span style="color:#666666">?.</span><span style="color:#BD976A">value</span><span style="color:#666666">)</span><span style="color:#666666">"</span></span>
+<span class="line"><span style="color:#666666">        @</span><span style="color:#80A665">clean</span><span style="color:#666666">=</span><span style="color:#666666">"</span><span style="color:#BD976A">field</span><span style="color:#666666">.</span><span style="color:#BD976A">api</span><span style="color:#666666">.</span><span style="color:#80A665">handleChange</span><span style="color:#666666">(</span><span style="color:#C98A7D77">''</span><span style="color:#666666">)</span><span style="color:#666666">"</span></span>
+<span class="line"><span style="color:#666666">      /></span></span>
+<span class="line"><span style="color:#666666">    &#x3C;/</span><span style="color:#4D9375">FormField</span><span style="color:#666666">></span></span>
+<span class="line"><span style="color:#666666">  &#x3C;/</span><span style="color:#4D9375">Form</span><span style="color:#666666">></span></span>
+<span class="line"><span style="color:#666666">&#x3C;/</span><span style="color:#4D9375">template</span><span style="color:#666666">></span></span></code></pre></div></details></div></section><h3 id="countable">Countable</h3><section class="example-panel" data-astro-cid-r2jpjjbh><div class="example-panel-shell" data-astro-cid-r2jpjjbh><div class="example-panel-stage" data-astro-cid-r2jpjjbh><div class="example-panel-stage-glow" aria-hidden="true" data-astro-cid-r2jpjjbh></div><div class="example-panel-stage-body not-prose" data-astro-cid-r2jpjjbh><astro-island uid="Z1vAGmG" prefix="s8" component-url="/weme-ui/_astro/ExampleHost.Ck47miSS.js" component-export="default" renderer-url="/weme-ui/_astro/client.BqjT1N1a.js" props="{&quot;examplePath&quot;:[0,&quot;slim/src/components/input/examples/countable.vue&quot;],&quot;data-astro-cid-r2jpjjbh&quot;:[0,true]}" ssr client="load" opts="{&quot;name&quot;:&quot;ExampleHost&quot;,&quot;value&quot;:true}" await-children><form id="s8-1" data-slot="form" class="flex flex-col gap-4 p-4 max-w-sm w-full" method="post" novalidate data-astro-cid-r2jpjjbh="true"><!--[--><div data-slot="form-field" data-valid data-orientation="vertical" class="flex gap-2 flex-col"><div class="flex flex-col"><div class="flex gap-1"><!----><label for="form-field-s8-2" id="form-field-s8-2-label" class="text-base text-highlighted text-nowrap font-medium"><!--[--><!--[-->Bio<!--]--><!--]--></label><!----></div><!----></div><div class="flex flex-col"><!--[--><div data-valid data-slot="input" class="group flex flex-y-center relative b b-transparent rounded-md text-3.5 gap-2 h-8 bg-muted data-[focused]:bg-base data-[focused]:b-accent data-[focused]:outline-2 data-[focused]:outline-accent-4 hover:not-[[data-focused]]:bg-elevated px-2.5 transition-colors"><!----><input data-valid id="form-field-s8-2" name="bio" aria-labelledby="form-field-s8-2-label" type="text" value placeholder="Up to 32 characters" autocomplete="off" class="leading-none outline-none size-full placeholder:text-subtle"><!--[--><!--]--><!----><span class="text-xs text-subtle text-nowrap pointer-events-none select-none">0 / 32</span><!----></div><!--]--><!----><!----></div></div><!--]--></form><!--astro:end--></astro-island></div></div><details class="example-panel-code" data-astro-cid-r2jpjjbh><summary class="example-panel-toolbar" data-astro-cid-r2jpjjbh><span class="example-panel-toolbar-left" data-astro-cid-r2jpjjbh><span class="example-panel-lang" data-astro-cid-r2jpjjbh>Vue</span><span class="example-panel-path" data-astro-cid-r2jpjjbh>examples/countable.vue</span></span><span class="example-panel-toolbar-right" data-astro-cid-r2jpjjbh><button type="button" class="example-panel-copy" data-copy-target="example-copy-0aj8g0rn" aria-label="Copy code" data-astro-cid-r2jpjjbh>Copy</button><span class="example-panel-toggle" data-closed-label="Expand code" data-open-label="Hide code" data-astro-cid-r2jpjjbh>Expand code</span></span></summary><textarea id="example-copy-0aj8g0rn-raw" class="example-panel-raw" readonly hidden data-astro-cid-r2jpjjbh>&lt;script lang=&quot;ts&quot; setup&gt;
+import { useForm } from &#39;~/composables/use-form-context&#39;
+import FormField from &#39;../../form-field/form-field.vue&#39;
+import Form from &#39;../../form/form.vue&#39;
+import Input from &#39;../input.vue&#39;
+
+const form = useForm({
+  defaultValues: {
+    bio: &#39;&#39;,
+  },
+})
+&lt;/script&gt;
+
+&lt;template&gt;
+  &lt;Form :form=&quot;form&quot; class=&quot;max-w-sm w-full&quot;&gt;
+    &lt;FormField v-slot=&quot;{ field }&quot; name=&quot;bio&quot; label=&quot;Bio&quot;&gt;
+      &lt;Input
+        countable
+        :max-length=&quot;32&quot;
+        :model-value=&quot;field.state.value&quot;
+        placeholder=&quot;Up to 32 characters&quot;
+        @update:model-value=&quot;field.api.handleChange&quot;
+      /&gt;
+    &lt;/FormField&gt;
+  &lt;/Form&gt;
+&lt;/template&gt;
+</textarea><div class="example-panel-code-body" id="example-copy-0aj8g0rn" data-astro-cid-r2jpjjbh><pre class="shiki vitesse-dark" style="background-color:#121212;color:#dbd7caee" tabindex="0"><code><span class="line"><span style="color:#666666">&#x3C;</span><span style="color:#4D9375">script</span><span style="color:#BD976A"> lang</span><span style="color:#666666">=</span><span style="color:#C98A7D77">"</span><span style="color:#C98A7D">ts</span><span style="color:#C98A7D77">"</span><span style="color:#BD976A"> setup</span><span style="color:#666666">></span></span>
+<span class="line"><span style="color:#4D9375">import</span><span style="color:#666666"> {</span><span style="color:#BD976A"> useForm</span><span style="color:#666666"> }</span><span style="color:#4D9375"> from</span><span style="color:#C98A7D77"> '</span><span style="color:#C98A7D">~/composables/use-form-context</span><span style="color:#C98A7D77">'</span></span>
+<span class="line"><span style="color:#4D9375">import</span><span style="color:#BD976A"> FormField</span><span style="color:#4D9375"> from</span><span style="color:#C98A7D77"> '</span><span style="color:#C98A7D">../../form-field/form-field.vue</span><span style="color:#C98A7D77">'</span></span>
+<span class="line"><span style="color:#4D9375">import</span><span style="color:#BD976A"> Form</span><span style="color:#4D9375"> from</span><span style="color:#C98A7D77"> '</span><span style="color:#C98A7D">../../form/form.vue</span><span style="color:#C98A7D77">'</span></span>
+<span class="line"><span style="color:#4D9375">import</span><span style="color:#BD976A"> Input</span><span style="color:#4D9375"> from</span><span style="color:#C98A7D77"> '</span><span style="color:#C98A7D">../input.vue</span><span style="color:#C98A7D77">'</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#CB7676">const </span><span style="color:#BD976A">form</span><span style="color:#666666"> =</span><span style="color:#80A665"> useForm</span><span style="color:#666666">({</span></span>
+<span class="line"><span style="color:#B8A965">  defaultValues</span><span style="color:#666666">: {</span></span>
+<span class="line"><span style="color:#B8A965">    bio</span><span style="color:#666666">: </span><span style="color:#C98A7D77">''</span><span style="color:#666666">,</span></span>
+<span class="line"><span style="color:#666666">  },</span></span>
+<span class="line"><span style="color:#666666">})</span></span>
+<span class="line"><span style="color:#666666">&#x3C;/</span><span style="color:#4D9375">script</span><span style="color:#666666">></span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#666666">&#x3C;</span><span style="color:#4D9375">template</span><span style="color:#666666">></span></span>
+<span class="line"><span style="color:#666666">  &#x3C;</span><span style="color:#4D9375">Form</span><span style="color:#666666"> :</span><span style="color:#80A665">form</span><span style="color:#666666">=</span><span style="color:#666666">"</span><span style="color:#BD976A">form</span><span style="color:#666666">"</span><span style="color:#BD976A"> class</span><span style="color:#666666">=</span><span style="color:#C98A7D77">"</span><span style="color:#C98A7D">max-w-sm w-full</span><span style="color:#C98A7D77">"</span><span style="color:#666666">></span></span>
+<span class="line"><span style="color:#666666">    &#x3C;</span><span style="color:#4D9375">FormField</span><span style="color:#80A665"> v-slot</span><span style="color:#666666">=</span><span style="color:#666666">"</span><span style="color:#666666">{ </span><span style="color:#BD976A">field</span><span style="color:#666666"> }</span><span style="color:#666666">"</span><span style="color:#BD976A"> name</span><span style="color:#666666">=</span><span style="color:#C98A7D77">"</span><span style="color:#C98A7D">bio</span><span style="color:#C98A7D77">"</span><span style="color:#BD976A"> label</span><span style="color:#666666">=</span><span style="color:#C98A7D77">"</span><span style="color:#C98A7D">Bio</span><span style="color:#C98A7D77">"</span><span style="color:#666666">></span></span>
+<span class="line"><span style="color:#666666">      &#x3C;</span><span style="color:#4D9375">Input</span></span>
+<span class="line"><span style="color:#BD976A">        countable</span></span>
+<span class="line"><span style="color:#666666">        :</span><span style="color:#80A665">max-length</span><span style="color:#666666">=</span><span style="color:#666666">"</span><span style="color:#4C9A91">32</span><span style="color:#666666">"</span></span>
+<span class="line"><span style="color:#666666">        :</span><span style="color:#80A665">model-value</span><span style="color:#666666">=</span><span style="color:#666666">"</span><span style="color:#BD976A">field</span><span style="color:#666666">.</span><span style="color:#BD976A">state</span><span style="color:#666666">.</span><span style="color:#BD976A">value</span><span style="color:#666666">"</span></span>
+<span class="line"><span style="color:#BD976A">        placeholder</span><span style="color:#666666">=</span><span style="color:#C98A7D77">"</span><span style="color:#C98A7D">Up to 32 characters</span><span style="color:#C98A7D77">"</span></span>
+<span class="line"><span style="color:#666666">        @</span><span style="color:#80A665">update</span><span style="color:#666666">:</span><span style="color:#80A665">model-value</span><span style="color:#666666">=</span><span style="color:#666666">"</span><span style="color:#BD976A">field</span><span style="color:#666666">.</span><span style="color:#BD976A">api</span><span style="color:#666666">.</span><span style="color:#BD976A">handleChange</span><span style="color:#666666">"</span></span>
+<span class="line"><span style="color:#666666">      /></span></span>
+<span class="line"><span style="color:#666666">    &#x3C;/</span><span style="color:#4D9375">FormField</span><span style="color:#666666">></span></span>
+<span class="line"><span style="color:#666666">  &#x3C;/</span><span style="color:#4D9375">Form</span><span style="color:#666666">></span></span>
+<span class="line"><span style="color:#666666">&#x3C;/</span><span style="color:#4D9375">template</span><span style="color:#666666">></span></span></code></pre></div></details></div></section><h3 id="loading">Loading</h3><section class="example-panel" data-astro-cid-r2jpjjbh><div class="example-panel-shell" data-astro-cid-r2jpjjbh><div class="example-panel-stage" data-astro-cid-r2jpjjbh><div class="example-panel-stage-glow" aria-hidden="true" data-astro-cid-r2jpjjbh></div><div class="example-panel-stage-body not-prose" data-astro-cid-r2jpjjbh><astro-island uid="Z1xI7To" prefix="s9" component-url="/weme-ui/_astro/ExampleHost.Ck47miSS.js" component-export="default" renderer-url="/weme-ui/_astro/client.BqjT1N1a.js" props="{&quot;examplePath&quot;:[0,&quot;slim/src/components/input/examples/loading.vue&quot;],&quot;data-astro-cid-r2jpjjbh&quot;:[0,true]}" ssr client="load" opts="{&quot;name&quot;:&quot;ExampleHost&quot;,&quot;value&quot;:true}" await-children><form id="s9-1" data-slot="form" class="flex flex-col gap-4 p-4 max-w-sm w-full" method="post" novalidate data-astro-cid-r2jpjjbh="true"><!--[--><div data-slot="form-field" data-valid data-orientation="vertical" class="flex gap-2 flex-col"><div class="flex flex-col"><div class="flex gap-1"><!----><label for="form-field-s9-2" id="form-field-s9-2-label" class="text-base text-highlighted text-nowrap font-medium"><!--[--><!--[-->Search<!--]--><!--]--></label><!----></div><!----></div><div class="flex flex-col"><!--[--><div data-valid data-slot="input" class="group flex flex-y-center relative b b-transparent rounded-md text-3.5 gap-2 h-8 is-loading bg-muted data-[focused]:bg-base data-[focused]:b-accent data-[focused]:outline-2 data-[focused]:outline-accent-4 hover:not-[[data-focused]]:bg-elevated px-2.5 transition-colors"><!----><input data-valid id="form-field-s9-2" name="query" aria-labelledby="form-field-s9-2-label" type="text" placeholder="Loading…" autocomplete="off" class="leading-none outline-none size-full placeholder:text-subtle"><!--[--><!--]--><!----><!----><span class="transition-colors group-data-[focused]:text-highlighted not-[[data-focused]]:text-subtle"><!--[--><!--[--><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" role="img" style="" width="1em" height="1em" viewBox="0 0 16 16" data-slot="icon" class="animate-spin"></svg><!--]--><!--]--></span></div><!--]--><!----><!----></div></div><!--]--></form><!--astro:end--></astro-island></div></div><details class="example-panel-code" data-astro-cid-r2jpjjbh><summary class="example-panel-toolbar" data-astro-cid-r2jpjjbh><span class="example-panel-toolbar-left" data-astro-cid-r2jpjjbh><span class="example-panel-lang" data-astro-cid-r2jpjjbh>Vue</span><span class="example-panel-path" data-astro-cid-r2jpjjbh>examples/loading.vue</span></span><span class="example-panel-toolbar-right" data-astro-cid-r2jpjjbh><button type="button" class="example-panel-copy" data-copy-target="example-copy-fx4j7oa1" aria-label="Copy code" data-astro-cid-r2jpjjbh>Copy</button><span class="example-panel-toggle" data-closed-label="Expand code" data-open-label="Hide code" data-astro-cid-r2jpjjbh>Expand code</span></span></summary><textarea id="example-copy-fx4j7oa1-raw" class="example-panel-raw" readonly hidden data-astro-cid-r2jpjjbh>&lt;script lang=&quot;ts&quot; setup&gt;
+import { useForm } from &#39;~/composables/use-form-context&#39;
+import FormField from &#39;../../form-field/form-field.vue&#39;
+import Form from &#39;../../form/form.vue&#39;
+import Input from &#39;../input.vue&#39;
+
+const form = useForm({
+  defaultValues: {
+    query: &#39;&#39;,
+  },
+})
+&lt;/script&gt;
+
+&lt;template&gt;
+  &lt;Form :form=&quot;form&quot; class=&quot;max-w-sm w-full&quot;&gt;
+    &lt;FormField name=&quot;query&quot; label=&quot;Search&quot;&gt;
+      &lt;Input loading placeholder=&quot;Loading…&quot; /&gt;
+    &lt;/FormField&gt;
+  &lt;/Form&gt;
+&lt;/template&gt;
+</textarea><div class="example-panel-code-body" id="example-copy-fx4j7oa1" data-astro-cid-r2jpjjbh><pre class="shiki vitesse-dark" style="background-color:#121212;color:#dbd7caee" tabindex="0"><code><span class="line"><span style="color:#666666">&#x3C;</span><span style="color:#4D9375">script</span><span style="color:#BD976A"> lang</span><span style="color:#666666">=</span><span style="color:#C98A7D77">"</span><span style="color:#C98A7D">ts</span><span style="color:#C98A7D77">"</span><span style="color:#BD976A"> setup</span><span style="color:#666666">></span></span>
+<span class="line"><span style="color:#4D9375">import</span><span style="color:#666666"> {</span><span style="color:#BD976A"> useForm</span><span style="color:#666666"> }</span><span style="color:#4D9375"> from</span><span style="color:#C98A7D77"> '</span><span style="color:#C98A7D">~/composables/use-form-context</span><span style="color:#C98A7D77">'</span></span>
+<span class="line"><span style="color:#4D9375">import</span><span style="color:#BD976A"> FormField</span><span style="color:#4D9375"> from</span><span style="color:#C98A7D77"> '</span><span style="color:#C98A7D">../../form-field/form-field.vue</span><span style="color:#C98A7D77">'</span></span>
+<span class="line"><span style="color:#4D9375">import</span><span style="color:#BD976A"> Form</span><span style="color:#4D9375"> from</span><span style="color:#C98A7D77"> '</span><span style="color:#C98A7D">../../form/form.vue</span><span style="color:#C98A7D77">'</span></span>
+<span class="line"><span style="color:#4D9375">import</span><span style="color:#BD976A"> Input</span><span style="color:#4D9375"> from</span><span style="color:#C98A7D77"> '</span><span style="color:#C98A7D">../input.vue</span><span style="color:#C98A7D77">'</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#CB7676">const </span><span style="color:#BD976A">form</span><span style="color:#666666"> =</span><span style="color:#80A665"> useForm</span><span style="color:#666666">({</span></span>
+<span class="line"><span style="color:#B8A965">  defaultValues</span><span style="color:#666666">: {</span></span>
+<span class="line"><span style="color:#B8A965">    query</span><span style="color:#666666">: </span><span style="color:#C98A7D77">''</span><span style="color:#666666">,</span></span>
+<span class="line"><span style="color:#666666">  },</span></span>
+<span class="line"><span style="color:#666666">})</span></span>
+<span class="line"><span style="color:#666666">&#x3C;/</span><span style="color:#4D9375">script</span><span style="color:#666666">></span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#666666">&#x3C;</span><span style="color:#4D9375">template</span><span style="color:#666666">></span></span>
+<span class="line"><span style="color:#666666">  &#x3C;</span><span style="color:#4D9375">Form</span><span style="color:#666666"> :</span><span style="color:#80A665">form</span><span style="color:#666666">=</span><span style="color:#666666">"</span><span style="color:#BD976A">form</span><span style="color:#666666">"</span><span style="color:#BD976A"> class</span><span style="color:#666666">=</span><span style="color:#C98A7D77">"</span><span style="color:#C98A7D">max-w-sm w-full</span><span style="color:#C98A7D77">"</span><span style="color:#666666">></span></span>
+<span class="line"><span style="color:#666666">    &#x3C;</span><span style="color:#4D9375">FormField</span><span style="color:#BD976A"> name</span><span style="color:#666666">=</span><span style="color:#C98A7D77">"</span><span style="color:#C98A7D">query</span><span style="color:#C98A7D77">"</span><span style="color:#BD976A"> label</span><span style="color:#666666">=</span><span style="color:#C98A7D77">"</span><span style="color:#C98A7D">Search</span><span style="color:#C98A7D77">"</span><span style="color:#666666">></span></span>
+<span class="line"><span style="color:#666666">      &#x3C;</span><span style="color:#4D9375">Input</span><span style="color:#BD976A"> loading</span><span style="color:#BD976A"> placeholder</span><span style="color:#666666">=</span><span style="color:#C98A7D77">"</span><span style="color:#C98A7D">Loading…</span><span style="color:#C98A7D77">"</span><span style="color:#666666"> /></span></span>
+<span class="line"><span style="color:#666666">    &#x3C;/</span><span style="color:#4D9375">FormField</span><span style="color:#666666">></span></span>
+<span class="line"><span style="color:#666666">  &#x3C;/</span><span style="color:#4D9375">Form</span><span style="color:#666666">></span></span>
+<span class="line"><span style="color:#666666">&#x3C;/</span><span style="color:#4D9375">template</span><span style="color:#666666">></span></span></code></pre></div></details></div></section><h3 id="disabled">Disabled</h3><section class="example-panel" data-astro-cid-r2jpjjbh><div class="example-panel-shell" data-astro-cid-r2jpjjbh><div class="example-panel-stage" data-astro-cid-r2jpjjbh><div class="example-panel-stage-glow" aria-hidden="true" data-astro-cid-r2jpjjbh></div><div class="example-panel-stage-body not-prose" data-astro-cid-r2jpjjbh><astro-island uid="Z1S1q4D" prefix="s10" component-url="/weme-ui/_astro/ExampleHost.Ck47miSS.js" component-export="default" renderer-url="/weme-ui/_astro/client.BqjT1N1a.js" props="{&quot;examplePath&quot;:[0,&quot;slim/src/components/input/examples/disabled.vue&quot;],&quot;data-astro-cid-r2jpjjbh&quot;:[0,true]}" ssr client="load" opts="{&quot;name&quot;:&quot;ExampleHost&quot;,&quot;value&quot;:true}" await-children><form id="s10-1" data-slot="form" class="flex flex-col gap-4 p-4 max-w-sm w-full" method="post" novalidate data-astro-cid-r2jpjjbh="true"><!--[--><div data-slot="form-field" data-valid data-filled data-orientation="vertical" class="flex gap-2 flex-col"><div class="flex flex-col"><div class="flex gap-1"><!----><label for="form-field-s10-2" id="form-field-s10-2-label" class="text-base text-highlighted text-nowrap font-medium"><!--[--><!--[-->Name<!--]--><!--]--></label><!----></div><!----></div><div class="flex flex-col"><!--[--><div data-valid data-filled data-slot="input" class="group flex flex-y-center relative b b-transparent rounded-md text-3.5 gap-2 h-8 is-disabled bg-muted data-[focused]:bg-base data-[focused]:b-accent data-[focused]:outline-2 data-[focused]:outline-accent-4 hover:not-[[data-focused]]:bg-elevated px-2.5 transition-colors"><!----><input data-valid data-filled id="form-field-s10-2" name="name" aria-labelledby="form-field-s10-2-label" type="text" value="Disabled" placeholder="Disabled" autocomplete="off" class="leading-none outline-none size-full placeholder:text-subtle"><!--[--><!--]--><!----><!----><!----></div><!--]--><!----><!----></div></div><!--]--></form><!--astro:end--></astro-island></div></div><details class="example-panel-code" data-astro-cid-r2jpjjbh><summary class="example-panel-toolbar" data-astro-cid-r2jpjjbh><span class="example-panel-toolbar-left" data-astro-cid-r2jpjjbh><span class="example-panel-lang" data-astro-cid-r2jpjjbh>Vue</span><span class="example-panel-path" data-astro-cid-r2jpjjbh>examples/disabled.vue</span></span><span class="example-panel-toolbar-right" data-astro-cid-r2jpjjbh><button type="button" class="example-panel-copy" data-copy-target="example-copy-iv6rzabt" aria-label="Copy code" data-astro-cid-r2jpjjbh>Copy</button><span class="example-panel-toggle" data-closed-label="Expand code" data-open-label="Hide code" data-astro-cid-r2jpjjbh>Expand code</span></span></summary><textarea id="example-copy-iv6rzabt-raw" class="example-panel-raw" readonly hidden data-astro-cid-r2jpjjbh>&lt;script lang=&quot;ts&quot; setup&gt;
+import { useForm } from &#39;~/composables/use-form-context&#39;
+import FormField from &#39;../../form-field/form-field.vue&#39;
+import Form from &#39;../../form/form.vue&#39;
+import Input from &#39;../input.vue&#39;
+
+const form = useForm({
+  defaultValues: {
+    name: &#39;Disabled&#39;,
+  },
+})
+&lt;/script&gt;
+
+&lt;template&gt;
+  &lt;Form :form=&quot;form&quot; class=&quot;max-w-sm w-full&quot;&gt;
+    &lt;FormField v-slot=&quot;{ field }&quot; name=&quot;name&quot; label=&quot;Name&quot;&gt;
+      &lt;Input
+        disabled
+        :model-value=&quot;field.state.value&quot;
+        placeholder=&quot;Disabled&quot;
+      /&gt;
+    &lt;/FormField&gt;
+  &lt;/Form&gt;
+&lt;/template&gt;
+</textarea><div class="example-panel-code-body" id="example-copy-iv6rzabt" data-astro-cid-r2jpjjbh><pre class="shiki vitesse-dark" style="background-color:#121212;color:#dbd7caee" tabindex="0"><code><span class="line"><span style="color:#666666">&#x3C;</span><span style="color:#4D9375">script</span><span style="color:#BD976A"> lang</span><span style="color:#666666">=</span><span style="color:#C98A7D77">"</span><span style="color:#C98A7D">ts</span><span style="color:#C98A7D77">"</span><span style="color:#BD976A"> setup</span><span style="color:#666666">></span></span>
+<span class="line"><span style="color:#4D9375">import</span><span style="color:#666666"> {</span><span style="color:#BD976A"> useForm</span><span style="color:#666666"> }</span><span style="color:#4D9375"> from</span><span style="color:#C98A7D77"> '</span><span style="color:#C98A7D">~/composables/use-form-context</span><span style="color:#C98A7D77">'</span></span>
+<span class="line"><span style="color:#4D9375">import</span><span style="color:#BD976A"> FormField</span><span style="color:#4D9375"> from</span><span style="color:#C98A7D77"> '</span><span style="color:#C98A7D">../../form-field/form-field.vue</span><span style="color:#C98A7D77">'</span></span>
+<span class="line"><span style="color:#4D9375">import</span><span style="color:#BD976A"> Form</span><span style="color:#4D9375"> from</span><span style="color:#C98A7D77"> '</span><span style="color:#C98A7D">../../form/form.vue</span><span style="color:#C98A7D77">'</span></span>
+<span class="line"><span style="color:#4D9375">import</span><span style="color:#BD976A"> Input</span><span style="color:#4D9375"> from</span><span style="color:#C98A7D77"> '</span><span style="color:#C98A7D">../input.vue</span><span style="color:#C98A7D77">'</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#CB7676">const </span><span style="color:#BD976A">form</span><span style="color:#666666"> =</span><span style="color:#80A665"> useForm</span><span style="color:#666666">({</span></span>
+<span class="line"><span style="color:#B8A965">  defaultValues</span><span style="color:#666666">: {</span></span>
+<span class="line"><span style="color:#B8A965">    name</span><span style="color:#666666">: </span><span style="color:#C98A7D77">'</span><span style="color:#C98A7D">Disabled</span><span style="color:#C98A7D77">'</span><span style="color:#666666">,</span></span>
+<span class="line"><span style="color:#666666">  },</span></span>
+<span class="line"><span style="color:#666666">})</span></span>
+<span class="line"><span style="color:#666666">&#x3C;/</span><span style="color:#4D9375">script</span><span style="color:#666666">></span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#666666">&#x3C;</span><span style="color:#4D9375">template</span><span style="color:#666666">></span></span>
+<span class="line"><span style="color:#666666">  &#x3C;</span><span style="color:#4D9375">Form</span><span style="color:#666666"> :</span><span style="color:#80A665">form</span><span style="color:#666666">=</span><span style="color:#666666">"</span><span style="color:#BD976A">form</span><span style="color:#666666">"</span><span style="color:#BD976A"> class</span><span style="color:#666666">=</span><span style="color:#C98A7D77">"</span><span style="color:#C98A7D">max-w-sm w-full</span><span style="color:#C98A7D77">"</span><span style="color:#666666">></span></span>
+<span class="line"><span style="color:#666666">    &#x3C;</span><span style="color:#4D9375">FormField</span><span style="color:#80A665"> v-slot</span><span style="color:#666666">=</span><span style="color:#666666">"</span><span style="color:#666666">{ </span><span style="color:#BD976A">field</span><span style="color:#666666"> }</span><span style="color:#666666">"</span><span style="color:#BD976A"> name</span><span style="color:#666666">=</span><span style="color:#C98A7D77">"</span><span style="color:#C98A7D">name</span><span style="color:#C98A7D77">"</span><span style="color:#BD976A"> label</span><span style="color:#666666">=</span><span style="color:#C98A7D77">"</span><span style="color:#C98A7D">Name</span><span style="color:#C98A7D77">"</span><span style="color:#666666">></span></span>
+<span class="line"><span style="color:#666666">      &#x3C;</span><span style="color:#4D9375">Input</span></span>
+<span class="line"><span style="color:#BD976A">        disabled</span></span>
+<span class="line"><span style="color:#666666">        :</span><span style="color:#80A665">model-value</span><span style="color:#666666">=</span><span style="color:#666666">"</span><span style="color:#BD976A">field</span><span style="color:#666666">.</span><span style="color:#BD976A">state</span><span style="color:#666666">.</span><span style="color:#BD976A">value</span><span style="color:#666666">"</span></span>
+<span class="line"><span style="color:#BD976A">        placeholder</span><span style="color:#666666">=</span><span style="color:#C98A7D77">"</span><span style="color:#C98A7D">Disabled</span><span style="color:#C98A7D77">"</span></span>
+<span class="line"><span style="color:#666666">      /></span></span>
+<span class="line"><span style="color:#666666">    &#x3C;/</span><span style="color:#4D9375">FormField</span><span style="color:#666666">></span></span>
+<span class="line"><span style="color:#666666">  &#x3C;/</span><span style="color:#4D9375">Form</span><span style="color:#666666">></span></span>
+<span class="line"><span style="color:#666666">&#x3C;/</span><span style="color:#4D9375">template</span><span style="color:#666666">></span></span></code></pre></div></details></div></section></section><h2 id="props">Props</h2>
+<table>
+<thead>
+<tr>
+<th>属性</th>
+<th>说明</th>
+<th>类型</th>
+<th>默认值</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>as</code></td>
+<td>根节点渲染为的元素或组件（Reka UI <code>Primitive</code>）</td>
+<td><code>AsTag | Component</code></td>
+<td><code>&#39;div&#39;</code></td>
+</tr>
+<tr>
+<td><code>modelValue</code></td>
+<td>受控值</td>
+<td><code>string | number | null | undefined</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>defaultValue</code></td>
+<td>非受控初始值</td>
+<td><code>string | number | null | undefined</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>variant</code></td>
+<td>外观变体</td>
+<td><code>&#39;soft&#39; | &#39;outline&#39; | &#39;unstyled&#39;</code></td>
+<td><code>&#39;soft&#39;</code></td>
+</tr>
+<tr>
+<td><code>size</code></td>
+<td>尺寸</td>
+<td><code>&#39;xs&#39; | &#39;sm&#39; | &#39;md&#39; | &#39;lg&#39;</code></td>
+<td><code>&#39;md&#39;</code></td>
+</tr>
+<tr>
+<td><code>radius</code></td>
+<td>圆角</td>
+<td><code>&#39;none&#39; | &#39;xs&#39; | &#39;sm&#39; | &#39;md&#39; | &#39;lg&#39; | &#39;xl&#39; | &#39;full&#39;</code></td>
+<td><code>&#39;md&#39;</code></td>
+</tr>
+<tr>
+<td><code>type</code></td>
+<td>原生 input 类型</td>
+<td><code>&#39;text&#39; | &#39;email&#39; | &#39;number&#39; | &#39;url&#39; | &#39;tel&#39; | &#39;search&#39; | &#39;password&#39;</code></td>
+<td><code>&#39;text&#39;</code></td>
+</tr>
+<tr>
+<td><code>placeholder</code></td>
+<td>占位文案</td>
+<td><code>string</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>autocomplete</code></td>
+<td>原生 autocomplete</td>
+<td><code>&#39;on&#39; | &#39;off&#39; | &#39;string&#39;</code></td>
+<td><code>&#39;off&#39;</code></td>
+</tr>
+<tr>
+<td><code>prefix</code></td>
+<td>前缀文案（无 <code>prefix</code> 插槽且无 <code>prefixIcon</code> 时展示）</td>
+<td><code>string</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>suffix</code></td>
+<td>后缀文案（无 <code>suffix</code> 插槽且无图标 / loading 时展示）</td>
+<td><code>string</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>prefixIcon</code></td>
+<td>前缀图标（Iconify）</td>
+<td><code>IconifyIconProps[&#39;icon&#39;]</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>suffixIcon</code></td>
+<td>后缀图标（Iconify）；loading 时改显示 <code>loadingIcon</code></td>
+<td><code>IconifyIconProps[&#39;icon&#39;]</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>loadingIcon</code></td>
+<td>加载中图标（Iconify）</td>
+<td><code>IconifyIconProps[&#39;icon&#39;]</code></td>
+<td><code>&#39;ri:loader-line&#39;</code></td>
+</tr>
+<tr>
+<td><code>clearIcon</code></td>
+<td>清除按钮图标（Iconify）</td>
+<td><code>IconifyIconProps[&#39;icon&#39;]</code></td>
+<td><code>&#39;ri:close-line&#39;</code></td>
+</tr>
+<tr>
+<td><code>clearable</code></td>
+<td>有值且未禁用时显示清除按钮</td>
+<td><code>boolean</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>countable</code></td>
+<td>配合 <code>maxLength</code> 显示字数统计</td>
+<td><code>boolean</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>maxLength</code></td>
+<td>最大长度（<code>countable</code> 展示用；需大于 <code>0</code>）</td>
+<td><code>number</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>id</code></td>
+<td>控件 <code>id</code>；未传时回退到 FormField Context</td>
+<td><code>string</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>name</code></td>
+<td>控件 <code>name</code>；未传时回退到 FormField Context</td>
+<td><code>string</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>loading</code></td>
+<td>是否加载中；会与 FormField Context 的 <code>loading</code> 合并</td>
+<td><code>boolean</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>required</code></td>
+<td>是否必填；会与 FormField Context 的 <code>required</code> 合并</td>
+<td><code>boolean</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>disabled</code></td>
+<td>是否禁用；会与 FormField Context 的 <code>disabled</code> 合并</td>
+<td><code>boolean</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>readonly</code></td>
+<td>是否只读；会与 FormField Context 的 <code>readonly</code> 合并</td>
+<td><code>boolean</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>invalid</code></td>
+<td>是否无效；会与 FormField Context 的 <code>invalid</code> 合并</td>
+<td><code>boolean</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>modelModifiers</code></td>
+<td><code>v-model</code> modifiers（<code>lazy</code> / <code>trim</code> / <code>number</code> / <code>nullable</code> / <code>optional</code>）</td>
+<td><code>InputModelModifiers</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>class</code></td>
+<td>根节点额外 class</td>
+<td><code>any</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>ui</code></td>
+<td>覆盖 slots 样式</td>
+<td><code>Partial&lt;InputStyleSlots&gt;</code></td>
+<td>—</td>
+</tr>
+</tbody></table>
+
+<h2 id="events">Events</h2>
+<table>
+<thead>
+<tr>
+<th>事件</th>
+<th>说明</th>
+<th>参数</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>update:modelValue</code></td>
+<td>值变更时触发</td>
+<td><code>value: string | number | null | undefined</code></td>
+</tr>
+<tr>
+<td><code>enter</code></td>
+<td>在输入框按 <code>Enter</code> 时触发（值为 trim 后）</td>
+<td><code>value: string | number | null | undefined</code></td>
+</tr>
+<tr>
+<td><code>clean</code></td>
+<td>点击清除按钮时触发（参数为清除前的值）</td>
+<td><code>value: string | number | null | undefined</code></td>
+</tr>
+<tr>
+<td><code>change</code></td>
+<td>原生 <code>change</code></td>
+<td><code>event: Event</code></td>
+</tr>
+<tr>
+<td><code>focus</code></td>
+<td>获得焦点</td>
+<td><code>event: FocusEvent</code></td>
+</tr>
+<tr>
+<td><code>blur</code></td>
+<td>失去焦点</td>
+<td><code>event: FocusEvent</code></td>
+</tr>
+</tbody></table>
+
+<h2 id="slots">Slots</h2>
+<table>
+<thead>
+<tr>
+<th>插槽</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>default</code></td>
+<td>输入框与清除按钮之间的自定义内容</td>
+</tr>
+<tr>
+<td><code>prefix</code></td>
+<td>自定义前缀；未传时回退到 <code>prefixIcon</code> / <code>prefix</code></td>
+</tr>
+<tr>
+<td><code>suffix</code></td>
+<td>自定义后缀；未传时回退到 loading / <code>suffixIcon</code> / <code>suffix</code></td>
+</tr>
+<tr>
+<td><code>cleanIcon</code></td>
+<td>自定义清除图标；未传时回退到 <code>clearIcon</code></td>
+</tr>
+</tbody></table>
+<section class="docs-files"><h2 id="files">Files</h2><ul><li><code>src/components/input/input.vue</code></li><li><code>src/components/input/input.props.ts</code></li><li><code>src/components/input/input.style.ts</code></li></ul></section></div><nav class="docs-pager" aria-label="Page navigation"><a class="docs-pager-link docs-pager-prev" href="/weme-ui/slim/components/form-field/"><span class="docs-pager-label">上一页</span><span class="docs-pager-title">Form Field</span></a><span class="docs-pager-link docs-pager-placeholder"></span></nav></main><aside class="docs-toc"><nav class="docs-toc-nav" aria-label="Quick nav"><div class="toc-title">Quick nav</div><div class="toc-list"><a class="toc-link" data-level="2" data-toc-link href="#installation">Installation</a><a class="toc-link" data-level="2" data-toc-link href="#usage">Usage</a><a class="toc-link" data-level="2" data-toc-link href="#accessibility">Accessibility</a><a class="toc-link" data-level="2" data-toc-link href="#examples">Examples</a><a class="toc-link" data-level="3" data-toc-link href="#variants">Variants</a><a class="toc-link" data-level="3" data-toc-link href="#sizes">Sizes</a><a class="toc-link" data-level="3" data-toc-link href="#radius">Radius</a><a class="toc-link" data-level="3" data-toc-link href="#with-affix">With Affix</a><a class="toc-link" data-level="3" data-toc-link href="#clearable">Clearable</a><a class="toc-link" data-level="3" data-toc-link href="#countable">Countable</a><a class="toc-link" data-level="3" data-toc-link href="#loading">Loading</a><a class="toc-link" data-level="3" data-toc-link href="#disabled">Disabled</a><a class="toc-link" data-level="2" data-toc-link href="#props">Props</a><a class="toc-link" data-level="2" data-toc-link href="#events">Events</a><a class="toc-link" data-level="2" data-toc-link href="#slots">Slots</a><a class="toc-link" data-level="2" data-toc-link href="#files">Files</a></div></nav><script type="module">var e=[...document.querySelectorAll(`[data-toc-link]`)];if(e.length>0){let t=e=>decodeURIComponent(e.replace(/^#/,``)),n=e.map(e=>document.getElementById(t(e.getAttribute(`href`)||``))).filter(e=>!!e),r=n=>{e.forEach(e=>{let r=t(e.getAttribute(`href`)||``)===n;e.classList.toggle(`is-active`,r),r?e.setAttribute(`aria-current`,`location`):e.removeAttribute(`aria-current`)})},i=new IntersectionObserver(e=>{let t=e.filter(e=>e.isIntersecting).sort((e,t)=>e.boundingClientRect.top-t.boundingClientRect.top);t[0]?.target?.id&&r(t[0].target.id)},{rootMargin:`-20% 0px -65% 0px`,threshold:[0,1]});n.forEach(e=>i.observe(e)),n[0]&&r(n[0].id)}</script></aside></div><script type="module">document.querySelectorAll(`.prose pre`).forEach(e=>{if(!(e instanceof HTMLElement)||e.dataset.copyReady)return;e.dataset.copyReady=`true`;let t=document.createElement(`button`);t.type=`button`,t.className=`docs-copy-btn`,t.setAttribute(`aria-label`,`Copy code to clipboard`),t.innerHTML=`<svg width="15" height="15" viewBox="0 0 15 15" fill="none" aria-hidden="true"><path d="M1 9.5A1.5 1.5 0 002.5 11H6v1H2.5A2.5 2.5 0 010 9.5v-7A2.5 2.5 0 012.5 0H9a2.5 2.5 0 012.5 2.5V5h-1V2.5A1.5 1.5 0 009 1H2.5A1.5 1.5 0 001 2.5v7zM5.5 4A1.5 1.5 0 004 5.5v7A1.5 1.5 0 005.5 14h7a1.5 1.5 0 001.5-1.5v-7A1.5 1.5 0 0012.5 4h-7zM5 5.5A.5.5 0 015.5 5h7a.5.5 0 01.5.5v7a.5.5 0 01-.5.5h-7a.5.5 0 01-.5-.5v-7z" fill="currentColor"/></svg>`,t.addEventListener(`click`,async()=>{let n=e.querySelector(`code`)?.textContent||e.textContent||``;try{await navigator.clipboard.writeText(n),t.classList.add(`is-copied`),window.setTimeout(()=>{t.classList.remove(`is-copied`)},1400)}catch{t.classList.add(`is-failed`),window.setTimeout(()=>{t.classList.remove(`is-failed`)},1400)}}),e.appendChild(t)});</script></body></html>

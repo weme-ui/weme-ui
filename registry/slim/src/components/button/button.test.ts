@@ -11,7 +11,7 @@ describe('button', () => {
     expect(ui.root()).toContain('rounded-sm')
     expect(ui.root()).toContain('fancy-accent')
     expect(ui.root()).toContain('transition-all')
-    expect(ui.root()).toContain('aria-[pressed=true]:scale-96')
+    expect(ui.root()).toContain('aria-[pressed=true]:scale-97')
   })
 
   it('applies size variants', () => {
@@ -36,24 +36,29 @@ describe('button', () => {
     expect(useButtonStyle({ variant: 'plain' }).root()).toContain('fancy-accent-plain')
     expect(useButtonStyle({ variant: 'inverse' }).root()).toContain('fancy-accent-inverse')
     expect(useButtonStyle({ variant: 'danger' }).root()).toContain('fancy-error')
-    expect(useButtonStyle({ variant: 'unstyled' }).root()).not.toContain('fancy-')
   })
 
-  it('skips pressed scale for plain, unstyled, and scalable false', () => {
-    expect(useButtonStyle({ variant: 'plain' }).root()).not.toContain('aria-[pressed=true]:scale-96')
-    expect(useButtonStyle({ variant: 'unstyled' }).root()).not.toContain('aria-[pressed=true]:scale-96')
-    expect(useButtonStyle({ scalable: false }).root()).not.toContain('aria-[pressed=true]:scale-96')
+  it('skips appearance and pressed scale when unstyled or scalable is false', () => {
+    const unstyled = useButtonStyle({ unstyled: true })
+    expect(unstyled.root()).not.toContain('fancy-')
+    expect(unstyled.root()).not.toContain('aria-[pressed=true]:scale-97')
+
+    expect(useButtonStyle({ scalable: false }).root()).not.toContain('aria-[pressed=true]:scale-97')
+  })
+
+  it('applies pressed scale for plain when scalable', () => {
+    expect(useButtonStyle({ variant: 'plain' }).root()).toContain('aria-[pressed=true]:scale-97')
   })
 
   it('applies disabled and loading states', () => {
     const disabled = useButtonStyle({ disabled: true })
     expect(disabled.root()).toContain('is-disabled')
-    expect(disabled.root()).not.toContain('aria-[pressed=true]:scale-96')
+    expect(disabled.root()).not.toContain('aria-[pressed=true]:scale-97')
 
     const loading = useButtonStyle({ loading: true })
     expect(loading.root()).toContain('is-loading')
     expect(loading.icon()).toContain('animate-spin')
-    expect(loading.root()).not.toContain('aria-[pressed=true]:scale-96')
+    expect(loading.root()).not.toContain('aria-[pressed=true]:scale-97')
   })
 
   describe('given a default button', () => {
@@ -101,6 +106,27 @@ describe('button', () => {
       })
       expect(wrapper.attributes('aria-busy')).toBe('true')
       expect(wrapper.attributes('aria-disabled')).toBe('true')
+      wrapper.unmount()
+    })
+
+    it('renders loadingText when provided', () => {
+      const wrapper = mount(Button, {
+        attachTo: document.body,
+        props: { label: 'Save', loading: true, loadingText: 'Saving…' },
+      })
+      expect(wrapper.text()).toContain('Saving…')
+      expect(wrapper.text()).not.toContain('Save')
+      wrapper.unmount()
+    })
+
+    it('does not invoke onClick while loading', async () => {
+      const onClick = vi.fn()
+      const wrapper = mount(Button, {
+        attachTo: document.body,
+        props: { label: 'Save', loading: true, onClick },
+      })
+      await wrapper.trigger('click')
+      expect(onClick).not.toHaveBeenCalled()
       wrapper.unmount()
     })
   })

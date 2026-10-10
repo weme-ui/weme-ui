@@ -29,6 +29,7 @@ const ui = computed(() => useButtonStyle({
   disabled: isDisabled.value,
   loading: isLoading.value,
   scalable: toBoolValue(props.scalable),
+  unstyled: toBoolValue(props.unstyled),
 }))
 
 async function handleClick(event: MouseEvent) {

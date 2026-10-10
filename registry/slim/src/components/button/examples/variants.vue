@@ -12,6 +12,5 @@ import Button from '../button.vue'
     <Button label="Plain" variant="plain" />
     <Button label="Inverse" variant="inverse" />
     <Button label="Danger" variant="danger" />
-    <Button label="Unstyled" variant="unstyled" />
   </div>
 </template>

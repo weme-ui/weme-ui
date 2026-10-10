@@ -8,17 +8,7 @@ export const useButtonStyle = createVariants({
   },
 
   variants: {
-    variant: {
-      primary: { root: 'fancy-accent' },
-      secondary: { root: 'fancy-neutral-soft' },
-      soft: { root: 'fancy-accent-soft' },
-      outline: { root: 'fancy-neutral-outline' },
-      ghost: { root: 'fancy-accent-ghost' },
-      plain: { root: 'fancy-accent-plain' },
-      inverse: { root: 'fancy-accent-inverse' },
-      danger: { root: 'fancy-error' },
-      unstyled: '',
-    },
+    variant: { primary: {}, secondary: {}, soft: {}, outline: {}, ghost: {}, plain: {}, inverse: {}, danger: {} },
     size: {
       sm: { root: 'text-xs px-sm gap-xs h-6', icon: 'size-3' },
       md: { root: 'text-sm px-md gap-sm h-8', icon: 'size-3.5' },
@@ -40,16 +30,20 @@ export const useButtonStyle = createVariants({
       true: { root: 'is-loading', icon: 'animate-spin' },
     },
     scalable: { true: {} },
+    unstyled: { true: {} },
   },
 
   compoundVariants: [
-    {
-      variant: ['primary', 'secondary', 'soft', 'outline', 'ghost', 'inverse', 'danger'],
-      disabled: false,
-      loading: false,
-      scalable: true,
-      class: { root: 'transition-all duration-200 ease-out aria-[pressed=true]:scale-96' },
-    },
+    { variant: 'primary', unstyled: false, class: { root: 'fancy-accent' } },
+    { variant: 'secondary', unstyled: false, class: { root: 'fancy-neutral-soft' } },
+    { variant: 'soft', unstyled: false, class: { root: 'fancy-accent-soft' } },
+    { variant: 'outline', unstyled: false, class: { root: 'fancy-neutral-outline' } },
+    { variant: 'ghost', unstyled: false, class: { root: 'fancy-accent-ghost' } },
+    { variant: 'plain', unstyled: false, class: { root: 'fancy-accent-plain' } },
+    { variant: 'inverse', unstyled: false, class: { root: 'fancy-accent-inverse' } },
+    { variant: 'danger', unstyled: false, class: { root: 'fancy-error' } },
+
+    { disabled: false, loading: false, scalable: true, unstyled: false, class: { root: 'transition-all duration-200 ease-out aria-[pressed=true]:scale-97' } },
   ],
 
   defaultVariants: {
@@ -57,6 +51,7 @@ export const useButtonStyle = createVariants({
     size: 'md',
     radius: 'sm',
     scalable: true,
+    unstyled: false,
   },
 })
 

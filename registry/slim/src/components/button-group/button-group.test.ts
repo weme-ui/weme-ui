@@ -76,4 +76,21 @@ describe('button-group', () => {
       wrapper.unmount()
     })
   })
+
+  describe('given a disabled group', () => {
+    it('sets aria-disabled on the root element', () => {
+      const wrapper = mount(ButtonGroup, {
+        attachTo: document.body,
+        props: { disabled: true },
+        slots: {
+          default: () => [
+            h(Button, { label: 'One' }),
+            h(Button, { label: 'Two' }),
+          ],
+        },
+      })
+      expect(wrapper.attributes('aria-disabled')).toBe('true')
+      wrapper.unmount()
+    })
+  })
 })

@@ -13,7 +13,7 @@ export const DEFAULT_NAME = 'default'
  * @category Tokens
  */
 export const DEFAULT_COLOR_ALIASES: CustomThemeColorAlias = {
-  accent: 'clay',
+  accent: 'puerto',
   neutral: 'iron',
   success: 'green',
   info: 'indigo',

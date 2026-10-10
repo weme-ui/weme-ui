@@ -33,9 +33,9 @@ export const useInputStyle = createVariants({
       full: { root: 'rounded-full' },
     },
     size: {
-      sm: { root: 'text-3 gap-1.5 h-6' },
-      md: { root: 'text-3.5 gap-2 h-8' },
-      lg: { root: 'text-4 gap-2.5 h-10' },
+      sm: { root: 'text-xs gap-xs h-6' },
+      md: { root: 'text-sm gap-sm h-8' },
+      lg: { root: 'text-md gap-md h-10' },
     },
     disabled: {
       true: { root: 'is-disabled' },

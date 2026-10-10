@@ -23,6 +23,41 @@ export function isRawColor(color: string): boolean {
 }
 
 /**
+ * 检查是否为颜色别名
+ *
+ * @category Tokens
+ */
+export function isColorAlias(alias: string): boolean {
+  return CUSTOM_THEME_COLOR_ALIASES.includes(alias)
+}
+
+/**
+ * 检查是否为自定义主题令牌
+ *
+ * @category Tokens
+ */
+export function isCustomThemeToken(name: string, front?: LooseAutocomplete<keyof CustomThemeTokens>): boolean {
+  const dash = name.indexOf('-')
+
+  if (dash > 0) {
+    const k = name.slice(0, dash)
+    const v = name.slice(dash + 1)
+    const values = CUSTOM_THEME_TOKENS_MAP[k]
+
+    if (values?.includes(v))
+      return true
+  }
+
+  if (name === 'foreground' && CUSTOM_THEME_TOKENS_MAP.foreground?.includes('base'))
+    return true
+
+  if (front && CUSTOM_THEME_TOKENS_MAP[front]?.includes(name))
+    return true
+
+  return false
+}
+
+/**
  * 解析自定义主题颜色别名
  *
  * @category Tokens
@@ -30,7 +65,7 @@ export function isRawColor(color: string): boolean {
 export function parseColorAlias(keys: string[]) {
   const [alias] = keys
 
-  if (!CUSTOM_THEME_COLOR_ALIASES.includes(alias)) {
+  if (!isColorAlias(alias)) {
     return
   }
 

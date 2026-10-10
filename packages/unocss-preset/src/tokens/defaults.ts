@@ -36,8 +36,8 @@ export const DEFAULT_TOKENS: CustomThemeTokens = {
   },
   background: {
     base: 'neutral.1',
-    muted: 'neutral.2',
-    elevated: 'neutral.3',
+    muted: 'neutral.3',
+    elevated: 'neutral.4',
     inverted: 'neutral.12',
   },
   border: {

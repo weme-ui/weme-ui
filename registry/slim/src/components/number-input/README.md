@@ -47,12 +47,12 @@ pnpm dlx @weme-ui/weme-ui add weme-ui/slim/number-input
 
 ## Events
 
-| 事件                | 说明                                                                                 | 参数                         |
-| ------------------- | ------------------------------------------------------------------------------------ | ---------------------------- |
-| `update:modelValue` | 值变更时始终触发（清空时为 `undefined`）；可用于 `v-model`                           | `value: number \| undefined` |
-| `change`            | 值为有效数字时触发；`undefined` / `null` 时不触发（参数为 `number`，非原生 `Event`） | `value: number`              |
-| `focus`             | 输入框获得焦点                                                                       | `event: FocusEvent`          |
-| `blur`              | 输入框失去焦点                                                                       | `event: FocusEvent`          |
+| 事件                | 说明                                                                       | 参数                         |
+| ------------------- | -------------------------------------------------------------------------- | ---------------------------- |
+| `update:modelValue` | 值变更时始终触发（清空时为 `undefined`）；可用于 `v-model`                 | `value: number \| undefined` |
+| `change`            | 有值时触发；清空为 `undefined` 时不触发（参数为 `number`，非原生 `Event`） | `value: number`              |
+| `focus`             | 输入框获得焦点                                                             | `event: FocusEvent`          |
+| `blur`              | 输入框失去焦点                                                             | `event: FocusEvent`          |
 
 ## Slots
 

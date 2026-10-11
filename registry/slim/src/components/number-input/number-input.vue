@@ -48,7 +48,7 @@ const ui = computed(() => useNumberInputStyle({
 function handleUpdate(value: number | undefined) {
   emits('update:modelValue', value)
 
-  if (value === undefined || value === null)
+  if (value === undefined)
     return
 
   emits('change', value)

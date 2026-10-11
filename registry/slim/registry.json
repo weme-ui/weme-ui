@@ -106,6 +106,11 @@
         },
         {
           "type": "component",
+          "kind": "example",
+          "path": "src/components/button/examples/unstyled.vue"
+        },
+        {
+          "type": "component",
           "kind": "test",
           "path": "src/components/button/button.test.ts"
         }
@@ -150,6 +155,11 @@
           "type": "component",
           "kind": "example",
           "path": "src/components/button-group/examples/orientation.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/button-group/examples/variants.vue"
         },
         {
           "type": "component",
@@ -213,6 +223,11 @@
           "type": "component",
           "kind": "doc",
           "path": "src/components/form/README.md"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/form/examples/usage.vue"
         },
         {
           "type": "component",
@@ -289,6 +304,21 @@
           "type": "component",
           "kind": "example",
           "path": "src/components/form-field/examples/with-help.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/form-field/examples/disabled.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/form-field/examples/loading.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/form-field/examples/invalid.vue"
         }
       ]
     },
@@ -336,6 +366,11 @@
         {
           "type": "component",
           "kind": "example",
+          "path": "src/components/input/examples/unstyled.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
           "path": "src/components/input/examples/sizes.vue"
         },
         {
@@ -372,6 +407,162 @@
           "type": "component",
           "kind": "test",
           "path": "src/components/input/input.test.ts"
+        }
+      ]
+    },
+    {
+      "name": "number-input",
+      "type": "component",
+      "title": "Number Input",
+      "description": "A numeric input with increment and decrement controls.",
+      "meta": {
+        "docs.category": "form",
+        "docs.categoryLabel": "Form"
+      },
+      "registryDependencies": [
+        "form-field",
+        "icon"
+      ],
+      "files": [
+        {
+          "type": "component",
+          "path": "src/components/number-input/number-input.vue"
+        },
+        {
+          "type": "component",
+          "path": "src/components/number-input/number-input.props.ts"
+        },
+        {
+          "type": "component",
+          "path": "src/components/number-input/number-input.style.ts"
+        },
+        {
+          "type": "component",
+          "kind": "doc",
+          "path": "src/components/number-input/README.md"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/number-input/examples/usage.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/number-input/examples/variants.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/number-input/examples/unstyled.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/number-input/examples/sizes.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/number-input/examples/radius.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/number-input/examples/with-icons.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/number-input/examples/constraints.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/number-input/examples/disabled.vue"
+        },
+        {
+          "type": "component",
+          "kind": "test",
+          "path": "src/components/number-input/number-input.test.ts"
+        }
+      ]
+    },
+    {
+      "name": "range-input",
+      "type": "component",
+      "title": "Range Input",
+      "description": "A dual-field numeric range input with a separator.",
+      "meta": {
+        "docs.category": "form",
+        "docs.categoryLabel": "Form"
+      },
+      "registryDependencies": [
+        "form-field",
+        "icon"
+      ],
+      "files": [
+        {
+          "type": "component",
+          "path": "src/components/range-input/range-input.vue"
+        },
+        {
+          "type": "component",
+          "path": "src/components/range-input/range-input.props.ts"
+        },
+        {
+          "type": "component",
+          "path": "src/components/range-input/range-input.style.ts"
+        },
+        {
+          "type": "component",
+          "kind": "doc",
+          "path": "src/components/range-input/README.md"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/range-input/examples/usage.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/range-input/examples/variants.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/range-input/examples/unstyled.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/range-input/examples/sizes.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/range-input/examples/radius.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/range-input/examples/with-icons.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/range-input/examples/separator.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/range-input/examples/disabled.vue"
+        },
+        {
+          "type": "component",
+          "kind": "test",
+          "path": "src/components/range-input/range-input.test.ts"
         }
       ]
     },
@@ -477,6 +668,11 @@
           "type": "component",
           "kind": "example",
           "path": "src/components/icon-tile/examples/radius.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/icon-tile/examples/unstyled.vue"
         },
         {
           "type": "component",

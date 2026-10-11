@@ -2,6 +2,7 @@
 import type { IconTileProps } from './icon-tile.props'
 import { Primitive } from 'reka-ui'
 import { computed } from 'vue'
+import { toBoolValue } from '~/utils/props'
 import { cn } from '~/utils/styles'
 import Icon from '../icon/icon.vue'
 import { useIconTileStyle } from './icon-tile.style'
@@ -19,6 +20,7 @@ const ui = computed(() => useIconTileStyle({
   variant: props.variant,
   size: props.size,
   radius: props.radius,
+  unstyled: toBoolValue(props.unstyled),
 }))
 </script>
 

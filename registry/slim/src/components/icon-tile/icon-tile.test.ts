@@ -38,8 +38,8 @@ describe('icon-tile', () => {
     expect(useIconTileStyle({ color: 'neutral', variant: 'inverse' }).root()).toContain('plain-neutral-inverse')
   })
 
-  it('skips surface classes for unstyled variant', () => {
-    expect(useIconTileStyle({ variant: 'unstyled' }).root()).not.toContain('plain-')
+  it('skips surface classes when unstyled is true', () => {
+    expect(useIconTileStyle({ unstyled: true }).root()).not.toContain('plain-')
   })
 
   describe('given a decorative icon tile', () => {

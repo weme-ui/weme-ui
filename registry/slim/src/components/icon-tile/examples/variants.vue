@@ -10,6 +10,5 @@ import IconTile from '../icon-tile.vue'
     <IconTile icon="ri:bookmark-line" variant="outline" />
     <IconTile icon="ri:bookmark-line" variant="frame" />
     <IconTile icon="ri:bookmark-line" variant="inverse" />
-    <IconTile icon="ri:bookmark-line" variant="unstyled" />
   </div>
 </template>

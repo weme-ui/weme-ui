@@ -12,7 +12,10 @@ describe('separator', () => {
     expect(ui.line()).toContain('b-t')
     expect(ui.line()).toContain('w-full')
     expect(ui.line()).toContain('h-px')
+    expect(ui.label()).toContain('text-xs')
     expect(ui.label()).toContain('text-subtle')
+    expect(ui.label()).toContain('px-sm')
+    expect(ui.label()).toContain('select-none')
   })
 
   it('applies orientation variants', () => {
@@ -98,6 +101,29 @@ describe('separator', () => {
         props: { label: 'Or' },
       })
       expect(wrapper.text()).toContain('Or')
+      expect(await axe(wrapper.element)).toHaveNoViolations()
+      wrapper.unmount()
+    })
+  })
+
+  describe('given a decorative separator', () => {
+    it('has no accessibility violations', async () => {
+      const wrapper = mount(Separator, {
+        attachTo: document.body,
+        props: { decorative: true },
+      })
+      expect(await axe(wrapper.element)).toHaveNoViolations()
+      wrapper.unmount()
+    })
+  })
+
+  describe('given a vertical separator', () => {
+    it('sets aria-orientation to vertical and has no accessibility violations', async () => {
+      const wrapper = mount(Separator, {
+        attachTo: document.body,
+        props: { orientation: 'vertical' },
+      })
+      expect(wrapper.attributes('aria-orientation')).toBe('vertical')
       expect(await axe(wrapper.element)).toHaveNoViolations()
       wrapper.unmount()
     })

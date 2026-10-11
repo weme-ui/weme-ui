@@ -157,22 +157,59 @@ describe('input', () => {
       wrapper.unmount()
     })
 
-    it('emits enter with trimmed value on Enter keyup', async () => {
+    it('emits enter with the current input value on Enter keyup', async () => {
       const { wrapper } = mountInput({ modelValue: '  hello  ' })
       await wrapper.get('input').trigger('keyup.enter')
-      expect(wrapper.findComponent(Input).emitted('enter')).toBeTruthy()
+      const emitted = wrapper.findComponent(Input).emitted('enter') as any[][]
+      expect(emitted[0][0]).toBe('  hello  ')
+      wrapper.unmount()
+    })
+
+    it('trims the displayed value before enter when trim modifier is set', async () => {
+      const { wrapper } = mountInput({
+        modelValue: '  hello  ',
+        modelModifiers: { trim: true },
+      })
+      await wrapper.get('input').trigger('keyup.enter')
       const emitted = wrapper.findComponent(Input).emitted('enter') as any[][]
       expect(emitted[0][0]).toBe('hello')
       wrapper.unmount()
     })
 
-    it('emits clean with previous value when clear control is clicked', async () => {
+    it('emits change with null when the clear control is clicked', async () => {
       const { wrapper } = mountInput({ modelValue: 'world', clearable: true })
       await nextTick()
       const cleanBtn = wrapper.get('button[type="button"]')
       await cleanBtn.trigger('click')
-      const emitted = wrapper.findComponent(Input).emitted('clean') as any[][]
-      expect(emitted[0][0]).toBe('world')
+      const emitted = wrapper.findComponent(Input).emitted('change') as any[][]
+      expect(emitted.at(-1)?.[0]).toBeNull()
+      wrapper.unmount()
+    })
+
+    it('emits change with the input string on native change', async () => {
+      const { wrapper } = mountInput({ modelValue: '' })
+      const input = wrapper.get('input')
+      await input.setValue('typed')
+      await input.trigger('change')
+      const emitted = wrapper.findComponent(Input).emitted('change') as any[][]
+      expect(emitted.at(-1)?.[0]).toBe('typed')
+      wrapper.unmount()
+    })
+
+    it('emits focus and blur from the input', async () => {
+      const { wrapper } = mountInput()
+      const input = wrapper.get('input')
+      await input.trigger('focus')
+      await input.trigger('blur')
+      const component = wrapper.findComponent(Input)
+      expect(component.emitted('focus')).toBeTruthy()
+      expect(component.emitted('blur')).toBeTruthy()
+      wrapper.unmount()
+    })
+
+    it('exposes data-slot on the root', () => {
+      const { wrapper } = mountInput()
+      expect(wrapper.find('[data-slot="input"]').exists()).toBe(true)
       wrapper.unmount()
     })
 

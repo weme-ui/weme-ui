@@ -94,7 +94,7 @@ function handleChange(e: Event) {
   if (props.modelModifiers?.trim)
     (e.target as HTMLInputElement).value = value.trim()
 
-  emits('change', value)
+  emits('change', (e.target as HTMLInputElement).value)
 }
 
 function handleEnter(e: KeyboardEvent) {
@@ -106,7 +106,7 @@ function handleEnter(e: KeyboardEvent) {
   if (props.modelModifiers?.trim)
     (e.target as HTMLInputElement).value = value.trim()
 
-  emits('enter', value.trim())
+  emits('enter', (e.target as HTMLInputElement).value)
 }
 
 function handleClean() {

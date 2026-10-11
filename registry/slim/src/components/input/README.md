@@ -46,13 +46,13 @@ pnpm dlx @weme-ui/weme-ui add weme-ui/slim/input
 
 ## Events
 
-| 事件                | 说明                                                                            | 参数                                           |
-| ------------------- | ------------------------------------------------------------------------------- | ---------------------------------------------- |
-| `update:modelValue` | 值变更时触发（含 `v-model`）                                                    | `value: string \| number \| null \| undefined` |
-| `change`            | 原生 `change` 或点击清除时触发；参数为当前值（清除时为 `null`），非原生 `Event` | `value: string \| number \| null \| undefined` |
-| `enter`             | 在输入框按 `Enter` 时触发（值为 trim 后）                                       | `value: string \| number \| null \| undefined` |
-| `focus`             | 获得焦点                                                                        | `event: FocusEvent`                            |
-| `blur`              | 失去焦点                                                                        | `event: FocusEvent`                            |
+| 事件                | 说明                                                                                                                                      | 参数                                           |
+| ------------------- | ----------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------- |
+| `update:modelValue` | 值变更时触发（含 `v-model`）                                                                                                              | `value: string \| number \| null \| undefined` |
+| `change`            | 原生 `change` 或点击清除时触发；原生时为当前输入框字符串，清除时为 `null`（非原生 `Event`）。`trim` / `lazy` 时会先处理展示值或写入 model | `value: string \| number \| null \| undefined` |
+| `enter`             | 在输入框按 `Enter` 时触发；参数为当前输入框值。`trim` 时先 trim 展示值；`lazy` 时同时写入 model                                           | `value: string \| number \| null \| undefined` |
+| `focus`             | 获得焦点                                                                                                                                  | `event: FocusEvent`                            |
+| `blur`              | 失去焦点                                                                                                                                  | `event: FocusEvent`                            |
 
 ## Slots
 
@@ -69,6 +69,6 @@ pnpm dlx @weme-ui/weme-ui add weme-ui/slim/input
 
 ### Keyboard Interactions
 
-| Key     | Description                                                   |
-| ------- | ------------------------------------------------------------- |
-| `Enter` | 触发 `enter` 事件；若使用 `lazy` modifier，同时提交当前输入值 |
+| Key     | Description                                                                              |
+| ------- | ---------------------------------------------------------------------------------------- |
+| `Enter` | 触发 `enter` 事件；若使用 `lazy` modifier，同时写入 model；若使用 `trim`，先 trim 展示值 |

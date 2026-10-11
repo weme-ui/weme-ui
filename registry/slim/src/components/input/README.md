@@ -17,8 +17,9 @@ pnpm dlx @weme-ui/weme-ui add weme-ui/slim/input
 | `as`             | 根节点渲染为的元素或组件（Reka UI `Primitive`）                             | `AsTag \| Component`                                                        | `'div'`            |
 | `modelValue`     | 受控值                                                                      | `string \| number \| null \| undefined`                                     | —                  |
 | `defaultValue`   | 非受控初始值                                                                | `string \| number \| null \| undefined`                                     | —                  |
-| `variant`        | 外观变体                                                                    | `'soft' \| 'outline' \| 'unstyled'`                                         | `'soft'`           |
-| `size`           | 尺寸                                                                        | `'xs' \| 'sm' \| 'md' \| 'lg'`                                              | `'md'`             |
+| `variant`        | 外观变体                                                                    | `'soft' \| 'outline'`                                                       | `'soft'`           |
+| `unstyled`       | 移除所有样式类，仅保留布局结构                                              | `boolean`                                                                   | —                  |
+| `size`           | 尺寸                                                                        | `'sm' \| 'md' \| 'lg'`                                                      | `'md'`             |
 | `radius`         | 圆角                                                                        | `'none' \| 'xs' \| 'sm' \| 'md' \| 'lg' \| 'xl' \| 'full'`                  | `'md'`             |
 | `type`           | 原生 input 类型                                                             | `'text' \| 'email' \| 'number' \| 'url' \| 'tel' \| 'search' \| 'password'` | `'text'`           |
 | `placeholder`    | 占位文案                                                                    | `string`                                                                    | —                  |

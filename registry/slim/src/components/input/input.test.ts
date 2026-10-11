@@ -70,8 +70,10 @@ describe('input', () => {
     expect(outline).toContain('bg-base')
     expect(outline).toContain('b')
 
-    expect(useInputStyle({ variant: 'unstyled' }).root()).not.toContain('bg-muted')
-    expect(useInputStyle({ variant: 'unstyled' }).root()).not.toContain('transition-colors')
+    // unstyled: true suppresses compound variant styles (border, background)
+    const unstyledRoot = useInputStyle({ unstyled: true }).root()
+    expect(unstyledRoot).not.toContain('bg-muted')
+    expect(unstyledRoot).not.toContain('b-transparent')
   })
 
   it('applies soft and outline focus compounds when valid', () => {
@@ -152,6 +154,25 @@ describe('input', () => {
       })
       await nextTick()
       expect(wrapper.find('button[type="button"]').exists()).toBe(false)
+      wrapper.unmount()
+    })
+
+    it('emits enter with trimmed value on Enter keyup', async () => {
+      const { wrapper } = mountInput({ modelValue: '  hello  ' })
+      await wrapper.get('input').trigger('keyup.enter')
+      expect(wrapper.findComponent(Input).emitted('enter')).toBeTruthy()
+      const emitted = wrapper.findComponent(Input).emitted('enter') as any[][]
+      expect(emitted[0][0]).toBe('hello')
+      wrapper.unmount()
+    })
+
+    it('emits clean with previous value when clear control is clicked', async () => {
+      const { wrapper } = mountInput({ modelValue: 'world', clearable: true })
+      await nextTick()
+      const cleanBtn = wrapper.get('button[type="button"]')
+      await cleanBtn.trigger('click')
+      const emitted = wrapper.findComponent(Input).emitted('clean') as any[][]
+      expect(emitted[0][0]).toBe('world')
       wrapper.unmount()
     })
 

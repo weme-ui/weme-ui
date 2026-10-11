@@ -8,7 +8,6 @@ const form = useForm({
   defaultValues: {
     soft: '',
     outline: '',
-    unstyled: '',
   },
 })
 </script>
@@ -20,9 +19,6 @@ const form = useForm({
     </FormField>
     <FormField name="outline" label="Outline">
       <Input variant="outline" placeholder="Outline" />
-    </FormField>
-    <FormField name="unstyled" label="Unstyled">
-      <Input variant="unstyled" placeholder="Unstyled" />
     </FormField>
   </Form>
 </template>

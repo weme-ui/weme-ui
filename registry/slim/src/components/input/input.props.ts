@@ -28,6 +28,7 @@ export interface InputProps extends FormFieldSharedProps {
   clearIcon?: IconifyIconProps['icon']
   countable?: boolean
   clearable?: boolean
+  unstyled?: boolean
   maxLength?: number
   type?: 'text' | 'email' | 'number' | 'url' | 'tel' | 'search' | 'password'
   autocomplete?: 'on' | 'off' | 'string'

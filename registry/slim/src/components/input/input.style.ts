@@ -14,15 +14,7 @@ export const useInputStyle = createVariants({
   },
 
   variants: {
-    variant: {
-      soft: {
-        root: 'b b-transparent bg-muted',
-      },
-      outline: {
-        root: 'b b-base bg-base',
-      },
-      unstyled: {},
-    },
+    variant: { soft: {}, outline: {} },
     radius: {
       none: { root: 'rounded-none' },
       xs: { root: 'rounded-xs' },
@@ -35,7 +27,7 @@ export const useInputStyle = createVariants({
     size: {
       sm: { root: 'text-xs gap-xs h-6' },
       md: { root: 'text-sm gap-sm h-8' },
-      lg: { root: 'text-md gap-md h-10' },
+      lg: { root: 'text-base gap-md h-10' },
     },
     disabled: {
       true: { root: 'is-disabled' },
@@ -47,17 +39,22 @@ export const useInputStyle = createVariants({
       true: { counter: 'text-error' },
     },
     invalid: { true: {} },
+    unstyled: { true: {} },
   },
 
   compoundSlots: [
-    { slots: ['root', 'prefix', 'suffix'], variant: ['soft', 'outline'], class: 'transition-colors' },
+    { slots: ['root', 'prefix', 'suffix'], variant: ['soft', 'outline'], unstyled: false, class: 'transition-colors' },
     { slots: ['prefix', 'suffix'], invalid: false, class: 'group-data-[focused]:text-highlighted not-[[data-focused]]:text-subtle' },
   ],
 
   compoundVariants: [
+    { variant: 'soft', unstyled: false, class: { root: 'b b-transparent bg-muted' } },
+    { variant: 'outline', unstyled: false, class: { root: 'b b-base bg-base' } },
+
     {
       variant: 'soft',
       invalid: false,
+      unstyled: false,
       class: {
         root: 'bg-muted data-[focused]:(bg-base b-accent outline-2 outline-accent-4) hover:not-[[data-focused]]:bg-elevated',
       },
@@ -65,20 +62,21 @@ export const useInputStyle = createVariants({
     {
       variant: 'outline',
       invalid: false,
+      unstyled: false,
       class: {
         root: 'data-[focused]:(bg-base b-accent outline-2 outline-accent-4) hover:not-[[data-focused]]:b-elevated',
       },
     },
 
-    { variant: ['soft', 'outline'], invalid: true, class: { root: 'b-error outline-2 outline-error-4' } },
+    { variant: ['soft', 'outline'], invalid: true, unstyled: false, class: { root: 'b-error outline-2 outline-error-4' } },
 
-    { variant: ['soft', 'outline'], radius: ['none', 'xs', 'sm', 'md', 'lg', 'xl'], size: 'sm', class: { root: 'px-1.5' } },
-    { variant: ['soft', 'outline'], radius: ['none', 'xs', 'sm', 'md', 'lg', 'xl'], size: 'md', class: { root: 'px-2.5' } },
-    { variant: ['soft', 'outline'], radius: ['none', 'xs', 'sm', 'md', 'lg', 'xl'], size: 'lg', class: { root: 'px-3' } },
+    { variant: ['soft', 'outline'], radius: ['none', 'xs', 'sm', 'md', 'lg', 'xl'], size: 'sm', unstyled: false, class: { root: 'px-1.5' } },
+    { variant: ['soft', 'outline'], radius: ['none', 'xs', 'sm', 'md', 'lg', 'xl'], size: 'md', unstyled: false, class: { root: 'px-2.5' } },
+    { variant: ['soft', 'outline'], radius: ['none', 'xs', 'sm', 'md', 'lg', 'xl'], size: 'lg', unstyled: false, class: { root: 'px-3' } },
 
-    { variant: ['soft', 'outline'], radius: 'full', size: 'sm', class: { root: 'px-2.25' } },
-    { variant: ['soft', 'outline'], radius: 'full', size: 'md', class: { root: 'px-3.5' } },
-    { variant: ['soft', 'outline'], radius: 'full', size: 'lg', class: { root: 'px-4' } },
+    { variant: ['soft', 'outline'], radius: 'full', size: 'sm', unstyled: false, class: { root: 'px-2.25' } },
+    { variant: ['soft', 'outline'], radius: 'full', size: 'md', unstyled: false, class: { root: 'px-3.5' } },
+    { variant: ['soft', 'outline'], radius: 'full', size: 'lg', unstyled: false, class: { root: 'px-4' } },
   ],
 
   defaultVariants: {

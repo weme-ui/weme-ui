@@ -4,7 +4,7 @@ import { useVModel } from '@vueuse/core'
 import { Primitive } from 'reka-ui'
 import { computed, useSlots, useTemplateRef } from 'vue'
 import { useFormFieldBindings, useFormFieldContext } from '~/composables/use-form-field-context'
-import { toBoolDataAttrValue } from '~/utils/props'
+import { toBoolDataAttrValue, toBoolValue } from '~/utils/props'
 import { cn } from '~/utils/styles'
 import Icon from '../icon/icon.vue'
 import { useInputStyle } from './input.style'
@@ -57,6 +57,7 @@ const ui = computed(() => useInputStyle({
   loading: loading.value,
   invalid: invalid.value,
   overcount: overcount.value,
+  unstyled: toBoolValue(props.unstyled),
 }))
 
 function updateValue(value: string | null | undefined) {

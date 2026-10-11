@@ -94,7 +94,7 @@ function handleChange(e: Event) {
   if (props.modelModifiers?.trim)
     (e.target as HTMLInputElement).value = value.trim()
 
-  emits('change', e)
+  emits('change', value)
 }
 
 function handleEnter(e: KeyboardEvent) {
@@ -114,10 +114,10 @@ function handleClean() {
 
   if (value) {
     updateValue(null)
-    emits('clean', value)
+    emits('change', null)
 
     if (inputRef.value) {
-      inputRef.value.focus()
+      !inputRef.value.focus && inputRef.value.focus()
     }
     else {
       formFieldContext.handleControlFocus()

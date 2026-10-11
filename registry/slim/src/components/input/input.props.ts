@@ -41,8 +41,7 @@ export interface InputProps extends FormFieldSharedProps {
 export interface InputEmits {
   'update:modelValue': [value: InputValue]
   'enter': [value: InputValue]
-  'clean': [value: InputValue]
-  'change': [event: Event]
+  'change': [value: InputValue]
   'focus': [event: FocusEvent]
   'blur': [event: FocusEvent]
 }

@@ -22,7 +22,7 @@ const form = useForm({
         variant="outline"
         prefix-icon="ri:mail-line"
         placeholder="You@example.com"
-        @change="field.api.handleChange($event.target.value)"
+        @change="field.api.handleChange"
       />
     </FormField>
   </Form>

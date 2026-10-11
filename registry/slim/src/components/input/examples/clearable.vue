@@ -18,8 +18,7 @@ const form = useForm({
         clearable
         :model-value="field.state.value"
         placeholder="Clearable"
-        @change="field.api.handleChange($event.target?.value)"
-        @clean="field.api.handleChange('')"
+        @change="field.api.handleChange"
       />
     </FormField>
   </Form>

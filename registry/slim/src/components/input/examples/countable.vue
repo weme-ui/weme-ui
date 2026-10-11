@@ -19,7 +19,7 @@ const form = useForm({
         :max-length="32"
         :model-value="field.state.value"
         placeholder="Up to 32 characters"
-        @update:model-value="field.api.handleChange"
+        @change="field.api.handleChange"
       />
     </FormField>
   </Form>

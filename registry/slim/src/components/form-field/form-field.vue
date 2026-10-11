@@ -76,6 +76,14 @@ function isFilledValue(value: unknown): boolean {
   return value !== undefined && value !== null && value !== ''
 }
 
+function setFocused(value: boolean) {
+  if (isDisabled.value || isLoading.value)
+    return
+
+  if (value !== focused.value)
+    focused.value = value
+}
+
 provideFormFieldContext({
   fieldId,
   labelId,
@@ -93,8 +101,8 @@ provideFormFieldContext({
   dirty: isDirty,
   touched: isTouched,
   filled: isFilled,
-  handleControlFocus: () => focused.value = true,
-  handleControlBlur: () => focused.value = false,
+  handleControlFocus: () => setFocused(true),
+  handleControlBlur: () => setFocused(false),
 })
 </script>
 

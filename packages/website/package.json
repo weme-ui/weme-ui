@@ -3,7 +3,7 @@
   "type": "module",
   "version": "0.0.0",
   "private": true,
-  "packageManager": "bun@1.4.2",
+  "packageManager": "bun@1.4.3",
   "description": "Astro documentation website for Weme UI registries.",
   "author": "Allen Luo <luoyi@mouji.net>",
   "license": "MIT",

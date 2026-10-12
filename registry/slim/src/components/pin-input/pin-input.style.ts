@@ -28,7 +28,7 @@ export const usePinInputStyle = createVariants({
     },
     invalid: { true: {} },
     unstyled: {
-      false: { root: 'transition-colors', input: 'text-foreground' },
+      false: { root: 'transition-colors', input: 'text-foreground duration-200' },
     },
   },
 

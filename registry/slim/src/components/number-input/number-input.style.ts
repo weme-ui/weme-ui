@@ -33,7 +33,7 @@ export const useNumberInputStyle = createVariants({
   },
 
   compoundSlots: [
-    { slots: ['root', 'decrement', 'increment'], unstyled: false, class: 'transition-colors' },
+    { slots: ['root', 'decrement', 'increment'], unstyled: false, class: 'transition-colors duration-200' },
 
     { slots: ['decrement', 'increment'], class: 'flex-(~ center) rounded-inherit cursor-pointer' },
     { slots: ['decrement', 'increment'], unstyled: false, class: 'hover:bg-muted' },

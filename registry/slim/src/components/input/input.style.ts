@@ -43,7 +43,7 @@ export const useInputStyle = createVariants({
   },
 
   compoundSlots: [
-    { slots: ['root', 'prefix', 'suffix'], variant: ['soft', 'outline'], unstyled: false, class: 'transition-colors ease-in-out duration-150' },
+    { slots: ['root', 'prefix', 'suffix'], variant: ['soft', 'outline'], unstyled: false, class: 'transition-colors duration-200' },
     { slots: ['prefix', 'suffix'], invalid: false, class: 'group-data-[focused]:text-highlighted not-[[data-focused]]:text-subtle' },
   ],
 

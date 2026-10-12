@@ -43,7 +43,7 @@ export const useRangeInputStyle = createVariants({
 
   compoundSlots: [
     { slots: ['root', 'from', 'to'], unstyled: false, class: 'flex flex-y-center' },
-    { slots: ['root', 'fromIcon', 'toIcon', 'separator'], unstyled: false, class: 'transition-colors' },
+    { slots: ['root', 'fromIcon', 'toIcon', 'separator'], unstyled: false, class: 'transition-colors duration-200' },
 
     { slots: ['fromInput', 'toInput'], unstyled: false, class: 'text-center outline-none leading-none size-full placeholder:text-subtle' },
     { slots: ['fromIcon', 'toIcon'], unstyled: false, class: 'flex flex-center [&>svg]:shrink-0' },

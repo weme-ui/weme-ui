@@ -17,7 +17,7 @@ export const useLinkStyle = createVariants({
   },
 
   compoundSlots: [
-    { slots: ['root', 'prefixIcon', 'suffixIcon'], className: 'transition-colors duration-200' },
+    { slots: ['root', 'prefixIcon', 'suffixIcon'], unstyled: false, className: 'transition-colors duration-200 decoration-1 underline-offset-4 hover:underline' },
   ],
 
   compoundVariants: [

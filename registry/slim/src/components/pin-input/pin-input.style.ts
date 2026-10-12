@@ -4,7 +4,7 @@ import { createVariants } from '~/utils/styles'
 export const usePinInputStyle = createVariants({
   slots: {
     root: 'flex w-fit flex-y-center',
-    input: 'leading-none font-medium text-center flex flex-center',
+    input: 'leading-none font-medium text-center outline-none flex flex-center',
   },
 
   variants: {
@@ -28,7 +28,7 @@ export const usePinInputStyle = createVariants({
     },
     invalid: { true: {} },
     unstyled: {
-      false: { root: 'transition-colors', input: 'text-foreground duration-200' },
+      false: { input: 'text-foreground transition-colors duration-200' },
     },
   },
 

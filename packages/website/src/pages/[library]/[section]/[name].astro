@@ -6,6 +6,7 @@ import {
   slugifyHeading,
   splitMarkdownH2,
   stripLeadingH1,
+  type MarkdownH2Section,
   type TocItem,
 } from '../../../lib/markdown'
 import {
@@ -36,15 +37,41 @@ if (!library || !page) {
   throw new Error(`Unknown item page: ${libraryId}/${section}/${name}`)
 }
 
+/** README h2 titles omitted from the page (website injects Examples; Preview/Source are unused). */
 const OMIT_SECTIONS = new Set(['preview', 'examples', 'source'])
-const API_SECTIONS = new Set(['props', 'events', 'slots'])
+
+/** Fixed detail-page order: Installation → Usage → (other lead) → Examples → Props… → CSS Variables → Accessibility → Files */
+const LEAD_TITLES = new Set(['installation', 'usage'])
+const API_TITLES = ['props', 'events', 'slots'] as const
+const CSS_VARIABLES_TITLE = 'css variables'
+const ACCESSIBILITY_TITLE = 'accessibility'
 
 const readmeBody = page.readme ? stripLeadingH1(page.readme) : ''
 const sections = splitMarkdownH2(readmeBody).filter((section) => {
   return !OMIT_SECTIONS.has(section.title.trim().toLowerCase())
 })
-const beforeApi = sections.filter(section => !API_SECTIONS.has(section.title.trim().toLowerCase()))
-const apiSections = sections.filter(section => API_SECTIONS.has(section.title.trim().toLowerCase()))
+
+function sectionKey(section: MarkdownH2Section) {
+  return section.title.trim().toLowerCase()
+}
+
+function findSection(title: string) {
+  return sections.find(section => sectionKey(section) === title)
+}
+
+const leadSections = sections.filter(section => LEAD_TITLES.has(sectionKey(section)))
+const otherLeadSections = sections.filter((section) => {
+  const key = sectionKey(section)
+  return !LEAD_TITLES.has(key)
+    && !(API_TITLES as readonly string[]).includes(key)
+    && key !== CSS_VARIABLES_TITLE
+    && key !== ACCESSIBILITY_TITLE
+})
+const apiSections = API_TITLES
+  .map(title => findSection(title))
+  .filter((section): section is MarkdownH2Section => Boolean(section))
+const cssVariablesSection = findSection(CSS_VARIABLES_TITLE)
+const accessibilitySection = findSection(ACCESSIBILITY_TITLE)
 
 const usageExample = page.exampleModules.find(example => example.name === 'usage')
 const featureExamples = page.exampleModules.filter(example => example.name !== 'usage')
@@ -76,44 +103,64 @@ async function renderSection(title: string, body: string): Promise<string> {
   return bodyHtml ? `${heading}\n${bodyHtml}` : heading
 }
 
-const beforeApiBlocks = await Promise.all(beforeApi.map(async (section) => {
-  const isUsage = section.title.trim().toLowerCase() === 'usage'
-  const attachUsage = isUsage ? usageExample : undefined
+type ContentBlock = {
+  headingHtml: string
+  previewPath?: string
+  bodyHtml: string
+}
 
-  if (attachUsage) {
-    return {
-      headingHtml: renderHeading(section.title).html,
-      previewPath: attachUsage.path,
-      // Source lives in the example panel (preview + highlighted code).
-      bodyHtml: '',
+async function toLeadBlocks(list: MarkdownH2Section[]): Promise<ContentBlock[]> {
+  return Promise.all(list.map(async (section) => {
+    const isUsage = sectionKey(section) === 'usage'
+    const attachUsage = isUsage ? usageExample : undefined
+
+    if (attachUsage) {
+      return {
+        headingHtml: renderHeading(section.title).html,
+        previewPath: attachUsage.path,
+        bodyHtml: '',
+      }
     }
-  }
 
-  return {
-    headingHtml: '',
-    previewPath: undefined as string | undefined,
-    bodyHtml: await renderSection(section.title, section.body),
-  }
-}))
+    return {
+      headingHtml: '',
+      bodyHtml: await renderSection(section.title, section.body),
+    }
+  }))
+}
 
-const hasUsageSection = beforeApi.some(section => section.title.trim().toLowerCase() === 'usage')
+const leadBlocks = await toLeadBlocks([...leadSections, ...otherLeadSections])
+
+const hasUsageSection = leadSections.some(section => sectionKey(section) === 'usage')
 const orphanUsageId = usageExample && !hasUsageSection ? pushToc('Usage', 2) : null
 
 const examplesId = featureExamples.length > 0 ? pushToc('Examples', 2) : null
 const exampleHeadingIds = featureExamples.map(example => pushToc(example.title, 3))
+
 const apiHtml = (await Promise.all(
   apiSections.map(section => renderSection(section.title, section.body)),
 )).join('\n')
+
+const cssVariablesHtml = cssVariablesSection
+  ? await renderSection(cssVariablesSection.title, cssVariablesSection.body)
+  : ''
+
+const accessibilityHtml = accessibilitySection
+  ? await renderSection(accessibilitySection.title, accessibilitySection.body)
+  : ''
+
 const filesId = page.sourceFiles.length > 0 ? pushToc('Files', 2) : null
 
 const badges = resolveUiDependencyBadges(page.item.dependencies)
 const adjacent = getAdjacentNav(library.id, page.href)
 const sectionLabel = getSectionLabel(section!)
 
-const emptyHtml = beforeApiBlocks.length === 0
+const emptyHtml = leadBlocks.length === 0
   && !usageExample
   && featureExamples.length === 0
   && !apiHtml
+  && !cssVariablesHtml
+  && !accessibilityHtml
   ? '<p>暂无 README。</p>'
   : ''
 ---
@@ -135,7 +182,7 @@ const emptyHtml = beforeApiBlocks.length === 0
   prev={adjacent.prev}
   next={adjacent.next}
 >
-  {beforeApiBlocks.map(block => (
+  {leadBlocks.map(block => (
     <Fragment>
       {block.headingHtml && <Fragment set:html={block.headingHtml} />}
       {block.previewPath && (
@@ -165,6 +212,8 @@ const emptyHtml = beforeApiBlocks.length === 0
   )}
 
   <Fragment set:html={apiHtml} />
+  <Fragment set:html={cssVariablesHtml} />
+  <Fragment set:html={accessibilityHtml} />
   <Fragment set:html={emptyHtml} />
 
   {page.sourceFiles.length > 0 && filesId && (

@@ -3,10 +3,10 @@ name: weme-ui-docs
 description: >-
   Generates or syncs Weme UI registry item docs from a given component path:
   README.md, feature-based examples/*.vue, and registry.json doc/example file
-  entries; or syncs Props/Events/Slots/Accessibility after API changes. Use when
-  the user names weme-ui-docs, points at registry/<library>/src/<section>/<name>/,
-  prepares website preview, or asks to sync props/slots/events/accessibility
-  documentation.
+  entries; or syncs Props/Events/Slots/Accessibility/CSS Variables after API
+  or cssVars changes. Use when the user names weme-ui-docs, points at
+  registry/<library>/src/<section>/<name>/, prepares website preview, or asks
+  to sync props/slots/events/accessibility/cssVars documentation.
 ---
 
 # Weme UI Docs
@@ -43,23 +43,24 @@ registry/<library>/src/<section>/<name>/
 
 ## 模式 A：首次生成
 
-1. 根据源码确认 Props、Events、Slots、Accessibility / Keyboard Interactions，以及值得单独演示的属性/状态
+1. 根据源码确认 Props、Events、Slots、Accessibility / Keyboard Interactions，以及值得单独演示的属性/状态；并读 `registry.json` 对应 item 的 `cssVars`（见「CSS Variables」）
 2. 写入同目录 `README.md`（模板见下；**不要**写 Preview / Examples / Source）
 3. 按属性/场景创建多个 `examples/<feature>.vue`（见下方 Examples 规则）
 4. 在 `registry.json` 对应 item 的 `files` 中追加（已存在则跳过）：
    - `kind: "doc"` → `.../README.md`
    - 每个示例一条 `kind: "example"`（顺序 = 详情页展示顺序）
-5. **不改**已有 `name` / `title` / `description` / `meta` / `dependencies` / `registryDependencies` / `when` / 主源码 paths（除非文件已存在而 path 缺失）。依赖规则见下方「依赖判断」
+5. **不改**已有 `name` / `title` / `description` / `meta` / `dependencies` / `registryDependencies` / `when` / `cssVars` / 主源码 paths（除非文件已存在而 path 缺失）。依赖规则见下方「依赖判断」
 
 ## 模式 B：API 同步
 
-以源码为准更新 README 中的 API 章节：
+以源码与 `registry.json` 为准更新 README 中的 API 章节：
 
 - 始终同步 `## Props`
 - 有可核对的 Events → 写入/更新 `## Events`；没有则**删除**该章节
 - 有可核对的 Slots → 写入/更新 `## Slots`；没有则**删除**该章节
 - 有可核对的 Accessibility → 写入/更新 `## Accessibility`；没有则**删除**该章节（含其下 `### Keyboard Interactions`）
 - 有可核对的键盘交互 → 在 Accessibility 下写入/更新 `### Keyboard Interactions`；没有则**删除**该小节
+- item 存在非空 `cssVars` → 写入/更新 `## CSS Variables`；没有或为空 → **删除**该章节
 - **不要**写入 Preview / Examples / Source
 
 **默认保留**：简介、`## Installation`、`## Usage`，以及已有 `examples/*.vue`。
@@ -67,6 +68,10 @@ registry/<library>/src/<section>/<name>/
 仅当用户明确要求时，才改 Usage 或增删/重写 example 文件。API 变更导致示例明显失效时，可简短提示用户。
 
 ## README 模板
+
+详情页最终顺序（website 注入 Examples / Files）：
+
+`Installation` → `Usage` → **Examples** → `Props` → `Events` → `Slots` → `CSS Variables` → `Accessibility` → **Files**
 
 ```markdown
 # <Title>
@@ -83,18 +88,57 @@ registry/<library>/src/<section>/<name>/
 
 ## Slots
 
+## CSS Variables
+
 ## Accessibility
 
 ### Keyboard Interactions
 ```
 
-- `## Events` / `## Slots` / `## Accessibility` 仅在有内容时输出
+- README 按上表书写 API 章节顺序；**不要**写 `## Examples` / `## Files`（website 分别在 Usage 之后、文末自动插入）
+- `## Events` / `## Slots` / `## CSS Variables` / `## Accessibility` 仅在有内容时输出
 - `### Keyboard Interactions` 仅在有可核对的键盘交互时输出，且必须挂在 `## Accessibility` 下
-- **不要**写 `## Preview`、`## Examples`、`## Source`（Examples 由 website 根据 `kind: "example"` 文件自动渲染）
+- **不要**写 `## Preview`、`## Examples`、`## Source`
+
+## CSS Variables 规则
+
+与 Props 相同：**以 `registry.json` 对应 item 的 `cssVars` 为唯一来源**；有非空对象则必须写 `## CSS Variables`，没有或为空则省略。不要编造。
+
+**写用法，不写原理。** CLI 会把 `cssVars` 写入用户的 `uno.config.ts` / `weme.config.json`；文档只需告诉读者变量名、取值，以及在 `*.style.ts` / `class` 里怎么用。
+
+`cssVars` 结构：`{ "<theme-key>": { "<name>": "<value>" } }` → 运行时 CSS 变量为 `--{theme-key}-{name}`（如 `--password-strength-too-weak-color`）。
+
+### 章节结构
+
+放在 `## Slots`（若有）之后、`## Accessibility`（若有）之前；详情页由 website 固定渲染为 Props… → CSS Variables → Accessibility。
+
+```markdown
+## CSS Variables
+
+可在 `*.style.ts` 或 `class` 中使用，例如 `bg-password-strength-too-weak`。
+
+| CSS Variable | Value |
+| --- | --- |
+| `--password-strength-too-weak-color` | `error.7` |
+| `--password-strength-strong-color` | `success.9` |
+
+`error.7` / `success.9` 等为语义色别名（色板阶），详见 [Tokens](/weme-ui/unocss-preset/docs/theme/tokens/)。
+```
+
+约定：
+
+1. 标题固定 `## CSS Variables`。
+2. 开篇 **1 句**用法示例即可（由 registry 条目推导真实 class，如 `bg-{theme}-{stem}`，stem 为去掉末尾 `-color` / `-bg` / `-background` 等 fuzzy suffix 后的名称）；不要展开 CLI / preflight / flatten 长说明。
+3. 表格列名固定为 `CSS Variable` / `Value`：
+   - `CSS Variable`：完整 `--{theme-key}-{name}`
+   - `Value`：registry 原始字符串（如 `error.7`），不要展开成 `#hex` / `oklch(...)`
+4. 按 theme-key、再按 name 稳定排序。
+5. 表格**下方**用一两句说明 Value 里的别名含义（如 `error.7` = 语义色 `error` 的第 7 阶），并链接到 UnoCSS Preset Tokens 文档。站点 `base` 为 `/weme-ui`（见 `packages/website/astro.config.mjs`），Markdown 绝对链接须带此前缀：`/weme-ui/unocss-preset/docs/theme/tokens/`（勿写成 `/unocss-preset/...`）。勿在组件 README 复述 preset 全文。
+6. Mode A / B：只同步 README；默认不改 `registry.json` 的 `cssVars`。清空或删除 `cssVars` → 删除整章。
 
 ## Accessibility 规则（对齐 [Reka UI Checkbox](https://reka-ui.com/docs/components/checkbox)）
 
-与 Events / Slots 相同：**存在则可写，无可核对内容则省略整章**，不要编造。
+与 Events / Slots / CSS Variables 相同：**存在则可写，无可核对内容则省略整章**，不要编造。
 
 ### 何时写入
 
@@ -132,7 +176,7 @@ registry/<library>/src/<section>/<name>/
 ## Examples 规则（对齐 HeroUI）
 
 - `examples/usage.vue`：**挂在文档 `## Usage` 标题下**（preview 在上、可折叠高亮源码在下，默认折叠），不进入 Examples 列表；README 的 `## Usage` 正文可留空（避免与面板重复）
-- 其余 `examples/<feature>.vue`：详情页在 Usage 与 Props 之间插入 `## Examples`，每个文件一个 `###` 小节 + preview/code 面板（代码默认折叠）
+- 其余 `examples/<feature>.vue`：详情页在 Usage 与 Props 之间插入 `## Examples`（整页顺序见「README 模板」），每个文件一个 `###` 小节 + preview/code 面板（代码默认折叠）
 
 ### 文件命名
 
@@ -196,13 +240,14 @@ website 从 **item** 的 `dependencies` 识别 UI 类依赖并显示 badge（如
 ## 规则
 
 - Props、Events、Slots、Accessibility / Keyboard Interactions 须能在源码或类型中核对；无法确认时写「待补充」
-- 无自定义事件 / 插槽 / 无障碍可述内容时省略对应章节
+- `## CSS Variables` 须能在 `registry.json` item.`cssVars` 中核对；有则必写，无则省略
+- 无自定义事件 / 插槽 / cssVars / 无障碍可述内容时省略对应章节
 - Installation：`pnpm dlx @weme-ui/weme-ui add weme-ui/<library>/<name>`
 - Usage 中 `~/...` 指向同一 library 的 `src` 根
 - `files[].type`：`component | composable | ui | block | layout | page | util`
 - `files[].kind`：`doc | example`（本 skill 不写 `test`）
 - 依赖登记遵循上文「依赖判断」；**禁止**把已是全局的包装进 item，**禁止**随意加 `when: "on-init"`
-- 说明用中文；Vue、TypeScript、UnoCSS、WAI-ARIA、Reka UI 等专有名词保持英文
+- 说明用中文；Vue、TypeScript、UnoCSS、WAI-ARIA、Reka UI、CSS Variables 等专有名词保持英文
 
 ## 本地验证（用户侧）
 

@@ -567,6 +567,83 @@
       ]
     },
     {
+      "name": "pin-input",
+      "type": "component",
+      "title": "Pin Input",
+      "description": "A segmented PIN / OTP input built on Reka UI PinInput.",
+      "meta": {
+        "docs.category": "form",
+        "docs.categoryLabel": "Form"
+      },
+      "registryDependencies": [
+        "form-field"
+      ],
+      "files": [
+        {
+          "type": "component",
+          "path": "src/components/pin-input/pin-input.vue"
+        },
+        {
+          "type": "component",
+          "path": "src/components/pin-input/pin-input.props.ts"
+        },
+        {
+          "type": "component",
+          "path": "src/components/pin-input/pin-input.style.ts"
+        },
+        {
+          "type": "component",
+          "kind": "doc",
+          "path": "src/components/pin-input/README.md"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/pin-input/examples/usage.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/pin-input/examples/variants.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/pin-input/examples/unstyled.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/pin-input/examples/sizes.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/pin-input/examples/radius.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/pin-input/examples/length.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/pin-input/examples/mask.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/pin-input/examples/disabled.vue"
+        },
+        {
+          "type": "component",
+          "kind": "test",
+          "path": "src/components/pin-input/pin-input.test.ts"
+        }
+      ]
+    },
+    {
       "name": "icon",
       "type": "component",
       "title": "Icon",

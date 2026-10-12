@@ -33,6 +33,7 @@ pnpm dlx @weme-ui/weme-ui add weme-ui/slim/input
 | `clearable`      | 有值且未禁用时显示清除按钮                                                             | `boolean`                                                                   | —                  |
 | `countable`      | 配合 `maxLength` 显示字数统计                                                          | `boolean`                                                                   | —                  |
 | `maxLength`      | 最大长度（`countable` 展示用；需大于 `0`）                                             | `number`                                                                    | —                  |
+| `autoFocus`      | 挂载后自动聚焦原生 `<input>`                                                           | `boolean`                                                                   | —                  |
 | `id`             | 控件 `id`；未传时回退到 FormField Context                                              | `string`                                                                    | —                  |
 | `name`           | 控件 `name`；未传时回退到 FormField Context                                            | `string`                                                                    | —                  |
 | `loading`        | 是否加载中；会与 FormField Context 的 `loading` 合并                                   | `boolean`                                                                   | —                  |

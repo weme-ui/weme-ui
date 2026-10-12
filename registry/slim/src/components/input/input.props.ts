@@ -26,6 +26,7 @@ export interface InputProps extends FormFieldSharedProps {
   suffixIcon?: IconifyIconProps['icon']
   loadingIcon?: IconifyIconProps['icon']
   clearIcon?: IconifyIconProps['icon']
+  autoFocus?: boolean
   countable?: boolean
   clearable?: boolean
   unstyled?: boolean

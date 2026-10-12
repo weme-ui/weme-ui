@@ -2,7 +2,7 @@
 import type { InputEmits, InputProps } from './input.props'
 import { useVModel } from '@vueuse/core'
 import { Primitive } from 'reka-ui'
-import { computed, useSlots, useTemplateRef } from 'vue'
+import { computed, onMounted, useSlots, useTemplateRef } from 'vue'
 import { useFormFieldBindings, useFormFieldContext } from '~/composables/use-form-field-context'
 import { toBoolDataAttrValue, toBoolValue } from '~/utils/props'
 import { cn } from '~/utils/styles'
@@ -59,6 +59,12 @@ const ui = computed(() => useInputStyle({
   overcount: overcount.value,
   unstyled: toBoolValue(props.unstyled),
 }))
+
+onMounted(() => {
+  if (props.autoFocus) {
+    inputRef.value?.focus()
+  }
+})
 
 function updateValue(value: string | null | undefined) {
   if (props.modelModifiers?.trim && (typeof value === 'string' || value === null || value === undefined))
@@ -156,6 +162,7 @@ defineExpose({
     </span>
 
     <input
+      ref="inputRef"
       v-bind="bindings"
       :type="type"
       :value="modelValue"

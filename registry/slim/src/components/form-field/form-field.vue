@@ -39,7 +39,8 @@ const hasHint = computed(() => props.hint || slots.hint)
 const hasDescription = computed(() => props.description || slots.description)
 const hasHelp = computed(() => props.help || slots.help)
 
-const fieldId = computed(() => props.id ?? useId(undefined, 'form-field'))
+const fallbackId = useId(undefined, 'form-field')
+const fieldId = computed(() => props.id ?? fallbackId)
 const labelId = computed(() => hasLabel.value ? `${fieldId.value}-label` : undefined)
 const descriptionId = computed(() => hasDescription.value ? `${fieldId.value}-desc` : undefined)
 

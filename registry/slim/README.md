@@ -96,24 +96,18 @@ pnpm dlx @weme-ui/weme-ui add weme-ui/slim/button
   - [ ] `tooltip`
 
 - **Form**
-  - [x] `form`
-  - [x] `form-field`
   - [ ] `autocomplete`
   - [ ] `cascader`
-  - [ ] `filters`
   - [ ] `checkbox-group`
   - [ ] `checkbox`
   - [ ] `color-picker`
   - [ ] `color-swatch-picker`
   - [ ] `date-picker`
   - [ ] `file-upload`
-  - [x] `input`
+  - [ ] `filters`
   - [ ] `label`
   - [ ] `listbox`
-  - [x] `number-input`
-  - [x] `pin-input`
   - [ ] `radio-group`
-  - [x] `range-input`
   - [ ] `richtext`
   - [ ] `select`
   - [ ] `slider`
@@ -121,6 +115,13 @@ pnpm dlx @weme-ui/weme-ui add weme-ui/slim/button
   - [ ] `tag-group`
   - [ ] `tags-input`
   - [ ] `textarea`
+  - [x] `form-field`
+  - [x] `form`
+  - [x] `input`
+  - [x] `number-input`
+  - [x] `password-input`
+  - [x] `pin-input`
+  - [x] `range-input`
 
 ## 组合式函数
 

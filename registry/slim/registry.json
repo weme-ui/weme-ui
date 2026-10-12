@@ -644,6 +644,90 @@
       ]
     },
     {
+      "name": "password-input",
+      "type": "component",
+      "title": "Password Input",
+      "description": "A password field with visibility toggle, built on Input.",
+      "meta": {
+        "docs.category": "form",
+        "docs.categoryLabel": "Form"
+      },
+      "registryDependencies": [
+        "form-field",
+        "input",
+        "icon"
+      ],
+      "files": [
+        {
+          "type": "component",
+          "path": "src/components/password-input/password-input.vue"
+        },
+        {
+          "type": "component",
+          "path": "src/components/password-input/password-input.props.ts"
+        },
+        {
+          "type": "component",
+          "path": "src/components/password-input/password-input.style.ts"
+        },
+        {
+          "type": "component",
+          "kind": "doc",
+          "path": "src/components/password-input/README.md"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/password-input/examples/usage.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/password-input/examples/variants.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/password-input/examples/unstyled.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/password-input/examples/sizes.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/password-input/examples/radius.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/password-input/examples/with-prefix.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/password-input/examples/toggle-visibility.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/password-input/examples/visible.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/password-input/examples/disabled.vue"
+        },
+        {
+          "type": "component",
+          "kind": "test",
+          "path": "src/components/password-input/password-input.test.ts"
+        }
+      ]
+    },
+    {
       "name": "icon",
       "type": "component",
       "title": "Icon",

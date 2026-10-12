@@ -46,11 +46,13 @@ describe('pin-input', () => {
     const ui = usePinInputStyle({})
     expect(ui.root()).toContain('gap-sm')
     expect(ui.root()).toContain('flex')
-    expect(ui.root()).toContain('transition-colors')
     expect(ui.input()).toContain('size-8')
     expect(ui.input()).toContain('text-center')
+    expect(ui.input()).toContain('outline-none')
     expect(ui.input()).toContain('bg-muted')
     expect(ui.input()).toContain('text-foreground')
+    expect(ui.input()).toContain('transition-colors')
+    expect(ui.input()).toContain('duration-200')
   })
 
   it('applies size variants', () => {
@@ -79,7 +81,8 @@ describe('pin-input', () => {
     const unstyledInput = usePinInputStyle({ unstyled: true }).input()
     expect(unstyledInput).not.toContain('bg-muted')
     expect(unstyledInput).not.toContain('b-transparent')
-    expect(usePinInputStyle({ unstyled: true }).root()).not.toContain('transition-colors')
+    expect(unstyledInput).not.toContain('text-foreground')
+    expect(unstyledInput).not.toContain('transition-colors')
   })
 
   it('applies soft and outline focus compounds when valid', () => {

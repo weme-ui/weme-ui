@@ -72,6 +72,18 @@ pnpm dlx @weme-ui/weme-ui add weme-ui/slim/button
   - [ ] `timeline`
   - [ ] `tree`
 
+- **Agents**
+  - [ ] `agent-activity`
+  - [ ] `agent-loading-state`
+  - [ ] `approval-card`
+  - [ ] `citations`
+  - [ ] `message-scroller`
+  - [ ] `message`
+  - [ ] `prompt-input`
+  - [ ] `todo-list`
+  - [ ] `tool-approval`
+  - [ ] `tool-result`
+
 - **Overlay**
   - [ ] `action-sheet`
   - [ ] `context-menu`
@@ -95,14 +107,13 @@ pnpm dlx @weme-ui/weme-ui add weme-ui/slim/button
   - [ ] `color-swatch-picker`
   - [ ] `date-picker`
   - [ ] `file-upload`
-  - [ ] `input-group`
   - [x] `input`
   - [ ] `label`
   - [ ] `listbox`
-  - [ ] `number-input`
-  - [ ] `pin-input`
+  - [x] `number-input`
+  - [x] `pin-input`
   - [ ] `radio-group`
-  - [ ] `range-input`
+  - [x] `range-input`
   - [ ] `richtext`
   - [ ] `select`
   - [ ] `slider`

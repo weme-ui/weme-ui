@@ -9,10 +9,6 @@ import Icon from '../icon/icon.vue'
 import Input from '../input/input.vue'
 import { usePasswordInputStyle } from './password-input.style'
 
-defineOptions({
-  inheritAttrs: false,
-})
-
 const props = withDefaults(defineProps<PasswordInputProps>(), {
   visibleIcon: 'ri:eye-line',
   invisibleIcon: 'ri:eye-off-line',

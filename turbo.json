@@ -7,10 +7,12 @@
       "outputs": ["dist/**"]
     },
     "build:output": {
+      "cache": false,
       "dependsOn": ["build"],
       "outputs": ["dist/**"]
     },
     "build:docs": {
+      "cache": false,
       "dependsOn": ["build:output"],
       "outputs": ["../../docs/**"]
     },

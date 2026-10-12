@@ -76,7 +76,7 @@ describe('password-strength', () => {
         attachTo: document.body,
         props: { password: '' },
       })
-      expect(wrapper.get('[role="progressbar"]').exists()).toBe(true)
+      expect(wrapper.find('[role="progressbar"]').exists()).toBe(true)
       expect(wrapper.findAll('[role="presentation"]')).toHaveLength(4)
       wrapper.unmount()
     })

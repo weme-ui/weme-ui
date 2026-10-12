@@ -664,6 +664,27 @@ const libraries = getLibraries()
     font-size: inherit;
   }
 
+  /* Shiki dual themes — token colors via CSS variables; shell keeps docs code bg. */
+  .prose :where(pre.shiki):not(:where(.not-prose, .not-prose *)) {
+    background: var(--docs-bg-code) !important;
+  }
+
+  html.light .prose :where(.shiki):not(:where(.not-prose, .not-prose *)),
+  html.light .prose :where(.shiki span):not(:where(.not-prose, .not-prose *)) {
+    color: var(--shiki-light) !important;
+    font-style: var(--shiki-light-font-style) !important;
+    font-weight: var(--shiki-light-font-weight) !important;
+    text-decoration: var(--shiki-light-text-decoration) !important;
+  }
+
+  html.dark .prose :where(.shiki):not(:where(.not-prose, .not-prose *)),
+  html.dark .prose :where(.shiki span):not(:where(.not-prose, .not-prose *)) {
+    color: var(--shiki-dark) !important;
+    font-style: var(--shiki-dark-font-style) !important;
+    font-weight: var(--shiki-dark-font-weight) !important;
+    text-decoration: var(--shiki-dark-text-decoration) !important;
+  }
+
   .docs-copy-btn {
     position: absolute;
     top: 0.55rem;

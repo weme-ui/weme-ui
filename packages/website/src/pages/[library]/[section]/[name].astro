@@ -66,17 +66,17 @@ function renderHeading(title: string): { id: string, html: string } {
   }
 }
 
-function renderBody(body: string): string {
-  return body.trim() ? renderMarkdown(body) : ''
+async function renderBody(body: string): Promise<string> {
+  return body.trim() ? await renderMarkdown(body) : ''
 }
 
-function renderSection(title: string, body: string): string {
+async function renderSection(title: string, body: string): Promise<string> {
   const { html: heading } = renderHeading(title)
-  const bodyHtml = renderBody(body)
+  const bodyHtml = await renderBody(body)
   return bodyHtml ? `${heading}\n${bodyHtml}` : heading
 }
 
-const beforeApiBlocks = beforeApi.map((section) => {
+const beforeApiBlocks = await Promise.all(beforeApi.map(async (section) => {
   const isUsage = section.title.trim().toLowerCase() === 'usage'
   const attachUsage = isUsage ? usageExample : undefined
 
@@ -92,16 +92,18 @@ const beforeApiBlocks = beforeApi.map((section) => {
   return {
     headingHtml: '',
     previewPath: undefined as string | undefined,
-    bodyHtml: renderSection(section.title, section.body),
+    bodyHtml: await renderSection(section.title, section.body),
   }
-})
+}))
 
 const hasUsageSection = beforeApi.some(section => section.title.trim().toLowerCase() === 'usage')
 const orphanUsageId = usageExample && !hasUsageSection ? pushToc('Usage', 2) : null
 
 const examplesId = featureExamples.length > 0 ? pushToc('Examples', 2) : null
 const exampleHeadingIds = featureExamples.map(example => pushToc(example.title, 3))
-const apiHtml = apiSections.map(section => renderSection(section.title, section.body)).join('\n')
+const apiHtml = (await Promise.all(
+  apiSections.map(section => renderSection(section.title, section.body)),
+)).join('\n')
 const filesId = page.sourceFiles.length > 0 ? pushToc('Files', 2) : null
 
 const badges = resolveUiDependencyBadges(page.item.dependencies)

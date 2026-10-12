@@ -41,7 +41,7 @@ if (!library || !page) {
 
 const body = stripLeadingH1(page.body)
 const toc = extractToc(body)
-const html = injectHeadingIds(renderMarkdown(body), toc)
+const html = injectHeadingIds(await renderMarkdown(body), toc)
 const adjacent = getAdjacentNav(library.id, page.href)
 ---
 

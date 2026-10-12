@@ -1,8 +1,28 @@
+import type { Tokens } from 'marked'
 import { marked } from 'marked'
+import { highlightCode } from './highlight'
 
 marked.setOptions({
   gfm: true,
   breaks: false,
+})
+
+marked.use({
+  async: true,
+  async walkTokens(token) {
+    if (token.type !== 'code')
+      return
+    const code = token as Tokens.Code & { highlightedHtml?: string }
+    code.highlightedHtml = await highlightCode(code.text, code.lang)
+  },
+  renderer: {
+    code(token) {
+      const code = token as Tokens.Code & { highlightedHtml?: string }
+      if (code.highlightedHtml)
+        return code.highlightedHtml
+      return false
+    },
+  },
 })
 
 export function stripLeadingH1(source = ''): string {
@@ -17,8 +37,8 @@ export function stripLeadingH1(source = ''): string {
   return source.slice(end)
 }
 
-export function renderMarkdown(source = ''): string {
-  return marked.parse(source, { async: false }) as string
+export async function renderMarkdown(source = ''): Promise<string> {
+  return await marked.parse(source, { async: true }) as string
 }
 
 export interface TocItem {

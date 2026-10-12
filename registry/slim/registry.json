@@ -728,6 +728,90 @@
       ]
     },
     {
+      "name": "password-strength",
+      "type": "component",
+      "title": "Password Strength",
+      "description": "A password strength meter with segmented indicators and optional status message.",
+      "meta": {
+        "docs.category": "form",
+        "docs.categoryLabel": "Form"
+      },
+      "dependencies": [
+        "escape-string-regexp"
+      ],
+      "cssVars": {
+        "password-strength": {
+          "too-weak-color": "error.9",
+          "weak-color": "error.7",
+          "medium-color": "success.7",
+          "strong-color": "success.9"
+        }
+      },
+      "files": [
+        {
+          "type": "component",
+          "path": "src/components/password-strength/password-strength.vue"
+        },
+        {
+          "type": "component",
+          "path": "src/components/password-strength/password-strength.props.ts"
+        },
+        {
+          "type": "component",
+          "path": "src/components/password-strength/password-strength.style.ts"
+        },
+        {
+          "type": "composable",
+          "path": "src/composables/use-password-strength.ts"
+        },
+        {
+          "type": "composable",
+          "kind": "test",
+          "path": "src/composables/use-password-strength.test.ts"
+        },
+        {
+          "type": "component",
+          "kind": "doc",
+          "path": "src/components/password-strength/README.md"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/password-strength/examples/usage.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/password-strength/examples/sizes.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/password-strength/examples/show-message.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/password-strength/examples/messages.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/password-strength/examples/disabled.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/password-strength/examples/unstyled.vue"
+        },
+        {
+          "type": "component",
+          "kind": "test",
+          "path": "src/components/password-strength/password-strength.test.ts"
+        }
+      ]
+    },
+    {
       "name": "icon",
       "type": "component",
       "title": "Icon",

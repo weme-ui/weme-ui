@@ -52,6 +52,7 @@
     "@weme-ui/unocss-preset": "workspace:*",
     "clsx": "catalog:utils",
     "defu": "catalog:utils",
+    "escape-string-regexp": "catalog:utils",
     "reka-ui": "catalog:utils",
     "tailwind-merge": "catalog:utils",
     "tailwind-variants": "catalog:utils",

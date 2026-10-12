@@ -3,7 +3,16 @@ import { defineConfig } from 'unocss'
 
 export default defineConfig({
   presets: [
-    presetWemeUI(),
+    presetWemeUI({
+      cssVars: {
+        'password-strength': {
+          'too-weak-color': 'error.9',
+          'weak-color': 'error.7',
+          'medium-color': 'success.7',
+          'strong-color': 'success.9',
+        },
+      },
+    }),
   ],
 
   content: {

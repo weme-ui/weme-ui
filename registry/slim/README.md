@@ -120,6 +120,7 @@ pnpm dlx @weme-ui/weme-ui add weme-ui/slim/button
   - [x] `input`
   - [x] `number-input`
   - [x] `password-input`
+  - [x] `password-strength`
   - [x] `pin-input`
   - [x] `range-input`
 
@@ -127,6 +128,7 @@ pnpm dlx @weme-ui/weme-ui add weme-ui/slim/button
 
 - [x] `useFormContext()`
 - [x] `useFormFieldContext()`
+- [x] `usePasswordStrength()`
 - [ ] `useToast()`
 
 ## 许可证

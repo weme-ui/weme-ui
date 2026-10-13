@@ -2,6 +2,12 @@ import type { VNode } from 'vue'
 import { defu } from 'defu'
 import { Comment, Fragment, isVNode, toRef } from 'vue'
 
+export type EmitsToProps<T> = {
+  [K in keyof T as `on${Capitalize<string & K>}`]: T[K] extends [...args: infer Args]
+    ? (...args: Args) => void
+    : never
+}
+
 /**
  * 转换为布尔值
  *

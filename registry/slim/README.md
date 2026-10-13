@@ -36,6 +36,7 @@ pnpm dlx @weme-ui/weme-ui add weme-ui/slim/button
 - **General**
   - [x] `button-group`
   - [x] `button`
+  - [x] `config-provider`
   - [x] `icon-stack`
   - [x] `icon-tile`
   - [x] `icon`
@@ -96,7 +97,6 @@ pnpm dlx @weme-ui/weme-ui add weme-ui/slim/button
   - [ ] `tooltip`
 
 - **Form**
-  - [ ] `autocomplete`
   - [ ] `cascader`
   - [ ] `checkbox-group`
   - [ ] `checkbox`
@@ -115,6 +115,7 @@ pnpm dlx @weme-ui/weme-ui add weme-ui/slim/button
   - [ ] `tag-group`
   - [ ] `tags-input`
   - [ ] `textarea`
+  - [x] `autocomplete`
   - [x] `form-field`
   - [x] `form`
   - [x] `input`

@@ -40,6 +40,81 @@
       ]
     },
     {
+      "name": "form-composables",
+      "type": "composable",
+      "title": "Form composables",
+      "description": "Shared composables for form components.",
+      "dependencies": [
+        "@tanstack/vue-form",
+        "valibot"
+      ],
+      "files": [
+        {
+          "type": "composable",
+          "path": "src/composables/use-form-context.ts"
+        },
+        {
+          "type": "composable",
+          "path": "src/composables/use-form-field-context.ts"
+        }
+      ]
+    },
+    {
+      "name": "group-composables",
+      "type": "composable",
+      "title": "Group composables",
+      "description": "Shared composables for components that support grouped items.",
+      "dependencies": [
+        "@iconify/vue"
+      ],
+      "files": [
+        {
+          "type": "composable",
+          "path": "src/composables/use-group-items.ts"
+        }
+      ]
+    },
+    {
+      "name": "popover-composables",
+      "type": "composable",
+      "title": "Popover composables",
+      "description": "Shared composables for popover components.",
+      "dependencies": [
+        "motion-v"
+      ],
+      "files": [
+        {
+          "type": "composable",
+          "path": "src/composables/use-popover-content.ts"
+        }
+      ]
+    },
+    {
+      "name": "config-provider",
+      "type": "component",
+      "title": "Config Provider",
+      "description": "App-level configuration context wrapping Reka UI ConfigProvider.",
+      "meta": {
+        "docs.category": "general",
+        "docs.categoryLabel": "General"
+      },
+      "files": [
+        {
+          "type": "component",
+          "path": "src/components/config-provider/config-provider.vue"
+        },
+        {
+          "type": "component",
+          "path": "src/components/config-provider/config-provider.props.ts"
+        },
+        {
+          "type": "component",
+          "kind": "doc",
+          "path": "src/components/config-provider/README.md"
+        }
+      ]
+    },
+    {
       "name": "button",
       "type": "component",
       "title": "Button",
@@ -202,9 +277,8 @@
         "docs.category": "form",
         "docs.categoryLabel": "Form"
       },
-      "dependencies": [
-        "@tanstack/vue-form",
-        "valibot"
+      "registryDependencies": [
+        "form-composables"
       ],
       "files": [
         {
@@ -214,10 +288,6 @@
         {
           "type": "component",
           "path": "src/components/form/form.props.ts"
-        },
-        {
-          "type": "composable",
-          "path": "src/composables/use-form-context.ts"
         },
         {
           "type": "component",
@@ -260,10 +330,6 @@
         {
           "type": "component",
           "path": "src/components/form-field/form-field.style.ts"
-        },
-        {
-          "type": "composable",
-          "path": "src/composables/use-form-field-context.ts"
         },
         {
           "type": "component",
@@ -319,6 +385,91 @@
           "type": "component",
           "kind": "example",
           "path": "src/components/form-field/examples/invalid.vue"
+        }
+      ]
+    },
+    {
+      "name": "autocomplete",
+      "type": "component",
+      "title": "Autocomplete",
+      "description": "A filterable autocomplete input built on Reka UI Autocomplete with grouped items support.",
+      "meta": {
+        "docs.category": "form",
+        "docs.categoryLabel": "Form"
+      },
+      "registryDependencies": [
+        "icon",
+        "form-composables",
+        "group-composables",
+        "popover-composables"
+      ],
+      "files": [
+        {
+          "type": "component",
+          "path": "src/components/autocomplete/autocomplete.vue"
+        },
+        {
+          "type": "component",
+          "path": "src/components/autocomplete/autocomplete.props.ts"
+        },
+        {
+          "type": "component",
+          "path": "src/components/autocomplete/autocomplete.style.ts"
+        },
+        {
+          "type": "component",
+          "kind": "doc",
+          "path": "src/components/autocomplete/README.md"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/autocomplete/examples/usage.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/autocomplete/examples/variants.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/autocomplete/examples/sizes.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/autocomplete/examples/radius.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/autocomplete/examples/with-affix.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/autocomplete/examples/with-groups.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/autocomplete/examples/loading.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/autocomplete/examples/disabled.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/autocomplete/examples/unstyled.vue"
+        },
+        {
+          "type": "component",
+          "kind": "test",
+          "path": "src/components/autocomplete/autocomplete.test.ts"
         }
       ]
     },

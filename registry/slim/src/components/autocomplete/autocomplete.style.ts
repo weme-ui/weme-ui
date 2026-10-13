@@ -15,7 +15,7 @@ export const useAutocompleteStyle = createVariants({
     viewport: '',
     empty: '',
     emptyIcon: '',
-    group: '',
+    group: 'flex flex-col',
     label: '',
     item: 'group/item flex flex-y-center relative',
     itemIcon: '',
@@ -40,18 +40,19 @@ export const useAutocompleteStyle = createVariants({
       false: {
         input: 'placeholder:text-subtle',
         content: 'bg-base shadow-xs',
+        label: 'text-subtle',
         item: 'data-[highlighted]:bg-elevated',
         itemLabel: 'group-data-[highlighted]/item:font-medium',
         itemIcon: 'text-subtle group-data-[highlighted]/item:text-highlighted',
         itemIndicator: 'text-accent',
         clearBtn: 'p-0.5 rounded-full op-0 flex transition-[opacity,background-color] flex-center hover:bg-accent-3 group-data-[focused]:op-100',
-        separator: 'my-1 b-b b-base -mx-1',
+        separator: 'my-1 b-b b-base',
       },
     },
   },
 
   compoundSlots: [
-    { slots: ['root', 'prefix', 'suffix'], variant: ['soft', 'outline'], unstyled: false, class: 'transition-colors duration-200' },
+    { slots: ['root', 'prefix', 'suffix', 'item', 'itemIcon'], unstyled: false, class: 'transition-colors duration-200' },
     { slots: ['prefix', 'suffix'], invalid: false, class: 'group-data-[focused]:text-highlighted not-[[data-focused]]:text-subtle' },
 
     { slots: ['prefixIcon', 'suffixIcon', 'emptyIcon', 'itemIcon', 'itemIndicator', 'clearBtn'], class: 'shrink-0' },
@@ -95,11 +96,11 @@ export const useAutocompleteStyle = createVariants({
     { radius: 'full', size: 'md', unstyled: false, class: { anchor: 'px-3.5' } },
     { radius: 'full', size: 'lg', unstyled: false, class: { anchor: 'px-4' } },
 
-    { radius: 'full', unstyled: false, class: { root: 'rounded-full', content: 'rounded-2xl', item: 'rounded-full' } },
+    { radius: 'full', unstyled: false, class: { root: 'rounded-full', content: 'rounded-5', item: 'rounded-full' } },
 
-    { size: 'sm', unstyled: false, class: { root: 'text-xs h-6', anchor: 'gap-xs', item: 'gap-xs text-xs py-1.5 px-2.5' } },
-    { size: 'md', unstyled: false, class: { root: 'text-sm h-8', anchor: 'gap-sm', item: 'gap-sm text-sm py-2.5 px-3.5' } },
-    { size: 'lg', unstyled: false, class: { root: 'text-base h-10', anchor: 'gap-md', item: 'gap-md text-base py-3 px-4' } },
+    { size: 'sm', unstyled: false, class: { root: 'text-xs h-6', anchor: 'gap-xs', label: 'text-xs py-1.5 px-2.5', item: 'gap-xs text-xs py-1.5 px-2.5' } },
+    { size: 'md', unstyled: false, class: { root: 'text-sm h-8', anchor: 'gap-sm', label: 'text-sm py-2.5 px-3.5', item: 'gap-sm text-sm py-2.5 px-3.5' } },
+    { size: 'lg', unstyled: false, class: { root: 'text-base h-10', anchor: 'gap-md', label: 'text-base py-3 px-4', item: 'gap-md text-base py-3 px-4' } },
   ],
 
   defaultVariants: {

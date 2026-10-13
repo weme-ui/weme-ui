@@ -53,6 +53,7 @@
     "clsx": "catalog:utils",
     "defu": "catalog:utils",
     "escape-string-regexp": "catalog:utils",
+    "motion-v": "catalog:utils",
     "reka-ui": "catalog:utils",
     "tailwind-merge": "catalog:utils",
     "tailwind-variants": "catalog:utils",

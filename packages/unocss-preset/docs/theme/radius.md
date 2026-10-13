@@ -10,7 +10,7 @@
 | --------- | ------------------------------------------------------- |
 | `DEFAULT` | `calc(0.25rem * var(--scaling) * var(--radius-factor))` |
 | `none`    | `0`                                                     |
-| `xs`      | `calc(0.125rem * …)`                                    |
+| `xs`      | `calc(0.1875rem * …)`                                   |
 | `sm`      | `calc(0.25rem * …)`                                     |
 | `md`      | `calc(0.375rem * …)`                                    |
 | `lg`      | `calc(0.5rem * …)`                                      |

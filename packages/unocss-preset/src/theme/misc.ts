@@ -28,14 +28,14 @@ export const spacing = {
  * @link {@see https://www.radix-ui.com/themes/docs/theme/radius}
  */
 export const radius = {
-  'DEFAULT': 'calc(0.25rem * var(--scaling, 1) * var(--radius-factor, 0.5))',
+  'DEFAULT': 'calc(0.25rem * var(--scaling, 1) * var(--radius-factor, 1))',
   'none': '0',
-  'xs': 'calc(0.125rem * var(--scaling, 1) * var(--radius-factor, 0.5))',
-  'sm': 'calc(0.25rem * var(--scaling, 1) * var(--radius-factor, 0.5))',
-  'md': 'calc(0.375rem * var(--scaling, 1) * var(--radius-factor, 0.5))',
-  'lg': 'calc(0.5rem * var(--scaling, 1) * var(--radius-factor, 0.5))',
-  'xl': 'calc(0.75rem * var(--scaling, 1) * var(--radius-factor, 0.5))',
-  '2xl': 'calc(1rem * var(--scaling, 1) * var(--radius-factor, 0.5))',
+  'xs': 'calc(0.1875rem * var(--scaling, 1) * var(--radius-factor, 1))',
+  'sm': 'calc(0.25rem * var(--scaling, 1) * var(--radius-factor, 1))',
+  'md': 'calc(0.375rem * var(--scaling, 1) * var(--radius-factor, 1))',
+  'lg': 'calc(0.5rem * var(--scaling, 1) * var(--radius-factor, 1))',
+  'xl': 'calc(0.75rem * var(--scaling, 1) * var(--radius-factor, 1))',
+  '2xl': 'calc(1rem * var(--scaling, 1) * var(--radius-factor, 1))',
 } satisfies Theme['radius']
 
 /**

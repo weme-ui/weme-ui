@@ -43,20 +43,22 @@ export const useInputStyle = createVariants({
   },
 
   compoundSlots: [
-    { slots: ['root', 'prefix', 'suffix'], variant: ['soft', 'outline'], unstyled: false, class: 'transition-colors duration-200' },
+    { slots: ['root', 'prefix', 'suffix'], unstyled: false, class: 'transition-colors duration-200' },
     { slots: ['prefix', 'suffix'], invalid: false, class: 'group-data-[focused]:text-highlighted not-[[data-focused]]:text-subtle' },
   ],
 
   compoundVariants: [
-    { variant: 'soft', unstyled: false, class: { root: 'b b-transparent bg-muted' } },
-    { variant: 'outline', unstyled: false, class: { root: 'b b-base bg-base' } },
+    { variant: ['soft', 'outline'], unstyled: false, class: { root: 'b' } },
+
+    { variant: 'soft', unstyled: false, class: { root: 'b-transparent bg-muted' } },
+    { variant: 'outline', unstyled: false, class: { root: 'b-base bg-base' } },
 
     {
       variant: 'soft',
       invalid: false,
       unstyled: false,
       class: {
-        root: 'bg-muted data-[focused]:(bg-base b-accent outline-2 outline-accent-4) hover:not-[[data-focused]]:bg-elevated',
+        root: 'data-[focused]:(bg-base b-accent outline-2 outline-accent-4) hover:not-[[data-focused]]:bg-elevated',
       },
     },
     {

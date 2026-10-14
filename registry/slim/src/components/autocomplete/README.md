@@ -71,12 +71,14 @@ pnpm dlx @weme-ui/weme-ui add weme-ui/slim/autocomplete
 
 ## Slots
 
-| 插槽     | 说明                                                               |
-| -------- | ------------------------------------------------------------------ |
-| `prefix` | 自定义前缀；未传时回退到选中项图标 / `prefixIcon` / `prefix`       |
-| `suffix` | 自定义触发器内后缀；未传时回退到 loading / `suffixIcon` / `suffix` |
-| `empty`  | 无匹配项时的空状态；未传时回退到 `emptyIcon` + `emptyText`         |
-| `item`   | 自定义选项内容；未传时为图标 / 标签 / 选中指示器                   |
+| 插槽        | 说明                                                                                                              |
+| ----------- | ----------------------------------------------------------------------------------------------------------------- |
+| `prefix`    | 自定义前缀；未传时回退到选中项图标 / `prefixIcon` / `prefix`                                                      |
+| `suffix`    | 自定义触发器内后缀；未传时回退到 loading / `suffixIcon` / `suffix`                                                |
+| `empty`     | 无匹配项时的空状态；未传时回退到 `emptyIcon` + `emptyText`                                                        |
+| `label`     | 自定义分组标签（`type: 'label'`）；未传时回退到 `item.label`                                                      |
+| `item`      | 自定义选项内容；作用域参数 `{ item, selected }`；未传时为 `item-icon` / 标签 / 选中指示器                         |
+| `item-icon` | 自定义选项图标（嵌在默认 `item` 内）；作用域参数 `{ item, selected }`；未传时按选中态显示 `selectedIcon` / `icon` |
 
 ## Accessibility
 

@@ -212,7 +212,7 @@ describe('autocomplete', () => {
       wrapper.unmount()
     })
 
-    it('selects an option and updates modelValue', async () => {
+    it('selects an option and emits update:modelValue and change', async () => {
       const { wrapper, model } = mountAutocomplete({ modelValue: '' })
       await wrapper.get('input').trigger('focus')
       await nextTick()
@@ -225,6 +225,32 @@ describe('autocomplete', () => {
       await nextTick()
 
       expect(model.value).toBe('apple')
+      const autocomplete = wrapper.findComponent(Autocomplete)
+      expect(autocomplete.emitted('update:modelValue')?.at(-1)).toEqual(['apple'])
+      expect(autocomplete.emitted('change')?.at(-1)).toEqual(['apple'])
+      wrapper.unmount()
+    })
+
+    it('renders group labels and separators', async () => {
+      const { wrapper } = mountAutocomplete({
+        items: [
+          [
+            { type: 'label', label: 'Citrus', value: 'citrus-label' },
+            { label: 'Orange', value: 'orange' },
+            { type: 'separator', value: 'sep' },
+            { label: 'Lemon', value: 'lemon' },
+          ],
+        ],
+      })
+      await wrapper.get('input').trigger('focus')
+      await nextTick()
+      await nextTick()
+
+      expect(document.body.textContent).toContain('Citrus')
+      expect(document.body.textContent).toContain('Orange')
+      expect(document.body.textContent).toContain('Lemon')
+      // label / separator are not options; only selectable items are.
+      expect(document.body.querySelectorAll('[role="option"]').length).toBe(2)
       wrapper.unmount()
     })
 

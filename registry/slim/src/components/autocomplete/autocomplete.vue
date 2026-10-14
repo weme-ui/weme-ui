@@ -192,7 +192,9 @@ function handleBlur(e: FocusEvent) {
                       />
 
                       <AutocompleteLabel v-else-if="item.type === 'label'" :class="cn(ui.label(), props.ui?.label)">
-                        {{ item.label }}
+                        <slot name="label">
+                          {{ item.label }}
+                        </slot>
                       </AutocompleteLabel>
 
                       <AutocompleteItem
@@ -202,9 +204,11 @@ function handleBlur(e: FocusEvent) {
                         :class="cn(ui.item(), props.ui?.item)"
                         @select="item.onSelect?.(item.value)"
                       >
-                        <slot name="item">
-                          <Icon v-if="selected && (item.selectedIcon || item.icon)" :name="item.selectedIcon || item.icon || ''" :class="cn(ui.itemIcon(), props.ui?.itemIcon)" />
-                          <Icon v-else-if="item.icon" :name="item.icon" :class="cn(ui.itemIcon(), props.ui?.itemIcon, item.iconClass)" />
+                        <slot name="item" :item="item" :selected="selected">
+                          <slot name="item-icon" :item="item" :selected="selected">
+                            <Icon v-if="selected && (item.selectedIcon || item.icon)" :name="item.selectedIcon || item.icon || ''" :class="cn(ui.itemIcon(), props.ui?.itemIcon)" />
+                            <Icon v-else-if="item.icon" :name="item.icon" :class="cn(ui.itemIcon(), props.ui?.itemIcon, item.iconClass)" />
+                          </slot>
 
                           <span v-if="item.label" :class="cn(ui.itemLabel(), props.ui?.itemLabel)">{{ item.label }}</span>
 

@@ -35,7 +35,7 @@ const formApi = useForm({ /* ... */ })
 
 与 `useFormContext` 成对的 Provider，参数类型为 `FormContextValue`。
 
-## 再导出
+## Exports
 
 | 导出              | 来源                                  | 说明         |
 | ----------------- | ------------------------------------- | ------------ |

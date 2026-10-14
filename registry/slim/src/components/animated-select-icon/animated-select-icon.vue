@@ -27,7 +27,7 @@ const props = defineProps<AnimatedSelectIconProps>()
         duration: 0.2,
         bounce: 0.4,
       }"
-      :class="cn('shrink-0', props.class)"
+      :class="cn('shrink-0 pointer-events-none', props.class)"
       as-child
     >
       <Icon :name="selected ? (selectedIcon || icon) : icon" />

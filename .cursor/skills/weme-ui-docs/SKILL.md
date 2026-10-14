@@ -1,24 +1,35 @@
 ---
 name: weme-ui-docs
 description: >-
-  Generates or syncs Weme UI registry item docs from a given component path:
-  README.md, feature-based examples/*.vue, and registry.json doc/example file
-  entries; or syncs Props/Events/Slots/Accessibility/CSS Variables after API
-  or cssVars changes. Use when the user names weme-ui-docs, points at
-  registry/<library>/src/<section>/<name>/, prepares website preview, or asks
-  to sync props/slots/events/accessibility/cssVars documentation.
+  Generates or syncs Weme UI registry item docs: components use README.md +
+  examples/*.vue and Props/Events/Slots/Accessibility/CSS Variables; composables
+  use flat use-*.md (Reka utilities style, no examples). Use when the user names
+  weme-ui-docs, points at registry/<library>/src/components/<name>/ or
+  registry/<library>/src/composables/use-*.ts, prepares website preview, or asks
+  to sync API documentation.
 ---
 
 # Weme UI Docs
 
-目录、路由与侧栏约定见 `packages/website/README.md`。详情页展示风格对齐 [HeroUI Button docs](https://heroui.com/en/docs/react/components/button)：标题 + 简介 + UI 依赖 badge，Examples 按属性/场景分块 Live Preview。Accessibility / Keyboard Interactions 格式对齐 [Reka UI Checkbox](https://reka-ui.com/docs/components/checkbox)。
+目录、路由与侧栏约定见 `packages/website/README.md`。
 
-用户通常已手写空文件与 `registry.json` 基础条目，并完成约 80% 组件实现。本 skill 不 scaffold、不写组件实现、**不生成测试**、不安装包。测试请用 `weme-ui-tests`。
+- **组件**：详情页风格对齐 [HeroUI Button docs](https://heroui.com/en/docs/react/components/button)；Accessibility / Keyboard Interactions 对齐 [Reka UI Checkbox](https://reka-ui.com/docs/components/checkbox)。
+- **Composable**：文档风格对齐 [Reka UI useFilter](https://reka-ui.com/docs/utilities/use-filter)（Options / Usage / Types，Markdown 代码块，无 Live Preview）。
+
+用户通常已手写空文件与 `registry.json` 基础条目，并完成约 80% 实现。本 skill 不 scaffold、不写组件实现、**不生成测试**、不安装包。测试请用 `weme-ui-tests`。
 
 ## 输入
 
+组件目录：
+
 ```text
 registry/slim/src/components/icon/
+```
+
+Composable 源码（扁平）：
+
+```text
+registry/slim/src/composables/use-form-context.ts
 ```
 
 ## 编写前必读
@@ -27,12 +38,22 @@ registry/slim/src/components/icon/
 packages/website/README.md
 rfcs/0002-registry-driven-website-docs.md
 registry/<library>/registry.json
-registry/<library>/src/<section>/<name>/
+registry/<library>/src/components/<name>/     # 组件
+registry/<library>/src/composables/use-*.ts   # composable
 ```
 
 文件不存在则跳过，标「待补充」。
 
-## 模式判定
+## 文档类型判定
+
+| 条件 | 文档类型 |
+| --- | --- |
+| 路径在 `src/composables/`，或指向单个 `use-*.ts` | **Composable**（见下方「Composable 模式」） |
+| 路径在 `src/components/`（或 layout / block 等同目录 README 模型） | **组件**（下文 Mode A/B、README 模板、Examples） |
+
+先判定文档类型，再判定 Mode A / B。
+
+## 模式判定（组件）
 
 | 条件 | 模式 |
 | --- | --- |
@@ -41,7 +62,7 @@ registry/<library>/src/<section>/<name>/
 
 有 README 且未说「重新生成」→ 默认 **B**。用户话术优先。
 
-## 模式 A：首次生成
+## 模式 A：首次生成（组件）
 
 1. 根据源码确认 Props、Events、Slots、Accessibility / Keyboard Interactions，以及值得单独演示的属性/状态；并读 `registry.json` 对应 item 的 `cssVars`（见「CSS Variables」）
 2. 写入同目录 `README.md`（模板见下；**不要**写 Preview / Examples / Source）
@@ -51,7 +72,7 @@ registry/<library>/src/<section>/<name>/
    - 每个示例一条 `kind: "example"`（顺序 = 详情页展示顺序）
 5. **不改**已有 `name` / `title` / `description` / `meta` / `dependencies` / `registryDependencies` / `when` / `cssVars` / 主源码 paths（除非文件已存在而 path 缺失）。依赖规则见下方「依赖判断」
 
-## 模式 B：API 同步
+## 模式 B：API 同步（组件）
 
 以源码与 `registry.json` 为准更新 README 中的 API 章节：
 
@@ -67,7 +88,7 @@ registry/<library>/src/<section>/<name>/
 
 仅当用户明确要求时，才改 Usage 或增删/重写 example 文件。API 变更导致示例明显失效时，可简短提示用户。
 
-## README 模板
+## README 模板（组件）
 
 详情页最终顺序（website 注入 Examples / Files）：
 
@@ -99,6 +120,68 @@ registry/<library>/src/<section>/<name>/
 - `## Events` / `## Slots` / `## CSS Variables` / `## Accessibility` 仅在有内容时输出
 - `### Keyboard Interactions` 仅在有可核对的键盘交互时输出，且必须挂在 `## Accessibility` 下
 - **不要**写 `## Preview`、`## Examples`、`## Source`
+
+## Composable 模式
+
+对齐 [Reka UI utilities（useFilter）](https://reka-ui.com/docs/utilities/use-filter)。`src/composables/` 为**扁平一级**目录，不能共用一个 `README.md`。
+
+### 严格命名
+
+| 文件 | 主导出函数 |
+| --- | --- |
+| `use-form-context.ts` | `useFormContext()` |
+| `use-<kebab>.ts` | `use<Pascal>()`（kebab → PascalCase） |
+
+- 文档 H1、简介、Usage 均以**主导出**为准；同文件其它导出函数优先级低于主导出。
+- 文档文件与源码同名：`use-form-context.md`（**不是** `README.md`）。
+- `registry.json` 的 `name` 与文件 slug 一致（如 `use-form-context`）；`kind: "doc"` → `src/composables/use-form-context.md`。
+
+### 禁止 examples
+
+- **不**创建 `examples/`
+- **不**登记 `kind: "example"`
+- 正文用 Markdown 代码块演示调用，不依赖 Live Preview
+
+### Mode A / B（Composable）
+
+| 条件 | 模式 |
+| --- | --- |
+| 无 `use-*.md`，或用户要求「生成 / 重新生成」 | **A** |
+| 已有 `use-*.md`，或要求同步 Options / Returns / Types | **B** |
+
+有文档且未说「重新生成」→ 默认 **B**。
+
+**A**：读源码导出 → 写 `use-<kebab>.md` → 登记 `kind: "doc"`（跳过已存在条目）。不写 examples。
+
+**B**：按源码同步主导出 Options / Usage / Returns，以及其它导出函数与 `## Types`；无对应内容则删除该章。不补 examples、不硬塞 Props。
+
+### 导出覆盖
+
+1. **主导出函数**：`## Options` / `## Usage` / `## Returns`（有则写）
+2. **其它导出函数**：另起 `## otherFn` 或挂在 Usage 子节；须能从源码核对
+3. **导出类型**（`type` / `interface`）：`## Types`（可再拆 `### FooOptions`）；表格或代码块；**勿编造**未导出符号
+
+### 模板
+
+```markdown
+# useFormContext
+
+<一句话简介>
+
+## Installation
+
+## Options
+
+## Usage
+
+## Returns
+
+## Types
+```
+
+- `## Options` / `## Returns` / `## Types` 仅在有内容时输出
+- **省略** Props / Events / Slots / CSS Variables / Accessibility（组件专用）
+- **不要**写 `## Preview`、`## Examples`、`## Source`、`## Files`
 
 ## CSS Variables 规则
 
@@ -173,7 +256,9 @@ registry/<library>/src/<section>/<name>/
 5. 只有键盘表、没有总述时：仍保留 `## Accessibility`，可把总述缩成一句再接 `### Keyboard Interactions`；不要只写孤立的 `### Keyboard Interactions`。
 6. 无 Accessibility 总述且无键盘交互 → **整章删除**（含 Mode B 同步时）。
 
-## Examples 规则（对齐 HeroUI）
+## Examples 规则（对齐 HeroUI，仅组件）
+
+Composable 模式跳过本节（禁止 examples）。
 
 - `examples/usage.vue`：**挂在文档 `## Usage` 标题下**（preview 在上、可折叠高亮源码在下，默认折叠），不进入 Examples 列表；README 的 `## Usage` 正文可留空（避免与面板重复）
 - 其余 `examples/<feature>.vue`：详情页在 Usage 与 Props 之间插入 `## Examples`（整页顺序见「README 模板」），每个文件一个 `###` 小节 + preview/code 面板（代码默认折叠）
@@ -239,13 +324,15 @@ website 从 **item** 的 `dependencies` 识别 UI 类依赖并显示 badge（如
 
 ## 规则
 
-- Props、Events、Slots、Accessibility / Keyboard Interactions 须能在源码或类型中核对；无法确认时写「待补充」
-- `## CSS Variables` 须能在 `registry.json` item.`cssVars` 中核对；有则必写，无则省略
+- 先判定组件 vs Composable；Composable 不走 Props/Examples 管线
+- Props、Events、Slots、Accessibility / Keyboard Interactions 须能在源码或类型中核对；无法确认时写「待补充」（仅组件）
+- Composable 的 Options / Returns / Types / 其它导出须能在源码中核对；主导出遵循 `use-<kebab>.ts` → `use<Pascal>()`
+- `## CSS Variables` 须能在 `registry.json` item.`cssVars` 中核对；有则必写，无则省略（仅组件）
 - 无自定义事件 / 插槽 / cssVars / 无障碍可述内容时省略对应章节
 - Installation：`pnpm dlx @weme-ui/weme-ui add weme-ui/<library>/<name>`
 - Usage 中 `~/...` 指向同一 library 的 `src` 根
 - `files[].type`：`component | composable | ui | block | layout | page | util`
-- `files[].kind`：`doc | example`（本 skill 不写 `test`）
+- `files[].kind`：`doc | example`（本 skill 不写 `test`；Composable **不**写 `example`）
 - 依赖登记遵循上文「依赖判断」；**禁止**把已是全局的包装进 item，**禁止**随意加 `when: "on-init"`
 - 说明用中文；Vue、TypeScript、UnoCSS、WAI-ARIA、Reka UI、CSS Variables 等专有名词保持英文
 

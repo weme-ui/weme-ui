@@ -19,13 +19,13 @@ const props = defineProps<AnimatedSelectIconProps>()
       :key="selected ? 'selected' : 'unselected'"
       data-slot="animated-select-icon"
       :data-selected="toBoolDataAttrValue(selected)"
-      :initial="{ opacity: 0, scale: 0.75 }"
-      :animate="{ opacity: 1, scale: 1 }"
-      :exit="{ opacity: 0, scale: 0.8 }"
+      :initial="{ scale: 0.85 }"
+      :animate="{ scale: 1 }"
+      :exit="{ scale: 0.75 }"
       :transition="{
-        type: 'spring',
-        duration: 0.2,
-        bounce: 0.4,
+        ease: 'easeOut',
+        duration: 0.15,
+        bounce: 0.3,
       }"
       :class="cn('shrink-0 pointer-events-none', props.class)"
       as-child

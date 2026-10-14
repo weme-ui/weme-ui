@@ -530,6 +530,86 @@
       ]
     },
     {
+      "name": "tag-group",
+      "type": "component",
+      "title": "Tag Group",
+      "description": "A selectable and removable tag group built on Reka UI TagGroup.",
+      "meta": {
+        "docs.category": "form",
+        "docs.categoryLabel": "Form"
+      },
+      "registryDependencies": [
+        "animated-select-icon",
+        "icon",
+        "use-form-field-context",
+        "use-group-items"
+      ],
+      "files": [
+        {
+          "type": "component",
+          "path": "src/components/tag-group/tag-group.vue"
+        },
+        {
+          "type": "component",
+          "path": "src/components/tag-group/tag-group.props.ts"
+        },
+        {
+          "type": "component",
+          "path": "src/components/tag-group/tag-group.style.ts"
+        },
+        {
+          "type": "component",
+          "kind": "doc",
+          "path": "src/components/tag-group/README.md"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/tag-group/examples/usage.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/tag-group/examples/variants.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/tag-group/examples/sizes.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/tag-group/examples/radius.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/tag-group/examples/with-icon.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/tag-group/examples/selection.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/tag-group/examples/disabled.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/tag-group/examples/unstyled.vue"
+        },
+        {
+          "type": "component",
+          "kind": "test",
+          "path": "src/components/tag-group/tag-group.test.ts"
+        }
+      ]
+    },
+    {
       "name": "input",
       "type": "component",
       "title": "Input",
@@ -1054,6 +1134,52 @@
           "type": "component",
           "kind": "test",
           "path": "src/components/icon/icon.test.ts"
+        }
+      ]
+    },
+    {
+      "name": "animated-select-icon",
+      "type": "component",
+      "title": "Animated Select Icon",
+      "description": "An icon that crossfades between unselected and selected states with Motion.",
+      "meta": {
+        "docs.category": "general",
+        "docs.categoryLabel": "General"
+      },
+      "dependencies": [
+        "motion-v"
+      ],
+      "registryDependencies": [
+        "icon"
+      ],
+      "files": [
+        {
+          "type": "component",
+          "path": "src/components/animated-select-icon/animated-select-icon.vue"
+        },
+        {
+          "type": "component",
+          "path": "src/components/animated-select-icon/animated-select-icon.props.ts"
+        },
+        {
+          "type": "component",
+          "kind": "doc",
+          "path": "src/components/animated-select-icon/README.md"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/animated-select-icon/examples/usage.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/animated-select-icon/examples/states.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/animated-select-icon/examples/fallback-icon.vue"
         }
       ]
     },

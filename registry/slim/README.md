@@ -34,6 +34,8 @@ pnpm dlx @weme-ui/weme-ui add weme-ui/slim/button
 ## 组件列表
 
 - **General**
+  - [ ] `kbd`
+  - [x] `animated-select-icon`
   - [x] `button-group`
   - [x] `button`
   - [x] `config-provider`
@@ -43,7 +45,6 @@ pnpm dlx @weme-ui/weme-ui add weme-ui/slim/button
   - [x] `link-overlay`
   - [x] `link`
   - [x] `separator`
-  - [ ] `kbd`
 
 - **Navigation**
   - [ ] `activity-bar`
@@ -106,18 +107,16 @@ pnpm dlx @weme-ui/weme-ui add weme-ui/slim/button
   - [ ] `checkbox`
   - [ ] `color-picker`
   - [ ] `color-swatch-picker`
+  - [ ] `combobox`
   - [ ] `date-picker`
   - [ ] `file-upload`
   - [ ] `filters`
-  - [ ] `label`
   - [ ] `listbox`
   - [ ] `radio-group`
-  - [ ] `richtext`
+  - [ ] `rich-text`
   - [ ] `select`
   - [ ] `slider`
   - [ ] `switch`
-  - [ ] `tag-group`
-  - [ ] `tags-input`
   - [ ] `textarea`
   - [x] `autocomplete`
   - [x] `form-field`
@@ -128,6 +127,8 @@ pnpm dlx @weme-ui/weme-ui add weme-ui/slim/button
   - [x] `password-strength`
   - [x] `pin-input`
   - [x] `range-input`
+  - [x] `tag-group`
+  - [x] `tags-input`
 
 ## 组合式函数
 

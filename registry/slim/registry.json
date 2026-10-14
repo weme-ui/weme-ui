@@ -40,13 +40,12 @@
       ]
     },
     {
-      "name": "form-composables",
+      "name": "use-form-context",
       "type": "composable",
-      "title": "Form composables",
-      "description": "Shared composables for form components.",
+      "title": "useFormContext",
+      "description": "Form context via Reka UI createContext, plus TanStack Vue Form re-exports.",
       "dependencies": [
-        "@tanstack/vue-form",
-        "valibot"
+        "@tanstack/vue-form"
       ],
       "files": [
         {
@@ -55,15 +54,33 @@
         },
         {
           "type": "composable",
-          "path": "src/composables/use-form-field-context.ts"
+          "kind": "doc",
+          "path": "src/composables/use-form-context.md"
         }
       ]
     },
     {
-      "name": "group-composables",
+      "name": "use-form-field-context",
       "type": "composable",
-      "title": "Group composables",
-      "description": "Shared composables for components that support grouped items.",
+      "title": "useFormFieldContext",
+      "description": "FormField context and control bindings for form inputs.",
+      "files": [
+        {
+          "type": "composable",
+          "path": "src/composables/use-form-field-context.ts"
+        },
+        {
+          "type": "composable",
+          "kind": "doc",
+          "path": "src/composables/use-form-field-context.md"
+        }
+      ]
+    },
+    {
+      "name": "use-group-items",
+      "type": "composable",
+      "title": "useGroupItems",
+      "description": "Normalize flat or nested group items and derive the selected item.",
       "dependencies": [
         "@iconify/vue"
       ],
@@ -71,14 +88,19 @@
         {
           "type": "composable",
           "path": "src/composables/use-group-items.ts"
+        },
+        {
+          "type": "composable",
+          "kind": "doc",
+          "path": "src/composables/use-group-items.md"
         }
       ]
     },
     {
-      "name": "popover-composables",
+      "name": "use-popover-content",
       "type": "composable",
-      "title": "Popover composables",
-      "description": "Shared composables for popover components.",
+      "title": "usePopoverContent",
+      "description": "Motion options for popover content open/close animation.",
       "dependencies": [
         "motion-v"
       ],
@@ -86,6 +108,36 @@
         {
           "type": "composable",
           "path": "src/composables/use-popover-content.ts"
+        },
+        {
+          "type": "composable",
+          "kind": "doc",
+          "path": "src/composables/use-popover-content.md"
+        }
+      ]
+    },
+    {
+      "name": "use-password-strength",
+      "type": "composable",
+      "title": "usePasswordStrength",
+      "description": "Evaluate password strength by length and character diversity.",
+      "dependencies": [
+        "escape-string-regexp"
+      ],
+      "files": [
+        {
+          "type": "composable",
+          "path": "src/composables/use-password-strength.ts"
+        },
+        {
+          "type": "composable",
+          "kind": "test",
+          "path": "src/composables/use-password-strength.test.ts"
+        },
+        {
+          "type": "composable",
+          "kind": "doc",
+          "path": "src/composables/use-password-strength.md"
         }
       ]
     },
@@ -277,8 +329,11 @@
         "docs.category": "form",
         "docs.categoryLabel": "Form"
       },
+      "dependencies": [
+        "valibot"
+      ],
       "registryDependencies": [
-        "form-composables"
+        "use-form-context"
       ],
       "files": [
         {
@@ -316,7 +371,8 @@
         "docs.categoryLabel": "Form"
       },
       "registryDependencies": [
-        "form"
+        "form",
+        "use-form-field-context"
       ],
       "files": [
         {
@@ -399,9 +455,9 @@
       },
       "registryDependencies": [
         "icon",
-        "form-composables",
-        "group-composables",
-        "popover-composables"
+        "use-form-field-context",
+        "use-group-items",
+        "use-popover-content"
       ],
       "files": [
         {
@@ -887,8 +943,8 @@
         "docs.category": "form",
         "docs.categoryLabel": "Form"
       },
-      "dependencies": [
-        "escape-string-regexp"
+      "registryDependencies": [
+        "use-password-strength"
       ],
       "cssVars": {
         "password-strength": {
@@ -910,15 +966,6 @@
         {
           "type": "component",
           "path": "src/components/password-strength/password-strength.style.ts"
-        },
-        {
-          "type": "composable",
-          "path": "src/composables/use-password-strength.ts"
-        },
-        {
-          "type": "composable",
-          "kind": "test",
-          "path": "src/composables/use-password-strength.test.ts"
         },
         {
           "type": "component",

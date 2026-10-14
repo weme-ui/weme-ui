@@ -22,7 +22,6 @@ export const useAutocompleteStyle = createVariants({
     itemLabel: '',
     itemIndicator: 'ml-auto',
     separator: 'pointer-events-none',
-    arrow: '',
   },
 
   variants: {

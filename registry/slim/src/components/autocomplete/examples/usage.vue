@@ -28,7 +28,7 @@ const items: AutocompleteItems = [
         :items="items"
         prefix-icon="ri:search-line"
         placeholder="Search drinks…"
-        @update:model-value="field.api.handleChange"
+        @change="field.api.handleChange"
       />
     </FormField>
   </Form>

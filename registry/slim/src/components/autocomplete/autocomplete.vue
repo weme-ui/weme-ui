@@ -1,12 +1,11 @@
 <script lang="ts" setup>
 import type { AutocompleteContentProps } from 'reka-ui'
-import type { AutocompleteEmits, AutocompleteProps } from './autocomplete.props'
+import type { AutocompleteEmits, AutocompleteProps, AutocompleteValue } from './autocomplete.props'
 import { reactiveOmit } from '@vueuse/core'
 import { defu } from 'defu'
 import { AnimatePresence, Motion } from 'motion-v'
 import {
   AutocompleteAnchor,
-  AutocompleteArrow,
   AutocompleteCancel,
   AutocompleteContent,
   AutocompleteEmpty,
@@ -100,6 +99,15 @@ const ui = computed(() => useAutocompleteStyle({
   unstyled: toBoolValue(props.unstyled),
 }))
 
+function handleUpdate(value: AutocompleteValue) {
+  emits('update:modelValue', value)
+
+  if (value === undefined)
+    return
+
+  emits('change', value)
+}
+
 function handleFocus(e: FocusEvent) {
   formFieldContext.handleControlFocus()
   emits('focus', e)
@@ -117,6 +125,7 @@ function handleBlur(e: FocusEvent) {
     v-model:open="open"
     data-slot="autocomplete"
     :class="cn(ui.root(), props.ui?.root, props.class)"
+    @update:model-value="handleUpdate"
   >
     <AutocompleteAnchor :reference="reference" :class="cn(ui.anchor(), props.ui?.anchor)">
       <span v-if="hasPrefix" :class="cn(ui.prefix(), props.ui?.prefix)">
@@ -209,8 +218,6 @@ function handleBlur(e: FocusEvent) {
                 </template>
               </template>
             </AutocompleteViewport>
-
-            <AutocompleteArrow :class="cn(ui.arrow(), props.ui?.arrow)" />
           </Motion>
         </AutocompleteContent>
       </AnimatePresence>

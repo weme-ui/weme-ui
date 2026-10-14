@@ -34,7 +34,6 @@ export interface AutocompleteProps extends AutocompleteRootProps, FormFieldShare
 }
 
 export interface AutocompleteEmits extends AutocompleteRootEmits {
-  enter: [value: AutocompleteValue]
   change: [value: AutocompleteValue]
   focus: [event: FocusEvent]
   blur: [event: FocusEvent]

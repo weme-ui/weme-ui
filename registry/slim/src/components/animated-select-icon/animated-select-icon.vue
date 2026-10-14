@@ -21,11 +21,11 @@ const props = defineProps<AnimatedSelectIconProps>()
       :data-selected="toBoolDataAttrValue(selected)"
       :initial="{ opacity: 0, scale: 0.75 }"
       :animate="{ opacity: 1, scale: 1 }"
-      :exit="{ opacity: 0, scale: 0.5 }"
+      :exit="{ opacity: 0, scale: 0.8 }"
       :transition="{
         type: 'spring',
         duration: 0.2,
-        bounce: 0.3,
+        bounce: 0.4,
       }"
       :class="cn('shrink-0', props.class)"
       as-child

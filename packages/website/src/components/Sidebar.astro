@@ -33,7 +33,6 @@ function isActive(href: string) {
 
   {docs.length > 0 && (
     <section class="docs-nav-section" data-nav-section>
-      <div class="nav-section-title">Docs</div>
       {docs.map(item => (
         <a
           class="nav-link"
@@ -53,7 +52,9 @@ function isActive(href: string) {
       <div class="nav-section-title">{section.label}</div>
       {section.categories.map(category => (
         <div class="docs-nav-category" data-nav-category>
-          <div class="nav-category">{category.label}</div>
+          {category.label !== section.label && (
+            <div class="nav-category">{category.label}</div>
+          )}
           {category.items.map(item => (
             <a
               class="nav-link"

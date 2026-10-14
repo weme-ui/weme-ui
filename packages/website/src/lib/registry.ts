@@ -127,10 +127,14 @@ const packageManifestModules = import.meta.glob<PackageManifest>(
   { eager: true, import: 'default' },
 )
 
-const itemReadmeModules = import.meta.glob<string>(
+const itemReadmeModules = import.meta.glob<string>([
   '../../../../registry/*/src/**/README.md',
-  { eager: true, query: '?raw', import: 'default' },
-)
+  '../../../../registry/*/src/composables/*.md',
+], {
+  eager: true,
+  query: '?raw',
+  import: 'default',
+})
 
 const exampleModules = import.meta.glob(
   '../../../../registry/*/src/**/examples/*.vue',
@@ -475,11 +479,19 @@ export function getComponentTree(library: string, config?: RegistryConfig): Comp
     })
   }
 
-  return [...sectionMap.entries()].map(([section, categories]) => ({
-    id: section,
-    label: getSectionLabel(section),
-    categories: [...categories.values()],
-  }))
+  const SECTION_ORDER = ['components', 'composables', 'layouts', 'blocks', 'utilities'] as const
+
+  return [...sectionMap.entries()]
+    .sort(([a], [b]) => {
+      const ai = SECTION_ORDER.indexOf(a as typeof SECTION_ORDER[number])
+      const bi = SECTION_ORDER.indexOf(b as typeof SECTION_ORDER[number])
+      return (ai === -1 ? 999 : ai) - (bi === -1 ? 999 : bi)
+    })
+    .map(([section, categories]) => ({
+      id: section,
+      label: getSectionLabel(section),
+      categories: [...categories.values()],
+    }))
 }
 
 export function getItemPage(library: string, section: string, name: string): ItemPageModel | undefined {

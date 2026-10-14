@@ -23,7 +23,7 @@
 
 不同 library 各自维护介绍文档与侧栏结构。构建产物输出到仓库根目录 `docs/`，用于 GitHub Pages 等静态托管。
 
-目录与路由约定以本文为准。使用 AI 编写或更新 registry item 文档时，参见 [weme-ui-docs](../../.cursor/skills/weme-ui-docs/SKILL.md)（首次生成 README/example，或同步 Props/Events/Slots/Accessibility）。
+目录与路由约定以本文为准。使用 AI 编写或更新 registry item 文档时，参见 [weme-ui-docs](../../.cursor/skills/weme-ui-docs/SKILL.md)（组件：README/example 与 Props 等；composable：扁平 `use-*.md`，无 examples）。
 
 ## 目录结构
 
@@ -49,7 +49,7 @@ packages/unocss-preset
 └── package.json       # 提供名称、描述、版本
 ```
 
-单个 component / composable / layout / block 建议将源码、文档与示例放在同一目录：
+单个 component / layout / block 建议将源码、文档与示例放在同一目录：
 
 ```text
 registry/slim/src/components/button
@@ -64,7 +64,17 @@ registry/slim/src/components/button
     └── with-icon.vue
 ```
 
-`util` 仍登记在 `registry.json`（安装语义），但不进入文档站侧栏与详情页。`component`、`composable`、`layout`、`block` 会加载同目录 README 与 examples。
+Composable 为扁平一级目录：源码 `use-<kebab>.ts` 与同名文档 `use-<kebab>.md` 并列，**不用**共享 `README.md`，也**不**要求 `examples/`：
+
+```text
+registry/slim/src/composables
+├── use-form-context.ts
+├── use-form-context.md
+├── use-group-items.ts
+└── use-group-items.md
+```
+
+`util` 仍登记在 `registry.json`（安装语义），但不进入文档站侧栏与详情页。`component` / `layout` / `block` 加载同目录 README 与 examples；`composable` 通过 `kind: "doc"` 加载 `src/composables/*.md`。
 
 ## 侧栏与路由
 
@@ -80,13 +90,15 @@ registry/slim/src/components/button
 - `index.md` 或 `README.md` 对应 `/<library>/docs/`
 - 当前不要求用 frontmatter 控制顺序或标题
 
+侧栏上方 Docs 区块**不显示**「Docs」标题，仅保留链接列表。
+
 侧栏下方仅 registry 有：来自 `registry.json` 的 `items`，分为三层：
 
 - `type` → 大类：`component` → Components，`composable` → Composables，`layout` → Layouts，`block` → Blocks（`util` 不进入侧栏）
-- `meta["docs.category"]` / `meta["docs.categoryLabel"]` → 分类
+- `meta["docs.category"]` / `meta["docs.categoryLabel"]` → 分类；当 category 标签与 section 标签相同时不渲染分类行（避免 Composables 下重复「Composables」）
 - `items[]` 中的每一项 → 链接
 
-推荐的 category id：`actions`、`data-display`、`feedback`、`form`、`layout`、`navigation`、`overlay`、`typography`、`utilities`。未设置 `docs.category` 时使用默认分组。侧栏顺序与 `items` 数组顺序一致，暂无 `docs.order`。
+推荐的 category id：`actions`、`data-display`、`feedback`、`form`、`layout`、`navigation`、`overlay`、`typography`、`utilities`。未设置 `docs.category` 时使用默认分组。大类顺序固定为 **Components → Composables → Layouts → Blocks → Utilities**；同类内条目顺序仍跟随 `items` 数组，暂无 `docs.order`。
 
 路由：
 
@@ -95,7 +107,7 @@ registry/slim/src/components/button
 /<library>/                    # 单个 library / package 首页
 /<library>/docs/...            # 库级或 package 文档
 /<library>/components/button/
-/<library>/composables/use-form/
+/<library>/composables/use-form-context/
 /<library>/layouts/...
 /<library>/blocks/...
 /unocss-preset/docs/           # package docs 示例
@@ -137,7 +149,7 @@ registry/slim/src/components/button
 - `files[].type` 仅使用：`component`、`composable`、`ui`、`block`、`layout`、`page`、`util`
 - `meta["docs.*"]` 仅用于文档站展示；不要使用旧版 `hash` 字段
 
-## 编写 README
+## 编写 README（组件）
 
 在 item 同目录创建 `README.md`，并在 `files` 中声明 `kind: "doc"`。推荐结构：
 
@@ -168,6 +180,28 @@ Props、Events、Slots、Accessibility 须依据源码或类型填写；信息�
 使用 AI 编写时，应先阅读源码与 `registry.json`，再更新 README、examples 与 catalog。具体流程见 [weme-ui-docs](../../.cursor/skills/weme-ui-docs/SKILL.md)。
 
 示例中的 `~/...` 解析到同一 library 的 `src` 根路径，不支持跨 library。
+
+## 编写 Composable 文档
+
+扁平目录下为每个 `use-<kebab>.ts` 写同名 `use-<kebab>.md`，并在对应 item 的 `files` 中声明 `kind: "doc"`。命名约定：`use-form-context.ts` 主导出 `useFormContext()`。文档风格对齐 [Reka UI useFilter](https://reka-ui.com/docs/utilities/use-filter)：
+
+```markdown
+# useFormContext
+
+一句话简介。
+
+## Installation
+
+## Options
+
+## Usage
+
+## Returns
+
+## Types
+```
+
+主导出优先；同文件其它导出函数与导出类型也须写入文档。不创建 `examples/`，不登记 `kind: "example"`。流程见 [weme-ui-docs](../../.cursor/skills/weme-ui-docs/SKILL.md) 的 Composable 模式。
 
 ## 本地验证
 

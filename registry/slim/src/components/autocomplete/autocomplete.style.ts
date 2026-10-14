@@ -41,7 +41,7 @@ export const useAutocompleteStyle = createVariants({
         input: 'placeholder:text-subtle',
         content: 'bg-base shadow-xs',
         label: 'text-subtle',
-        item: 'data-[highlighted]:bg-elevated',
+        item: 'data-[highlighted]:bg-muted',
         itemLabel: 'group-data-[highlighted]/item:font-medium',
         itemIcon: 'text-subtle group-data-[highlighted]/item:text-highlighted',
         itemIndicator: 'text-accent',
@@ -98,9 +98,9 @@ export const useAutocompleteStyle = createVariants({
 
     { radius: 'full', unstyled: false, class: { root: 'rounded-full', content: 'rounded-5', item: 'rounded-full' } },
 
-    { size: 'sm', unstyled: false, class: { root: 'text-xs h-6', anchor: 'gap-xs', label: 'text-xs py-1.5 px-2.5', item: 'gap-xs text-xs py-1.5 px-2.5' } },
-    { size: 'md', unstyled: false, class: { root: 'text-sm h-8', anchor: 'gap-sm', label: 'text-sm py-2.5 px-3.5', item: 'gap-sm text-sm py-2.5 px-3.5' } },
-    { size: 'lg', unstyled: false, class: { root: 'text-base h-10', anchor: 'gap-md', label: 'text-base py-3 px-4', item: 'gap-md text-base py-3 px-4' } },
+    { size: 'sm', unstyled: false, class: { root: 'text-xs h-6', anchor: 'gap-xs', viewport: 'p-0.5', label: 'text-xs py-1.5 px-2.5', item: 'gap-xs text-xs py-1.5 px-2.5' } },
+    { size: 'md', unstyled: false, class: { root: 'text-sm h-8', anchor: 'gap-sm', viewport: 'p-1', label: 'text-sm py-2.5 px-3.5', item: 'gap-sm text-sm py-2.5 px-3.5' } },
+    { size: 'lg', unstyled: false, class: { root: 'text-base h-10', anchor: 'gap-md', viewport: 'p-1.5', label: 'text-base py-3 px-4', item: 'gap-md text-base py-3 px-4' } },
   ],
 
   defaultVariants: {

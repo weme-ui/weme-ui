@@ -43,6 +43,7 @@ pnpm dlx @weme-ui/weme-ui add weme-ui/slim/button
   - [x] `link-overlay`
   - [x] `link`
   - [x] `separator`
+  - [ ] `kbd`
 
 - **Navigation**
   - [ ] `activity-bar`
@@ -52,26 +53,30 @@ pnpm dlx @weme-ui/weme-ui add weme-ui/slim/button
   - [ ] `steps`
   - [ ] `tabs`
 
-- **Data**
-  - [ ] `alert`
-  - [ ] `avatar-group`
+- **Data Display**
   - [ ] `avatar`
+  - [ ] `avatar-group`
   - [ ] `badge`
-  - [ ] `banner`
   - [ ] `calendar`
   - [ ] `card`
   - [ ] `chip`
-  - [ ] `empty`
-  - [ ] `image-viewer`
   - [ ] `image`
-  - [ ] `kbd`
-  - [ ] `marquee`
-  - [ ] `progress`
-  - [ ] `scroll-area`
-  - [ ] `skeleton`
+  - [ ] `image-viewer`
   - [ ] `table`
   - [ ] `timeline`
   - [ ] `tree`
+
+- **Feedback**
+  - [ ] `alert`
+  - [ ] `banner`
+  - [ ] `empty`
+  - [ ] `progress`
+  - [ ] `skeleton`
+  - [ ] `toast`
+
+- **Layout**
+  - [ ] `marquee`
+  - [ ] `scroll-area`
 
 - **Agents**
   - [ ] `agent-activity`
@@ -93,7 +98,6 @@ pnpm dlx @weme-ui/weme-ui add weme-ui/slim/button
   - [ ] `modal`
   - [ ] `pop-confirm`
   - [ ] `popover`
-  - [ ] `toast`
   - [ ] `tooltip`
 
 - **Form**
@@ -127,10 +131,11 @@ pnpm dlx @weme-ui/weme-ui add weme-ui/slim/button
 
 ## 组合式函数
 
+- [ ] `useToast()`
 - [x] `useFormContext()`
 - [x] `useFormFieldContext()`
 - [x] `usePasswordStrength()`
-- [ ] `useToast()`
+- [x] `usePopoverContent()`
 
 ## 许可证
 

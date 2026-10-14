@@ -7,6 +7,7 @@ export type GroupItemType = 'label' | 'item' | 'separator'
 export interface GroupItem<T> {
   type?: GroupItemType
   label?: string
+  description?: string
   value: T
   icon?: IconifyIconProps['icon']
   selectedIcon?: IconifyIconProps['icon']

@@ -77,8 +77,8 @@ const selectedIcon = computed(() => selectedItem.value?.selectedIcon || selected
 
 const slots = useSlots()
 
-const hasPrefix = computed(() => selectedIcon.value || props.prefix || props.prefixIcon || !!slots.prefix)
-const hasClean = computed(() => !disabled.value && props.clearable && value.value)
+const hasPrefix = computed(() => !!selectedIcon.value || !!props.prefix || !!props.prefixIcon || !!slots.prefix)
+const hasClean = computed(() => !disabled.value && props.clearable && value.value !== undefined)
 
 const open = ref(false)
 

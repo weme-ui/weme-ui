@@ -27,8 +27,9 @@ interface UseGroupItemsReturn<T, R> {
 
 export function useGroupItems<
   T,
-  S = T | T[],
-  R = S extends T[] ? GroupItem<T>[] : GroupItem<T>,
+  M extends boolean = false,
+  S = M extends false ? T : T[],
+  R = M extends false ? GroupItem<T> : GroupItem<T>[],
 >(
   items: GroupItems<T>,
   selectedValue: Ref<S | undefined>,

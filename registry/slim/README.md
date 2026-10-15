@@ -107,7 +107,6 @@ pnpm dlx @weme-ui/weme-ui add weme-ui/slim/button
   - [ ] `checkbox`
   - [ ] `color-picker`
   - [ ] `color-swatch-picker`
-  - [ ] `combobox`
   - [ ] `date-picker`
   - [ ] `file-upload`
   - [ ] `filters`
@@ -119,6 +118,7 @@ pnpm dlx @weme-ui/weme-ui add weme-ui/slim/button
   - [ ] `switch`
   - [ ] `textarea`
   - [x] `autocomplete`
+  - [x] `combobox`
   - [x] `form-field`
   - [x] `form`
   - [x] `input`
@@ -133,6 +133,7 @@ pnpm dlx @weme-ui/weme-ui add weme-ui/slim/button
 ## 组合式函数
 
 - [ ] `useToast()`
+- [x] `useGroupItems()`
 - [x] `useFormContext()`
 - [x] `useFormFieldContext()`
 - [x] `usePasswordStrength()`

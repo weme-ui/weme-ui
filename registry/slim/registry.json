@@ -530,6 +530,96 @@
       ]
     },
     {
+      "name": "combobox",
+      "type": "component",
+      "title": "Combobox",
+      "description": "A filterable combobox built on Reka UI Combobox with grouped items and multiple selection support.",
+      "meta": {
+        "docs.category": "form",
+        "docs.categoryLabel": "Form"
+      },
+      "registryDependencies": [
+        "icon",
+        "use-form-field-context",
+        "use-group-items",
+        "use-popover-content"
+      ],
+      "files": [
+        {
+          "type": "component",
+          "path": "src/components/combobox/combobox.vue"
+        },
+        {
+          "type": "component",
+          "path": "src/components/combobox/combobox.props.ts"
+        },
+        {
+          "type": "component",
+          "path": "src/components/combobox/combobox.style.ts"
+        },
+        {
+          "type": "component",
+          "kind": "doc",
+          "path": "src/components/combobox/README.md"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/combobox/examples/usage.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/combobox/examples/variants.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/combobox/examples/sizes.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/combobox/examples/radius.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/combobox/examples/with-affix.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/combobox/examples/with-groups.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/combobox/examples/multiple.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/combobox/examples/loading.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/combobox/examples/disabled.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/combobox/examples/unstyled.vue"
+        },
+        {
+          "type": "component",
+          "kind": "test",
+          "path": "src/components/combobox/combobox.test.ts"
+        }
+      ]
+    },
+    {
       "name": "tag-group",
       "type": "component",
       "title": "Tag Group",

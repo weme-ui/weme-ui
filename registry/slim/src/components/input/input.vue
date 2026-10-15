@@ -44,9 +44,9 @@ const overcount = computed(() => props.maxLength !== undefined && countLength.va
 
 const slots = useSlots()
 
-const hasPrefix = computed(() => props.prefix || props.prefixIcon || !!slots.prefix)
-const hasSuffix = computed(() => loading.value || props.suffix || props.suffixIcon || !!slots.suffix)
-const hasCounter = computed(() => !disabled.value && props.countable && props.maxLength && props.maxLength > 0)
+const hasPrefix = computed(() => !!props.prefix || !!props.prefixIcon || !!slots.prefix)
+const hasSuffix = computed(() => loading.value || !!props.suffix || !!props.suffixIcon || !!slots.suffix)
+const hasCounter = computed(() => !disabled.value && props.countable && (props.maxLength !== undefined && props.maxLength > 0))
 const hasClean = computed(() => !disabled.value && props.clearable && modelValue.value)
 
 const ui = computed(() => useInputStyle({

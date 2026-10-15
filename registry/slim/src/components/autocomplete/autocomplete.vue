@@ -131,7 +131,7 @@ function handleBlur(e: FocusEvent) {
       <span v-if="hasPrefix" :class="cn(ui.prefix(), props.ui?.prefix)">
         <slot name="prefix">
           <Icon
-            v-if="selectedIcon || prefixIcon "
+            v-if="selectedIcon || prefixIcon"
             :name="selectedIcon || prefixIcon || ''"
             :class="cn(ui.prefixIcon(), props.ui?.prefixIcon, selectedItem?.iconClass)"
           />

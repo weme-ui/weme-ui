@@ -42,29 +42,33 @@ function mountTagsInput(tagsInputProps: Record<string, unknown> = {}) {
 describe('tags-input', () => {
   it('applies default soft variant, size, and radius', () => {
     const ui = useTagsInputStyle({})
-    expect(ui.root()).toContain('h-8')
+    expect(ui.root()).toContain('flex-wrap')
+    expect(ui.root()).toContain('min-h-6')
     expect(ui.root()).toContain('rounded-md')
     expect(ui.root()).toContain('bg-muted')
     // soft compounds add `b` + `b-transparent`; twMerge keeps `b`
     expect(ui.root().split(/\s+/)).toContain('b')
     expect(ui.root()).toContain('transition-colors')
     expect(ui.input()).toContain('placeholder:text-subtle')
+    expect(ui.input()).toContain('w-fit')
     expect(ui.item()).toContain('h-5')
     expect(ui.item()).toContain('text-sm')
     expect(ui.item()).toContain('group-not-[[data-focused]]:bg-elevated')
+    expect(ui.itemText()).toContain('text-nowrap')
+    expect(ui.clear()).toContain('ml-auto')
   })
 
   it('applies size variants', () => {
     const sm = useTagsInputStyle({ size: 'sm' })
-    expect(sm.root()).toContain('h-6')
+    expect(sm.root()).toContain('min-h-4')
     expect(sm.root()).toContain('text-xs')
     expect(sm.item()).toContain('h-4')
     expect(sm.item()).toContain('text-xs')
 
     const lg = useTagsInputStyle({ size: 'lg' })
-    expect(lg.root()).toContain('h-10')
+    expect(lg.root()).toContain('min-h-7')
     expect(lg.root()).toContain('text-base')
-    expect(lg.item()).toContain('h-7')
+    expect(lg.item()).toContain('h-6.5')
     expect(lg.item()).toContain('text-base')
   })
 

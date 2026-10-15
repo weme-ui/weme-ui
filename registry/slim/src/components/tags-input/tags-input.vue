@@ -31,7 +31,7 @@ const dataAttributes = computed(() => formFieldContext.dataAttributes.value)
 
 const slots = useSlots()
 
-const hasPrefix = computed(() => props.prefix || props.prefixIcon || !!slots.prefix)
+const hasPrefix = computed(() => !!props.prefix || !!props.prefixIcon || !!slots.prefix)
 const hasClean = computed(() => !disabled.value && props.clearable && inputValue.value.length > 0)
 
 const ui = computed(() => useTagsInputStyle({
@@ -41,6 +41,7 @@ const ui = computed(() => useTagsInputStyle({
   disabled: disabled.value,
   invalid: invalid.value,
   unstyled: toBoolValue(props.unstyled),
+  hasPrefix: hasPrefix.value,
 }))
 
 function handleFocus(e: FocusEvent) {

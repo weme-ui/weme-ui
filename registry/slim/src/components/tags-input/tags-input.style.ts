@@ -26,14 +26,15 @@ export const useTagsInputStyle = createVariants({
       full: { root: 'rounded-full' },
     },
     size: {
-      sm: { root: 'text-xs p-1 gap-1 min-h-4', prefix: 'px-0.5', item: 'text-xs px-1 gap-1 h-4', itemDelete: 'p-0.25 -mr-1', input: 'pl-1' },
-      md: { root: 'text-sm p-1.25 gap-1.25 min-h-6', prefix: 'px-0.75', item: 'text-sm px-2 gap-1 h-5', itemDelete: 'p-0.25 -mr-1.25', input: 'pl-1.25' },
-      lg: { root: 'text-base p-1.5 gap-1.5 min-h-7', prefix: 'px-1', item: 'text-base px-3 gap-sm h-6.5', itemDelete: 'p-0.5 -mr-1.5', input: 'pl-1.25' },
+      sm: { root: 'text-xs p-1 gap-1 min-h-4', prefix: 'px-0.5', item: 'text-xs px-1 gap-1 h-4', itemDelete: 'p-0.25 -mr-1', input: 'h-4' },
+      md: { root: 'text-sm p-1.25 gap-1.25 min-h-6', prefix: 'px-0.75', item: 'text-sm px-2 gap-1 h-5', itemDelete: 'p-0.25 -mr-1.25', input: 'h-5' },
+      lg: { root: 'text-base p-1.5 gap-1.5 min-h-7', prefix: 'px-1', item: 'text-base px-3 gap-sm h-6.5', itemDelete: 'p-0.5 -mr-1.5', input: 'h-6.5' },
     },
     disabled: {
       true: { root: 'is-disabled' },
     },
     invalid: { true: {} },
+    hasPrefix: { true: {} },
     unstyled: {
       false: {
         input: 'placeholder:text-subtle',
@@ -76,6 +77,10 @@ export const useTagsInputStyle = createVariants({
     },
 
     { invalid: true, unstyled: false, class: { root: 'b-error outline-2 outline-error-4' } },
+
+    { size: 'sm', hasPrefix: false, class: { input: 'pl-1' } },
+    { size: 'md', hasPrefix: false, class: { input: 'pl-1.25' } },
+    { size: 'lg', hasPrefix: false, class: { input: 'pl-1.5' } },
   ],
 
   defaultVariants: {

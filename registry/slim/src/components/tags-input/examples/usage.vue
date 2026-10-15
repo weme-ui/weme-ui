@@ -18,6 +18,7 @@ const form = useForm({
       <TagsInput
         :model-value="field.state.value"
         placeholder="Add a tag…"
+        prefix-icon="ri:search-line"
         clearable
         @update:model-value="field.api.handleChange"
       />

@@ -6,11 +6,11 @@ export const useInputStyle = createVariants({
     root: 'group flex flex-y-center relative',
     prefix: '',
     prefixIcon: '',
-    input: 'leading-none outline-none size-full placeholder:text-subtle',
+    input: 'leading-none outline-none size-full',
     suffix: '',
     suffixIcon: '',
-    counter: 'text-(xs subtle nowrap) pointer-events-none select-none',
-    cleanBtn: 'p-0.5 rounded-full op-0 flex transition-[opacity,background-color] flex-center hover:bg-accent-3 group-data-[focused]:op-100',
+    counter: 'pointer-events-none select-none',
+    cleanBtn: 'p-0.5 rounded-inherit flex flex-center',
   },
 
   variants: {
@@ -39,17 +39,22 @@ export const useInputStyle = createVariants({
       true: { counter: 'text-error' },
     },
     invalid: { true: {} },
-    unstyled: { true: {} },
+    unstyled: {
+      false: {
+        root: 'b',
+        input: 'placeholder:text-subtle',
+        counter: 'text-(xs subtle nowrap)',
+        cleanBtn: 'op-0 transition-[opacity,background-color] duration-200 hover:bg-accent-3 group-data-[focused]:op-100',
+      },
+    },
   },
 
   compoundSlots: [
     { slots: ['root', 'prefix', 'suffix'], unstyled: false, class: 'transition-colors duration-200' },
-    { slots: ['prefix', 'suffix'], invalid: false, class: 'group-data-[focused]:text-highlighted not-[[data-focused]]:text-subtle' },
+    { slots: ['prefix', 'suffix'], invalid: false, class: 'group-data-[focused]:text-highlighted group-not-[[data-focused]]:text-subtle' },
   ],
 
   compoundVariants: [
-    { variant: ['soft', 'outline'], unstyled: false, class: { root: 'b' } },
-
     { variant: 'soft', unstyled: false, class: { root: 'b-transparent bg-muted' } },
     { variant: 'outline', unstyled: false, class: { root: 'b-base bg-base' } },
 
@@ -70,15 +75,15 @@ export const useInputStyle = createVariants({
       },
     },
 
-    { variant: ['soft', 'outline'], invalid: true, unstyled: false, class: { root: 'b-error outline-2 outline-error-4' } },
+    { invalid: true, unstyled: false, class: { root: 'b-error outline-2 outline-error-4' } },
 
-    { variant: ['soft', 'outline'], radius: ['none', 'xs', 'sm', 'md', 'lg', 'xl'], size: 'sm', unstyled: false, class: { root: 'px-1.5' } },
-    { variant: ['soft', 'outline'], radius: ['none', 'xs', 'sm', 'md', 'lg', 'xl'], size: 'md', unstyled: false, class: { root: 'px-2.5' } },
-    { variant: ['soft', 'outline'], radius: ['none', 'xs', 'sm', 'md', 'lg', 'xl'], size: 'lg', unstyled: false, class: { root: 'px-3' } },
+    { radius: ['none', 'xs', 'sm', 'md', 'lg', 'xl'], size: 'sm', unstyled: false, class: { root: 'px-1.5' } },
+    { radius: ['none', 'xs', 'sm', 'md', 'lg', 'xl'], size: 'md', unstyled: false, class: { root: 'px-2.5' } },
+    { radius: ['none', 'xs', 'sm', 'md', 'lg', 'xl'], size: 'lg', unstyled: false, class: { root: 'px-3' } },
 
-    { variant: ['soft', 'outline'], radius: 'full', size: 'sm', unstyled: false, class: { root: 'px-2.25' } },
-    { variant: ['soft', 'outline'], radius: 'full', size: 'md', unstyled: false, class: { root: 'px-3.5' } },
-    { variant: ['soft', 'outline'], radius: 'full', size: 'lg', unstyled: false, class: { root: 'px-4' } },
+    { radius: 'full', size: 'sm', unstyled: false, class: { root: 'px-2.25' } },
+    { radius: 'full', size: 'md', unstyled: false, class: { root: 'px-3.5' } },
+    { radius: 'full', size: 'lg', unstyled: false, class: { root: 'px-4' } },
   ],
 
   defaultVariants: {

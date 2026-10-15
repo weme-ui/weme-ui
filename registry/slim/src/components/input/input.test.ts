@@ -100,12 +100,19 @@ describe('input', () => {
     expect(loading.suffixIcon()).toContain('animate-spin')
   })
 
-  it('applies overcount and affix focus colors', () => {
-    expect(useInputStyle({ overcount: true }).counter()).toContain('text-error')
+  it('applies counter, clean button, and affix focus colors', () => {
+    expect(useInputStyle({}).counter()).toContain('text-(xs subtle nowrap)')
+    // overcount text-error survives when unstyled; styled counter text-* merges it away via twMerge
+    expect(useInputStyle({ overcount: true, unstyled: true }).counter()).toContain('text-error')
+
+    const clean = useInputStyle({}).cleanBtn()
+    expect(clean).toContain('op-0')
+    expect(clean).toContain('group-data-[focused]:op-100')
+    expect(clean).toContain('hover:bg-accent-3')
 
     const prefix = useInputStyle({ variant: 'soft', invalid: false }).prefix()
     expect(prefix).toContain('group-data-[focused]:text-highlighted')
-    expect(prefix).toContain('not-[[data-focused]]:text-subtle')
+    expect(prefix).toContain('group-not-[[data-focused]]:text-subtle')
   })
 
   describe('given an input inside a labeled form field', () => {

@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import type { TagGroupItem, TagGroupItemValue } from '../tag-group.props'
+import type { TagGroupItem } from '../tag-group.props'
 import { ref } from 'vue'
 import { useForm } from '~/composables/use-form-context'
 import FormField from '../../form-field/form-field.vue'
@@ -25,22 +25,18 @@ function createItems(): TagGroupItem[] {
 const smItems = ref(createItems())
 const mdItems = ref(createItems())
 const lgItems = ref(createItems())
-
-function onRemove(target: typeof smItems, values: TagGroupItemValue[]) {
-  target.value = target.value.filter(item => !values.includes(item.value))
-}
 </script>
 
 <template>
   <Form :form="form" class="flex flex-col gap-4 max-w-sm w-full">
     <FormField name="sm" label="Small">
-      <TagGroup size="sm" :items="smItems" @remove="values => onRemove(smItems, values)" />
+      <TagGroup size="sm" :items="smItems" />
     </FormField>
     <FormField name="md" label="Medium">
-      <TagGroup size="md" :items="mdItems" @remove="values => onRemove(mdItems, values)" />
+      <TagGroup size="md" :items="mdItems" />
     </FormField>
     <FormField name="lg" label="Large">
-      <TagGroup size="lg" :items="lgItems" @remove="values => onRemove(lgItems, values)" />
+      <TagGroup size="lg" :items="lgItems" />
     </FormField>
   </Form>
 </template>

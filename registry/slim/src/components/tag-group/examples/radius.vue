@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import type { TagGroupItem, TagGroupItemValue } from '../tag-group.props'
+import type { TagGroupItem } from '../tag-group.props'
 import { ref } from 'vue'
 import { useForm } from '~/composables/use-form-context'
 import FormField from '../../form-field/form-field.vue'
@@ -25,22 +25,18 @@ function createItems(): TagGroupItem[] {
 const noneItems = ref(createItems())
 const mdItems = ref(createItems())
 const fullItems = ref(createItems())
-
-function onRemove(target: typeof noneItems, values: TagGroupItemValue[]) {
-  target.value = target.value.filter(item => !values.includes(item.value))
-}
 </script>
 
 <template>
   <Form :form="form" class="flex flex-col gap-4 max-w-sm w-full">
     <FormField name="none" label="None">
-      <TagGroup radius="none" :items="noneItems" @remove="values => onRemove(noneItems, values)" />
+      <TagGroup radius="none" :items="noneItems" />
     </FormField>
     <FormField name="md" label="Medium">
-      <TagGroup radius="md" :items="mdItems" @remove="values => onRemove(mdItems, values)" />
+      <TagGroup radius="md" :items="mdItems" />
     </FormField>
     <FormField name="full" label="Full">
-      <TagGroup radius="full" :items="fullItems" @remove="values => onRemove(fullItems, values)" />
+      <TagGroup radius="full" :items="fullItems" />
     </FormField>
   </Form>
 </template>

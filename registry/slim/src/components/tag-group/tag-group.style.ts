@@ -6,7 +6,7 @@ export const useTagGroupStyle = createVariants({
     root: 'flex flex-wrap relative',
     item: 'flex select-none flex-center data-[disabled]:is-disabled',
     itemIcon: '',
-    itemText: '',
+    itemText: 'leading-none align-middle text-nowrap',
     itemDelete: 'p-0.25 rounded-inherit flex flex-center',
     itemDeleteIcon: '',
   },

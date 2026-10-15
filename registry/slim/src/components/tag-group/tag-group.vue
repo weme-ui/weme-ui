@@ -15,7 +15,6 @@ const props = withDefaults(defineProps<TagGroupProps>(), {
   radius: 'md',
   size: 'md',
   deleteIcon: 'ri:close-line',
-  closeable: false,
 })
 
 const emits = defineEmits<TagGroupEmits>()
@@ -36,7 +35,7 @@ const ui = computed(() => useTagGroupStyle({
   size: props.size,
   unstyled: props.unstyled,
   disabled: disabled.value,
-  selectable: props.selectionMode !== 'none',
+  selectable: props.selectionMode && props.selectionMode !== 'none',
 }))
 
 function handleItemPress(item: TagGroupItemValue | null) {

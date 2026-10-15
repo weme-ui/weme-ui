@@ -19,7 +19,7 @@ import {
   AutocompleteSeparator,
   AutocompleteTrigger,
   AutocompleteViewport,
-  useForwardPropsEmits,
+  useForwardProps,
 } from 'reka-ui'
 import { computed, ref, toRef, useSlots } from 'vue'
 import { useFormFieldBindings, useFormFieldContext } from '~/composables/use-form-field-context'
@@ -29,6 +29,10 @@ import { toBoolValue } from '~/utils/props'
 import { cn } from '~/utils/styles'
 import Icon from '../icon/icon.vue'
 import { useAutocompleteStyle } from './autocomplete.style'
+
+defineOptions({
+  inheritAttrs: false,
+})
 
 const props = withDefaults(defineProps<AutocompleteProps>(), {
   variant: 'soft',
@@ -42,7 +46,7 @@ const props = withDefaults(defineProps<AutocompleteProps>(), {
 
 const emits = defineEmits<AutocompleteEmits>()
 const delegated = reactiveOmit(props, 'items', 'variant', 'size', 'radius', 'prefix', 'suffix', 'prefixIcon', 'suffixIcon', 'loading', 'loadingIcon', 'clearIcon', 'clearable', 'itemIndicatorIcon', 'portalProps', 'contentProps', 'placeholder', 'emptyText', 'emptyIcon', 'reference', 'unstyled', 'class', 'ui')
-const forwarded = useForwardPropsEmits(delegated, emits)
+const forwarded = useForwardProps(delegated)
 
 const portalProps = toRef(() => props.portalProps)
 const contentProps = toRef(
@@ -99,12 +103,11 @@ const ui = computed(() => useAutocompleteStyle({
   unstyled: toBoolValue(props.unstyled),
 }))
 
-function handleUpdate(value: AutocompleteValue) {
-  emits('update:modelValue', value)
-
+function handleUpdate(value?: AutocompleteValue) {
   if (value === undefined)
     return
 
+  emits('update:modelValue', value)
   emits('change', value)
 }
 
@@ -183,9 +186,9 @@ function handleBlur(e: FocusEvent) {
               </template>
 
               <template v-else>
-                <template v-for="(group, gIdx) in groupedItems" :key="gIdx">
+                <template v-for="(group, gIdx) in groupedItems" :key="`g-${gIdx}`">
                   <AutocompleteGroup :class="cn(ui.group(), props.ui?.group)">
-                    <template v-for="(item, idx) in group" :key="`${gIdx}-${idx}`">
+                    <template v-for="(item, idx) in group" :key="`g-${gIdx}-${idx}`">
                       <AutocompleteSeparator
                         v-if="item.type === 'separator'"
                         :class="cn(ui.separator(), props.ui?.separator)"
@@ -201,7 +204,7 @@ function handleBlur(e: FocusEvent) {
                         v-else
                         v-slot="{ selected }"
                         :value="item.value"
-                        :class="cn(ui.item(), props.ui?.item)"
+                        :class="cn(ui.item(), props.ui?.item, item.class)"
                         @select="item.onSelect?.(item.value)"
                       >
                         <slot name="item" :item="item" :selected="selected">

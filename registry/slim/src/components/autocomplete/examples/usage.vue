@@ -11,6 +11,8 @@ const form = useForm({
   },
 })
 
+const selected = form.useSelector(state => state.values.drink)
+
 const items: AutocompleteItems = [
   { label: 'Beer', value: 'beer', icon: 'ri:beer-line', selectedIcon: 'ri:beer-fill', iconClass: 'text-accent' },
   { label: 'Coffee', value: 'coffee', icon: 'ri:drinks-line', selectedIcon: 'ri:drinks-fill', iconClass: 'text-neutral' },
@@ -28,8 +30,13 @@ const items: AutocompleteItems = [
         :items="items"
         prefix-icon="ri:search-line"
         placeholder="Search drinks…"
+        open-on-focus
         @change="field.api.handleChange"
       />
     </FormField>
+
+    <p class="text-sm">
+      Selected: {{ selected }}
+    </p>
   </Form>
 </template>

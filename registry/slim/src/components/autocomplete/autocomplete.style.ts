@@ -8,7 +8,7 @@ export const useAutocompleteStyle = createVariants({
     input: 'leading-none outline-none size-full',
     prefix: '',
     prefixIcon: '',
-    suffix: '',
+    suffix: 'ml-auto',
     suffixIcon: '',
     clearBtn: '',
     content: 'outline-none will-change-[height,transform,opacity] h-$reka-combobox-content-available-height w-$reka-combobox-trigger-width origin-$reka-combobox-content-transform-origin fixed z-high overflow-hidden',

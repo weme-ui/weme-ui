@@ -1,5 +1,5 @@
 import type { IconifyIconProps } from '@iconify/vue'
-import type { Ref } from 'vue'
+import type { ComputedRef, Ref } from 'vue'
 import { computed } from 'vue'
 
 export type GroupItemType = 'label' | 'item' | 'separator'
@@ -19,7 +19,20 @@ export interface GroupItem<T> {
 
 export type GroupItems<T> = GroupItem<T>[] | GroupItem<T>[][]
 
-export function useGroupItems<T>(items: GroupItems<T>, selectedValue: Ref<T | undefined>) {
+interface UseGroupItemsReturn<T, R> {
+  groupedItems: ComputedRef<GroupItem<T>[][]>
+  flattenedItems: ComputedRef<GroupItem<T>[]>
+  selectedItem: ComputedRef<R | undefined>
+}
+
+export function useGroupItems<
+  T,
+  S = T | T[],
+  R = S extends T[] ? GroupItem<T>[] : GroupItem<T>,
+>(
+  items: GroupItems<T>,
+  selectedValue: Ref<S | undefined>,
+): UseGroupItemsReturn<T, R> {
   const groupedItems = computed<GroupItem<T>[][]>(
     () => {
       if (items.length) {
@@ -37,12 +50,19 @@ export function useGroupItems<T>(items: GroupItems<T>, selectedValue: Ref<T | un
     ),
   )
 
-  const selectedItem = computed<GroupItem<T> | undefined>(
+  const selectedItem = computed<R | undefined>(
     () => {
       if (selectedValue.value) {
-        return flattenedItems.value.find(
-          item => item.value === selectedValue.value,
-        )
+        if (Array.isArray(selectedValue.value) && selectedValue.value.length) {
+          return flattenedItems.value.filter(
+            item => (selectedValue.value as T[]).includes(item.value),
+          ) as GroupItem<T>[] as R
+        }
+        else {
+          return flattenedItems.value.find(
+            item => item.value === selectedValue.value,
+          ) as GroupItem<T> | undefined as R
+        }
       }
       return undefined
     },

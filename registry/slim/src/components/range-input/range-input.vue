@@ -40,8 +40,8 @@ const dataAttributes = computed(() => formFieldContext.dataAttributes.value)
 
 const slots = useSlots()
 
-const hasFromIcon = computed(() => !!slots.fromIcon || props.fromIcon)
-const hasToIcon = computed(() => !!slots.toIcon || props.toIcon)
+const hasFromIcon = computed(() => !!slots.fromIcon || !!props.fromIcon)
+const hasToIcon = computed(() => !!slots.toIcon || !!props.toIcon)
 
 const ui = computed(() => useRangeInputStyle({
   variant: props.variant,

@@ -610,6 +610,84 @@
       ]
     },
     {
+      "name": "tags-input",
+      "type": "component",
+      "title": "Tags Input",
+      "description": "A tags input with add, remove, and clear support built on Reka UI TagsInput.",
+      "meta": {
+        "docs.category": "form",
+        "docs.categoryLabel": "Form"
+      },
+      "registryDependencies": [
+        "form-field",
+        "icon"
+      ],
+      "files": [
+        {
+          "type": "component",
+          "path": "src/components/tags-input/tags-input.vue"
+        },
+        {
+          "type": "component",
+          "path": "src/components/tags-input/tags-input.props.ts"
+        },
+        {
+          "type": "component",
+          "path": "src/components/tags-input/tags-input.style.ts"
+        },
+        {
+          "type": "component",
+          "kind": "test",
+          "path": "src/components/tags-input/tags-input.test.ts"
+        },
+        {
+          "type": "component",
+          "kind": "doc",
+          "path": "src/components/tags-input/README.md"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/tags-input/examples/usage.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/tags-input/examples/variants.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/tags-input/examples/sizes.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/tags-input/examples/radius.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/tags-input/examples/with-prefix.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/tags-input/examples/clearable.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/tags-input/examples/disabled.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/tags-input/examples/unstyled.vue"
+        }
+      ]
+    },
+    {
       "name": "input",
       "type": "component",
       "title": "Input",

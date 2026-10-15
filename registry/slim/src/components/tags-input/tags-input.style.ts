@@ -3,15 +3,15 @@ import { createVariants } from '~/utils/styles'
 
 export const useTagsInputStyle = createVariants({
   slots: {
-    root: 'group flex transition-colors duration-200 flex-y-center relative',
+    root: 'group flex flex-wrap transition-colors duration-200 flex-y-center relative',
     prefix: '',
     prefixIcon: '',
     item: 'rounded-inherit flex select-none flex-center',
     itemIcon: '',
-    itemText: 'leading-none align-middle',
+    itemText: 'leading-none align-middle text-nowrap',
     itemDelete: '',
-    input: 'leading-none outline-none size-full',
-    clear: 'p-0.5 rounded-inherit flex flex-center',
+    input: 'leading-none outline-none w-fit',
+    clear: 'ml-auto p-0.5 rounded-inherit flex flex-center',
   },
 
   variants: {
@@ -26,9 +26,9 @@ export const useTagsInputStyle = createVariants({
       full: { root: 'rounded-full' },
     },
     size: {
-      sm: { root: 'text-xs px-1 gap-1 h-6', prefix: 'px-0.5', item: 'text-xs px-1 gap-1 h-4', itemDelete: 'p-0.25 -mr-1', input: 'pl-1' },
-      md: { root: 'text-sm px-1.25 gap-1.25 h-8', prefix: 'px-0.75', item: 'text-sm px-2 gap-1 h-5', itemDelete: 'p-0.25 -mr-1.25', input: 'pl-1.25' },
-      lg: { root: 'text-base px-1.5 gap-1.5 h-10', prefix: 'px-1', item: 'text-base px-3 gap-sm h-7', itemDelete: 'p-0.5 -mr-1.5', input: 'pl-1.25' },
+      sm: { root: 'text-xs p-1 gap-1 min-h-4', prefix: 'px-0.5', item: 'text-xs px-1 gap-1 h-4', itemDelete: 'p-0.25 -mr-1', input: 'pl-1' },
+      md: { root: 'text-sm p-1.25 gap-1.25 min-h-6', prefix: 'px-0.75', item: 'text-sm px-2 gap-1 h-5', itemDelete: 'p-0.25 -mr-1.25', input: 'pl-1.25' },
+      lg: { root: 'text-base p-1.5 gap-1.5 min-h-7', prefix: 'px-1', item: 'text-base px-3 gap-sm h-6.5', itemDelete: 'p-0.5 -mr-1.5', input: 'pl-1.25' },
     },
     disabled: {
       true: { root: 'is-disabled' },

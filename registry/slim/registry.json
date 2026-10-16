@@ -1042,6 +1042,84 @@
       ]
     },
     {
+      "name": "textarea",
+      "type": "component",
+      "title": "Textarea",
+      "description": "A multi-line text input with autosize, row limits, and form field context support.",
+      "meta": {
+        "docs.category": "form",
+        "docs.categoryLabel": "Form"
+      },
+      "registryDependencies": [
+        "icon",
+        "use-form-field-context"
+      ],
+      "files": [
+        {
+          "type": "component",
+          "path": "src/components/textarea/textarea.vue"
+        },
+        {
+          "type": "component",
+          "path": "src/components/textarea/textarea.props.ts"
+        },
+        {
+          "type": "component",
+          "path": "src/components/textarea/textarea.style.ts"
+        },
+        {
+          "type": "component",
+          "kind": "doc",
+          "path": "src/components/textarea/README.md"
+        },
+        {
+          "type": "component",
+          "kind": "test",
+          "path": "src/components/textarea/textarea.test.ts"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/textarea/examples/usage.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/textarea/examples/variants.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/textarea/examples/sizes.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/textarea/examples/radius.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/textarea/examples/auto-size.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/textarea/examples/loading.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/textarea/examples/disabled.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/textarea/examples/unstyled.vue"
+        }
+      ]
+    },
+    {
       "name": "number-input",
       "type": "component",
       "title": "Number Input",

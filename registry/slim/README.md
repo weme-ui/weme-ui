@@ -114,7 +114,6 @@ pnpm dlx @weme-ui/weme-ui add weme-ui/slim/button
   - [ ] `rich-text`
   - [ ] `slider`
   - [ ] `switch`
-  - [ ] `textarea`
   - [x] `autocomplete`
   - [x] `combobox`
   - [x] `form-field`
@@ -129,6 +128,7 @@ pnpm dlx @weme-ui/weme-ui add weme-ui/slim/button
   - [x] `select`
   - [x] `tag-group`
   - [x] `tags-input`
+  - [x] `textarea`
 
 ## 组合式函数
 

@@ -620,6 +620,91 @@
       ]
     },
     {
+      "name": "listbox",
+      "type": "component",
+      "title": "Listbox",
+      "description": "A filterable listbox built on Reka UI Listbox with grouped items and multiple selection support.",
+      "meta": {
+        "docs.category": "form",
+        "docs.categoryLabel": "Form"
+      },
+      "registryDependencies": [
+        "empty",
+        "icon",
+        "use-form-field-context",
+        "use-group-items"
+      ],
+      "files": [
+        {
+          "type": "component",
+          "path": "src/components/listbox/listbox.vue"
+        },
+        {
+          "type": "component",
+          "path": "src/components/listbox/listbox.props.ts"
+        },
+        {
+          "type": "component",
+          "path": "src/components/listbox/listbox.style.ts"
+        },
+        {
+          "type": "component",
+          "kind": "doc",
+          "path": "src/components/listbox/README.md"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/listbox/examples/usage.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/listbox/examples/variants.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/listbox/examples/sizes.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/listbox/examples/horizontal.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/listbox/examples/radius.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/listbox/examples/with-groups.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/listbox/examples/multiple.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/listbox/examples/disabled.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/listbox/examples/unstyled.vue"
+        },
+        {
+          "type": "component",
+          "kind": "test",
+          "path": "src/components/listbox/listbox.test.ts"
+        }
+      ]
+    },
+    {
       "name": "tag-group",
       "type": "component",
       "title": "Tag Group",
@@ -1415,6 +1500,68 @@
           "type": "component",
           "kind": "test",
           "path": "src/components/icon-tile/icon-tile.test.ts"
+        }
+      ]
+    },
+    {
+      "name": "empty",
+      "type": "component",
+      "title": "Empty",
+      "description": "An empty state layout with optional IconTile, title, description, and content slots.",
+      "meta": {
+        "docs.category": "feedback",
+        "docs.categoryLabel": "Feedback"
+      },
+      "registryDependencies": [
+        "icon-tile"
+      ],
+      "files": [
+        {
+          "type": "component",
+          "path": "src/components/empty/empty.vue"
+        },
+        {
+          "type": "component",
+          "path": "src/components/empty/empty.props.ts"
+        },
+        {
+          "type": "component",
+          "path": "src/components/empty/empty.style.ts"
+        },
+        {
+          "type": "component",
+          "kind": "doc",
+          "path": "src/components/empty/README.md"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/empty/examples/usage.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/empty/examples/sizes.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/empty/examples/with-icon.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/empty/examples/with-content.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/empty/examples/unstyled.vue"
+        },
+        {
+          "type": "component",
+          "kind": "test",
+          "path": "src/components/empty/empty.test.ts"
         }
       ]
     },

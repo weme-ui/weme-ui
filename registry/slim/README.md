@@ -112,7 +112,6 @@ pnpm dlx @weme-ui/weme-ui add weme-ui/slim/button
   - [ ] `filters`
   - [ ] `radio-group`
   - [ ] `rich-text`
-  - [ ] `select`
   - [ ] `slider`
   - [ ] `switch`
   - [ ] `textarea`
@@ -127,6 +126,7 @@ pnpm dlx @weme-ui/weme-ui add weme-ui/slim/button
   - [x] `password-strength`
   - [x] `pin-input`
   - [x] `range-input`
+  - [x] `select`
   - [x] `tag-group`
   - [x] `tags-input`
 

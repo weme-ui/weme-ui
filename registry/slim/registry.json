@@ -620,6 +620,97 @@
       ]
     },
     {
+      "name": "select",
+      "type": "component",
+      "title": "Select",
+      "description": "A select dropdown built on Reka UI Select with grouped items and multiple selection support.",
+      "meta": {
+        "docs.category": "form",
+        "docs.categoryLabel": "Form"
+      },
+      "registryDependencies": [
+        "empty",
+        "icon",
+        "use-form-field-context",
+        "use-group-items",
+        "use-popover-content"
+      ],
+      "files": [
+        {
+          "type": "component",
+          "path": "src/components/select/select.vue"
+        },
+        {
+          "type": "component",
+          "path": "src/components/select/select.props.ts"
+        },
+        {
+          "type": "component",
+          "path": "src/components/select/select.style.ts"
+        },
+        {
+          "type": "component",
+          "kind": "doc",
+          "path": "src/components/select/README.md"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/select/examples/usage.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/select/examples/variants.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/select/examples/sizes.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/select/examples/radius.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/select/examples/with-affix.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/select/examples/with-groups.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/select/examples/multiple.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/select/examples/loading.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/select/examples/disabled.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/select/examples/unstyled.vue"
+        },
+        {
+          "type": "component",
+          "kind": "test",
+          "path": "src/components/select/select.test.ts"
+        }
+      ]
+    },
+    {
       "name": "listbox",
       "type": "component",
       "title": "Listbox",

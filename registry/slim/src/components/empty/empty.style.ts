@@ -14,17 +14,17 @@ export const useEmptyStyle = createVariants({
   variants: {
     size: {
       sm: {
-        root: 'text-xs gap-sm',
+        root: 'text-xs py-md gap-sm',
         header: 'gap-xs',
         description: 'text-xs',
       },
       md: {
-        root: 'text-sm gap-md',
+        root: 'text-sm py-lg gap-md',
         header: 'gap-sm',
         description: 'text-xs',
       },
       lg: {
-        root: 'text-base gap-lg',
+        root: 'text-base py-xl gap-lg',
         header: 'gap-md',
         description: 'text-sm',
       },

@@ -45,42 +45,35 @@ export const radius = {
  */
 export const shadow = {
   DEFAULT: [
-    '0 0 0 1px #0000000F',
     '0 2px 3px -2px #0000000F',
     '0 3px 12px -4px rgba(0, 0, 0, 0.1)',
     '0 4px 16px -8px rgba(0, 0, 0, 0.1)',
   ],
   xs: [
-    '0 0 0 1px #0000000F',
     '0 0 0 0.5px rgba(0, 0, 0, 0.05)',
     '0 1px 1px 0 #00000006',
     '0 2px 1px -1px rgba(0, 0, 0, 0.05)',
     '0 1px 3px 0 rgba(0, 0, 0, 0.05)',
   ],
   sm: [
-    '0 0 0 1px #0000000F',
     '0 2px 3px -2px #0000000F',
     '0 3px 12px -4px rgba(0, 0, 0, 0.1)',
     '0 4px 16px -8px rgba(0, 0, 0, 0.1)',
   ],
   md: [
-    '0 0 0 1px #0000000F',
     '0 8px 40px rgba(0, 0, 0, 0.05)',
     '0 12px 32px -16px #0000000F',
   ],
   lg: [
-    '0 0 0 1px #0000000F',
     '0 12px 60px rgba(0, 0, 0, 0.15)',
     '0 12px 32px -16px #0000001F',
   ],
   xl: [
-    '0 0 0 1px #0000000F',
     '0 12px 60px rgba(0, 0, 0, 0.15)',
     '0 16px 64px #00000006',
     '0 16px 36px -20px #00000031',
   ],
   inner: [
-    'inset 0 0 0 1px #0000001F',
     'inset 0 1.5px 2px 0 #00000006',
     'inset 0 1.5px 2px 0 rgba(0, 0, 0, 0.1)',
   ],

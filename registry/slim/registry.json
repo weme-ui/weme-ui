@@ -1120,6 +1120,89 @@
       ]
     },
     {
+      "name": "switch",
+      "type": "component",
+      "title": "Switch",
+      "description": "A toggle switch with thumb indicators, loading state, and form field context support.",
+      "meta": {
+        "docs.category": "form",
+        "docs.categoryLabel": "Form"
+      },
+      "registryDependencies": [
+        "form-field",
+        "icon"
+      ],
+      "files": [
+        {
+          "type": "component",
+          "path": "src/components/switch/switch.vue"
+        },
+        {
+          "type": "component",
+          "path": "src/components/switch/switch.props.ts"
+        },
+        {
+          "type": "component",
+          "path": "src/components/switch/switch.style.ts"
+        },
+        {
+          "type": "component",
+          "kind": "doc",
+          "path": "src/components/switch/README.md"
+        },
+        {
+          "type": "component",
+          "kind": "test",
+          "path": "src/components/switch/switch.test.ts"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/switch/examples/usage.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/switch/examples/variants.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/switch/examples/inverted.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/switch/examples/sizes.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/switch/examples/radius.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/switch/examples/with-icon.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/switch/examples/loading.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/switch/examples/disabled.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/switch/examples/unstyled.vue"
+        }
+      ]
+    },
+    {
       "name": "number-input",
       "type": "component",
       "title": "Number Input",

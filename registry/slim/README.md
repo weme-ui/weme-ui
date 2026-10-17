@@ -113,7 +113,6 @@ pnpm dlx @weme-ui/weme-ui add weme-ui/slim/button
   - [ ] `radio-group`
   - [ ] `rich-text`
   - [ ] `slider`
-  - [ ] `switch`
   - [x] `autocomplete`
   - [x] `combobox`
   - [x] `form-field`
@@ -126,6 +125,7 @@ pnpm dlx @weme-ui/weme-ui add weme-ui/slim/button
   - [x] `pin-input`
   - [x] `range-input`
   - [x] `select`
+  - [x] `switch`
   - [x] `tag-group`
   - [x] `tags-input`
   - [x] `textarea`

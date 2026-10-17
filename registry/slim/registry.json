@@ -1120,6 +1120,94 @@
       ]
     },
     {
+      "name": "checkbox",
+      "type": "component",
+      "title": "Checkbox",
+      "description": "A checkbox with label, description, indicator placement, and indeterminate state support.",
+      "meta": {
+        "docs.category": "form",
+        "docs.categoryLabel": "Form"
+      },
+      "registryDependencies": [
+        "form-field",
+        "icon"
+      ],
+      "files": [
+        {
+          "type": "component",
+          "path": "src/components/checkbox/checkbox.vue"
+        },
+        {
+          "type": "component",
+          "path": "src/components/checkbox/checkbox.props.ts"
+        },
+        {
+          "type": "component",
+          "path": "src/components/checkbox/checkbox.style.ts"
+        },
+        {
+          "type": "component",
+          "kind": "doc",
+          "path": "src/components/checkbox/README.md"
+        },
+        {
+          "type": "component",
+          "kind": "test",
+          "path": "src/components/checkbox/checkbox.test.ts"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/checkbox/examples/usage.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/checkbox/examples/variants.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/checkbox/examples/sizes.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/checkbox/examples/radius.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/checkbox/examples/indicator.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/checkbox/examples/with-description.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/checkbox/examples/indeterminate.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/checkbox/examples/inverted.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/checkbox/examples/disabled.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/checkbox/examples/unstyled.vue"
+        }
+      ]
+    },
+    {
       "name": "switch",
       "type": "component",
       "title": "Switch",

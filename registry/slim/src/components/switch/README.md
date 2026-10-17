@@ -1,6 +1,6 @@
 # Switch
 
-开关控件。须放在 `FormField` 内使用，通过 Context 合并 `id` / `aria-*` / `data-*`。基于 Reka UI `SwitchRoot` / `SwitchThumb`，支持外观变体、尺寸、圆角、加载态与拇指指示图标。
+开关控件。须放在 `FormField` 内使用，通过 Context 合并 `id` / `aria-*` / `data-*`。基于 Reka UI `SwitchRoot` / `SwitchThumb`，支持外观变体、尺寸、圆角、加载态与拇指指示图标。泛型 `T extends boolean`（默认 `boolean`）用于 `modelValue` / `trueValue` / `falseValue`。
 
 ## Installation
 
@@ -16,10 +16,10 @@ pnpm dlx @weme-ui/weme-ui add weme-ui/slim/switch
 | --------------- | ----------------------------------------------------------------------------------- | ---------------------------------------------------------- | ------------------ |
 | `as`            | 根节点渲染为的元素或组件（Reka UI `Primitive`）                                     | `AsTag \| Component`                                       | —                  |
 | `asChild`       | 合并到子元素上渲染（Reka UI composition）                                           | `boolean`                                                  | —                  |
-| `modelValue`    | 受控值；可用 `v-model`                                                              | `boolean \| null`                                          | —                  |
-| `defaultValue`  | 非受控初始值                                                                        | `boolean`                                                  | —                  |
-| `trueValue`     | 开启时写入 model 的值                                                               | `boolean`                                                  | `true`             |
-| `falseValue`    | 关闭时写入 model 的值                                                               | `boolean`                                                  | `false`            |
+| `modelValue`    | 受控值；可用 `v-model`                                                              | `T \| null`                                                | —                  |
+| `defaultValue`  | 非受控初始值                                                                        | `T`                                                        | —                  |
+| `trueValue`     | 开启时写入 model 的值                                                               | `T`                                                        | `true`             |
+| `falseValue`    | 关闭时写入 model 的值                                                               | `T`                                                        | `false`            |
 | `value`         | 随表单提交的 `name` 对应值                                                          | `string`                                                   | —                  |
 | `variant`       | 外观变体                                                                            | `'soft' \| 'outline'`                                      | `'soft'`           |
 | `size`          | 尺寸                                                                                | `'sm' \| 'md' \| 'lg'`                                     | `'md'`             |
@@ -41,9 +41,10 @@ pnpm dlx @weme-ui/weme-ui add weme-ui/slim/switch
 
 ## Events
 
-| 事件                | 说明                               | 参数             |
-| ------------------- | ---------------------------------- | ---------------- |
-| `update:modelValue` | 开关状态变更时触发（含 `v-model`） | `value: boolean` |
+| 事件                | 说明                                                          | 参数       |
+| ------------------- | ------------------------------------------------------------- | ---------- |
+| `update:modelValue` | 开关状态变更时触发（含 `v-model`）；由 Reka `SwitchRoot` 转发 | `value: T` |
+| `change`            | `update:modelValue` 时同步触发                                | `value: T` |
 
 ## Slots
 

@@ -1,4 +1,4 @@
-<script lang="ts" setup>
+<script lang="ts" generic="T extends boolean = boolean" setup>
 import type { SwitchEmits, SwitchProps } from './switch.props'
 import { reactiveOmit } from '@vueuse/core'
 import { SwitchRoot, SwitchThumb, useForwardPropsEmits } from 'reka-ui'
@@ -13,15 +13,15 @@ defineOptions({
   inheritAttrs: false,
 })
 
-const props = withDefaults(defineProps<SwitchProps>(), {
+const props = withDefaults(defineProps<SwitchProps<T>>(), {
   variant: 'soft',
   size: 'md',
   radius: 'full',
   loadingIcon: 'ri:loader-line',
 })
 
-const emits = defineEmits<SwitchEmits>()
-const delegated = reactiveOmit(props, 'size', 'radius', 'indicatorIcon', 'loadingIcon', 'checkedIcon', 'uncheckedIcon', 'unstyled', 'loading', 'invalid', 'class', 'ui')
+const emits = defineEmits<SwitchEmits<T>>()
+const delegated = reactiveOmit(props, 'variant', 'size', 'radius', 'inverted', 'indicatorIcon', 'loadingIcon', 'checkedIcon', 'uncheckedIcon', 'unstyled', 'loading', 'invalid', 'class', 'ui')
 const forwarded = useForwardPropsEmits(delegated, emits)
 
 const bindings = useFormFieldBindings()
@@ -54,6 +54,10 @@ function handlePress(value: boolean) {
     pressed.value = value
   })
 }
+
+function handleUpdate(value: boolean) {
+  emits('change', value as T)
+}
 </script>
 
 <template>
@@ -67,6 +71,7 @@ function handlePress(value: boolean) {
     @mouseup.stop="handlePress(false)"
     @touchstart.stop="handlePress(true)"
     @touchend.stop="handlePress(false)"
+    @update:model-value="handleUpdate"
   >
     <SwitchThumb :class="cn(ui.thumb(), props.ui?.thumb)">
       <slot v-if="hasIndicator" name="indicator" :checked="checked">

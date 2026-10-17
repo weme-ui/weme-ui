@@ -3,7 +3,7 @@ import type { SwitchRootEmits, SwitchRootProps } from 'reka-ui'
 import type { SwitchStyleProps, SwitchStyleSlots } from './switch.style'
 import type { FormFieldSharedProps } from '~/composables/use-form-field-context'
 
-export interface SwitchProps extends SwitchRootProps, Omit<FormFieldSharedProps, 'readonly'> {
+export interface SwitchProps<T extends boolean> extends SwitchRootProps<T>, Omit<FormFieldSharedProps, 'readonly'> {
   variant?: SwitchStyleProps['variant']
   size?: SwitchStyleProps['size']
   radius?: SwitchStyleProps['radius']
@@ -17,6 +17,6 @@ export interface SwitchProps extends SwitchRootProps, Omit<FormFieldSharedProps,
   ui?: Partial<SwitchStyleSlots>
 }
 
-export interface SwitchEmits extends SwitchRootEmits {
-  change: [value: boolean]
+export interface SwitchEmits<T extends boolean> extends SwitchRootEmits<T> {
+  change: [value: T]
 }

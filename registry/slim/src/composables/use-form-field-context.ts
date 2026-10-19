@@ -5,13 +5,16 @@ import { isBoolDataAttrValue, toBoolAriaValue } from '~/utils/props'
 
 export type FormFieldDataAttributes = Record<`data-${'disabled' | 'valid' | 'invalid' | 'focused' | 'touched' | 'dirty' | 'filled'}`, '' | undefined>
 
+export interface FormFieldControlRegistration {
+  id?: () => string | undefined
+}
+
 export interface FormFieldContextValue {
   fieldId: ComputedRef<string | undefined>
   labelId: ComputedRef<string | undefined>
   descriptionId: ComputedRef<string | undefined>
   name: Ref<string | undefined>
   required: Ref<boolean>
-  readonly: Ref<boolean>
   loading: ComputedRef<boolean>
   valid: ComputedRef<boolean>
   invalid: ComputedRef<boolean>
@@ -21,7 +24,8 @@ export interface FormFieldContextValue {
   focused: Ref<boolean>
   disabled: ComputedRef<boolean>
   dataAttributes: ComputedRef<FormFieldDataAttributes>
-  orientation: Ref<'horizontal' | 'vertical'>
+  getControlId: () => string | undefined
+  registryControl: (control: FormFieldControlRegistration) => () => void
   handleControlFocus: () => void
   handleControlBlur: () => void
 }
@@ -32,7 +36,6 @@ export interface FormFieldSharedProps {
   loading?: boolean
   required?: boolean
   disabled?: boolean
-  readonly?: boolean
   invalid?: boolean
 }
 
@@ -45,14 +48,13 @@ function mergeIds(consumerValue: unknown, fieldValue: string | undefined) {
   return [consumerValue as string | undefined, fieldValue].filter(Boolean).join(' ') || undefined
 }
 
-export function useFormFieldBindings() {
+export function useFormFieldBindings(props?: FormFieldSharedProps) {
   const attrs = useAttrs()
 
   const {
     'aria-describedby': describedBy,
     'aria-labelledby': labelledBy,
     'aria-invalid': ariaInvalid,
-    id,
     name,
     disabled,
     required,
@@ -60,18 +62,18 @@ export function useFormFieldBindings() {
     ...rest
   } = attrs
 
-  const field = useFormFieldContext()
-  const isDisabled = field.disabled.value ?? isBoolDataAttrValue(disabled)
+  const fieldContext = useFormFieldContext()
+  const isDisabled = fieldContext.disabled.value ?? isBoolDataAttrValue(disabled)
 
   return {
     ...rest,
-    ...field.dataAttributes.value,
-    'id': field.fieldId.value ?? id as string,
-    'name': field.name.value ?? name as string,
-    'disabled': isDisabled || undefined,
-    'required': (field.required.value || isBoolDataAttrValue(required)) || undefined,
-    'aria-labelledby': mergeIds(labelledBy, field.labelId.value),
-    'aria-describedby': mergeIds(describedBy, field.descriptionId.value),
-    'aria-invalid': ariaInvalid ? toBoolAriaValue(ariaInvalid) : ((field.invalid.value && !isDisabled) || undefined),
+    ...fieldContext.dataAttributes.value,
+    'id': props?.id ?? fieldContext.getControlId(),
+    'name': fieldContext.name.value ?? name as string | undefined,
+    'disabled': props?.disabled || isDisabled || undefined,
+    'required': (props?.required || fieldContext.required.value || isBoolDataAttrValue(required)) || undefined,
+    'aria-labelledby': mergeIds(labelledBy, fieldContext.labelId.value),
+    'aria-describedby': mergeIds(describedBy, fieldContext.descriptionId.value),
+    'aria-invalid': ariaInvalid ? toBoolAriaValue(ariaInvalid) : ((fieldContext.invalid.value && !isDisabled) || undefined),
   }
 }

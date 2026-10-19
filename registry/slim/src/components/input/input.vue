@@ -2,9 +2,9 @@
 import type { InputEmits, InputProps } from './input.props'
 import { useVModel } from '@vueuse/core'
 import { Primitive } from 'reka-ui'
-import { computed, onMounted, useSlots, useTemplateRef } from 'vue'
+import { computed, onMounted, onUnmounted, useSlots, useTemplateRef } from 'vue'
 import { useFormFieldBindings, useFormFieldContext } from '~/composables/use-form-field-context'
-import { toBoolDataAttrValue, toBoolValue } from '~/utils/props'
+import { toBoolValue } from '~/utils/props'
 import { cn } from '~/utils/styles'
 import Icon from '../icon/icon.vue'
 import { useInputStyle } from './input.style'
@@ -25,7 +25,6 @@ const props = withDefaults(defineProps<InputProps>(), {
 })
 
 const emits = defineEmits<InputEmits>()
-
 const modelValue = useVModel<InputProps, 'modelValue', 'update:modelValue'>(props, 'modelValue', emits, { defaultValue: props.defaultValue })
 
 const bindings = useFormFieldBindings()
@@ -33,10 +32,10 @@ const formFieldContext = useFormFieldContext()
 
 const inputRef = useTemplateRef<HTMLInputElement>('inputRef')
 
-const loading = computed(() => formFieldContext.loading.value || props.loading)
-const disabled = computed(() => formFieldContext.disabled.value || props.disabled)
-const readonly = computed(() => formFieldContext.readonly.value || props.readonly)
-const invalid = computed(() => formFieldContext.invalid.value || props.invalid)
+const id = computed(() => props.id ?? formFieldContext.fieldId.value)
+const loading = computed(() => props.loading ?? formFieldContext.loading.value)
+const disabled = computed(() => props.disabled ?? formFieldContext.disabled.value)
+const invalid = computed(() => props.invalid ?? formFieldContext.invalid.value)
 const dataAttributes = computed(() => formFieldContext.dataAttributes.value)
 
 const countLength = computed(() => modelValue.value ? modelValue.value.toString().length : 0)
@@ -49,6 +48,24 @@ const hasSuffix = computed(() => loading.value || !!props.suffix || !!props.suff
 const hasCounter = computed(() => !disabled.value && props.countable && (props.maxLength !== undefined && props.maxLength > 0))
 const hasClean = computed(() => !disabled.value && props.clearable && modelValue.value)
 
+let unregister: (() => void) | undefined
+
+onMounted(() => {
+  unregister = formFieldContext.registryControl({
+    id: () => id.value,
+  })
+})
+
+onUnmounted(() => {
+  unregister?.()
+})
+
+onMounted(() => {
+  if (props.autoFocus) {
+    inputRef.value?.focus()
+  }
+})
+
 const ui = computed(() => useInputStyle({
   variant: props.variant,
   size: props.size,
@@ -59,12 +76,6 @@ const ui = computed(() => useInputStyle({
   overcount: overcount.value,
   unstyled: toBoolValue(props.unstyled),
 }))
-
-onMounted(() => {
-  if (props.autoFocus) {
-    inputRef.value?.focus()
-  }
-})
 
 function updateValue(value: string | null | undefined) {
   if (props.modelModifiers?.trim && (typeof value === 'string' || value === null || value === undefined))
@@ -149,8 +160,7 @@ defineExpose({
 <template>
   <Primitive
     v-bind="dataAttributes"
-    data-slot="input"
-    :data-readonly="toBoolDataAttrValue(readonly)"
+    :data-slot="$attrs['data-slot'] ?? 'input'"
     :as="as"
     :class="cn(ui.root(), props.ui?.root, props.class)"
   >
@@ -168,7 +178,6 @@ defineExpose({
       :value="modelValue"
       :placeholder="placeholder"
       :autocomplete="autocomplete"
-      :readonly="readonly"
       :class="cn(ui.input(), props.ui?.input)"
       @input="handleInput"
       @change="handleChange"

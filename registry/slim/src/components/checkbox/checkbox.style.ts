@@ -94,6 +94,7 @@ export const useCheckboxStyle = createVariants({
     variant: 'soft',
     size: 'md',
     radius: 'md',
+    align: 'start',
   },
 })
 

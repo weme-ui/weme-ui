@@ -2,9 +2,9 @@
 import type { TextareaEmits, TextareaProps } from './textarea.props'
 import { useVModel } from '@vueuse/core'
 import { Primitive } from 'reka-ui'
-import { computed, nextTick, useTemplateRef, watch } from 'vue'
+import { computed, nextTick, onMounted, onUnmounted, useTemplateRef, watch } from 'vue'
 import { useFormFieldBindings, useFormFieldContext } from '~/composables/use-form-field-context'
-import { toBoolDataAttrValue, toBoolValue } from '~/utils/props'
+import { toBoolValue } from '~/utils/props'
 import { cn } from '~/utils/styles'
 import Icon from '../icon/icon.vue'
 import { useTextareaStyle } from './textarea.style'
@@ -26,10 +26,10 @@ const formFieldContext = useFormFieldContext()
 
 const textareaRef = useTemplateRef<HTMLTextAreaElement>('textareaRef')
 
-const loading = computed(() => formFieldContext.loading.value || !!props.loading)
-const disabled = computed(() => formFieldContext.disabled.value || !!props.disabled)
-const readonly = computed(() => formFieldContext.readonly.value || !!props.readonly)
-const invalid = computed(() => formFieldContext.invalid.value || !!props.invalid)
+const id = computed(() => props.id ?? formFieldContext.fieldId.value)
+const loading = computed(() => props.loading ?? formFieldContext.loading.value)
+const disabled = computed(() => props.disabled ?? formFieldContext.disabled.value)
+const invalid = computed(() => props.invalid ?? formFieldContext.invalid.value)
 const dataAttributes = computed(() => formFieldContext.dataAttributes.value)
 
 const hasCounter = computed(() => !!props.countable && props.maxLength !== undefined)
@@ -47,6 +47,18 @@ const ui = computed(() => useTextareaStyle({
   autosize: toBoolValue(props.autoSize),
   unstyled: toBoolValue(props.unstyled),
 }))
+
+let unregister: (() => void) | undefined
+
+onMounted(() => {
+  unregister = formFieldContext.registryControl({
+    id: () => id.value,
+  })
+})
+
+onUnmounted(() => {
+  unregister?.()
+})
 
 watch(
   modelValue,
@@ -132,8 +144,7 @@ defineExpose({
 <template>
   <Primitive
     v-bind="dataAttributes"
-    data-slot="textarea"
-    :data-readonly="toBoolDataAttrValue(readonly)"
+    :data-slot="$attrs['data-slot'] ?? 'textarea'"
     :as="as"
     :class="cn(ui.root(), props.ui?.root, props.class)"
   >
@@ -143,7 +154,6 @@ defineExpose({
       :value="modelValue"
       :rows="rows"
       :placeholder="placeholder"
-      :readonly="readonly"
       :class="cn(ui.textarea(), props.ui?.textarea)"
       @input="handleInput"
       @change="handleChange"

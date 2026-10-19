@@ -2,7 +2,7 @@
 import type { NumberInputEmits, NumberInputProps } from './number-input.props'
 import { reactiveOmit } from '@vueuse/core'
 import { NumberFieldDecrement, NumberFieldIncrement, NumberFieldInput, NumberFieldRoot, useForwardProps } from 'reka-ui'
-import { computed } from 'vue'
+import { computed, onMounted, onUnmounted } from 'vue'
 import { useFormFieldBindings, useFormFieldContext } from '~/composables/use-form-field-context'
 import { toBoolValue } from '~/utils/props'
 import { cn } from '~/utils/styles'
@@ -28,12 +28,11 @@ const forwarded = useForwardProps(delegated)
 const bindings = useFormFieldBindings()
 const formFieldContext = useFormFieldContext()
 
-const id = computed(() => formFieldContext.fieldId.value || props.id)
-const name = computed(() => formFieldContext.name.value || props.name)
-const required = computed(() => formFieldContext.required.value || props.required)
-const disabled = computed(() => formFieldContext.disabled.value || props.disabled)
-const readonly = computed(() => formFieldContext.readonly.value || props.readonly)
-const invalid = computed(() => formFieldContext.invalid.value || props.invalid)
+const id = computed(() => props.id ?? formFieldContext.fieldId.value)
+const name = computed(() => props.name ?? formFieldContext.name.value)
+const required = computed(() => props.required ?? formFieldContext.required.value)
+const disabled = computed(() => props.disabled ?? formFieldContext.disabled.value)
+const invalid = computed(() => props.invalid ?? formFieldContext.invalid.value)
 const dataAttributes = computed(() => formFieldContext.dataAttributes.value)
 
 const ui = computed(() => useNumberInputStyle({
@@ -44,6 +43,18 @@ const ui = computed(() => useNumberInputStyle({
   invalid: invalid.value,
   unstyled: toBoolValue(props.unstyled),
 }))
+
+let unregister: (() => void) | undefined
+
+onMounted(() => {
+  unregister = formFieldContext.registryControl({
+    id: () => id.value,
+  })
+})
+
+onUnmounted(() => {
+  unregister?.()
+})
 
 function handleUpdate(value: number | undefined) {
   emits('update:modelValue', value)
@@ -77,7 +88,7 @@ function handleBlur(e: FocusEvent) {
       readonly,
       invalid,
     }"
-    data-slot="number-input"
+    :data-slot="$attrs['data-slot'] ?? 'number-input'"
     :class="cn(ui.root(), props.ui?.root, props.class)"
     @update:model-value="handleUpdate"
   >

@@ -2,7 +2,7 @@
 import type { SwitchEmits, SwitchProps } from './switch.props'
 import { reactiveOmit } from '@vueuse/core'
 import { SwitchRoot, SwitchThumb, useForwardPropsEmits } from 'reka-ui'
-import { computed, nextTick, ref, useSlots } from 'vue'
+import { computed, nextTick, onMounted, onUnmounted, ref, useSlots } from 'vue'
 import { useFormFieldBindings, useFormFieldContext } from '~/composables/use-form-field-context'
 import { toBoolAriaValue, toBoolValue } from '~/utils/props'
 import { cn } from '~/utils/styles'
@@ -27,8 +27,9 @@ const forwarded = useForwardPropsEmits(delegated, emits)
 const bindings = useFormFieldBindings()
 const formFieldContext = useFormFieldContext()
 
-const loading = computed(() => formFieldContext.loading.value || !!props.loading)
-const disabled = computed(() => formFieldContext.disabled.value || !!props.disabled)
+const id = computed(() => props.id ?? formFieldContext.fieldId.value)
+const loading = computed(() => props.loading ?? formFieldContext.loading.value)
+const disabled = computed(() => props.disabled ?? formFieldContext.disabled.value)
 const dataAttributes = computed(() => formFieldContext.dataAttributes.value)
 
 const slots = useSlots()
@@ -38,6 +39,18 @@ const hasUncheckedIcon = computed(() => !!props.uncheckedIcon || !!slots.uncheck
 const hasIndicator = computed(() => loading.value || !!props.indicatorIcon || !!slots.indicator || hasCheckedIcon.value || hasUncheckedIcon.value)
 
 const pressed = ref(false)
+
+let unregister: (() => void) | undefined
+
+onMounted(() => {
+  unregister = formFieldContext.registryControl({
+    id: () => id.value,
+  })
+})
+
+onUnmounted(() => {
+  unregister?.()
+})
 
 const ui = computed(() => useSwitchStyle({
   variant: props.variant,
@@ -63,7 +76,7 @@ function handleUpdate(value: boolean) {
 <template>
   <SwitchRoot
     v-slot="{ checked }"
-    data-slot="switch"
+    :data-slot="$attrs['data-slot'] ?? 'switch'"
     :aria-pressed="toBoolAriaValue(pressed)"
     v-bind="{ ...forwarded, ...bindings, ...dataAttributes }"
     :class="cn(ui.root(), props.ui?.root, props.class)"

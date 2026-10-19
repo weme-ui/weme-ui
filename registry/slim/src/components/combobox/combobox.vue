@@ -22,7 +22,7 @@ import {
   ComboboxViewport,
   useForwardProps,
 } from 'reka-ui'
-import { computed, ref, toRef, useSlots } from 'vue'
+import { computed, onMounted, onUnmounted, ref, toRef, useSlots } from 'vue'
 import { useFormFieldBindings, useFormFieldContext } from '~/composables/use-form-field-context'
 import { useGroupItems } from '~/composables/use-group-items'
 import { usePopoverContent } from '~/composables/use-popover-content'
@@ -61,9 +61,10 @@ const contentProps = toRef(() => defu(props.contentProps, {
 const bindings = useFormFieldBindings()
 const formFieldContext = useFormFieldContext()
 
-const loading = computed(() => formFieldContext.loading.value || props.loading)
-const disabled = computed(() => formFieldContext.disabled.value || props.disabled)
-const invalid = computed(() => formFieldContext.invalid.value || props.invalid)
+const id = computed(() => props.id ?? formFieldContext.fieldId.value)
+const loading = computed(() => props.loading ?? formFieldContext.loading.value)
+const disabled = computed(() => props.disabled ?? formFieldContext.disabled.value)
+const invalid = computed(() => props.invalid ?? formFieldContext.invalid.value)
 const dataAttributes = computed(() => formFieldContext.dataAttributes.value)
 
 const computedValues = computed(() => props.modelValue)
@@ -94,6 +95,18 @@ const morph = usePopoverContent({
   height: 'auto',
   side: contentProps.value.side,
   sideOffset: contentProps.value.sideOffset,
+})
+
+let unregister: (() => void) | undefined
+
+onMounted(() => {
+  unregister = formFieldContext.registryControl({
+    id: () => id.value,
+  })
+})
+
+onUnmounted(() => {
+  unregister?.()
 })
 
 const ui = computed(() => useComboboxStyle({
@@ -139,7 +152,7 @@ function handleBlur(e: FocusEvent) {
   <ComboboxRoot
     v-bind="{ ...forwarded, ...dataAttributes }"
     v-model:open="open"
-    data-slot="combobox"
+    :data-slot="$attrs['data-slot'] ?? 'combobox'"
     :class="cn(ui.root(), props.ui?.root, props.class)"
     @update:model-value="handleUpdate"
   >

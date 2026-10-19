@@ -2,9 +2,9 @@
 import type { TagsInputEmits, TagsInputProps } from './tags-input.props'
 import { reactiveOmit } from '@vueuse/core'
 import { TagsInputClear, TagsInputInput, TagsInputItem, TagsInputItemDelete, TagsInputItemText, TagsInputRoot, useForwardExpose, useForwardPropsEmits } from 'reka-ui'
-import { computed, useSlots } from 'vue'
+import { computed, onMounted, onUnmounted, useSlots } from 'vue'
 import { useFormFieldBindings, useFormFieldContext } from '~/composables/use-form-field-context'
-import { toBoolDataAttrValue, toBoolValue } from '~/utils/props'
+import { toBoolValue } from '~/utils/props'
 import { cn } from '~/utils/styles'
 import Icon from '../icon/icon.vue'
 import { useTagsInputStyle } from './tags-input.style'
@@ -17,16 +17,16 @@ const props = withDefaults(defineProps<TagsInputProps>(), {
 })
 
 const emits = defineEmits<TagsInputEmits>()
-const delegated = reactiveOmit(props, 'variant', 'radius', 'size', 'prefix', 'prefixIcon', 'clearIcon', 'clearable', 'unstyled', 'class', 'ui', 'required', 'disabled', 'readonly', 'invalid')
+const delegated = reactiveOmit(props, 'variant', 'radius', 'size', 'prefix', 'prefixIcon', 'clearIcon', 'clearable', 'unstyled', 'class', 'ui', 'required', 'disabled', 'invalid')
 const forwarded = useForwardPropsEmits(delegated, emits)
 
 const bindings = useFormFieldBindings()
 const formFieldContext = useFormFieldContext()
 
+const id = computed(() => props.id ?? formFieldContext.fieldId.value)
 const inputValue = computed(() => props.modelValue ?? [])
-const disabled = computed(() => formFieldContext.disabled.value || props.disabled)
-const readonly = computed(() => formFieldContext.readonly.value || props.readonly)
-const invalid = computed(() => formFieldContext.invalid.value || props.invalid)
+const disabled = computed(() => props.disabled ?? formFieldContext.disabled.value)
+const invalid = computed(() => props.invalid ?? formFieldContext.invalid.value)
 const dataAttributes = computed(() => formFieldContext.dataAttributes.value)
 
 const slots = useSlots()
@@ -44,6 +44,18 @@ const ui = computed(() => useTagsInputStyle({
   hasPrefix: hasPrefix.value,
 }))
 
+let unregister: (() => void) | undefined
+
+onMounted(() => {
+  unregister = formFieldContext.registryControl({
+    id: () => id.value,
+  })
+})
+
+onUnmounted(() => {
+  unregister?.()
+})
+
 function handleFocus(e: FocusEvent) {
   formFieldContext.handleControlFocus()
   emits('focus', e)
@@ -60,8 +72,7 @@ useForwardExpose()
 <template>
   <TagsInputRoot
     v-bind="{ ...forwarded, ...dataAttributes }"
-    data-slot="tags-input"
-    :data-readonly="toBoolDataAttrValue(readonly)"
+    :data-slot="$attrs['data-slot'] ?? 'tags-input'"
     :class="cn(ui.root(), props.ui?.root, props.class)"
   >
     <span v-if="hasPrefix" :class="cn(ui.prefix(), props.ui?.prefix)">
@@ -89,7 +100,6 @@ useForwardExpose()
     <TagsInputInput
       v-bind="bindings"
       :placeholder="placeholder"
-      :readonly="readonly"
       :class="cn(ui.input(), props.ui?.input)"
       @focus="handleFocus"
       @blur="handleBlur"

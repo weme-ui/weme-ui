@@ -2,7 +2,7 @@
 import type { PinInputEmits, PinInputProps } from './pin-input.props'
 import { reactiveOmit } from '@vueuse/core'
 import { PinInputInput, PinInputRoot, useForwardPropsEmits } from 'reka-ui'
-import { computed } from 'vue'
+import { computed, onMounted, onUnmounted } from 'vue'
 import { useFormFieldContext } from '~/composables/use-form-field-context'
 import { toBoolValue } from '~/utils/props'
 import { cn } from '~/utils/styles'
@@ -18,17 +18,16 @@ const props = withDefaults(defineProps<PinInputProps>(), {
 })
 
 const emits = defineEmits<PinInputEmits>()
-const delegated = reactiveOmit(props, 'id', 'name', 'required', 'disabled', 'readonly', 'invalid', 'variant', 'size', 'radius', 'length', 'unstyled', 'class', 'ui')
+const delegated = reactiveOmit(props, 'id', 'name', 'required', 'disabled', 'invalid', 'variant', 'size', 'radius', 'length', 'unstyled', 'class', 'ui')
 const forwarded = useForwardPropsEmits(delegated, emits)
 
 const formFieldContext = useFormFieldContext()
 
-const id = computed(() => formFieldContext.fieldId.value || props.id)
-const name = computed(() => formFieldContext.name.value || props.name)
-const required = computed(() => formFieldContext.required.value || props.required)
-const disabled = computed(() => formFieldContext.disabled.value || props.disabled)
-const readonly = computed(() => formFieldContext.readonly.value || props.readonly)
-const invalid = computed(() => formFieldContext.invalid.value || props.invalid)
+const id = computed(() => props.id ?? formFieldContext.fieldId.value)
+const name = computed(() => props.name ?? formFieldContext.name.value)
+const required = computed(() => props.required ?? formFieldContext.required.value)
+const disabled = computed(() => props.disabled ?? formFieldContext.disabled.value)
+const invalid = computed(() => props.invalid ?? formFieldContext.invalid.value)
 const dataAttributes = computed(() => formFieldContext.dataAttributes.value)
 
 const ui = computed(() => usePinInputStyle({
@@ -39,6 +38,18 @@ const ui = computed(() => usePinInputStyle({
   invalid: invalid.value,
   unstyled: toBoolValue(props.unstyled),
 }))
+
+let unregister: (() => void) | undefined
+
+onMounted(() => {
+  unregister = formFieldContext.registryControl({
+    id: () => id.value,
+  })
+})
+
+onUnmounted(() => {
+  unregister?.()
+})
 
 function handleFocus(e: FocusEvent) {
   formFieldContext.handleControlFocus()
@@ -60,9 +71,8 @@ function handleBlur(e: FocusEvent) {
       name,
       required,
       disabled,
-      readonly,
     }"
-    data-slot="pin-input"
+    :data-slot="$attrs['data-slot'] ?? 'pin-input'"
     :class="cn(ui.root(), props.ui?.root, props.class)"
   >
     <PinInputInput

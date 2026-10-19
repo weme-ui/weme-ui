@@ -12,7 +12,7 @@ import {
   useFilter,
   useForwardPropsEmits,
 } from 'reka-ui'
-import { computed } from 'vue'
+import { computed, onMounted, onUnmounted } from 'vue'
 import { useFormFieldBindings, useFormFieldContext } from '~/composables/use-form-field-context'
 import { useGroupItems } from '~/composables/use-group-items'
 import { toBoolValue } from '~/utils/props'
@@ -45,8 +45,9 @@ const formFieldContext = useFormFieldContext()
 
 const filterTerm = defineModel<string>('filter', { default: '' })
 
-const disabled = computed(() => formFieldContext.disabled.value || props.disabled)
-const invalid = computed(() => formFieldContext.invalid.value || props.invalid)
+const id = computed(() => props.id ?? formFieldContext.fieldId.value)
+const disabled = computed(() => props.disabled ?? formFieldContext.disabled.value)
+const invalid = computed(() => props.invalid ?? formFieldContext.invalid.value)
 const dataAttributes = computed(() => formFieldContext.dataAttributes.value)
 const computedValues = computed(() => props.modelValue)
 
@@ -85,6 +86,18 @@ const ui = computed(() => useListboxStyle({
   invalid: invalid.value,
 }))
 
+let unregister: (() => void) | undefined
+
+onMounted(() => {
+  unregister = formFieldContext.registryControl({
+    id: () => id.value,
+  })
+})
+
+onUnmounted(() => {
+  unregister?.()
+})
+
 function handleUpdate(value: any) {
   emits('update:modelValue', value)
   emits('change', value)
@@ -108,7 +121,7 @@ function handleBlur(e: FocusEvent) {
 <template>
   <ListboxRoot
     v-bind="forwarded"
-    data-slot="listbox"
+    :data-slot="$attrs['data-slot'] ?? 'listbox'"
     :class="cn(ui.root(), props.ui?.root, props.class)"
     @update:model-value="handleUpdate"
   >

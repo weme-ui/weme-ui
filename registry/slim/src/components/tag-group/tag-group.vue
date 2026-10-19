@@ -2,7 +2,7 @@
 import type { TagGroupEmits, TagGroupItemValue, TagGroupProps } from './tag-group.props'
 import { reactiveOmit } from '@vueuse/core'
 import { TagGroupItem, TagGroupItemDelete, TagGroupItemText, TagGroupRoot, useForwardPropsEmits } from 'reka-ui'
-import { computed, ref } from 'vue'
+import { computed, onMounted, onUnmounted, ref } from 'vue'
 import { useFormFieldContext } from '~/composables/use-form-field-context'
 import { toBoolAriaValue } from '~/utils/props'
 import { cn } from '~/utils/styles'
@@ -23,9 +23,9 @@ const forwarded = useForwardPropsEmits(delegated, emits)
 
 const formFieldContext = useFormFieldContext()
 
-const id = computed(() => formFieldContext.fieldId.value || props.id)
-const name = computed(() => formFieldContext.name.value || props.name)
-const disabled = computed(() => formFieldContext.disabled.value || props.disabled)
+const id = computed(() => props.id ?? formFieldContext.fieldId.value)
+const name = computed(() => props.name ?? formFieldContext.name.value)
+const disabled = computed(() => props.disabled ?? formFieldContext.disabled.value)
 
 const pressedItem = ref<TagGroupItemValue | null>(null)
 
@@ -38,6 +38,18 @@ const ui = computed(() => useTagGroupStyle({
   selectable: props.selectionMode && props.selectionMode !== 'none',
 }))
 
+let unregister: (() => void) | undefined
+
+onMounted(() => {
+  unregister = formFieldContext.registryControl({
+    id: () => id.value,
+  })
+})
+
+onUnmounted(() => {
+  unregister?.()
+})
+
 function handleItemPress(item: TagGroupItemValue | null) {
   pressedItem.value = item
 }
@@ -49,7 +61,7 @@ function handleUpdate(value: TagGroupItemValue | TagGroupItemValue[] | undefined
 
 <template>
   <TagGroupRoot
-    data-slot="tag-group"
+    :data-slot="$attrs['data-slot'] ?? 'tag-group'"
     v-bind="forwarded"
     :class="cn(ui.root(), props.ui?.root, props.class)"
     @update:model-value="handleUpdate"

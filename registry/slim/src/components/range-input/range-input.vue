@@ -2,7 +2,7 @@
 import type { RangeInputEmits, RangeInputProps, RangeInputValue } from './range-input.props'
 import { useVModel } from '@vueuse/core'
 import { Primitive } from 'reka-ui'
-import { computed, useSlots } from 'vue'
+import { computed, onMounted, onUnmounted, useSlots } from 'vue'
 import { useFormFieldBindings, useFormFieldContext } from '~/composables/use-form-field-context'
 import { toBoolValue } from '~/utils/props'
 import { cn } from '~/utils/styles'
@@ -33,8 +33,8 @@ const toModelValue = computed(() => modelValue.value?.[1] ?? null)
 const fromPlaceholder = computed(() => props.fromPlaceholder)
 const toPlaceholder = computed(() => props.toPlaceholder)
 
+const id = computed(() => props.id ?? formFieldContext.fieldId.value)
 const disabled = computed(() => formFieldContext.disabled.value || props.disabled)
-const readonly = computed(() => formFieldContext.readonly.value || props.readonly)
 const invalid = computed(() => formFieldContext.invalid.value || props.invalid)
 const dataAttributes = computed(() => formFieldContext.dataAttributes.value)
 
@@ -51,6 +51,18 @@ const ui = computed(() => useRangeInputStyle({
   invalid: invalid.value,
   unstyled: toBoolValue(props.unstyled),
 }))
+
+let unregister: (() => void) | undefined
+
+onMounted(() => {
+  unregister = formFieldContext.registryControl({
+    id: () => id.value,
+  })
+})
+
+onUnmounted(() => {
+  unregister?.()
+})
 
 function transformValue(range: 'from' | 'to', value: string | number | null | undefined): RangeInputValue {
   const n = Number.parseFloat(value as any)
@@ -98,7 +110,7 @@ function handleBlur(e: FocusEvent) {
 <template>
   <Primitive
     v-bind="dataAttributes"
-    data-slot="range-input"
+    :data-slot="$attrs['data-slot'] ?? 'range-input'"
     :as="as"
     :as-child="asChild"
     :class="cn(ui.root(), props.ui?.root, props.class)"
@@ -114,7 +126,6 @@ function handleBlur(e: FocusEvent) {
         v-bind="{
           ...bindings,
           value: fromModelValue,
-          readonly,
           placeholder: fromPlaceholder,
         }"
         :class="cn(ui.fromInput(), props.ui?.fromInput)"
@@ -141,7 +152,6 @@ function handleBlur(e: FocusEvent) {
           id: undefined,
           name: undefined,
           value: toModelValue,
-          readonly,
           placeholder: toPlaceholder,
         }"
         :class="cn(ui.fromInput(), props.ui?.fromInput)"

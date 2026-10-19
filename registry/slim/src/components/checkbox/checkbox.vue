@@ -2,7 +2,7 @@
 import type { CheckboxEmits, CheckboxProps } from './checkbox.props'
 import { reactiveOmit } from '@vueuse/core'
 import { CheckboxIndicator, CheckboxRoot, Label, useForwardPropsEmits, VisuallyHidden } from 'reka-ui'
-import { computed, useSlots } from 'vue'
+import { computed, onMounted, onUnmounted, useSlots } from 'vue'
 import { useFormFieldBindings, useFormFieldContext } from '~/composables/use-form-field-context'
 import { toBoolValue } from '~/utils/props'
 import { cn } from '~/utils/styles'
@@ -26,11 +26,11 @@ const emits = defineEmits<CheckboxEmits<T>>()
 const delegated = reactiveOmit(props, 'variant', 'size', 'radius', 'align', 'indicator', 'checkedIcon', 'indeterminateIcon', 'checkedIconClass', 'indeterminateIconClass', 'label', 'description', 'unstyled', 'class', 'ui')
 const forwarded = useForwardPropsEmits(delegated, emits)
 
-const bindings = useFormFieldBindings()
+const bindings = useFormFieldBindings(props)
 const formFieldContext = useFormFieldContext()
 
-const id = computed(() => formFieldContext.fieldId.value || props.id)
-const disabled = computed(() => formFieldContext.disabled.value || !!props.disabled)
+const id = computed(() => props.id ?? formFieldContext.fieldId.value)
+const disabled = computed(() => props.disabled ?? formFieldContext.disabled.value)
 const dataAttributes = computed(() => formFieldContext.dataAttributes.value)
 
 const slots = useSlots()
@@ -38,6 +38,18 @@ const slots = useSlots()
 const hasLabel = computed(() => !!props.label || !!slots.label)
 const hasDescription = computed(() => !!props.description || !!slots.description)
 const hasContent = computed(() => hasLabel.value || hasDescription.value)
+
+let unregister: (() => void) | undefined
+
+onMounted(() => {
+  unregister = formFieldContext.registryControl({
+    id: () => id.value,
+  })
+})
+
+onUnmounted(() => {
+  unregister?.()
+})
 
 const ui = computed(() => useCheckboxStyle({
   variant: props.variant,
@@ -66,7 +78,7 @@ function handleUpdate(value: boolean | 'indeterminate') {
   <CheckboxRoot
     v-slot="{ state }"
     v-bind="{ ...forwarded, ...bindings, ...dataAttributes }"
-    data-slot="checkbox"
+    :data-slot="$attrs['data-slot'] ?? 'checkbox'"
     :data-indicator="indicator"
     :class="cn(ui.root(), props.ui?.root, props.class)"
     @update:model-value="handleUpdate"

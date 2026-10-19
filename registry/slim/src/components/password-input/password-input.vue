@@ -37,7 +37,7 @@ function handleToggleVisibility() {
 <template>
   <Input
     v-bind="forwarded"
-    data-slot="password-input"
+    :data-slot="$attrs['data-slot'] ?? 'password-input'"
     :type="type"
     :class="cn(ui.root(), props.ui?.root, props.class)"
   >

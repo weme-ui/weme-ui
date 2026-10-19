@@ -1,7 +1,7 @@
 <script lang="ts" generic="T extends boolean = boolean" setup>
 import type { SwitchEmits, SwitchProps } from './switch.props'
 import { reactiveOmit } from '@vueuse/core'
-import { SwitchRoot, SwitchThumb, useForwardPropsEmits } from 'reka-ui'
+import { SwitchRoot, SwitchThumb, useForwardExpose, useForwardPropsEmits } from 'reka-ui'
 import { computed, nextTick, onMounted, onUnmounted, ref, useSlots } from 'vue'
 import { useFormFieldBindings, useFormFieldContext } from '~/composables/use-form-field-context'
 import { toBoolAriaValue, toBoolValue } from '~/utils/props'
@@ -26,6 +26,7 @@ const forwarded = useForwardPropsEmits(delegated, emits)
 
 const bindings = useFormFieldBindings()
 const formFieldContext = useFormFieldContext()
+const { forwardRef, currentElement } = useForwardExpose()
 
 const id = computed(() => props.id ?? formFieldContext.fieldId.value)
 const loading = computed(() => props.loading ?? formFieldContext.loading.value)
@@ -45,6 +46,8 @@ let unregister: (() => void) | undefined
 onMounted(() => {
   unregister = formFieldContext.registryControl({
     id: () => id.value,
+    element: () => currentElement.value,
+    getValue: () => pressed.value,
   })
 })
 
@@ -76,6 +79,7 @@ function handleUpdate(value: boolean) {
 <template>
   <SwitchRoot
     v-slot="{ checked }"
+    :ref="forwardRef"
     :data-slot="$attrs['data-slot'] ?? 'switch'"
     :aria-pressed="toBoolAriaValue(pressed)"
     v-bind="{ ...forwarded, ...bindings, ...dataAttributes }"

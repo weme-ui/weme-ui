@@ -53,6 +53,8 @@ let unregister: (() => void) | undefined
 onMounted(() => {
   unregister = formFieldContext.registryControl({
     id: () => id.value,
+    element: () => inputRef.value,
+    getValue: () => modelValue.value,
   })
 })
 
@@ -63,6 +65,7 @@ onUnmounted(() => {
 onMounted(() => {
   if (props.autoFocus) {
     inputRef.value?.focus()
+    formFieldContext.handleControlFocus()
   }
 })
 
@@ -143,12 +146,19 @@ function handleClean() {
 }
 
 function handleFocus(e: FocusEvent) {
+  if (formFieldContext.focused.value)
+    return
+
   formFieldContext.handleControlFocus()
   emits('focus', e)
 }
 
 function handleBlur(e: FocusEvent) {
-  formFieldContext.handleControlBlur()
+  if (!formFieldContext.focused.value)
+    return
+
+  const value = (e.target as HTMLInputElement).value
+  formFieldContext.handleControlBlur({ value })
   emits('blur', e)
 }
 
@@ -160,8 +170,8 @@ defineExpose({
 <template>
   <Primitive
     v-bind="dataAttributes"
-    :data-slot="$attrs['data-slot'] ?? 'input'"
     :as="as"
+    :data-slot="$attrs['data-slot'] ?? 'input'"
     :class="cn(ui.root(), props.ui?.root, props.class)"
   >
     <span v-if="hasPrefix" :class="cn(ui.prefix(), props.ui?.prefix)">

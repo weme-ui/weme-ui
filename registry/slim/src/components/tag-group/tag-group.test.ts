@@ -1,5 +1,5 @@
 import type { TagGroupItem, TagGroupItemValue } from './tag-group.props'
-import type { AnyFormApi } from '~/composables/use-form-context'
+import type { FormApi } from '~/composables/use-form-context'
 import { mount } from '@vue/test-utils'
 import { describe, expect, it } from 'vitest'
 import { axe } from 'vitest-axe'
@@ -29,7 +29,7 @@ function mountTagGroup(tagGroupProps: Record<string, unknown> = {}) {
       const form = useForm({
         defaultValues: { tags: model.value ?? '' },
         onSubmit: async () => {},
-      }) as AnyFormApi
+      }) as FormApi
 
       return () => h(Form, { form }, () =>
         h(FormField, { name: 'tags', label: 'Tags' }, {

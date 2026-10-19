@@ -1,6 +1,6 @@
 import type { VueWrapper } from '@vue/test-utils'
 import type { ComboboxItems, ComboboxValue } from './combobox.props'
-import type { AnyFormApi } from '~/composables/use-form-context'
+import type { FormApi } from '~/composables/use-form-context'
 import { mount } from '@vue/test-utils'
 import { describe, expect, it } from 'vitest'
 import { axe } from 'vitest-axe'
@@ -32,7 +32,7 @@ function mountCombobox(inputProps: Record<string, unknown> = {}) {
       const form = useForm({
         defaultValues: { fruit: model.value },
         onSubmit: async () => {},
-      }) as AnyFormApi
+      }) as FormApi
 
       return () => h(Form, { form }, () =>
         h(FormField, { name: 'fruit', label: 'Fruit' }, {

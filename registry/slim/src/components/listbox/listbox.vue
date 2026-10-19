@@ -10,6 +10,7 @@ import {
   ListboxItemIndicator,
   ListboxRoot,
   useFilter,
+  useForwardExpose,
   useForwardPropsEmits,
 } from 'reka-ui'
 import { computed, onMounted, onUnmounted } from 'vue'
@@ -52,6 +53,7 @@ const dataAttributes = computed(() => formFieldContext.dataAttributes.value)
 const computedValues = computed(() => props.modelValue)
 
 const { contains } = useFilter({ sensitivity: 'base' })
+const { forwardRef, currentElement } = useForwardExpose()
 const { groupedItems } = useGroupItems<ListboxValue, M>(props.items ?? [], computedValues)
 
 const filteredItems = computed(() => {
@@ -91,6 +93,8 @@ let unregister: (() => void) | undefined
 onMounted(() => {
   unregister = formFieldContext.registryControl({
     id: () => id.value,
+    element: () => currentElement.value,
+    getValue: () => computedValues.value,
   })
 })
 
@@ -108,12 +112,19 @@ function handleFilterUpdate(value: string) {
 }
 
 function handleFocus(e: FocusEvent) {
+  if (formFieldContext.focused.value)
+    return
+
   formFieldContext.handleControlFocus()
   emits('focus', e)
 }
 
 function handleBlur(e: FocusEvent) {
-  formFieldContext.handleControlBlur()
+  if (!formFieldContext.focused.value)
+    return
+
+  const value = (e.target as HTMLInputElement).value
+  formFieldContext.handleControlBlur({ value })
   emits('blur', e)
 }
 </script>
@@ -121,6 +132,7 @@ function handleBlur(e: FocusEvent) {
 <template>
   <ListboxRoot
     v-bind="forwarded"
+    :ref="forwardRef"
     :data-slot="$attrs['data-slot'] ?? 'listbox'"
     :class="cn(ui.root(), props.ui?.root, props.class)"
     @update:model-value="handleUpdate"

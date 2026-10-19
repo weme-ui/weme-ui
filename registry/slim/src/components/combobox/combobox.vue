@@ -20,6 +20,7 @@ import {
   ComboboxSeparator,
   ComboboxTrigger,
   ComboboxViewport,
+  useForwardExpose,
   useForwardProps,
 } from 'reka-ui'
 import { computed, onMounted, onUnmounted, ref, toRef, useSlots } from 'vue'
@@ -71,11 +72,8 @@ const computedValues = computed(() => props.modelValue)
 const computedValuesCount = computed(() => Array.isArray(computedValues.value) ? computedValues.value.length : 0)
 const isMultiple = computed(() => toBoolValue(props.multiple))
 
-const {
-  flattenedItems,
-  groupedItems,
-  selectedItem,
-} = useGroupItems<ComboboxValue, M>(props.items ?? [], computedValues)
+const { forwardRef, currentElement } = useForwardExpose()
+const { flattenedItems, groupedItems, selectedItem } = useGroupItems<ComboboxValue, M>(props.items ?? [], computedValues)
 
 const selectedIcon = selectItemProp(item => item.selectedIcon || item.icon)
 const selectedIconClass = selectItemProp(item => item.iconClass)
@@ -102,6 +100,8 @@ let unregister: (() => void) | undefined
 onMounted(() => {
   unregister = formFieldContext.registryControl({
     id: () => id.value,
+    element: () => currentElement.value,
+    getValue: () => computedValues.value,
   })
 })
 
@@ -138,12 +138,19 @@ function handleUpdate(value: any) {
 }
 
 function handleFocus(e: FocusEvent) {
+  if (formFieldContext.focused.value)
+    return
+
   formFieldContext.handleControlFocus()
   emits('focus', e)
 }
 
 function handleBlur(e: FocusEvent) {
-  formFieldContext.handleControlBlur()
+  if (!formFieldContext.focused.value)
+    return
+
+  const value = (e.target as HTMLInputElement).value
+  formFieldContext.handleControlBlur({ value })
   emits('blur', e)
 }
 </script>
@@ -151,6 +158,7 @@ function handleBlur(e: FocusEvent) {
 <template>
   <ComboboxRoot
     v-bind="{ ...forwarded, ...dataAttributes }"
+    :ref="forwardRef"
     v-model:open="open"
     :data-slot="$attrs['data-slot'] ?? 'combobox'"
     :class="cn(ui.root(), props.ui?.root, props.class)"
@@ -193,7 +201,11 @@ function handleBlur(e: FocusEvent) {
         <Icon :name="clearIcon" />
       </ComboboxCancel>
 
-      <ComboboxTrigger v-if="hasSuffix" :class="cn(ui.suffix(), props.ui?.suffix)" @click.stop>
+      <ComboboxTrigger
+        v-if="hasSuffix"
+        :id="!open ? id : undefined"
+        :class="cn(ui.suffix(), props.ui?.suffix)" @click.stop
+      >
         <slot name="suffix">
           <Icon v-if="loading" :name="loadingIcon" :class="cn(ui.suffixIcon(), props.ui?.suffixIcon)" />
           <Icon v-else-if="suffixIcon" :name="suffixIcon" :class="cn(ui.suffixIcon(), props.ui?.suffixIcon)" />

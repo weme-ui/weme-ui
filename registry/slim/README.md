@@ -103,8 +103,6 @@ pnpm dlx @weme-ui/weme-ui add weme-ui/slim/button
 
 - **Form**
   - [ ] `cascader`
-  - [ ] `checkbox-group`
-  - [ ] `checkbox`
   - [ ] `color-picker`
   - [ ] `color-swatch-picker`
   - [ ] `date-picker`
@@ -114,6 +112,8 @@ pnpm dlx @weme-ui/weme-ui add weme-ui/slim/button
   - [ ] `rich-text`
   - [ ] `slider`
   - [x] `autocomplete`
+  - [x] `checkbox-group`
+  - [x] `checkbox`
   - [x] `combobox`
   - [x] `form-field`
   - [x] `form`

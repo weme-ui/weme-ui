@@ -19,6 +19,7 @@ import {
   AutocompleteSeparator,
   AutocompleteTrigger,
   AutocompleteViewport,
+  useForwardExpose,
   useForwardProps,
 } from 'reka-ui'
 import { computed, onMounted, onUnmounted, ref, toRef, useSlots } from 'vue'
@@ -70,19 +71,17 @@ const disabled = computed(() => props.disabled ?? formFieldContext.disabled.valu
 const invalid = computed(() => props.invalid ?? formFieldContext.invalid.value)
 const dataAttributes = computed(() => formFieldContext.dataAttributes.value)
 
-const value = computed(() => props.modelValue)
+const modelValue = computed(() => props.modelValue)
 
-const {
-  groupedItems,
-  selectedItem,
-} = useGroupItems(props.items ?? [], value)
+const { groupedItems, selectedItem } = useGroupItems(props.items ?? [], modelValue)
+const { forwardRef, currentElement } = useForwardExpose()
 
 const selectedIcon = computed(() => selectedItem.value?.selectedIcon || selectedItem.value?.icon)
 
 const slots = useSlots()
 
 const hasPrefix = computed(() => !!selectedIcon.value || !!props.prefix || !!props.prefixIcon || !!slots.prefix)
-const hasClean = computed(() => !disabled.value && props.clearable && value.value !== undefined)
+const hasClean = computed(() => !disabled.value && props.clearable && modelValue.value !== undefined)
 
 const open = ref(false)
 
@@ -98,6 +97,8 @@ let unregister: (() => void) | undefined
 onMounted(() => {
   unregister = formFieldContext.registryControl({
     id: () => id.value,
+    element: () => currentElement.value,
+    getValue: () => modelValue.value,
   })
 })
 
@@ -124,18 +125,26 @@ function handleUpdate(value?: AutocompleteValue) {
 }
 
 function handleFocus(e: FocusEvent) {
+  if (formFieldContext.focused.value)
+    return
+
   formFieldContext.handleControlFocus()
   emits('focus', e)
 }
 
 function handleBlur(e: FocusEvent) {
-  formFieldContext.handleControlBlur()
+  if (!formFieldContext.focused.value)
+    return
+
+  const value = (e.target as HTMLInputElement).value
+  formFieldContext.handleControlBlur({ value })
   emits('blur', e)
 }
 </script>
 
 <template>
   <AutocompleteRoot
+    :ref="forwardRef"
     v-bind="{ ...forwarded, ...dataAttributes }"
     v-model:open="open"
     :data-slot="$attrs['data-slot'] ?? 'autocomplete'"

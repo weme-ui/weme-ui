@@ -53,6 +53,8 @@ let unregister: (() => void) | undefined
 onMounted(() => {
   unregister = formFieldContext.registryControl({
     id: () => id.value,
+    element: () => textareaRef.value,
+    getValue: () => modelValue.value,
   })
 })
 
@@ -107,12 +109,19 @@ function handleChange(e: Event) {
 }
 
 function handleFocus(e: FocusEvent) {
+  if (formFieldContext.focused.value)
+    return
+
   formFieldContext.handleControlFocus()
   emits('focus', e)
 }
 
 function handleBlur(e: FocusEvent) {
-  formFieldContext.handleControlBlur()
+  if (!formFieldContext.focused.value)
+    return
+
+  const value = (e.target as HTMLTextAreaElement).value
+  formFieldContext.handleControlBlur({ value })
   emits('blur', e)
 }
 

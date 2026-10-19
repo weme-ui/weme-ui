@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import type { PinInputEmits, PinInputProps } from './pin-input.props'
 import { reactiveOmit } from '@vueuse/core'
-import { PinInputInput, PinInputRoot, useForwardPropsEmits } from 'reka-ui'
+import { PinInputInput, PinInputRoot, useForwardExpose, useForwardPropsEmits } from 'reka-ui'
 import { computed, onMounted, onUnmounted } from 'vue'
 import { useFormFieldContext } from '~/composables/use-form-field-context'
 import { toBoolValue } from '~/utils/props'
@@ -22,6 +22,7 @@ const delegated = reactiveOmit(props, 'id', 'name', 'required', 'disabled', 'inv
 const forwarded = useForwardPropsEmits(delegated, emits)
 
 const formFieldContext = useFormFieldContext()
+const { forwardRef, currentElement } = useForwardExpose()
 
 const id = computed(() => props.id ?? formFieldContext.fieldId.value)
 const name = computed(() => props.name ?? formFieldContext.name.value)
@@ -29,6 +30,8 @@ const required = computed(() => props.required ?? formFieldContext.required.valu
 const disabled = computed(() => props.disabled ?? formFieldContext.disabled.value)
 const invalid = computed(() => props.invalid ?? formFieldContext.invalid.value)
 const dataAttributes = computed(() => formFieldContext.dataAttributes.value)
+
+const modelValue = computed(() => props.modelValue)
 
 const ui = computed(() => usePinInputStyle({
   variant: props.variant,
@@ -44,6 +47,8 @@ let unregister: (() => void) | undefined
 onMounted(() => {
   unregister = formFieldContext.registryControl({
     id: () => id.value,
+    element: () => currentElement.value,
+    getValue: () => modelValue.value,
   })
 })
 
@@ -52,12 +57,19 @@ onUnmounted(() => {
 })
 
 function handleFocus(e: FocusEvent) {
+  if (formFieldContext.focused.value)
+    return
+
   formFieldContext.handleControlFocus()
   emits('focus', e)
 }
 
 function handleBlur(e: FocusEvent) {
-  formFieldContext.handleControlBlur()
+  if (!formFieldContext.focused.value)
+    return
+
+  const value = (e.target as HTMLInputElement).value
+  formFieldContext.handleControlBlur({ value })
   emits('blur', e)
 }
 </script>
@@ -72,6 +84,7 @@ function handleBlur(e: FocusEvent) {
       required,
       disabled,
     }"
+    :ref="forwardRef"
     :data-slot="$attrs['data-slot'] ?? 'pin-input'"
     :class="cn(ui.root(), props.ui?.root, props.class)"
   >

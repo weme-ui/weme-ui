@@ -30,8 +30,7 @@ const items: ComboboxItems = [
         radius="full"
         prefix-icon="ri:search-line"
         placeholder="Search drinks…"
-        multiple
-        @update:model-value="field.api.handleChange"
+        @change="field.api.handleChange"
       />
     </FormField>
   </Form>

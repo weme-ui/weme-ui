@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import type { RangeInputEmits, RangeInputProps, RangeInputValue } from './range-input.props'
 import { useVModel } from '@vueuse/core'
-import { Primitive } from 'reka-ui'
+import { Primitive, useForwardExpose } from 'reka-ui'
 import { computed, onMounted, onUnmounted, useSlots } from 'vue'
 import { useFormFieldBindings, useFormFieldContext } from '~/composables/use-form-field-context'
 import { toBoolValue } from '~/utils/props'
@@ -26,6 +26,7 @@ const modelValue = useVModel<RangeInputProps, 'modelValue', 'update:modelValue'>
 
 const bindings = useFormFieldBindings()
 const formFieldContext = useFormFieldContext()
+const { forwardRef, currentElement } = useForwardExpose()
 
 const fromModelValue = computed(() => modelValue.value?.[0] ?? null)
 const toModelValue = computed(() => modelValue.value?.[1] ?? null)
@@ -57,6 +58,8 @@ let unregister: (() => void) | undefined
 onMounted(() => {
   unregister = formFieldContext.registryControl({
     id: () => id.value,
+    element: () => currentElement.value,
+    getValue: () => modelValue.value,
   })
 })
 
@@ -97,12 +100,19 @@ function handleChange(range: 'from' | 'to', e: Event) {
 }
 
 function handleFocus(e: FocusEvent) {
+  if (formFieldContext.focused.value)
+    return
+
   formFieldContext.handleControlFocus()
   emits('focus', e)
 }
 
 function handleBlur(e: FocusEvent) {
-  formFieldContext.handleControlBlur()
+  if (!formFieldContext.focused.value)
+    return
+
+  const value = (e.target as HTMLInputElement).value
+  formFieldContext.handleControlBlur({ value })
   emits('blur', e)
 }
 </script>
@@ -110,6 +120,7 @@ function handleBlur(e: FocusEvent) {
 <template>
   <Primitive
     v-bind="dataAttributes"
+    :ref="forwardRef"
     :data-slot="$attrs['data-slot'] ?? 'range-input'"
     :as="as"
     :as-child="asChild"

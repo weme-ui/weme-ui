@@ -22,6 +22,7 @@ const forwarded = useForwardPropsEmits(delegated, emits)
 
 const bindings = useFormFieldBindings()
 const formFieldContext = useFormFieldContext()
+const { forwardRef, currentElement } = useForwardExpose()
 
 const id = computed(() => props.id ?? formFieldContext.fieldId.value)
 const inputValue = computed(() => props.modelValue ?? [])
@@ -49,6 +50,8 @@ let unregister: (() => void) | undefined
 onMounted(() => {
   unregister = formFieldContext.registryControl({
     id: () => id.value,
+    element: () => currentElement.value,
+    getValue: () => inputValue.value,
   })
 })
 
@@ -57,21 +60,27 @@ onUnmounted(() => {
 })
 
 function handleFocus(e: FocusEvent) {
+  if (formFieldContext.focused.value)
+    return
+
   formFieldContext.handleControlFocus()
   emits('focus', e)
 }
 
 function handleBlur(e: FocusEvent) {
-  formFieldContext.handleControlBlur()
+  if (!formFieldContext.focused.value)
+    return
+
+  const value = (e.target as HTMLInputElement).value
+  formFieldContext.handleControlBlur({ value })
   emits('blur', e)
 }
-
-useForwardExpose()
 </script>
 
 <template>
   <TagsInputRoot
     v-bind="{ ...forwarded, ...dataAttributes }"
+    :ref="forwardRef"
     :data-slot="$attrs['data-slot'] ?? 'tags-input'"
     :class="cn(ui.root(), props.ui?.root, props.class)"
   >

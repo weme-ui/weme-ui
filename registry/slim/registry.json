@@ -1208,6 +1208,79 @@
       ]
     },
     {
+      "name": "checkbox-group",
+      "type": "component",
+      "title": "Checkbox Group",
+      "description": "A group of checkboxes driven by an items list, with shared variants and form field context.",
+      "meta": {
+        "docs.category": "form",
+        "docs.categoryLabel": "Form"
+      },
+      "registryDependencies": [
+        "checkbox",
+        "form-field"
+      ],
+      "files": [
+        {
+          "type": "component",
+          "path": "src/components/checkbox-group/checkbox-group.vue"
+        },
+        {
+          "type": "component",
+          "path": "src/components/checkbox-group/checkbox-group.props.ts"
+        },
+        {
+          "type": "component",
+          "path": "src/components/checkbox-group/checkbox-group.style.ts"
+        },
+        {
+          "type": "component",
+          "kind": "doc",
+          "path": "src/components/checkbox-group/README.md"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/checkbox-group/examples/usage.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/checkbox-group/examples/variants.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/checkbox-group/examples/sizes.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/checkbox-group/examples/orientation.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/checkbox-group/examples/with-description.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/checkbox-group/examples/max.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/checkbox-group/examples/disabled.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/checkbox-group/examples/unstyled.vue"
+        }
+      ]
+    },
+    {
       "name": "switch",
       "type": "component",
       "title": "Switch",

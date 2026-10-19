@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import type { NumberInputEmits, NumberInputProps } from './number-input.props'
 import { reactiveOmit } from '@vueuse/core'
-import { NumberFieldDecrement, NumberFieldIncrement, NumberFieldInput, NumberFieldRoot, useForwardProps } from 'reka-ui'
+import { NumberFieldDecrement, NumberFieldIncrement, NumberFieldInput, NumberFieldRoot, useForwardExpose, useForwardProps } from 'reka-ui'
 import { computed, onMounted, onUnmounted } from 'vue'
 import { useFormFieldBindings, useFormFieldContext } from '~/composables/use-form-field-context'
 import { toBoolValue } from '~/utils/props'
@@ -28,12 +28,16 @@ const forwarded = useForwardProps(delegated)
 const bindings = useFormFieldBindings()
 const formFieldContext = useFormFieldContext()
 
+const { forwardRef, currentElement } = useForwardExpose()
+
 const id = computed(() => props.id ?? formFieldContext.fieldId.value)
 const name = computed(() => props.name ?? formFieldContext.name.value)
 const required = computed(() => props.required ?? formFieldContext.required.value)
 const disabled = computed(() => props.disabled ?? formFieldContext.disabled.value)
 const invalid = computed(() => props.invalid ?? formFieldContext.invalid.value)
 const dataAttributes = computed(() => formFieldContext.dataAttributes.value)
+
+const modelValue = computed(() => props.modelValue)
 
 const ui = computed(() => useNumberInputStyle({
   variant: props.variant,
@@ -49,6 +53,8 @@ let unregister: (() => void) | undefined
 onMounted(() => {
   unregister = formFieldContext.registryControl({
     id: () => id.value,
+    element: () => currentElement.value,
+    getValue: () => modelValue.value,
   })
 })
 
@@ -66,12 +72,19 @@ function handleUpdate(value: number | undefined) {
 }
 
 function handleFocus(e: FocusEvent) {
+  if (formFieldContext.focused.value)
+    return
+
   formFieldContext.handleControlFocus()
   emits('focus', e)
 }
 
 function handleBlur(e: FocusEvent) {
-  formFieldContext.handleControlBlur()
+  if (!formFieldContext.focused.value)
+    return
+
+  const value = (e.target as HTMLInputElement).value
+  formFieldContext.handleControlBlur({ value })
   emits('blur', e)
 }
 </script>
@@ -88,6 +101,7 @@ function handleBlur(e: FocusEvent) {
       readonly,
       invalid,
     }"
+    :ref="forwardRef"
     :data-slot="$attrs['data-slot'] ?? 'number-input'"
     :class="cn(ui.root(), props.ui?.root, props.class)"
     @update:model-value="handleUpdate"

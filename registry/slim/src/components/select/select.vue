@@ -17,6 +17,7 @@ import {
   SelectSeparator,
   SelectTrigger,
   SelectViewport,
+  useForwardExpose,
   useForwardProps,
 } from 'reka-ui'
 import { computed, onMounted, onUnmounted, ref, toRef, useSlots, watch } from 'vue'
@@ -68,11 +69,8 @@ const computedValues = computed(() => props.modelValue)
 const computedValuesCount = computed(() => Array.isArray(computedValues.value) ? computedValues.value.length : computedValues.value !== '' ? 1 : 0)
 const isMultiple = computed(() => toBoolValue(props.multiple))
 
-const {
-  flattenedItems,
-  groupedItems,
-  selectedItem,
-} = useGroupItems<SelectValue, M>(props.items ?? [], computedValues)
+const { forwardRef, currentElement } = useForwardExpose()
+const { flattenedItems, groupedItems, selectedItem } = useGroupItems<SelectValue, M>(props.items ?? [], computedValues)
 
 const selectedIcon = selectItemProp(item => item.selectedIcon || item.icon)
 const selectedIconClass = selectItemProp(item => item.iconClass)
@@ -112,6 +110,8 @@ let unregister: (() => void) | undefined
 onMounted(() => {
   unregister = formFieldContext.registryControl({
     id: () => id.value,
+    element: () => currentElement.value,
+    getValue: () => computedValues.value,
   })
 })
 
@@ -141,6 +141,7 @@ function handleUpdate(value: any) {
 <template>
   <SelectRoot
     v-bind="forwarded"
+    :ref="forwardRef"
     v-model:open="open"
     @update:model-value="handleUpdate"
   >

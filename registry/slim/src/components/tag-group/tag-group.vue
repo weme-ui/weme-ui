@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import type { TagGroupEmits, TagGroupItemValue, TagGroupProps } from './tag-group.props'
 import { reactiveOmit } from '@vueuse/core'
-import { TagGroupItem, TagGroupItemDelete, TagGroupItemText, TagGroupRoot, useForwardPropsEmits } from 'reka-ui'
+import { TagGroupItem, TagGroupItemDelete, TagGroupItemText, TagGroupRoot, useForwardExpose, useForwardPropsEmits } from 'reka-ui'
 import { computed, onMounted, onUnmounted, ref } from 'vue'
 import { useFormFieldContext } from '~/composables/use-form-field-context'
 import { toBoolAriaValue } from '~/utils/props'
@@ -22,6 +22,7 @@ const delegated = reactiveOmit(props, 'id', 'name', 'items', 'variant', 'radius'
 const forwarded = useForwardPropsEmits(delegated, emits)
 
 const formFieldContext = useFormFieldContext()
+const { forwardRef, currentElement } = useForwardExpose()
 
 const id = computed(() => props.id ?? formFieldContext.fieldId.value)
 const name = computed(() => props.name ?? formFieldContext.name.value)
@@ -43,6 +44,8 @@ let unregister: (() => void) | undefined
 onMounted(() => {
   unregister = formFieldContext.registryControl({
     id: () => id.value,
+    element: () => currentElement.value,
+    getValue: () => pressedItem.value,
   })
 })
 
@@ -61,8 +64,9 @@ function handleUpdate(value: TagGroupItemValue | TagGroupItemValue[] | undefined
 
 <template>
   <TagGroupRoot
-    :data-slot="$attrs['data-slot'] ?? 'tag-group'"
     v-bind="forwarded"
+    :ref="forwardRef"
+    :data-slot="$attrs['data-slot'] ?? 'tag-group'"
     :class="cn(ui.root(), props.ui?.root, props.class)"
     @update:model-value="handleUpdate"
   >

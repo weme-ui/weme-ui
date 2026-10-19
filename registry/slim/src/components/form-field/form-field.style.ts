@@ -17,22 +17,14 @@ export const useFormFieldStyle = createVariants({
 
   variants: {
     orientation: {
-      horizontal: {
-        description: 'items-center',
-      },
-      vertical: {
-        root: 'flex-col',
-      },
-    },
-    loading: {
-      true: {
-        root: 'is-loading',
-      },
+      horizontal: { description: 'items-center' },
+      vertical: { root: 'flex-col' },
     },
     disabled: {
-      true: {
-        content: 'is-disabled',
-      },
+      true: { root: 'is-disabled' },
+    },
+    loading: {
+      true: { root: 'is-loading' },
     },
   },
 

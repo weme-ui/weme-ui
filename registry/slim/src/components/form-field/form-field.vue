@@ -1,8 +1,8 @@
 <script lang="ts" setup>
 import type { FormFieldProps } from './form-field.props'
-import type { FormFieldControlRegistration, FormFieldDataAttributes } from '~/composables/use-form-field-context'
-import { Label, Presence, Primitive, useId } from 'reka-ui'
-import { computed, ref, shallowRef, toRefs, useSlots } from 'vue'
+import type { FormFieldControlDetail, FormFieldControlRegistration, FormFieldDataAttributes } from '~/composables/use-form-field-context'
+import { Label, Presence, Primitive, useForwardExpose, useId } from 'reka-ui'
+import { computed, onBeforeUnmount, onMounted, ref, shallowRef, toRefs, useSlots } from 'vue'
 import { useFormContext, useFormField } from '~/composables/use-form-context'
 import { provideFormFieldContext } from '~/composables/use-form-field-context'
 import { toBoolDataAttrValue } from '~/utils/props'
@@ -11,11 +11,6 @@ import { useFormFieldStyle } from './form-field.style'
 
 const props = withDefaults(defineProps<FormFieldProps>(), {
   orientation: 'vertical',
-  loading: false,
-  required: false,
-  disabled: false,
-  readonly: false,
-  invalid: false,
   nativeLabel: true,
 })
 
@@ -25,25 +20,33 @@ if (!formContext) {
   throw new Error('FormField must be used within a Form')
 }
 
-const { name, required, disabled, loading, invalid, orientation } = toRefs(props)
+const slots = useSlots()
+
+const hasLabel = computed(() => !!props.label || !!slots.label)
+const hasDescription = computed(() => !!props.description || !!slots.description)
+const hasHint = computed(() => !!props.hint || !!slots.hint)
+const hasHelp = computed(() => !!props.help || !!slots.help)
+
+const fallbackId = useId(undefined, 'field')
+const fieldId = computed(() => fallbackId)
+const labelId = computed(() => hasLabel.value ? `${fieldId.value}-label` : undefined)
+const descriptionId = computed(() => hasDescription.value ? `${fieldId.value}-desc` : undefined)
+
+const {
+  name,
+  disabled,
+  required,
+  invalid,
+  loading,
+  orientation,
+} = toRefs(props)
 
 const field = useFormField({
   name: name.value,
   form: formContext.form,
 })
 
-const slots = useSlots()
-
-const hasLabel = computed(() => !!props.label || !!slots.label)
-const hasHint = computed(() => !!props.hint || !!slots.hint)
-const hasDescription = computed(() => !!props.description || !!slots.description)
-const hasHelp = computed(() => !!props.help || !!slots.help)
-
-const fallbackId = useId(undefined, 'form-field')
-const fieldId = computed(() => props.id ?? fallbackId)
-const labelId = computed(() => hasLabel.value ? `${fieldId.value}-label` : undefined)
-const descriptionId = computed(() => hasDescription.value ? `${fieldId.value}-desc` : undefined)
-
+const isFocused = ref(false)
 const isLoading = computed(() => loading.value ?? formContext.loading.value)
 const isDisabled = computed(() => disabled.value ?? formContext.disabled.value)
 const isTouched = computed(() => field.state.meta.isTouched)
@@ -52,9 +55,6 @@ const isValid = computed(() => field.state.meta.isValid)
 const isInvalid = computed(() => invalid.value || isValid.value === false)
 const isFilled = computed(() => isFilledValue(field.state.value))
 
-const control = shallowRef<FormFieldControlRegistration>()
-const focused = ref(false)
-
 const dataAttributes = computed<FormFieldDataAttributes>(() => ({
   'data-disabled': toBoolDataAttrValue(isDisabled.value),
   'data-valid': toBoolDataAttrValue(isValid.value),
@@ -62,7 +62,7 @@ const dataAttributes = computed<FormFieldDataAttributes>(() => ({
   'data-dirty': toBoolDataAttrValue(isDirty.value),
   'data-touched': toBoolDataAttrValue(isTouched.value),
   'data-filled': toBoolDataAttrValue(isFilled.value),
-  'data-focused': toBoolDataAttrValue(focused.value),
+  'data-focused': toBoolDataAttrValue(isFocused.value),
 }))
 
 const ui = computed(() => useFormFieldStyle({
@@ -70,6 +70,15 @@ const ui = computed(() => useFormFieldStyle({
   loading: isLoading.value,
   disabled: isDisabled.value,
 }))
+
+const control = shallowRef<FormFieldControlRegistration>()
+const lastReportedValue = ref<unknown>(undefined)
+
+function resolveValue(detail?: FormFieldControlDetail) {
+  if (detail)
+    return detail.value
+  return control.value ? control.value.getValue() : lastReportedValue.value
+}
 
 function isFilledValue(value: unknown): boolean {
   if (Array.isArray(value)) {
@@ -82,8 +91,29 @@ function setFocused(value: boolean) {
   if (isDisabled.value || isLoading.value)
     return
 
-  if (value !== focused.value)
-    focused.value = value
+  if (value !== isFocused.value)
+    isFocused.value = value
+}
+
+function handleLabelClick(event: MouseEvent) {
+  if (props.nativeLabel)
+    return
+
+  if ((event.target as HTMLElement | null)?.closest('button,input,select,textarea'))
+    return
+
+  focusControl()
+}
+
+function handleControlFocus() {
+  setFocused(true)
+}
+
+function handleControlBlur(detail?: FormFieldControlDetail) {
+  if (detail)
+    lastReportedValue.value = detail.value
+
+  setFocused(false)
 }
 
 function registryControl(registration: FormFieldControlRegistration) {
@@ -94,6 +124,34 @@ function registryControl(registration: FormFieldControlRegistration) {
       control.value = undefined
   }
 }
+
+function getControlId() {
+  return control.value?.id?.() ?? fieldId.value
+}
+
+function focusControl() {
+  control.value?.element()?.focus()
+}
+
+function resetField() {
+  setFocused(false)
+  lastReportedValue.value = undefined
+  formContext.form.resetField(name.value)
+}
+
+let unregisterFromForm: (() => void) | undefined
+
+onMounted(() => {
+  unregisterFromForm = formContext?.registerField({
+    name,
+    invalid: isInvalid,
+    getValue: () => resolveValue(),
+    getControlElement: () => control.value?.element() ?? undefined,
+    resetField,
+  })
+})
+
+onBeforeUnmount(() => unregisterFromForm?.())
 
 provideFormFieldContext({
   fieldId,
@@ -107,14 +165,18 @@ provideFormFieldContext({
   dirty: isDirty,
   touched: isTouched,
   filled: isFilled,
-  focused,
+  focused: isFocused,
   disabled: isDisabled,
   dataAttributes,
-  getControlId: () => control.value?.id?.() ?? fieldId.value,
+  getControlId,
+  focusControl,
+  resetField,
   registryControl,
-  handleControlFocus: () => setFocused(true),
-  handleControlBlur: () => setFocused(false),
+  handleControlFocus,
+  handleControlBlur,
 })
+
+useForwardExpose()
 </script>
 
 <template>
@@ -134,9 +196,10 @@ provideFormFieldContext({
 
         <Label
           v-if="hasLabel"
-          :id="labelId"
-          :for="nativeLabel ? fieldId : undefined"
+          :id="labelId ?? undefined"
+          :for="nativeLabel ? getControlId() : undefined"
           :class="cn(ui.label(), props.ui?.label)"
+          @click="handleLabelClick"
           @pointerdown="(event: PointerEvent) => { if (!nativeLabel) event.preventDefault() }"
         >
           <slot name="label">
@@ -162,7 +225,10 @@ provideFormFieldContext({
       <slot :field="field" :orientation="orientation" />
 
       <Presence :present="isInvalid && field.state.meta.errors.length > 0">
-        <div :class="cn(ui.errors(), props.ui?.errors)">
+        <div
+          :data-state="field.state.meta.errors.length > 0 ? 'open' : 'closed'"
+          :class="cn(ui.errors(), props.ui?.errors)"
+        >
           <slot name="errors" :errors="field.state.meta.errors">
             <ul v-if="field.state.meta.errors.length > 1">
               <li v-for="error in field.state.meta.errors" :key="error.code">

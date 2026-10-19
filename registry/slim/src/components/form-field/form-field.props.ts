@@ -3,12 +3,12 @@ import type { FormFieldStyleProps, FormFieldStyleSlots } from './form-field.styl
 import type { FormFieldSharedProps } from '~/composables/use-form-field-context'
 
 export interface FormFieldProps extends PrimitiveProps, Omit<FormFieldSharedProps, 'name'> {
-  orientation?: FormFieldStyleProps['orientation']
   name: string
   label?: string
   description?: string
   hint?: string
   help?: string
+  orientation?: FormFieldStyleProps['orientation']
   nativeLabel?: boolean
   class?: any
   ui?: Partial<FormFieldStyleSlots>

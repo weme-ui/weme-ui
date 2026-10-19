@@ -29,7 +29,7 @@ const bindings = useFormFieldBindings()
 
 ## Returns
 
-`useFormFieldContext()` 返回 `FormFieldContextValue`。
+`useFormFieldContext()` 返回 `FormFieldContextValue`（由 `createContext` 注入；未提供上下文时行为与 Reka UI `createContext` 一致）。
 
 ## provideFormFieldContext
 
@@ -39,40 +39,56 @@ const bindings = useFormFieldBindings()
 
 无参数。从 `useAttrs()` 与 `useFormFieldContext()` 合并出控件绑定对象，包含：
 
-- 透传的其余 attrs
+- 透传的其余 attrs（不含已单独处理的 `class` / `id` / `name` / `disabled` / `required` / `aria-*`）
 - `field.dataAttributes`
-- `id` / `name` / `disabled` / `required`
+- `id` / `name` / `disabled` / `required`（优先取 Context，再回退 attrs）
 - `aria-labelledby` / `aria-describedby` / `aria-invalid`（与字段 label、description、invalid 态合并）
 
 ## Types
 
+### `FormFieldSharedProps`
+
+供表单控件 props 复用的共享字段（均为可选）：`id`、`name`、`disabled`、`required`、`invalid`、`loading`。
+
+### `FormFieldControlDetail`
+
+| 字段    | 类型      | 说明       |
+| ------- | --------- | ---------- |
+| `value` | `unknown` | 控件当前值 |
+
+### `FormFieldControlRegistration`
+
+| 字段       | 类型                                     | 说明               |
+| ---------- | ---------------------------------------- | ------------------ |
+| `id`       | `() => string \| undefined`              | 可选；控件 id 读取 |
+| `element`  | `() => HTMLElement \| null \| undefined` | 控件 DOM           |
+| `getValue` | `() => unknown`                          | 读取控件当前值     |
+
 ### `FormFieldDataAttributes`
 
-`data-disabled` | `data-valid` | `data-invalid` | `data-focused` | `data-touched` | `data-dirty` | `data-filled` 映射为 `'' | undefined`。
+`data-disabled` | `data-valid` | `data-invalid` | `data-dirty` | `data-touched` | `data-filled` | `data-focused` 映射为 `'' | undefined`。
 
 ### `FormFieldContextValue`
 
-| 字段                 | 类型                                   | 说明           |
-| -------------------- | -------------------------------------- | -------------- |
-| `fieldId`            | `ComputedRef<string \| undefined>`     | 控件 id        |
-| `labelId`            | `ComputedRef<string \| undefined>`     | label id       |
-| `descriptionId`      | `ComputedRef<string \| undefined>`     | description id |
-| `name`               | `Ref<string \| undefined>`             | 字段名         |
-| `required`           | `Ref<boolean>`                         | 是否必填       |
-| `readonly`           | `Ref<boolean>`                         | 是否只读       |
-| `loading`            | `ComputedRef<boolean>`                 | 加载中         |
-| `valid`              | `ComputedRef<boolean>`                 | 校验通过       |
-| `invalid`            | `ComputedRef<boolean>`                 | 校验失败       |
-| `dirty`              | `ComputedRef<boolean>`                 | 已修改         |
-| `touched`            | `ComputedRef<boolean>`                 | 已触碰         |
-| `filled`             | `ComputedRef<boolean>`                 | 已填写         |
-| `focused`            | `Ref<boolean>`                         | 聚焦           |
-| `disabled`           | `ComputedRef<boolean>`                 | 禁用           |
-| `dataAttributes`     | `ComputedRef<FormFieldDataAttributes>` | 状态 data 属性 |
-| `orientation`        | `Ref<'horizontal' \| 'vertical'>`      | 布局方向       |
-| `handleControlFocus` | `() => void`                           | 控件 focus     |
-| `handleControlBlur`  | `() => void`                           | 控件 blur      |
-
-### `FormFieldSharedProps`
-
-供表单控件 props 复用的共享字段：`id`、`name`、`loading`、`required`、`disabled`、`readonly`、`invalid`（均为可选）。
+| 字段                 | 类型                                                    | 说明                              |
+| -------------------- | ------------------------------------------------------- | --------------------------------- |
+| `fieldId`            | `ComputedRef<string \| undefined>`                      | 字段 id                           |
+| `labelId`            | `ComputedRef<string \| undefined>`                      | label id                          |
+| `descriptionId`      | `ComputedRef<string \| undefined>`                      | description id                    |
+| `name`               | `Ref<string \| undefined>`                              | 字段名                            |
+| `disabled`           | `ComputedRef<boolean>`                                  | 禁用                              |
+| `required`           | `Ref<boolean>`                                          | 是否必填                          |
+| `loading`            | `ComputedRef<boolean>`                                  | 加载中                            |
+| `valid`              | `ComputedRef<boolean>`                                  | 校验通过                          |
+| `invalid`            | `ComputedRef<boolean>`                                  | 校验失败                          |
+| `dirty`              | `ComputedRef<boolean>`                                  | 已修改                            |
+| `touched`            | `ComputedRef<boolean>`                                  | 已触碰                            |
+| `filled`             | `ComputedRef<boolean>`                                  | 已填写                            |
+| `focused`            | `Ref<boolean>`                                          | 聚焦                              |
+| `dataAttributes`     | `ComputedRef<FormFieldDataAttributes>`                  | 状态 data 属性                    |
+| `getControlId`       | `() => string \| undefined`                             | 已注册控件 id，否则回退 `fieldId` |
+| `focusControl`       | `() => void`                                            | 聚焦已注册控件                    |
+| `resetField`         | `() => void`                                            | 重置字段状态与值                  |
+| `registryControl`    | `(control: FormFieldControlRegistration) => () => void` | 注册控件；返回取消注册函数        |
+| `handleControlFocus` | `() => void`                                            | 控件 focus                        |
+| `handleControlBlur`  | `(detail?: FormFieldControlDetail) => void`             | 控件 blur；可选携带当前值         |

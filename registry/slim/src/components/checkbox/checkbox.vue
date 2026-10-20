@@ -1,7 +1,7 @@
 <script lang="ts" generic="T extends boolean = boolean" setup>
 import type { CheckboxEmits, CheckboxProps } from './checkbox.props'
 import { reactiveOmit } from '@vueuse/core'
-import { CheckboxIndicator, CheckboxRoot, Label, useForwardPropsEmits, VisuallyHidden } from 'reka-ui'
+import { CheckboxIndicator, CheckboxRoot, Label, useForwardExpose, useForwardPropsEmits, VisuallyHidden } from 'reka-ui'
 import { computed, onMounted, onUnmounted, useSlots } from 'vue'
 import { useFormFieldBindings, useFormFieldContext } from '~/composables/use-form-field-context'
 import { toBoolValue } from '~/utils/props'
@@ -20,18 +20,21 @@ const props = withDefaults(defineProps<CheckboxProps<T>>(), {
   indicator: 'start',
   checkedIcon: 'ri:check-line',
   indeterminateIcon: 'ri:subtract-line',
+  inGroup: false,
 })
 
 const emits = defineEmits<CheckboxEmits<T>>()
 const delegated = reactiveOmit(props, 'variant', 'size', 'radius', 'align', 'indicator', 'checkedIcon', 'indeterminateIcon', 'checkedIconClass', 'indeterminateIconClass', 'label', 'description', 'unstyled', 'class', 'ui')
 const forwarded = useForwardPropsEmits(delegated, emits)
 
-const bindings = useFormFieldBindings(props)
+const bindings = props.inGroup ? {} : useFormFieldBindings()
 const formFieldContext = useFormFieldContext()
+const { forwardRef, currentElement } = useForwardExpose()
 
 const id = computed(() => props.id ?? formFieldContext.fieldId.value)
 const disabled = computed(() => props.disabled ?? formFieldContext.disabled.value)
 const dataAttributes = computed(() => formFieldContext.dataAttributes.value)
+const modelValue = computed(() => props.modelValue)
 
 const slots = useSlots()
 
@@ -42,8 +45,13 @@ const hasContent = computed(() => hasLabel.value || hasDescription.value)
 let unregister: (() => void) | undefined
 
 onMounted(() => {
+  if (props.inGroup)
+    return
+
   unregister = formFieldContext.registryControl({
     id: () => id.value,
+    element: () => currentElement.value,
+    getValue: () => modelValue.value,
   })
 })
 
@@ -77,7 +85,12 @@ function handleUpdate(value: boolean | 'indeterminate') {
 <template>
   <CheckboxRoot
     v-slot="{ state }"
-    v-bind="{ ...forwarded, ...bindings, ...dataAttributes }"
+    v-bind="{
+      ...forwarded,
+      ...bindings,
+      ...dataAttributes,
+    }"
+    :ref="forwardRef"
     :data-slot="$attrs['data-slot'] ?? 'checkbox'"
     :data-indicator="indicator"
     :class="cn(ui.root(), props.ui?.root, props.class)"
@@ -104,7 +117,11 @@ function handleUpdate(value: boolean | 'indeterminate') {
 
     <div v-if="hasContent" :data-state="getState(state)" :class="cn(ui.content(), props.ui?.content)">
       <slot v-if="hasLabel" name="label" :state="getState(state)">
-        <Label :for="id" :class="cn(ui.label(), props.ui?.label)">
+        <Label
+          :as="inGroup !== false ? 'span' : 'label'"
+          :for="inGroup !== false ? undefined : id"
+          :class="cn(ui.label(), props.ui?.label)"
+        >
           {{ label }}
         </Label>
       </slot>

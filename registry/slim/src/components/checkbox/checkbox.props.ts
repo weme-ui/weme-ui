@@ -17,6 +17,7 @@ export interface CheckboxProps<T extends boolean> extends CheckboxRootProps<T>, 
   description?: string
   unstyled?: boolean
   inverted?: boolean
+  inGroup?: boolean
   class?: any
   ui?: Partial<CheckboxStyleSlots>
 }

@@ -236,16 +236,6 @@ describe('tags-input', () => {
       wrapper.unmount()
     })
 
-    it('sets data-readonly when readonly', () => {
-      const { wrapper } = mountTagsInput({
-        modelValue: ['design'],
-        readonly: true,
-      })
-      expect(wrapper.get('[data-slot="tags-input"]').attributes('data-readonly')).toBe('')
-      expect(wrapper.get('input').attributes('readonly')).toBeDefined()
-      wrapper.unmount()
-    })
-
     it('emits focus and blur from the input', async () => {
       const { wrapper } = mountTagsInput({ modelValue: [] })
       const input = wrapper.get('input')

@@ -54,6 +54,11 @@
         },
         {
           "type": "composable",
+          "kind": "test",
+          "path": "src/composables/use-form-context.test.ts"
+        },
+        {
+          "type": "composable",
           "kind": "doc",
           "path": "src/composables/use-form-context.md"
         }
@@ -68,6 +73,11 @@
         {
           "type": "composable",
           "path": "src/composables/use-form-field-context.ts"
+        },
+        {
+          "type": "composable",
+          "kind": "test",
+          "path": "src/composables/use-form-field-context.test.ts"
         },
         {
           "type": "composable",
@@ -91,6 +101,11 @@
         },
         {
           "type": "composable",
+          "kind": "test",
+          "path": "src/composables/use-group-items.test.ts"
+        },
+        {
+          "type": "composable",
           "kind": "doc",
           "path": "src/composables/use-group-items.md"
         }
@@ -108,6 +123,11 @@
         {
           "type": "composable",
           "path": "src/composables/use-popover-content.ts"
+        },
+        {
+          "type": "composable",
+          "kind": "test",
+          "path": "src/composables/use-popover-content.test.ts"
         },
         {
           "type": "composable",
@@ -163,6 +183,11 @@
           "type": "component",
           "kind": "doc",
           "path": "src/components/config-provider/README.md"
+        },
+        {
+          "type": "component",
+          "kind": "test",
+          "path": "src/components/config-provider/config-provider.test.ts"
         }
       ]
     },
@@ -1277,6 +1302,11 @@
           "type": "component",
           "kind": "example",
           "path": "src/components/checkbox-group/examples/unstyled.vue"
+        },
+        {
+          "type": "component",
+          "kind": "test",
+          "path": "src/components/checkbox-group/checkbox-group.test.ts"
         }
       ]
     },
@@ -1846,6 +1876,11 @@
           "type": "component",
           "kind": "example",
           "path": "src/components/animated-select-icon/examples/fallback-icon.vue"
+        },
+        {
+          "type": "component",
+          "kind": "test",
+          "path": "src/components/animated-select-icon/animated-select-icon.test.ts"
         }
       ]
     },

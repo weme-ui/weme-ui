@@ -1,9 +1,9 @@
 <script lang="ts" setup>
 import type { CheckboxGroupEmits, CheckboxGroupProps, CheckboxGroupValue } from './checkbox-group.props'
 import { reactivePick } from '@vueuse/core'
-import { CheckboxGroupRoot, useForwardPropsEmits } from 'reka-ui'
-import { computed } from 'vue'
-import { useFormFieldContext } from '~/composables/use-form-field-context'
+import { CheckboxGroupRoot, useForwardExpose, useForwardPropsEmits } from 'reka-ui'
+import { computed, onMounted, onUnmounted } from 'vue'
+import { useFormFieldBindings, useFormFieldContext } from '~/composables/use-form-field-context'
 import { toBoolValue } from '~/utils/props'
 import { cn } from '~/utils/styles'
 import Checkbox from '../checkbox/checkbox.vue'
@@ -21,13 +21,31 @@ const emits = defineEmits<CheckboxGroupEmits>()
 const delegated = reactivePick(props, 'as', 'defaultValue', 'disabled', 'dir', 'loop', 'max', 'modelValue', 'name', 'required', 'orientation', 'rovingFocus')
 const forwarded = useForwardPropsEmits(delegated, emits)
 
+const checkboxProps = reactivePick(props, 'variant', 'size', 'radius', 'align', 'indicator', 'inverted', 'unstyled')
+
+const bindings = useFormFieldBindings()
 const formFieldContext = useFormFieldContext()
+const { forwardRef, currentElement } = useForwardExpose()
 
 const id = computed(() => props.id ?? formFieldContext.fieldId.value)
 const name = computed(() => props.name ?? formFieldContext.name.value)
 const disabled = computed(() => props.disabled ?? formFieldContext.disabled.value)
-const required = computed(() => props.required ?? formFieldContext.required.value)
 const dataAttributes = computed(() => formFieldContext.dataAttributes.value)
+const modelValue = computed(() => props.modelValue)
+
+let unregister: (() => void) | undefined
+
+onMounted(() => {
+  unregister = formFieldContext.registryControl({
+    id: () => id.value,
+    element: () => currentElement.value,
+    getValue: () => modelValue.value,
+  })
+})
+
+onUnmounted(() => {
+  unregister?.()
+})
 
 const ui = computed(() => useCheckboxGroupStyle({
   variant: props.variant,
@@ -47,28 +65,25 @@ function handleUpdate(value: CheckboxGroupValue[]) {
 
 <template>
   <CheckboxGroupRoot
-    v-bind="{ ...forwarded, ...dataAttributes }"
-    :id="id"
-    :name="name"
-    :disabled="disabled"
-    :required="required"
+    v-bind="{
+      ...forwarded,
+      ...bindings,
+      ...dataAttributes,
+    }"
+    :ref="forwardRef"
     :data-slot="$attrs['data-slot'] ?? 'checkbox-group'"
     :class="cn(ui.root(), props.ui?.root, props.class)"
     @update:model-value="handleUpdate"
   >
     <template v-for="item in items" :key="item.value">
       <Checkbox
-        :disabled="item.disabled || disabled"
-        :variant="variant"
-        :size="size"
-        :radius="radius"
-        :align="align"
-        :indicator="indicator"
-        :inverted="inverted"
-        :unstyled="unstyled"
+        v-bind="checkboxProps"
+        :id="`${id}-${item.value}`"
+        :name="`${name}[]`"
+        :value="item.value"
         :label="item.label"
         :description="item.description"
-        :value="item.value"
+        :disabled="item.disabled || disabled"
         :indeterminate-icon="item.indeterminateIcon || indeterminateIcon"
         :indeterminate-icon-class="item.indeterminateIconClass || indeterminateIconClass"
         :checked-icon="item.checkedIcon || checkedIcon"
@@ -82,6 +97,7 @@ function handleUpdate(value: CheckboxGroupValue[]) {
           label: cn(ui.label(), props.ui?.label),
           description: cn(ui.description(), props.ui?.description),
         }"
+        in-group
       >
         <template v-if="!!$slots.indicator" #indicator="{ state }">
           <slot name="indicator" :state="state" />

@@ -41,7 +41,6 @@ pnpm dlx @weme-ui/weme-ui add weme-ui/slim/tags-input
 | `name`         | 控件 `name`；未传时回退到 FormField Context                                                                               | `string`                                                   | —                 |
 | `required`     | 是否必填；会与 FormField Context 的 `required` 合并                                                                       | `boolean`                                                  | —                 |
 | `disabled`     | 是否禁用；会与 FormField Context 的 `disabled` 合并                                                                       | `boolean`                                                  | —                 |
-| `readonly`     | 是否只读；会与 FormField Context 的 `readonly` 合并                                                                       | `boolean`                                                  | —                 |
 | `invalid`      | 是否无效；会与 FormField Context 的 `invalid` 合并                                                                        | `boolean`                                                  | —                 |
 | `class`        | 根节点额外 class                                                                                                          | `any`                                                      | —                 |
 | `ui`           | 覆盖 slots 样式（`root` / `prefix` / `prefixIcon` / `item` / `itemIcon` / `itemText` / `itemDelete` / `input` / `clear`） | `Partial<TagsInputStyleSlots>`                             | —                 |
@@ -68,7 +67,7 @@ pnpm dlx @weme-ui/weme-ui add weme-ui/slim/tags-input
 
 ## Accessibility
 
-基于 Reka UI `TagsInput`（`TagsInputRoot` / `TagsInputInput` / `TagsInputItem` / `TagsInputItemDelete` / `TagsInputClear`）。通过 `useFormFieldBindings` 将 FormField Context 的 `id`、`name`、`disabled`、`required`、`aria-labelledby`、`aria-describedby`、`aria-invalid` 与字段 `data-*` 合并到输入框；根节点设置 `data-slot="tags-input"`、`data-readonly`，并透传 FormField 的 `data-*`。
+基于 Reka UI `TagsInput`（`TagsInputRoot` / `TagsInputInput` / `TagsInputItem` / `TagsInputItemDelete` / `TagsInputClear`）。通过 `useFormFieldBindings` 将 FormField Context 的 `id`、`name`、`disabled`、`required`、`aria-labelledby`、`aria-describedby`、`aria-invalid` 与字段 `data-*` 合并到输入框，并向 FormField 注册控件。根节点设置 `data-slot="tags-input"`，并透传 FormField 的 `data-*`。
 
 ### Keyboard Interactions
 

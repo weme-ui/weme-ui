@@ -1,3 +1,4 @@
+import type { FormApi } from '~/composables/use-form-context'
 import { mount } from '@vue/test-utils'
 import { describe, expect, it } from 'vitest'
 import { axe } from 'vitest-axe'
@@ -16,7 +17,7 @@ function mountNumberInput(inputProps: Record<string, unknown> = {}) {
       const form = useForm({
         defaultValues: { quantity: model.value },
         onSubmit: async () => {},
-      })
+      }) as FormApi
 
       return () => h(Form, { form }, () =>
         h(FormField, { name: 'quantity', label: 'Quantity' }, {

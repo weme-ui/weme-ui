@@ -10,7 +10,6 @@ describe('form', () => {
       const wrapper = mount(Form, {
         attachTo: document.body,
         props: {
-          name: 'demo',
           form: { handleSubmit } as any,
         },
         slots: {
@@ -19,7 +18,6 @@ describe('form', () => {
       })
 
       const form = wrapper.get('form')
-      expect(form.attributes('name')).toBe('demo')
       expect(form.attributes('novalidate')).toBeDefined()
       expect(form.attributes('data-slot')).toBe('form')
       expect(form.attributes('class')).toContain('flex')
@@ -33,7 +31,6 @@ describe('form', () => {
       const wrapper = mount(Form, {
         attachTo: document.body,
         props: {
-          name: 'demo',
           form: { handleSubmit } as any,
         },
         slots: {
@@ -51,7 +48,6 @@ describe('form', () => {
       const wrapper = mount(Form, {
         attachTo: document.body,
         props: {
-          name: 'demo',
           form: { handleSubmit } as any,
         },
         slots: {

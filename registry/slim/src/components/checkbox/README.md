@@ -34,6 +34,7 @@ pnpm dlx @weme-ui/weme-ui add weme-ui/slim/checkbox
 | `description`            | 描述文案；未传且无 `description` 插槽时不渲染描述                                                                   | `string`                                                   | —                    |
 | `inverted`               | 反色样式变体                                                                                                        | `boolean`                                                  | —                    |
 | `unstyled`               | 移除样式变体类，仅保留结构                                                                                          | `boolean`                                                  | —                    |
+| `inGroup`                | 是否作为 Checkbox Group 子项；为真时不合并 FormField bindings、不向 FormField 注册控件，标签渲染为 `span`           | `boolean`                                                  | `false`              |
 | `id`                     | 控件 `id`；未传时回退到 FormField Context                                                                           | `string`                                                   | —                    |
 | `name`                   | 控件 `name`；未传时回退到 FormField Context                                                                         | `string`                                                   | —                    |
 | `required`               | 是否必填；会与 FormField Context 的 `required` 合并                                                                 | `boolean`                                                  | —                    |
@@ -59,7 +60,7 @@ pnpm dlx @weme-ui/weme-ui add weme-ui/slim/checkbox
 
 ## Accessibility
 
-遵循 WAI-ARIA Checkbox 设计模式。基于 Reka UI `CheckboxRoot`（`role="checkbox"`、`aria-checked`，半选时为 `mixed`、`data-state`）。通过 `useFormFieldBindings` 合并 FormField Context 的 `id`、`name`、`disabled`、`required`、`aria-labelledby`、`aria-describedby`、`aria-invalid` 与字段 `data-*`。根节点设置 `data-slot="checkbox"`、`data-indicator`。内置 `Label` 通过 `for` 关联控件 `id`。
+遵循 WAI-ARIA Checkbox 设计模式。基于 Reka UI `CheckboxRoot`（`role="checkbox"`、`aria-checked`，半选时为 `mixed`、`data-state`）。`Enter` 被显式 `preventDefault`，不触发切换。`inGroup` 为假时通过 `useFormFieldBindings` 合并 FormField Context 的 `id`、`name`、`disabled`、`required`、`aria-labelledby`、`aria-describedby`、`aria-invalid` 与字段 `data-*`，并向 FormField 注册控件。根节点设置 `data-slot="checkbox"`、`data-indicator`。`inGroup` 为假时内置 `Label` 通过 `for` 关联控件 `id`；为真时标签渲染为 `span`（无 `for`）。
 
 ### Keyboard Interactions
 

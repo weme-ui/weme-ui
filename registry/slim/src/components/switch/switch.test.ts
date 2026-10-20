@@ -1,3 +1,4 @@
+import type { FormApi } from '~/composables/use-form-context'
 import { mount } from '@vue/test-utils'
 import { describe, expect, it } from 'vitest'
 import { axe } from 'vitest-axe'
@@ -19,7 +20,7 @@ function mountSwitch(
       const form = useForm({
         defaultValues: { notifications: model.value },
         onSubmit: async () => {},
-      })
+      }) as FormApi
 
       return () => h(Form, { form }, () =>
         h(FormField, { name: 'notifications', label: 'Notifications', ...fieldProps }, {

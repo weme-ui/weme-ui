@@ -33,7 +33,6 @@ pnpm dlx @weme-ui/weme-ui add weme-ui/slim/textarea
 | `loading`        | 是否加载中；会与 FormField Context 的 `loading` 合并                           | `boolean`                                        | —                  |
 | `required`       | 是否必填；会与 FormField Context 的 `required` 合并                            | `boolean`                                        | —                  |
 | `disabled`       | 是否禁用；会与 FormField Context 的 `disabled` 合并                            | `boolean`                                        | —                  |
-| `readonly`       | 是否只读；会与 FormField Context 的 `readonly` 合并                            | `boolean`                                        | —                  |
 | `invalid`        | 是否无效；会与 FormField Context 的 `invalid` 合并                             | `boolean`                                        | —                  |
 | `modelModifiers` | `v-model` modifiers（`lazy` / `trim` / `nullable` / `optional`）               | `TextareaModelModifiers`                         | —                  |
 | `class`          | 根节点额外 class                                                               | `any`                                            | —                  |
@@ -57,4 +56,4 @@ pnpm dlx @weme-ui/weme-ui add weme-ui/slim/textarea
 
 ## Accessibility
 
-原生 `<textarea>` 控件。通过 `useFormFieldBindings` 合并 FormField Context 的 `id`、`name`、`disabled`、`required`、`aria-labelledby`、`aria-describedby`、`aria-invalid` 与字段 `data-*`。根节点为 Reka UI `Primitive`，并设置 `data-slot="textarea"`、`data-readonly`。
+原生 `<textarea>` 控件。通过 `useFormFieldBindings` 合并 FormField Context 的 `id`、`name`、`disabled`、`required`、`aria-labelledby`、`aria-describedby`、`aria-invalid` 与字段 `data-*`，并向 FormField 注册控件。根节点为 Reka UI `Primitive`，并设置 `data-slot="textarea"`。

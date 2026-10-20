@@ -3,7 +3,7 @@ import { createVariants } from '~/utils/styles'
 
 export const useCheckboxGroupStyle = createVariants({
   slots: {
-    root: '',
+    root: 'flex',
     item: '',
     indicator: '',
     checkedIcon: '',
@@ -15,11 +15,20 @@ export const useCheckboxGroupStyle = createVariants({
 
   variants: {
     variant: { soft: {}, outline: {}, card: {} },
-    size: { sm: {}, md: {}, lg: {} },
+    size: {
+      sm: { root: 'py-xs gap-sm' },
+      md: { root: 'py-sm gap-md' },
+      lg: { root: 'py-md gap-lg' },
+    },
     radius: { none: {}, xs: {}, sm: {}, md: {}, lg: {}, xl: {}, full: {} },
-    orientation: { horizontal: {}, vertical: {} },
+    orientation: {
+      horizontal: {},
+      vertical: { root: 'flex-col' },
+    },
     align: { start: {}, center: {}, end: {} },
-    disabled: { true: {} },
+    disabled: {
+      true: { root: 'is-disabled' },
+    },
     inverted: { true: {} },
     unstyled: { false: {} },
   },

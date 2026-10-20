@@ -1,4 +1,5 @@
 import type { RangeInputValue } from './range-input.props'
+import type { FormApi } from '~/composables/use-form-context'
 import { mount } from '@vue/test-utils'
 import { describe, expect, it } from 'vitest'
 import { axe } from 'vitest-axe'
@@ -19,7 +20,7 @@ function mountRangeInput(inputProps: Record<string, unknown> = {}) {
       const form = useForm({
         defaultValues: { price: model.value },
         onSubmit: async () => {},
-      })
+      }) as FormApi
 
       return () => h(Form, { form }, () =>
         h(FormField, { name: 'price', label: 'Price' }, {
@@ -204,14 +205,6 @@ describe('range-input', () => {
     it('applies disabled styles when disabled', () => {
       const { wrapper } = mountRangeInput({ disabled: true })
       expect(wrapper.get('[data-slot="range-input"]').classes()).toContain('is-disabled')
-      wrapper.unmount()
-    })
-
-    it('marks inputs readonly when readonly', () => {
-      const { wrapper } = mountRangeInput({ readonly: true })
-      const inputs = wrapper.findAll('input')
-      expect(inputs[0].attributes('readonly')).toBeDefined()
-      expect(inputs[1].attributes('readonly')).toBeDefined()
       wrapper.unmount()
     })
 

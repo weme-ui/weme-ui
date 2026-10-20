@@ -32,7 +32,6 @@ pnpm dlx @weme-ui/weme-ui add weme-ui/slim/pin-input
 | `name`         | 根节点 `name`；未传时回退到 FormField Context；各输入格为 `{name}-{n}`                | `string`                                                   | —        |
 | `required`     | 是否必填；会与 FormField Context 的 `required` 合并                                   | `boolean`                                                  | —        |
 | `disabled`     | 是否禁用；会与 FormField Context 的 `disabled` 合并                                   | `boolean`                                                  | —        |
-| `readonly`     | 是否只读；会与 FormField Context 的 `readonly` 合并                                   | `boolean`                                                  | —        |
 | `invalid`      | 是否无效；会与 FormField Context 的 `invalid` 合并（影响样式）                        | `boolean`                                                  | —        |
 | `class`        | 根节点额外 class                                                                      | `any`                                                      | —        |
 | `ui`           | 覆盖 slots 样式                                                                       | `Partial<PinInputStyleSlots>`                              | —        |
@@ -48,7 +47,7 @@ pnpm dlx @weme-ui/weme-ui add weme-ui/slim/pin-input
 
 ## Accessibility
 
-基于 Reka UI `PinInput`（`PinInputRoot` / `PinInputInput`）。各输入格带 `aria-label`（如 `pin input 1 of N`）；`otp` 时使用 `autocomplete="one-time-code"`。根节点合并 FormField Context 的 `id` / `name` / `required` / `disabled` / `readonly` 与字段 `data-*`，并设置 `data-slot="pin-input"`；各格 `name` 为 `{name}-{n}`。焦点变化会调用 FormField 的 `handleControlFocus` / `handleControlBlur`。
+基于 Reka UI `PinInput`（`PinInputRoot` / `PinInputInput`）。各输入格带 `aria-label`（如 `pin input 1 of N`）；`otp` 时使用 `autocomplete="one-time-code"`。根节点合并 FormField Context 的 `id` / `name` / `required` / `disabled` 与字段 `data-*`，并向 FormField 注册控件；设置 `data-slot="pin-input"`；各格 `name` 为 `{name}-{n}`。焦点变化会调用 FormField 的 `handleControlFocus` / `handleControlBlur`。
 
 ### Keyboard Interactions
 

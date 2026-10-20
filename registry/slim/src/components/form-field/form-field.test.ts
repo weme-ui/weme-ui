@@ -1,3 +1,4 @@
+import type { FormApi } from '~/composables/use-form-context'
 import { mount } from '@vue/test-utils'
 import { describe, expect, it } from 'vitest'
 import { axe } from 'vitest-axe'
@@ -13,7 +14,7 @@ function mountFormField(props: Record<string, unknown> = {}) {
       const form = useForm({
         defaultValues: { email: '' },
         onSubmit: async () => {},
-      })
+      }) as FormApi
 
       return () => h(Form, { form }, () =>
         h(FormField, { name: 'email', label: 'Email', ...props }, {
@@ -63,7 +64,7 @@ describe('form-field', () => {
 
   it('applies loading and disabled states', () => {
     expect(useFormFieldStyle({ loading: true }).root()).toContain('is-loading')
-    expect(useFormFieldStyle({ disabled: true }).content()).toContain('is-disabled')
+    expect(useFormFieldStyle({ disabled: true }).root()).toContain('is-disabled')
   })
 
   describe('given a labeled field inside a form', () => {

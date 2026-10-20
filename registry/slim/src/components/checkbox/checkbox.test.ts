@@ -1,3 +1,4 @@
+import type { FormApi } from '~/composables/use-form-context'
 import { mount } from '@vue/test-utils'
 import { describe, expect, it } from 'vitest'
 import { axe } from 'vitest-axe'
@@ -21,7 +22,7 @@ function mountCheckbox(
       const form = useForm({
         defaultValues: { terms: model.value },
         onSubmit: async () => {},
-      })
+      }) as FormApi
 
       return () => h(Form, { form }, () =>
         h(FormField, { name: 'terms', ...fieldProps }, {
@@ -221,6 +222,18 @@ describe('checkbox', () => {
       await wrapper.get('[data-slot="checkbox"]').trigger('click')
       const emitted = wrapper.findComponent(Checkbox).emitted('change') as any[][]
       expect(emitted.at(-1)?.[0]).toBe(true)
+      wrapper.unmount()
+    })
+
+    it('renders the label as span without for when inGroup', () => {
+      const { wrapper } = mountCheckbox({
+        modelValue: false,
+        label: 'Grouped',
+        inGroup: true,
+      })
+      const label = wrapper.get('span.font-medium')
+      expect(label.element.tagName.toLowerCase()).toBe('span')
+      expect(label.attributes('for')).toBeUndefined()
       wrapper.unmount()
     })
 

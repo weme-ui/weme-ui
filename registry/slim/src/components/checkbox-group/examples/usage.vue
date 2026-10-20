@@ -20,7 +20,7 @@ const items: CheckboxGroupItem[] = [
 
 <template>
   <Form :form="form" class="max-w-sm w-full">
-    <FormField v-slot="{ field }" name="interests" label="Interests">
+    <FormField v-slot="{ field }" name="interests" label="Interests" :native-label="false">
       <CheckboxGroup
         :model-value="field.state.value"
         :items="items"

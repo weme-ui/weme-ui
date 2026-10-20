@@ -1,3 +1,4 @@
+import type { FormApi } from '~/composables/use-form-context'
 import { mount } from '@vue/test-utils'
 import { describe, expect, it } from 'vitest'
 import { axe } from 'vitest-axe'
@@ -8,7 +9,10 @@ import Form from '../form/form.vue'
 import { useTextareaStyle } from './textarea.style'
 import Textarea from './textarea.vue'
 
-function mountTextarea(textareaProps: Record<string, unknown> = {}) {
+function mountTextarea(
+  textareaProps: Record<string, unknown> = {},
+  fieldProps: Record<string, unknown> = {},
+) {
   const model = ref((textareaProps.modelValue as string | undefined) ?? '')
 
   const Root = defineComponent({
@@ -16,10 +20,10 @@ function mountTextarea(textareaProps: Record<string, unknown> = {}) {
       const form = useForm({
         defaultValues: { bio: model.value },
         onSubmit: async () => {},
-      })
+      }) as FormApi
 
       return () => h(Form, { form }, () =>
-        h(FormField, { name: 'bio', label: 'Bio' }, {
+        h(FormField, { name: 'bio', label: 'Bio', ...fieldProps }, {
           default: () => h(Textarea, {
             ...textareaProps,
             'modelValue': model.value,
@@ -194,11 +198,10 @@ describe('textarea', () => {
       wrapper.unmount()
     })
 
-    it('sets data-readonly when readonly', async () => {
-      const { wrapper } = mountTextarea({ readonly: true })
-      await nextTick()
+    it('sets data-disabled when FormField is disabled', () => {
+      const { wrapper } = mountTextarea({}, { disabled: true })
       const root = wrapper.find('[data-slot="textarea"]')
-      expect(root.attributes('data-readonly')).toBeDefined()
+      expect(root.attributes('data-disabled')).toBe('')
       wrapper.unmount()
     })
 

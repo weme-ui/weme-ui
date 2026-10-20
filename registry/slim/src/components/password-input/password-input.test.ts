@@ -158,7 +158,7 @@ describe('password-input', () => {
     it('applies the disabled style state on the input root', () => {
       const { wrapper } = mountPasswordInput({ disabled: true, modelValue: 'secret' })
       // Input applies useInputStyle({ disabled }) on the root; native disabled is FormField-driven.
-      expect(wrapper.get('[data-slot="input"]').classes()).toContain('is-disabled')
+      expect(wrapper.get('[data-slot="password-input"]').classes()).toContain('is-disabled')
       wrapper.unmount()
     })
   })

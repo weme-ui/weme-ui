@@ -35,7 +35,7 @@ pnpm dlx @weme-ui/weme-ui add weme-ui/slim/checkbox-group
 | `inverted`               | 反色样式变体                                                                                                                 | `boolean`                                                  | —            |
 | `unstyled`               | 移除样式变体类，仅保留结构                                                                                                   | `boolean`                                                  | —            |
 | `id`                     | 控件 `id` 前缀；未传时回退到 FormField Context；各项为 `` `${id}-${value}` ``                                                | `string`                                                   | —            |
-| `name`                   | 控件 `name`；未传时回退到 FormField Context                                                                                  | `string`                                                   | —            |
+| `name`                   | 控件 `name`；未传时回退到 FormField Context；各项为 `` `${name}[]` ``                                                        | `string`                                                   | —            |
 | `required`               | 是否必填；会与 FormField Context 的 `required` 合并                                                                          | `boolean`                                                  | —            |
 | `disabled`               | 是否禁用整组；会与 FormField Context 的 `disabled` 合并                                                                      | `boolean`                                                  | —            |
 | `invalid`                | 是否无效；会与 FormField Context 的 `invalid` 合并                                                                           | `boolean`                                                  | —            |
@@ -73,7 +73,7 @@ pnpm dlx @weme-ui/weme-ui add weme-ui/slim/checkbox-group
 
 ## Accessibility
 
-基于 Reka UI `CheckboxGroupRoot`（默认 `rovingFocus`）。组内各项为 `Checkbox`（`role="checkbox"`、`aria-checked`）。通过 FormField Context 合并 `name` / `disabled` / `required` 与字段 `data-*`。根节点设置 `data-slot="checkbox-group"`。达到 `max` 时未选项会带 `aria-disabled`。
+基于 Reka UI `CheckboxGroupRoot`（默认 `rovingFocus`）。组内各项为 `Checkbox`（`role="checkbox"`、`aria-checked`），并以 `in-group` 渲染：不合并 FormField bindings、不单独注册控件，标签为 `span`（无 `for`）。组根通过 `useFormFieldBindings` 合并 `id` / `name` / `disabled` / `required` / `aria-*` 与字段 `data-*`，并向 FormField 注册为控件。根节点设置 `data-slot="checkbox-group"`。达到 `max` 时未选项会带 `aria-disabled`。
 
 ### Keyboard Interactions
 

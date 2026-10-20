@@ -5,7 +5,7 @@ export const useFormFieldStyle = createVariants({
   slots: {
     root: 'flex gap-2',
     header: 'flex flex-col',
-    labelWrapper: 'flex gap-1',
+    labelWrapper: 'flex gap-1 select-none',
     label: 'text-(base highlighted nowrap) font-medium',
     description: 'text-(sm subtle)',
     required: 'text-red align-middle',

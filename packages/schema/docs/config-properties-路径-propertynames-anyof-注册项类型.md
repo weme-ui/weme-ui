@@ -22,11 +22,11 @@ registry item 的分类。决定如何归类该 item，以及解析文件时使�
 | :------------- | :---------- |
 | `"component"`  |             |
 | `"composable"` |             |
-| `"ui"`         |             |
 | `"block"`      |             |
 | `"layout"`     |             |
 | `"page"`       |             |
 | `"util"`       |             |
+| `"theme"`      |             |
 
 ## 1 Examples
 
@@ -36,10 +36,6 @@ registry item 的分类。决定如何归类该 item，以及解析文件时使�
 
 ```json
 "composable"
-```
-
-```json
-"ui"
 ```
 
 ```json
@@ -56,4 +52,8 @@ registry item 的分类。决定如何归类该 item，以及解析文件时使�
 
 ```json
 "util"
+```
+
+```json
+"theme"
 ```

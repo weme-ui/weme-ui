@@ -49,11 +49,11 @@ registry item 的分类。决定如何归类该 item，以及解析文件时使�
 | :------------- | :---------- |
 | `"component"`  |             |
 | `"composable"` |             |
-| `"ui"`         |             |
 | `"block"`      |             |
 | `"layout"`     |             |
 | `"page"`       |             |
 | `"util"`       |             |
+| `"theme"`      |             |
 
 ### type Default Value
 
@@ -74,10 +74,6 @@ The default value is:
 ```
 
 ```json
-"ui"
-```
-
-```json
 "block"
 ```
 
@@ -91,6 +87,10 @@ The default value is:
 
 ```json
 "util"
+```
+
+```json
+"theme"
 ```
 
 ## kind

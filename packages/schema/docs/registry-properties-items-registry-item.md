@@ -171,11 +171,11 @@ registry item 在所属 registry 内的唯一标识，必须为小写。
 | :------------- | :---------- |
 | `"component"`  |             |
 | `"composable"` |             |
-| `"ui"`         |             |
 | `"block"`      |             |
 | `"layout"`     |             |
 | `"page"`       |             |
 | `"util"`       |             |
+| `"theme"`      |             |
 
 ### type Default Value
 
@@ -196,10 +196,6 @@ The default value is:
 ```
 
 ```json
-"ui"
-```
-
-```json
 "block"
 ```
 
@@ -213,6 +209,10 @@ The default value is:
 
 ```json
 "util"
+```
+
+```json
+"theme"
 ```
 
 ```json

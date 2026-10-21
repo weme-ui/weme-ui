@@ -14,16 +14,16 @@ export const RegistryItemTypeEnum = v.pipe(
   v.picklist([
     'component',
     'composable',
-    'ui',
     'block',
     'layout',
     'page',
     'util',
+    'theme',
   ]),
   v.metadata({
     title: '注册项类型',
     description: 'registry item 的分类。决定如何归类该 item，以及解析文件时使用哪条默认安装路径。',
-    examples: ['component', 'composable', 'ui', 'block', 'layout', 'page', 'util'],
+    examples: ['component', 'composable', 'block', 'layout', 'page', 'util', 'theme'],
   }),
 )
 

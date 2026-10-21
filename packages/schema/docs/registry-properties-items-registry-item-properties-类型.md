@@ -22,11 +22,11 @@ undefined#/properties/items/items/properties/type
 | :------------- | :---------- |
 | `"component"`  |             |
 | `"composable"` |             |
-| `"ui"`         |             |
 | `"block"`      |             |
 | `"layout"`     |             |
 | `"page"`       |             |
 | `"util"`       |             |
+| `"theme"`      |             |
 
 ## type Default Value
 
@@ -47,10 +47,6 @@ The default value is:
 ```
 
 ```json
-"ui"
-```
-
-```json
 "block"
 ```
 
@@ -64,6 +60,10 @@ The default value is:
 
 ```json
 "util"
+```
+
+```json
+"theme"
 ```
 
 ```json

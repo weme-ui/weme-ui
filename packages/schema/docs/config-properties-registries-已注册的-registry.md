@@ -18,9 +18,9 @@ undefined#/properties/registries/items
 
 ```json
 {
-  "repo": "https://github.com/weme-ui/weme-ui",
+  "repo": "https://github.com/weme-ui/slim",
   "registry": "weme-ui/slim",
-  "prefix": "weme"
+  "prefix": "ui"
 }
 ```
 
@@ -57,7 +57,7 @@ undefined#/properties/registries/items
 ### repo Examples
 
 ```json
-"https://github.com/weme-ui/weme-ui"
+"https://github.com/weme-ui/slim"
 ```
 
 ## registry
@@ -129,5 +129,5 @@ undefined#/properties/registries/items
 ### prefix Examples
 
 ```json
-"weme"
+"ui"
 ```

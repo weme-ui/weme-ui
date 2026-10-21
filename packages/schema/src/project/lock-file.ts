@@ -23,7 +23,7 @@ export const ProjectAddedItemFileSchema = v.pipe(
       v.metadata({
         title: '源路径',
         description: '文件在 registry 包内的原始路径，相对于 registry 根目录。',
-        examples: ['button/button.vue', 'use-toggle/index.ts'],
+        examples: ['components/button/button.vue', 'composables/use-toggle.ts'],
       }),
     ),
 
@@ -43,7 +43,7 @@ export const ProjectAddedItemFileSchema = v.pipe(
     title: '已安装文件',
     description: '锁定文件中记录的单个文件：来自 registry 的源路径，以及写入项目的目标路径。',
     examples: [{
-      source: 'button/button.vue',
+      source: 'components/button/button.vue',
       dest: 'src/components/ui/button/button.vue',
     }],
   }),
@@ -64,7 +64,7 @@ export const ProjectAddedItemSchema = v.pipe(
       v.metadata({
         title: 'Registry',
         description: '该已安装 item 来源的 registry，形式为 "owner/registry"。',
-        examples: ['weme-ui/core', 'weme-ui/slim'],
+        examples: ['weme-ui/slim'],
       }),
     ),
 
@@ -76,7 +76,7 @@ export const ProjectAddedItemSchema = v.pipe(
       v.metadata({
         title: '仓库',
         description: '安装该 item 时解析所得的 registry 源仓库。',
-        examples: ['https://github.com/weme-ui/weme-ui'],
+        examples: ['https://github.com/weme-ui/slim'],
       }),
     ),
 
@@ -88,7 +88,7 @@ export const ProjectAddedItemSchema = v.pipe(
       v.metadata({
         title: '前缀',
         description: '安装该 item 时应用的前缀，用于在同一项目存在多个 registry 时隔离文件命名空间。',
-        examples: ['weme'],
+        examples: ['ui'],
       }),
     ),
 
@@ -101,7 +101,7 @@ export const ProjectAddedItemSchema = v.pipe(
         title: '文件',
         description: '为该 item 写入项目的文件列表，每项含 registry 源路径与项目目标路径。',
         examples: [{
-          source: 'button/button.vue',
+          source: 'components/button/button.vue',
           dest: 'src/components/ui/button/button.vue',
         }],
       }),
@@ -112,10 +112,10 @@ export const ProjectAddedItemSchema = v.pipe(
     description: '已安装进项目的 registry item。记录来源 registry 以及实际写入的文件。',
     examples: [{
       registry: 'weme-ui/slim',
-      repo: 'https://github.com/weme-ui/weme-ui',
-      prefix: 'weme',
+      repo: 'https://github.com/weme-ui/slim',
+      prefix: 'ui',
       files: [{
-        source: 'button/button.vue',
+        source: 'components/button/button.vue',
         dest: 'src/components/ui/button/button.vue',
       }],
     }],
@@ -156,9 +156,9 @@ export const ProjectLockFileSchema = v.pipe(
         description: '当前已安装进项目的 registry items。用于在更新时追踪来源与已安装文件位置。',
         examples: [{
           registry: 'weme-ui/slim',
-          prefix: 'weme',
+          prefix: 'ui',
           files: [{
-            source: 'button/button.vue',
+            source: 'components/button/button.vue',
             dest: 'src/components/ui/button/button.vue',
           }],
         }],
@@ -172,9 +172,9 @@ export const ProjectLockFileSchema = v.pipe(
       $schema: LOCKFILE_SCHEMA_URL,
       items: [{
         registry: 'weme-ui/slim',
-        prefix: 'weme',
+        prefix: 'ui',
         files: [{
-          source: 'button/button.vue',
+          source: 'components/button/button.vue',
           dest: 'src/components/ui/button/button.vue',
         }],
       }],

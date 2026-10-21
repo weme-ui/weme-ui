@@ -21,9 +21,9 @@ undefined#/properties/items/items/properties/prefix
 ## prefix Examples
 
 ```json
-"weme"
+"ui"
 ```
 
 ```json
-"weme"
+"ui"
 ```

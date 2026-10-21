@@ -18,7 +18,7 @@ undefined#/properties/items/items/properties/files
 
 ```json
 {
-  "source": "button/button.vue",
+  "source": "components/button/button.vue",
   "dest": "src/components/ui/button/button.vue"
 }
 ```

@@ -98,7 +98,7 @@ export const RegistryItemFileSchema = v.pipe(
       v.metadata({
         title: '源路径',
         description: '文件在 registry 包内的路径，相对于 registry 根目录。',
-        examples: ['button/button.vue', 'use-toggle/index.ts'],
+        examples: ['components/button/button.vue', 'composables/use-toggle.ts'],
       }),
     ),
 
@@ -113,7 +113,7 @@ export const RegistryItemFileSchema = v.pipe(
         v.metadata({
           title: '目标路径',
           description: '安装该 item 时文件应写入的目标路径。省略时根据 registry 默认路径与 item type 推导。',
-          examples: ['components/ui/button.vue'],
+          examples: ['components/ui/button/button.vue'],
         }),
       ),
     ),
@@ -188,7 +188,7 @@ export const RegistryItemSchema = v.pipe(
         v.metadata({
           title: '类型',
           description: '该 registry item 的分类。省略时默认为 "block"。用于归类，并选择对应的默认安装路径。',
-          examples: ['block', 'component', 'composable', 'ui', 'layout', 'page', 'util'],
+          examples: ['component', 'composable', 'block', 'layout', 'page', 'util', 'theme'],
         }),
       ),
       'block',
@@ -220,7 +220,7 @@ export const RegistryItemSchema = v.pipe(
       v.metadata({
         title: '文件',
         description: '构成该 registry item 的文件列表。至少应列出主要源文件。',
-        examples: [{ path: 'button/button.vue' }],
+        examples: [{ path: 'components/button/button.vue' }],
       }),
     ),
 
@@ -235,7 +235,7 @@ export const RegistryItemSchema = v.pipe(
         v.metadata({
           title: 'CSS 变量',
           description: '安装该 item 时注入的 CSS 自定义属性。取值会合并进 UnoCSS preset options，嵌套结构为 theme-key → variable-name → value。',
-          examples: [{ theme: { 'color-primary': 'oklch(0.55 0.2 250)' } }],
+          examples: [{ card: { 'bg-color': 'oklch(0.55 0.2 250)' } }],
         }),
       ),
     ),
@@ -315,7 +315,7 @@ export const RegistryItemSchema = v.pipe(
       title: 'Button',
       description: '支持多种变体的通用按钮 component。',
       type: 'component',
-      files: [{ path: 'button/button.vue' }],
+      files: [{ path: 'components/button/button.vue' }],
       registryDependencies: ['utils'],
       meta: {
         'docs.category': 'actions',

@@ -41,9 +41,5 @@ undefined#/properties/items/items/properties/registry
 ```
 
 ```json
-"weme-ui/core"
-```
-
-```json
 "weme-ui/slim"
 ```

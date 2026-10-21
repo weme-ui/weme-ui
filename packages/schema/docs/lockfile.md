@@ -22,10 +22,10 @@ undefined
   "items": [
     {
       "registry": "weme-ui/slim",
-      "prefix": "weme",
+      "prefix": "ui",
       "files": [
         {
-          "source": "button/button.vue",
+          "source": "components/button/button.vue",
           "dest": "src/components/ui/button/button.vue"
         }
       ]
@@ -100,10 +100,10 @@ The default value is:
 ```json
 {
   "registry": "weme-ui/slim",
-  "prefix": "weme",
+  "prefix": "ui",
   "files": [
     {
-      "source": "button/button.vue",
+      "source": "components/button/button.vue",
       "dest": "src/components/ui/button/button.vue"
     }
   ]

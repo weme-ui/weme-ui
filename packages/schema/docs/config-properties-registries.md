@@ -18,8 +18,8 @@ undefined#/properties/registries
 
 ```json
 {
-  "repo": "https://github.com/weme-ui/weme-ui",
+  "repo": "https://github.com/weme-ui/slim",
   "registry": "weme-ui/slim",
-  "prefix": "weme"
+  "prefix": "ui"
 }
 ```

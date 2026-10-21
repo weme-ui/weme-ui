@@ -67,10 +67,6 @@ The default value is:
 ```
 
 ```json
-"block"
-```
-
-```json
 "component"
 ```
 
@@ -79,7 +75,7 @@ The default value is:
 ```
 
 ```json
-"ui"
+"block"
 ```
 
 ```json
@@ -92,4 +88,8 @@ The default value is:
 
 ```json
 "util"
+```
+
+```json
+"theme"
 ```

@@ -21,5 +21,5 @@ undefined#/properties/items/items/properties/files/items/properties/target
 ## target Examples
 
 ```json
-"components/ui/button.vue"
+"components/ui/button/button.vue"
 ```

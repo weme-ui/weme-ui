@@ -2,8 +2,6 @@
 
 ## Top-level Schemas
 
-* [Registry manifest](./manifest.md "仓库或 workspace 中可用 registry 的索引。将每个 registry 名称映射到包含其配置与 items 的目录。") – `-`
-
 * [Registry 配置](./registry.md "Weme UI registry 的配置。声明标识、访问权限、默认安装路径，以及对外暴露的 items。") – `-`
 
 * [项目配置](./config.md "Weme UI 项目配置。声明安装路径、已注册的 registries，以及可选的 UnoCSS 主题扩展。") – `-`
@@ -17,8 +15,6 @@
 * [CSS 变量](./config-properties-unocss-扩展-properties-css-变量.md "项目主题的额外 CSS 自定义属性。取值会合并进 UnoCSS preset options，嵌套结构为 theme-key → variable-name → value。") – `undefined#/properties/unocss/properties/cssVars`
 
 * [CSS 变量](./registry-properties-items-registry-item-properties-css-变量.md "安装该 item 时注入的 CSS 自定义属性。取值会合并进 UnoCSS preset options，嵌套结构为 theme-key → variable-name → value。") – `undefined#/properties/items/items/properties/cssVars`
-
-* [Registries](./manifest-properties-registries.md "已注册 registry 名称到磁盘目录路径的映射。键为 \"owner/registry\" 形式；值为各 registry 根目录的相对或绝对路径。") – `undefined#/properties/registries`
 
 * [Registry item](./registry-properties-items-registry-item.md "registry 中的一个可安装单元。描述标识、类型、文件、CSS 变量，以及 NPM 与 registry 级依赖。") – `undefined#/properties/items/items`
 

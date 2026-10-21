@@ -25,7 +25,7 @@ export const ProjectRegisteredItemSchema = v.pipe(
         v.metadata({
           title: '仓库',
           description: '托管该 registry 的源仓库。当 registry 本地尚不可用时，用于解析并拉取内容。',
-          examples: ['https://github.com/weme-ui/weme-ui'],
+          examples: ['https://github.com/weme-ui/slim'],
         }),
       ),
     ),
@@ -53,7 +53,7 @@ export const ProjectRegisteredItemSchema = v.pipe(
         v.metadata({
           title: '前缀',
           description: '可选的安装前缀，用于为该 registry 的 items 做命名空间隔离，避免同一项目注册多个 registry 时发生冲突。',
-          examples: ['weme'],
+          examples: ['ui'],
         }),
       ),
     ),
@@ -62,9 +62,9 @@ export const ProjectRegisteredItemSchema = v.pipe(
     title: '已注册的 Registry',
     description: '已向项目注册的 registry。指明使用哪个 registry，以及可选的拉取来源与安装前缀。',
     examples: [{
-      repo: 'https://github.com/weme-ui/weme-ui',
+      repo: 'https://github.com/weme-ui/slim',
       registry: 'weme-ui/slim',
-      prefix: 'weme',
+      prefix: 'ui',
     }],
   }),
 )
@@ -179,9 +179,9 @@ export const ProjectConfigSchema = v.pipe(
           title: 'Registries',
           description: '已向本项目注册的 registries。每项选择一个 registry，并可指定仓库来源与安装前缀。',
           examples: [{
-            repo: 'https://github.com/weme-ui/weme-ui',
+            repo: 'https://github.com/weme-ui/slim',
             registry: 'weme-ui/slim',
-            prefix: 'weme',
+            prefix: 'ui',
           }],
         }),
       ),
@@ -199,7 +199,7 @@ export const ProjectConfigSchema = v.pipe(
     description: 'Weme UI 项目配置。声明安装路径、已注册的 registries，以及可选的 UnoCSS 主题扩展。',
     examples: [{
       paths: { component: '~/components', ui: '~/components/ui' },
-      registries: [{ registry: 'weme-ui/slim', prefix: 'weme' }],
+      registries: [{ registry: 'weme-ui/slim', prefix: 'ui' }],
     }],
   }),
 )

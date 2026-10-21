@@ -21,5 +21,5 @@ undefined#/properties/repository
 ## repository Examples
 
 ```json
-"https://github.com/weme-ui/weme-ui"
+"https://github.com/weme-ui/slim"
 ```

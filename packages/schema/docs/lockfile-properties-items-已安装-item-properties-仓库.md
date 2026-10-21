@@ -21,9 +21,9 @@ undefined#/properties/items/items/properties/repo
 ## repo Examples
 
 ```json
-"https://github.com/weme-ui/weme-ui"
+"https://github.com/weme-ui/slim"
 ```
 
 ```json
-"https://github.com/weme-ui/weme-ui"
+"https://github.com/weme-ui/slim"
 ```

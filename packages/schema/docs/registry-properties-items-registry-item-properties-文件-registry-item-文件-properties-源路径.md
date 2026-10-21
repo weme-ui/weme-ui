@@ -21,9 +21,9 @@ undefined#/properties/items/items/properties/files/items/properties/path
 ## path Examples
 
 ```json
-"button/button.vue"
+"components/button/button.vue"
 ```
 
 ```json
-"use-toggle/index.ts"
+"composables/use-toggle.ts"
 ```

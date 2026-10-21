@@ -21,5 +21,5 @@ undefined#/properties/homepage
 ## homepage Examples
 
 ```json
-"https://weme-ui.com"
+"https://weme-ui.github.io/slim"
 ```

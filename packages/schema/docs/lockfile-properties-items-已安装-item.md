@@ -19,11 +19,11 @@ undefined#/properties/items/items
 ```json
 {
   "registry": "weme-ui/slim",
-  "repo": "https://github.com/weme-ui/weme-ui",
-  "prefix": "weme",
+  "repo": "https://github.com/weme-ui/slim",
+  "prefix": "ui",
   "files": [
     {
-      "source": "button/button.vue",
+      "source": "components/button/button.vue",
       "dest": "src/components/ui/button/button.vue"
     }
   ]
@@ -84,10 +84,6 @@ undefined#/properties/items/items
 ```
 
 ```json
-"weme-ui/core"
-```
-
-```json
 "weme-ui/slim"
 ```
 
@@ -116,11 +112,11 @@ undefined#/properties/items/items
 ### repo Examples
 
 ```json
-"https://github.com/weme-ui/weme-ui"
+"https://github.com/weme-ui/slim"
 ```
 
 ```json
-"https://github.com/weme-ui/weme-ui"
+"https://github.com/weme-ui/slim"
 ```
 
 ## prefix
@@ -148,11 +144,11 @@ undefined#/properties/items/items
 ### prefix Examples
 
 ```json
-"weme"
+"ui"
 ```
 
 ```json
-"weme"
+"ui"
 ```
 
 ## files
@@ -177,7 +173,7 @@ undefined#/properties/items/items
 
 ```json
 {
-  "source": "button/button.vue",
+  "source": "components/button/button.vue",
   "dest": "src/components/ui/button/button.vue"
 }
 ```

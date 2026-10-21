@@ -173,11 +173,11 @@ The default value is:
 ### path Examples
 
 ```json
-"button/button.vue"
+"components/button/button.vue"
 ```
 
 ```json
-"use-toggle/index.ts"
+"composables/use-toggle.ts"
 ```
 
 ## target
@@ -205,5 +205,5 @@ The default value is:
 ### target Examples
 
 ```json
-"components/ui/button.vue"
+"components/ui/button/button.vue"
 ```

@@ -18,8 +18,8 @@ undefined#/properties/unocss/properties/cssVars
 
 ```json
 {
-  "theme": {
-    "color-primary": "oklch(0.55 0.2 250)"
+  "card": {
+    "bg-color": "oklch(0.55 0.2 250)"
   }
 }
 ```

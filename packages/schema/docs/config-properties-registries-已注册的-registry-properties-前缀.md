@@ -21,5 +21,5 @@ undefined#/properties/registries/items/properties/prefix
 ## prefix Examples
 
 ```json
-"weme"
+"ui"
 ```

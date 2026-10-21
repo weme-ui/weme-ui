@@ -21,5 +21,5 @@ undefined#/properties/issues
 ## issues Examples
 
 ```json
-"https://github.com/weme-ui/weme-ui/issues"
+"https://github.com/weme-ui/slim/issues"
 ```

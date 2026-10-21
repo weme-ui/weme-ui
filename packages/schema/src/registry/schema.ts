@@ -136,7 +136,7 @@ export const RegistryConfigSchema = v.pipe(
         v.metadata({
           title: '主页',
           description: '该 registry 所属项目的主页 URL。',
-          examples: ['https://weme-ui.com'],
+          examples: ['https://weme-ui.github.io/slim'],
         }),
       ),
     ),
@@ -152,7 +152,7 @@ export const RegistryConfigSchema = v.pipe(
         v.metadata({
           title: '仓库',
           description: '该 registry 源代码仓库的 URL。',
-          examples: ['https://github.com/weme-ui/weme-ui'],
+          examples: ['https://github.com/weme-ui/slim'],
         }),
       ),
     ),
@@ -168,7 +168,7 @@ export const RegistryConfigSchema = v.pipe(
         v.metadata({
           title: 'Issues',
           description: '用于反馈该 registry 问题的 issue 跟踪地址。',
-          examples: ['https://github.com/weme-ui/weme-ui/issues'],
+          examples: ['https://github.com/weme-ui/slim/issues'],
         }),
       ),
     ),
@@ -271,7 +271,7 @@ export const RegistryConfigSchema = v.pipe(
       name: 'weme-ui/slim',
       access: 'public',
       defaultPaths: { component: '~/components' },
-      items: [{ name: 'button', title: 'Button', files: [{ path: 'button/button.vue' }] }],
+      items: [{ name: 'button', title: 'Button', files: [{ path: 'components/button/button.vue' }] }],
     }],
   }),
 )

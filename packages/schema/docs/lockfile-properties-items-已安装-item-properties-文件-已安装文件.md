@@ -18,7 +18,7 @@ undefined#/properties/items/items/properties/files/items
 
 ```json
 {
-  "source": "button/button.vue",
+  "source": "components/button/button.vue",
   "dest": "src/components/ui/button/button.vue"
 }
 ```
@@ -55,19 +55,19 @@ undefined#/properties/items/items/properties/files/items
 ### source Examples
 
 ```json
-"button/button.vue"
+"components/button/button.vue"
 ```
 
 ```json
-"use-toggle/index.ts"
+"composables/use-toggle.ts"
 ```
 
 ```json
-"button/button.vue"
+"components/button/button.vue"
 ```
 
 ```json
-"use-toggle/index.ts"
+"composables/use-toggle.ts"
 ```
 
 ## dest

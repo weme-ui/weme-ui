@@ -37,6 +37,6 @@ export const CSSVariables = v.pipe(
   v.metadata({
     title: 'CSS 变量',
     description: '嵌套的 CSS 自定义属性映射，结构为 theme-key → variable-name → value。取值会合并进 UnoCSS preset options。',
-    examples: [{ theme: { 'color-primary': 'oklch(0.55 0.2 250)' } }],
+    examples: [{ card: { 'bg-color': 'oklch(0.55 0.2 250)' } }],
   }),
 )

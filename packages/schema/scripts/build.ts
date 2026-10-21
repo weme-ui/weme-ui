@@ -5,12 +5,10 @@ import { toJsonSchema } from '@valibot/to-json-schema'
 import {
   CONFIG_SCHEMA_FILENAME,
   LOCKFILE_SCHEMA_FILENAME,
-  MANIFEST_SCHEMA_FILENAME,
   ProjectConfigSchema,
   ProjectLockFileSchema,
   REGISTRY_SCHEMA_FILENAME,
   RegistryConfigSchema,
-  RegistryManifestSchema,
 } from '../src'
 
 interface BuildInfo {
@@ -22,7 +20,6 @@ const tasks: BuildInfo[] = [
   { name: CONFIG_SCHEMA_FILENAME, schema: ProjectConfigSchema },
   { name: LOCKFILE_SCHEMA_FILENAME, schema: ProjectLockFileSchema },
   { name: REGISTRY_SCHEMA_FILENAME, schema: RegistryConfigSchema },
-  { name: MANIFEST_SCHEMA_FILENAME, schema: RegistryManifestSchema },
 ]
 
 function log(message: string) {

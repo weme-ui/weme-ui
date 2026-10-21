@@ -24,7 +24,7 @@ registry 中的一个可安装单元。描述标识、类型、文件、CSS 变�
   "type": "component",
   "files": [
     {
-      "path": "button/button.vue"
+      "path": "components/button/button.vue"
     }
   ],
   "registryDependencies": [
@@ -216,10 +216,6 @@ The default value is:
 ```
 
 ```json
-"block"
-```
-
-```json
 "component"
 ```
 
@@ -228,7 +224,7 @@ The default value is:
 ```
 
 ```json
-"ui"
+"block"
 ```
 
 ```json
@@ -241,6 +237,10 @@ The default value is:
 
 ```json
 "util"
+```
+
+```json
+"theme"
 ```
 
 ## when
@@ -318,7 +318,7 @@ The default value is:
 
 ```json
 {
-  "path": "button/button.vue"
+  "path": "components/button/button.vue"
 }
 ```
 
@@ -344,16 +344,16 @@ The default value is:
 
 ```json
 {
-  "theme": {
-    "color-primary": "oklch(0.55 0.2 250)"
+  "card": {
+    "bg-color": "oklch(0.55 0.2 250)"
   }
 }
 ```
 
 ```json
 {
-  "theme": {
-    "color-primary": "oklch(0.55 0.2 250)"
+  "card": {
+    "bg-color": "oklch(0.55 0.2 250)"
   }
 }
 ```

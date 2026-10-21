@@ -29,7 +29,7 @@ Weme UI registry 的配置。声明标识、访问权限、默认安装路径，
       "title": "Button",
       "files": [
         {
-          "path": "button/button.vue"
+          "path": "components/button/button.vue"
         }
       ]
     }
@@ -217,7 +217,7 @@ registry 的唯一名称，形式为 "owner/registry"。用于在生态中标识
 ### homepage Examples
 
 ```json
-"https://weme-ui.com"
+"https://weme-ui.github.io/slim"
 ```
 
 ## repository
@@ -245,7 +245,7 @@ registry 的唯一名称，形式为 "owner/registry"。用于在生态中标识
 ### repository Examples
 
 ```json
-"https://github.com/weme-ui/weme-ui"
+"https://github.com/weme-ui/slim"
 ```
 
 ## issues
@@ -273,7 +273,7 @@ registry 的唯一名称，形式为 "owner/registry"。用于在生态中标识
 ### issues Examples
 
 ```json
-"https://github.com/weme-ui/weme-ui/issues"
+"https://github.com/weme-ui/slim/issues"
 ```
 
 ## contributors

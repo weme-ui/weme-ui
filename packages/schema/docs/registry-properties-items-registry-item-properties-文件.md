@@ -18,6 +18,6 @@ undefined#/properties/items/items/properties/files
 
 ```json
 {
-  "path": "button/button.vue"
+  "path": "components/button/button.vue"
 }
 ```

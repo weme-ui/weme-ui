@@ -25,7 +25,7 @@ Weme UI 项目配置。声明安装路径、已注册的 registries，以及可�
   "registries": [
     {
       "registry": "weme-ui/slim",
-      "prefix": "weme"
+      "prefix": "ui"
     }
   ]
 }
@@ -126,9 +126,9 @@ The default value is:
 
 ```json
 {
-  "repo": "https://github.com/weme-ui/weme-ui",
+  "repo": "https://github.com/weme-ui/slim",
   "registry": "weme-ui/slim",
-  "prefix": "weme"
+  "prefix": "ui"
 }
 ```
 

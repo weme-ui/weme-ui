@@ -23,7 +23,7 @@
     "skipDefaultLibCheck": true,
     "skipLibCheck": true
   },
-  "include": ["src/**/*.ts", "test/**/*.ts", "tsdown.config.ts", "vitest.config.ts"],
+  "include": ["src/**/*.ts", "test/**/*.ts", "scripts/**/*.ts", "tsdown.config.ts", "vitest.config.ts"],
   "exclude": [
     "node_modules",
     "dist"

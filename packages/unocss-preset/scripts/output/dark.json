@@ -1,0 +1,2358 @@
+{
+  "gray": {
+    "--gray-1": {
+      "value": "#111111",
+      "type": "color",
+      "description": "App background"
+    },
+    "--gray-2": {
+      "value": "#191919",
+      "type": "color",
+      "description": "Subtle background"
+    },
+    "--gray-3": {
+      "value": "#222222",
+      "type": "color",
+      "description": "UI element background"
+    },
+    "--gray-4": {
+      "value": "#2A2A2A",
+      "type": "color",
+      "description": "Hovered UI element background"
+    },
+    "--gray-5": {
+      "value": "#313131",
+      "type": "color",
+      "description": "Active / Selected UI element background"
+    },
+    "--gray-6": {
+      "value": "#3A3A3A",
+      "type": "color",
+      "description": "Subtle borders and separators"
+    },
+    "--gray-7": {
+      "value": "#484848",
+      "type": "color",
+      "description": "UI element border and focus rings"
+    },
+    "--gray-8": {
+      "value": "#606060",
+      "type": "color",
+      "description": "Hovered UI element border"
+    },
+    "--gray-9": {
+      "value": "#6E6E6E",
+      "type": "color",
+      "description": "Solid backgrounds"
+    },
+    "--gray-10": {
+      "value": "#7B7B7B",
+      "type": "color",
+      "description": "Hovered solid backgrounds"
+    },
+    "--gray-11": {
+      "value": "#B4B4B4",
+      "type": "color",
+      "description": "Low-contrast text"
+    },
+    "--gray-12": {
+      "value": "#EEEEEE",
+      "type": "color",
+      "description": "High-contrast text"
+    }
+  },
+  "mauve": {
+    "--mauve-1": {
+      "value": "#121113",
+      "type": "color",
+      "description": "App background"
+    },
+    "--mauve-2": {
+      "value": "#1A191B",
+      "type": "color",
+      "description": "Subtle background"
+    },
+    "--mauve-3": {
+      "value": "#232225",
+      "type": "color",
+      "description": "UI element background"
+    },
+    "--mauve-4": {
+      "value": "#2B292D",
+      "type": "color",
+      "description": "Hovered UI element background"
+    },
+    "--mauve-5": {
+      "value": "#323035",
+      "type": "color",
+      "description": "Active / Selected UI element background"
+    },
+    "--mauve-6": {
+      "value": "#3C393F",
+      "type": "color",
+      "description": "Subtle borders and separators"
+    },
+    "--mauve-7": {
+      "value": "#4A474E",
+      "type": "color",
+      "description": "UI element border and focus rings"
+    },
+    "--mauve-8": {
+      "value": "#625F69",
+      "type": "color",
+      "description": "Hovered UI element border"
+    },
+    "--mauve-9": {
+      "value": "#6F6D78",
+      "type": "color",
+      "description": "Solid backgrounds"
+    },
+    "--mauve-10": {
+      "value": "#7D7A85",
+      "type": "color",
+      "description": "Hovered solid backgrounds"
+    },
+    "--mauve-11": {
+      "value": "#B5B3BC",
+      "type": "color",
+      "description": "Low-contrast text"
+    },
+    "--mauve-12": {
+      "value": "#EEEEF0",
+      "type": "color",
+      "description": "High-contrast text"
+    }
+  },
+  "slate": {
+    "--slate-1": {
+      "value": "#111113",
+      "type": "color",
+      "description": "App background"
+    },
+    "--slate-2": {
+      "value": "#18191B",
+      "type": "color",
+      "description": "Subtle background"
+    },
+    "--slate-3": {
+      "value": "#212225",
+      "type": "color",
+      "description": "UI element background"
+    },
+    "--slate-4": {
+      "value": "#272A2D",
+      "type": "color",
+      "description": "Hovered UI element background"
+    },
+    "--slate-5": {
+      "value": "#2E3135",
+      "type": "color",
+      "description": "Active / Selected UI element background"
+    },
+    "--slate-6": {
+      "value": "#363A3F",
+      "type": "color",
+      "description": "Subtle borders and separators"
+    },
+    "--slate-7": {
+      "value": "#43484E",
+      "type": "color",
+      "description": "UI element border and focus rings"
+    },
+    "--slate-8": {
+      "value": "#5A6169",
+      "type": "color",
+      "description": "Hovered UI element border"
+    },
+    "--slate-9": {
+      "value": "#696E77",
+      "type": "color",
+      "description": "Solid backgrounds"
+    },
+    "--slate-10": {
+      "value": "#777B84",
+      "type": "color",
+      "description": "Hovered solid backgrounds"
+    },
+    "--slate-11": {
+      "value": "#B0B4BA",
+      "type": "color",
+      "description": "Low-contrast text"
+    },
+    "--slate-12": {
+      "value": "#EDEEF0",
+      "type": "color",
+      "description": "High-contrast text"
+    }
+  },
+  "sage": {
+    "--sage-1": {
+      "value": "#101211",
+      "type": "color",
+      "description": "App background"
+    },
+    "--sage-2": {
+      "value": "#171918",
+      "type": "color",
+      "description": "Subtle background"
+    },
+    "--sage-3": {
+      "value": "#202221",
+      "type": "color",
+      "description": "UI element background"
+    },
+    "--sage-4": {
+      "value": "#272A28",
+      "type": "color",
+      "description": "Hovered UI element background"
+    },
+    "--sage-5": {
+      "value": "#2E3130",
+      "type": "color",
+      "description": "Active / Selected UI element background"
+    },
+    "--sage-6": {
+      "value": "#373B39",
+      "type": "color",
+      "description": "Subtle borders and separators"
+    },
+    "--sage-7": {
+      "value": "#444946",
+      "type": "color",
+      "description": "UI element border and focus rings"
+    },
+    "--sage-8": {
+      "value": "#5B625F",
+      "type": "color",
+      "description": "Hovered UI element border"
+    },
+    "--sage-9": {
+      "value": "#63706B",
+      "type": "color",
+      "description": "Solid backgrounds"
+    },
+    "--sage-10": {
+      "value": "#717D79",
+      "type": "color",
+      "description": "Hovered solid backgrounds"
+    },
+    "--sage-11": {
+      "value": "#ADB5B2",
+      "type": "color",
+      "description": "Low-contrast text"
+    },
+    "--sage-12": {
+      "value": "#ECEEED",
+      "type": "color",
+      "description": "High-contrast text"
+    }
+  },
+  "olive": {
+    "--olive-1": {
+      "value": "#111210",
+      "type": "color",
+      "description": "App background"
+    },
+    "--olive-2": {
+      "value": "#181917",
+      "type": "color",
+      "description": "Subtle background"
+    },
+    "--olive-3": {
+      "value": "#212320",
+      "type": "color",
+      "description": "UI element background"
+    },
+    "--olive-4": {
+      "value": "#282A27",
+      "type": "color",
+      "description": "Hovered UI element background"
+    },
+    "--olive-5": {
+      "value": "#2F312E",
+      "type": "color",
+      "description": "Active / Selected UI element background"
+    },
+    "--olive-6": {
+      "value": "#383A36",
+      "type": "color",
+      "description": "Subtle borders and separators"
+    },
+    "--olive-7": {
+      "value": "#454944",
+      "type": "color",
+      "description": "UI element border and focus rings"
+    },
+    "--olive-8": {
+      "value": "#5C625B",
+      "type": "color",
+      "description": "Hovered UI element border"
+    },
+    "--olive-9": {
+      "value": "#687066",
+      "type": "color",
+      "description": "Solid backgrounds"
+    },
+    "--olive-10": {
+      "value": "#767D74",
+      "type": "color",
+      "description": "Hovered solid backgrounds"
+    },
+    "--olive-11": {
+      "value": "#AFB5AD",
+      "type": "color",
+      "description": "Low-contrast text"
+    },
+    "--olive-12": {
+      "value": "#ECEEEC",
+      "type": "color",
+      "description": "High-contrast text"
+    }
+  },
+  "sand": {
+    "--sand-1": {
+      "value": "#111110",
+      "type": "color",
+      "description": "App background"
+    },
+    "--sand-2": {
+      "value": "#191918",
+      "type": "color",
+      "description": "Subtle background"
+    },
+    "--sand-3": {
+      "value": "#222221",
+      "type": "color",
+      "description": "UI element background"
+    },
+    "--sand-4": {
+      "value": "#2A2A28",
+      "type": "color",
+      "description": "Hovered UI element background"
+    },
+    "--sand-5": {
+      "value": "#31312E",
+      "type": "color",
+      "description": "Active / Selected UI element background"
+    },
+    "--sand-6": {
+      "value": "#3B3A37",
+      "type": "color",
+      "description": "Subtle borders and separators"
+    },
+    "--sand-7": {
+      "value": "#494844",
+      "type": "color",
+      "description": "UI element border and focus rings"
+    },
+    "--sand-8": {
+      "value": "#62605A",
+      "type": "color",
+      "description": "Hovered UI element border"
+    },
+    "--sand-9": {
+      "value": "#6F6D66",
+      "type": "color",
+      "description": "Solid backgrounds"
+    },
+    "--sand-10": {
+      "value": "#7C7B74",
+      "type": "color",
+      "description": "Hovered solid backgrounds"
+    },
+    "--sand-11": {
+      "value": "#B5B3AD",
+      "type": "color",
+      "description": "Low-contrast text"
+    },
+    "--sand-12": {
+      "value": "#EEEEEC",
+      "type": "color",
+      "description": "High-contrast text"
+    }
+  },
+  "gold": {
+    "--gold-1": {
+      "value": "#121211",
+      "type": "color",
+      "description": "App background"
+    },
+    "--gold-2": {
+      "value": "#1B1A17",
+      "type": "color",
+      "description": "Subtle background"
+    },
+    "--gold-3": {
+      "value": "#24231F",
+      "type": "color",
+      "description": "UI element background"
+    },
+    "--gold-4": {
+      "value": "#2E2B26",
+      "type": "color",
+      "description": "Hovered UI element background"
+    },
+    "--gold-5": {
+      "value": "#38352F",
+      "type": "color",
+      "description": "Active / Selected UI element background"
+    },
+    "--gold-6": {
+      "value": "#444039",
+      "type": "color",
+      "description": "Subtle borders and separators"
+    },
+    "--gold-7": {
+      "value": "#544F45",
+      "type": "color",
+      "description": "UI element border and focus rings"
+    },
+    "--gold-8": {
+      "value": "#696256",
+      "type": "color",
+      "description": "Hovered UI element border"
+    },
+    "--gold-9": {
+      "value": "#978365",
+      "type": "color",
+      "description": "Solid backgrounds"
+    },
+    "--gold-10": {
+      "value": "#A39073",
+      "type": "color",
+      "description": "Hovered solid backgrounds"
+    },
+    "--gold-11": {
+      "value": "#CBB99F",
+      "type": "color",
+      "description": "Low-contrast text"
+    },
+    "--gold-12": {
+      "value": "#E8E2D9",
+      "type": "color",
+      "description": "High-contrast text"
+    }
+  },
+  "bronze": {
+    "--bronze-1": {
+      "value": "#141110",
+      "type": "color",
+      "description": "App background"
+    },
+    "--bronze-2": {
+      "value": "#1C1918",
+      "type": "color",
+      "description": "Subtle background"
+    },
+    "--bronze-3": {
+      "value": "#262220",
+      "type": "color",
+      "description": "UI element background"
+    },
+    "--bronze-4": {
+      "value": "#302A27",
+      "type": "color",
+      "description": "Hovered UI element background"
+    },
+    "--bronze-5": {
+      "value": "#3B3330",
+      "type": "color",
+      "description": "Active / Selected UI element background"
+    },
+    "--bronze-6": {
+      "value": "#483E3A",
+      "type": "color",
+      "description": "Subtle borders and separators"
+    },
+    "--bronze-7": {
+      "value": "#5A4D47",
+      "type": "color",
+      "description": "UI element border and focus rings"
+    },
+    "--bronze-8": {
+      "value": "#6F5F58",
+      "type": "color",
+      "description": "Hovered UI element border"
+    },
+    "--bronze-9": {
+      "value": "#A18072",
+      "type": "color",
+      "description": "Solid backgrounds"
+    },
+    "--bronze-10": {
+      "value": "#AE8D7F",
+      "type": "color",
+      "description": "Hovered solid backgrounds"
+    },
+    "--bronze-11": {
+      "value": "#D4B3A5",
+      "type": "color",
+      "description": "Low-contrast text"
+    },
+    "--bronze-12": {
+      "value": "#EDE0D9",
+      "type": "color",
+      "description": "High-contrast text"
+    }
+  },
+  "brown": {
+    "--brown-1": {
+      "value": "#12110F",
+      "type": "color",
+      "description": "App background"
+    },
+    "--brown-2": {
+      "value": "#1C1816",
+      "type": "color",
+      "description": "Subtle background"
+    },
+    "--brown-3": {
+      "value": "#28211D",
+      "type": "color",
+      "description": "UI element background"
+    },
+    "--brown-4": {
+      "value": "#322922",
+      "type": "color",
+      "description": "Hovered UI element background"
+    },
+    "--brown-5": {
+      "value": "#3E3128",
+      "type": "color",
+      "description": "Active / Selected UI element background"
+    },
+    "--brown-6": {
+      "value": "#4D3C2F",
+      "type": "color",
+      "description": "Subtle borders and separators"
+    },
+    "--brown-7": {
+      "value": "#614A39",
+      "type": "color",
+      "description": "UI element border and focus rings"
+    },
+    "--brown-8": {
+      "value": "#7C5F46",
+      "type": "color",
+      "description": "Hovered UI element border"
+    },
+    "--brown-9": {
+      "value": "#AD7F58",
+      "type": "color",
+      "description": "Solid backgrounds"
+    },
+    "--brown-10": {
+      "value": "#B88C66",
+      "type": "color",
+      "description": "Hovered solid backgrounds"
+    },
+    "--brown-11": {
+      "value": "#DBB594",
+      "type": "color",
+      "description": "Low-contrast text"
+    },
+    "--brown-12": {
+      "value": "#F2E1CA",
+      "type": "color",
+      "description": "High-contrast text"
+    }
+  },
+  "yellow": {
+    "--yellow-1": {
+      "value": "#14110B",
+      "type": "color",
+      "description": "App background"
+    },
+    "--yellow-2": {
+      "value": "#1B180F",
+      "type": "color",
+      "description": "Subtle background"
+    },
+    "--yellow-3": {
+      "value": "#2C2305",
+      "type": "color",
+      "description": "UI element background"
+    },
+    "--yellow-4": {
+      "value": "#372B00",
+      "type": "color",
+      "description": "Hovered UI element background"
+    },
+    "--yellow-5": {
+      "value": "#433500",
+      "type": "color",
+      "description": "Active / Selected UI element background"
+    },
+    "--yellow-6": {
+      "value": "#514202",
+      "type": "color",
+      "description": "Subtle borders and separators"
+    },
+    "--yellow-7": {
+      "value": "#665417",
+      "type": "color",
+      "description": "UI element border and focus rings"
+    },
+    "--yellow-8": {
+      "value": "#836A20",
+      "type": "color",
+      "description": "Hovered UI element border"
+    },
+    "--yellow-9": {
+      "value": "#FFEA00",
+      "type": "color",
+      "description": "Solid backgrounds"
+    },
+    "--yellow-10": {
+      "value": "#FFFF57",
+      "type": "color",
+      "description": "Hovered solid backgrounds"
+    },
+    "--yellow-11": {
+      "value": "#F5E147",
+      "type": "color",
+      "description": "Low-contrast text"
+    },
+    "--yellow-12": {
+      "value": "#F6EEB4",
+      "type": "color",
+      "description": "High-contrast text"
+    }
+  },
+  "amber": {
+    "--amber-1": {
+      "value": "#16120C",
+      "type": "color",
+      "description": "App background"
+    },
+    "--amber-2": {
+      "value": "#1D180F",
+      "type": "color",
+      "description": "Subtle background"
+    },
+    "--amber-3": {
+      "value": "#302008",
+      "type": "color",
+      "description": "UI element background"
+    },
+    "--amber-4": {
+      "value": "#412700",
+      "type": "color",
+      "description": "Hovered UI element background"
+    },
+    "--amber-5": {
+      "value": "#4E3000",
+      "type": "color",
+      "description": "Active / Selected UI element background"
+    },
+    "--amber-6": {
+      "value": "#5C3D05",
+      "type": "color",
+      "description": "Subtle borders and separators"
+    },
+    "--amber-7": {
+      "value": "#714F1A",
+      "type": "color",
+      "description": "UI element border and focus rings"
+    },
+    "--amber-8": {
+      "value": "#8F6424",
+      "type": "color",
+      "description": "Hovered UI element border"
+    },
+    "--amber-9": {
+      "value": "#FFC100",
+      "type": "color",
+      "description": "Solid backgrounds"
+    },
+    "--amber-10": {
+      "value": "#FFDD00",
+      "type": "color",
+      "description": "Hovered solid backgrounds"
+    },
+    "--amber-11": {
+      "value": "#FFCA16",
+      "type": "color",
+      "description": "Low-contrast text"
+    },
+    "--amber-12": {
+      "value": "#FFE7B3",
+      "type": "color",
+      "description": "High-contrast text"
+    }
+  },
+  "orange": {
+    "--orange-1": {
+      "value": "#17120E",
+      "type": "color",
+      "description": "App background"
+    },
+    "--orange-2": {
+      "value": "#1E160F",
+      "type": "color",
+      "description": "Subtle background"
+    },
+    "--orange-3": {
+      "value": "#331E0B",
+      "type": "color",
+      "description": "UI element background"
+    },
+    "--orange-4": {
+      "value": "#481F00",
+      "type": "color",
+      "description": "Hovered UI element background"
+    },
+    "--orange-5": {
+      "value": "#562900",
+      "type": "color",
+      "description": "Active / Selected UI element background"
+    },
+    "--orange-6": {
+      "value": "#66350C",
+      "type": "color",
+      "description": "Subtle borders and separators"
+    },
+    "--orange-7": {
+      "value": "#7E451D",
+      "type": "color",
+      "description": "UI element border and focus rings"
+    },
+    "--orange-8": {
+      "value": "#A35829",
+      "type": "color",
+      "description": "Hovered UI element border"
+    },
+    "--orange-9": {
+      "value": "#F76A15",
+      "type": "color",
+      "description": "Solid backgrounds"
+    },
+    "--orange-10": {
+      "value": "#FF7B23",
+      "type": "color",
+      "description": "Hovered solid backgrounds"
+    },
+    "--orange-11": {
+      "value": "#FF9D59",
+      "type": "color",
+      "description": "Low-contrast text"
+    },
+    "--orange-12": {
+      "value": "#FFE0C2",
+      "type": "color",
+      "description": "High-contrast text"
+    }
+  },
+  "tomato": {
+    "--tomato-1": {
+      "value": "#181111",
+      "type": "color",
+      "description": "App background"
+    },
+    "--tomato-2": {
+      "value": "#1F1513",
+      "type": "color",
+      "description": "Subtle background"
+    },
+    "--tomato-3": {
+      "value": "#391714",
+      "type": "color",
+      "description": "UI element background"
+    },
+    "--tomato-4": {
+      "value": "#4E1511",
+      "type": "color",
+      "description": "Hovered UI element background"
+    },
+    "--tomato-5": {
+      "value": "#5E1C16",
+      "type": "color",
+      "description": "Active / Selected UI element background"
+    },
+    "--tomato-6": {
+      "value": "#6E2920",
+      "type": "color",
+      "description": "Subtle borders and separators"
+    },
+    "--tomato-7": {
+      "value": "#853A2D",
+      "type": "color",
+      "description": "UI element border and focus rings"
+    },
+    "--tomato-8": {
+      "value": "#AC4D39",
+      "type": "color",
+      "description": "Hovered UI element border"
+    },
+    "--tomato-9": {
+      "value": "#E54D2E",
+      "type": "color",
+      "description": "Solid backgrounds"
+    },
+    "--tomato-10": {
+      "value": "#EC6142",
+      "type": "color",
+      "description": "Hovered solid backgrounds"
+    },
+    "--tomato-11": {
+      "value": "#FF9271",
+      "type": "color",
+      "description": "Low-contrast text"
+    },
+    "--tomato-12": {
+      "value": "#FBD3CB",
+      "type": "color",
+      "description": "High-contrast text"
+    }
+  },
+  "red": {
+    "--red-1": {
+      "value": "#191111",
+      "type": "color",
+      "description": "App background"
+    },
+    "--red-2": {
+      "value": "#201314",
+      "type": "color",
+      "description": "Subtle background"
+    },
+    "--red-3": {
+      "value": "#3B1219",
+      "type": "color",
+      "description": "UI element background"
+    },
+    "--red-4": {
+      "value": "#500E1C",
+      "type": "color",
+      "description": "Hovered UI element background"
+    },
+    "--red-5": {
+      "value": "#611623",
+      "type": "color",
+      "description": "Active / Selected UI element background"
+    },
+    "--red-6": {
+      "value": "#73232D",
+      "type": "color",
+      "description": "Subtle borders and separators"
+    },
+    "--red-7": {
+      "value": "#8C333A",
+      "type": "color",
+      "description": "UI element border and focus rings"
+    },
+    "--red-8": {
+      "value": "#B54548",
+      "type": "color",
+      "description": "Hovered UI element border"
+    },
+    "--red-9": {
+      "value": "#E5484D",
+      "type": "color",
+      "description": "Solid backgrounds"
+    },
+    "--red-10": {
+      "value": "#ED5E5E",
+      "type": "color",
+      "description": "Hovered solid backgrounds"
+    },
+    "--red-11": {
+      "value": "#FF8F8C",
+      "type": "color",
+      "description": "Low-contrast text"
+    },
+    "--red-12": {
+      "value": "#FFD1D9",
+      "type": "color",
+      "description": "High-contrast text"
+    }
+  },
+  "ruby": {
+    "--ruby-1": {
+      "value": "#191113",
+      "type": "color",
+      "description": "App background"
+    },
+    "--ruby-2": {
+      "value": "#1E1517",
+      "type": "color",
+      "description": "Subtle background"
+    },
+    "--ruby-3": {
+      "value": "#3A141E",
+      "type": "color",
+      "description": "UI element background"
+    },
+    "--ruby-4": {
+      "value": "#4E1325",
+      "type": "color",
+      "description": "Hovered UI element background"
+    },
+    "--ruby-5": {
+      "value": "#5E1A2E",
+      "type": "color",
+      "description": "Active / Selected UI element background"
+    },
+    "--ruby-6": {
+      "value": "#6F2539",
+      "type": "color",
+      "description": "Subtle borders and separators"
+    },
+    "--ruby-7": {
+      "value": "#883447",
+      "type": "color",
+      "description": "UI element border and focus rings"
+    },
+    "--ruby-8": {
+      "value": "#B3445A",
+      "type": "color",
+      "description": "Hovered UI element border"
+    },
+    "--ruby-9": {
+      "value": "#E54666",
+      "type": "color",
+      "description": "Solid backgrounds"
+    },
+    "--ruby-10": {
+      "value": "#EC5A72",
+      "type": "color",
+      "description": "Hovered solid backgrounds"
+    },
+    "--ruby-11": {
+      "value": "#FF8F97",
+      "type": "color",
+      "description": "Low-contrast text"
+    },
+    "--ruby-12": {
+      "value": "#FED2E1",
+      "type": "color",
+      "description": "High-contrast text"
+    }
+  },
+  "crimson": {
+    "--crimson-1": {
+      "value": "#191114",
+      "type": "color",
+      "description": "App background"
+    },
+    "--crimson-2": {
+      "value": "#201318",
+      "type": "color",
+      "description": "Subtle background"
+    },
+    "--crimson-3": {
+      "value": "#381525",
+      "type": "color",
+      "description": "UI element background"
+    },
+    "--crimson-4": {
+      "value": "#4D122F",
+      "type": "color",
+      "description": "Hovered UI element background"
+    },
+    "--crimson-5": {
+      "value": "#5C1839",
+      "type": "color",
+      "description": "Active / Selected UI element background"
+    },
+    "--crimson-6": {
+      "value": "#6D2445",
+      "type": "color",
+      "description": "Subtle borders and separators"
+    },
+    "--crimson-7": {
+      "value": "#873357",
+      "type": "color",
+      "description": "UI element border and focus rings"
+    },
+    "--crimson-8": {
+      "value": "#B0436E",
+      "type": "color",
+      "description": "Hovered UI element border"
+    },
+    "--crimson-9": {
+      "value": "#E93D82",
+      "type": "color",
+      "description": "Solid backgrounds"
+    },
+    "--crimson-10": {
+      "value": "#EE528A",
+      "type": "color",
+      "description": "Hovered solid backgrounds"
+    },
+    "--crimson-11": {
+      "value": "#FF8CA9",
+      "type": "color",
+      "description": "Low-contrast text"
+    },
+    "--crimson-12": {
+      "value": "#FDD3E8",
+      "type": "color",
+      "description": "High-contrast text"
+    }
+  },
+  "pink": {
+    "--pink-1": {
+      "value": "#191117",
+      "type": "color",
+      "description": "App background"
+    },
+    "--pink-2": {
+      "value": "#21121D",
+      "type": "color",
+      "description": "Subtle background"
+    },
+    "--pink-3": {
+      "value": "#36172F",
+      "type": "color",
+      "description": "UI element background"
+    },
+    "--pink-4": {
+      "value": "#4B143C",
+      "type": "color",
+      "description": "Hovered UI element background"
+    },
+    "--pink-5": {
+      "value": "#591C47",
+      "type": "color",
+      "description": "Active / Selected UI element background"
+    },
+    "--pink-6": {
+      "value": "#692955",
+      "type": "color",
+      "description": "Subtle borders and separators"
+    },
+    "--pink-7": {
+      "value": "#833869",
+      "type": "color",
+      "description": "UI element border and focus rings"
+    },
+    "--pink-8": {
+      "value": "#A84884",
+      "type": "color",
+      "description": "Hovered UI element border"
+    },
+    "--pink-9": {
+      "value": "#D6409F",
+      "type": "color",
+      "description": "Solid backgrounds"
+    },
+    "--pink-10": {
+      "value": "#DE51A8",
+      "type": "color",
+      "description": "Hovered solid backgrounds"
+    },
+    "--pink-11": {
+      "value": "#FF87C8",
+      "type": "color",
+      "description": "Low-contrast text"
+    },
+    "--pink-12": {
+      "value": "#FDD1EA",
+      "type": "color",
+      "description": "High-contrast text"
+    }
+  },
+  "plum": {
+    "--plum-1": {
+      "value": "#181118",
+      "type": "color",
+      "description": "App background"
+    },
+    "--plum-2": {
+      "value": "#201320",
+      "type": "color",
+      "description": "Subtle background"
+    },
+    "--plum-3": {
+      "value": "#351A35",
+      "type": "color",
+      "description": "UI element background"
+    },
+    "--plum-4": {
+      "value": "#451D47",
+      "type": "color",
+      "description": "Hovered UI element background"
+    },
+    "--plum-5": {
+      "value": "#502454",
+      "type": "color",
+      "description": "Active / Selected UI element background"
+    },
+    "--plum-6": {
+      "value": "#5E3062",
+      "type": "color",
+      "description": "Subtle borders and separators"
+    },
+    "--plum-7": {
+      "value": "#734079",
+      "type": "color",
+      "description": "UI element border and focus rings"
+    },
+    "--plum-8": {
+      "value": "#92549C",
+      "type": "color",
+      "description": "Hovered UI element border"
+    },
+    "--plum-9": {
+      "value": "#AB4ABA",
+      "type": "color",
+      "description": "Solid backgrounds"
+    },
+    "--plum-10": {
+      "value": "#B658C4",
+      "type": "color",
+      "description": "Hovered solid backgrounds"
+    },
+    "--plum-11": {
+      "value": "#E796F3",
+      "type": "color",
+      "description": "Low-contrast text"
+    },
+    "--plum-12": {
+      "value": "#F4D4F4",
+      "type": "color",
+      "description": "High-contrast text"
+    }
+  },
+  "purple": {
+    "--purple-1": {
+      "value": "#18111B",
+      "type": "color",
+      "description": "App background"
+    },
+    "--purple-2": {
+      "value": "#1E1523",
+      "type": "color",
+      "description": "Subtle background"
+    },
+    "--purple-3": {
+      "value": "#2F1C3B",
+      "type": "color",
+      "description": "UI element background"
+    },
+    "--purple-4": {
+      "value": "#3D224E",
+      "type": "color",
+      "description": "Hovered UI element background"
+    },
+    "--purple-5": {
+      "value": "#47295C",
+      "type": "color",
+      "description": "Active / Selected UI element background"
+    },
+    "--purple-6": {
+      "value": "#54346B",
+      "type": "color",
+      "description": "Subtle borders and separators"
+    },
+    "--purple-7": {
+      "value": "#664282",
+      "type": "color",
+      "description": "UI element border and focus rings"
+    },
+    "--purple-8": {
+      "value": "#8357AA",
+      "type": "color",
+      "description": "Hovered UI element border"
+    },
+    "--purple-9": {
+      "value": "#8E4EC6",
+      "type": "color",
+      "description": "Solid backgrounds"
+    },
+    "--purple-10": {
+      "value": "#9A5CD0",
+      "type": "color",
+      "description": "Hovered solid backgrounds"
+    },
+    "--purple-11": {
+      "value": "#D59CFF",
+      "type": "color",
+      "description": "Low-contrast text"
+    },
+    "--purple-12": {
+      "value": "#ECD9FA",
+      "type": "color",
+      "description": "High-contrast text"
+    }
+  },
+  "violet": {
+    "--violet-1": {
+      "value": "#14121F",
+      "type": "color",
+      "description": "App background"
+    },
+    "--violet-2": {
+      "value": "#1B1525",
+      "type": "color",
+      "description": "Subtle background"
+    },
+    "--violet-3": {
+      "value": "#291F44",
+      "type": "color",
+      "description": "UI element background"
+    },
+    "--violet-4": {
+      "value": "#33255B",
+      "type": "color",
+      "description": "Hovered UI element background"
+    },
+    "--violet-5": {
+      "value": "#3C2E68",
+      "type": "color",
+      "description": "Active / Selected UI element background"
+    },
+    "--violet-6": {
+      "value": "#473876",
+      "type": "color",
+      "description": "Subtle borders and separators"
+    },
+    "--violet-7": {
+      "value": "#56468C",
+      "type": "color",
+      "description": "UI element border and focus rings"
+    },
+    "--violet-8": {
+      "value": "#6858AD",
+      "type": "color",
+      "description": "Hovered UI element border"
+    },
+    "--violet-9": {
+      "value": "#6E56CF",
+      "type": "color",
+      "description": "Solid backgrounds"
+    },
+    "--violet-10": {
+      "value": "#7D66D9",
+      "type": "color",
+      "description": "Hovered solid backgrounds"
+    },
+    "--violet-11": {
+      "value": "#BBA5FF",
+      "type": "color",
+      "description": "Low-contrast text"
+    },
+    "--violet-12": {
+      "value": "#E2DDFE",
+      "type": "color",
+      "description": "High-contrast text"
+    }
+  },
+  "iris": {
+    "--iris-1": {
+      "value": "#13131E",
+      "type": "color",
+      "description": "App background"
+    },
+    "--iris-2": {
+      "value": "#171625",
+      "type": "color",
+      "description": "Subtle background"
+    },
+    "--iris-3": {
+      "value": "#202248",
+      "type": "color",
+      "description": "UI element background"
+    },
+    "--iris-4": {
+      "value": "#262A65",
+      "type": "color",
+      "description": "Hovered UI element background"
+    },
+    "--iris-5": {
+      "value": "#303374",
+      "type": "color",
+      "description": "Active / Selected UI element background"
+    },
+    "--iris-6": {
+      "value": "#3D3E82",
+      "type": "color",
+      "description": "Subtle borders and separators"
+    },
+    "--iris-7": {
+      "value": "#4A4A95",
+      "type": "color",
+      "description": "UI element border and focus rings"
+    },
+    "--iris-8": {
+      "value": "#5958B1",
+      "type": "color",
+      "description": "Hovered UI element border"
+    },
+    "--iris-9": {
+      "value": "#5B5BD6",
+      "type": "color",
+      "description": "Solid backgrounds"
+    },
+    "--iris-10": {
+      "value": "#6E6ADE",
+      "type": "color",
+      "description": "Hovered solid backgrounds"
+    },
+    "--iris-11": {
+      "value": "#B0A9FF",
+      "type": "color",
+      "description": "Low-contrast text"
+    },
+    "--iris-12": {
+      "value": "#E0DFFE",
+      "type": "color",
+      "description": "High-contrast text"
+    }
+  },
+  "indigo": {
+    "--indigo-1": {
+      "value": "#11131F",
+      "type": "color",
+      "description": "App background"
+    },
+    "--indigo-2": {
+      "value": "#141726",
+      "type": "color",
+      "description": "Subtle background"
+    },
+    "--indigo-3": {
+      "value": "#182449",
+      "type": "color",
+      "description": "UI element background"
+    },
+    "--indigo-4": {
+      "value": "#1D2E61",
+      "type": "color",
+      "description": "Hovered UI element background"
+    },
+    "--indigo-5": {
+      "value": "#263974",
+      "type": "color",
+      "description": "Active / Selected UI element background"
+    },
+    "--indigo-6": {
+      "value": "#304384",
+      "type": "color",
+      "description": "Subtle borders and separators"
+    },
+    "--indigo-7": {
+      "value": "#3A4F97",
+      "type": "color",
+      "description": "UI element border and focus rings"
+    },
+    "--indigo-8": {
+      "value": "#435DB2",
+      "type": "color",
+      "description": "Hovered UI element border"
+    },
+    "--indigo-9": {
+      "value": "#3E63DD",
+      "type": "color",
+      "description": "Solid backgrounds"
+    },
+    "--indigo-10": {
+      "value": "#5472E4",
+      "type": "color",
+      "description": "Hovered solid backgrounds"
+    },
+    "--indigo-11": {
+      "value": "#9DB0FF",
+      "type": "color",
+      "description": "Low-contrast text"
+    },
+    "--indigo-12": {
+      "value": "#D6E1FF",
+      "type": "color",
+      "description": "High-contrast text"
+    }
+  },
+  "blue": {
+    "--blue-1": {
+      "value": "#0D1520",
+      "type": "color",
+      "description": "App background"
+    },
+    "--blue-2": {
+      "value": "#111927",
+      "type": "color",
+      "description": "Subtle background"
+    },
+    "--blue-3": {
+      "value": "#0D2847",
+      "type": "color",
+      "description": "UI element background"
+    },
+    "--blue-4": {
+      "value": "#003362",
+      "type": "color",
+      "description": "Hovered UI element background"
+    },
+    "--blue-5": {
+      "value": "#004074",
+      "type": "color",
+      "description": "Active / Selected UI element background"
+    },
+    "--blue-6": {
+      "value": "#104D87",
+      "type": "color",
+      "description": "Subtle borders and separators"
+    },
+    "--blue-7": {
+      "value": "#205D9E",
+      "type": "color",
+      "description": "UI element border and focus rings"
+    },
+    "--blue-8": {
+      "value": "#2870BD",
+      "type": "color",
+      "description": "Hovered UI element border"
+    },
+    "--blue-9": {
+      "value": "#0090FF",
+      "type": "color",
+      "description": "Solid backgrounds"
+    },
+    "--blue-10": {
+      "value": "#3B9EFF",
+      "type": "color",
+      "description": "Hovered solid backgrounds"
+    },
+    "--blue-11": {
+      "value": "#6ABAFF",
+      "type": "color",
+      "description": "Low-contrast text"
+    },
+    "--blue-12": {
+      "value": "#C2E6FF",
+      "type": "color",
+      "description": "High-contrast text"
+    }
+  },
+  "cyan": {
+    "--cyan-1": {
+      "value": "#0B1619",
+      "type": "color",
+      "description": "App background"
+    },
+    "--cyan-2": {
+      "value": "#101B20",
+      "type": "color",
+      "description": "Subtle background"
+    },
+    "--cyan-3": {
+      "value": "#082C36",
+      "type": "color",
+      "description": "UI element background"
+    },
+    "--cyan-4": {
+      "value": "#003848",
+      "type": "color",
+      "description": "Hovered UI element background"
+    },
+    "--cyan-5": {
+      "value": "#004558",
+      "type": "color",
+      "description": "Active / Selected UI element background"
+    },
+    "--cyan-6": {
+      "value": "#045468",
+      "type": "color",
+      "description": "Subtle borders and separators"
+    },
+    "--cyan-7": {
+      "value": "#12677E",
+      "type": "color",
+      "description": "UI element border and focus rings"
+    },
+    "--cyan-8": {
+      "value": "#11819C",
+      "type": "color",
+      "description": "Hovered UI element border"
+    },
+    "--cyan-9": {
+      "value": "#01A2C7",
+      "type": "color",
+      "description": "Solid backgrounds"
+    },
+    "--cyan-10": {
+      "value": "#23AFD0",
+      "type": "color",
+      "description": "Hovered solid backgrounds"
+    },
+    "--cyan-11": {
+      "value": "#4DCCE6",
+      "type": "color",
+      "description": "Low-contrast text"
+    },
+    "--cyan-12": {
+      "value": "#B6ECF7",
+      "type": "color",
+      "description": "High-contrast text"
+    }
+  },
+  "teal": {
+    "--teal-1": {
+      "value": "#0D1514",
+      "type": "color",
+      "description": "App background"
+    },
+    "--teal-2": {
+      "value": "#111C1B",
+      "type": "color",
+      "description": "Subtle background"
+    },
+    "--teal-3": {
+      "value": "#0D2D2A",
+      "type": "color",
+      "description": "UI element background"
+    },
+    "--teal-4": {
+      "value": "#023B37",
+      "type": "color",
+      "description": "Hovered UI element background"
+    },
+    "--teal-5": {
+      "value": "#084843",
+      "type": "color",
+      "description": "Active / Selected UI element background"
+    },
+    "--teal-6": {
+      "value": "#145750",
+      "type": "color",
+      "description": "Subtle borders and separators"
+    },
+    "--teal-7": {
+      "value": "#1C6961",
+      "type": "color",
+      "description": "UI element border and focus rings"
+    },
+    "--teal-8": {
+      "value": "#207F74",
+      "type": "color",
+      "description": "Hovered UI element border"
+    },
+    "--teal-9": {
+      "value": "#13A594",
+      "type": "color",
+      "description": "Solid backgrounds"
+    },
+    "--teal-10": {
+      "value": "#0DB39E",
+      "type": "color",
+      "description": "Hovered solid backgrounds"
+    },
+    "--teal-11": {
+      "value": "#0AD8B6",
+      "type": "color",
+      "description": "Low-contrast text"
+    },
+    "--teal-12": {
+      "value": "#ADF0DD",
+      "type": "color",
+      "description": "High-contrast text"
+    }
+  },
+  "jade": {
+    "--jade-1": {
+      "value": "#0D1512",
+      "type": "color",
+      "description": "App background"
+    },
+    "--jade-2": {
+      "value": "#121C18",
+      "type": "color",
+      "description": "Subtle background"
+    },
+    "--jade-3": {
+      "value": "#0F2D22",
+      "type": "color",
+      "description": "UI element background"
+    },
+    "--jade-4": {
+      "value": "#0A3B2C",
+      "type": "color",
+      "description": "Hovered UI element background"
+    },
+    "--jade-5": {
+      "value": "#104837",
+      "type": "color",
+      "description": "Active / Selected UI element background"
+    },
+    "--jade-6": {
+      "value": "#1B5645",
+      "type": "color",
+      "description": "Subtle borders and separators"
+    },
+    "--jade-7": {
+      "value": "#246854",
+      "type": "color",
+      "description": "UI element border and focus rings"
+    },
+    "--jade-8": {
+      "value": "#2A7E68",
+      "type": "color",
+      "description": "Hovered UI element border"
+    },
+    "--jade-9": {
+      "value": "#29A383",
+      "type": "color",
+      "description": "Solid backgrounds"
+    },
+    "--jade-10": {
+      "value": "#27B08C",
+      "type": "color",
+      "description": "Hovered solid backgrounds"
+    },
+    "--jade-11": {
+      "value": "#1ED8A4",
+      "type": "color",
+      "description": "Low-contrast text"
+    },
+    "--jade-12": {
+      "value": "#ADF0D4",
+      "type": "color",
+      "description": "High-contrast text"
+    }
+  },
+  "green": {
+    "--green-1": {
+      "value": "#0E1512",
+      "type": "color",
+      "description": "App background"
+    },
+    "--green-2": {
+      "value": "#121B17",
+      "type": "color",
+      "description": "Subtle background"
+    },
+    "--green-3": {
+      "value": "#132D21",
+      "type": "color",
+      "description": "UI element background"
+    },
+    "--green-4": {
+      "value": "#113B29",
+      "type": "color",
+      "description": "Hovered UI element background"
+    },
+    "--green-5": {
+      "value": "#174933",
+      "type": "color",
+      "description": "Active / Selected UI element background"
+    },
+    "--green-6": {
+      "value": "#1F573E",
+      "type": "color",
+      "description": "Subtle borders and separators"
+    },
+    "--green-7": {
+      "value": "#28684A",
+      "type": "color",
+      "description": "UI element border and focus rings"
+    },
+    "--green-8": {
+      "value": "#2F7C57",
+      "type": "color",
+      "description": "Hovered UI element border"
+    },
+    "--green-9": {
+      "value": "#30A46C",
+      "type": "color",
+      "description": "Solid backgrounds"
+    },
+    "--green-10": {
+      "value": "#33B174",
+      "type": "color",
+      "description": "Hovered solid backgrounds"
+    },
+    "--green-11": {
+      "value": "#3DD68C",
+      "type": "color",
+      "description": "Low-contrast text"
+    },
+    "--green-12": {
+      "value": "#B1F1CB",
+      "type": "color",
+      "description": "High-contrast text"
+    }
+  },
+  "grass": {
+    "--grass-1": {
+      "value": "#0E1511",
+      "type": "color",
+      "description": "App background"
+    },
+    "--grass-2": {
+      "value": "#141A15",
+      "type": "color",
+      "description": "Subtle background"
+    },
+    "--grass-3": {
+      "value": "#1B2A1E",
+      "type": "color",
+      "description": "UI element background"
+    },
+    "--grass-4": {
+      "value": "#1D3A24",
+      "type": "color",
+      "description": "Hovered UI element background"
+    },
+    "--grass-5": {
+      "value": "#25482D",
+      "type": "color",
+      "description": "Active / Selected UI element background"
+    },
+    "--grass-6": {
+      "value": "#2D5736",
+      "type": "color",
+      "description": "Subtle borders and separators"
+    },
+    "--grass-7": {
+      "value": "#366740",
+      "type": "color",
+      "description": "UI element border and focus rings"
+    },
+    "--grass-8": {
+      "value": "#3F7949",
+      "type": "color",
+      "description": "Hovered UI element border"
+    },
+    "--grass-9": {
+      "value": "#46A758",
+      "type": "color",
+      "description": "Solid backgrounds"
+    },
+    "--grass-10": {
+      "value": "#53B365",
+      "type": "color",
+      "description": "Hovered solid backgrounds"
+    },
+    "--grass-11": {
+      "value": "#71D083",
+      "type": "color",
+      "description": "Low-contrast text"
+    },
+    "--grass-12": {
+      "value": "#C2F0C2",
+      "type": "color",
+      "description": "High-contrast text"
+    }
+  },
+  "lime": {
+    "--lime-1": {
+      "value": "#11130B",
+      "type": "color",
+      "description": "App background"
+    },
+    "--lime-2": {
+      "value": "#151A10",
+      "type": "color",
+      "description": "Subtle background"
+    },
+    "--lime-3": {
+      "value": "#1F2917",
+      "type": "color",
+      "description": "UI element background"
+    },
+    "--lime-4": {
+      "value": "#29371D",
+      "type": "color",
+      "description": "Hovered UI element background"
+    },
+    "--lime-5": {
+      "value": "#334423",
+      "type": "color",
+      "description": "Active / Selected UI element background"
+    },
+    "--lime-6": {
+      "value": "#3D532A",
+      "type": "color",
+      "description": "Subtle borders and separators"
+    },
+    "--lime-7": {
+      "value": "#496231",
+      "type": "color",
+      "description": "UI element border and focus rings"
+    },
+    "--lime-8": {
+      "value": "#577538",
+      "type": "color",
+      "description": "Hovered UI element border"
+    },
+    "--lime-9": {
+      "value": "#BDEE63",
+      "type": "color",
+      "description": "Solid backgrounds"
+    },
+    "--lime-10": {
+      "value": "#D4FF70",
+      "type": "color",
+      "description": "Hovered solid backgrounds"
+    },
+    "--lime-11": {
+      "value": "#BDE56C",
+      "type": "color",
+      "description": "Low-contrast text"
+    },
+    "--lime-12": {
+      "value": "#E3F7BA",
+      "type": "color",
+      "description": "High-contrast text"
+    }
+  },
+  "mint": {
+    "--mint-1": {
+      "value": "#0D1515",
+      "type": "color",
+      "description": "App background"
+    },
+    "--mint-2": {
+      "value": "#0F1B1B",
+      "type": "color",
+      "description": "Subtle background"
+    },
+    "--mint-3": {
+      "value": "#092C2B",
+      "type": "color",
+      "description": "UI element background"
+    },
+    "--mint-4": {
+      "value": "#003A38",
+      "type": "color",
+      "description": "Hovered UI element background"
+    },
+    "--mint-5": {
+      "value": "#004744",
+      "type": "color",
+      "description": "Active / Selected UI element background"
+    },
+    "--mint-6": {
+      "value": "#0F5650",
+      "type": "color",
+      "description": "Subtle borders and separators"
+    },
+    "--mint-7": {
+      "value": "#1E685F",
+      "type": "color",
+      "description": "UI element border and focus rings"
+    },
+    "--mint-8": {
+      "value": "#277F70",
+      "type": "color",
+      "description": "Hovered UI element border"
+    },
+    "--mint-9": {
+      "value": "#86EAD4",
+      "type": "color",
+      "description": "Solid backgrounds"
+    },
+    "--mint-10": {
+      "value": "#A8F5E5",
+      "type": "color",
+      "description": "Hovered solid backgrounds"
+    },
+    "--mint-11": {
+      "value": "#57D5BA",
+      "type": "color",
+      "description": "Low-contrast text"
+    },
+    "--mint-12": {
+      "value": "#C4F5E1",
+      "type": "color",
+      "description": "High-contrast text"
+    }
+  },
+  "sky": {
+    "--sky-1": {
+      "value": "#0D141F",
+      "type": "color",
+      "description": "App background"
+    },
+    "--sky-2": {
+      "value": "#111A27",
+      "type": "color",
+      "description": "Subtle background"
+    },
+    "--sky-3": {
+      "value": "#112840",
+      "type": "color",
+      "description": "UI element background"
+    },
+    "--sky-4": {
+      "value": "#113655",
+      "type": "color",
+      "description": "Hovered UI element background"
+    },
+    "--sky-5": {
+      "value": "#154367",
+      "type": "color",
+      "description": "Active / Selected UI element background"
+    },
+    "--sky-6": {
+      "value": "#1B537B",
+      "type": "color",
+      "description": "Subtle borders and separators"
+    },
+    "--sky-7": {
+      "value": "#1F6692",
+      "type": "color",
+      "description": "UI element border and focus rings"
+    },
+    "--sky-8": {
+      "value": "#197CAE",
+      "type": "color",
+      "description": "Hovered UI element border"
+    },
+    "--sky-9": {
+      "value": "#7CE2FE",
+      "type": "color",
+      "description": "Solid backgrounds"
+    },
+    "--sky-10": {
+      "value": "#A8EEFF",
+      "type": "color",
+      "description": "Hovered solid backgrounds"
+    },
+    "--sky-11": {
+      "value": "#76C7F0",
+      "type": "color",
+      "description": "Low-contrast text"
+    },
+    "--sky-12": {
+      "value": "#C2F3FF",
+      "type": "color",
+      "description": "High-contrast text"
+    }
+  },
+  "black": {
+    "--black-1": {
+      "value": "#FFFFFF0D",
+      "type": "color",
+      "description": "App background"
+    },
+    "--black-2": {
+      "value": "#FFFFFF1A",
+      "type": "color",
+      "description": "Subtle background"
+    },
+    "--black-3": {
+      "value": "#FFFFFF26",
+      "type": "color",
+      "description": "UI element background"
+    },
+    "--black-4": {
+      "value": "#FFFFFF33",
+      "type": "color",
+      "description": "Hovered UI element background"
+    },
+    "--black-5": {
+      "value": "#FFFFFF4D",
+      "type": "color",
+      "description": "Active / Selected UI element background"
+    },
+    "--black-6": {
+      "value": "#FFFFFF66",
+      "type": "color",
+      "description": "Subtle borders and separators"
+    },
+    "--black-7": {
+      "value": "#FFFFFF80",
+      "type": "color",
+      "description": "UI element border and focus rings"
+    },
+    "--black-8": {
+      "value": "#FFFFFF99",
+      "type": "color",
+      "description": "Hovered UI element border"
+    },
+    "--black-9": {
+      "value": "#FFFFFFB3",
+      "type": "color",
+      "description": "Solid backgrounds"
+    },
+    "--black-10": {
+      "value": "#FFFFFFCC",
+      "type": "color",
+      "description": "Hovered solid backgrounds"
+    },
+    "--black-11": {
+      "value": "#FFFFFFE6",
+      "type": "color",
+      "description": "Low-contrast text"
+    },
+    "--black-12": {
+      "value": "#FFFFFFF2",
+      "type": "color",
+      "description": "High-contrast text"
+    }
+  },
+  "white": {
+    "--white-1": {
+      "value": "#0000000D",
+      "type": "color",
+      "description": "App background"
+    },
+    "--white-2": {
+      "value": "#0000001A",
+      "type": "color",
+      "description": "Subtle background"
+    },
+    "--white-3": {
+      "value": "#00000026",
+      "type": "color",
+      "description": "UI element background"
+    },
+    "--white-4": {
+      "value": "#00000033",
+      "type": "color",
+      "description": "Hovered UI element background"
+    },
+    "--white-5": {
+      "value": "#0000004D",
+      "type": "color",
+      "description": "Active / Selected UI element background"
+    },
+    "--white-6": {
+      "value": "#00000066",
+      "type": "color",
+      "description": "Subtle borders and separators"
+    },
+    "--white-7": {
+      "value": "#00000080",
+      "type": "color",
+      "description": "UI element border and focus rings"
+    },
+    "--white-8": {
+      "value": "#00000099",
+      "type": "color",
+      "description": "Hovered UI element border"
+    },
+    "--white-9": {
+      "value": "#000000B3",
+      "type": "color",
+      "description": "Solid backgrounds"
+    },
+    "--white-10": {
+      "value": "#000000CC",
+      "type": "color",
+      "description": "Hovered solid backgrounds"
+    },
+    "--white-11": {
+      "value": "#000000E6",
+      "type": "color",
+      "description": "Low-contrast text"
+    },
+    "--white-12": {
+      "value": "#000000F2",
+      "type": "color",
+      "description": "High-contrast text"
+    }
+  },
+  "clay": {
+    "--clay-1": {
+      "value": "#000000",
+      "type": "color",
+      "description": "App background"
+    },
+    "--clay-2": {
+      "value": "#160F0D",
+      "type": "color",
+      "description": "Subtle background"
+    },
+    "--clay-3": {
+      "value": "#2F1811",
+      "type": "color",
+      "description": "UI element background"
+    },
+    "--clay-4": {
+      "value": "#431D10",
+      "type": "color",
+      "description": "Hovered UI element background"
+    },
+    "--clay-5": {
+      "value": "#522617",
+      "type": "color",
+      "description": "Active / Selected UI element background"
+    },
+    "--clay-6": {
+      "value": "#623324",
+      "type": "color",
+      "description": "Subtle borders and separators"
+    },
+    "--clay-7": {
+      "value": "#794433",
+      "type": "color",
+      "description": "UI element border and focus rings"
+    },
+    "--clay-8": {
+      "value": "#9C5943",
+      "type": "color",
+      "description": "Hovered UI element border"
+    },
+    "--clay-9": {
+      "value": "#D97757",
+      "type": "color",
+      "description": "Solid backgrounds"
+    },
+    "--clay-10": {
+      "value": "#CC6B4C",
+      "type": "color",
+      "description": "Hovered solid backgrounds"
+    },
+    "--clay-11": {
+      "value": "#FA9D7F",
+      "type": "color",
+      "description": "Low-contrast text"
+    },
+    "--clay-12": {
+      "value": "#F3D7CE",
+      "type": "color",
+      "description": "High-contrast text"
+    }
+  },
+  "moroccan": {
+    "--moroccan-1": {
+      "value": "#000000",
+      "type": "color",
+      "description": "App background"
+    },
+    "--moroccan-2": {
+      "value": "#081121",
+      "type": "color",
+      "description": "Subtle background"
+    },
+    "--moroccan-3": {
+      "value": "#0A204B",
+      "type": "color",
+      "description": "UI element background"
+    },
+    "--moroccan-4": {
+      "value": "#0C2C69",
+      "type": "color",
+      "description": "Hovered UI element background"
+    },
+    "--moroccan-5": {
+      "value": "#12377D",
+      "type": "color",
+      "description": "Active / Selected UI element background"
+    },
+    "--moroccan-6": {
+      "value": "#1B438F",
+      "type": "color",
+      "description": "Subtle borders and separators"
+    },
+    "--moroccan-7": {
+      "value": "#2350A4",
+      "type": "color",
+      "description": "UI element border and focus rings"
+    },
+    "--moroccan-8": {
+      "value": "#295DC1",
+      "type": "color",
+      "description": "Hovered UI element border"
+    },
+    "--moroccan-9": {
+      "value": "#065AED",
+      "type": "color",
+      "description": "Solid backgrounds"
+    },
+    "--moroccan-10": {
+      "value": "#0049DC",
+      "type": "color",
+      "description": "Hovered solid backgrounds"
+    },
+    "--moroccan-11": {
+      "value": "#86B6FF",
+      "type": "color",
+      "description": "Low-contrast text"
+    },
+    "--moroccan-12": {
+      "value": "#CFE3FF",
+      "type": "color",
+      "description": "High-contrast text"
+    }
+  },
+  "puerto": {
+    "--puerto-1": {
+      "value": "#000000",
+      "type": "color",
+      "description": "App background"
+    },
+    "--puerto-2": {
+      "value": "#0B1513",
+      "type": "color",
+      "description": "Subtle background"
+    },
+    "--puerto-3": {
+      "value": "#0D2924",
+      "type": "color",
+      "description": "UI element background"
+    },
+    "--puerto-4": {
+      "value": "#083830",
+      "type": "color",
+      "description": "Hovered UI element background"
+    },
+    "--puerto-5": {
+      "value": "#11463D",
+      "type": "color",
+      "description": "Active / Selected UI element background"
+    },
+    "--puerto-6": {
+      "value": "#1C564B",
+      "type": "color",
+      "description": "Subtle borders and separators"
+    },
+    "--puerto-7": {
+      "value": "#25685C",
+      "type": "color",
+      "description": "UI element border and focus rings"
+    },
+    "--puerto-8": {
+      "value": "#2B7E6F",
+      "type": "color",
+      "description": "Hovered UI element border"
+    },
+    "--puerto-9": {
+      "value": "#3FC1AA",
+      "type": "color",
+      "description": "Solid backgrounds"
+    },
+    "--puerto-10": {
+      "value": "#2FB69F",
+      "type": "color",
+      "description": "Hovered solid backgrounds"
+    },
+    "--puerto-11": {
+      "value": "#54D3BB",
+      "type": "color",
+      "description": "Low-contrast text"
+    },
+    "--puerto-12": {
+      "value": "#AEEFE0",
+      "type": "color",
+      "description": "High-contrast text"
+    }
+  },
+  "iron": {
+    "--iron-1": {
+      "value": "#000000",
+      "type": "color",
+      "description": "App background"
+    },
+    "--iron-2": {
+      "value": "#111314",
+      "type": "color",
+      "description": "Subtle background"
+    },
+    "--iron-3": {
+      "value": "#1D1F21",
+      "type": "color",
+      "description": "UI element background"
+    },
+    "--iron-4": {
+      "value": "#25282A",
+      "type": "color",
+      "description": "Hovered UI element background"
+    },
+    "--iron-5": {
+      "value": "#2D3032",
+      "type": "color",
+      "description": "Active / Selected UI element background"
+    },
+    "--iron-6": {
+      "value": "#363A3D",
+      "type": "color",
+      "description": "Subtle borders and separators"
+    },
+    "--iron-7": {
+      "value": "#44494C",
+      "type": "color",
+      "description": "UI element border and focus rings"
+    },
+    "--iron-8": {
+      "value": "#5A6165",
+      "type": "color",
+      "description": "Hovered UI element border"
+    },
+    "--iron-9": {
+      "value": "#666F76",
+      "type": "color",
+      "description": "Solid backgrounds"
+    },
+    "--iron-10": {
+      "value": "#737D83",
+      "type": "color",
+      "description": "Hovered solid backgrounds"
+    },
+    "--iron-11": {
+      "value": "#AEB5BA",
+      "type": "color",
+      "description": "Low-contrast text"
+    },
+    "--iron-12": {
+      "value": "#ECEEF0",
+      "type": "color",
+      "description": "High-contrast text"
+    }
+  },
+  "covert": {
+    "--covert-1": {
+      "value": "#000000",
+      "type": "color",
+      "description": "App background"
+    },
+    "--covert-2": {
+      "value": "#111317",
+      "type": "color",
+      "description": "Subtle background"
+    },
+    "--covert-3": {
+      "value": "#1C1F26",
+      "type": "color",
+      "description": "UI element background"
+    },
+    "--covert-4": {
+      "value": "#252830",
+      "type": "color",
+      "description": "Hovered UI element background"
+    },
+    "--covert-5": {
+      "value": "#2D3039",
+      "type": "color",
+      "description": "Active / Selected UI element background"
+    },
+    "--covert-6": {
+      "value": "#363A43",
+      "type": "color",
+      "description": "Subtle borders and separators"
+    },
+    "--covert-7": {
+      "value": "#444851",
+      "type": "color",
+      "description": "UI element border and focus rings"
+    },
+    "--covert-8": {
+      "value": "#5D616A",
+      "type": "color",
+      "description": "Hovered UI element border"
+    },
+    "--covert-9": {
+      "value": "#6B6F78",
+      "type": "color",
+      "description": "Solid backgrounds"
+    },
+    "--covert-10": {
+      "value": "#787C86",
+      "type": "color",
+      "description": "Hovered solid backgrounds"
+    },
+    "--covert-11": {
+      "value": "#B0B4BF",
+      "type": "color",
+      "description": "Low-contrast text"
+    },
+    "--covert-12": {
+      "value": "#ECEEF3",
+      "type": "color",
+      "description": "High-contrast text"
+    }
+  }
+}

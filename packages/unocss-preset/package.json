@@ -68,7 +68,8 @@
     "dev": "NODE_ENV=development tsdown --watch",
     "play": "NODE_ENV=development bun run --cwd playground dev",
     "typecheck": "tsc --noEmit",
-    "test": "NODE_ENV=test vitest run"
+    "test": "NODE_ENV=test vitest run",
+    "export:colors": "bun run scripts/export-colors.ts"
   },
   "peerDependencies": {
     "@radix-ui/colors": "^3.0.0",

@@ -9,7 +9,6 @@
         "@commitlint/cli": "catalog:build",
         "@commitlint/config-conventional": "catalog:build",
         "@types/bun": "catalog:build",
-        "@types/make-fetch-happen": "^10.0.4",
         "@unocss/eslint-plugin": "catalog:build",
         "eslint": "catalog:build",
         "eslint-plugin-format": "catalog:build",
@@ -32,6 +31,7 @@
         "valibot": "catalog:utils",
       },
       "devDependencies": {
+        "@types/make-fetch-happen": "^10.0.4",
         "@types/node": "catalog:dev",
         "pkg-types": "^2.4.0",
         "tsdown": "catalog:build",

@@ -58,7 +58,8 @@
     "build:docs": "premove ./docs && jsonschema2md -d ./dist -x ../website/public -o ./docs",
     "dev": "NODE_ENV=development tsdown --watch",
     "typecheck": "tsc --noEmit",
-    "preview": "serve -l 3000"
+    "preview": "serve -l 3000",
+    "prepack": "bun ../../scripts/materialize-catalog.ts"
   },
   "peerDependencies": {
     "valibot": "^1.5.0"

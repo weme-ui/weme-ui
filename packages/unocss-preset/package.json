@@ -1,7 +1,7 @@
 {
   "name": "@weme-ui/unocss-preset",
   "type": "module",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "packageManager": "bun@1.4.3",
   "description": "UnoCSS preset for Weme UI.",
   "author": "Allen Luo <luoyi@mouji.net>",
@@ -73,7 +73,8 @@
     "play": "NODE_ENV=development bun run --cwd playground dev",
     "typecheck": "tsc --noEmit",
     "test": "NODE_ENV=test vitest run",
-    "export:colors": "bun run scripts/export-colors.ts"
+    "export:colors": "bun run scripts/export-colors.ts",
+    "prepack": "bun ../../scripts/materialize-catalog.ts"
   },
   "peerDependencies": {
     "@radix-ui/colors": "^3.0.0",

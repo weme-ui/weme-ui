@@ -94,6 +94,7 @@
     "@commitlint/cli": "catalog:build",
     "@commitlint/config-conventional": "catalog:build",
     "@types/bun": "catalog:build",
+    "@types/make-fetch-happen": "^10.0.4",
     "@unocss/eslint-plugin": "catalog:build",
     "eslint": "catalog:build",
     "eslint-plugin-format": "catalog:build",

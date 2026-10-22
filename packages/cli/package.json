@@ -54,7 +54,8 @@
   "scripts": {
     "build": "NODE_ENV=deploy tsdown",
     "dev": "NODE_ENV=development tsdown --watch",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "playground": "bun run src/index.ts"
   },
   "peerDependencies": {
     "nuxt": "^4.0.0",
@@ -70,13 +71,15 @@
     }
   },
   "dependencies": {
-    "citty": "^0.2.2"
+    "@weme-ui/schema": "workspace:*",
+    "citty": "^0.2.2",
+    "make-fetch-happen": "^16.0.1",
+    "valibot": "catalog:utils"
   },
   "devDependencies": {
     "@types/node": "catalog:dev",
-    "@weme-ui/schema": "workspace:*",
+    "pkg-types": "^2.4.0",
     "tsdown": "catalog:build",
-    "valibot": "catalog:utils",
     "vitest": "catalog:dev"
   }
 }

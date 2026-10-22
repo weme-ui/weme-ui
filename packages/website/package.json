@@ -27,15 +27,15 @@
     "typecheck": "astro check"
   },
   "dependencies": {
-    "@astrojs/check": "^0.9.11",
-    "@astrojs/vue": "^7.1.1",
+    "@astrojs/check": "^0.9.12",
+    "@astrojs/vue": "^7.1.2",
     "@iconify-json/lucide": "^1.2.147",
     "@iconify-json/ri": "catalog:utils",
     "@iconify-json/simple-icons": "^1.2.100",
     "@iconify/vue": "catalog:utils",
     "@unocss/astro": "catalog:dev",
     "@weme-ui/unocss-preset": "workspace:*",
-    "astro": "^7.4.1",
+    "astro": "^7.4.2",
     "marked": "^18.1.1",
     "shiki": "^4.5.0",
     "unocss": "catalog:dev",

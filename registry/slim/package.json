@@ -29,7 +29,7 @@
     "bun": ">=1.3.12"
   },
   "scripts": {
-    "typecheck": "tsc --noEmit",
+    "typecheck": "vue-tsc --noEmit",
     "test": "vitest run"
   },
   "peerDependencies": {
@@ -60,7 +60,8 @@
     "unocss": "catalog:dev",
     "valibot": "catalog:utils",
     "vue": "catalog:dev",
-    "vue-router": "catalog:dev"
+    "vue-router": "catalog:dev",
+    "vue-tsc": "catalog:dev"
   },
   "devDependencies": {
     "@iconify-json/ri": "catalog:utils",

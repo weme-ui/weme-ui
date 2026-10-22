@@ -2,7 +2,7 @@ import type { Theme } from '~/theme'
 import { symbols } from '@unocss/core'
 import { beforeEach, describe, expect, it } from 'vitest'
 import { colors } from '~/theme/colors'
-import { CUSTOM_THEME_COLOR_ALIASES } from '~/tokens'
+import { CUSTOM_THEME_COLOR_ALIASES, setColorAliasMaps } from '~/tokens'
 import { trackedColorAliases, trackedProperties, trackedTheme } from '~/utils/track'
 import {
   colorableShadows,
@@ -85,6 +85,8 @@ describe('parseColor', () => {
 
   it('resolves custom theme color aliases to css variables', () => {
     trackedColorAliases.clear()
+    trackedTheme.clear()
+    setColorAliasMaps()
 
     for (const alias of CUSTOM_THEME_COLOR_ALIASES) {
       const parsed = parseColor(alias, theme)
@@ -109,6 +111,8 @@ describe('parseColor', () => {
       ...CUSTOM_THEME_COLOR_ALIASES.map(alias => `${alias}:9`),
       'error:1',
     ])
+    expect(trackedTheme.has('colors:puerto-9')).toBe(true)
+    expect(trackedTheme.has('colors:tomato-1')).toBe(true)
   })
 
   it('parses special colors, hex shortcuts, brackets and interpolation methods', () => {
@@ -142,6 +146,7 @@ describe('colorCSSGenerator and colorResolver', () => {
     trackedTheme.clear()
     trackedProperties.clear()
     trackedColorAliases.clear()
+    setColorAliasMaps()
   })
 
   it('emits theme colors as variables and mixes them only when alpha is set', () => {
@@ -213,7 +218,7 @@ describe('colorCSSGenerator and colorResolver', () => {
   it('emits alias colors as css variables and mixes alpha in srgb', () => {
     const plain = colorCSSGenerator(parseColor('accent', theme), 'color', 'text', context)
     expect(plain).toEqual([{ color: 'var(--accent-9)' }])
-    expect(trackedTheme.size).toBe(0)
+    expect(trackedTheme.has('colors:puerto-9')).toBe(true)
     expect(trackedColorAliases.has('accent:9')).toBe(true)
 
     const faded = colorCSSGenerator(parseColor('accent-9/50', theme), 'color', 'text', context)

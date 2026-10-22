@@ -49,6 +49,17 @@ describe('theme preflight', () => {
     expect(css).not.toContain('--colors-gray-1')
   })
 
+  it('emits tracked colors even when no non-color tokens are used', () => {
+    trackedTheme.add('colors:gray-1')
+
+    const gray = buildTheme({}).colors.gray
+    const css = createThemePreflight({ preflights: { theme: 'on-demand' } }).getCSS(createPreflightContext())
+
+    expect(css).toContain(`:root, .light { --gray-1: ${gray['1']}; }`)
+    expect(css).toContain(`.dark { --gray-1: ${gray.dark['1']}; }`)
+    expect(css).not.toContain(':root, :host')
+  })
+
   it('tracks safelist theme keys before generating on-demand variables', () => {
     const css = createThemePreflight().getCSS(createPreflightContext({
       safelist: ['radius:sm', () => ['leading:tight']],

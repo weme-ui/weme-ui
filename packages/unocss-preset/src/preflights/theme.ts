@@ -224,9 +224,6 @@ function createThemeCSS(
   applyProcessHooks(colors, process, ctx)
 
   const resolvedDeps = serializeCssEntries(deps)
-  if (resolvedDeps.length === 0)
-    return undefined
-
   const {
     resolvedColors,
     resolvedDarkColors,
@@ -234,6 +231,10 @@ function createThemeCSS(
     resolvedP3DarkColors,
   } = resolveColorCssGroups(ctx.theme, colors)
 
+  if (resolvedDeps.length === 0 && resolvedColors.length === 0)
+    return undefined
+
+  const depsCSS = createCssBlock(':root, :host', resolvedDeps)
   const colorCSS = createCssBlock(':root, .light', resolvedColors)
   const darkColorCSS = createCssBlock('.dark', resolvedDarkColors)
   const p3ColorCSS = resolvedP3Colors.length > 0
@@ -253,9 +254,7 @@ ${resolvedP3DarkColors.join('\n')}
     : ''
 
   return compressCSS(`
-:root, :host {
-${resolvedDeps.join('\n')}
-}
+${depsCSS}
 ${colorCSS}
 ${darkColorCSS}
 ${p3ColorCSS}

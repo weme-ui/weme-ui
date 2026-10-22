@@ -10,6 +10,7 @@ import { rules } from './rules'
 import { shortcuts } from './shortcuts'
 import { shorthands } from './shorthands'
 import { theme } from './theme'
+import { setColorAliasMaps } from './tokens'
 import { PRESET_NAME, trackedColorAliases, trackedProperties, trackedTheme } from './utils'
 import { variants } from './variants'
 
@@ -20,6 +21,7 @@ import { variants } from './variants'
  */
 export const presetWemeUI = definePreset<PresetWemeUIOptions, Theme>((userOptions = {}) => {
   const options = resolveOptions(userOptions)
+  setColorAliasMaps(options.themes.map(theme => theme.colors))
 
   const transformers = []
 

@@ -6,15 +6,17 @@ import {
   CUSTOM_THEME_TOKENS_MAP,
   customThemeColorCSSGenerator,
   customThemeColorResolver,
+  DEFAULT_COLOR_ALIASES,
   generateColorAliasCssVar,
   isRawColor,
   parseColorAlias,
   parseCustomThemeColorCssVar,
   parseCustomThemeSize,
   parseCustomThemeToken,
+  setColorAliasMaps,
   splitCustomThemeTokenKey,
 } from '~/tokens'
-import { trackedColorAliases, trackedProperties } from '~/utils/track'
+import { trackedColorAliases, trackedProperties, trackedTheme } from '~/utils/track'
 
 type FuzzyMapKey = keyof typeof CUSTOM_CSSVAR_FUZZY_MAP
 
@@ -345,6 +347,8 @@ describe('parseCustomThemeColorCssVar', () => {
 describe('parseColorAlias', () => {
   beforeEach(() => {
     trackedColorAliases.clear()
+    trackedTheme.clear()
+    setColorAliasMaps()
   })
 
   it('defaults a bare alias to step 9 and tracks it', () => {
@@ -357,6 +361,7 @@ describe('parseColorAlias', () => {
     })
     expect(keys).toEqual(['accent', '9'])
     expect([...trackedColorAliases]).toEqual(['accent:9'])
+    expect([...trackedTheme]).toEqual(['colors:puerto-9'])
   })
 
   it('keeps an explicit step and ignores unknown aliases', () => {
@@ -367,6 +372,29 @@ describe('parseColorAlias', () => {
     })
     expect(parseColorAlias(['foreground', 'base'])).toBeUndefined()
     expect([...trackedColorAliases]).toEqual(['error:1'])
+    expect([...trackedTheme]).toEqual(['colors:tomato-1'])
+  })
+
+  it('tracks palettes from the active color alias maps', () => {
+    setColorAliasMaps([
+      { ...DEFAULT_COLOR_ALIASES, accent: 'blue' },
+      { ...DEFAULT_COLOR_ALIASES, accent: 'red' },
+    ])
+
+    parseColorAlias(['accent', '9'])
+
+    expect(trackedTheme.has('colors:blue-9')).toBe(true)
+    expect(trackedTheme.has('colors:red-9')).toBe(true)
+    expect(trackedTheme.has('colors:puerto-9')).toBe(false)
+  })
+
+  it('does not track raw color alias values as palettes', () => {
+    setColorAliasMaps([{ ...DEFAULT_COLOR_ALIASES, accent: '#3b82f6' }])
+
+    parseColorAlias(['accent', '9'])
+
+    expect([...trackedColorAliases]).toEqual(['accent:9'])
+    expect(trackedTheme.size).toBe(0)
   })
 })
 

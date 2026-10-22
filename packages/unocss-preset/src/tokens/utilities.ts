@@ -1,10 +1,31 @@
 import type { CSSObject, CSSValueInput } from '@unocss/core'
 import type { LooseAutocomplete, Prettify } from '../utils'
 import type { CUSTOM_CSSVAR_FUZZY_MAP_KEYS } from './defaults'
-import type { CustomThemeTokens, ResolvedCustomThemeCSSVars } from './types'
+import type { CustomThemeColorAlias, CustomThemeTokens, ResolvedCustomThemeCSSVars } from './types'
 import { symbols } from '@unocss/core'
-import { colorAliasTracking, defineProperty } from '../utils'
-import { CUSTOM_CSSVAR_FUZZY_MAP, CUSTOM_THEME_COLOR_ALIASES, CUSTOM_THEME_TOKENS_MAP } from './defaults'
+import { colorAliasTracking, defineProperty, themeTracking } from '../utils'
+import { CUSTOM_CSSVAR_FUZZY_MAP, CUSTOM_THEME_COLOR_ALIASES, CUSTOM_THEME_TOKENS_MAP, DEFAULT_COLOR_ALIASES } from './defaults'
+
+let colorAliasMaps: CustomThemeColorAlias[] = [DEFAULT_COLOR_ALIASES]
+
+/**
+ * 设置当前生效的颜色别名映射，供解析 `accent-9` 时追踪实际色板。
+ *
+ * @internal
+ */
+export function setColorAliasMaps(maps?: CustomThemeColorAlias[]) {
+  colorAliasMaps = maps && maps.length > 0 ? maps : [DEFAULT_COLOR_ALIASES]
+}
+
+function trackColorAliasPalette(alias: string, no?: string) {
+  const step = no ?? '9'
+
+  for (const colors of colorAliasMaps) {
+    const color = colors[alias as keyof CustomThemeColorAlias]
+    if (typeof color === 'string' && !isRawColor(color))
+      themeTracking('colors', [color, step])
+  }
+}
 
 /**
  * 检查是否为原始颜色
@@ -77,6 +98,7 @@ export function parseColorAlias(keys: string[]) {
   const no = keys.at(-1)
 
   colorAliasTracking(alias, no)
+  trackColorAliasPalette(alias, no)
 
   return {
     color,

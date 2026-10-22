@@ -1,0 +1,38 @@
+{
+  "name": "weme-ui-starter",
+  "type": "module",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "vite",
+    "build": "vue-tsc -b && vite build",
+    "preview": "vite preview",
+    "typecheck": "vue-tsc --noEmit"
+  },
+  "dependencies": {
+    "@antfu/eslint-config": "^9.0.0",
+    "@commitlint/cli": "^21.0.2",
+    "@commitlint/config-conventional": "^21.0.2",
+    "eslint": "^10.4.1",
+    "eslint-plugin-format": "^2.0.1",
+    "lint-staged": "^17.0.7",
+    "simple-git-hooks": "^2.13.1",
+    "vue": "^3.5.44",
+    "vue-router": "^5.4.0"
+  },
+  "devDependencies": {
+    "@types/node": "^26.6.5",
+    "@vitejs/plugin-vue": "^6.0.7",
+    "@vitejs/plugin-vue-jsx": "^5.1.5",
+    "magic-string": "^0.30.21",
+    "typescript": "6.0.3",
+    "unocss": "66.10.5",
+    "unplugin-auto-import": "^21.0.0",
+    "unplugin-vue-components": "^32.1.0",
+    "unplugin-vue-define-options": "^3.1.2",
+    "vite": "^8.3.5",
+    "vite-plugin-vue-devtools": "^8.1.2",
+    "vite-plugin-vue-layouts": "^0.11.0",
+    "vue-tsc": "^3.3.13"
+  }
+}

@@ -52,6 +52,7 @@
 
   "files.readonlyInclude": {
     "**/**.schema.json": true,
+    "**/**.lock.json": true,
     "**/auto-imports.d.ts": true,
     "**/components.d.ts": true,
     "**/typed-router.d.ts": true

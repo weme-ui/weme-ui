@@ -18,7 +18,7 @@ undefined#/properties/unocss/properties/accent
 
 ```json
 {
-  "primary": "oklch(0.55 0.2 250)",
+  "brand": "oklch(0.55 0.2 250)",
   "secondary": "oklch(0.7 0.15 40)"
 }
 ```

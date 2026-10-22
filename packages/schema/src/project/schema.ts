@@ -12,7 +12,7 @@ import { CSSVariables, NonEmptyTrimmedString, TrimmedURLString } from '../shared
  *
  * @category Project
  */
-export const ProjectRegisteredItemSchema = v.pipe(
+export const ProjectAddedRegistrySchema = v.pipe(
   v.object({
     /**
      * 注册中心仓库地址
@@ -90,7 +90,7 @@ export const ProjectUnoCSSConfigSchema = v.pipe(
         v.metadata({
           title: '强调色',
           description: '项目主题的强调（品牌）色 token。键为 token 名，值为 CSS 颜色字符串，通常使用 oklch。',
-          examples: [{ primary: 'oklch(0.55 0.2 250)', secondary: 'oklch(0.7 0.15 40)' }],
+          examples: [{ brand: 'oklch(0.55 0.2 250)', secondary: 'oklch(0.7 0.15 40)' }],
         }),
       ),
     ),
@@ -109,30 +109,14 @@ export const ProjectUnoCSSConfigSchema = v.pipe(
         v.metadata({
           title: '中性色',
           description: '项目主题的中性（灰阶）色 token。键为 token 名，值为 CSS 颜色字符串，通常使用 oklch。',
-          examples: [{ base: 'oklch(0.2 0 0)', muted: 'oklch(0.55 0 0)' }],
-        }),
-      ),
-    ),
-
-    /**
-     * CSS 变量
-     *
-     * @optional
-     */
-    cssVars: v.optional(
-      v.pipe(
-        CSSVariables,
-        v.metadata({
-          title: 'CSS 变量',
-          description: '项目主题的额外 CSS 自定义属性。取值会合并进 UnoCSS preset options，嵌套结构为 theme-key → variable-name → value。',
-          examples: [{ theme: { 'radius-lg': '0.75rem' } }],
+          examples: [{ stone: 'oklch(0.2 0 0)' }],
         }),
       ),
     ),
   }),
   v.metadata({
     title: 'UnoCSS 扩展',
-    description: '项目级 UnoCSS 主题扩展。用于自定义强调色、中性色，以及注入 UnoCSS preset 的额外 CSS 变量。',
+    description: '项目级 UnoCSS 主题扩展。用于自定义强调色、中性色。',
   }),
 )
 
@@ -174,7 +158,7 @@ export const ProjectConfigSchema = v.pipe(
      */
     registries: v.optional(
       v.pipe(
-        v.array(ProjectRegisteredItemSchema),
+        v.array(ProjectAddedRegistrySchema),
         v.metadata({
           title: 'Registries',
           description: '已向本项目注册的 registries。每项选择一个 registry，并可指定仓库来源与安装前缀。',
@@ -193,6 +177,22 @@ export const ProjectConfigSchema = v.pipe(
      * @optional
      */
     unocss: v.optional(ProjectUnoCSSConfigSchema),
+
+    /**
+     * CSS 变量
+     *
+     * @optional
+     */
+    cssVars: v.optional(
+      v.pipe(
+        CSSVariables,
+        v.metadata({
+          title: 'CSS 变量',
+          description: '项目主题的额外 CSS 自定义属性。取值会合并进 UnoCSS preset options，嵌套结构为 theme-key → variable-name → value。',
+          examples: [{ card: { radius: '0.75rem' } }],
+        }),
+      ),
+    ),
   }),
   v.metadata({
     title: '项目配置',

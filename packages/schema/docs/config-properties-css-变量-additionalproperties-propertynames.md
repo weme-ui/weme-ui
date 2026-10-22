@@ -1,7 +1,7 @@
 # Untitled string in 项目配置 Schema
 
 ```txt
-undefined#/properties/unocss/properties/cssVars/additionalProperties/propertyNames
+undefined#/properties/cssVars/additionalProperties/propertyNames
 ```
 
 

@@ -39,6 +39,7 @@ Weme UI 项目配置。声明安装路径、已注册的 registries，以及可�
 | [paths](#paths)           | `object` | Optional | cannot be null | [项目配置](config-properties-路径.md "undefined#/properties/paths")              |
 | [registries](#registries) | `array`  | Optional | cannot be null | [项目配置](config-properties-registries.md "undefined#/properties/registries") |
 | [unocss](#unocss)         | `object` | Optional | cannot be null | [项目配置](config-properties-unocss-扩展.md "undefined#/properties/unocss")      |
+| [cssVars](#cssvars)       | `object` | Optional | cannot be null | [项目配置](config-properties-css-变量.md "undefined#/properties/cssVars")        |
 
 ## $schema
 
@@ -134,7 +135,7 @@ The default value is:
 
 ## unocss
 
-项目级 UnoCSS 主题扩展。用于自定义强调色、中性色，以及注入 UnoCSS preset 的额外 CSS 变量。
+项目级 UnoCSS 主题扩展。用于自定义强调色、中性色。
 
 `unocss`
 
@@ -149,3 +150,39 @@ The default value is:
 ### unocss Type
 
 `object` ([UnoCSS 扩展](config-properties-unocss-扩展.md))
+
+## cssVars
+
+项目主题的额外 CSS 自定义属性。取值会合并进 UnoCSS preset options，嵌套结构为 theme-key → variable-name → value。
+
+`cssVars`
+
+* is optional
+
+* Type: `object` ([CSS 变量](config-properties-css-变量.md))
+
+* cannot be null
+
+* defined in: [项目配置](config-properties-css-变量.md "undefined#/properties/cssVars")
+
+### cssVars Type
+
+`object` ([CSS 变量](config-properties-css-变量.md))
+
+### cssVars Examples
+
+```json
+{
+  "card": {
+    "bg-color": "oklch(0.55 0.2 250)"
+  }
+}
+```
+
+```json
+{
+  "card": {
+    "radius": "0.75rem"
+  }
+}
+```

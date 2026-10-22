@@ -18,8 +18,7 @@ undefined#/properties/unocss/properties/neutral
 
 ```json
 {
-  "base": "oklch(0.2 0 0)",
-  "muted": "oklch(0.55 0 0)"
+  "stone": "oklch(0.2 0 0)"
 }
 ```
 

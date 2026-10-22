@@ -12,7 +12,7 @@
 
 ### Objects
 
-* [CSS 变量](./config-properties-unocss-扩展-properties-css-变量.md "项目主题的额外 CSS 自定义属性。取值会合并进 UnoCSS preset options，嵌套结构为 theme-key → variable-name → value。") – `undefined#/properties/unocss/properties/cssVars`
+* [CSS 变量](./config-properties-css-变量.md "项目主题的额外 CSS 自定义属性。取值会合并进 UnoCSS preset options，嵌套结构为 theme-key → variable-name → value。") – `undefined#/properties/cssVars`
 
 * [CSS 变量](./registry-properties-items-registry-item-properties-css-变量.md "安装该 item 时注入的 CSS 自定义属性。取值会合并进 UnoCSS preset options，嵌套结构为 theme-key → variable-name → value。") – `undefined#/properties/items/items/properties/cssVars`
 
@@ -20,11 +20,11 @@
 
 * [Registry item 文件](./registry-properties-items-registry-item-properties-文件-registry-item-文件.md "描述属于某个 registry item 的单个文件，包括源路径、可选安装目标、type 与 kind。") – `undefined#/properties/items/items/properties/files/items`
 
-* [UnoCSS 扩展](./config-properties-unocss-扩展.md "项目级 UnoCSS 主题扩展。用于自定义强调色、中性色，以及注入 UnoCSS preset 的额外 CSS 变量。") – `undefined#/properties/unocss`
+* [UnoCSS 扩展](./config-properties-unocss-扩展.md "项目级 UnoCSS 主题扩展。用于自定义强调色、中性色。") – `undefined#/properties/unocss`
 
 * [Untitled object in Registry 配置](./registry-properties-items-registry-item-properties-css-变量-additionalproperties.md) – `undefined#/properties/items/items/properties/cssVars/additionalProperties`
 
-* [Untitled object in 项目配置](./config-properties-unocss-扩展-properties-css-变量-additionalproperties.md) – `undefined#/properties/unocss/properties/cssVars/additionalProperties`
+* [Untitled object in 项目配置](./config-properties-css-变量-additionalproperties.md) – `undefined#/properties/cssVars/additionalProperties`
 
 * [中性色](./config-properties-unocss-扩展-properties-中性色.md "项目主题的中性（灰阶）色 token。键为 token 名，值为 CSS 颜色字符串，通常使用 oklch。") – `undefined#/properties/unocss/properties/neutral`
 

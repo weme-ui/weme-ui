@@ -2,7 +2,7 @@ import * as v from 'valibot'
 import { LOCKFILE_SCHEMA_URL } from '../constants'
 import { RegistryItemFileSchema } from '../registry'
 import { NonEmptyTrimmedString, TrimmedURLString } from '../shared'
-import { ProjectRegisteredItemSchema } from './schema'
+import { ProjectAddedRegistrySchema } from './schema'
 
 // ============================================================================
 // Project Lock File Schema
@@ -60,7 +60,7 @@ export const ProjectAddedItemSchema = v.pipe(
      * 已添加的注册中心名称
      */
     registry: v.pipe(
-      ProjectRegisteredItemSchema.entries.registry,
+      ProjectAddedRegistrySchema.entries.registry,
       v.metadata({
         title: 'Registry',
         description: '该已安装 item 来源的 registry，形式为 "owner/registry"。',
@@ -72,7 +72,7 @@ export const ProjectAddedItemSchema = v.pipe(
      * 注册中心仓库地址
      */
     repo: v.pipe(
-      ProjectRegisteredItemSchema.entries.repo,
+      ProjectAddedRegistrySchema.entries.repo,
       v.metadata({
         title: '仓库',
         description: '安装该 item 时解析所得的 registry 源仓库。',
@@ -84,7 +84,7 @@ export const ProjectAddedItemSchema = v.pipe(
      * 注册项目安装前缀，用于区分不同注册项目
      */
     prefix: v.pipe(
-      ProjectRegisteredItemSchema.entries.prefix,
+      ProjectAddedRegistrySchema.entries.prefix,
       v.metadata({
         title: '前缀',
         description: '安装该 item 时应用的前缀，用于在同一项目存在多个 registry 时隔离文件命名空间。',

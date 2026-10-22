@@ -2,6 +2,7 @@
   "name": "@weme-ui/slim",
   "type": "module",
   "version": "0.0.0",
+  "private": true,
   "packageManager": "bun@1.4.3",
   "description": "The slim registry of Weme UI.",
   "author": "Allen Luo <luoyi@mouji.net>",

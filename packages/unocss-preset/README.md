@@ -19,18 +19,18 @@
 
 ## 文档
 
-完整能力说明见 [`docs/`](./docs/)：
+完整能力说明见 [GitHub docs](https://github.com/weme-ui/weme-ui/tree/main/packages/unocss-preset/docs)：
 
-- [Getting started](./docs/index.md) — 安装与配置
-- [Theme overview](./docs/theme/index.md) — Theme 解剖结构与 Preflight
-- [Color](./docs/theme/color.md) — 色板、刻度、亮暗色与 P3
-- [Palette](./docs/theme/palette.md) — 色卡预览
-- [Dark mode](./docs/theme/dark-mode.md) — class / media 切换与推荐实践
-- [Tokens](./docs/theme/tokens.md) — 颜色别名、语义 Tokens、自定义变量
-- [Typography](./docs/theme/typography.md) / [Spacing](./docs/theme/spacing.md) / [Radius](./docs/theme/radius.md) / [Shadows](./docs/theme/shadows.md)
-- [Rules](./docs/utilities/rules.md) — 全部工具类规则速查
-- [Animation](./docs/utilities/animate.md) — 完整 keyframe 与组合 Enter / Exit
-- [Variants](./docs/utilities/variants.md) — 断点、暗色、伪类、ARIA 等变体
+- [Getting started](https://github.com/weme-ui/weme-ui/blob/main/packages/unocss-preset/docs/index.md) — 安装与配置
+- [Theme overview](https://github.com/weme-ui/weme-ui/blob/main/packages/unocss-preset/docs/theme/index.md) — Theme 解剖结构与 Preflight
+- [Color](https://github.com/weme-ui/weme-ui/blob/main/packages/unocss-preset/docs/theme/color.md) — 色板、刻度、亮暗色与 P3
+- [Palette](https://github.com/weme-ui/weme-ui/blob/main/packages/unocss-preset/docs/theme/palette.md) — 色卡预览
+- [Dark mode](https://github.com/weme-ui/weme-ui/blob/main/packages/unocss-preset/docs/theme/dark-mode.md) — class / media 切换与推荐实践
+- [Tokens](https://github.com/weme-ui/weme-ui/blob/main/packages/unocss-preset/docs/theme/tokens.md) — 颜色别名、语义 Tokens、自定义变量
+- [Typography](https://github.com/weme-ui/weme-ui/blob/main/packages/unocss-preset/docs/theme/typography.md) / [Spacing](https://github.com/weme-ui/weme-ui/blob/main/packages/unocss-preset/docs/theme/spacing.md) / [Radius](https://github.com/weme-ui/weme-ui/blob/main/packages/unocss-preset/docs/theme/radius.md) / [Shadows](https://github.com/weme-ui/weme-ui/blob/main/packages/unocss-preset/docs/theme/shadows.md)
+- [Rules](https://github.com/weme-ui/weme-ui/blob/main/packages/unocss-preset/docs/utilities/rules.md) — 全部工具类规则速查
+- [Animation](https://github.com/weme-ui/weme-ui/blob/main/packages/unocss-preset/docs/utilities/animate.md) — 完整 keyframe 与组合 Enter / Exit
+- [Variants](https://github.com/weme-ui/weme-ui/blob/main/packages/unocss-preset/docs/utilities/variants.md) — 断点、暗色、伪类、ARIA 等变体
 
 ## 生成颜色 CSS 变量
 
@@ -109,8 +109,8 @@
 
 [MIT][license-href] License © 2025 [weme-ui][github-href]
 
-[npm-version-src]: https://img.shields.io/npm/v/@weme-ui/weme-ui?style=flat&colorA=1d2129&colorB=4CBBA5
-[npm-version-href]: https://npmjs.com/package/@weme-ui/weme-ui
+[npm-version-src]: https://img.shields.io/npm/v/@weme-ui/unocss-preset?style=flat&colorA=1d2129&colorB=4CBBA5
+[npm-version-href]: https://npmjs.com/package/@weme-ui/unocss-preset
 [license-src]: https://img.shields.io/github/license/weme-ui/weme-ui.svg?style=flat&colorA=1d2129&colorB=4CBBA5
 [license-href]: https://github.com/weme-ui/weme-ui/blob/main/LICENSE
 [github-href]: https://github.com/weme-ui/weme-ui

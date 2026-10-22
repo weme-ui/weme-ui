@@ -16,6 +16,7 @@ export default antfu(
     },
     ignores: [
       '**/*.schema.json',
+      '.changeset/*.md',
       'docs/**',
       'packages/schema/docs/**',
       'packages/website/.astro/**',

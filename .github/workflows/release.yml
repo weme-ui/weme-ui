@@ -2,14 +2,17 @@ name: Release
 
 on:
   push:
-    tags:
-      - 'v*'
+    branches:
+      - main
+
+concurrency: ${{ github.workflow }}-${{ github.ref }}
 
 jobs:
   release:
     permissions:
       id-token: write
       contents: write
+      pull-requests: write
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7
@@ -23,14 +26,22 @@ jobs:
           node-version: lts/*
           registry-url: 'https://registry.npmjs.org'
 
-      - run: bunx changelogithub
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
       - name: Install
         run: bun install --frozen-lockfile
 
-      - name: Publish
-        run: bun run publish
+      - name: Build
+        run: bun run --filter @weme-ui/schema --filter @weme-ui/unocss-preset build
+
+      - name: Build schema JSON
+        run: bun run --filter @weme-ui/schema build:output
+
+      - name: Create Release Pull Request or Publish
+        uses: changesets/action@v1
+        with:
+          version: bun run version && bun install
+          publish: bun run release
+          title: 'chore: version packages'
+          commit: 'chore: version packages'
         env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_CONFIG_PROVENANCE: true

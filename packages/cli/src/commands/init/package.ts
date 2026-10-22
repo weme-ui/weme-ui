@@ -12,7 +12,7 @@ const defaultPackageJson = `{
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "@weme-ui/schema": "latest"
+    "@weme-ui/schema": "^4.0.0"
   }
 }
 `

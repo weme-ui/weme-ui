@@ -21,6 +21,8 @@
   "catalogs": {
     "build": {
       "@antfu/eslint-config": "^9.0.0",
+      "@changesets/changelog-github": "^1.0.1",
+      "@changesets/cli": "^3.0.3",
       "@commitlint/cli": "^21.0.2",
       "@commitlint/config-conventional": "^21.0.2",
       "@types/bun": "^1.4.2",
@@ -87,11 +89,15 @@
     "lint:fix": "eslint . --fix",
     "typecheck": "turbo run typecheck",
     "test": "turbo run test",
-    "publish": "turbo run publish",
+    "changeset": "changeset",
+    "version": "changeset version",
+    "release": "changeset publish",
     "prepare": "simple-git-hooks"
   },
   "devDependencies": {
     "@antfu/eslint-config": "catalog:build",
+    "@changesets/changelog-github": "catalog:build",
+    "@changesets/cli": "catalog:build",
     "@commitlint/cli": "catalog:build",
     "@commitlint/config-conventional": "catalog:build",
     "@types/bun": "catalog:build",

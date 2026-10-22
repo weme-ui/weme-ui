@@ -1,7 +1,7 @@
 {
   "name": "@weme-ui/unocss-preset",
   "type": "module",
-  "version": "0.0.0",
+  "version": "0.2.0",
   "packageManager": "bun@1.4.3",
   "description": "UnoCSS preset for Weme UI.",
   "author": "Allen Luo <luoyi@mouji.net>",
@@ -57,11 +57,15 @@
   },
   "files": [
     "!dist/**/*.map",
+    "CHANGELOG.md",
     "dist/**/*"
   ],
+  "publishConfig": {
+    "access": "public",
+    "provenance": true
+  },
   "engines": {
-    "node": ">=22.14.0",
-    "bun": ">=1.3.12"
+    "node": ">=22.14.0"
   },
   "scripts": {
     "build": "NODE_ENV=deploy tsdown",
@@ -75,16 +79,18 @@
     "@radix-ui/colors": "^3.0.0",
     "unocss": "^66.10.5"
   },
-  "devDependencies": {
-    "@radix-ui/colors": "^3.0.0",
-    "@types/node": "catalog:dev",
+  "dependencies": {
     "@unocss/core": "catalog:dev",
     "@unocss/extractor-arbitrary-variants": "catalog:dev",
     "@unocss/rule-utils": "catalog:dev",
     "@unocss/transformer-variant-group": "catalog:dev",
     "bezier-easing": "^3.2.0",
     "colorjs.io": "^0.7.1",
-    "defu": "catalog:utils",
+    "defu": "catalog:utils"
+  },
+  "devDependencies": {
+    "@radix-ui/colors": "^3.0.0",
+    "@types/node": "catalog:dev",
     "tsdown": "catalog:build",
     "type-fest": "catalog:utils",
     "typescript": "catalog:build",

@@ -90,7 +90,7 @@
     "typecheck": "turbo run typecheck",
     "test": "turbo run test",
     "changeset": "changeset",
-    "version": "changeset version",
+    "version": "changeset version && bun install",
     "release": "changeset publish",
     "prepare": "simple-git-hooks"
   },

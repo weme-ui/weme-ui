@@ -1,5 +1,11 @@
 # @weme-ui/unocss-preset
 
+## 0.2.2
+
+### Patch Changes
+
+- [`8b371c1`](https://github.com/weme-ui/weme-ui/commit/8b371c1f2ca05f85c66afea405e2d69074798c0f) Thanks [@moujinet](https://github.com/moujinet)! - 解析 `accent-9` 等颜色别名时追踪实际色板，并在仅有颜色变量时仍生成 theme CSS。
+
 ## 0.2.1
 
 ### Patch Changes

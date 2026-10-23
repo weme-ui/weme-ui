@@ -70,6 +70,7 @@
       "name": "@weme-ui/unocss-preset",
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
       "version": "0.2.2",
 =======
       "version": "0.2.1",
@@ -77,6 +78,12 @@
 =======
       "version": "0.2.1",
 >>>>>>> 18c3eba (chore(templates): add Vite template files and configuration for Weme UI starter)
+=======
+      "version": "0.2.1",
+=======
+      "version": "0.2.2",
+>>>>>>> 328465f (chore: version packages)
+>>>>>>> 769c53e (chore: version packages)
       "dependencies": {
         "@unocss/core": "catalog:dev",
         "@unocss/extractor-arbitrary-variants": "catalog:dev",

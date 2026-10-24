@@ -68,38 +68,7 @@
     },
     "packages/unocss-preset": {
       "name": "@weme-ui/unocss-preset",
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
       "version": "0.2.2",
-=======
-      "version": "0.2.1",
->>>>>>> 18c3eba (chore(templates): add Vite template files and configuration for Weme UI starter)
-=======
-      "version": "0.2.1",
->>>>>>> 18c3eba (chore(templates): add Vite template files and configuration for Weme UI starter)
-=======
-=======
->>>>>>> 7a55f6e (chore(templates): add Vite template files and configuration for Weme UI starter)
-      "version": "0.2.1",
-=======
-      "version": "0.2.2",
->>>>>>> 328465f (chore: version packages)
-<<<<<<< HEAD
->>>>>>> 769c53e (chore: version packages)
-=======
-=======
-      "version": "0.2.2",
-=======
-      "version": "0.2.1",
->>>>>>> 18c3eba (chore(templates): add Vite template files and configuration for Weme UI starter)
->>>>>>> 386a262 (chore(templates): add Vite template files and configuration for Weme UI starter)
->>>>>>> 7a55f6e (chore(templates): add Vite template files and configuration for Weme UI starter)
-=======
-      "version": "0.2.2",
->>>>>>> 2436077 (chore: update packageManager to bun@1.4.4 and upgrade dependencies across multiple packages)
       "dependencies": {
         "@unocss/core": "catalog:dev",
         "@unocss/extractor-arbitrary-variants": "catalog:dev",
@@ -2706,7 +2675,7 @@
 
     "bun-types/@types/node": ["@types/node@26.6.5", "", { "dependencies": { "undici-types": "~8.9.0" } }, "sha512-uMzsv9stDdofIZBx4UGh4Z9ZgXnGC9seRDscilBcTHAeOFk67MZg/k9bWVfO+bk4qZmG+l52hRnLwUiH2LnJTg=="],
 
-    "bun-types/undici-types": ["undici-types@8.9.0", "", {}, "sha512-KTDyRTYX8sWmKXAikPHHSyc63CRPETMctyjKFupcC6OBLXT3xsN0e9aF7m+mIXutFWpUXuedtowG7iLOzp0kQg=="],
+    "bun-types/undici-types": ["undici-types@8.12.3", "", {}, "sha512-EXE4ydL3S76dFb27UFjNVZHTyv/TLdATj/KUe29ptdcg6qXL48J2tZ3126E5kICj5jn781OR+XlVH1N6Mz8jbA=="],
 
     "chalk-template/chalk": ["chalk@4.1.2", "", { "dependencies": { "ansi-styles": "^4.1.0", "supports-color": "^7.1.0" } }, "sha512-oKnbhFyRIXpUuez8iBMmyEa4nbj4IOQyuhc/wy9kY7/WVPcwIO9VA668Pu8RkO7+0G76SLROeyw9CpQ061i4mA=="],
 
@@ -2917,6 +2886,8 @@
     "boxen/string-width/emoji-regex": ["emoji-regex@9.2.2", "", {}, "sha512-L18DaJsXSUk2+42pv8mLs5jJT2hqFkFE4j21wOmgbUqsZ2hL72NsUU785g9RXgo3s0ZNgVl42TiHp3ZtOv/Vyg=="],
 
     "buffer-image-size/@types/node/undici-types": ["undici-types@8.9.0", "", {}, "sha512-KTDyRTYX8sWmKXAikPHHSyc63CRPETMctyjKFupcC6OBLXT3xsN0e9aF7m+mIXutFWpUXuedtowG7iLOzp0kQg=="],
+
+    "bun-types/@types/node/undici-types": ["undici-types@8.9.0", "", {}, "sha512-KTDyRTYX8sWmKXAikPHHSyc63CRPETMctyjKFupcC6OBLXT3xsN0e9aF7m+mIXutFWpUXuedtowG7iLOzp0kQg=="],
 
     "chalk-template/chalk/ansi-styles": ["ansi-styles@4.3.0", "", { "dependencies": { "color-convert": "^2.0.1" } }, "sha512-zbB9rCJAT1rbjiVDb2hqKFHNYLxgtk8NURxZ3IZwD3F6NtxbXZQCnnSi1Lkx+IDohdPlFp222wVALIheZJQSEg=="],
 

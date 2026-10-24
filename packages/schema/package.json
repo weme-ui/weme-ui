@@ -71,6 +71,7 @@
     "premove": "catalog:utils",
     "serve": "catalog:utils",
     "tsdown": "catalog:build",
+    "typescript": "catalog:build",
     "valibot": "catalog:utils"
   }
 }

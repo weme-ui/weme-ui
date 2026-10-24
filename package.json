@@ -91,8 +91,8 @@
     "typecheck": "turbo run typecheck",
     "test": "turbo run test",
     "changeset": "changeset",
-    "version": "changeset version && bun install",
-    "release": "changeset publish",
+    "version-packages": "changeset version && bun install",
+    "release": "bun run --filter @weme-ui/schema --filter @weme-ui/unocss-preset build && bun run --filter @weme-ui/schema build:output && changeset publish",
     "prepare": "simple-git-hooks"
   },
   "devDependencies": {

@@ -82,6 +82,7 @@
     "@types/node": "catalog:dev",
     "pkg-types": "^2.4.0",
     "tsdown": "catalog:build",
+    "typescript": "catalog:build",
     "vitest": "catalog:dev"
   }
 }

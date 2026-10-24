@@ -16,7 +16,8 @@
   },
   "workspaces": [
     "packages/*",
-    "registry/*"
+    "registry/*",
+    "templates/*"
   ],
   "catalogs": {
     "build": {

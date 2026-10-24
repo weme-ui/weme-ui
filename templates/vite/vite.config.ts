@@ -3,6 +3,7 @@ import path from 'node:path'
 import Vue from '@vitejs/plugin-vue'
 import VueJsx from '@vitejs/plugin-vue-jsx'
 import MagicString from 'magic-string'
+import UnoCSS from 'unocss/vite'
 import AutoImport from 'unplugin-auto-import/vite'
 import Components from 'unplugin-vue-components/vite'
 import DefineOptions from 'unplugin-vue-define-options/vite'
@@ -11,7 +12,7 @@ import VueDevTools from 'vite-plugin-vue-devtools'
 import Layouts from 'vite-plugin-vue-layouts'
 import { VueRouterAutoImports } from 'vue-router/unplugin'
 import VueRouter from 'vue-router/vite'
-import { homepage, repository, version } from './package.json'
+import pkg from './package.json' with { type: 'json' }
 
 const plugins: PluginOption[] = [
   // https://github.com/vuejs/router
@@ -56,16 +57,30 @@ const plugins: PluginOption[] = [
 
   // https://github.com/antfu/unplugin-vue-components
   Components({
-    dirs: ['src/components'],
+    dirs: [
+      'src/components',
+      '../src/components',
+    ],
     extensions: ['vue'],
-    include: [/\.vue$/, /\.vue\?vue/, /\.vue\.[tj]sx?\?vue/, /\.vue\?v=/],
+    include: [
+      /\.vue$/,
+      /\.vue\?vue/,
+      /\.vue\.[tj]sx?\?vue/,
+      /\.vue\?v=/,
+    ],
     directoryAsNamespace: true,
     collapseSamePrefixes: true,
     dts: 'src/components.d.ts',
     types: [
-      { from: 'vue-router', names: ['RouterLink', 'RouterView'] },
+      {
+        from: 'vue-router',
+        names: ['RouterLink', 'RouterView'],
+      },
     ],
   }),
+
+  // https://github.com/unocss/unocss
+  UnoCSS(),
 ]
 
 export default defineConfig(({ mode }) => {
@@ -73,22 +88,21 @@ export default defineConfig(({ mode }) => {
   const root = process.cwd()
 
   const {
-    VITE_URL,
-    VITE_PORT,
+    VITE_APP_URL,
+    VITE_APP_PORT,
   } = loadEnv(mode, root)
 
   return {
-    base: VITE_URL,
+    base: VITE_APP_URL,
 
     server: {
-      host: true,
-      port: Number(VITE_PORT),
+      port: Number(VITE_APP_PORT),
     },
 
     resolve: {
       alias: {
-        '~': path.resolve(__dirname, 'src'),
-        '~~': path.resolve(__dirname, '.'),
+        '~': path.resolve(import.meta.dirname, 'src'),
+        '~~': path.resolve(import.meta.dirname, '.'),
       },
     },
 
@@ -119,13 +133,13 @@ export default defineConfig(({ mode }) => {
 
     oxc: {
       target: 'esnext',
-      pure: mode === 'production' ? ['console.log', 'debugger'] : [],
+      pure: mode === 'production'
+        ? ['console.log', 'debugger']
+        : [],
     },
 
     define: {
-      __VERSION__: JSON.stringify(version),
-      __HOMEPAGE__: JSON.stringify(homepage),
-      __REPOSITORY__: JSON.stringify(repository.url),
+      __VERSION__: JSON.stringify(pkg.version),
     },
 
     // https://github.com/vitest-dev/vitest
@@ -138,7 +152,9 @@ export default defineConfig(({ mode }) => {
       ...plugins,
 
       // https://github.com/vuejs/devtools
-      mode === 'development' ? VueDevTools() : undefined,
+      mode === 'development'
+        ? VueDevTools()
+        : undefined,
 
       // Purge comments
       {

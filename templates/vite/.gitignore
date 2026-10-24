@@ -19,5 +19,10 @@ logs
 dist
 *.tsbuildinfo
 
+# Generated files
+auto-imports.d.ts
+components.d.ts
+typed-router.d.ts
+
 # Weme
 .weme

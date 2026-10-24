@@ -69,7 +69,11 @@
     "packages/unocss-preset": {
       "name": "@weme-ui/unocss-preset",
 <<<<<<< HEAD
+<<<<<<< HEAD
       "version": "0.2.2",
+=======
+      "version": "0.2.1",
+>>>>>>> 18c3eba (chore(templates): add Vite template files and configuration for Weme UI starter)
 =======
       "version": "0.2.1",
 >>>>>>> 18c3eba (chore(templates): add Vite template files and configuration for Weme UI starter)

@@ -71,6 +71,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
       "version": "0.2.2",
 =======
       "version": "0.2.1",
@@ -79,11 +80,22 @@
       "version": "0.2.1",
 >>>>>>> 18c3eba (chore(templates): add Vite template files and configuration for Weme UI starter)
 =======
+=======
+>>>>>>> 7a55f6e (chore(templates): add Vite template files and configuration for Weme UI starter)
       "version": "0.2.1",
 =======
       "version": "0.2.2",
 >>>>>>> 328465f (chore: version packages)
+<<<<<<< HEAD
 >>>>>>> 769c53e (chore: version packages)
+=======
+=======
+      "version": "0.2.2",
+=======
+      "version": "0.2.1",
+>>>>>>> 18c3eba (chore(templates): add Vite template files and configuration for Weme UI starter)
+>>>>>>> 386a262 (chore(templates): add Vite template files and configuration for Weme UI starter)
+>>>>>>> 7a55f6e (chore(templates): add Vite template files and configuration for Weme UI starter)
       "dependencies": {
         "@unocss/core": "catalog:dev",
         "@unocss/extractor-arbitrary-variants": "catalog:dev",

@@ -72,6 +72,7 @@
   },
   "dependencies": {
     "@weme-ui/schema": "workspace:*",
+    "@weme-ui/unocss-preset": "workspace:*",
     "citty": "^0.2.2",
     "make-fetch-happen": "^16.0.1",
     "valibot": "catalog:utils"

@@ -15,6 +15,15 @@ import { ProjectAddedRegistrySchema } from './schema'
  */
 export const ProjectAddedItemFileSchema = v.pipe(
   v.object({
+    kind: v.pipe(
+      RegistryItemFileSchema.entries.kind,
+      v.metadata({
+        title: '文件种类',
+        description: '文件在 registry item 中的角色。"file" 为主源码；"doc"、"example"、"test" 分别标记配套文档、示例与测试。',
+        examples: ['file', 'doc', 'example', 'test'],
+      }),
+    ),
+
     /**
      * 注册项文件源路径
      */
@@ -56,6 +65,18 @@ export const ProjectAddedItemFileSchema = v.pipe(
  */
 export const ProjectAddedItemSchema = v.pipe(
   v.object({
+    /**
+     * 已添加的注册项目名称
+     */
+    name: v.pipe(
+      NonEmptyTrimmedString,
+      v.metadata({
+        title: '名称',
+        description: '该已安装 item 的名称。',
+        examples: ['button'],
+      }),
+    ),
+
     /**
      * 已添加的注册中心名称
      */

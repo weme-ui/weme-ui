@@ -34,10 +34,39 @@ undefined#/properties/items/items
 
 | Property              | Type     | Required | Nullable       | Defined by                                                                                                                  |
 | :-------------------- | :------- | :------- | :------------- | :-------------------------------------------------------------------------------------------------------------------------- |
+| [name](#name)         | `string` | Required | cannot be null | [项目锁定文件](lockfile-properties-items-已安装-item-properties-名称.md "undefined#/properties/items/items/properties/name")           |
 | [registry](#registry) | `string` | Required | cannot be null | [项目锁定文件](lockfile-properties-items-已安装-item-properties-registry.md "undefined#/properties/items/items/properties/registry") |
 | [repo](#repo)         | `string` | Optional | cannot be null | [项目锁定文件](lockfile-properties-items-已安装-item-properties-仓库.md "undefined#/properties/items/items/properties/repo")           |
 | [prefix](#prefix)     | `string` | Optional | cannot be null | [项目锁定文件](lockfile-properties-items-已安装-item-properties-前缀.md "undefined#/properties/items/items/properties/prefix")         |
 | [files](#files)       | `array`  | Required | cannot be null | [项目锁定文件](lockfile-properties-items-已安装-item-properties-文件.md "undefined#/properties/items/items/properties/files")          |
+
+## name
+
+该已安装 item 的名称。
+
+`name`
+
+* is required
+
+* Type: `string` ([名称](lockfile-properties-items-已安装-item-properties-名称.md))
+
+* cannot be null
+
+* defined in: [项目锁定文件](lockfile-properties-items-已安装-item-properties-名称.md "undefined#/properties/items/items/properties/name")
+
+### name Type
+
+`string` ([名称](lockfile-properties-items-已安装-item-properties-名称.md))
+
+### name Constraints
+
+**minimum length**: the minimum number of characters for this string is: `1`
+
+### name Examples
+
+```json
+"button"
+```
 
 ## registry
 

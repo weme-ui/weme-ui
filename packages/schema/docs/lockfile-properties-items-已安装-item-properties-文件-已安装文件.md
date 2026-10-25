@@ -27,8 +27,80 @@ undefined#/properties/items/items/properties/files/items
 
 | Property          | Type     | Required | Nullable       | Defined by                                                                                                                                                      |
 | :---------------- | :------- | :------- | :------------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [kind](#kind)     | `string` | Optional | cannot be null | [项目锁定文件](lockfile-properties-items-已安装-item-properties-文件-已安装文件-properties-文件种类.md "undefined#/properties/items/items/properties/files/items/properties/kind")  |
 | [source](#source) | `string` | Required | cannot be null | [项目锁定文件](lockfile-properties-items-已安装-item-properties-文件-已安装文件-properties-源路径.md "undefined#/properties/items/items/properties/files/items/properties/source") |
 | [dest](#dest)     | `string` | Required | cannot be null | [项目锁定文件](lockfile-properties-items-已安装-item-properties-文件-已安装文件-properties-目标路径.md "undefined#/properties/items/items/properties/files/items/properties/dest")  |
+
+## kind
+
+文件在 registry item 中的角色。"file" 为主源码；"doc"、"example"、"test" 分别标记配套文档、示例与测试。
+
+`kind`
+
+* is optional
+
+* Type: `string` ([文件种类](lockfile-properties-items-已安装-item-properties-文件-已安装文件-properties-文件种类.md))
+
+* cannot be null
+
+* defined in: [项目锁定文件](lockfile-properties-items-已安装-item-properties-文件-已安装文件-properties-文件种类.md "undefined#/properties/items/items/properties/files/items/properties/kind")
+
+### kind Type
+
+`string` ([文件种类](lockfile-properties-items-已安装-item-properties-文件-已安装文件-properties-文件种类.md))
+
+### kind Constraints
+
+**enum**: the value of this property must be equal to one of the following values:
+
+| Value       | Explanation |
+| :---------- | :---------- |
+| `"file"`    |             |
+| `"doc"`     |             |
+| `"example"` |             |
+| `"test"`    |             |
+
+### kind Default Value
+
+The default value is:
+
+```json
+"file"
+```
+
+### kind Examples
+
+```json
+"file"
+```
+
+```json
+"doc"
+```
+
+```json
+"example"
+```
+
+```json
+"test"
+```
+
+```json
+"file"
+```
+
+```json
+"doc"
+```
+
+```json
+"example"
+```
+
+```json
+"test"
+```
 
 ## source
 

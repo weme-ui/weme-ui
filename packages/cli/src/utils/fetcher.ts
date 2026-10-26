@@ -1,8 +1,9 @@
 import makeFetch from 'make-fetch-happen'
-import { CLI_BASE_DIR } from '../constants'
+import { CLI_TMP_DIR } from '../constants'
 
 const fetch = makeFetch.defaults({
-  cachePath: CLI_BASE_DIR,
+  cachePath: CLI_TMP_DIR,
+  noProxy: ['raw.githubusercontent.com'],
 })
 
 /**

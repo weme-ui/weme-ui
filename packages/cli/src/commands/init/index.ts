@@ -1,10 +1,12 @@
-import { cwd } from 'node:process'
+import { cwd, exit } from 'node:process'
 import { defineCommand } from 'citty'
-import { callWhen, ensureDir } from '../../utils'
-import { Project } from '../../utils/project'
-import { generateDefaultConfig, generateDefaultLockfile } from './config'
+import { installDependencies } from 'nypm'
+import ora from 'ora'
+import { DEFAULT_REGISTRY_NAME } from '../../constants'
+import { callWhen, ensureDir, loadProject, useRegistry } from '../../utils'
+import { generateDefaultConfig } from './config'
+import { cloneTemplateRepository, initProjectTemplate } from './template'
 import { generateDefaultUnoCSS } from './unocss'
-
 /**
  * 初始化项目
  */
@@ -25,21 +27,79 @@ export default defineCommand({
       description: 'Specify the registry repository of the project.',
       valueHint: 'weme-ui/slim',
     },
-    wizard: {
-      type: 'boolean',
-      description: 'Enable the interactive wizard.',
-      default: false,
-    },
   },
 
   async run({ args }) {
     const cwd = ensureDir(args.cwd)
+    const project = await loadProject(cwd)
 
-    const project = new Project(cwd)
-    const { projectConfig, lockfile } = await project.load()
+    if (project.info.initd) {
+      console.error('Project already initialized!')
+      exit(1)
+    }
 
-    await callWhen(!projectConfig, async () => await generateDefaultConfig(cwd))
-    await callWhen(!lockfile, async () => await generateDefaultUnoCSS(cwd))
-    await callWhen(!lockfile, async () => await generateDefaultLockfile(cwd))
+    const spinner = ora('Initializing project...').start()
+
+    // 01. Clone the template repository and initialize the project template.
+    await callWhen(
+      !project.info.state.hasPackageJson,
+      async () => {
+        spinner.text = 'Cloning template repository...'
+        await cloneTemplateRepository(cwd)
+
+        spinner.text = 'Initializing project template...'
+        await initProjectTemplate(cwd)
+      },
+      async () => { await project.check() },
+    )
+
+    // 02. Generate the default project config.
+    await callWhen(
+      !project.info.state.hasProjectConfig,
+      async () => {
+        spinner.text = 'Generating default project config...'
+        await generateDefaultConfig(cwd)
+      },
+      async () => { await project.check() },
+    )
+
+    // 03. Generate the default UnoCSS config.
+    await callWhen(
+      !project.info.state.hasUnoConfig,
+      async () => {
+        spinner.text = 'Generating default UnoCSS config...'
+        await generateDefaultUnoCSS(cwd)
+      },
+      async () => { await project.check() },
+    )
+
+    // 04. Add dependencies to the project.
+    await callWhen(
+      project.info.state.hasPackageJson,
+      async () => {
+        spinner.text = 'Install dependencies...'
+        await installDependencies({
+          cwd,
+          silent: true,
+        })
+
+        const defaultRegistryName = args.repo ?? project.info.registries?.[0]?.registry ?? DEFAULT_REGISTRY_NAME
+        const registry = useRegistry(defaultRegistryName)
+
+        spinner.text = 'Adding dependencies to the project...'
+        const dependencies = await registry.rootDependencies()
+        if (dependencies.length > 0) {
+          await project.addDependencies(dependencies)
+        }
+
+        spinner.text = 'Adding dev dependencies to the project...'
+        const devDependencies = await registry.rootDevDependencies()
+        if (devDependencies.length > 0) {
+          await project.addDevDependencies(devDependencies)
+        }
+      },
+    )
+
+    spinner.succeed('Project initialized successfully!')
   },
 })

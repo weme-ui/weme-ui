@@ -1,12 +1,12 @@
 import { join } from 'node:path/posix'
-import { CLI_BASE_DIR } from '../../constants'
+import { CLI_TMP_DIR, PROJECT_CONFIG_FILENAME } from '../../constants'
 import { writeFile } from '../../utils'
-import { PROJECT_CONFIG_FILENAME } from '../../utils/project'
 
-const baseUnoConfig = `import { defineConfig } from 'unocss'
+const baseUnoConfig = `import type { Theme } from '@weme-ui/unocss-preset/types'
+import { defineConfig } from 'unocss'
 
-export default defineConfig({
-  // Configure the content pipeline to include style.ts files in the project.
+export default defineConfig<Theme>({
+  // Configure the content pipeline to include *.style.ts files in the project.
   content: {
     pipeline: {
       include: [
@@ -16,18 +16,23 @@ export default defineConfig({
   },
 })
 `
-const unoConfig = `import { presetWemeUI } from '@weme-ui/unocss-preset'
+const unoConfig = `import type { ProjectConfigSchema } from '@weme-ui/schema'
+import type { Theme } from '@weme-ui/unocss-preset/types'
+import type { InferInput } from 'valibot'
+import { presetWemeUI } from '@weme-ui/unocss-preset'
 import { mergeConfigs } from 'unocss'
-import baseConfig from './.weme/uno.config'
-import wemeConfig from './${PROJECT_CONFIG_FILENAME}' with { type: 'json' }
+import baseConfig from './${CLI_TMP_DIR}/uno.config'
+import wemeConfigJson from './${PROJECT_CONFIG_FILENAME}' with { type: 'json' }
 
-export default mergeConfigs([
+const wemeConfig = wemeConfigJson as InferInput<typeof ProjectConfigSchema>
+
+export default mergeConfigs<Theme>([
   baseConfig,
   {
     presets: [
       presetWemeUI({
-        unocss: wemeConfig.unocss || {},
-        cssVars: wemeConfig.cssVars || {},
+        colors: wemeConfig.unocss?.colors || {},
+        cssVars: wemeConfig.unocss?.cssVars || {},
       }),
     ],
   },
@@ -35,7 +40,7 @@ export default mergeConfigs([
 `
 
 export async function generateDefaultUnoCSS(root: string) {
-  const createdBaseConfig = await writeFile(join(root, CLI_BASE_DIR), 'uno.config.ts', baseUnoConfig)
+  const createdBaseConfig = await writeFile(join(root, CLI_TMP_DIR), 'uno.config.ts', baseUnoConfig)
   const createdUnoConfig = await writeFile(root, 'uno.config.ts', unoConfig)
 
   return createdBaseConfig && createdUnoConfig

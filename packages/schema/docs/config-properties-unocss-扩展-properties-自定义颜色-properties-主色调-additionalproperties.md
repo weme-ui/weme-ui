@@ -1,7 +1,7 @@
 # Untitled string in 项目配置 Schema
 
 ```txt
-undefined#/properties/unocss/properties/accent/additionalProperties
+undefined#/properties/unocss/properties/colors/properties/accent/additionalProperties
 ```
 
 

@@ -77,39 +77,69 @@ export const ProjectAddedRegistrySchema = v.pipe(
 export const ProjectUnoCSSConfigSchema = v.pipe(
   v.object({
     /**
-     * 主题色
+     * 自定义颜色
      *
      * @optional
      */
-    accent: v.optional(
+    colors: v.optional(
       v.pipe(
-        v.record(
-          v.pipe(NonEmptyTrimmedString, v.toLowerCase()),
-          NonEmptyTrimmedString,
-        ),
+        v.object({
+          /**
+           * 主色调
+           *
+           * @optional
+           */
+          accent: v.optional(v.pipe(
+            v.record(
+              v.pipe(NonEmptyTrimmedString, v.toLowerCase()),
+              NonEmptyTrimmedString,
+            ),
+            v.metadata({
+              title: '主色调',
+              description: '项目主题的主色调 token。键为 token 名，值为 CSS 颜色字符串，通常使用 oklch。',
+              examples: [{ brand: 'oklch(0.55 0.2 250)', secondary: 'oklch(0.7 0.15 40)' }],
+            }),
+          )),
+
+          /**
+           * 中性色
+           *
+           * @optional
+           */
+          neutral: v.optional(
+            v.pipe(
+              v.record(
+                v.pipe(NonEmptyTrimmedString, v.toLowerCase()),
+                NonEmptyTrimmedString,
+              ),
+              v.metadata({
+                title: '中性色',
+                description: '项目主题的中性（灰阶）色 token。键为 token 名，值为 CSS 颜色字符串，通常使用 oklch。',
+                examples: [{ stone: 'oklch(0.2 0 0)' }],
+              }),
+            ),
+          ),
+        }),
         v.metadata({
-          title: '强调色',
-          description: '项目主题的强调（品牌）色 token。键为 token 名，值为 CSS 颜色字符串，通常使用 oklch。',
-          examples: [{ brand: 'oklch(0.55 0.2 250)', secondary: 'oklch(0.7 0.15 40)' }],
+          title: '自定义颜色',
+          description: '项目自定义的颜色 token。',
+          examples: [{ brand: 'oklch(0.55 0.2 250)', secondary: 'oklch(0.7 0.15 40)', stone: 'oklch(0.2 0 0)' }],
         }),
       ),
     ),
 
     /**
-     * 中性色
+     * CSS 变量
      *
      * @optional
      */
-    neutral: v.optional(
+    cssVars: v.optional(
       v.pipe(
-        v.record(
-          v.pipe(NonEmptyTrimmedString, v.toLowerCase()),
-          NonEmptyTrimmedString,
-        ),
+        CSSVariables,
         v.metadata({
-          title: '中性色',
-          description: '项目主题的中性（灰阶）色 token。键为 token 名，值为 CSS 颜色字符串，通常使用 oklch。',
-          examples: [{ stone: 'oklch(0.2 0 0)' }],
+          title: 'CSS 变量',
+          description: '项目主题的额外 CSS 自定义属性。取值会合并进 UnoCSS preset options，嵌套结构为 theme-key → variable-name → value。',
+          examples: [{ card: { radius: '0.75rem' } }],
         }),
       ),
     ),
@@ -177,22 +207,6 @@ export const ProjectConfigSchema = v.pipe(
      * @optional
      */
     unocss: v.optional(ProjectUnoCSSConfigSchema),
-
-    /**
-     * CSS 变量
-     *
-     * @optional
-     */
-    cssVars: v.optional(
-      v.pipe(
-        CSSVariables,
-        v.metadata({
-          title: 'CSS 变量',
-          description: '项目主题的额外 CSS 自定义属性。取值会合并进 UnoCSS preset options，嵌套结构为 theme-key → variable-name → value。',
-          examples: [{ card: { radius: '0.75rem' } }],
-        }),
-      ),
-    ),
   }),
   v.metadata({
     title: '项目配置',

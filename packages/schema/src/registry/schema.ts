@@ -52,15 +52,15 @@ export const RegistryAccessEnum = v.pipe(
 export const RegistryPathsRecord = v.pipe(
   v.record(
     v.union([
-      v.literal('*'),
+      v.literal('~'),
       RegistryItemTypeEnum,
     ]),
     NonEmptyTrimmedString,
   ),
   v.metadata({
     title: '路径',
-    description: '将 registry item 类型映射到安装目标路径。用 "*" 作为未显式配置类型的兜底。路径可使用别名，例如 "~/components"。',
-    examples: [{ '*': '~/registry', 'component': '~/components', 'ui': '~/components/ui' }],
+    description: '将 registry item 类型映射到安装目标路径。用 "~" 作为根路径别名。路径可使用别名，例如 "~/components"。',
+    examples: [{ '~': 'src', 'component': '~/components' }],
   }),
 )
 

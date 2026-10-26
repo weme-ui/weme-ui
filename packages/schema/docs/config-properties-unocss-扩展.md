@@ -16,60 +16,71 @@ undefined#/properties/unocss
 
 # unocss Properties
 
-| Property            | Type     | Required | Nullable       | Defined by                                                                                              |
-| :------------------ | :------- | :------- | :------------- | :------------------------------------------------------------------------------------------------------ |
-| [accent](#accent)   | `object` | Optional | cannot be null | [项目配置](config-properties-unocss-扩展-properties-强调色.md "undefined#/properties/unocss/properties/accent")  |
-| [neutral](#neutral) | `object` | Optional | cannot be null | [项目配置](config-properties-unocss-扩展-properties-中性色.md "undefined#/properties/unocss/properties/neutral") |
+| Property            | Type     | Required | Nullable       | Defined by                                                                                                 |
+| :------------------ | :------- | :------- | :------------- | :--------------------------------------------------------------------------------------------------------- |
+| [colors](#colors)   | `object` | Optional | cannot be null | [项目配置](config-properties-unocss-扩展-properties-自定义颜色.md "undefined#/properties/unocss/properties/colors")   |
+| [cssVars](#cssvars) | `object` | Optional | cannot be null | [项目配置](config-properties-unocss-扩展-properties-css-变量.md "undefined#/properties/unocss/properties/cssVars") |
 
-## accent
+## colors
 
-项目主题的强调（品牌）色 token。键为 token 名，值为 CSS 颜色字符串，通常使用 oklch。
+项目自定义的颜色 token。
 
-`accent`
+`colors`
 
 * is optional
 
-* Type: `object` ([强调色](config-properties-unocss-扩展-properties-强调色.md))
+* Type: `object` ([自定义颜色](config-properties-unocss-扩展-properties-自定义颜色.md))
 
 * cannot be null
 
-* defined in: [项目配置](config-properties-unocss-扩展-properties-强调色.md "undefined#/properties/unocss/properties/accent")
+* defined in: [项目配置](config-properties-unocss-扩展-properties-自定义颜色.md "undefined#/properties/unocss/properties/colors")
 
-### accent Type
+### colors Type
 
-`object` ([强调色](config-properties-unocss-扩展-properties-强调色.md))
+`object` ([自定义颜色](config-properties-unocss-扩展-properties-自定义颜色.md))
 
-### accent Examples
+### colors Examples
 
 ```json
 {
   "brand": "oklch(0.55 0.2 250)",
-  "secondary": "oklch(0.7 0.15 40)"
+  "secondary": "oklch(0.7 0.15 40)",
+  "stone": "oklch(0.2 0 0)"
 }
 ```
 
-## neutral
+## cssVars
 
-项目主题的中性（灰阶）色 token。键为 token 名，值为 CSS 颜色字符串，通常使用 oklch。
+项目主题的额外 CSS 自定义属性。取值会合并进 UnoCSS preset options，嵌套结构为 theme-key → variable-name → value。
 
-`neutral`
+`cssVars`
 
 * is optional
 
-* Type: `object` ([中性色](config-properties-unocss-扩展-properties-中性色.md))
+* Type: `object` ([CSS 变量](config-properties-unocss-扩展-properties-css-变量.md))
 
 * cannot be null
 
-* defined in: [项目配置](config-properties-unocss-扩展-properties-中性色.md "undefined#/properties/unocss/properties/neutral")
+* defined in: [项目配置](config-properties-unocss-扩展-properties-css-变量.md "undefined#/properties/unocss/properties/cssVars")
 
-### neutral Type
+### cssVars Type
 
-`object` ([中性色](config-properties-unocss-扩展-properties-中性色.md))
+`object` ([CSS 变量](config-properties-unocss-扩展-properties-css-变量.md))
 
-### neutral Examples
+### cssVars Examples
 
 ```json
 {
-  "stone": "oklch(0.2 0 0)"
+  "card": {
+    "bg-color": "oklch(0.55 0.2 250)"
+  }
+}
+```
+
+```json
+{
+  "card": {
+    "radius": "0.75rem"
+  }
 }
 ```

@@ -1,7 +1,7 @@
 # Untitled string in 项目配置 Schema
 
 ```txt
-undefined#/properties/cssVars/propertyNames
+undefined#/properties/unocss/properties/colors/properties/neutral/additionalProperties
 ```
 
 
@@ -10,10 +10,10 @@ undefined#/properties/cssVars/propertyNames
 | :------------------ | :--------- | :------------- | :---------------------- | :---------------- | :-------------------- | :------------------ | :------------------------------------------------------------------------------------- |
 | Can be instantiated | No         | Unknown status | Unknown identifiability | Forbidden         | Allowed               | none                | [config.schema.json\*](../../website/public/config.schema.json "open original schema") |
 
-## propertyNames Type
+## additionalProperties Type
 
 `string`
 
-## propertyNames Constraints
+## additionalProperties Constraints
 
 **minimum length**: the minimum number of characters for this string is: `1`

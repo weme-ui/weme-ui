@@ -12,7 +12,7 @@
 
 ### Objects
 
-* [CSS 变量](./config-properties-css-变量.md "项目主题的额外 CSS 自定义属性。取值会合并进 UnoCSS preset options，嵌套结构为 theme-key → variable-name → value。") – `undefined#/properties/cssVars`
+* [CSS 变量](./config-properties-unocss-扩展-properties-css-变量.md "项目主题的额外 CSS 自定义属性。取值会合并进 UnoCSS preset options，嵌套结构为 theme-key → variable-name → value。") – `undefined#/properties/unocss/properties/cssVars`
 
 * [CSS 变量](./registry-properties-items-registry-item-properties-css-变量.md "安装该 item 时注入的 CSS 自定义属性。取值会合并进 UnoCSS preset options，嵌套结构为 theme-key → variable-name → value。") – `undefined#/properties/items/items/properties/cssVars`
 
@@ -24,9 +24,11 @@
 
 * [Untitled object in Registry 配置](./registry-properties-items-registry-item-properties-css-变量-additionalproperties.md) – `undefined#/properties/items/items/properties/cssVars/additionalProperties`
 
-* [Untitled object in 项目配置](./config-properties-css-变量-additionalproperties.md) – `undefined#/properties/cssVars/additionalProperties`
+* [Untitled object in 项目配置](./config-properties-unocss-扩展-properties-css-变量-additionalproperties.md) – `undefined#/properties/unocss/properties/cssVars/additionalProperties`
 
-* [中性色](./config-properties-unocss-扩展-properties-中性色.md "项目主题的中性（灰阶）色 token。键为 token 名，值为 CSS 颜色字符串，通常使用 oklch。") – `undefined#/properties/unocss/properties/neutral`
+* [中性色](./config-properties-unocss-扩展-properties-自定义颜色-properties-中性色.md "项目主题的中性（灰阶）色 token。键为 token 名，值为 CSS 颜色字符串，通常使用 oklch。") – `undefined#/properties/unocss/properties/colors/properties/neutral`
+
+* [主色调](./config-properties-unocss-扩展-properties-自定义颜色-properties-主色调.md "项目主题的主色调 token。键为 token 名，值为 CSS 颜色字符串，通常使用 oklch。") – `undefined#/properties/unocss/properties/colors/properties/accent`
 
 * [元数据](./registry-properties-items-registry-item-properties-元数据.md "供工具链与文档使用的任意键值元数据。文档展示字段使用 \"docs") – `undefined#/properties/items/items/properties/meta`
 
@@ -36,11 +38,11 @@
 
 * [已注册的 Registry](./config-properties-registries-已注册的-registry.md "已向项目注册的 registry。指明使用哪个 registry，以及可选的拉取来源与安装前缀。") – `undefined#/properties/registries/items`
 
-* [强调色](./config-properties-unocss-扩展-properties-强调色.md "项目主题的强调（品牌）色 token。键为 token 名，值为 CSS 颜色字符串，通常使用 oklch。") – `undefined#/properties/unocss/properties/accent`
+* [自定义颜色](./config-properties-unocss-扩展-properties-自定义颜色.md "项目自定义的颜色 token。") – `undefined#/properties/unocss/properties/colors`
 
-* [路径](./config-properties-路径.md "将 registry item 类型映射到安装目标路径。用 \"*\" 作为未显式配置类型的兜底。路径可使用别名，例如 \"~/components\"。") – `undefined#/properties/paths`
+* [路径](./config-properties-路径.md "将 registry item 类型映射到安装目标路径。用 \"\" 作为根路径别名。路径可使用别名，例如 \"/components\"。") – `undefined#/properties/paths`
 
-* [路径](./registry-properties-路径.md "将 registry item 类型映射到安装目标路径。用 \"*\" 作为未显式配置类型的兜底。路径可使用别名，例如 \"~/components\"。") – `undefined#/properties/defaultPaths`
+* [路径](./registry-properties-路径.md "将 registry item 类型映射到安装目标路径。用 \"\" 作为根路径别名。路径可使用别名，例如 \"/components\"。") – `undefined#/properties/defaultPaths`
 
 ### Arrays
 

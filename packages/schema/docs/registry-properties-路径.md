@@ -4,7 +4,7 @@
 undefined#/properties/defaultPaths
 ```
 
-将 registry item 类型映射到安装目标路径。用 "\*" 作为未显式配置类型的兜底。路径可使用别名，例如 "\~/components"。
+将 registry item 类型映射到安装目标路径。用 "~~" 作为根路径别名。路径可使用别名，例如 "~~/components"。
 
 | Abstract            | Extensible | Status         | Identifiable            | Custom Properties | Additional Properties | Access Restrictions | Defined In                                                                                 |
 | :------------------ | :--------- | :------------- | :---------------------- | :---------------- | :-------------------- | :------------------ | :----------------------------------------------------------------------------------------- |
@@ -18,9 +18,8 @@ undefined#/properties/defaultPaths
 
 ```json
 {
-  "*": "~/registry",
-  "component": "~/components",
-  "ui": "~/components/ui"
+  "~": "src",
+  "component": "~/components"
 }
 ```
 

@@ -1,7 +1,7 @@
 # CSS 变量 Schema
 
 ```txt
-undefined#/properties/cssVars
+undefined#/properties/unocss/properties/cssVars
 ```
 
 项目主题的额外 CSS 自定义属性。取值会合并进 UnoCSS preset options，嵌套结构为 theme-key → variable-name → value。
@@ -12,7 +12,7 @@ undefined#/properties/cssVars
 
 ## cssVars Type
 
-`object` ([CSS 变量](config-properties-css-变量.md))
+`object` ([CSS 变量](config-properties-unocss-扩展-properties-css-变量.md))
 
 ## cssVars Examples
 
@@ -34,9 +34,9 @@ undefined#/properties/cssVars
 
 # cssVars Properties
 
-| Property              | Type     | Required | Nullable       | Defined by                                                                                                    |
-| :-------------------- | :------- | :------- | :------------- | :------------------------------------------------------------------------------------------------------------ |
-| Additional Properties | `object` | Optional | cannot be null | [项目配置](config-properties-css-变量-additionalproperties.md "undefined#/properties/cssVars/additionalProperties") |
+| Property              | Type     | Required | Nullable       | Defined by                                                                                                                                           |
+| :-------------------- | :------- | :------- | :------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Additional Properties | `object` | Optional | cannot be null | [项目配置](config-properties-unocss-扩展-properties-css-变量-additionalproperties.md "undefined#/properties/unocss/properties/cssVars/additionalProperties") |
 
 ## Additional Properties
 
@@ -46,12 +46,12 @@ Additional properties are allowed, as long as they follow this schema:
 
 * is optional
 
-* Type: `object` ([Details](config-properties-css-变量-additionalproperties.md))
+* Type: `object` ([Details](config-properties-unocss-扩展-properties-css-变量-additionalproperties.md))
 
 * cannot be null
 
-* defined in: [项目配置](config-properties-css-变量-additionalproperties.md "undefined#/properties/cssVars/additionalProperties")
+* defined in: [项目配置](config-properties-unocss-扩展-properties-css-变量-additionalproperties.md "undefined#/properties/unocss/properties/cssVars/additionalProperties")
 
 ### additionalProperties Type
 
-`object` ([Details](config-properties-css-变量-additionalproperties.md))
+`object` ([Details](config-properties-unocss-扩展-properties-css-变量-additionalproperties.md))

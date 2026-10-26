@@ -30,13 +30,16 @@ export function ensureDir(path: string) {
  * @param filename - The name of the file.
  * @returns Whether the file exists.
  */
-export function existsFile(root: string, filename: string) {
-  return existsSync(
-    join(
-      ensureDir(root),
-      filename,
-    ),
-  )
+export async function existsFile(root: string, filename: string) {
+  const filePath = resolve(root, filename)
+  const exists = existsSync(filePath)
+
+  if (!exists)
+    return false
+
+  const content = await fs.readFile(filePath, 'utf-8')
+
+  return exists && content !== null && content.trim() !== ''
 }
 
 /**
@@ -48,7 +51,7 @@ export function existsFile(root: string, filename: string) {
  */
 export async function readFile(root: string, filename: string) {
   try {
-    if (!existsFile(root, filename))
+    if (!(await existsFile(root, filename)))
       return null
 
     const content = await fs.readFile(join(ensureDir(root), filename), 'utf-8')
@@ -108,9 +111,14 @@ export function unwrapError(error: unknown) {
  *
  * @param condition - The condition to check.
  * @param callback - The callback to call.
+ * @param finalizer - The finalizer to call.
  * @returns Whether the callback was called successfully.
  */
-export async function callWhen<T>(condition: boolean, callback: () => Promise<T>) {
+export async function callWhen<T>(
+  condition: boolean,
+  callback: () => Promise<T>,
+  finalizer?: () => Promise<void>,
+) {
   if (condition) {
     try {
       await callback()
@@ -118,6 +126,11 @@ export async function callWhen<T>(condition: boolean, callback: () => Promise<T>
     catch (e) {
       console.error(unwrapError(e))
       exit(1)
+    }
+    finally {
+      if (finalizer) {
+        await finalizer()
+      }
     }
   }
 }

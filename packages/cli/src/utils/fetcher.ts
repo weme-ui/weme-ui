@@ -27,14 +27,3 @@ export async function fetchJSON<T>(url: string) {
   const res = await fetch(url)
   return res.json() as Promise<T>
 }
-
-/**
- * Fetch a binary file.
- *
- * @param url - The URL to fetch.
- * @returns The binary response.
- */
-export async function fetchBinary(url: string) {
-  const res = await fetch(url)
-  return res.arrayBuffer()
-}

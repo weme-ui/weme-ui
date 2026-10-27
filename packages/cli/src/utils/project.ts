@@ -1,11 +1,13 @@
 import type { PackageJson } from 'pkg-types'
-import type { ProjectConfig, ProjectConfigInput, ProjectLockFile, ProjectLockFileInput, ProjectPaths } from '../types'
+import type { ProjectAddedItem, ProjectConfig, ProjectConfigInput, ProjectLockFile, ProjectLockFileInput, ProjectPaths, RegistryItem, ResolvedProjectAddedItem, ResolvedProjectAddedItemFile } from '../types'
 import { isAbsolute, join, resolve } from 'node:path/posix'
 import { CONFIG_SCHEMA_URL, LOCKFILE_SCHEMA_URL, ProjectConfigSchema, ProjectLockFileSchema } from '@weme-ui/schema'
+import { diffChars } from 'diff'
 import { addDependency } from 'nypm'
 import semver from 'semver'
 import * as v from 'valibot'
 import { CLI_TMP_DIR, DEFAULT_PATHS, DEFAULT_REGISTRIES, PROJECT_CONFIG_FILENAME, PROJECT_LOCKFILE_FILENAME } from '../constants'
+import { fetchURL } from './fetcher'
 import { existsFile, readFile, removeTrailingSlash, writeFile } from './utilities'
 
 interface ProjectState {
@@ -23,11 +25,6 @@ interface ProjectInfo {
   registries: ProjectConfig['registries']
 }
 
-/**
- * A project manager.
- *
- * const project = new Project(process.cwd())
- */
 class Project {
   private root: string
 
@@ -230,19 +227,83 @@ class Project {
   }
 
   /**
-   * Check if the project has an added item.
+   * Add an item to the project.
    *
-   * @param name - The name of the added item.
-   * @returns Whether the added item exists.
+   * @param item - The item to add.
+   * @param registry - The registry of the item.
+   * @param repo - The repo of the item.
+   * @param prefix - The prefix of the item.
+   * @returns Whether the item was added successfully.
    */
-  async hasAddedItem(name: string) {
-    const lockfile = await this.loadLockfile()
-
-    if (lockfile !== null) {
-      return lockfile.items.some(item => item.name === name)
+  async addItem(item: RegistryItem, registry: string, repo?: string, prefix?: string) {
+    const lockfile = await this.loadLockfile() || { items: [] } as ProjectLockFileInput
+    const existingItem = lockfile.items.find(i => i.name === item.name && i.registry === registry)
+    if (existingItem) {
+      return true
     }
 
-    return false
+    lockfile.items.push({
+      name: item.name,
+      registry,
+      repo,
+      prefix,
+      files: item.files.map(file => ({
+        kind: file.kind,
+        source: file.path,
+        dest: 'TODO: Replace with the destination path',
+      })),
+    })
+
+    return await this.updateLockfile(lockfile)
+  }
+
+  async resolveAddedItem(addedItem: ProjectAddedItem): Promise<ResolvedProjectAddedItem> {
+    const resolved: ResolvedProjectAddedItem = {
+      ...addedItem,
+      files: [],
+    }
+
+    await Promise.all(addedItem.files.map(
+      async (file) => {
+        const resolvedFile: ResolvedProjectAddedItemFile = {
+          ...file,
+          sourceContent: '',
+          destContent: '',
+          state: 'ok',
+        }
+
+        resolvedFile.source = `https://raw.githubusercontent.com/${addedItem.registry}/refs/heads/main/${file.source}`
+        try {
+          resolvedFile.sourceContent = await fetchURL(resolvedFile.source)
+        }
+        catch {
+          resolvedFile.sourceContent = ''
+          resolvedFile.state = 'delete-source'
+        }
+
+        const destContent = await readFile(this.root, resolvedFile.dest)
+        resolvedFile.dest = join(this.root, resolvedFile.dest)
+        if (destContent) {
+          resolvedFile.destContent = destContent
+        }
+        else {
+          resolvedFile.destContent = ''
+          resolvedFile.state = 'delete-dest'
+        }
+
+        if (resolvedFile.sourceContent && resolvedFile.destContent) {
+          const diff = diffChars(resolvedFile.sourceContent, resolvedFile.destContent)
+          resolvedFile.state = diff.length > 0 ? 'update' : 'ok'
+        }
+        else {
+          resolvedFile.state = 'delete-all'
+        }
+
+        resolved.files.push(resolvedFile)
+      },
+    ))
+
+    return resolved
   }
 
   /**
@@ -324,13 +385,13 @@ class Project {
 
     Object.entries(paths).forEach(
       ([key, value]) => {
-        if (key === '*') {
+        if (key === '~') {
           resolved[key] = basePath
         }
         else {
           resolved[key] = value.startsWith('~')
             ? value.replace('~', basePath)
-            : join(basePath, value)
+            : value.startsWith(basePath) ? value : join(basePath, value)
         }
       },
     )

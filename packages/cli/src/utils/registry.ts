@@ -1,4 +1,4 @@
-import type { RegistryConfig } from '../types'
+import type { RegistryConfig, RegistryItem } from '../types'
 import { RegistryConfigSchema } from '@weme-ui/schema'
 import * as v from 'valibot'
 import { fetchJSON } from './fetcher'
@@ -53,6 +53,79 @@ class Registry {
   async rootDevDependencies(): Promise<string[]> {
     const config = await this.config()
     return config.devDependencies ?? []
+  }
+
+  /**
+   * Find the items in the registry.
+   *
+   * @param filterFn - The filter function.
+   * @returns The items in the registry.
+   */
+  async findItems(filterFn?: (item: RegistryItem) => boolean): Promise<RegistryItem[]> {
+    const config = await this.config()
+    const index = new Map(config.items.map(i => [i.name, i]))
+
+    const matched = filterFn ? config.items.filter(filterFn) : config.items
+    const visited = new Set<string>()
+    const result: RegistryItem[] = []
+
+    const visit = (item: RegistryItem) => {
+      if (visited.has(item.name))
+        return
+      visited.add(item.name)
+
+      for (const name of item.registryDependencies ?? []) {
+        const dep = index.get(name)
+        if (!dep) {
+          continue
+        }
+        visit(dep)
+      }
+      result.push(item)
+    }
+
+    matched.forEach(visit)
+
+    return result.sort((a, b) => a.name.localeCompare(b.name))
+  }
+
+  /**
+   * Find the dependency items in the registry.
+   *
+   * @param item - The item to find the dependency items for.
+   * @param config - The config to use.
+   * @param visited - The visited items.
+   * @returns The dependency items.
+   */
+  async findDependencyItems(
+    item: RegistryItem,
+    config?: RegistryConfig,
+    visited: Set<string> = new Set(),
+  ): Promise<RegistryItem[]> {
+    const cfg = config ?? (await this.config())
+    const items: RegistryItem[] = []
+
+    if (visited.size === 0)
+      visited.add(item.name)
+    if (!item.registryDependencies?.length)
+      return items
+
+    for (const name of item.registryDependencies) {
+      if (visited.has(name))
+        continue
+      visited.add(name)
+
+      const d = cfg.items.find(i => i.name === name)
+      if (!d) {
+        continue
+      }
+
+      const nested = await this.findDependencyItems(d, cfg, visited)
+      items.push(...nested)
+      items.push(d)
+    }
+
+    return items.sort((a, b) => a.name.localeCompare(b.name))
   }
 
   /**

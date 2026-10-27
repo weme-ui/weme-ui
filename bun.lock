@@ -30,6 +30,7 @@
         "@weme-ui/schema": "workspace:*",
         "@weme-ui/unocss-preset": "workspace:*",
         "citty": "^0.2.2",
+        "diff": "^9.0.0",
         "make-fetch-happen": "^16.0.1",
         "nypm": "^0.6.11",
         "ora": "^9.4.1",

@@ -1,6 +1,6 @@
 import * as v from 'valibot'
 import { LOCKFILE_SCHEMA_URL } from '../constants'
-import { RegistryItemFileSchema } from '../registry'
+import { RegistryItemFileSchema, RegistryItemTypeEnum } from '../registry'
 import { NonEmptyTrimmedString, TrimmedURLString } from '../shared'
 import { ProjectAddedRegistrySchema } from './schema'
 
@@ -76,6 +76,14 @@ export const ProjectAddedItemSchema = v.pipe(
         examples: ['button'],
       }),
     ),
+
+    /**
+     * 注册项类型
+     *
+     * @default 'component'
+     * @optional
+     */
+    type: v.optional(RegistryItemTypeEnum, 'component'),
 
     /**
      * 已添加的注册中心名称

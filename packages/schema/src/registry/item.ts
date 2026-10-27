@@ -77,10 +77,10 @@ export const RegistryItemFileSchema = v.pipe(
     /**
      * 注册项类型
      *
-     * @default 'block'
+     * @default 'component'
      * @optional
      */
-    type: v.optional(RegistryItemTypeEnum, 'block'),
+    type: v.optional(RegistryItemTypeEnum, 'component'),
 
     /**
      * 注册项文件类型
@@ -179,7 +179,7 @@ export const RegistryItemSchema = v.pipe(
     /**
      * 注册项类型
      *
-     * @default 'block'
+     * @default 'component'
      * @optional
      */
     type: v.optional(
@@ -187,11 +187,11 @@ export const RegistryItemSchema = v.pipe(
         RegistryItemTypeEnum,
         v.metadata({
           title: '类型',
-          description: '该 registry item 的分类。省略时默认为 "block"。用于归类，并选择对应的默认安装路径。',
+          description: '该 registry item 的分类。省略时默认为 "component"。用于归类，并选择对应的默认安装路径。',
           examples: ['component', 'composable', 'block', 'layout', 'page', 'util', 'theme'],
         }),
       ),
-      'block',
+      'component',
     ),
 
     /**

@@ -1,3 +1,4 @@
+import type { RegistryItem } from '../../types'
 import { cwd, exit } from 'node:process'
 import { defineCommand } from 'citty'
 import { installDependencies } from 'nypm'
@@ -73,7 +74,36 @@ export default defineCommand({
       async () => { await project.check() },
     )
 
-    // 04. Add dependencies to the project.
+    const defaultRegistryName = args.repo ?? project.info.registries?.[0]?.registry ?? DEFAULT_REGISTRY_NAME
+    const defaultRegistryRepo = args.repo ?? project.info.registries?.[0]?.repo
+    const defaultRegistryPrefix = args.repo ?? project.info.registries?.[0]?.prefix
+
+    const registry = useRegistry(defaultRegistryName)
+
+    const dependencies: string[] = []
+    const devDependencies: string[] = []
+    const onInitItems: RegistryItem[] = []
+
+    // 04. Prepare `on-init` items.
+    await callWhen(
+      project.info.state.hasPackageJson,
+      async () => {
+        spinner.text = 'Preparing items...'
+
+        registry.rootDependencies().then(
+          res => res.forEach(d => dependencies.push(d)),
+        )
+        registry.rootDevDependencies().then(
+          res => res.forEach(d => devDependencies.push(d)),
+        )
+        registry.findItems(item => item.when === 'on-init').then(
+          res => onInitItems.push(...res),
+        )
+      },
+      async () => { await project.check() },
+    )
+
+    // 05. Add dependencies to the project.
     await callWhen(
       project.info.state.hasPackageJson,
       async () => {
@@ -83,19 +113,33 @@ export default defineCommand({
           silent: true,
         })
 
-        const defaultRegistryName = args.repo ?? project.info.registries?.[0]?.registry ?? DEFAULT_REGISTRY_NAME
-        const registry = useRegistry(defaultRegistryName)
-
         spinner.text = 'Adding dependencies to the project...'
-        const dependencies = await registry.rootDependencies()
         if (dependencies.length > 0) {
           await project.addDependencies(dependencies)
         }
 
         spinner.text = 'Adding dev dependencies to the project...'
-        const devDependencies = await registry.rootDevDependencies()
         if (devDependencies.length > 0) {
           await project.addDevDependencies(devDependencies)
+        }
+      },
+    )
+
+    // 06. Add `on-init` items to the project.
+    await callWhen(
+      project.info.state.hasPackageJson,
+      async () => {
+        spinner.text = 'Adding `on-init` items to the project...'
+
+        for (const item of onInitItems) {
+          spinner.text = `Adding ${defaultRegistryName}/${item.name} to the project...`
+
+          await project.addItem(
+            item,
+            defaultRegistryName,
+            defaultRegistryRepo,
+            defaultRegistryPrefix,
+          )
         }
       },
     )

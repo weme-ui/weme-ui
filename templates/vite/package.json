@@ -21,7 +21,7 @@
     "@weme-ui/unocss-preset": "^0.2.2",
     "eslint": "^10.13.0",
     "eslint-plugin-format": "^2.0.1",
-    "magic-string": "^1.4.4",
+    "magic-string": "^1.4.5",
     "typescript": "6.0.3",
     "unocss": "66.10.5",
     "unplugin-auto-import": "^21.1.0",

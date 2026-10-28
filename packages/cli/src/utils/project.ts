@@ -95,13 +95,19 @@ export class Project {
         const fileName = basename(file.path)
         const fileDir = paths[file.type] ?? paths['~']
         const filePath = file.type === 'component' && itemRegistry.prefix
-          ? join(fileDir, itemRegistry.prefix, fileName)
-          : join(fileDir, fileName)
+          ? join(fileDir, itemRegistry.prefix)
+          : fileDir
+
+        await writeFile(
+          this.joinPath(filePath),
+          fileName,
+          file.content,
+        )
 
         addedItem.files.push({
           kind: file.kind,
           source: file.path,
-          dest: filePath,
+          dest: join(filePath, fileName),
         })
       }
 

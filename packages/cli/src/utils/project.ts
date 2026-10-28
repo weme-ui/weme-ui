@@ -1,4 +1,4 @@
-import type { CssVariables, HashableContent, Prettify, ProjectAddedItem, ProjectAddedItemFile, ProjectAddedRegistry, ProjectConfig, ProjectLockFile, ProjectPaths } from '../types'
+import type { CssVariables, HashableContent, Prettify, ProjectAddedItem, ProjectAddedItemFile, ProjectAddedRegistry, ProjectConfig, ProjectLockFile, ProjectPaths, RegistryItemFileKind } from '../types'
 import { basename, isAbsolute, join, relative, resolve } from 'node:path/posix'
 import { LOCKFILE_SCHEMA_URL, ProjectConfigSchema, ProjectLockFileSchema } from '@weme-ui/schema'
 import { defu } from 'defu'
@@ -62,7 +62,7 @@ export class Project {
    * @param name - The name of the item to add.
    * @returns Whether the item was added.
    */
-  async addItem(name: string): Promise<boolean> {
+  async addItem(name: string, kinds: RegistryItemFileKind[] = ['file']): Promise<boolean> {
     if (await this.hasAddedItem(name)) {
       return await this.updateItem(name)
     }
@@ -92,11 +92,20 @@ export class Project {
       }
 
       for (const file of files) {
+        if (!kinds.includes(file.kind)) {
+          continue
+        }
+
         const fileName = basename(file.path)
         const fileDir = paths[file.type] ?? paths['~']
-        const filePath = file.type === 'component' && itemRegistry.prefix
-          ? join(fileDir, itemRegistry.prefix)
-          : fileDir
+
+        let filePath = fileDir
+
+        if (file.type === 'component') {
+          filePath = itemRegistry.prefix
+            ? join(fileDir, itemRegistry.prefix, item.name)
+            : join(fileDir, item.name)
+        }
 
         await writeFile(
           this.joinPath(filePath),
@@ -111,23 +120,27 @@ export class Project {
         })
       }
 
-      addedItems.push(addedItem)
-    }
-
-    if (addedItems.length > 0) {
-      const lockfile = await this.loadLockfile() ?? {
-        $schema: LOCKFILE_SCHEMA_URL,
-        items: [],
+      if (addedItem.files.length > 0) {
+        addedItems.push(addedItem)
       }
-
-      lockfile.items.push(...addedItems)
-
-      return await writeFile(
-        join(this.root, CLI_TMP_DIR),
-        PROJECT_LOCKFILE_FILENAME,
-        JSON.stringify(lockfile, null, 2),
-      )
     }
+
+    if (addedItems.length === 0) {
+      return false
+    }
+
+    const lockfile = await this.loadLockfile() ?? {
+      $schema: LOCKFILE_SCHEMA_URL,
+      items: [],
+    }
+
+    lockfile.items.push(...addedItems)
+
+    const written = await writeFile(
+      join(this.root, CLI_TMP_DIR),
+      PROJECT_LOCKFILE_FILENAME,
+      JSON.stringify(lockfile, null, 2),
+    )
     // #endregion
 
     // #region Add dependencies
@@ -150,7 +163,7 @@ export class Project {
     }
     // #endregion
 
-    return false
+    return written
   }
 
   /**

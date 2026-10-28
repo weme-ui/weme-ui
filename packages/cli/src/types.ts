@@ -1,4 +1,4 @@
-import type { ProjectAddedItemFileSchema, ProjectAddedItemSchema, ProjectAddedRegistrySchema, ProjectConfigSchema, ProjectLockFileSchema, RegistryConfigSchema, RegistryItemFileSchema, RegistryItemSchema, RegistryItemTypeEnum } from '@weme-ui/schema'
+import type { ProjectAddedItemFileSchema, ProjectAddedItemSchema, ProjectAddedRegistrySchema, ProjectConfigSchema, ProjectLockFileSchema, RegistryConfigSchema, RegistryItemFileKindEnum, RegistryItemFileSchema, RegistryItemSchema, RegistryItemTypeEnum } from '@weme-ui/schema'
 import type * as v from 'valibot'
 
 export type Prettify<T> = { [K in keyof T]: T[K] } & {}
@@ -21,3 +21,4 @@ export type ProjectAddedItemFile = v.InferOutput<typeof ProjectAddedItemFileSche
 export type RegistryConfig = v.InferOutput<typeof RegistryConfigSchema>
 export type RegistryItem = v.InferOutput<typeof RegistryItemSchema>
 export type RegistryItemFile = v.InferOutput<typeof RegistryItemFileSchema>
+export type RegistryItemFileKind = v.InferOutput<typeof RegistryItemFileKindEnum>

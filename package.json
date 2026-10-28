@@ -92,7 +92,7 @@
     "test": "turbo run test",
     "changeset": "changeset",
     "version-packages": "changeset version && bun install",
-    "release": "bun run --filter @weme-ui/schema --filter @weme-ui/unocss-preset build && bun run --filter @weme-ui/schema build:output && changeset publish",
+    "release": "bun run --filter @weme-ui/schema --filter @weme-ui/unocss-preset --filter @weme-ui/weme-ui build && bun run --filter @weme-ui/schema build:output && changeset publish",
     "prepare": "simple-git-hooks"
   },
   "devDependencies": {

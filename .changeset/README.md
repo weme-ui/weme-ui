@@ -1,6 +1,6 @@
 # Changesets
 
-本仓库用 [Changesets](https://github.com/changesets/changesets) 给 `@weme-ui/schema` 和 `@weme-ui/unocss-preset` 做独立版本号。
+本仓库用 [Changesets](https://github.com/changesets/changesets) 给 `@weme-ui/schema`、`@weme-ui/unocss-preset` 和 `@weme-ui/weme-ui` 做独立版本号。
 
 ## 本地
 

@@ -4,7 +4,7 @@ import { dirname, join } from 'node:path/posix'
 import { x } from 'tinyexec'
 import { glob } from 'tinyglobby'
 import { CLI_TMP_DIR } from '../../constants'
-import { ensureDir, existsFile } from '../../utils/utilities'
+import { ensureDir, existsFile } from '../../utils'
 
 /**
  * Initialize the project template.

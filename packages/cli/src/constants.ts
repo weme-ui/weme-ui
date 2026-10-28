@@ -1,4 +1,4 @@
-import type { ProjectConfig, ProjectPaths } from './types'
+import type { ProjectAddedRegistry } from './types'
 import { description, version } from '../package.json'
 
 export const CLI_NAME = 'weme-cli'
@@ -11,12 +11,13 @@ export const PROJECT_CONFIG_FILENAME = 'weme.config.json'
 export const PROJECT_LOCKFILE_FILENAME = 'weme.lock.json'
 
 export const DEFAULT_REGISTRY_NAME = 'weme-ui/slim'
+export const DEFAULT_REGISTRY_BRANCH = 'main'
 
-export const DEFAULT_REGISTRIES: ProjectConfig['registries'] = [
+export const DEFAULT_REGISTRIES: ProjectAddedRegistry[] = [
   { registry: DEFAULT_REGISTRY_NAME },
 ]
 
-export const DEFAULT_PATHS: ProjectPaths = {
+export const DEFAULT_PATHS = {
   '~': 'src',
   'component': '~/components',
   'composable': '~/composables',
@@ -25,4 +26,4 @@ export const DEFAULT_PATHS: ProjectPaths = {
   'page': '~/pages',
   'util': '~/utils',
   'theme': '~/themes',
-}
+} as const

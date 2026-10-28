@@ -1,71 +1,95 @@
-import type { RegistryConfig, RegistryItem } from '../types'
+import type { HashableContent, Prettify, RegistryConfig, RegistryItem, RegistryItemFile } from '../types'
 import { RegistryConfigSchema } from '@weme-ui/schema'
+import { hash } from 'hasha'
 import * as v from 'valibot'
-import { fetchJSON } from './fetcher'
+import { DEFAULT_REGISTRY_BRANCH } from '../constants'
+import { fetchJSON, fetchURL } from './fetcher'
+
+interface RegistryMetadata {
+  name: RegistryConfig['name']
+  description: RegistryConfig['description']
+  version: RegistryConfig['version']
+  homepage: RegistryConfig['homepage']
+  repository: RegistryConfig['repository']
+  issues: RegistryConfig['issues']
+  contributors: RegistryConfig['contributors']
+  access: RegistryConfig['access']
+}
+
+type ResolvedRegistryItemFile = Prettify<RegistryItemFile & HashableContent>
+
+interface RegistryCache {
+  config: RegistryConfig
+  index: ReadonlyMap<string, RegistryItem>
+}
 
 class Registry {
+  /**
+   * The name of the registry.
+   */
   private name: string
-  private schema: RegistryConfig | null
+  /**
+   * The branch of the registry.
+   */
+  private branch: string
+  /**
+   * The cache of the registry.
+   */
+  private cache: Promise<RegistryCache> | null = null
 
-  constructor(name: string) {
-    this.name = this.normalizeName(name)
-    this.schema = null
+  constructor(name: string, branch: string) {
+    this.name = name
+    this.branch = branch
   }
 
   /**
-   * Get the registry config.
+   * Get the registry metadata.
    *
-   * @returns The registry config.
-   * @throws If the registry config fails to parse.
+   * @returns The registry metadata.
    */
-  async config(): Promise<RegistryConfig> {
-    if (this.schema) {
-      return this.schema
+  async metadata(): Promise<RegistryMetadata> {
+    const { config } = await this.load()
+
+    return {
+      name: config.name,
+      description: config.description,
+      version: config.version,
+      homepage: config.homepage,
+      repository: config.repository,
+      issues: config.issues,
+      contributors: config.contributors,
+      access: config.access,
     }
-
-    const registryUrl = `https://raw.githubusercontent.com/${this.name}/refs/heads/main/registry.json`
-    const schema = await fetchJSON<RegistryConfig>(registryUrl)
-    const parsed = v.safeParse(RegistryConfigSchema, schema)
-
-    if (!parsed.success) {
-      throw new Error('Failed to parse registry config')
-    }
-
-    this.schema = parsed.output
-    return this.schema
   }
 
   /**
-   * Get the root dependencies of the registry.
+   * Get the registry dependencies.
    *
-   * @returns The root dependencies of the registry.
+   * @returns The registry dependencies.
    */
-  async rootDependencies(): Promise<string[]> {
-    const config = await this.config()
-    return config.dependencies ?? []
+  async dependencies(): Promise<string[]> {
+    return (await this.load()).config.dependencies ?? []
   }
 
   /**
-   * Get the root dev dependencies of the registry.
+   * Get the registry dev dependencies.
    *
-   * @returns The root dev dependencies of the registry.
+   * @returns The registry dev dependencies.
    */
-  async rootDevDependencies(): Promise<string[]> {
-    const config = await this.config()
-    return config.devDependencies ?? []
+  async devDependencies(): Promise<string[]> {
+    return (await this.load()).config.devDependencies ?? []
   }
 
   /**
    * Find the items in the registry.
    *
-   * @param filterFn - The filter function.
-   * @returns The items in the registry.
+   * @param filter - The filter function.
+   * @returns The items that match the filter.
    */
-  async findItems(filterFn?: (item: RegistryItem) => boolean): Promise<RegistryItem[]> {
-    const config = await this.config()
-    const index = new Map(config.items.map(i => [i.name, i]))
+  async getItems(filter?: (item: RegistryItem) => boolean): Promise<RegistryItem[]> {
+    const { config, index } = await this.load()
 
-    const matched = filterFn ? config.items.filter(filterFn) : config.items
+    const items = filter ? config.items.filter(filter) : config.items
     const visited = new Set<string>()
     const result: RegistryItem[] = []
 
@@ -84,70 +108,109 @@ class Registry {
       result.push(item)
     }
 
-    matched.forEach(visit)
-
-    return result.sort((a, b) => a.name.localeCompare(b.name))
+    items.forEach(visit)
+    return result
   }
 
   /**
-   * Find the dependency items in the registry.
+   * Get the files of an item.
    *
-   * @param item - The item to find the dependency items for.
-   * @param config - The config to use.
-   * @param visited - The visited items.
-   * @returns The dependency items.
+   * @param item - The item to get the files from.
+   * @returns The resolved files of the item.
    */
-  async findDependencyItems(
-    item: RegistryItem,
-    config?: RegistryConfig,
-    visited: Set<string> = new Set(),
-  ): Promise<RegistryItem[]> {
-    const cfg = config ?? (await this.config())
-    const items: RegistryItem[] = []
+  async getItemFiles(item: RegistryItem): Promise<ResolvedRegistryItemFile[]> {
+    return await Promise.all(item.files.map(
+      async (file) => {
+        const result = await this.getItemFileContent(file.path)
 
-    if (visited.size === 0)
-      visited.add(item.name)
-    if (!item.registryDependencies?.length)
-      return items
-
-    for (const name of item.registryDependencies) {
-      if (visited.has(name))
-        continue
-      visited.add(name)
-
-      const d = cfg.items.find(i => i.name === name)
-      if (!d) {
-        continue
-      }
-
-      const nested = await this.findDependencyItems(d, cfg, visited)
-      items.push(...nested)
-      items.push(d)
-    }
-
-    return items.sort((a, b) => a.name.localeCompare(b.name))
+        return {
+          type: file.type,
+          kind: file.kind,
+          path: file.path,
+          target: file.target,
+          content: result.content,
+          hash: result.hash,
+        }
+      },
+    ))
   }
 
   /**
-   * Normalize the registry name.
+   * Get the content of a file.
    *
-   * @param name - The name to normalize.
-   * @returns The normalized name.
+   * @param source - The source of the file.
+   * @returns The content of the file.
    */
-  private normalizeName(name: string): string {
-    if (name.startsWith('http')) {
-      if (name.startsWith('https://github.com/')) {
-        return name.replace('https://github.com/', '')
-      }
-      else {
-        throw new Error('Invalid registry name')
-      }
+  async getItemFileContent(source: string): Promise<HashableContent> {
+    const url = this.joinURL(source)
+    const content = await fetchURL(url)
+    const hashStr = await hash(content)
+
+    return {
+      content,
+      hash: hashStr,
+    }
+  }
+
+  /**
+   * Load the registry cache.
+   *
+   * @throws If the registry cache fails to load.
+   * @returns The registry cache.
+   */
+  private async load(): Promise<RegistryCache> {
+    this.cache ??= this.fetchRegistryJson().catch((err) => {
+      this.cache = null
+      throw err
+    })
+    return this.cache
+  }
+
+  /**
+   * Fetch the registry JSON.
+   *
+   * @throws If the registry JSON fails to parse.
+   * @returns The registry cache.
+   */
+  private async fetchRegistryJson(): Promise<RegistryCache> {
+    const url = this.joinURL('registry.json')
+    const raw = await fetchJSON<unknown>(url)
+    const parsed = v.safeParse(RegistryConfigSchema, raw)
+
+    if (!parsed.success) {
+      throw new Error('Failed to parse registry config', { cause: parsed.issues })
     }
 
-    return name
+    const config = parsed.output
+    const index = new Map<string, RegistryItem>()
+    for (const item of config.items) {
+      if (index.has(item.name)) {
+        throw new Error(`Duplicate item name: ${item.name}`)
+      }
+      index.set(item.name, item)
+    }
+
+    return { config, index }
+  }
+
+  /**
+   * Join the URL with the name and branch.
+   *
+   * @param path The path to join.
+   * @returns The joined URL.
+   */
+  private joinURL(path: string): string {
+    return `https://raw.githubusercontent.com/${this.name}/refs/heads/${this.branch}/${path}`
   }
 }
 
-export function useRegistry(name: string): Registry {
-  return new Registry(name)
+/**
+ * Use the registry.
+ *
+ * @param name The name of the registry.
+ * @param branch The branch of the registry.
+ * @returns The registry instance.
+ */
+export function useRegistry(name: string, branch: string = DEFAULT_REGISTRY_BRANCH): Registry {
+  return new Registry(name, branch)
 }

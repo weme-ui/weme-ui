@@ -1,13 +1,13 @@
-import type { RegistryItem } from '../../types'
+import { resolve } from 'node:path/posix'
 import { cwd, exit } from 'node:process'
 import { defineCommand } from 'citty'
 import { installDependencies } from 'nypm'
 import ora from 'ora'
-import { DEFAULT_REGISTRY_NAME } from '../../constants'
-import { callWhen, ensureDir, loadProject, useRegistry } from '../../utils'
+import { callWhen, parseRepoURL, Project, randomColor, unwrapError, useRegistry } from '../../utils'
 import { generateDefaultConfig } from './config'
 import { cloneTemplateRepository, initProjectTemplate } from './template'
-import { generateDefaultUnoCSS } from './unocss'
+import { generateDefaultUnoCSSConfigs } from './unocss'
+
 /**
  * 初始化项目
  */
@@ -31,119 +31,116 @@ export default defineCommand({
   },
 
   async run({ args }) {
-    const cwd = ensureDir(args.cwd)
-    const project = await loadProject(cwd)
+    const cwd = resolve(args.cwd)
 
-    if (project.info.initd) {
-      console.error('Project already initialized!')
+    try {
+      const project = new Project(cwd)
+
+      if (await project.isInitialized()) {
+        throw new Error('Project already initialized')
+      }
+
+      const spinner = ora({ text: 'Initializing project...' }).start()
+
+      const {
+        name,
+        branch,
+      } = parseRepoURL(args.repo)
+
+      // 1. Initialize project from clone template repository
+      await callWhen(
+        !(await project.hasPackageJson()),
+        async () => {
+          spinner.color = randomColor()
+          spinner.text = 'Cloning template repository...'
+          await cloneTemplateRepository(cwd)
+
+          spinner.text = 'Initializing project structure...'
+          spinner.color = randomColor()
+          await initProjectTemplate(cwd)
+        },
+      )
+
+      // 2. Generate the default project config file
+      await callWhen(
+        !(await project.hasProjectConfig()),
+        async () => {
+          spinner.text = 'Generating project config file...'
+          spinner.color = randomColor()
+          await generateDefaultConfig(cwd, args.repo)
+        },
+      )
+
+      // 3. Generate the default UnoCSS config file
+      await callWhen(
+        !(await project.hasUnoConfig()),
+        async () => {
+          spinner.color = randomColor()
+          spinner.text = 'Generating UnoCSS config file...'
+          await generateDefaultUnoCSSConfigs(cwd)
+        },
+      )
+
+      // 4. Install dependencies
+      await callWhen(
+        await project.hasPackageJson(),
+        async () => {
+          spinner.text = 'Install dependencies...'
+          spinner.color = randomColor()
+          await installDependencies({
+            cwd,
+            silent: true,
+          })
+        },
+      )
+
+      // 5. Add dependencies to the project
+      await callWhen(
+        await project.hasPackageJson(),
+        async () => {
+          const registry = useRegistry(name, branch)
+
+          spinner.text = 'Adding dependencies to the project...'
+          spinner.color = randomColor()
+          const dependencies = await registry.dependencies()
+          if (dependencies.length > 0) {
+            await project.addDependencies(dependencies)
+          }
+
+          spinner.text = 'Adding dev dependencies to the project...'
+          spinner.color = randomColor()
+          const devDependencies = await registry.devDependencies()
+          if (devDependencies.length > 0) {
+            await project.addDevDependencies(devDependencies)
+          }
+        },
+      )
+
+      // 6. Add `on-init` items to the project
+      await callWhen(
+        await project.hasPackageJson(),
+        async () => {
+          const registry = useRegistry(name, branch)
+
+          spinner.text = 'Adding `on-init` items to the project...'
+          spinner.color = randomColor()
+          const onInitItems = await registry.getItems(item => item.when === 'on-init')
+          if (onInitItems.length > 0) {
+            for (const item of onInitItems) {
+              const itemName = `${name}/${item.name}`
+              if (await project.hasAddedItem(itemName) === false) {
+                await project.addItem(itemName)
+              }
+            }
+          }
+        },
+      )
+
+      spinner.succeed('Project initialized successfully')
+    }
+    catch (err) {
+      console.error(unwrapError(err))
       exit(1)
     }
-
-    const spinner = ora('Initializing project...').start()
-
-    // 01. Clone the template repository and initialize the project template.
-    await callWhen(
-      !project.info.state.hasPackageJson,
-      async () => {
-        spinner.text = 'Cloning template repository...'
-        await cloneTemplateRepository(cwd)
-
-        spinner.text = 'Initializing project template...'
-        await initProjectTemplate(cwd)
-      },
-      async () => { await project.check() },
-    )
-
-    // 02. Generate the default project config.
-    await callWhen(
-      !project.info.state.hasProjectConfig,
-      async () => {
-        spinner.text = 'Generating default project config...'
-        await generateDefaultConfig(cwd)
-      },
-      async () => { await project.check() },
-    )
-
-    // 03. Generate the default UnoCSS config.
-    await callWhen(
-      !project.info.state.hasUnoConfig,
-      async () => {
-        spinner.text = 'Generating default UnoCSS config...'
-        await generateDefaultUnoCSS(cwd)
-      },
-      async () => { await project.check() },
-    )
-
-    const defaultRegistryName = args.repo ?? project.info.registries?.[0]?.registry ?? DEFAULT_REGISTRY_NAME
-    const defaultRegistryRepo = args.repo ?? project.info.registries?.[0]?.repo
-    const defaultRegistryPrefix = args.repo ?? project.info.registries?.[0]?.prefix
-
-    const registry = useRegistry(defaultRegistryName)
-
-    const dependencies: string[] = []
-    const devDependencies: string[] = []
-    const onInitItems: RegistryItem[] = []
-
-    // 04. Prepare `on-init` items.
-    await callWhen(
-      project.info.state.hasPackageJson,
-      async () => {
-        spinner.text = 'Preparing items...'
-
-        registry.rootDependencies().then(
-          res => res.forEach(d => dependencies.push(d)),
-        )
-        registry.rootDevDependencies().then(
-          res => res.forEach(d => devDependencies.push(d)),
-        )
-        registry.findItems(item => item.when === 'on-init').then(
-          res => onInitItems.push(...res),
-        )
-      },
-      async () => { await project.check() },
-    )
-
-    // 05. Add dependencies to the project.
-    await callWhen(
-      project.info.state.hasPackageJson,
-      async () => {
-        spinner.text = 'Install dependencies...'
-        await installDependencies({
-          cwd,
-          silent: true,
-        })
-
-        spinner.text = 'Adding dependencies to the project...'
-        if (dependencies.length > 0) {
-          await project.addDependencies(dependencies)
-        }
-
-        spinner.text = 'Adding dev dependencies to the project...'
-        if (devDependencies.length > 0) {
-          await project.addDevDependencies(devDependencies)
-        }
-      },
-    )
-
-    // 06. Add `on-init` items to the project.
-    await callWhen(
-      project.info.state.hasPackageJson,
-      async () => {
-        spinner.text = 'Adding `on-init` items to the project...'
-
-        for (const item of onInitItems) {
-          spinner.text = `Adding ${defaultRegistryName}/${item.name} to the project...`
-
-          await project.addItem(
-            item,
-            defaultRegistryName,
-            defaultRegistryRepo,
-            defaultRegistryPrefix,
-          )
-        }
-      },
-    )
-
-    spinner.succeed('Project initialized successfully!')
   },
 })

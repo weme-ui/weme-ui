@@ -2,6 +2,8 @@ import { existsSync, mkdirSync } from 'node:fs'
 import fs from 'node:fs/promises'
 import { join, resolve } from 'node:path/posix'
 import { cwd, exit } from 'node:process'
+import { parseURL } from 'ufo'
+import { DEFAULT_REGISTRY_BRANCH, DEFAULT_REGISTRY_NAME } from '../constants'
 
 /**
  * Ensure the working directory.
@@ -87,6 +89,48 @@ export async function writeFile(root: string, filename: string, content: string)
 }
 
 /**
+ * Parse a repository URL.
+ *
+ * @param url - The URL to parse.
+ * @returns The parsed repository URL.
+ */
+export function parseRepoURL(url?: string) {
+  if (!url) {
+    return {
+      name: DEFAULT_REGISTRY_NAME,
+      branch: DEFAULT_REGISTRY_BRANCH,
+    }
+  }
+
+  const { host, pathname, hash } = parseURL(url)
+  if ((host && host !== 'github.com') || !pathname) {
+    throw new Error(`Invalid repository URL: ${url}`)
+  }
+
+  let branch = hash ? hash.replace(/^#/, '') : DEFAULT_REGISTRY_BRANCH
+  let name = removeLeadingSlash(pathname)
+  if (name.split('/').length !== 2 && name.includes('/tree/')) {
+    branch = name.split('/tree/')[1]
+    name = name.split('/tree/')[0]
+  }
+
+  return {
+    name,
+    branch,
+  }
+}
+
+/**
+ * Remove the leading slash from a path.
+ *
+ * @param path - The path to remove the leading slash from.
+ * @returns The path without the leading slash.
+ */
+export function removeLeadingSlash(path: string) {
+  return path.replace(/^\//, '')
+}
+
+/**
  * Remove the trailing slash from a path.
  *
  * @param path - The path to remove the trailing slash from.
@@ -133,4 +177,26 @@ export async function callWhen<T>(
       }
     }
   }
+}
+
+type RandomColor = 'black' | 'red' | 'green' | 'yellow' | 'blue' | 'magenta' | 'cyan' | 'white' | 'gray'
+
+/**
+ * Generate a random color.
+ *
+ * @returns The random color.
+ */
+export function randomColor(): RandomColor {
+  const colors: RandomColor[] = [
+    'black',
+    'red',
+    'green',
+    'yellow',
+    'blue',
+    'magenta',
+    'cyan',
+    'white',
+    'gray',
+  ]
+  return colors[Math.floor(Math.random() * colors.length)]
 }

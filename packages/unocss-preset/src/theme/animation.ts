@@ -7,7 +7,7 @@ import type { Theme } from './types'
  */
 export const animation = {
   keyframes: {
-    // RFC 0003 — composable enter/exit (tw-animate-css model)
+    // composable enter/exit (tw-animate-css model)
     'un-enter': '{from{opacity:var(--un-enter-opacity,1);transform:translate3d(var(--un-enter-translate-x,0),var(--un-enter-translate-y,0),0) scale3d(var(--un-enter-scale,1),var(--un-enter-scale,1),var(--un-enter-scale,1)) rotate(var(--un-enter-rotate,0));filter:blur(var(--un-enter-blur,0))}}',
     'un-exit': '{to{opacity:var(--un-exit-opacity,1);transform:translate3d(var(--un-exit-translate-x,0),var(--un-exit-translate-y,0),0) scale3d(var(--un-exit-scale,1),var(--un-exit-scale,1),var(--un-exit-scale,1)) rotate(var(--un-exit-rotate,0));filter:blur(var(--un-exit-blur,0))}}',
 
@@ -177,7 +177,7 @@ export const animation = {
   },
 
   category: {
-    // RFC 0003 — composable enter/exit
+    // composable enter/exit
     'un-enter': 'Enter/Exit',
     'un-exit': 'Enter/Exit',
 

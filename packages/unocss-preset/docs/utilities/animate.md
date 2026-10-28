@@ -158,7 +158,7 @@ Preset 同时提供两种动画写法，**类名相近但职责不同**，选错
 | `slide-out-to-top` / `bottom` / `left` / `right`  | `--un-exit-translate-*`                                                            |
 | `slide-out-to-{dir}-*`                            | 同上                                                                               |
 
-`start` / `end`（RTL）与 `blur-in` / `blur-out` 尚未提供（见 RFC 0003 Phase 2）。
+`start` / `end`（RTL）与 `blur-in` / `blur-out` 尚未提供。
 
 ### 参数类（与模型 A 共用）
 

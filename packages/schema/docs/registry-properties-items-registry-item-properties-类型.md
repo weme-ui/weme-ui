@@ -4,7 +4,7 @@
 undefined#/properties/items/items/properties/type
 ```
 
-该 registry item 的分类。省略时默认为 "block"。用于归类，并选择对应的默认安装路径。
+该 registry item 的分类。省略时默认为 "component"。用于归类，并选择对应的默认安装路径。
 
 | Abstract            | Extensible | Status         | Identifiable            | Custom Properties | Additional Properties | Access Restrictions | Defined In                                                                                 |
 | :------------------ | :--------- | :------------- | :---------------------- | :---------------- | :-------------------- | :------------------ | :----------------------------------------------------------------------------------------- |
@@ -33,7 +33,7 @@ undefined#/properties/items/items/properties/type
 The default value is:
 
 ```json
-"block"
+"component"
 ```
 
 ## type Examples

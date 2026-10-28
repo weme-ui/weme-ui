@@ -147,7 +147,7 @@ registry item 在所属 registry 内的唯一标识，必须为小写。
 
 ## type
 
-该 registry item 的分类。省略时默认为 "block"。用于归类，并选择对应的默认安装路径。
+该 registry item 的分类。省略时默认为 "component"。用于归类，并选择对应的默认安装路径。
 
 `type`
 
@@ -182,7 +182,7 @@ registry item 在所属 registry 内的唯一标识，必须为小写。
 The default value is:
 
 ```json
-"block"
+"component"
 ```
 
 ### type Examples

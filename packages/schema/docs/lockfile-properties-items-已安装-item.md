@@ -35,6 +35,7 @@ undefined#/properties/items/items
 | Property              | Type     | Required | Nullable       | Defined by                                                                                                                  |
 | :-------------------- | :------- | :------- | :------------- | :-------------------------------------------------------------------------------------------------------------------------- |
 | [name](#name)         | `string` | Required | cannot be null | [项目锁定文件](lockfile-properties-items-已安装-item-properties-名称.md "undefined#/properties/items/items/properties/name")           |
+| [type](#type)         | `string` | Optional | cannot be null | [项目锁定文件](lockfile-properties-items-已安装-item-properties-注册项类型.md "undefined#/properties/items/items/properties/type")        |
 | [registry](#registry) | `string` | Required | cannot be null | [项目锁定文件](lockfile-properties-items-已安装-item-properties-registry.md "undefined#/properties/items/items/properties/registry") |
 | [repo](#repo)         | `string` | Optional | cannot be null | [项目锁定文件](lockfile-properties-items-已安装-item-properties-仓库.md "undefined#/properties/items/items/properties/repo")           |
 | [prefix](#prefix)     | `string` | Optional | cannot be null | [项目锁定文件](lockfile-properties-items-已安装-item-properties-前缀.md "undefined#/properties/items/items/properties/prefix")         |
@@ -66,6 +67,76 @@ undefined#/properties/items/items
 
 ```json
 "button"
+```
+
+## type
+
+registry item 的分类。决定如何归类该 item，以及解析文件时使用哪条默认安装路径。
+
+`type`
+
+* is optional
+
+* Type: `string` ([注册项类型](lockfile-properties-items-已安装-item-properties-注册项类型.md))
+
+* cannot be null
+
+* defined in: [项目锁定文件](lockfile-properties-items-已安装-item-properties-注册项类型.md "undefined#/properties/items/items/properties/type")
+
+### type Type
+
+`string` ([注册项类型](lockfile-properties-items-已安装-item-properties-注册项类型.md))
+
+### type Constraints
+
+**enum**: the value of this property must be equal to one of the following values:
+
+| Value          | Explanation |
+| :------------- | :---------- |
+| `"component"`  |             |
+| `"composable"` |             |
+| `"block"`      |             |
+| `"layout"`     |             |
+| `"page"`       |             |
+| `"util"`       |             |
+| `"theme"`      |             |
+
+### type Default Value
+
+The default value is:
+
+```json
+"component"
+```
+
+### type Examples
+
+```json
+"component"
+```
+
+```json
+"composable"
+```
+
+```json
+"block"
+```
+
+```json
+"layout"
+```
+
+```json
+"page"
+```
+
+```json
+"util"
+```
+
+```json
+"theme"
 ```
 
 ## registry

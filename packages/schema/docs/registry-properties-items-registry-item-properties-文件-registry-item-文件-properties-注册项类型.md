@@ -33,7 +33,7 @@ registry item 的分类。决定如何归类该 item，以及解析文件时使�
 The default value is:
 
 ```json
-"block"
+"component"
 ```
 
 ## type Examples

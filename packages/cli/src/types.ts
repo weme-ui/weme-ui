@@ -3,6 +3,8 @@ import type * as v from 'valibot'
 
 export type Prettify<T> = { [K in keyof T]: T[K] } & {}
 
+export type CssVariables = Record<string, Record<string, string>>
+
 export interface HashableContent {
   content: string
   hash: string

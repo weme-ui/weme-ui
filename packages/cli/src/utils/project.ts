@@ -1,4 +1,4 @@
-import type { HashableContent, Prettify, ProjectAddedItem, ProjectAddedItemFile, ProjectAddedRegistry, ProjectConfig, ProjectLockFile, ProjectPaths } from '../types'
+import type { CssVariables, HashableContent, Prettify, ProjectAddedItem, ProjectAddedItemFile, ProjectAddedRegistry, ProjectConfig, ProjectLockFile, ProjectPaths } from '../types'
 import { basename, isAbsolute, join, relative, resolve } from 'node:path/posix'
 import { LOCKFILE_SCHEMA_URL, ProjectConfigSchema, ProjectLockFileSchema } from '@weme-ui/schema'
 import { defu } from 'defu'
@@ -77,8 +77,9 @@ export class Project {
 
     const { paths, registries, defaultRegistry } = await this.info()
     const itemRegistry = registries.find(registry => registry.registry === parsed.registry) ?? defaultRegistry
-    const addedItems: ProjectAddedItem[] = []
 
+    // #region Add items
+    const addedItems: ProjectAddedItem[] = []
     for (const item of items) {
       const files = await registry.getItemFiles(item)
       const addedItem: ProjectAddedItem = {
@@ -121,6 +122,27 @@ export class Project {
         JSON.stringify(lockfile, null, 2),
       )
     }
+    // #endregion
+
+    // #region Add dependencies
+    const dependencies = items.map(item => item.dependencies ?? []).flat()
+    const devDependencies = items.map(item => item.devDependencies ?? []).flat()
+
+    if (dependencies.length > 0) {
+      await this.addDependencies(dependencies)
+    }
+
+    if (devDependencies.length > 0) {
+      await this.addDevDependencies(devDependencies)
+    }
+    // #endregion
+
+    // #region Add Css Variables
+    const cssVariables = items.map(item => item.cssVars ?? {}).reduce((acc, curr) => defu(acc, curr), {})
+    if (Object.keys(cssVariables).length > 0) {
+      await this.addCssVariables(cssVariables)
+    }
+    // #endregion
 
     return false
   }
@@ -134,6 +156,26 @@ export class Project {
   async updateItem(name: string): Promise<boolean> {
     void name
     return false
+  }
+
+  /**
+   * Add css variables to the project.
+   *
+   * @param cssVariables - The css variables to add.
+   * @throws If the project config is not found.
+   * @throws If the project config is not writable.
+   */
+  async addCssVariables(cssVariables: CssVariables): Promise<void> {
+    const projectConfig = await this.loadProjectConfig()
+
+    if (!projectConfig) {
+      throw new Error('Project config not found')
+    }
+
+    projectConfig.unocss = projectConfig.unocss ?? {}
+    projectConfig.unocss.cssVars = defu(projectConfig.unocss.cssVars ?? {}, cssVariables)
+
+    await writeFile(this.root, PROJECT_CONFIG_FILENAME, JSON.stringify(projectConfig, null, 2))
   }
 
   /**

@@ -16,6 +16,14 @@ const cli = defineCommand({
      * ```bunx @weme-ui/weme-ui init```
      */
     init: () => import('./commands/init').then(r => r.default),
+
+    /**
+     * 添加组件
+     *
+     * @example
+     * ```bunx @weme-ui/weme-ui add weme-ui/slim/button```
+     */
+    add: () => import('./commands/add').then(r => r.default),
   },
 })
 

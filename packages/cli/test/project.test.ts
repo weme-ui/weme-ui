@@ -53,12 +53,16 @@ function buttonItem(overrides: Partial<ProjectLockFileInput['items'][number]> = 
 interface MockRegistryItem {
   name: string
   type?: 'component' | 'composable' | 'block' | 'layout' | 'page' | 'util' | 'theme'
+  dependencies?: string[]
+  devDependencies?: string[]
+  cssVars?: Record<string, Record<string, string>>
 }
 
 interface MockRegistryFile {
   type: NonNullable<MockRegistryItem['type']>
   kind?: 'file' | 'doc' | 'example' | 'test'
   path: string
+  content?: string
 }
 
 function mockRegistry(options: {
@@ -74,13 +78,14 @@ function mockRegistry(options: {
       type: 'component' as const,
       kind: 'file' as const,
       path: BUTTON_SOURCE,
+      content: BUTTON_CONTENT,
     }]
 
     return files.map(file => ({
       type: file.type,
       kind: file.kind ?? 'file',
       path: file.path,
-      content: '',
+      content: file.content ?? BUTTON_CONTENT,
       hash: '',
     }))
   })
@@ -91,6 +96,10 @@ function mockRegistry(options: {
   } as unknown as ReturnType<typeof useRegistry>)
 
   return { getItems, getItemFiles }
+}
+
+function writtenContent(content: string) {
+  return `${content}\n`
 }
 
 async function readLockfile(root: string) {
@@ -419,6 +428,7 @@ describe('lockfile items', () => {
 describe('addItem', () => {
   beforeEach(() => {
     vi.mocked(useRegistry).mockReset()
+    vi.mocked(addDependency).mockReset()
   })
 
   it('delegates to updateItem when the item is already added', async () => {
@@ -491,10 +501,11 @@ describe('addItem', () => {
         files: [{
           kind: 'file',
           source: BUTTON_SOURCE,
-          dest: 'src/components/ui/button.vue',
+          dest: BUTTON_DEST,
         }],
       }],
     })
+    expect(await readFile(join(root, BUTTON_DEST), 'utf-8')).toBe(writtenContent(BUTTON_CONTENT))
   })
 
   it('resolves dest without prefix for non-component files', async () => {
@@ -540,15 +551,15 @@ describe('addItem', () => {
     })
 
     expect(await new Project(root).addItem('button')).toBe(true)
-    expect((await readLockfile(root)).items[0].files[0].dest).toBe('app/components/ui/button.vue')
+    expect((await readLockfile(root)).items[0].files[0].dest).toBe('app/components/ui/button/button.vue')
   })
 
-  it('records multiple files and kinds for one item', async () => {
+  it('installs only file-kind files by default', async () => {
     mockRegistry({
       filesByName: {
         button: [
           { type: 'component', kind: 'file', path: BUTTON_SOURCE },
-          { type: 'component', kind: 'doc', path: 'components/button/README.md' },
+          { type: 'component', kind: 'doc', path: 'components/button/README.md', content: '# Button\n' },
         ],
       },
     })
@@ -556,9 +567,63 @@ describe('addItem', () => {
 
     expect(await new Project(root).addItem('button')).toBe(true)
     expect((await readLockfile(root)).items[0].files).toEqual([
-      { kind: 'file', source: BUTTON_SOURCE, dest: 'src/components/button.vue' },
-      { kind: 'doc', source: 'components/button/README.md', dest: 'src/components/README.md' },
+      { kind: 'file', source: BUTTON_SOURCE, dest: 'src/components/button/button.vue' },
     ])
+    await expect(readFile(join(root, 'src/components/button/README.md'), 'utf-8')).rejects.toThrow()
+  })
+
+  it('installs the requested file kinds', async () => {
+    mockRegistry({
+      filesByName: {
+        button: [
+          { type: 'component', kind: 'file', path: BUTTON_SOURCE },
+          { type: 'component', kind: 'doc', path: 'components/button/README.md', content: '# Button\n' },
+        ],
+      },
+    })
+    const root = await createProjectDir()
+
+    expect(await new Project(root).addItem('button', ['file', 'doc'])).toBe(true)
+    expect((await readLockfile(root)).items[0].files).toEqual([
+      { kind: 'file', source: BUTTON_SOURCE, dest: 'src/components/button/button.vue' },
+      { kind: 'doc', source: 'components/button/README.md', dest: 'src/components/button/README.md' },
+    ])
+    expect(await readFile(join(root, 'src/components/button/README.md'), 'utf-8')).toBe(
+      writtenContent('# Button\n'),
+    )
+  })
+
+  it('returns false when no files match the requested kinds', async () => {
+    mockRegistry({
+      filesByName: {
+        button: [{ type: 'component', kind: 'doc', path: 'components/button/README.md' }],
+      },
+    })
+    const root = await createProjectDir()
+
+    expect(await new Project(root).addItem('button')).toBe(false)
+    await expect(readFile(join(root, CLI_TMP_DIR, PROJECT_LOCKFILE_FILENAME), 'utf-8')).rejects.toThrow()
+  })
+
+  it('omits items whose files were all skipped', async () => {
+    const items: MockRegistryItem[] = [
+      { name: 'utils', type: 'util' },
+      { name: 'button', type: 'component' },
+    ]
+    vi.mocked(useRegistry).mockReturnValue({
+      getItems: vi.fn(async () => items),
+      getItemFiles: vi.fn(async (item: MockRegistryItem) => {
+        const files = item.name === 'utils'
+          ? [{ type: 'util' as const, kind: 'doc' as const, path: 'src/utils/README.md', content: '# Utils\n' }]
+          : [{ type: 'component' as const, kind: 'file' as const, path: BUTTON_SOURCE, content: BUTTON_CONTENT }]
+
+        return files.map(file => ({ ...file, hash: '' }))
+      }),
+    } as unknown as ReturnType<typeof useRegistry>)
+    const root = await createProjectDir()
+
+    expect(await new Project(root).addItem('button')).toBe(true)
+    expect((await readLockfile(root)).items.map(item => item.name)).toEqual(['button'])
   })
 
   it('appends to an existing lockfile without dropping other items', async () => {
@@ -597,7 +662,7 @@ describe('addItem', () => {
           type: file.type,
           kind: file.kind ?? 'file',
           path: file.path,
-          content: '',
+          content: file.content ?? BUTTON_CONTENT,
           hash: '',
         })),
       ),
@@ -626,7 +691,7 @@ describe('addItem', () => {
       registry: 'acme/ui',
       repo: 'https://github.com/acme/ui',
       prefix: 'acme',
-      files: [{ dest: 'src/components/acme/button.vue' }],
+      files: [{ dest: 'src/components/acme/button/button.vue' }],
     })
   })
 
@@ -648,6 +713,109 @@ describe('addItem', () => {
       registry: 'weme-ui/slim',
       repo: 'https://github.com/weme-ui/slim',
       prefix: 'ui',
+    })
+  })
+
+  it('installs item dependencies and devDependencies', async () => {
+    mockRegistry({
+      items: [{
+        name: 'button',
+        type: 'component',
+        dependencies: ['vue'],
+        devDependencies: ['vitest'],
+      }],
+    })
+    const root = await createProjectDir({
+      [PROJECT_CONFIG_FILENAME]: stringifyConfig(),
+    })
+
+    expect(await new Project(root).addItem('button')).toBe(true)
+    expect(addDependency).toHaveBeenCalledWith(['vue'], {
+      cwd: root,
+      silent: true,
+    })
+    expect(addDependency).toHaveBeenCalledWith(['vitest'], {
+      cwd: root,
+      silent: true,
+      dev: true,
+    })
+  })
+
+  it('does not install dependencies when the item has none', async () => {
+    mockRegistry()
+    await new Project(await createProjectDir({
+      [PROJECT_CONFIG_FILENAME]: stringifyConfig(),
+    })).addItem('button')
+
+    expect(addDependency).not.toHaveBeenCalled()
+  })
+
+  it('merges item cssVars into the project config', async () => {
+    mockRegistry({
+      items: [{
+        name: 'button',
+        type: 'component',
+        cssVars: { card: { radius: '1rem' } },
+      }],
+    })
+    const root = await createProjectDir({
+      [PROJECT_CONFIG_FILENAME]: stringifyConfig({
+        unocss: { cssVars: { card: { padding: '4px' } } },
+      }),
+    })
+
+    expect(await new Project(root).addItem('button')).toBe(true)
+
+    const config = v.parse(
+      ProjectConfigSchema,
+      JSON.parse(await readFile(join(root, PROJECT_CONFIG_FILENAME), 'utf-8')),
+    )
+    expect(config.unocss?.cssVars).toEqual({
+      card: { padding: '4px', radius: '1rem' },
+    })
+  })
+
+  it('throws when adding cssVars without a project config', async () => {
+    mockRegistry({
+      items: [{
+        name: 'button',
+        type: 'component',
+        cssVars: { card: { radius: '1rem' } },
+      }],
+    })
+
+    await expect(new Project(await createProjectDir()).addItem('button')).rejects.toThrow(
+      'Project config not found',
+    )
+  })
+})
+
+describe('addCssVariables', () => {
+  it('throws when the project config is missing', async () => {
+    await expect(
+      new Project(await createProjectDir()).addCssVariables({ card: { radius: '1rem' } }),
+    ).rejects.toThrow('Project config not found')
+  })
+
+  it('writes cssVars under unocss, keeping existing keys', async () => {
+    const root = await createProjectDir({
+      [PROJECT_CONFIG_FILENAME]: stringifyConfig({
+        unocss: { cssVars: { card: { radius: '1rem' } } },
+      }),
+    })
+
+    await new Project(root).addCssVariables({
+      card: { radius: '2rem', padding: '4px' },
+      other: { gap: '8px' },
+    })
+
+    const config = v.parse(
+      ProjectConfigSchema,
+      JSON.parse(await readFile(join(root, PROJECT_CONFIG_FILENAME), 'utf-8')),
+    )
+    expect(config.unocss?.cssVars).toEqual({
+      card: { radius: '1rem', padding: '4px' },
+      other: { gap: '8px' },
     })
   })
 })

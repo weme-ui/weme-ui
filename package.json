@@ -15,9 +15,7 @@
     "url": "https://github.com/weme-ui/weme-ui/issues"
   },
   "workspaces": [
-    "packages/*",
-    "registry/*",
-    "templates/*"
+    "packages/*"
   ],
   "catalogs": {
     "build": {
@@ -28,7 +26,6 @@
       "@commitlint/config-conventional": "^21.0.2",
       "@types/bun": "^1.4.2",
       "@unocss/eslint-plugin": "^66.10.5",
-      "bumpp": "^12.3.0",
       "eslint-plugin-format": "^2.0.1",
       "eslint": "^10.4.1",
       "lint-staged": "^17.0.7",

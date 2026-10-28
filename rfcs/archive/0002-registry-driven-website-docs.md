@@ -1,8 +1,10 @@
 # RFC 0002：Registry 驱动的 Astro 文档站
 
-- **状态**：草案
+- **状态**：已归档（仅备忘，不再更新）
 - **相关目录**：`packages/website`、`registry`、`docs`
 - **相关 schema**：`registry.schema.json`
+
+> **废止说明**：`packages/website` 不再承担组件库文档。组件 README、examples 与 catalog 留在 `registry/<library>/`，由 GitHub 与 CLI 消费。website 只做产品落地页，以及 `packages/<id>/docs` 的 package 文档（当前为 UnoCSS Preset）。项目级 `weme-ui-docs` skill 已删除。下文保留当时的设计记录，不再作为实现依据。
 
 ## 摘要
 
@@ -454,7 +456,7 @@ typecheck
 
 ## 参考
 
-- RFC：`rfcs/0001-cli-and-registry-discovery.md`
+- RFC：`0001-cli-and-registry-discovery.md`
 - Schema 源码：`packages/schema/src/registry/item.ts`
 - Schema 源码：`packages/schema/src/registry/schema.ts`
 - Website 目标目录：`packages/website`

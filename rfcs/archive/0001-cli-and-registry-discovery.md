@@ -1,6 +1,6 @@
 # RFC 0001：CLI 命令面与 Registry 发现
 
-- **状态**：草案
+- **状态**：已归档（仅备忘，不再更新）
 - **相关 schema**：`manifest.schema.json`、`registry.schema.json`、`config.schema.json`、`lockfile.schema.json`
 
 ## 摘要

@@ -1,6 +1,6 @@
 # RFC 0003：将 tw-animate-css 整理为 UnoCSS rules
 
-- **状态**：草案
+- **状态**：已归档（仅备忘，不再更新）
 - **相关目录**：`packages/unocss-preset`
 - **参考实现**：[`tw-animate-css`](https://github.com/Wombosvideo/tw-animate-css)、[`unocss-preset-animations`](https://github.com/unpreset/unocss-preset-animations)
 

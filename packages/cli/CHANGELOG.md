@@ -1,5 +1,11 @@
 # @weme-ui/weme-ui
 
+## 0.2.1
+
+### Patch Changes
+
+- 发布到 npm 时把 `workspace:*` 依赖解析成真实版本，修复安装失败。
+
 ## 0.2.0
 
 ### Minor Changes

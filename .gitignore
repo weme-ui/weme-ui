@@ -27,3 +27,6 @@ dist
 
 # Weme
 .weme
+
+# Slim registry checkout (https://github.com/weme-ui/slim). Not part of this repo.
+/registry/

@@ -63,6 +63,7 @@ const cssProps = [
 
   // enhances
   'stroke',
+  'stroke-dashoffset',
   'filter',
   'backdrop-filter',
   'fill',

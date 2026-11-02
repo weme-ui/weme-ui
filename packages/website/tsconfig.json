@@ -1,9 +1,6 @@
 {
   "extends": "astro/tsconfigs/strict",
   "compilerOptions": {
-    "paths": {
-      "@registry/*": ["../../registry/*"]
-    },
     "strictNullChecks": true,
     "verbatimModuleSyntax": true
   },

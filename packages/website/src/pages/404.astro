@@ -1,0 +1,13 @@
+---
+import LandingLayout from '../layouts/LandingLayout.astro'
+import { withBase } from '../lib/base'
+
+const home = withBase('/')
+---
+
+<LandingLayout title="页面不在 — Weme UI" description="页面不在。">
+  <main class="missing">
+    <h1>页面不在</h1>
+    <a href={home}>回首页</a>
+  </main>
+</LandingLayout>

@@ -1,0 +1,136 @@
+<!DOCTYPE html><html lang="zh-CN" class="dark"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Getting started — Weme UI</title><meta name="description" content="Getting started"><link rel="icon" type="image/svg+xml" href="/weme-ui/weme.svg"><script>document.documentElement.classList.add('js')</script><link rel="stylesheet" href="/weme-ui/_astro/LandingLayout.DekFqyQq.css"></head><body><header class="site-nav"><a class="brand" href="/weme-ui/">WEME<span class="dot">.</span></a><nav class="nav-links" aria-label="页面"><a href="https://github.com/weme-ui/weme-ui" target="_blank" rel="noreferrer">GitHub</a><a href="https://weme-ui.github.io/slim" target="_blank" rel="noreferrer">slim</a><a href="/weme-ui/docs/unocss-preset/" aria-current="page">Preset</a></nav></header><div class="docs-shell"><nav class="docs-nav" aria-label="Preset 文档"><div class="docs-group"><p>开始</p><ul><li><a href="/weme-ui/docs/unocss-preset/" aria-current="page">Getting started</a></li></ul></div><div class="docs-group"><p>Theme</p><ul><li><a href="/weme-ui/docs/unocss-preset/theme/">Overview</a></li><li><a href="/weme-ui/docs/unocss-preset/theme/color/">Color</a></li><li><a href="/weme-ui/docs/unocss-preset/theme/palette/">Palette</a></li><li><a href="/weme-ui/docs/unocss-preset/theme/dark-mode/">Dark mode</a></li><li><a href="/weme-ui/docs/unocss-preset/theme/tokens/">Tokens</a></li><li><a href="/weme-ui/docs/unocss-preset/theme/typography/">Typography</a></li><li><a href="/weme-ui/docs/unocss-preset/theme/spacing/">Spacing</a></li><li><a href="/weme-ui/docs/unocss-preset/theme/radius/">Radius</a></li><li><a href="/weme-ui/docs/unocss-preset/theme/shadows/">Shadows</a></li></ul></div><div class="docs-group"><p>Utilities</p><ul><li><a href="/weme-ui/docs/unocss-preset/utilities/rules/">Rules</a></li><li><a href="/weme-ui/docs/unocss-preset/utilities/animate/">Animation</a></li><li><a href="/weme-ui/docs/unocss-preset/utilities/variants/">Variants</a></li></ul></div></nav><article class="prose"><h1 id="getting-started">Getting started</h1>
+<p>安装 <code>@weme-ui/unocss-preset</code>（<code>presetWemeUI</code>），几分钟内接入颜色刻度、语义 Tokens、Theme 变量、工具类 Rules 与 Variants。</p>
+<h2 id="installation">Installation</h2>
+<h3 id="1-配置-unocss">1. 配置 UnoCSS</h3>
+<pre class="astro-code vitesse-black" style="background-color:#000;color:#dbd7cacc; overflow-x: auto;" tabindex="0" data-language="ts"><code><span class="line"><span style="color:#4D9375">import</span><span style="color:#444444"> {</span><span style="color:#BD976A"> presetWemeUI</span><span style="color:#444444"> }</span><span style="color:#4D9375"> from</span><span style="color:#C98A7D77"> '</span><span style="color:#C98A7D">@weme-ui/unocss-preset</span><span style="color:#C98A7D77">'</span></span>
+<span class="line"><span style="color:#4D9375">import</span><span style="color:#444444"> {</span><span style="color:#BD976A"> defineConfig</span><span style="color:#444444"> }</span><span style="color:#4D9375"> from</span><span style="color:#C98A7D77"> '</span><span style="color:#C98A7D">unocss</span><span style="color:#C98A7D77">'</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#4D9375">export</span><span style="color:#4D9375"> default</span><span style="color:#80A665"> defineConfig</span><span style="color:#444444">({</span></span>
+<span class="line"><span style="color:#B8A965">  presets</span><span style="color:#444444">: [</span></span>
+<span class="line"><span style="color:#80A665">    presetWemeUI</span><span style="color:#444444">({</span></span>
+<span class="line"><span style="color:#758575DD">      // dark: 'class' | 'media' | { light: '.light', dark: '.dark' }</span></span>
+<span class="line"><span style="color:#758575DD">      // variablePrefix: 'un-'</span></span>
+<span class="line"><span style="color:#758575DD">      // themes: [{ name: 'default', colors: { accent: 'blue' }, tokens: {...}, cssVars: {...} }]</span></span>
+<span class="line"><span style="color:#758575DD">      // cssVars: { card: { bg: 'neutral.2', padding: '1rem' } }</span></span>
+<span class="line"><span style="color:#758575DD">      // colors: { accent: { brand: '#3366ff' } }</span></span>
+<span class="line"><span style="color:#444444">    }),</span></span>
+<span class="line"><span style="color:#444444">  ],</span></span>
+<span class="line"><span style="color:#444444">})</span></span></code></pre>
+<h3 id="2-在页面上挂载主题">2. 在页面上挂载主题</h3>
+<pre class="astro-code vitesse-black" style="background-color:#000;color:#dbd7cacc; overflow-x: auto;" tabindex="0" data-language="html"><code><span class="line"><span style="color:#444444">&lt;</span><span style="color:#4D9375">div</span></span>
+<span class="line"><span style="color:#BD976A">  data-theme</span><span style="color:#444444">=</span><span style="color:#C98A7D77">"</span><span style="color:#C98A7D">default</span><span style="color:#C98A7D77">"</span></span>
+<span class="line"><span style="color:#BD976A">  data-scaling</span><span style="color:#444444">=</span><span style="color:#C98A7D77">"</span><span style="color:#C98A7D">100%</span><span style="color:#C98A7D77">"</span></span>
+<span class="line"><span style="color:#BD976A">  data-radius</span><span style="color:#444444">=</span><span style="color:#C98A7D77">"</span><span style="color:#C98A7D">md</span><span style="color:#C98A7D77">"</span></span>
+<span class="line"><span style="color:#BD976A">  class</span><span style="color:#444444">=</span><span style="color:#C98A7D77">"</span><span style="color:#C98A7D">bg-background-base text-foreground-base p-4 rounded-md</span><span style="color:#C98A7D77">"</span></span>
+<span class="line"><span style="color:#444444">&gt;</span></span>
+<span class="line"><span style="color:#444444">  &lt;</span><span style="color:#4D9375">button</span><span style="color:#BD976A"> class</span><span style="color:#444444">=</span><span style="color:#C98A7D77">"</span><span style="color:#C98A7D">bg-accent text-white hover:bg-accent-10</span><span style="color:#C98A7D77">"</span><span style="color:#444444">&gt;</span><span style="color:#DBD7CACC">Accent</span><span style="color:#444444">&lt;/</span><span style="color:#4D9375">button</span><span style="color:#444444">&gt;</span></span>
+<span class="line"><span style="color:#444444">&lt;/</span><span style="color:#4D9375">div</span><span style="color:#444444">&gt;</span></span></code></pre>
+<h2 id="customizing-your-theme">Customizing your theme</h2>
+<p>配置通过 <code>presetWemeUI(options)</code> 管理与应用。</p>
+<h3 id="配置项摘要">配置项摘要</h3>
+<table>
+<thead>
+<tr>
+<th>选项</th>
+<th>默认</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>dark</code></td>
+<td><code>'class'</code></td>
+<td>暗色模式：<code>class</code> / <code>media</code> / 自定义选择器</td>
+</tr>
+<tr>
+<td><code>variablePrefix</code></td>
+<td><code>'un-'</code></td>
+<td>内部 CSS 变量前缀</td>
+</tr>
+<tr>
+<td><code>prefix</code></td>
+<td><code>undefined</code></td>
+<td>工具类前缀</td>
+</tr>
+<tr>
+<td><code>arbitraryVariants</code></td>
+<td><code>true</code></td>
+<td>任意变体 extractor</td>
+</tr>
+<tr>
+<td><code>important</code></td>
+<td><code>false</code></td>
+<td>全局 <code>!important</code> 或作用域选择器</td>
+</tr>
+<tr>
+<td><code>preflights.reset</code></td>
+<td><code>true</code></td>
+<td>Tailwind 风格 reset + Weme 扩展</td>
+</tr>
+<tr>
+<td><code>preflights.theme</code></td>
+<td><code>'on-demand'</code></td>
+<td>Theme CSS 变量生成策略</td>
+</tr>
+<tr>
+<td><code>preflights.property</code></td>
+<td>启用</td>
+<td><code>@property</code> preflight</td>
+</tr>
+<tr>
+<td><code>colors</code></td>
+<td><code>{}</code></td>
+<td>额外 accent / neutral 单色</td>
+</tr>
+<tr>
+<td><code>themes</code></td>
+<td><code>[]</code></td>
+<td>空则注入默认 <code>default</code> 主题</td>
+</tr>
+<tr>
+<td><code>cssVars</code></td>
+<td><code>{}</code></td>
+<td>全局自定义 CSS 变量</td>
+</tr>
+</tbody>
+</table>
+<h3 id="layer-顺序">Layer 顺序</h3>
+<table>
+<thead>
+<tr>
+<th>Layer</th>
+<th>优先级</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>properties</code></td>
+<td>-200</td>
+<td><code>@property</code> 声明</td>
+</tr>
+<tr>
+<td><code>theme</code></td>
+<td>-150</td>
+<td>颜色 / Theme / Tokens / CssVars</td>
+</tr>
+<tr>
+<td><code>base</code></td>
+<td>-100</td>
+<td>CSS Reset</td>
+</tr>
+</tbody>
+</table>
+<h2 id="take-it-further">Take it further</h2>
+<p>继续了解主题与工具类能力：</p>
+<ul>
+<li><a href="/weme-ui/docs/unocss-preset/theme/">Theme overview</a> — Theme 解剖结构、Preflight 与断点等主题值</li>
+<li><a href="/weme-ui/docs/unocss-preset/theme/color/">Color</a> — 色板、刻度、亮暗色与 P3、工具类颜色解析</li>
+<li><a href="/weme-ui/docs/unocss-preset/theme/palette/">Palette</a> — 色卡预览（Radix + 额外 accent / neutral）</li>
+<li><a href="/weme-ui/docs/unocss-preset/theme/dark-mode/">Dark mode</a> — class / media 切换、色板覆盖、Variants、推荐实践</li>
+<li><a href="/weme-ui/docs/unocss-preset/theme/tokens/">Tokens</a> — 颜色别名、语义 Tokens、自定义 CssVars、模糊匹配</li>
+<li><a href="/weme-ui/docs/unocss-preset/utilities/rules/">Rules</a> — 全部工具类规则速查</li>
+<li><a href="/weme-ui/docs/unocss-preset/utilities/animate/">Animation</a> — 完整 keyframe 与组合 Enter / Exit</li>
+<li><a href="/weme-ui/docs/unocss-preset/utilities/variants/">Variants</a> — 断点、暗色、伪类、ARIA、容器查询等变体</li>
+</ul>
+</article></div><footer class="site-foot"><span>早期开发，请勿用于生产</span><span>MIT · 2026</span></footer><script type="module">function e(){document.querySelectorAll(`[data-copy-command]`).forEach(e=>{e.addEventListener(`click`,async()=>{let t=e.dataset.copyCommand;if(!t)return;let n=e.dataset.labelIdle||`复制`,r=e.dataset.labelDone||`已复制`;try{await navigator.clipboard.writeText(t),e.textContent=r,window.setTimeout(()=>{e.textContent=n},1600)}catch{e.textContent=`复制失败`,window.setTimeout(()=>{e.textContent=n},1600)}})})}e();</script></body></html>

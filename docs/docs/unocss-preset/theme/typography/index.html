@@ -1,0 +1,138 @@
+<!DOCTYPE html><html lang="zh-CN" class="dark"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Typography — Weme UI</title><meta name="description" content="Typography"><link rel="icon" type="image/svg+xml" href="/weme-ui/weme.svg"><script>document.documentElement.classList.add('js')</script><link rel="stylesheet" href="/weme-ui/_astro/LandingLayout.DekFqyQq.css"></head><body><header class="site-nav"><a class="brand" href="/weme-ui/">WEME<span class="dot">.</span></a><nav class="nav-links" aria-label="页面"><a href="https://github.com/weme-ui/weme-ui" target="_blank" rel="noreferrer">GitHub</a><a href="https://weme-ui.github.io/slim" target="_blank" rel="noreferrer">slim</a><a href="/weme-ui/docs/unocss-preset/" aria-current="page">Preset</a></nav></header><div class="docs-shell"><nav class="docs-nav" aria-label="Preset 文档"><div class="docs-group"><p>开始</p><ul><li><a href="/weme-ui/docs/unocss-preset/">Getting started</a></li></ul></div><div class="docs-group"><p>Theme</p><ul><li><a href="/weme-ui/docs/unocss-preset/theme/">Overview</a></li><li><a href="/weme-ui/docs/unocss-preset/theme/color/">Color</a></li><li><a href="/weme-ui/docs/unocss-preset/theme/palette/">Palette</a></li><li><a href="/weme-ui/docs/unocss-preset/theme/dark-mode/">Dark mode</a></li><li><a href="/weme-ui/docs/unocss-preset/theme/tokens/">Tokens</a></li><li><a href="/weme-ui/docs/unocss-preset/theme/typography/" aria-current="page">Typography</a></li><li><a href="/weme-ui/docs/unocss-preset/theme/spacing/">Spacing</a></li><li><a href="/weme-ui/docs/unocss-preset/theme/radius/">Radius</a></li><li><a href="/weme-ui/docs/unocss-preset/theme/shadows/">Shadows</a></li></ul></div><div class="docs-group"><p>Utilities</p><ul><li><a href="/weme-ui/docs/unocss-preset/utilities/rules/">Rules</a></li><li><a href="/weme-ui/docs/unocss-preset/utilities/animate/">Animation</a></li><li><a href="/weme-ui/docs/unocss-preset/utilities/variants/">Variants</a></li></ul></div></nav><article class="prose"><h1 id="typography">Typography</h1>
+<p>字族、字重、字号与字距等排版令牌。</p>
+<h2 id="font-family">Font family</h2>
+<p>默认使用系统字体栈，便于移植与可读性。</p>
+<table>
+<thead>
+<tr>
+<th>键</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>sans</code></td>
+<td>系统 UI 无衬线栈</td>
+</tr>
+<tr>
+<td><code>serif</code></td>
+<td>Times 系</td>
+</tr>
+<tr>
+<td><code>mono</code></td>
+<td>Menlo / Consolas 等宽栈</td>
+</tr>
+</tbody>
+</table>
+<pre class="astro-code vitesse-black" style="background-color:#000;color:#dbd7cacc; overflow-x: auto;" tabindex="0" data-language="html"><code><span class="line"><span style="color:#444444">&lt;</span><span style="color:#4D9375">p</span><span style="color:#BD976A"> class</span><span style="color:#444444">=</span><span style="color:#C98A7D77">"</span><span style="color:#C98A7D">font-sans</span><span style="color:#C98A7D77">"</span><span style="color:#444444">&gt;</span><span style="color:#DBD7CACC">...</span><span style="color:#444444">&lt;/</span><span style="color:#4D9375">p</span><span style="color:#444444">&gt;</span></span>
+<span class="line"><span style="color:#444444">&lt;</span><span style="color:#4D9375">code</span><span style="color:#BD976A"> class</span><span style="color:#444444">=</span><span style="color:#C98A7D77">"</span><span style="color:#C98A7D">font-mono</span><span style="color:#C98A7D77">"</span><span style="color:#444444">&gt;</span><span style="color:#DBD7CACC">...</span><span style="color:#444444">&lt;/</span><span style="color:#4D9375">code</span><span style="color:#444444">&gt;</span></span></code></pre>
+<h2 id="font-weight">Font weight</h2>
+<table>
+<thead>
+<tr>
+<th>键</th>
+<th>值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>light</code></td>
+<td>300</td>
+</tr>
+<tr>
+<td><code>regular</code></td>
+<td>400</td>
+</tr>
+<tr>
+<td><code>medium</code></td>
+<td>500</td>
+</tr>
+<tr>
+<td><code>semibold</code></td>
+<td>600</td>
+</tr>
+<tr>
+<td><code>bold</code></td>
+<td>700</td>
+</tr>
+</tbody>
+</table>
+<pre class="astro-code vitesse-black" style="background-color:#000;color:#dbd7cacc; overflow-x: auto;" tabindex="0" data-language="html"><code><span class="line"><span style="color:#444444">&lt;</span><span style="color:#4D9375">span</span><span style="color:#BD976A"> class</span><span style="color:#444444">=</span><span style="color:#C98A7D77">"</span><span style="color:#C98A7D">fw-medium font-bold</span><span style="color:#C98A7D77">"</span><span style="color:#444444">&gt;</span><span style="color:#DBD7CACC">...</span><span style="color:#444444">&lt;/</span><span style="color:#4D9375">span</span><span style="color:#444444">&gt;</span></span></code></pre>
+<h2 id="type-scale">Type scale</h2>
+<p><strong>text：</strong></p>
+<table>
+<thead>
+<tr>
+<th>键</th>
+<th>fontSize</th>
+<th>lineHeight</th>
+<th>letterSpacing</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>xs</code></td>
+<td><code>0.75rem</code></td>
+<td><code>1rem</code></td>
+<td><code>0.0025em</code></td>
+</tr>
+<tr>
+<td><code>sm</code></td>
+<td><code>0.875rem</code></td>
+<td><code>1.25rem</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>base</code></td>
+<td><code>1rem</code></td>
+<td><code>1.5rem</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>lg</code></td>
+<td><code>1.125rem</code></td>
+<td><code>1.625rem</code></td>
+<td><code>-0.0025em</code></td>
+</tr>
+<tr>
+<td><code>xl</code></td>
+<td><code>1.25rem</code></td>
+<td><code>1.75rem</code></td>
+<td><code>-0.005em</code></td>
+</tr>
+<tr>
+<td><code>2xl</code></td>
+<td><code>1.5rem</code></td>
+<td><code>1.875rem</code></td>
+<td><code>-0.00625em</code></td>
+</tr>
+<tr>
+<td><code>3xl</code></td>
+<td><code>1.75rem</code></td>
+<td><code>2.25rem</code></td>
+<td><code>-0.0075em</code></td>
+</tr>
+<tr>
+<td><code>4xl</code></td>
+<td><code>2.1875rem</code></td>
+<td><code>2.5rem</code></td>
+<td><code>-0.01em</code></td>
+</tr>
+<tr>
+<td><code>5xl</code></td>
+<td><code>3.75rem</code></td>
+<td><code>1</code></td>
+<td><code>-0.025em</code></td>
+</tr>
+</tbody>
+</table>
+<pre class="astro-code vitesse-black" style="background-color:#000;color:#dbd7cacc; overflow-x: auto;" tabindex="0" data-language="html"><code><span class="line"><span style="color:#444444">&lt;</span><span style="color:#4D9375">p</span><span style="color:#BD976A"> class</span><span style="color:#444444">=</span><span style="color:#C98A7D77">"</span><span style="color:#C98A7D">text-sm</span><span style="color:#C98A7D77">"</span><span style="color:#444444">&gt;</span><span style="color:#DBD7CACC">...</span><span style="color:#444444">&lt;/</span><span style="color:#4D9375">p</span><span style="color:#444444">&gt;</span></span>
+<span class="line"><span style="color:#444444">&lt;</span><span style="color:#4D9375">h1</span><span style="color:#BD976A"> class</span><span style="color:#444444">=</span><span style="color:#C98A7D77">"</span><span style="color:#C98A7D">text-2xl</span><span style="color:#C98A7D77">"</span><span style="color:#444444">&gt;</span><span style="color:#DBD7CACC">...</span><span style="color:#444444">&lt;/</span><span style="color:#4D9375">h1</span><span style="color:#444444">&gt;</span></span></code></pre>
+<h2 id="leading--tracking">Leading / Tracking</h2>
+<p><strong>leading：</strong> <code>none</code> 1、<code>tight</code> 1.25、<code>snug</code> 1.375、<code>normal</code> 1.5、<code>relaxed</code> 1.625、<code>loose</code> 2</p>
+<p><strong>tracking：</strong> <code>tighter</code> -0.05em … <code>widest</code> 0.1em</p>
+<pre class="astro-code vitesse-black" style="background-color:#000;color:#dbd7cacc; overflow-x: auto;" tabindex="0" data-language="html"><code><span class="line"><span style="color:#444444">&lt;</span><span style="color:#4D9375">p</span><span style="color:#BD976A"> class</span><span style="color:#444444">=</span><span style="color:#C98A7D77">"</span><span style="color:#C98A7D">leading-tight tracking-wide</span><span style="color:#C98A7D77">"</span><span style="color:#444444">&gt;</span><span style="color:#DBD7CACC">...</span><span style="color:#444444">&lt;/</span><span style="color:#4D9375">p</span><span style="color:#444444">&gt;</span></span></code></pre>
+<h2 id="text-stroke">Text stroke</h2>
+<p><strong>textStrokeWidth：</strong> <code>DEFAULT</code> 1.5rem、<code>none</code> 0、<code>sm</code> thin、<code>md</code> medium、<code>lg</code> thick</p>
+<pre class="astro-code vitesse-black" style="background-color:#000;color:#dbd7cacc; overflow-x: auto;" tabindex="0" data-language="html"><code><span class="line"><span style="color:#444444">&lt;</span><span style="color:#4D9375">span</span><span style="color:#BD976A"> class</span><span style="color:#444444">=</span><span style="color:#C98A7D77">"</span><span style="color:#C98A7D">text-stroke text-stroke-sm</span><span style="color:#C98A7D77">"</span><span style="color:#444444">&gt;</span><span style="color:#DBD7CACC">...</span><span style="color:#444444">&lt;/</span><span style="color:#4D9375">span</span><span style="color:#444444">&gt;</span></span></code></pre>
+</article></div><footer class="site-foot"><span>早期开发，请勿用于生产</span><span>MIT · 2026</span></footer><script type="module">function e(){document.querySelectorAll(`[data-copy-command]`).forEach(e=>{e.addEventListener(`click`,async()=>{let t=e.dataset.copyCommand;if(!t)return;let n=e.dataset.labelIdle||`复制`,r=e.dataset.labelDone||`已复制`;try{await navigator.clipboard.writeText(t),e.textContent=r,window.setTimeout(()=>{e.textContent=n},1600)}catch{e.textContent=`复制失败`,window.setTimeout(()=>{e.textContent=n},1600)}})})}e();</script></body></html>

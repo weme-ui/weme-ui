@@ -1,0 +1,392 @@
+<!DOCTYPE html><html lang="zh-CN" class="dark"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Animation — Weme UI</title><meta name="description" content="Animation"><link rel="icon" type="image/svg+xml" href="/weme-ui/weme.svg"><script>document.documentElement.classList.add('js')</script><link rel="stylesheet" href="/weme-ui/_astro/LandingLayout.DekFqyQq.css"></head><body><header class="site-nav"><a class="brand" href="/weme-ui/">WEME<span class="dot">.</span></a><nav class="nav-links" aria-label="页面"><a href="https://github.com/weme-ui/weme-ui" target="_blank" rel="noreferrer">GitHub</a><a href="https://weme-ui.github.io/slim" target="_blank" rel="noreferrer">slim</a><a href="/weme-ui/docs/unocss-preset/" aria-current="page">Preset</a></nav></header><div class="docs-shell"><nav class="docs-nav" aria-label="Preset 文档"><div class="docs-group"><p>开始</p><ul><li><a href="/weme-ui/docs/unocss-preset/">Getting started</a></li></ul></div><div class="docs-group"><p>Theme</p><ul><li><a href="/weme-ui/docs/unocss-preset/theme/">Overview</a></li><li><a href="/weme-ui/docs/unocss-preset/theme/color/">Color</a></li><li><a href="/weme-ui/docs/unocss-preset/theme/palette/">Palette</a></li><li><a href="/weme-ui/docs/unocss-preset/theme/dark-mode/">Dark mode</a></li><li><a href="/weme-ui/docs/unocss-preset/theme/tokens/">Tokens</a></li><li><a href="/weme-ui/docs/unocss-preset/theme/typography/">Typography</a></li><li><a href="/weme-ui/docs/unocss-preset/theme/spacing/">Spacing</a></li><li><a href="/weme-ui/docs/unocss-preset/theme/radius/">Radius</a></li><li><a href="/weme-ui/docs/unocss-preset/theme/shadows/">Shadows</a></li></ul></div><div class="docs-group"><p>Utilities</p><ul><li><a href="/weme-ui/docs/unocss-preset/utilities/rules/">Rules</a></li><li><a href="/weme-ui/docs/unocss-preset/utilities/animate/" aria-current="page">Animation</a></li><li><a href="/weme-ui/docs/unocss-preset/utilities/variants/">Variants</a></li></ul></div></nav><article class="prose"><h1 id="animation">Animation</h1>
+<p>Preset 同时提供两种动画写法，<strong>类名相近但职责不同</strong>，选错会「看起来像生效了其实只设了变量」或「播了整段固定动画」。</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>A. 完整 keyframe</th>
+<th>B. 组合 Enter / Exit</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>典型类名</td>
+<td><code>animate-fade-in</code>、<code>animate-spin</code>、<code>animate-bounce-in</code></td>
+<td><code>animate-in fade-in</code>、<code>animate-out slide-out-to-top</code></td>
+</tr>
+<tr>
+<td>一句话</td>
+<td><strong>一个</strong> <code>animate-{name}</code> = 播 theme 里那一整段 <code>@keyframes</code></td>
+<td><strong><code>animate-in</code>/<code>out</code> + 若干修饰符</strong>；修饰符只改 CSS 变量</td>
+</tr>
+<tr>
+<td>适合</td>
+<td>固定套路、Attention Seekers、一次性展示动画</td>
+<td>Dialog / Popper / 折叠面板进出场；要拼 fade+slide+zoom</td>
+</tr>
+<tr>
+<td>不适合</td>
+<td>需要临时改「从哪边滑、淡到多少」</td>
+<td>需要 Animate.css 那种多段复杂曲线（tada、hinge…）</td>
+</tr>
+<tr>
+<td>谁触发播放</td>
+<td><code>animate-{name}</code> 本身</td>
+<td><strong>必须有</strong> <code>animate-in</code> 或 <code>animate-out</code>；光写 <code>fade-in</code> <strong>不会</strong>动</td>
+</tr>
+<tr>
+<td>内部 keyframe</td>
+<td>与类名后缀同名（如 <code>fade-in</code>）</td>
+<td>固定为 <code>un-enter</code> / <code>un-exit</code>（不要手写 <code>animate-un-enter</code>）</td>
+</tr>
+<tr>
+<td>Theme 里存的是</td>
+<td>各具名 <code>@keyframes</code> 字符串</td>
+<td>仅 <code>un-enter</code> / <code>un-exit</code> 两段「读 CSS 变量」的 keyframe</td>
+</tr>
+</tbody>
+</table>
+<p><strong>易混类名（最常见踩坑）：</strong></p>
+<table>
+<thead>
+<tr>
+<th>你想要的</th>
+<th>正确写法</th>
+<th>错误 / 无效</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>播 theme 里完整淡入</td>
+<td><code>animate-fade-in</code></td>
+<td><code>fade-in</code>（只设变量，没有 base 就不动）</td>
+</tr>
+<tr>
+<td>组合淡入（可再叠 slide）</td>
+<td><code>animate-in fade-in</code></td>
+<td><code>animate-fade-in fade-in</code>（两套叠在一起，语义混乱）</td>
+</tr>
+<tr>
+<td>组合退出</td>
+<td><code>animate-out fade-out</code></td>
+<td><code>animate-fade-out</code>（那是完整 keyframe，不是 Exit 组合）</td>
+</tr>
+</tbody>
+</table>
+<p><strong>边界约定：</strong></p>
+<ol>
+<li><strong>同一元素、同一次进出场，只选一套模型</strong>，不要 <code>animate-fade-in</code> 再叠 <code>animate-in</code>。</li>
+<li><strong>无 <code>animate-</code> 前缀的</strong> <code>fade-in</code> / <code>zoom-in</code> / <code>spin-in</code> / <code>slide-in-from-*</code> <strong>只属于 B</strong>，给 A 用不上。</li>
+<li><strong>带 <code>animate-</code> 前缀且 name 是 theme keyframe</strong> 的属于 A（<code>animate-spin</code>、<code>animate-slide-in-up</code>…）。例外：<code>animate-in</code> / <code>animate-out</code> 是 B 的 Shortcut，不是 A。</li>
+<li><strong>参数类</strong> <code>animate-duration-*</code> / <code>animate-delay-*</code> / <code>animate-ease-*</code> <strong>两套都能用</strong>；B 还依赖它们双写到 <code>--un-animation-*</code>。Transition 的 <code>duration-*</code> <strong>不属于</strong>任一动画模型。</li>
+<li>Theme 里虽有名为 <code>fade-in</code>、<code>zoom-in</code> 的 keyframe，那是给 <strong><code>animate-fade-in</code> / <code>animate-zoom-in</code>（A）</strong> 用的；与工具类 <code>fade-in</code> / <code>zoom-in</code>（B 修饰符）<strong>同名不同物</strong>。</li>
+</ol>
+<hr>
+<h2 id="模型-a完整-keyframe--animations">模型 A：完整 keyframe — <code>animations</code></h2>
+<p>一个类名对应一整段 <code>@keyframes</code>（Animate.css 风格）。</p>
+<table>
+<thead>
+<tr>
+<th>示例</th>
+<th>CSS</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>animate-spin</code> <code>animate-pulse</code> <code>animate-fade-in</code></td>
+<td>animation + <code>@keyframes</code></td>
+</tr>
+<tr>
+<td><code>animate-none</code></td>
+<td><code>animation: none</code></td>
+</tr>
+<tr>
+<td><code>animate-duration-500</code></td>
+<td><code>animation-duration</code> + <code>--un-animation-duration</code></td>
+</tr>
+<tr>
+<td><code>animate-delay-200</code></td>
+<td><code>animation-delay</code> + <code>--un-animation-delay</code></td>
+</tr>
+<tr>
+<td><code>animate-ease-in</code></td>
+<td><code>animation-timing-function</code> + <code>--un-animation-ease</code></td>
+</tr>
+<tr>
+<td><code>animate-paused</code> <code>animate-running</code></td>
+<td><code>animation-play-state</code></td>
+</tr>
+<tr>
+<td><code>animate-count-infinite</code></td>
+<td><code>animation-iteration-count</code></td>
+</tr>
+<tr>
+<td><code>animate-direction-reverse</code></td>
+<td><code>animation-direction</code></td>
+</tr>
+<tr>
+<td><code>animate-fill-forwards</code></td>
+<td><code>animation-fill-mode</code></td>
+</tr>
+</tbody>
+</table>
+<p><code>animate-duration-*</code> / <code>animate-delay-*</code> / <code>animate-ease-*</code> 会<strong>双写</strong>到 <code>--un-animation-*</code>（模型 B 的 <code>animate-in</code> 也读这些变量）。</p>
+<h3 id="内置-keyframe-名称">内置 keyframe 名称</h3>
+<p>可用 <code>animate-{name}</code>，内置名称包括：</p>
+<p><code>pulse</code>、<code>bounce</code>、<code>spin</code>、<code>ping</code>、<code>bounce-alt</code>、<code>flash</code>、<code>pulse-alt</code>、<code>rubber-band</code>、<code>shake-x</code>、<code>shake-y</code>、<code>head-shake</code>、<code>swing</code>、<code>tada</code>、<code>wobble</code>、<code>jello</code>、<code>heart-beat</code>、<code>hinge</code>、<code>jack-in-the-box</code>、</p>
+<p><code>light-speed-in-left/right</code>、<code>light-speed-out-left/right</code>、</p>
+<p><code>flip</code>、<code>flip-in-x/y</code>、<code>flip-out-x/y</code>、</p>
+<p><code>rotate-in</code>、<code>rotate-in-down-left/right</code>、<code>rotate-in-up-left/right</code>、<code>rotate-out</code> 及对应 down/up 方向、</p>
+<p><code>roll-in/out</code>、</p>
+<p><code>zoom-in</code>、<code>zoom-in-down/left/right/up</code>、<code>zoom-out</code> 及对应方向、</p>
+<p><code>bounce-in</code>、<code>bounce-in-down/left/right/up</code>、<code>bounce-out</code> 及对应方向、</p>
+<p><code>slide-in-down/left/right/up</code>、<code>slide-out-down/left/right/up</code>、</p>
+<p><code>fade-in</code>、<code>fade-in-down/up/left/right</code>（含 <code>-big</code> 与对角）、<code>fade-out</code> 同系列、</p>
+<p><code>back-in-down/left/right/up</code>、<code>back-out-down/left/right/up</code></p>
+<p>完整 keyframes 字符串见 <code>src/theme/animation.ts</code>。</p>
+<hr>
+<h2 id="模型-b组合-enter--exit--animatemodifiers--animateinoutshortcuts">模型 B：组合 Enter / Exit — <code>animateModifiers</code> + <code>animateInOutShortcuts</code></h2>
+<p>可组合的进入 / 退出（<a href="https://github.com/Wombosvideo/tw-animate-css">tw-animate-css</a> 模型）。</p>
+<p>拼装顺序：</p>
+<ol>
+<li><code>animate-in</code> / <code>animate-out</code>（Shortcut，内部 keyframe：<code>un-enter</code> / <code>un-exit</code>）</li>
+<li><code>fade-*</code> / <code>zoom-*</code> / <code>spin-*</code> / <code>slide-*</code>（只写 CSS 变量）</li>
+<li>可选 <code>animate-duration-*</code> 等（不要用 transition 的 <code>duration-*</code>）</li>
+</ol>
+<h3 id="基础用法">基础用法</h3>
+<pre class="astro-code vitesse-black" style="background-color:#000;color:#dbd7cacc; overflow-x: auto;" tabindex="0" data-language="html"><code><span class="line"><span style="color:#758575DD">&lt;!-- 进入：淡入 + 缩放 + 从上方滑入，500ms --&gt;</span></span>
+<span class="line"><span style="color:#444444">&lt;</span><span style="color:#4D9375">div</span><span style="color:#BD976A"> class</span><span style="color:#444444">=</span><span style="color:#C98A7D77">"</span><span style="color:#C98A7D">animate-in fade-in zoom-in slide-in-from-top-8 animate-duration-500</span><span style="color:#C98A7D77">"</span><span style="color:#444444">&gt;</span><span style="color:#DBD7CACC">...</span><span style="color:#444444">&lt;/</span><span style="color:#4D9375">div</span><span style="color:#444444">&gt;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#758575DD">&lt;!-- 退出 --&gt;</span></span>
+<span class="line"><span style="color:#444444">&lt;</span><span style="color:#4D9375">div</span><span style="color:#BD976A"> class</span><span style="color:#444444">=</span><span style="color:#C98A7D77">"</span><span style="color:#C98A7D">animate-out fade-out slide-out-to-top-8 animate-duration-300</span><span style="color:#C98A7D77">"</span><span style="color:#444444">&gt;</span><span style="color:#DBD7CACC">...</span><span style="color:#444444">&lt;/</span><span style="color:#4D9375">div</span><span style="color:#444444">&gt;</span></span></code></pre>
+<p>配合 Variants（例如按 <code>data-state</code> 切换）：</p>
+<pre class="astro-code vitesse-black" style="background-color:#000;color:#dbd7cacc; overflow-x: auto;" tabindex="0" data-language="html"><code><span class="line"><span style="color:#444444">&lt;</span><span style="color:#4D9375">div</span></span>
+<span class="line"><span style="color:#BD976A">  class</span><span style="color:#444444">=</span><span style="color:#C98A7D77">"</span><span style="color:#C98A7D">data-[state=open]:animate-in data-[state=closed]:animate-out fade-in fade-out slide-in-from-top-2 slide-out-to-top-2 animate-duration-200</span><span style="color:#C98A7D77">"</span></span>
+<span class="line"><span style="color:#BD976A">  data-state</span><span style="color:#444444">=</span><span style="color:#C98A7D77">"</span><span style="color:#C98A7D">open</span><span style="color:#C98A7D77">"</span></span>
+<span class="line"><span style="color:#444444">&gt;</span></span>
+<span class="line"><span style="color:#DBD7CACC">  ...</span></span>
+<span class="line"><span style="color:#444444">&lt;/</span><span style="color:#4D9375">div</span><span style="color:#444444">&gt;</span></span></code></pre>
+<h3 id="baseanimate-in--animate-out">Base：<code>animate-in</code> / <code>animate-out</code></h3>
+<table>
+<thead>
+<tr>
+<th>Theme keyframe</th>
+<th>对外工具类</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>un-enter</code></td>
+<td><code>animate-in</code></td>
+<td>Shortcut：展开 <code>keyframes-un-enter</code>，设置 <code>animation-*</code>（读 <code>--un-animation-*</code>），并注册相关 <code>@property</code></td>
+</tr>
+<tr>
+<td><code>un-exit</code></td>
+<td><code>animate-out</code></td>
+<td>对称，使用 <code>un-exit</code></td>
+</tr>
+</tbody>
+</table>
+<p>默认时长 <code>150ms</code>、easing <code>ease</code>、delay <code>0s</code>、iteration <code>1</code>、direction <code>normal</code>、fill-mode <code>none</code>。<br>
+<strong>不会</strong>回退到 transition 用的 <code>--un-duration</code> / <code>--un-ease</code>。</p>
+<p>请用 <code>animate-in</code> / <code>animate-out</code>，不要手写 <code>animate-un-enter</code>（会走模型 A catch-all，缺少 B 的默认变量与 <code>@property</code>）。</p>
+<h3 id="修饰符">修饰符</h3>
+<p>修饰符本身<strong>不会</strong>播放动画；必须同时有 <code>animate-in</code> 或 <code>animate-out</code>。</p>
+<p><strong>Fade</strong></p>
+<table>
+<thead>
+<tr>
+<th>类名</th>
+<th>CSS 变量</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>fade-in</code></td>
+<td><code>--un-enter-opacity: 0%</code>（默认可视为从透明进入）</td>
+</tr>
+<tr>
+<td><code>fade-in-*</code></td>
+<td><code>--un-enter-opacity</code>（如 <code>fade-in-50</code> → <code>50%</code>；也支持 bracket / cssvar）</td>
+</tr>
+<tr>
+<td><code>fade-out</code> / <code>fade-out-*</code></td>
+<td><code>--un-exit-opacity</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Zoom</strong></p>
+<table>
+<thead>
+<tr>
+<th>类名</th>
+<th>CSS 变量</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>zoom-in</code></td>
+<td><code>--un-enter-scale: 0%</code></td>
+</tr>
+<tr>
+<td><code>zoom-in-*</code></td>
+<td><code>--un-enter-scale</code>（百分比 / fraction / bracket）</td>
+</tr>
+<tr>
+<td><code>zoom-out</code> / <code>zoom-out-*</code></td>
+<td><code>--un-exit-scale</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Spin</strong></p>
+<table>
+<thead>
+<tr>
+<th>类名</th>
+<th>CSS 变量</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>spin-in</code></td>
+<td><code>--un-enter-rotate: 30deg</code></td>
+</tr>
+<tr>
+<td><code>spin-in-*</code></td>
+<td><code>--un-enter-rotate</code>（如 <code>spin-in-90</code> → <code>90deg</code>）</td>
+</tr>
+<tr>
+<td><code>spin-out</code> / <code>spin-out-*</code></td>
+<td><code>--un-exit-rotate</code></td>
+</tr>
+</tbody>
+</table>
+<p>负角度用 bracket：<code>spin-in-[-30deg]</code>。不提供 <code>-spin-in-*</code> / <code>-zoom-in-*</code>。</p>
+<p><strong>Slide</strong>（仅 <code>top</code> / <code>bottom</code> / <code>left</code> / <code>right</code>，可写短名 <code>t</code> <code>b</code> <code>l</code> <code>r</code>）</p>
+<table>
+<thead>
+<tr>
+<th>类名</th>
+<th>CSS 变量</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>slide-in-from-top</code> / <code>bottom</code> / <code>left</code> / <code>right</code></td>
+<td><code>--un-enter-translate-*</code>（默认 <code>±100%</code>）</td>
+</tr>
+<tr>
+<td><code>slide-in-from-{dir}-*</code></td>
+<td>同上；数字走 spacing（如 <code>slide-in-from-top-8</code> → <code>calc(var(--spacing) * 8 * -1)</code>）</td>
+</tr>
+<tr>
+<td><code>slide-out-to-top</code> / <code>bottom</code> / <code>left</code> / <code>right</code></td>
+<td><code>--un-exit-translate-*</code></td>
+</tr>
+<tr>
+<td><code>slide-out-to-{dir}-*</code></td>
+<td>同上</td>
+</tr>
+</tbody>
+</table>
+<p><code>start</code> / <code>end</code>（RTL）与 <code>blur-in</code> / <code>blur-out</code> 尚未提供。</p>
+<h3 id="参数类与模型-a-共用">参数类（与模型 A 共用）</h3>
+<table>
+<thead>
+<tr>
+<th>类名</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>animate-duration-*</code></td>
+<td><code>animation-duration</code> + <code>--un-animation-duration</code></td>
+</tr>
+<tr>
+<td><code>animate-delay-*</code></td>
+<td><code>animation-delay</code> + <code>--un-animation-delay</code></td>
+</tr>
+<tr>
+<td><code>animate-ease-*</code></td>
+<td><code>animation-timing-function</code> + <code>--un-animation-ease</code></td>
+</tr>
+</tbody>
+</table>
+<p>普通 <code>duration-*</code> / <code>delay-*</code> / <code>ease-*</code> 只服务 transition，<strong>不会</strong>驱动 <code>animate-in</code>。</p>
+<h3 id="css-变量一览">CSS 变量一览</h3>
+<p><strong>变换（由修饰符写入，由 <code>un-enter</code> / <code>un-exit</code> 读取）：</strong></p>
+<table>
+<thead>
+<tr>
+<th>变量</th>
+<th>默认（<code>@property</code>）</th>
+<th>用途</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>--un-enter-opacity</code> / <code>--un-exit-opacity</code></td>
+<td><code>1</code></td>
+<td>透明度</td>
+</tr>
+<tr>
+<td><code>--un-enter-scale</code> / <code>--un-exit-scale</code></td>
+<td><code>1</code></td>
+<td>缩放</td>
+</tr>
+<tr>
+<td><code>--un-enter-rotate</code> / <code>--un-exit-rotate</code></td>
+<td><code>0</code></td>
+<td>旋转</td>
+</tr>
+<tr>
+<td><code>--un-enter-translate-x/y</code> / <code>--un-exit-translate-x/y</code></td>
+<td><code>0</code></td>
+<td>位移</td>
+</tr>
+<tr>
+<td><code>--un-enter-blur</code> / <code>--un-exit-blur</code></td>
+<td><code>0</code></td>
+<td>模糊（keyframe 已预留；<code>blur-in</code> 工具类 Phase 2）</td>
+</tr>
+</tbody>
+</table>
+<p><strong>动画参数（由 <code>animate-duration-*</code> 等双写，由 base shortcut 读取）：</strong></p>
+<table>
+<thead>
+<tr>
+<th>变量</th>
+<th>默认回退</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>--un-animation-duration</code></td>
+<td><code>150ms</code></td>
+</tr>
+<tr>
+<td><code>--un-animation-ease</code></td>
+<td><code>ease</code></td>
+</tr>
+<tr>
+<td><code>--un-animation-delay</code></td>
+<td><code>0s</code></td>
+</tr>
+<tr>
+<td><code>--un-animation-iteration-count</code></td>
+<td><code>1</code></td>
+</tr>
+<tr>
+<td><code>--un-animation-direction</code></td>
+<td><code>normal</code></td>
+</tr>
+<tr>
+<td><code>--un-animation-fill-mode</code></td>
+<td><code>none</code></td>
+</tr>
+</tbody>
+</table>
+<p>前缀随 <code>variablePrefix</code> / postprocess 替换（默认 <code>--un-</code>）。</p>
+</article></div><footer class="site-foot"><span>早期开发，请勿用于生产</span><span>MIT · 2026</span></footer><script type="module">function e(){document.querySelectorAll(`[data-copy-command]`).forEach(e=>{e.addEventListener(`click`,async()=>{let t=e.dataset.copyCommand;if(!t)return;let n=e.dataset.labelIdle||`复制`,r=e.dataset.labelDone||`已复制`;try{await navigator.clipboard.writeText(t),e.textContent=r,window.setTimeout(()=>{e.textContent=n},1600)}catch{e.textContent=`复制失败`,window.setTimeout(()=>{e.textContent=n},1600)}})})}e();</script></body></html>

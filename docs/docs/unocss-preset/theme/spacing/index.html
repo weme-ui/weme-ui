@@ -1,0 +1,96 @@
+<!DOCTYPE html><html lang="zh-CN" class="dark"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Spacing — Weme UI</title><meta name="description" content="Spacing"><link rel="icon" type="image/svg+xml" href="/weme-ui/weme.svg"><script>document.documentElement.classList.add('js')</script><link rel="stylesheet" href="/weme-ui/_astro/LandingLayout.DekFqyQq.css"></head><body><header class="site-nav"><a class="brand" href="/weme-ui/">WEME<span class="dot">.</span></a><nav class="nav-links" aria-label="页面"><a href="https://github.com/weme-ui/weme-ui" target="_blank" rel="noreferrer">GitHub</a><a href="https://weme-ui.github.io/slim" target="_blank" rel="noreferrer">slim</a><a href="/weme-ui/docs/unocss-preset/" aria-current="page">Preset</a></nav></header><div class="docs-shell"><nav class="docs-nav" aria-label="Preset 文档"><div class="docs-group"><p>开始</p><ul><li><a href="/weme-ui/docs/unocss-preset/">Getting started</a></li></ul></div><div class="docs-group"><p>Theme</p><ul><li><a href="/weme-ui/docs/unocss-preset/theme/">Overview</a></li><li><a href="/weme-ui/docs/unocss-preset/theme/color/">Color</a></li><li><a href="/weme-ui/docs/unocss-preset/theme/palette/">Palette</a></li><li><a href="/weme-ui/docs/unocss-preset/theme/dark-mode/">Dark mode</a></li><li><a href="/weme-ui/docs/unocss-preset/theme/tokens/">Tokens</a></li><li><a href="/weme-ui/docs/unocss-preset/theme/typography/">Typography</a></li><li><a href="/weme-ui/docs/unocss-preset/theme/spacing/" aria-current="page">Spacing</a></li><li><a href="/weme-ui/docs/unocss-preset/theme/radius/">Radius</a></li><li><a href="/weme-ui/docs/unocss-preset/theme/shadows/">Shadows</a></li></ul></div><div class="docs-group"><p>Utilities</p><ul><li><a href="/weme-ui/docs/unocss-preset/utilities/rules/">Rules</a></li><li><a href="/weme-ui/docs/unocss-preset/utilities/animate/">Animation</a></li><li><a href="/weme-ui/docs/unocss-preset/utilities/variants/">Variants</a></li></ul></div></nav><article class="prose"><h1 id="spacing">Spacing</h1>
+<p>间距刻度与缩放选项概览。</p>
+<h2 id="space-scale">Space scale</h2>
+<p>全部带 <code>var(--scaling)</code>，数字类间距 <code>p-4</code> 使用基线 <code>--spacing</code>：</p>
+<table>
+<thead>
+<tr>
+<th>键</th>
+<th>值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>DEFAULT</code> / <code>xs</code></td>
+<td><code>calc(0.25rem * var(--scaling))</code></td>
+</tr>
+<tr>
+<td><code>sm</code></td>
+<td><code>calc(0.5rem * var(--scaling))</code></td>
+</tr>
+<tr>
+<td><code>md</code></td>
+<td><code>calc(0.75rem * var(--scaling))</code></td>
+</tr>
+<tr>
+<td><code>lg</code></td>
+<td><code>calc(1rem * var(--scaling))</code></td>
+</tr>
+<tr>
+<td><code>xl</code></td>
+<td><code>calc(1.5rem * var(--scaling))</code></td>
+</tr>
+<tr>
+<td><code>2xl</code></td>
+<td><code>calc(2rem * var(--scaling))</code></td>
+</tr>
+<tr>
+<td><code>3xl</code></td>
+<td><code>calc(2.5rem * var(--scaling))</code></td>
+</tr>
+<tr>
+<td><code>4xl</code></td>
+<td><code>calc(3rem * var(--scaling))</code></td>
+</tr>
+<tr>
+<td><code>5xl</code></td>
+<td><code>calc(4rem * var(--scaling))</code></td>
+</tr>
+</tbody>
+</table>
+<pre class="astro-code vitesse-black" style="background-color:#000;color:#dbd7cacc; overflow-x: auto;" tabindex="0" data-language="html"><code><span class="line"><span style="color:#444444">&lt;</span><span style="color:#4D9375">div</span><span style="color:#BD976A"> class</span><span style="color:#444444">=</span><span style="color:#C98A7D77">"</span><span style="color:#C98A7D">p-4 m-md gap-sm</span><span style="color:#C98A7D77">"</span><span style="color:#444444">&gt;</span><span style="color:#DBD7CACC">...</span><span style="color:#444444">&lt;/</span><span style="color:#4D9375">div</span><span style="color:#444444">&gt;</span></span></code></pre>
+<pre class="astro-code vitesse-black" style="background-color:#000;color:#dbd7cacc; overflow-x: auto;" tabindex="0" data-language="text"><code><span class="line"><span>p-4  -&gt; padding: calc(var(--spacing) * 4)</span></span>
+<span class="line"><span>m-md -&gt; margin: calc(0.75rem * var(--scaling))</span></span></code></pre>
+<h3 id="space-scale-tokens">Space scale tokens</h3>
+<pre class="astro-code vitesse-black" style="background-color:#000;color:#dbd7cacc; overflow-x: auto;" tabindex="0" data-language="css"><code><span class="line"><span style="color:#444444">:</span><span style="color:#BD976A">root</span><span style="color:#444444">,</span></span>
+<span class="line"><span style="color:#444444">:</span><span style="color:#BD976A">host</span><span style="color:#444444"> {</span></span>
+<span class="line"><span style="color:#BD976A">  --spacing</span><span style="color:#444444">:</span><span style="color:#B8A965"> calc</span><span style="color:#444444">(</span><span style="color:#4C9A91">0.25</span><span style="color:#CB7676">rem</span><span style="color:#CB7676"> *</span><span style="color:#B8A965"> var</span><span style="color:#444444">(</span><span style="color:#BD976A">--scaling</span><span style="color:#444444">));</span></span>
+<span class="line"><span style="color:#444444">}</span></span></code></pre>
+<h2 id="scaling">Scaling</h2>
+<p>影响布局的值（间距、字号相关尺度等）会相对 <code>data-scaling</code> 统一缩放，便于整站调节 UI 密度。</p>
+<table>
+<thead>
+<tr>
+<th>属性</th>
+<th>值 → CSS 变量</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>[data-scaling='90%']</code></td>
+<td><code>--scaling: 0.9</code></td>
+</tr>
+<tr>
+<td><code>[data-scaling='95%']</code></td>
+<td><code>--scaling: 0.95</code></td>
+</tr>
+<tr>
+<td><code>[data-scaling='100%']</code></td>
+<td><code>--scaling: 1</code></td>
+</tr>
+<tr>
+<td><code>[data-scaling='105%']</code></td>
+<td><code>--scaling: 1.05</code></td>
+</tr>
+<tr>
+<td><code>[data-scaling='110%']</code></td>
+<td><code>--scaling: 1.1</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="scaling-factor">Scaling factor</h3>
+<p>缩放因子可通过 <code>--scaling</code> 访问；自定义样式中复用该变量即可与主题保持一致。</p>
+<pre class="astro-code vitesse-black" style="background-color:#000;color:#dbd7cacc; overflow-x: auto;" tabindex="0" data-language="css"><code><span class="line"><span style="color:#444444">.</span><span style="color:#BD976A">MyCustomComponent</span><span style="color:#444444"> {</span></span>
+<span class="line"><span style="color:#B8A965">  width</span><span style="color:#444444">:</span><span style="color:#B8A965"> calc</span><span style="color:#444444">(</span><span style="color:#4C9A91">200</span><span style="color:#CB7676">px</span><span style="color:#CB7676"> *</span><span style="color:#B8A965"> var</span><span style="color:#444444">(</span><span style="color:#BD976A">--scaling</span><span style="color:#444444">));</span></span>
+<span class="line"><span style="color:#444444">}</span></span></code></pre>
+</article></div><footer class="site-foot"><span>早期开发，请勿用于生产</span><span>MIT · 2026</span></footer><script type="module">function e(){document.querySelectorAll(`[data-copy-command]`).forEach(e=>{e.addEventListener(`click`,async()=>{let t=e.dataset.copyCommand;if(!t)return;let n=e.dataset.labelIdle||`复制`,r=e.dataset.labelDone||`已复制`;try{await navigator.clipboard.writeText(t),e.textContent=r,window.setTimeout(()=>{e.textContent=n},1600)}catch{e.textContent=`复制失败`,window.setTimeout(()=>{e.textContent=n},1600)}})})}e();</script></body></html>

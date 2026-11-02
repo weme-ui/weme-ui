@@ -1,0 +1,45 @@
+---
+import { getCollection, render } from 'astro:content'
+import LandingLayout from '../../../layouts/LandingLayout.astro'
+import { withBase } from '../../../lib/base'
+import { PRESET_DOCS_NAV, presetDocPath, titleForDoc } from '../../../lib/preset-docs'
+
+export async function getStaticPaths() {
+  const docs = await getCollection('presetDocs')
+  return docs.map(entry => ({
+    params: { slug: entry.id === 'index' ? undefined : entry.id },
+    props: { entry },
+  }))
+}
+
+const { entry } = Astro.props
+const { Content } = await render(entry)
+const title = titleForDoc(entry.id)
+---
+
+<LandingLayout title={`${title} — Weme UI`} description={title} section="preset">
+  <div class="docs-shell">
+    <nav class="docs-nav" aria-label="Preset 文档">
+      {PRESET_DOCS_NAV.map(group => (
+        <div class="docs-group">
+          <p>{group.label}</p>
+          <ul>
+            {group.items.map(item => (
+              <li>
+                <a
+                  href={withBase(presetDocPath(item.id))}
+                  aria-current={item.id === entry.id ? 'page' : undefined}
+                >
+                  {item.title}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </nav>
+    <article class="prose">
+      <Content />
+    </article>
+  </div>
+</LandingLayout>

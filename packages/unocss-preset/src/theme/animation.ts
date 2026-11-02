@@ -113,6 +113,9 @@ export const animation = {
     'back-out-down': '{0%{opacity:1;transform:scale(1)}80%{opacity:0.7;transform:translateY(0px) scale(0.7)}100%{opacity:0.7;transform:translateY(700px) scale(0.7)}}',
     'back-out-right': '{0%{opacity:1;transform:scale(1)}80%{opacity:0.7;transform:translateY(0px) scale(0.7)}100%{opacity:0.7;transform:translateX(2000px) scale(0.7)}}',
     'back-out-left': '{0%{opacity:1;transform:scale(1)}80%{opacity:0.7;transform:translateX(-2000px) scale(0.7)}100%{opacity:0.7;transform:translateY(-700px) scale(0.7)}}',
+
+    // custom animations
+    'carousel': '{0%,100%{width:50%}0%{transform:translateX(-100%)}100%{transform:translateX(200%)}}',
   },
 
   durations: {
@@ -124,6 +127,9 @@ export const animation = {
     'flip-out-x': '0.75s',
     'flip-out-y': '0.75s',
     'hinge': '2s',
+
+    // custom animations
+    'carousel': '2s',
   },
 
   timingFns: {
@@ -137,6 +143,9 @@ export const animation = {
     'light-speed-in-right': 'ease-out',
     'light-speed-out-left': 'ease-in',
     'light-speed-out-right': 'ease-in',
+
+    // custom animations
+    'carousel': 'linear',
   },
 
   properties: {
@@ -174,6 +183,9 @@ export const animation = {
     'pulse-alt': 'infinite',
     'bounce': 'infinite',
     'bounce-alt': 'infinite',
+
+    // custom animations
+    'carousel': 'infinite',
   },
 
   category: {

@@ -4,7 +4,7 @@
   "version": "0.0.0",
   "private": true,
   "packageManager": "bun@1.4.4",
-  "description": "Astro documentation website for Weme UI registries.",
+  "description": "Landing page, UnoCSS Preset docs, and JSON Schema host for Weme UI.",
   "author": "Allen Luo <luoyi@mouji.net>",
   "license": "MIT",
   "homepage": "https://mouji.net/weme-ui",
@@ -28,22 +28,13 @@
   },
   "dependencies": {
     "@astrojs/check": "^0.9.12",
-    "@astrojs/vue": "^7.1.2",
-    "@iconify-json/lucide": "^1.2.147",
-    "@iconify-json/ri": "catalog:utils",
-    "@iconify-json/simple-icons": "^1.2.101",
-    "@iconify/vue": "catalog:utils",
+    "@astrojs/markdown-satteri": "0.4.5",
     "@unocss/astro": "catalog:dev",
     "@weme-ui/unocss-preset": "workspace:*",
-    "astro": "^7.4.2",
-    "marked": "^18.1.2",
-    "shiki": "^4.5.0",
-    "unocss": "catalog:dev",
-    "vue": "catalog:dev",
-    "vue-router": "catalog:dev"
+    "astro": "^7.4.4",
+    "unocss": "catalog:dev"
   },
   "devDependencies": {
-    "@iconify/types": "^2.0.0",
     "@types/node": "catalog:dev",
     "typescript": "catalog:build"
   }

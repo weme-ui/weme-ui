@@ -1,5 +1,11 @@
 # @weme-ui/unocss-preset
 
+## 0.3.1
+
+### Patch Changes
+
+- [`a316e5b`](https://github.com/weme-ui/weme-ui/commit/a316e5b353ff2d8555b3694146f73e4bc55adabb) Thanks [@moujinet](https://github.com/moujinet)! - 自定义 CSS 变量遇到尺寸值时原样输出，不再包成颜色别名变量。
+
 ## 0.3.0
 
 ### Minor Changes

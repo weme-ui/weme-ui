@@ -138,6 +138,31 @@ describe('custom preflight', () => {
     expect(trackedTheme.has('colors:blue-9')).toBe(true)
   })
 
+  it('emits size cssVars as raw values', () => {
+    const options = resolveOptions({
+      cssVars: {
+        radius: '0.5rem',
+        offset: '-4px',
+        panel: '50%',
+        inset: 'calc(100% - 1rem)',
+        bracket: '[12px]',
+        leading: 'auto',
+      },
+    })
+
+    const css = customPreflight(options)?.getCSS(createPreflightContext())
+
+    expect(css).toContain('--radius: 0.5rem')
+    expect(css).toContain('--offset: -4px')
+    expect(css).toContain('--panel: 50%')
+    expect(css).toContain('--inset: calc(100% - 1rem)')
+    expect(css).toContain('--bracket: [12px]')
+    expect(css).toContain('--leading: auto')
+    expect(css).not.toContain('--radius: var(')
+    expect(css).not.toContain('--inset: var(')
+    expect(trackedTheme.has('colors:0-5rem')).toBe(false)
+  })
+
   it('emits theme-local cssVars with theme tokens', () => {
     const options = resolveOptions({
       themes: [{
@@ -155,6 +180,25 @@ describe('custom preflight', () => {
     expect(css).toContain(':where([data-theme=\'brand\'])')
     expect(css).toContain('--label: var(--accent-9)')
     expect(css).toContain('--foreground-base: var(--neutral-11)')
+  })
+
+  it('emits theme-local size cssVars as raw values', () => {
+    const options = resolveOptions({
+      themes: [{
+        name: 'brand',
+        colors: DEFAULT_COLOR_ALIASES,
+        tokens: DEFAULT_TOKENS,
+        cssVars: {
+          gap: 'min(1rem, 2vw)',
+        },
+      }],
+    })
+
+    const css = customPreflight(options)?.getCSS(createPreflightContext())
+
+    expect(css).toContain(':where([data-theme=\'brand\'])')
+    expect(css).toContain('--gap: min(1rem, 2vw)')
+    expect(css).not.toContain('--gap: var(')
   })
 
   it('keeps whitespace in development', () => {

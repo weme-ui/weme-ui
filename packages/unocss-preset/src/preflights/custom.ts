@@ -4,7 +4,7 @@ import type { Theme } from '../theme'
 import type { CustomTheme, CustomThemeColorAlias, ResolvedCustomThemeCSSVars } from '../tokens'
 import { resolveRadixColorScales } from '../colors'
 import { DEFAULT_NAME, generateColorAliasCssVar, isRawColor } from '../tokens'
-import { compressCSS, detectThemeValue, generateThemeVariable, parseColor, themeTracking, trackedColorAliases } from '../utils'
+import { compressCSS, detectThemeValue, generateThemeVariable, isSize, parseColor, themeTracking, trackedColorAliases } from '../utils'
 
 export function custom(options: ResolvedWemeUIOptions): Preflight<Theme> | undefined {
   if (options.themes.length === 0) {
@@ -82,7 +82,12 @@ function serializeCssVars(
       result.push(`--${key}: ${generateThemeVariable('colors', keys)};`)
     }
     else {
-      result.push(`--${key}: ${generateColorAliasCssVar(value)};`)
+      if (isSize(value)) {
+        result.push(`--${key}: ${value};`)
+      }
+      else {
+        result.push(`--${key}: ${generateColorAliasCssVar(value)};`)
+      }
     }
   })
 

@@ -1,5 +1,11 @@
 # @weme-ui/unocss-preset
 
+## 0.3.2
+
+### Patch Changes
+
+- [`3c83500`](https://github.com/weme-ui/weme-ui/commit/3c83500f06723b464c6afac2f9c0ea4baa46abd0) Thanks [@moujinet](https://github.com/moujinet)! - 用 oxfmt / oxlint 统一源码格式，不改变运行时行为。
+
 ## 0.3.1
 
 ### Patch Changes

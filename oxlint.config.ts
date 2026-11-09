@@ -34,6 +34,8 @@ export default defineConfig({
     'node_modules',
     'templates',
     'docs',
+    // 独立 Vite playground，tsconfig 含 vueCompilerOptions，Linux 上的类型检查会报一条空诊断。
+    'packages/unocss-preset/playground',
     '*.tsbuildinfo',
     'bun.lock',
   ],

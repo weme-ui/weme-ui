@@ -27,5 +27,14 @@ export default defineConfig({
     'unicorn/consistent-function-scoping': 'off',
   },
   plugins: ['eslint', 'oxc', 'vue', 'unicorn', 'typescript'],
-  ignorePatterns: ['.weme', '.cursor', 'dist', 'node_modules', '*.tsbuildinfo', 'bun.lock'],
+  ignorePatterns: [
+    '.weme',
+    '.cursor',
+    'dist',
+    'node_modules',
+    'templates',
+    'docs',
+    '*.tsbuildinfo',
+    'bun.lock',
+  ],
 })

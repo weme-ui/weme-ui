@@ -1,0 +1,73 @@
+import { describe, expect, it } from 'vitest'
+import {
+  ACCENT_COLOR_NAMES,
+  ADDITIONAL_ACCENT_COLORS,
+  ADDITIONAL_NEUTRAL_COLORS,
+  BACKGROUND_COLORS,
+  NEUTRAL_COLOR_NAMES,
+  RADIX_ACCENT_COLOR_NAMES,
+  RADIX_COLOR_NAMES,
+  RADIX_NEUTRAL_COLOR_NAMES,
+} from '../src/constants'
+
+describe('RADIX_NEUTRAL_COLOR_NAMES', () => {
+  it('lists the six radix neutral scales', () => {
+    expect(RADIX_NEUTRAL_COLOR_NAMES).toEqual(['gray', 'mauve', 'slate', 'sage', 'olive', 'sand'])
+  })
+})
+
+describe('RADIX_ACCENT_COLOR_NAMES', () => {
+  it('lists chromatic radix scales without neutrals', () => {
+    expect(RADIX_ACCENT_COLOR_NAMES).toContain('blue')
+    expect(RADIX_ACCENT_COLOR_NAMES).toContain('tomato')
+    expect(RADIX_ACCENT_COLOR_NAMES).toContain('sky')
+    expect(RADIX_ACCENT_COLOR_NAMES).not.toContain('gray')
+    expect(new Set(RADIX_ACCENT_COLOR_NAMES).size).toBe(RADIX_ACCENT_COLOR_NAMES.length)
+  })
+})
+
+describe('RADIX_COLOR_NAMES', () => {
+  it('starts with neutral names and then accent names', () => {
+    expect(RADIX_COLOR_NAMES).toEqual([...RADIX_NEUTRAL_COLOR_NAMES, ...RADIX_ACCENT_COLOR_NAMES])
+  })
+
+  it('has unique names', () => {
+    expect(new Set(RADIX_COLOR_NAMES).size).toBe(RADIX_COLOR_NAMES.length)
+  })
+})
+
+describe('additional colors', () => {
+  it('exposes accent and neutral extras', () => {
+    expect(ADDITIONAL_ACCENT_COLORS).toEqual({
+      clay: '#d97757',
+      moroccan: '#065aed',
+      puerto: '#3fc1aa',
+    })
+    expect(ADDITIONAL_NEUTRAL_COLORS).toEqual({
+      iron: '#53595d',
+      covert: '#13151a',
+    })
+  })
+})
+
+describe('BACKGROUND_COLORS', () => {
+  it('uses white for light and black for dark', () => {
+    expect(BACKGROUND_COLORS).toEqual({
+      light: '#fff',
+      dark: '#000',
+    })
+  })
+})
+
+describe('composed color name lists', () => {
+  it('merges radix names with additional accent and neutral keys', () => {
+    expect(ACCENT_COLOR_NAMES).toEqual([
+      ...RADIX_COLOR_NAMES,
+      ...Object.keys(ADDITIONAL_ACCENT_COLORS),
+    ])
+    expect(NEUTRAL_COLOR_NAMES).toEqual([
+      ...RADIX_NEUTRAL_COLOR_NAMES,
+      ...Object.keys(ADDITIONAL_NEUTRAL_COLORS),
+    ])
+  })
+})

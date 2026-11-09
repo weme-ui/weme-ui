@@ -1,0 +1,77 @@
+{
+  "name": "@weme-ui/colors",
+  "version": "0.0.0",
+  "description": "Radix Colors for Weme UI.",
+  "keywords": [
+    "colors",
+    "radix-colors",
+    "unocss",
+    "weme-ui"
+  ],
+  "homepage": "https://mouji.net/weme-ui",
+  "bugs": {
+    "url": "https://github.com/weme-ui/weme-ui/issues"
+  },
+  "license": "MIT",
+  "author": "Allen Luo <luoyi@mouji.net>",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/weme-ui/weme-ui.git",
+    "directory": "packages/colors"
+  },
+  "files": [
+    "!dist/**/*.map",
+    "CHANGELOG.md",
+    "dist/**/*"
+  ],
+  "type": "module",
+  "sideEffects": false,
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "typesVersions": {
+    "*": {
+      "*": [
+        "./dist/*",
+        "./dist/index.d.ts"
+      ]
+    }
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "default": "./dist/index.js"
+    }
+  },
+  "publishConfig": {
+    "access": "public",
+    "provenance": true
+  },
+  "scripts": {
+    "build": "NODE_ENV=deploy tsdown",
+    "dev": "NODE_ENV=development tsdown --watch",
+    "typecheck": "tsc --noEmit",
+    "test": "NODE_ENV=test vitest run",
+    "prepack": "bun ../../scripts/materialize-catalog.ts",
+    "export:colors": "bun run scripts/export-colors.ts"
+  },
+  "dependencies": {
+    "bezier-easing": "^3.2.0",
+    "colorjs.io": "^0.7.1"
+  },
+  "devDependencies": {
+    "@radix-ui/colors": "^3.0.0",
+    "@types/node": "^26.6.6",
+    "tsdown": "catalog:build",
+    "typescript": "catalog:build",
+    "vitest": "catalog:dev"
+  },
+  "peerDependencies": {
+    "@radix-ui/colors": "^3.0.0"
+  },
+  "engines": {
+    "node": ">=22.14.0"
+  },
+  "packageManager": "bun@1.4.4"
+}

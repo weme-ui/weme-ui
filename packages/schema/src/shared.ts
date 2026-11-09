@@ -29,14 +29,12 @@ export const TrimmedURLString = v.pipe(v.string(), v.url(), v.trim())
 export const CSSVariables = v.pipe(
   v.record(
     v.pipe(NonEmptyTrimmedString, v.toLowerCase()),
-    v.record(
-      v.pipe(NonEmptyTrimmedString, v.toLowerCase()),
-      NonEmptyTrimmedString,
-    ),
+    v.record(v.pipe(NonEmptyTrimmedString, v.toLowerCase()), NonEmptyTrimmedString),
   ),
   v.metadata({
     title: 'CSS 变量',
-    description: '嵌套的 CSS 自定义属性映射，结构为 theme-key → variable-name → value。取值会合并进 UnoCSS preset options。',
+    description:
+      '嵌套的 CSS 自定义属性映射，结构为 theme-key → variable-name → value。取值会合并进 UnoCSS preset options。',
     examples: [{ card: { 'bg-color': 'oklch(0.55 0.2 250)' } }],
   }),
 )

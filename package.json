@@ -1,36 +1,75 @@
 {
   "name": "weme-ui",
-  "type": "module",
   "version": "0.0.0",
   "private": true,
-  "packageManager": "bun@1.4.4",
-  "author": "Allen Luo <luoyi@mouji.net>",
-  "license": "MIT",
   "homepage": "https://github.com/weme-ui/weme-ui",
+  "bugs": {
+    "url": "https://github.com/weme-ui/weme-ui/issues"
+  },
+  "license": "MIT",
+  "author": "Allen Luo <luoyi@mouji.net>",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/weme-ui/weme-ui.git"
   },
-  "bugs": {
-    "url": "https://github.com/weme-ui/weme-ui/issues"
-  },
   "workspaces": [
     "packages/*"
   ],
+  "type": "module",
+  "scripts": {
+    "build": "turbo run build build:docs",
+    "dev": "turbo run dev --ui=tui",
+    "dev:preset": "turbo run dev --ui=tui --filter=@weme-ui/unocss-preset",
+    "dev:website": "turbo run dev --ui=tui --filter=@weme-ui/website",
+    "lint": "oxlint",
+    "lint:fix": "oxlint --fix",
+    "format": "oxfmt",
+    "typecheck": "turbo run typecheck",
+    "test": "turbo run test",
+    "changeset": "changeset",
+    "version-packages": "changeset version && bun install",
+    "release": "bun run --filter @weme-ui/schema --filter @weme-ui/unocss-preset --filter @weme-ui/weme-ui build && bun run --filter @weme-ui/schema build:output && changeset publish",
+    "prepare": "simple-git-hooks"
+  },
+  "devDependencies": {
+    "@changesets/changelog-github": "catalog:build",
+    "@changesets/cli": "catalog:build",
+    "@commitlint/cli": "catalog:build",
+    "@commitlint/config-conventional": "catalog:build",
+    "@types/bun": "catalog:build",
+    "lint-staged": "catalog:build",
+    "oxfmt": "catalog:build",
+    "oxlint": "catalog:build",
+    "simple-git-hooks": "catalog:build",
+    "tsdown": "catalog:build",
+    "tsrs": "catalog:build",
+    "turbo": "catalog:build"
+  },
+  "simple-git-hooks": {
+    "pre-commit": "bunx lint-staged",
+    "commit-msg": "bunx commitlint --edit ${1}"
+  },
+  "lint-staged": {
+    "*": "oxlint --fix"
+  },
+  "engines": {
+    "bun": ">=1.3.12",
+    "node": ">=22.23.4"
+  },
+  "packageManager": "bun@1.4.4",
   "catalogs": {
     "build": {
-      "@antfu/eslint-config": "^9.0.0",
       "@changesets/changelog-github": "^1.0.1",
       "@changesets/cli": "^3.0.3",
       "@commitlint/cli": "^21.0.2",
       "@commitlint/config-conventional": "^21.0.2",
       "@types/bun": "^1.4.2",
-      "@unocss/eslint-plugin": "^66.10.5",
-      "eslint-plugin-format": "^2.0.1",
-      "eslint": "^10.4.1",
       "lint-staged": "^17.0.7",
+      "oxfmt": "^0.77.0",
+      "oxlint": "^1.92.0",
       "simple-git-hooks": "^2.13.1",
       "tsdown": "^0.22.3",
+      "tsrs": "^0.23.0-ts7.1.0-beta",
       "turbo": "^2.11.7",
       "typescript": "6.0.3"
     },
@@ -73,45 +112,5 @@
       "type-fest": "^5.10.0",
       "valibot": "^1.5.0"
     }
-  },
-  "engines": {
-    "node": ">=22.23.4",
-    "bun": ">=1.3.12"
-  },
-  "scripts": {
-    "build": "turbo run build build:docs",
-    "dev": "turbo run dev --ui=tui",
-    "dev:preset": "turbo run dev --ui=tui --filter=@weme-ui/unocss-preset",
-    "dev:website": "turbo run dev --ui=tui --filter=@weme-ui/website",
-    "lint": "eslint .",
-    "lint:fix": "eslint . --fix",
-    "typecheck": "turbo run typecheck",
-    "test": "turbo run test",
-    "changeset": "changeset",
-    "version-packages": "changeset version && bun install",
-    "release": "bun run --filter @weme-ui/schema --filter @weme-ui/unocss-preset --filter @weme-ui/weme-ui build && bun run --filter @weme-ui/schema build:output && changeset publish",
-    "prepare": "simple-git-hooks"
-  },
-  "devDependencies": {
-    "@antfu/eslint-config": "catalog:build",
-    "@changesets/changelog-github": "catalog:build",
-    "@changesets/cli": "catalog:build",
-    "@commitlint/cli": "catalog:build",
-    "@commitlint/config-conventional": "catalog:build",
-    "@types/bun": "catalog:build",
-    "@unocss/eslint-plugin": "catalog:build",
-    "eslint": "catalog:build",
-    "eslint-plugin-format": "catalog:build",
-    "lint-staged": "catalog:build",
-    "simple-git-hooks": "catalog:build",
-    "tsdown": "catalog:build",
-    "turbo": "catalog:build"
-  },
-  "simple-git-hooks": {
-    "pre-commit": "bunx lint-staged",
-    "commit-msg": "bunx commitlint --edit ${1}"
-  },
-  "lint-staged": {
-    "*": "eslint --fix"
   }
 }

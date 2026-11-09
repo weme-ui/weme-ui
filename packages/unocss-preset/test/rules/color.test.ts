@@ -38,17 +38,19 @@ describe('bg color rules', () => {
   })
 
   it('prefers theme colors and tokens over overlapping css vars', () => {
-    const withOverlap = bgColors(resolveOptions({
-      cssVars: {
-        ...cssVars,
-        'blue-9': {
-          background: 'background.base',
+    const withOverlap = bgColors(
+      resolveOptions({
+        cssVars: {
+          ...cssVars,
+          'blue-9': {
+            background: 'background.base',
+          },
+          'foreground-base': {
+            background: 'background.muted',
+          },
         },
-        'foreground-base': {
-          background: 'background.muted',
-        },
-      },
-    }))
+      }),
+    )
 
     expectUtilities(withOverlap, {
       'bg-blue-9': { 'background-color': 'var(--blue-9)' },

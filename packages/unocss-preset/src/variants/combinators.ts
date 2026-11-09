@@ -7,8 +7,7 @@ function scopeMatcher(name: string, combinator: string): VariantObject<Theme> {
   return {
     name: `combinator:${name}`,
     match(matcher, ctx) {
-      if (!matcher.startsWith(name))
-        return
+      if (!matcher.startsWith(name)) return
 
       const separators = ctx.generator.config.separators
       let body = variantGetBracket(`${name}-`, matcher, separators)
@@ -19,17 +18,15 @@ function scopeMatcher(name: string, combinator: string): VariantObject<Theme> {
             break
           }
         }
-        if (!body)
-          return
+        if (!body) return
       }
 
       let bracketValue = h.bracket(body[0], ctx.theme) ?? ''
-      if (bracketValue === '')
-        bracketValue = '*'
+      if (bracketValue === '') bracketValue = '*'
 
       return {
         matcher: body[1],
-        selector: s => `${s}${combinator}${bracketValue}`,
+        selector: (s) => `${s}${combinator}${bracketValue}`,
       }
     },
     multiPass: true,
@@ -45,5 +42,5 @@ export const variantCombinators: Variant<Theme>[] = [
 ]
 
 export const variantSvgCombinators: Variant<Theme>[] = [
-  variantMatcher('svg', input => ({ selector: `${input.selector} svg` })),
+  variantMatcher('svg', (input) => ({ selector: `${input.selector} svg` })),
 ]

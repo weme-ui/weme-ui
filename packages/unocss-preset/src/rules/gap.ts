@@ -9,10 +9,10 @@ import { borderStyles } from './border'
 
 const directions: Record<string, string[]> = {
   '': [''],
-  'x': ['column-'],
-  'y': ['row-'],
-  'col': ['column-'],
-  'row': ['row-'],
+  x: ['column-'],
+  y: ['row-'],
+  col: ['column-'],
+  row: ['row-'],
 }
 const directionFormatter = (p: string, i: string) => `${i}${p}`
 export const gaps: Rule<Theme>[] = [
@@ -30,24 +30,38 @@ export const gaps: Rule<Theme>[] = [
 
 const ruleDirections: Record<string, string> = {
   '': '',
-  'x': 'row-',
-  'y': 'column-',
-  'col': 'column-',
-  'row': 'row-',
+  x: 'row-',
+  y: 'column-',
+  col: 'column-',
+  row: 'row-',
 }
 
 export const gapRules: Rule<Theme>[] = [
   [
     /^rule(?:-(x|y|col|row))?-(.+)$/,
     handlerRule,
-    { autocomplete: ['rule-$spacing', 'rule-<num>', 'rule-(x|y|col|row)-$spacing', 'rule-(x|y|col|row)-<num>'] },
+    {
+      autocomplete: [
+        'rule-$spacing',
+        'rule-<num>',
+        'rule-(x|y|col|row)-$spacing',
+        'rule-(x|y|col|row)-<num>',
+      ],
+    },
   ],
 
   // rule size
   [
     /^rule(?:-(x|y|col|row))?(-width)?-(.+)$/,
     handlerRuleSize,
-    { autocomplete: ['rule-$spacing', 'rule-<num>', 'rule-(x|y|col|row)-$spacing', 'rule-(x|y|col|row)-<num>'] },
+    {
+      autocomplete: [
+        'rule-$spacing',
+        'rule-<num>',
+        'rule-(x|y|col|row)-$spacing',
+        'rule-(x|y|col|row)-<num>',
+      ],
+    },
   ],
 
   // rule color
@@ -70,7 +84,12 @@ export const gapRules: Rule<Theme>[] = [
   [
     /^rule(?:-(x|y|col|row))?(?:-style)?-(.+)$/,
     handlerRuleStyle,
-    { autocomplete: [`rule-style-(${borderStyles.join('|')})`, `rule-(x|y|col|row)-style-(${borderStyles.join(' | ')})`] },
+    {
+      autocomplete: [
+        `rule-style-(${borderStyles.join('|')})`,
+        `rule-(x|y|col|row)-style-(${borderStyles.join(' | ')})`,
+      ],
+    },
   ],
 
   // rule break
@@ -79,7 +98,12 @@ export const gapRules: Rule<Theme>[] = [
     ([, d = '', v]) => ({
       [`${ruleDirections[d]}rule-break`]: v,
     }),
-    { autocomplete: ['rule-break-(normal|none|intersection)', 'rule-(x|y|col|row)-break-(normal|none|intersection)'] },
+    {
+      autocomplete: [
+        'rule-break-(normal|none|intersection)',
+        'rule-(x|y|col|row)-break-(normal|none|intersection)',
+      ],
+    },
   ],
 
   // rule visibility
@@ -88,7 +112,12 @@ export const gapRules: Rule<Theme>[] = [
     ([, d = '', v]) => ({
       [`${ruleDirections[d]}rule-visibility-items`]: v,
     }),
-    { autocomplete: ['rule-visibility-(normal|all|none|between)', 'rule-(x|y|col|row)-visibility-(normal|all|none|between)'] },
+    {
+      autocomplete: [
+        'rule-visibility-(normal|all|none|between)',
+        'rule-(x|y|col|row)-visibility-(normal|all|none|between)',
+      ],
+    },
   ],
 
   // rule inset cap junction
@@ -134,49 +163,49 @@ function handlerRuleStyle([, a = '', s]: string[]): CSSValueInput | undefined {
 function handlerRuleColor([, d = '', colorLabel, v]: string[], ctx: RuleContext<Theme>) {
   const property = ruleProperty(d, 'color')
   const varName = ruleProperty(d)
-  if (!property || !varName)
-    return
+  if (!property || !varName) return
 
   const bracketColor = h.bracket(v)
 
-  if (!colorLabel && hasRuleCSSVariable(bracketColor ?? v))
-    return
+  if (!colorLabel && hasRuleCSSVariable(bracketColor ?? v)) return
 
-  if (bracketColor == null)
-    return colorResolver(property, varName)(['', v], ctx)
+  if (bracketColor == null) return colorResolver(property, varName)(['', v], ctx)
 
   const values = splitRuleValues(bracketColor)
 
-  if (values.every(c => hasParseableColor(c, ctx.theme))) {
+  if (values.every((c) => hasParseableColor(c, ctx.theme))) {
     return {
-      [property]: values.map(c => parseColor(c, ctx.theme)!.color).join(','),
+      [property]: values.map((c) => parseColor(c, ctx.theme)!.color).join(','),
     }
   }
 }
 
-function handlerRuleSize([, d = '', widthLabel, s = '1']: string[], { theme }: RuleContext<Theme>): CSSValueInput | undefined {
+function handlerRuleSize(
+  [, d = '', widthLabel, s = '1']: string[],
+  { theme }: RuleContext<Theme>,
+): CSSValueInput | undefined {
   const property = ruleProperty(d, 'width')
-  if (!property)
-    return
+  if (!property) return
 
   const v = h.bracket.cssvar.px(s, theme)
 
-  if (!v)
-    return
+  if (!v) return
 
-  const values = splitRuleValues(v).map(s => h.cssvar.px(s) ?? s)
+  const values = splitRuleValues(v).map((s) => h.cssvar.px(s) ?? s)
 
-  if (!widthLabel && values.some(isRuleCSSVariable))
-    return
+  if (!widthLabel && values.some(isRuleCSSVariable)) return
 
-  if (values.every(s => isSize(s) || s.startsWith('var('))) {
+  if (values.every((s) => isSize(s) || s.startsWith('var('))) {
     return {
       [property]: values.join(','),
     }
   }
 }
 
-function handlerRule([, d = '', v]: string[], { theme }: RuleContext<Theme>): CSSValueInput | undefined {
+function handlerRule(
+  [, d = '', v]: string[],
+  { theme }: RuleContext<Theme>,
+): CSSValueInput | undefined {
   const property = ruleProperty(d)
   const value = h.bracket.cssvar(v, theme)
   const shorthand = value && resolveRuleShorthand(value, theme)
@@ -190,13 +219,12 @@ function handlerRule([, d = '', v]: string[], { theme }: RuleContext<Theme>): CS
 
 function ruleProperty(direction: string, suffix?: string) {
   const prefix = ruleDirections[direction]
-  if (prefix == null)
-    return
+  if (prefix == null) return
   return `${prefix}rule${suffix ? `-${suffix}` : ''}`
 }
 
 function splitRuleValues(value: string) {
-  return value.split(splitComma).map(v => v.trim())
+  return value.split(splitComma).map((v) => v.trim())
 }
 
 function isRuleCSSVariable(value: string) {
@@ -209,16 +237,16 @@ function hasRuleCSSVariable(value: string) {
 
 function resolveRuleShorthand(value: string, theme: Theme) {
   const components = getStringComponents(value, ' ', 3)
-  if (!components)
-    return
+  if (!components) return
 
-  if (!value.startsWith('var(') && !components.some(c => borderStyles.includes(c)))
-    return
+  if (!value.startsWith('var(') && !components.some((c) => borderStyles.includes(c))) return
 
-  return components.map((c) => {
-    if (hasParseableColor(c, theme)) {
-      return parseColor(c, theme)!.color
-    }
-    return h.cssvar.px(c) ?? c
-  }).join(' ')
+  return components
+    .map((c) => {
+      if (hasParseableColor(c, theme)) {
+        return parseColor(c, theme)!.color
+      }
+      return h.cssvar.px(c) ?? c
+    })
+    .join(' ')
 }

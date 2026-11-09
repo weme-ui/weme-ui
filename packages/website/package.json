@@ -1,25 +1,20 @@
 {
   "name": "@weme-ui/website",
-  "type": "module",
   "version": "0.0.0",
   "private": true,
-  "packageManager": "bun@1.4.4",
   "description": "Landing page, UnoCSS Preset docs, and JSON Schema host for Weme UI.",
-  "author": "Allen Luo <luoyi@mouji.net>",
-  "license": "MIT",
   "homepage": "https://mouji.net/weme-ui",
+  "bugs": {
+    "url": "https://github.com/weme-ui/weme-ui/issues"
+  },
+  "license": "MIT",
+  "author": "Allen Luo <luoyi@mouji.net>",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/weme-ui/weme-ui.git",
     "directory": "packages/website"
   },
-  "bugs": {
-    "url": "https://github.com/weme-ui/weme-ui/issues"
-  },
-  "engines": {
-    "node": ">=22.23.4",
-    "bun": ">=1.3.12"
-  },
+  "type": "module",
   "scripts": {
     "dev": "astro dev",
     "build:docs": "astro build",
@@ -37,5 +32,10 @@
   "devDependencies": {
     "@types/node": "catalog:dev",
     "typescript": "catalog:build"
-  }
+  },
+  "engines": {
+    "bun": ">=1.3.12",
+    "node": ">=22.23.4"
+  },
+  "packageManager": "bun@1.4.4"
 }

@@ -8,16 +8,15 @@ function matchShortcut(matcher: string) {
   for (const shortcut of animateInOutShortcuts) {
     const [pattern, body] = shortcut
     if (typeof pattern === 'string') {
-      if (pattern !== matcher)
-        continue
-      return typeof body === 'function' ? body([matcher] as unknown as RegExpMatchArray, context) : body
+      if (pattern !== matcher) continue
+      return typeof body === 'function'
+        ? body([matcher] as unknown as RegExpMatchArray, context)
+        : body
     }
     const match = matcher.match(pattern)
-    if (!match)
-      continue
+    if (!match) continue
     const result = typeof body === 'function' ? body(match, context) : body
-    if (result)
-      return result
+    if (result) return result
   }
 }
 
@@ -122,7 +121,9 @@ describe('animation parameter dual-write', () => {
     const result = matchRule(animations, 'animate-fade-in')
     expect(result).toBeTruthy()
     const entries = Array.isArray(result) ? result : [result]
-    expect(entries.some(item => typeof item === 'string' && item.includes('@keyframes fade-in'))).toBe(true)
+    expect(
+      entries.some((item) => typeof item === 'string' && item.includes('@keyframes fade-in')),
+    ).toBe(true)
     expect(css(result).animation).toMatch(/^fade-in /)
   })
 })

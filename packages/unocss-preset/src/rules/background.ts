@@ -2,18 +2,41 @@ import type { CSSObject, Rule, RuleContext } from '@unocss/core'
 import type { ResolvedWemeUIOptions } from '../options'
 import type { Theme } from '../theme'
 import { parseCustomThemeColorCssVar, parseCustomThemeToken } from '../tokens'
-import { defineProperty, detectThemeValue, generateThemeVariable, globalKeywords, h, makeGlobalStaticRules, parseColor, positionMap, SpecialColorKey, themeTracking } from '../utils'
+import {
+  defineProperty,
+  detectThemeValue,
+  generateThemeVariable,
+  globalKeywords,
+  h,
+  makeGlobalStaticRules,
+  parseColor,
+  positionMap,
+  SpecialColorKey,
+  themeTracking,
+} from '../utils'
 
 const properties = {
   'gradient-position': defineProperty('--un-gradient-position'),
-  'gradient-from': defineProperty('--un-gradient-from', { syntax: '<color>', initialValue: '#0000' }),
+  'gradient-from': defineProperty('--un-gradient-from', {
+    syntax: '<color>',
+    initialValue: '#0000',
+  }),
   'gradient-via': defineProperty('--un-gradient-via', { syntax: '<color>', initialValue: '#0000' }),
   'gradient-to': defineProperty('--un-gradient-to', { syntax: '<color>', initialValue: '#0000' }),
   'gradient-stops': defineProperty('--un-gradient-stops'),
   'gradient-via-stops': defineProperty('--un-gradient-via-stops'),
-  'gradient-from-position': defineProperty('--un-gradient-from-position', { syntax: '<length-percentage>', initialValue: '0%' }),
-  'gradient-via-position': defineProperty('--un-gradient-via-position', { syntax: '<length-percentage>', initialValue: '50%' }),
-  'gradient-to-position': defineProperty('--un-gradient-to-position', { syntax: '<length-percentage>', initialValue: '100%' }),
+  'gradient-from-position': defineProperty('--un-gradient-from-position', {
+    syntax: '<length-percentage>',
+    initialValue: '0%',
+  }),
+  'gradient-via-position': defineProperty('--un-gradient-via-position', {
+    syntax: '<length-percentage>',
+    initialValue: '50%',
+  }),
+  'gradient-to-position': defineProperty('--un-gradient-to-position', {
+    syntax: '<length-percentage>',
+    initialValue: '100%',
+  }),
 }
 
 function resolveModifier(modifier?: string) {
@@ -22,8 +45,7 @@ function resolveModifier(modifier?: string) {
   if (modifier) {
     if (modifier.startsWith('[') && modifier.endsWith(']')) {
       interpolationMethod = modifier.slice(1, -1)
-    }
-    else {
+    } else {
       switch (modifier) {
         case 'longer':
         case 'shorter':
@@ -53,13 +75,16 @@ function bgGradientColorResolver(options: ResolvedWemeUIOptions) {
 
       if (Object.values(SpecialColorKey).includes(color)) {
         css[`--un-gradient-${position}`] = color
-      }
-      else {
+      } else {
         css[`--un-${position}-opacity`] = alpha
         const value = keys ? generateThemeVariable('colors', keys) : color
-        css[`--un-gradient-${position}`] = `color-mix(in oklab, ${value} var(--un-${position}-opacity), transparent)`
+        css[`--un-gradient-${position}`] =
+          `color-mix(in oklab, ${value} var(--un-${position}-opacity), transparent)`
 
-        yield defineProperty(`--un-${position}-opacity`, { syntax: '<percentage>', initialValue: '100%' })
+        yield defineProperty(`--un-${position}-opacity`, {
+          syntax: '<percentage>',
+          initialValue: '100%',
+        })
       }
 
       if (keys) {
@@ -68,30 +93,33 @@ function bgGradientColorResolver(options: ResolvedWemeUIOptions) {
       if (theme) {
         detectThemeValue(color, theme)
       }
-    }
-    else if (token?.keys.length) {
+    } else if (token?.keys.length) {
       const { keys, alpha } = token
 
-      if (alpha !== undefined)
-        css[`--un-${position}-opacity`] = `${alpha}%`
+      if (alpha !== undefined) css[`--un-${position}-opacity`] = `${alpha}%`
 
       const value = `var(--${keys.join('-')})`
-      css[`--un-gradient-${position}`] = `color-mix(in oklab, ${value} var(--un-${position}-opacity), transparent)`
+      css[`--un-gradient-${position}`] =
+        `color-mix(in oklab, ${value} var(--un-${position}-opacity), transparent)`
 
-      yield defineProperty(`--un-${position}-opacity`, { syntax: '<percentage>', initialValue: '100%' })
-    }
-    else if (cssVar?.keys.length) {
+      yield defineProperty(`--un-${position}-opacity`, {
+        syntax: '<percentage>',
+        initialValue: '100%',
+      })
+    } else if (cssVar?.keys.length) {
       const { keys, alpha } = cssVar
 
-      if (alpha !== undefined)
-        css[`--un-${position}-opacity`] = `${alpha}%`
+      if (alpha !== undefined) css[`--un-${position}-opacity`] = `${alpha}%`
 
       const value = `var(--${keys.join('-')})`
-      css[`--un-gradient-${position}`] = `color-mix(in oklab, ${value} var(--un-${position}-opacity), transparent)`
+      css[`--un-gradient-${position}`] =
+        `color-mix(in oklab, ${value} var(--un-${position}-opacity), transparent)`
 
-      yield defineProperty(`--un-${position}-opacity`, { syntax: '<percentage>', initialValue: '100%' })
-    }
-    else {
+      yield defineProperty(`--un-${position}-opacity`, {
+        syntax: '<percentage>',
+        initialValue: '100%',
+      })
+    } else {
       css[`--un-gradient-${position}`] = h.bracket.cssvar(body, theme)
     }
 
@@ -100,7 +128,8 @@ function bgGradientColorResolver(options: ResolvedWemeUIOptions) {
         case 'from':
           yield {
             ...css,
-            '--un-gradient-stops': 'var(--un-gradient-via-stops, var(--un-gradient-position), var(--un-gradient-from) var(--un-gradient-from-position), var(--un-gradient-to) var(--un-gradient-to-position))',
+            '--un-gradient-stops':
+              'var(--un-gradient-via-stops, var(--un-gradient-position), var(--un-gradient-from) var(--un-gradient-from-position), var(--un-gradient-to) var(--un-gradient-to-position))',
           }
           break
         case 'via':
@@ -113,7 +142,8 @@ function bgGradientColorResolver(options: ResolvedWemeUIOptions) {
         case 'to':
           yield {
             ...css,
-            '--un-gradient-stops': 'var(--un-gradient-via-stops, var(--un-gradient-position), var(--un-gradient-from) var(--un-gradient-from-position), var(--un-gradient-to) var(--un-gradient-to-position))',
+            '--un-gradient-stops':
+              'var(--un-gradient-via-stops, var(--un-gradient-position), var(--un-gradient-from) var(--un-gradient-from-position), var(--un-gradient-to) var(--un-gradient-to-position))',
           }
           break
         case 'stops':
@@ -122,8 +152,7 @@ function bgGradientColorResolver(options: ResolvedWemeUIOptions) {
           }
           break
       }
-      for (const p of Object.values(properties))
-        yield p
+      for (const p of Object.values(properties)) yield p
     }
   }
 }
@@ -133,53 +162,79 @@ function bgGradientPositionResolver() {
     yield {
       [`--un-gradient-${mode}-position`]: `${h.bracket.cssvar.percent(body, theme)}`,
     }
-    for (const p of Object.values(properties))
-      yield p
+    for (const p of Object.values(properties)) yield p
   }
 }
 
 export function backgroundStyles(options: ResolvedWemeUIOptions): Rule<Theme>[] {
   return [
     // gradients
-    [/^bg-(linear|radial|conic)-([^/]+)(?:\/(.+))?$/, ([, m, d, s], { theme }) => {
-      let v
+    [
+      /^bg-(linear|radial|conic)-([^/]+)(?:\/(.+))?$/,
+      ([, m, d, s], { theme }) => {
+        let v
 
-      if (h.number(d) != null) {
-        v = `from ${h.number(d)}deg ${resolveModifier(s)};`
-      }
-      else {
-        v = h.bracket(d, theme)
-      }
-
-      if (v) {
-        return {
-          '--un-gradient-position': v,
-          'background-image': `${m}-gradient(var(--un-gradient-stops))`,
+        if (h.number(d) != null) {
+          v = `from ${h.number(d)}deg ${resolveModifier(s)};`
+        } else {
+          v = h.bracket(d, theme)
         }
-      }
-    }, {
-      autocomplete: ['bg-(linear|radial|conic)', '(from|to|via)-$colors', '(from|to|via)-(op|opacity)', '(from|to|via)-(op|opacity)-<percent>'],
-    }],
+
+        if (v) {
+          return {
+            '--un-gradient-position': v,
+            'background-image': `${m}-gradient(var(--un-gradient-stops))`,
+          }
+        }
+      },
+      {
+        autocomplete: [
+          'bg-(linear|radial|conic)',
+          '(from|to|via)-$colors',
+          '(from|to|via)-(op|opacity)',
+          '(from|to|via)-(op|opacity)-<percent>',
+        ],
+      },
+    ],
 
     [/^(from|via|to|stops)-(.+)$/, bgGradientColorResolver(options)],
-    [/^(from|via|to)-op(?:acity)?-?(.+)$/, ([, position, opacity], { theme }) => ({ [`--un-${position}-opacity`]: h.bracket.percent(opacity, theme) })],
+    [
+      /^(from|via|to)-op(?:acity)?-?(.+)$/,
+      ([, position, opacity], { theme }) => ({
+        [`--un-${position}-opacity`]: h.bracket.percent(opacity, theme),
+      }),
+    ],
     [/^(from|via|to)-([\d.]+%)$/, bgGradientPositionResolver()],
     // images
-    [/^bg-((?:repeating-)?(?:linear|radial|conic))$/, ([, s]) => ({
-      'background-image': `${s}-gradient(var(--un-gradient, var(--un-gradient-stops, rgb(255 255 255 / 0))))`,
-    }), { autocomplete: ['bg-gradient-repeating', 'bg-gradient-(linear|radial|conic)', 'bg-gradient-repeating-(linear|radial|conic)'] }],
-    [/^bg-(gradient|linear|radial|conic)(?:-to-([rltb]{1,2}))?(?:\/(.+))?$/, ([, m, d, s]) => {
-      return {
-        '--un-gradient-position': `${d in positionMap ? `to ${positionMap[d]} ` : ' '}${resolveModifier(s)}`,
-        'background-image': `${m === 'gradient' ? 'linear' : m}-gradient(var(--un-gradient-stops))`,
-      }
-    }, {
-      autocomplete: ['gradient', 'linear', 'radial', 'conic'].map((i) => {
-        return `bg-${i}-to-(${Object.keys(positionMap)
-          .filter(k => k.length <= 2 && Array.from(k).every(c => 'rltb'.includes(c)))
-          .join('|')})`
+    [
+      /^bg-((?:repeating-)?(?:linear|radial|conic))$/,
+      ([, s]) => ({
+        'background-image': `${s}-gradient(var(--un-gradient, var(--un-gradient-stops, rgb(255 255 255 / 0))))`,
       }),
-    }],
+      {
+        autocomplete: [
+          'bg-gradient-repeating',
+          'bg-gradient-(linear|radial|conic)',
+          'bg-gradient-repeating-(linear|radial|conic)',
+        ],
+      },
+    ],
+    [
+      /^bg-(gradient|linear|radial|conic)(?:-to-([rltb]{1,2}))?(?:\/(.+))?$/,
+      ([, m, d, s]) => {
+        return {
+          '--un-gradient-position': `${d in positionMap ? `to ${positionMap[d]} ` : ' '}${resolveModifier(s)}`,
+          'background-image': `${m === 'gradient' ? 'linear' : m}-gradient(var(--un-gradient-stops))`,
+        }
+      },
+      {
+        autocomplete: ['gradient', 'linear', 'radial', 'conic'].map((i) => {
+          return `bg-${i}-to-(${Object.keys(positionMap)
+            .filter((k) => k.length <= 2 && Array.from(k).every((c) => 'rltb'.includes(c)))
+            .join('|')})`
+        }),
+      },
+    ],
     ['bg-none', { 'background-image': 'none' }],
 
     ['box-decoration-slice', { 'box-decoration-break': 'slice' }],
@@ -198,14 +253,29 @@ export function backgroundStyles(options: ResolvedWemeUIOptions): Rule<Theme>[] 
     ['bg-scroll', { 'background-attachment': 'scroll' }],
 
     // clips
-    ['bg-clip-border', { '-webkit-background-clip': 'border-box', 'background-clip': 'border-box' }],
-    ['bg-clip-content', { '-webkit-background-clip': 'content-box', 'background-clip': 'content-box' }],
-    ['bg-clip-padding', { '-webkit-background-clip': 'padding-box', 'background-clip': 'padding-box' }],
+    [
+      'bg-clip-border',
+      { '-webkit-background-clip': 'border-box', 'background-clip': 'border-box' },
+    ],
+    [
+      'bg-clip-content',
+      { '-webkit-background-clip': 'content-box', 'background-clip': 'content-box' },
+    ],
+    [
+      'bg-clip-padding',
+      { '-webkit-background-clip': 'padding-box', 'background-clip': 'padding-box' },
+    ],
     ['bg-clip-text', { '-webkit-background-clip': 'text', 'background-clip': 'text' }],
-    ...globalKeywords.map(keyword => [`bg-clip-${keyword}`, {
-      '-webkit-background-clip': keyword,
-      'background-clip': keyword,
-    }] as Rule<Theme>),
+    ...globalKeywords.map(
+      (keyword) =>
+        [
+          `bg-clip-${keyword}`,
+          {
+            '-webkit-background-clip': keyword,
+            'background-clip': keyword,
+          },
+        ] as Rule<Theme>,
+    ),
 
     // positions
     // skip 1 & 2 letters shortcut

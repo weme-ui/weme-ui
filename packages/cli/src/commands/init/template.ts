@@ -1,3 +1,4 @@
+// oxlint-disable no-await-in-loop
 import { existsSync } from 'node:fs'
 import { copyFile } from 'node:fs/promises'
 import { dirname, join } from 'node:path/posix'
@@ -30,7 +31,7 @@ export async function initProjectTemplate(cwd: string, template: string = 'vite'
       ensureDir(fileDir)
     }
 
-    if (!await existsFile(cwd, file)) {
+    if (!(await existsFile(cwd, file))) {
       await copyFile(join(templatePath, file), filePath)
     }
   }
@@ -50,7 +51,13 @@ export async function cloneTemplateRepository(cwd: string) {
 
   await cleanTemplateRepository(cwd)
 
-  const result = await x('git', ['clone', '--depth', '1', 'https://github.com/weme-ui/weme-ui.git', repositoryPath])
+  const result = await x('git', [
+    'clone',
+    '--depth',
+    '1',
+    'https://github.com/weme-ui/weme-ui.git',
+    repositoryPath,
+  ])
 
   if (result.exitCode !== 0) {
     throw new Error(`Failed to clone template repository: ${result.stderr}`)

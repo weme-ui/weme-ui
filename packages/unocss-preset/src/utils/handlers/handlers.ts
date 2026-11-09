@@ -4,10 +4,17 @@ import { transformThemeFn } from '@unocss/rule-utils'
 import { globalKeywords } from '../mappings'
 import { themeTracking } from '../track'
 import { getThemeByKey } from '../utilities'
-import { bracketTypeRe, cssVarsRE, numberRE, numberWithUnitRE, unitOnlyMap, unitOnlyRE } from './regex'
+import {
+  bracketTypeRe,
+  cssVarsRE,
+  numberRE,
+  numberWithUnitRE,
+  unitOnlyMap,
+  unitOnlyRE,
+} from './regex'
 
 // Not all, but covers most high frequency attributes
-const cssProps = [
+const cssProps = new Set([
   // basic props
   'color',
   'border-color',
@@ -73,7 +80,7 @@ const cssProps = [
   'clip-path',
   'clip',
   'border-radius',
-]
+])
 
 function round(n: number) {
   return +n.toFixed(10)
@@ -81,54 +88,42 @@ function round(n: number) {
 
 export function numberWithUnit(str: string) {
   const match = str.match(numberWithUnitRE)
-  if (!match)
-    return
+  if (!match) return
   const [, n, unit] = match
   const num = Number.parseFloat(n)
-  if (unit && !Number.isNaN(num))
-    return `${round(num)}${unit}`
+  if (unit && !Number.isNaN(num)) return `${round(num)}${unit}`
 }
 
 export function auto(str: string) {
-  if (str === 'auto' || str === 'a')
-    return 'auto'
+  if (str === 'auto' || str === 'a') return 'auto'
 }
 
 export function rem(str: string) {
-  if (!str)
-    return
-  if (unitOnlyRE.test(str))
-    return `${unitOnlyMap[str]}${str}`
+  if (!str) return
+  if (unitOnlyRE.test(str)) return `${unitOnlyMap[str]}${str}`
   const match = str.match(numberWithUnitRE)
-  if (!match)
-    return
+  if (!match) return
   const [, n, unit] = match
   const num = Number.parseFloat(n)
   if (!Number.isNaN(num)) {
-    if (num === 0)
-      return '0'
+    if (num === 0) return '0'
     return unit ? `${round(num)}${unit}` : `${round(num / 4)}rem`
   }
 }
 
 export function px(str: string) {
-  if (unitOnlyRE.test(str))
-    return `${unitOnlyMap[str]}${str}`
+  if (unitOnlyRE.test(str)) return `${unitOnlyMap[str]}${str}`
   const match = str.match(numberWithUnitRE)
-  if (!match)
-    return
+  if (!match) return
   const [, n, unit] = match
   const num = Number.parseFloat(n)
-  if (!Number.isNaN(num))
-    return unit ? `${round(num)}${unit}` : `${round(num)}px`
+  if (!Number.isNaN(num)) return unit ? `${round(num)}${unit}` : `${round(num)}px`
 }
 
 export function number(str: string) {
-  if (!numberRE.test(str))
-    return
+  if (!numberRE.test(str)) return
   const num = Number.parseFloat(str)
-  if (!Number.isNaN(num))
-    return round(num)
+  if (!Number.isNaN(num)) return round(num)
 }
 
 export function percent(str: string) {
@@ -142,15 +137,12 @@ export function percent(str: string) {
 }
 
 export function fraction(str: string) {
-  if (!str)
-    return
-  if (str === 'full')
-    return '100%'
+  if (!str) return
+  if (str === 'full') return '100%'
   const [left, right] = str.split('/')
   const num = Number.parseFloat(left) / Number.parseFloat(right)
   if (!Number.isNaN(num)) {
-    if (num === 0)
-      return '0'
+    if (num === 0) return '0'
     return `${round(num * 100)}%`
   }
 }
@@ -165,18 +157,21 @@ export function fraction(str: string) {
  *
  * @returns An object containing the resolved value from the theme and the corresponding CSS variable key.
  */
-function processThemeVariable(theme: Theme, themeKey: string, themeKeyPaths: string[], varPaths: string) {
+function processThemeVariable(
+  theme: Theme,
+  themeKey: string,
+  themeKeyPaths: string[],
+  varPaths: string,
+) {
   const valOrObj = getThemeByKey(theme, themeKey as keyof Theme, themeKeyPaths)
   const hasDefault = typeof valOrObj === 'object' && 'DEFAULT' in valOrObj
 
-  if (hasDefault)
-    themeKeyPaths.push('DEFAULT')
+  if (hasDefault) themeKeyPaths.push('DEFAULT')
 
   const val = hasDefault ? valOrObj.DEFAULT : valOrObj
   const varKey = hasDefault && themeKey !== 'spacing' ? `${varPaths}.DEFAULT` : varPaths
 
-  if (val != null)
-    themeTracking(themeKey, themeKeyPaths.length ? themeKeyPaths : undefined)
+  if (val != null) themeTracking(themeKey, themeKeyPaths.length ? themeKeyPaths : undefined)
 
   return { val, varKey }
 }
@@ -189,23 +184,19 @@ function bracketWithType(str: string, requiredType?: string, theme?: Theme) {
     const match = str.match(bracketTypeRe)
     if (!match) {
       base = str.slice(1, -1)
-    }
-    else {
+    } else {
       if (!requiredType) {
         hintedType = match[1]
-      }
-      else if (match[1] !== requiredType) {
+      } else if (match[1] !== requiredType) {
         return
       }
 
       base = str.slice(match[0].length, -1)
     }
 
-    if (!base)
-      return
+    if (!base) return
 
-    if (base === '=""')
-      return
+    if (base === '=""') return
 
     if (theme) {
       base = transformThemeFn(base, theme)
@@ -241,30 +232,27 @@ function bracketWithType(str: string, requiredType?: string, theme?: Theme) {
     for (const i of base) {
       if (i === '[') {
         curly += 1
-      }
-      else if (i === ']') {
+      } else if (i === ']') {
         curly -= 1
-        if (curly < 0)
-          return
+        if (curly < 0) return
       }
     }
-    if (curly)
-      return
+    if (curly) return
 
     switch (hintedType) {
-      case 'string': return base
-        .replace(/(^|[^\\])_/g, '$1 ')
-        .replace(/\\_/g, '_')
+      case 'string':
+        return base.replace(/(^|[^\\])_/g, '$1 ').replace(/\\_/g, '_')
 
-      case 'quoted': return base
-        .replace(/(^|[^\\])_/g, '$1 ')
-        .replace(/\\_/g, '_')
-        .replace(/(["\\])/g, '\\$1')
-        .replace(/^(.+)$/, '"$1"')
+      case 'quoted':
+        return base
+          .replace(/(^|[^\\])_/g, '$1 ')
+          .replace(/\\_/g, '_')
+          .replace(/(["\\])/g, '\\$1')
+          .replace(/^(.+)$/, '"$1"')
     }
 
     return base
-      .replace(/(url\(.*?\))/g, v => v.replace(/_/g, '\\_'))
+      .replace(/(url\(.*?\))/g, (v) => v.replace(/_/g, '\\_'))
       .replace(/(^|[^\\])_/g, '$1 ')
       .replace(/\\_/g, '_')
       .replace(/(?:calc|clamp|max|min)\((.*)/g, (match) => {
@@ -289,7 +277,11 @@ export function bracketOfColor(str: string, theme?: Theme) {
 }
 
 export function bracketOfLength(str: string, theme?: Theme) {
-  return bracketWithType(str, 'length', theme) || bracketWithType(str, 'size', theme) || bracketWithType(str, 'width', theme)
+  return (
+    bracketWithType(str, 'length', theme) ||
+    bracketWithType(str, 'size', theme) ||
+    bracketWithType(str, 'width', theme)
+  )
 }
 
 export function bracketOfPosition(str: string, theme?: Theme) {
@@ -305,11 +297,9 @@ export function bracketOfNumber(str: string, theme?: Theme) {
 }
 
 export function cssvar(str: string) {
-  if (str == null || typeof str !== 'string')
-    return
+  if (str == null || typeof str !== 'string') return
 
-  if (str.startsWith('var('))
-    return str
+  if (str.startsWith('var(')) return str
 
   const match = str.match(/^(?:\$|--)([^\s'"`;{}]+)$/)
   if (match) {
@@ -326,46 +316,38 @@ export function cssvar(str: string) {
 
 export function time(str: string) {
   const match = str.match(/^(-?[0-9.]+)(s|ms)?$/i)
-  if (!match)
-    return
+  if (!match) return
   const [, n, unit] = match
   const num = Number.parseFloat(n)
   if (!Number.isNaN(num)) {
-    if (num === 0 && !unit)
-      return '0s'
+    if (num === 0 && !unit) return '0s'
     return unit ? `${round(num)}${unit}` : `${round(num)}ms`
   }
 }
 
 export function degree(str: string) {
   const match = str.match(/^(-?[0-9.]+)(deg|rad|grad|turn)?$/i)
-  if (!match)
-    return
+  if (!match) return
   const [, n, unit] = match
   const num = Number.parseFloat(n)
   if (!Number.isNaN(num)) {
-    if (num === 0)
-      return '0deg'
+    if (num === 0) return '0deg'
     return unit ? `${round(num)}${unit}` : `${round(num)}deg`
   }
 }
 
 export function global(str: string) {
-  if (globalKeywords.includes(str))
-    return str
+  if (globalKeywords.includes(str)) return str
 }
 
 export function properties(str: string) {
-  if (str.split(',').every(prop => cssProps.includes(prop)))
-    return str
+  if (str.split(',').every((prop) => cssProps.has(prop))) return str
 }
 
 export function position(str: string) {
-  if (['top', 'left', 'right', 'bottom', 'center'].includes(str))
-    return str
+  if (['top', 'left', 'right', 'bottom', 'center'].includes(str)) return str
 }
 
 export function none(str: string) {
-  if (str === 'none')
-    return 'none'
+  if (str === 'none') return 'none'
 }

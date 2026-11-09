@@ -11,12 +11,10 @@ export const variantSupports: VariantObject<Theme> = {
       const [match, rest] = variant
 
       let supports = h.bracket(match, ctx.theme) ?? ''
-      if (supports === '')
-        supports = ctx.theme.supports?.[match] ?? ''
+      if (supports === '') supports = ctx.theme.supports?.[match] ?? ''
 
       if (supports) {
-        if (/^[\w-]+$/.test(supports))
-          supports = `(${supports}: var(--un))`
+        if (/^[\w-]+$/.test(supports)) supports = `(${supports}: var(--un))`
 
         supports = supports
           .replace(/\b(and|or|not)\b/gi, ' $1 ')
@@ -29,10 +27,11 @@ export const variantSupports: VariantObject<Theme> = {
 
         return {
           matcher: rest,
-          handle: (input, next) => next({
-            ...input,
-            parent: `${input.parent ? `${input.parent} $$ ` : ''}@supports ${supports}`,
-          }),
+          handle: (input, next) =>
+            next({
+              ...input,
+              parent: `${input.parent ? `${input.parent} $$ ` : ''}@supports ${supports}`,
+            }),
         }
       }
     }

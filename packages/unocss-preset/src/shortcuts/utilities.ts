@@ -10,7 +10,7 @@ import type { Theme } from '../theme'
 export const utilityShortcuts: UserShortcuts<Theme>[] = [
   // Positioning
   {
-    'abs': 'absolute',
+    abs: 'absolute',
     'abs-center': 'top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2',
     'abs-x-center': 'left-1/2 -translate-x-1/2',
     'abs-y-center': 'top-1/2 -translate-y-1/2',

@@ -1,13 +1,19 @@
 import type { InferInput } from 'valibot'
+import { LOCKFILE_SCHEMA_URL, ProjectConfigSchema, ProjectLockFileSchema } from '@weme-ui/schema'
+import { hash } from 'hasha'
 import { mkdir, mkdtemp, readFile, rm, writeFile } from 'node:fs/promises'
 import { tmpdir } from 'node:os'
 import { dirname, join } from 'node:path/posix'
-import { LOCKFILE_SCHEMA_URL, ProjectConfigSchema, ProjectLockFileSchema } from '@weme-ui/schema'
-import { hash } from 'hasha'
 import { addDependency } from 'nypm'
 import * as v from 'valibot'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
-import { CLI_TMP_DIR, DEFAULT_PATHS, DEFAULT_REGISTRIES, PROJECT_CONFIG_FILENAME, PROJECT_LOCKFILE_FILENAME } from '../src/constants'
+import {
+  CLI_TMP_DIR,
+  DEFAULT_PATHS,
+  DEFAULT_REGISTRIES,
+  PROJECT_CONFIG_FILENAME,
+  PROJECT_LOCKFILE_FILENAME,
+} from '../src/constants'
 import { Project } from '../src/utils/project'
 import { useRegistry } from '../src/utils/registry'
 
@@ -42,10 +48,12 @@ function buttonItem(overrides: Partial<ProjectLockFileInput['items'][number]> = 
     registry: 'weme-ui/slim',
     repo: 'https://github.com/weme-ui/slim',
     prefix: 'ui',
-    files: [{
-      source: BUTTON_SOURCE,
-      dest: BUTTON_DEST,
-    }],
+    files: [
+      {
+        source: BUTTON_SOURCE,
+        dest: BUTTON_DEST,
+      },
+    ],
     ...overrides,
   }
 }
@@ -65,23 +73,27 @@ interface MockRegistryFile {
   content?: string
 }
 
-function mockRegistry(options: {
-  items?: MockRegistryItem[]
-  filesByName?: Record<string, MockRegistryFile[]>
-} = {}) {
+function mockRegistry(
+  options: {
+    items?: MockRegistryItem[]
+    filesByName?: Record<string, MockRegistryFile[]>
+  } = {},
+) {
   const items = options.items ?? [{ name: 'button', type: 'component' as const }]
   const getItems = vi.fn(async (filter?: (item: MockRegistryItem) => boolean) =>
     filter ? items.filter(filter) : items,
   )
   const getItemFiles = vi.fn(async (item: MockRegistryItem) => {
-    const files = options.filesByName?.[item.name] ?? [{
-      type: 'component' as const,
-      kind: 'file' as const,
-      path: BUTTON_SOURCE,
-      content: BUTTON_CONTENT,
-    }]
+    const files = options.filesByName?.[item.name] ?? [
+      {
+        type: 'component' as const,
+        kind: 'file' as const,
+        path: BUTTON_SOURCE,
+        content: BUTTON_CONTENT,
+      },
+    ]
 
-    return files.map(file => ({
+    return files.map((file) => ({
       type: file.type,
       kind: file.kind ?? 'file',
       path: file.path,
@@ -138,7 +150,9 @@ function initializedFiles(overrides: Record<string, string> = {}) {
 }
 
 afterEach(async () => {
-  await Promise.all(dirs.splice(0).map(async dir => await rm(dir, { recursive: true, force: true })))
+  await Promise.all(
+    dirs.splice(0).map(async (dir) => await rm(dir, { recursive: true, force: true })),
+  )
 })
 
 describe('info', () => {
@@ -197,9 +211,13 @@ describe('info', () => {
 
   it('relativizes an absolute ~ inside the project root', async () => {
     const root = await createProjectDir()
-    await writeProjectFile(root, PROJECT_CONFIG_FILENAME, stringifyConfig({
-      paths: { '~': join(root, 'app') },
-    }))
+    await writeProjectFile(
+      root,
+      PROJECT_CONFIG_FILENAME,
+      stringifyConfig({
+        paths: { '~': join(root, 'app') },
+      }),
+    )
     const info = await new Project(root).info()
 
     expect(info.paths['~']).toBe('app')
@@ -211,9 +229,9 @@ describe('info', () => {
       [PROJECT_CONFIG_FILENAME]: stringifyConfig({
         paths: {
           '~': 'src',
-          'component': '~',
-          'util': '~/lib',
-          'theme': '~/',
+          component: '~',
+          util: '~/lib',
+          theme: '~/',
         },
       }),
     })
@@ -244,17 +262,14 @@ describe('info', () => {
     expect(await project.hasProjectConfig()).toBe(true)
     expect((await project.info()).paths).toMatchObject({
       '~': 'src',
-      'component': 'src/components',
+      component: 'src/components',
     })
   })
 
   it('uses the first registry as defaultRegistry', async () => {
     const root = await createProjectDir({
       [PROJECT_CONFIG_FILENAME]: stringifyConfig({
-        registries: [
-          { registry: 'acme/ui', prefix: 'acme' },
-          { registry: 'weme-ui/slim' },
-        ],
+        registries: [{ registry: 'acme/ui', prefix: 'acme' }, { registry: 'weme-ui/slim' }],
       }),
     })
     const info = await new Project(root).info()
@@ -276,12 +291,14 @@ describe('file presence', () => {
   })
 
   it('treats whitespace-only files as missing', async () => {
-    const project = new Project(await createProjectDir({
-      'package.json': '   \n',
-      [PROJECT_CONFIG_FILENAME]: '  ',
-      [join(CLI_TMP_DIR, PROJECT_LOCKFILE_FILENAME)]: '\n',
-      [join(CLI_TMP_DIR, 'uno.config.ts')]: ' \n',
-    }))
+    const project = new Project(
+      await createProjectDir({
+        'package.json': '   \n',
+        [PROJECT_CONFIG_FILENAME]: '  ',
+        [join(CLI_TMP_DIR, PROJECT_LOCKFILE_FILENAME)]: '\n',
+        [join(CLI_TMP_DIR, 'uno.config.ts')]: ' \n',
+      }),
+    )
 
     expect(await project.hasPackageJson()).toBe(false)
     expect(await project.hasProjectConfig()).toBe(false)
@@ -290,9 +307,11 @@ describe('file presence', () => {
   })
 
   it('does not treat root uno.config.ts as the CLI uno config', async () => {
-    const project = new Project(await createProjectDir({
-      'uno.config.ts': 'export default {}\n',
-    }))
+    const project = new Project(
+      await createProjectDir({
+        'uno.config.ts': 'export default {}\n',
+      }),
+    )
 
     expect(await project.hasUnoConfig()).toBe(false)
   })
@@ -323,15 +342,19 @@ describe('lockfile items', () => {
     expect(await missing.hasAddedItem('button')).toBe(false)
     expect(await missing.getAddedItemFiles('button')).toEqual([])
 
-    const invalid = new Project(await createProjectDir({
-      [join(CLI_TMP_DIR, PROJECT_LOCKFILE_FILENAME)]: '{ not json',
-    }))
+    const invalid = new Project(
+      await createProjectDir({
+        [join(CLI_TMP_DIR, PROJECT_LOCKFILE_FILENAME)]: '{ not json',
+      }),
+    )
     expect(await invalid.hasAddedItem('button')).toBe(false)
     expect(await invalid.getAddedItemFiles('button')).toEqual([])
 
-    const schemaInvalid = new Project(await createProjectDir({
-      [join(CLI_TMP_DIR, PROJECT_LOCKFILE_FILENAME)]: JSON.stringify({ items: 'nope' }),
-    }))
+    const schemaInvalid = new Project(
+      await createProjectDir({
+        [join(CLI_TMP_DIR, PROJECT_LOCKFILE_FILENAME)]: JSON.stringify({ items: 'nope' }),
+      }),
+    )
     expect(await schemaInvalid.hasAddedItem('button')).toBe(false)
     expect(await schemaInvalid.getAddedItemFiles('button')).toEqual([])
   })
@@ -374,47 +397,55 @@ describe('lockfile items', () => {
     })
     const files = await new Project(root).getAddedItemFiles('button')
 
-    expect(files).toEqual([{
-      type: 'component',
-      registry: 'weme-ui/slim',
-      repo: 'https://github.com/weme-ui/slim',
-      prefix: 'ui',
-      kind: 'file',
-      source: BUTTON_SOURCE,
-      dest: BUTTON_DEST,
-      content: BUTTON_CONTENT,
-      hash: await hash(BUTTON_CONTENT),
-    }])
+    expect(files).toEqual([
+      {
+        type: 'component',
+        registry: 'weme-ui/slim',
+        repo: 'https://github.com/weme-ui/slim',
+        prefix: 'ui',
+        kind: 'file',
+        source: BUTTON_SOURCE,
+        dest: BUTTON_DEST,
+        content: BUTTON_CONTENT,
+        hash: await hash(BUTTON_CONTENT),
+      },
+    ])
   })
 
   it('throws when the lockfile item dest is missing or blank', async () => {
-    const missingDest = new Project(await createProjectDir({
-      [join(CLI_TMP_DIR, PROJECT_LOCKFILE_FILENAME)]: stringifyLockfile({
-        items: [buttonItem()],
+    const missingDest = new Project(
+      await createProjectDir({
+        [join(CLI_TMP_DIR, PROJECT_LOCKFILE_FILENAME)]: stringifyLockfile({
+          items: [buttonItem()],
+        }),
       }),
-    }))
+    )
     await expect(missingDest.getAddedItemFiles('button')).rejects.toThrow(
       `File ${BUTTON_DEST} not found in the project`,
     )
 
-    const blankDest = new Project(await createProjectDir({
-      [join(CLI_TMP_DIR, PROJECT_LOCKFILE_FILENAME)]: stringifyLockfile({
-        items: [buttonItem()],
+    const blankDest = new Project(
+      await createProjectDir({
+        [join(CLI_TMP_DIR, PROJECT_LOCKFILE_FILENAME)]: stringifyLockfile({
+          items: [buttonItem()],
+        }),
+        [BUTTON_DEST]: '  \n',
       }),
-      [BUTTON_DEST]: '  \n',
-    }))
+    )
     await expect(blankDest.getAddedItemFiles('button')).rejects.toThrow(
       `File ${BUTTON_DEST} not found in the project`,
     )
   })
 
   it('throws when the item is not in the lockfile', async () => {
-    const project = new Project(await createProjectDir({
-      [join(CLI_TMP_DIR, PROJECT_LOCKFILE_FILENAME)]: stringifyLockfile({
-        items: [buttonItem()],
+    const project = new Project(
+      await createProjectDir({
+        [join(CLI_TMP_DIR, PROJECT_LOCKFILE_FILENAME)]: stringifyLockfile({
+          items: [buttonItem()],
+        }),
+        [BUTTON_DEST]: BUTTON_CONTENT,
       }),
-      [BUTTON_DEST]: BUTTON_CONTENT,
-    }))
+    )
 
     await expect(project.getAddedItemFiles('missing')).rejects.toThrow(
       'Item missing not found in the lockfile',
@@ -479,11 +510,13 @@ describe('addItem', () => {
     mockRegistry()
     const root = await createProjectDir({
       [PROJECT_CONFIG_FILENAME]: stringifyConfig({
-        registries: [{
-          registry: 'weme-ui/slim',
-          repo: 'https://github.com/weme-ui/slim',
-          prefix: 'ui',
-        }],
+        registries: [
+          {
+            registry: 'weme-ui/slim',
+            repo: 'https://github.com/weme-ui/slim',
+            prefix: 'ui',
+          },
+        ],
       }),
     })
     const project = new Project(root)
@@ -492,18 +525,22 @@ describe('addItem', () => {
     expect(await project.hasAddedItem('button')).toBe(true)
     expect(await readLockfile(root)).toEqual({
       $schema: LOCKFILE_SCHEMA_URL,
-      items: [{
-        name: 'button',
-        type: 'component',
-        registry: 'weme-ui/slim',
-        repo: 'https://github.com/weme-ui/slim',
-        prefix: 'ui',
-        files: [{
-          kind: 'file',
-          source: BUTTON_SOURCE,
-          dest: BUTTON_DEST,
-        }],
-      }],
+      items: [
+        {
+          name: 'button',
+          type: 'component',
+          registry: 'weme-ui/slim',
+          repo: 'https://github.com/weme-ui/slim',
+          prefix: 'ui',
+          files: [
+            {
+              kind: 'file',
+              source: BUTTON_SOURCE,
+              dest: BUTTON_DEST,
+            },
+          ],
+        },
+      ],
     })
     expect(await readFile(join(root, BUTTON_DEST), 'utf-8')).toBe(writtenContent(BUTTON_CONTENT))
   })
@@ -532,7 +569,9 @@ describe('addItem', () => {
   it('falls back to ~ when the file type has no matching path', async () => {
     mockRegistry({
       filesByName: {
-        button: [{ type: 'unknown' as MockRegistryFile['type'], kind: 'file', path: BUTTON_SOURCE }],
+        button: [
+          { type: 'unknown' as MockRegistryFile['type'], kind: 'file', path: BUTTON_SOURCE },
+        ],
       },
     })
     const root = await createProjectDir()
@@ -551,7 +590,9 @@ describe('addItem', () => {
     })
 
     expect(await new Project(root).addItem('button')).toBe(true)
-    expect((await readLockfile(root)).items[0].files[0].dest).toBe('app/components/ui/button/button.vue')
+    expect((await readLockfile(root)).items[0].files[0].dest).toBe(
+      'app/components/ui/button/button.vue',
+    )
   })
 
   it('installs only file-kind files by default', async () => {
@@ -559,7 +600,12 @@ describe('addItem', () => {
       filesByName: {
         button: [
           { type: 'component', kind: 'file', path: BUTTON_SOURCE },
-          { type: 'component', kind: 'doc', path: 'components/button/README.md', content: '# Button\n' },
+          {
+            type: 'component',
+            kind: 'doc',
+            path: 'components/button/README.md',
+            content: '# Button\n',
+          },
         ],
       },
     })
@@ -577,7 +623,12 @@ describe('addItem', () => {
       filesByName: {
         button: [
           { type: 'component', kind: 'file', path: BUTTON_SOURCE },
-          { type: 'component', kind: 'doc', path: 'components/button/README.md', content: '# Button\n' },
+          {
+            type: 'component',
+            kind: 'doc',
+            path: 'components/button/README.md',
+            content: '# Button\n',
+          },
         ],
       },
     })
@@ -586,7 +637,11 @@ describe('addItem', () => {
     expect(await new Project(root).addItem('button', ['file', 'doc'])).toBe(true)
     expect((await readLockfile(root)).items[0].files).toEqual([
       { kind: 'file', source: BUTTON_SOURCE, dest: 'src/components/button/button.vue' },
-      { kind: 'doc', source: 'components/button/README.md', dest: 'src/components/button/README.md' },
+      {
+        kind: 'doc',
+        source: 'components/button/README.md',
+        dest: 'src/components/button/README.md',
+      },
     ])
     expect(await readFile(join(root, 'src/components/button/README.md'), 'utf-8')).toBe(
       writtenContent('# Button\n'),
@@ -602,7 +657,9 @@ describe('addItem', () => {
     const root = await createProjectDir()
 
     expect(await new Project(root).addItem('button')).toBe(false)
-    await expect(readFile(join(root, CLI_TMP_DIR, PROJECT_LOCKFILE_FILENAME), 'utf-8')).rejects.toThrow()
+    await expect(
+      readFile(join(root, CLI_TMP_DIR, PROJECT_LOCKFILE_FILENAME), 'utf-8'),
+    ).rejects.toThrow()
   })
 
   it('omits items whose files were all skipped', async () => {
@@ -613,37 +670,56 @@ describe('addItem', () => {
     vi.mocked(useRegistry).mockReturnValue({
       getItems: vi.fn(async () => items),
       getItemFiles: vi.fn(async (item: MockRegistryItem) => {
-        const files = item.name === 'utils'
-          ? [{ type: 'util' as const, kind: 'doc' as const, path: 'src/utils/README.md', content: '# Utils\n' }]
-          : [{ type: 'component' as const, kind: 'file' as const, path: BUTTON_SOURCE, content: BUTTON_CONTENT }]
+        const files =
+          item.name === 'utils'
+            ? [
+                {
+                  type: 'util' as const,
+                  kind: 'doc' as const,
+                  path: 'src/utils/README.md',
+                  content: '# Utils\n',
+                },
+              ]
+            : [
+                {
+                  type: 'component' as const,
+                  kind: 'file' as const,
+                  path: BUTTON_SOURCE,
+                  content: BUTTON_CONTENT,
+                },
+              ]
 
-        return files.map(file => ({ ...file, hash: '' }))
+        return files.map((file) => Object.assign(file, { hash: '' }))
       }),
     } as unknown as ReturnType<typeof useRegistry>)
     const root = await createProjectDir()
 
     expect(await new Project(root).addItem('button')).toBe(true)
-    expect((await readLockfile(root)).items.map(item => item.name)).toEqual(['button'])
+    expect((await readLockfile(root)).items.map((item) => item.name)).toEqual(['button'])
   })
 
   it('appends to an existing lockfile without dropping other items', async () => {
     mockRegistry()
     const root = await createProjectDir({
       [join(CLI_TMP_DIR, PROJECT_LOCKFILE_FILENAME)]: stringifyLockfile({
-        items: [buttonItem({
-          name: 'card',
-          files: [{
-            source: 'components/card/card.vue',
-            dest: 'src/components/ui/card.vue',
-          }],
-        })],
+        items: [
+          buttonItem({
+            name: 'card',
+            files: [
+              {
+                source: 'components/card/card.vue',
+                dest: 'src/components/ui/card.vue',
+              },
+            ],
+          }),
+        ],
       }),
     })
 
     expect(await new Project(root).addItem('button')).toBe(true)
 
     const lockfile = await readLockfile(root)
-    expect(lockfile.items.map(item => item.name)).toEqual(['card', 'button'])
+    expect(lockfile.items.map((item) => item.name)).toEqual(['card', 'button'])
   })
 
   it('writes every item returned by the registry, including dependencies', async () => {
@@ -658,7 +734,7 @@ describe('addItem', () => {
     vi.mocked(useRegistry).mockReturnValue({
       getItems: vi.fn(async () => items),
       getItemFiles: vi.fn(async (item: MockRegistryItem) =>
-        (filesByName[item.name] ?? []).map(file => ({
+        (filesByName[item.name] ?? []).map((file) => ({
           type: file.type,
           kind: file.kind ?? 'file',
           path: file.path,
@@ -670,7 +746,7 @@ describe('addItem', () => {
 
     const root = await createProjectDir()
     expect(await new Project(root).addItem('button')).toBe(true)
-    expect((await readLockfile(root)).items.map(item => item.name)).toEqual(['utils', 'button'])
+    expect((await readLockfile(root)).items.map((item) => item.name)).toEqual(['utils', 'button'])
   })
 
   it('uses matching configured registry metadata for a qualified name', async () => {
@@ -699,11 +775,13 @@ describe('addItem', () => {
     mockRegistry()
     const root = await createProjectDir({
       [PROJECT_CONFIG_FILENAME]: stringifyConfig({
-        registries: [{
-          registry: 'weme-ui/slim',
-          repo: 'https://github.com/weme-ui/slim',
-          prefix: 'ui',
-        }],
+        registries: [
+          {
+            registry: 'weme-ui/slim',
+            repo: 'https://github.com/weme-ui/slim',
+            prefix: 'ui',
+          },
+        ],
       }),
     })
 
@@ -718,12 +796,14 @@ describe('addItem', () => {
 
   it('installs item dependencies and devDependencies', async () => {
     mockRegistry({
-      items: [{
-        name: 'button',
-        type: 'component',
-        dependencies: ['vue'],
-        devDependencies: ['vitest'],
-      }],
+      items: [
+        {
+          name: 'button',
+          type: 'component',
+          dependencies: ['vue'],
+          devDependencies: ['vitest'],
+        },
+      ],
     })
     const root = await createProjectDir({
       [PROJECT_CONFIG_FILENAME]: stringifyConfig(),
@@ -743,20 +823,24 @@ describe('addItem', () => {
 
   it('does not install dependencies when the item has none', async () => {
     mockRegistry()
-    await new Project(await createProjectDir({
-      [PROJECT_CONFIG_FILENAME]: stringifyConfig(),
-    })).addItem('button')
+    await new Project(
+      await createProjectDir({
+        [PROJECT_CONFIG_FILENAME]: stringifyConfig(),
+      }),
+    ).addItem('button')
 
     expect(addDependency).not.toHaveBeenCalled()
   })
 
   it('merges item cssVars into the project config', async () => {
     mockRegistry({
-      items: [{
-        name: 'button',
-        type: 'component',
-        cssVars: { card: { radius: '1rem' } },
-      }],
+      items: [
+        {
+          name: 'button',
+          type: 'component',
+          cssVars: { card: { radius: '1rem' } },
+        },
+      ],
     })
     const root = await createProjectDir({
       [PROJECT_CONFIG_FILENAME]: stringifyConfig({
@@ -777,11 +861,13 @@ describe('addItem', () => {
 
   it('throws when adding cssVars without a project config', async () => {
     mockRegistry({
-      items: [{
-        name: 'button',
-        type: 'component',
-        cssVars: { card: { radius: '1rem' } },
-      }],
+      items: [
+        {
+          name: 'button',
+          type: 'component',
+          cssVars: { card: { radius: '1rem' } },
+        },
+      ],
     })
 
     await expect(new Project(await createProjectDir()).addItem('button')).rejects.toThrow(

@@ -4,10 +4,12 @@ import { theme as buildTheme } from '~/theme/default'
 import { setColorAliasMaps } from '~/tokens'
 import { trackedColorAliases, trackedProperties, trackedTheme } from '~/utils/track'
 
-export function createPreflightContext(overrides: {
-  envMode?: string
-  safelist?: unknown[]
-} = {}): PreflightContext<Theme> {
+export function createPreflightContext(
+  overrides: {
+    envMode?: string
+    safelist?: unknown[]
+  } = {},
+): PreflightContext<Theme> {
   return {
     theme: buildTheme({}),
     generator: {

@@ -25,7 +25,8 @@ describe('decoration rules', () => {
       },
       'decoration-foreground-base/50': {
         'text-decoration-color': 'color-mix(in oklab, var(--foreground-base) 50%, transparent)',
-        '-webkit-text-decoration-color': 'color-mix(in oklab, var(--foreground-base) 50%, transparent)',
+        '-webkit-text-decoration-color':
+          'color-mix(in oklab, var(--foreground-base) 50%, transparent)',
       },
     })
   })
@@ -44,17 +45,19 @@ describe('decoration rules', () => {
   })
 
   it('prefers theme colors and tokens over overlapping css vars', () => {
-    const withOverlap = textDecorations(resolveOptions({
-      cssVars: {
-        ...cssVars,
-        'blue-9': {
-          border: 'border.base',
+    const withOverlap = textDecorations(
+      resolveOptions({
+        cssVars: {
+          ...cssVars,
+          'blue-9': {
+            border: 'border.base',
+          },
+          'foreground-base': {
+            border: 'border.elevated',
+          },
         },
-        'foreground-base': {
-          border: 'border.elevated',
-        },
-      },
-    }))
+      }),
+    )
 
     expectUtilities(withOverlap, {
       'underline-blue-9': {

@@ -468,8 +468,7 @@ const wemeUIStyles = `
 `
 
 export function reset(options: ResolvedWemeUIOptions): Preflight<Theme> | undefined {
-  if (options.preflights?.reset === false)
-    return undefined
+  if (options.preflights?.reset === false) return undefined
 
   return {
     getCSS: ({ generator }) => {

@@ -18,14 +18,11 @@ if (!tarball) {
   process.exit(1)
 }
 
-const publish = Bun.spawnSync(
-  ['npm', 'publish', tarball, '--access', 'public', '--provenance'],
-  {
-    cwd: process.cwd(),
-    stdout: 'inherit',
-    stderr: 'inherit',
-    env: process.env,
-  },
-)
+const publish = Bun.spawnSync(['npm', 'publish', tarball, '--access', 'public', '--provenance'], {
+  cwd: process.cwd(),
+  stdout: 'inherit',
+  stderr: 'inherit',
+  env: process.env,
+})
 
 process.exit(publish.exitCode ?? 1)

@@ -8,10 +8,7 @@
       "~/*": ["./src/*"]
     },
     "resolveJsonModule": true,
-    "types": [
-      "node",
-      "vitest"
-    ],
+    "types": ["node", "vitest"],
     "strict": true,
     "strictNullChecks": true,
     "declaration": true,
@@ -23,9 +20,12 @@
     "skipDefaultLibCheck": true,
     "skipLibCheck": true
   },
-  "include": ["src/**/*.ts", "test/**/*.ts", "scripts/**/*.ts", "tsdown.config.ts", "vitest.config.ts"],
-  "exclude": [
-    "node_modules",
-    "dist"
-  ]
+  "include": [
+    "src/**/*.ts",
+    "test/**/*.ts",
+    "scripts/**/*.ts",
+    "tsdown.config.ts",
+    "vitest.config.ts"
+  ],
+  "exclude": ["node_modules", "dist"]
 }

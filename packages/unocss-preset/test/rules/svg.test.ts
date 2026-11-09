@@ -46,19 +46,21 @@ describe('svg rules', () => {
   })
 
   it('prefers theme colors and tokens over overlapping css vars', () => {
-    const withOverlap = svgUtilities(resolveOptions({
-      cssVars: {
-        ...cssVars,
-        'blue-9': {
-          fill: 'background.base',
-          border: 'border.base',
+    const withOverlap = svgUtilities(
+      resolveOptions({
+        cssVars: {
+          ...cssVars,
+          'blue-9': {
+            fill: 'background.base',
+            border: 'border.base',
+          },
+          'foreground-base': {
+            fill: 'background.muted',
+            border: 'border.elevated',
+          },
         },
-        'foreground-base': {
-          fill: 'background.muted',
-          border: 'border.elevated',
-        },
-      },
-    }))
+      }),
+    )
 
     expectUtilities(withOverlap, {
       'fill-blue-9': { fill: 'var(--blue-9)' },

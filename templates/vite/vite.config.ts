@@ -1,8 +1,8 @@
 import type { PluginOption } from 'vite'
-import path from 'node:path'
 import Vue from '@vitejs/plugin-vue'
 import VueJsx from '@vitejs/plugin-vue-jsx'
 import MagicString from 'magic-string'
+import path from 'node:path'
 import UnoCSS from 'unocss/vite'
 import AutoImport from 'unplugin-auto-import/vite'
 import Components from 'unplugin-vue-components/vite'
@@ -48,26 +48,16 @@ const plugins: PluginOption[] = [
         'vue-router/auto': ['useLink'],
       },
     ],
-    dirs: [
-      'src/composables',
-    ],
+    dirs: ['src/composables'],
     vueTemplate: true,
     viteOptimizeDeps: true,
   }),
 
   // https://github.com/antfu/unplugin-vue-components
   Components({
-    dirs: [
-      'src/components',
-      '../src/components',
-    ],
+    dirs: ['src/components', '../src/components'],
     extensions: ['vue'],
-    include: [
-      /\.vue$/,
-      /\.vue\?vue/,
-      /\.vue\.[tj]sx?\?vue/,
-      /\.vue\?v=/,
-    ],
+    include: [/\.vue$/, /\.vue\?vue/, /\.vue\.[tj]sx?\?vue/, /\.vue\?v=/],
     directoryAsNamespace: true,
     collapseSamePrefixes: true,
     dts: 'src/components.d.ts',
@@ -87,10 +77,7 @@ export default defineConfig(({ mode }) => {
   // eslint-disable-next-line node/prefer-global/process
   const root = process.cwd()
 
-  const {
-    VITE_APP_URL,
-    VITE_APP_PORT,
-  } = loadEnv(mode, root)
+  const { VITE_APP_URL, VITE_APP_PORT } = loadEnv(mode, root)
 
   return {
     base: VITE_APP_URL,
@@ -119,13 +106,10 @@ export default defineConfig(({ mode }) => {
       rolldownOptions: {
         output: {
           manualChunks(id) {
-            if (!id.includes('node_modules'))
-              return
+            if (!id.includes('node_modules')) return
             // eslint-disable-next-line regexp/no-unused-capturing-group
-            if (/[\\/](vue|vue-router|pinia|@vueuse|@unhead)[\\/]/.test(id))
-              return 'vue-vendor'
-            if (id.includes('reka-ui'))
-              return 'ui-vendor'
+            if (/[\\/](vue|vue-router|pinia|@vueuse|@unhead)[\\/]/.test(id)) return 'vue-vendor'
+            if (id.includes('reka-ui')) return 'ui-vendor'
           },
         },
       },
@@ -133,9 +117,7 @@ export default defineConfig(({ mode }) => {
 
     oxc: {
       target: 'esnext',
-      pure: mode === 'production'
-        ? ['console.log', 'debugger']
-        : [],
+      pure: mode === 'production' ? ['console.log', 'debugger'] : [],
     },
 
     define: {
@@ -152,21 +134,18 @@ export default defineConfig(({ mode }) => {
       ...plugins,
 
       // https://github.com/vuejs/devtools
-      mode === 'development'
-        ? VueDevTools()
-        : undefined,
+      mode === 'development' ? VueDevTools() : undefined,
 
       // Purge comments
       {
         name: 'purge-comments',
         enforce: 'pre',
         transform: (code, id) => {
-          if (!id.endsWith('.vue') || !code.includes('<!--'))
-            return
+          if (!id.endsWith('.vue') || !code.includes('<!--')) return
 
           const s = new MagicString(code)
           // eslint-disable-next-line regexp/no-useless-non-capturing-group, regexp/sort-flags
-          s.replace(/<!--(?:.*?)-->/sg, '')
+          s.replace(/<!--(?:.*?)-->/gs, '')
 
           if (s.hasChanged()) {
             return {

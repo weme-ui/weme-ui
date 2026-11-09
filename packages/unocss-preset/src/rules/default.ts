@@ -5,7 +5,17 @@ import { textAligns, verticalAligns } from './align'
 import { animateModifiers, animatePropertyRules } from './animate'
 import { animations } from './animation'
 import { backgroundStyles } from './background'
-import { accents, appearance, carets, imageRenderings, listStyle, outline, overscrolls, scrollBehaviors, willChange } from './behaviors'
+import {
+  accents,
+  appearance,
+  carets,
+  imageRenderings,
+  listStyle,
+  outline,
+  overscrolls,
+  scrollBehaviors,
+  willChange,
+} from './behaviors'
 import { borders } from './border'
 import { bgColors, colorScheme, opacity } from './color'
 import { columns } from './columns'
@@ -20,20 +30,66 @@ import { overflows } from './layout'
 import { lineClamps } from './line-clamp'
 import { masks } from './mask'
 import { placeholders } from './placeholder'
-import { alignments, boxSizing, flexGridJustifiesAlignments, floats, insets, justifies, orders, placements, positions, zIndexes } from './position'
+import {
+  alignments,
+  boxSizing,
+  flexGridJustifiesAlignments,
+  floats,
+  insets,
+  justifies,
+  orders,
+  placements,
+  positions,
+  zIndexes,
+} from './position'
 import { questionMark } from './question-mark'
 import { rings } from './ring'
 import { scrolls } from './scrolls'
 import { boxShadows } from './shadow'
 import { aspectRatio, sizes } from './size'
 import { margins, paddings, spaces } from './spacing'
-import { accessibility, appearances, backgroundBlendModes, breaks, contains, contents, contentVisibility, cursors, displays, dynamicViewportHeight, fieldSizing, fontSmoothings, fontStyles, hyphens, isolations, mixBlendModes, objectPositions, pointerEvents, resizes, screenReadersAccess, textOverflows, textTransforms, textWraps, userSelects, whitespaces, writingModes, writingOrientations } from './static'
+import {
+  accessibility,
+  appearances,
+  backgroundBlendModes,
+  breaks,
+  contains,
+  contents,
+  contentVisibility,
+  cursors,
+  displays,
+  dynamicViewportHeight,
+  fieldSizing,
+  fontSmoothings,
+  fontStyles,
+  hyphens,
+  isolations,
+  mixBlendModes,
+  objectPositions,
+  pointerEvents,
+  resizes,
+  screenReadersAccess,
+  textOverflows,
+  textTransforms,
+  textWraps,
+  userSelects,
+  whitespaces,
+  writingModes,
+  writingOrientations,
+} from './static'
 import { svgUtilities } from './svg'
 import { tables } from './table'
 import { touchActions } from './touch-actions'
 import { transforms } from './transform'
 import { transitions } from './transition'
-import { fonts, fontVariantNumeric, tabSizes, textIndents, textShadows, textStrokes } from './typography'
+import {
+  fonts,
+  fontVariantNumeric,
+  tabSizes,
+  textIndents,
+  textShadows,
+  textStrokes,
+} from './typography'
 import { cssProperty, cssVariables } from './variables'
 import { viewTransition } from './view-transition'
 

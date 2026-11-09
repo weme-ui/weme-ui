@@ -81,8 +81,8 @@ describe('generateRadixColorScales', () => {
 
         expectTwelveStepScale(result.oklch)
         expectTwelveStepScale(result.p3)
-        expect(result.oklch.every(value => !value.includes('NaN'))).toBe(true)
-        expect(result.p3.every(value => !value.includes('NaN'))).toBe(true)
+        expect(result.oklch.every((value) => !value.includes('NaN'))).toBe(true)
+        expect(result.p3.every((value) => !value.includes('NaN'))).toBe(true)
       }
     }
   })

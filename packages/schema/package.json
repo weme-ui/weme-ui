@@ -1,34 +1,29 @@
 {
   "name": "@weme-ui/schema",
-  "type": "module",
   "version": "5.0.0",
-  "packageManager": "bun@1.4.4",
   "description": "JSON schema sources for Weme UI.",
-  "author": "Allen Luo <luoyi@mouji.net>",
-  "license": "MIT",
+  "keywords": [
+    "schema",
+    "weme-ui"
+  ],
   "homepage": "https://mouji.net/weme-ui",
+  "bugs": {
+    "url": "https://github.com/weme-ui/weme-ui/issues"
+  },
+  "license": "MIT",
+  "author": "Allen Luo <luoyi@mouji.net>",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/weme-ui/weme-ui.git",
     "directory": "packages/schema"
   },
-  "bugs": {
-    "url": "https://github.com/weme-ui/weme-ui/issues"
-  },
-  "keywords": [
-    "weme-ui",
-    "schema"
+  "files": [
+    "!dist/**/*.map",
+    "CHANGELOG.md",
+    "dist/**/*"
   ],
+  "type": "module",
   "sideEffects": false,
-  "exports": {
-    ".": {
-      "types": "./dist/index.d.ts",
-      "import": "./dist/index.js"
-    },
-    "./config.schema.json": "./dist/config.schema.json",
-    "./lockfile.schema.json": "./dist/lockfile.schema.json",
-    "./registry.schema.json": "./dist/registry.schema.json"
-  },
   "main": "./dist/index.js",
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
@@ -40,17 +35,18 @@
       ]
     }
   },
-  "files": [
-    "!dist/**/*.map",
-    "CHANGELOG.md",
-    "dist/**/*"
-  ],
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./config.schema.json": "./dist/config.schema.json",
+    "./lockfile.schema.json": "./dist/lockfile.schema.json",
+    "./registry.schema.json": "./dist/registry.schema.json"
+  },
   "publishConfig": {
     "access": "public",
     "provenance": true
-  },
-  "engines": {
-    "node": ">=22.14.0"
   },
   "scripts": {
     "build": "NODE_ENV=deploy tsdown",
@@ -61,9 +57,6 @@
     "preview": "serve -l 3000",
     "prepack": "bun ../../scripts/materialize-catalog.ts"
   },
-  "peerDependencies": {
-    "valibot": "^1.5.0"
-  },
   "devDependencies": {
     "@adobe/jsonschema2md": "^8.0.11",
     "@types/node": "catalog:dev",
@@ -73,5 +66,12 @@
     "tsdown": "catalog:build",
     "typescript": "catalog:build",
     "valibot": "catalog:utils"
-  }
+  },
+  "peerDependencies": {
+    "valibot": "^1.5.0"
+  },
+  "engines": {
+    "node": ">=22.14.0"
+  },
+  "packageManager": "bun@1.4.4"
 }

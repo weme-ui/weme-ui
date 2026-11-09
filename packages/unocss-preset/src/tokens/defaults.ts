@@ -96,7 +96,7 @@ export const CUSTOM_CSSVAR_FUZZY_MAP = {
    *   - `text-card` -> `color: var(--card-text)`
    *   - `text-card` -> `color: var(--card-color)`
    */
-  'color': ['text', 'color'],
+  color: ['text', 'color'],
 
   /**
    * 背景变量映射
@@ -132,7 +132,7 @@ export const CUSTOM_CSSVAR_FUZZY_MAP = {
    *   - `fill-card` -> `fill: var(--card-bg)`
    *   - `fill-card` -> `fill: var(--card-color)`
    */
-  'fill': ['fill', 'background', 'bg', 'color'],
+  fill: ['fill', 'background', 'bg', 'color'],
 
   /**
    * 边框宽度变量映射
@@ -155,7 +155,7 @@ export const CUSTOM_CSSVAR_FUZZY_MAP = {
    *   - `width-card` -> `width: var(--card-size)`
    *   - `width-card` -> `width: var(--card-max-width)`
    */
-  'width': ['width', 'w', 'size', 'max-width', 'max-w', 'min-width', 'min-w'],
+  width: ['width', 'w', 'size', 'max-width', 'max-w', 'min-width', 'min-w'],
 
   /**
    * 高度变量映射
@@ -168,7 +168,7 @@ export const CUSTOM_CSSVAR_FUZZY_MAP = {
    *   - `height-card` -> `height: var(--card-size)`
    *   - `height-card` -> `height: var(--card-max-height)`
    */
-  'height': ['height', 'h', 'size', 'max-height', 'max-h', 'min-height', 'min-h'],
+  height: ['height', 'h', 'size', 'max-height', 'max-h', 'min-height', 'min-h'],
 
   /**
    * 内边距变量映射
@@ -180,7 +180,7 @@ export const CUSTOM_CSSVAR_FUZZY_MAP = {
    *   - `p-card` -> `padding: var(--card-p)`
    *   - `p-card` -> `padding: var(--card-space)`
    */
-  'padding': ['padding', 'p', 'space'],
+  padding: ['padding', 'p', 'space'],
 
   /**
    * 外边距变量映射
@@ -192,7 +192,7 @@ export const CUSTOM_CSSVAR_FUZZY_MAP = {
    *   - `m-card` -> `margin: var(--card-m)`
    *   - `m-card` -> `margin: var(--card-space)`
    */
-  'margin': ['margin', 'm', 'space'],
+  margin: ['margin', 'm', 'space'],
 }
 
 /**
@@ -200,4 +200,6 @@ export const CUSTOM_CSSVAR_FUZZY_MAP = {
  *
  * @category Tokens
  */
-export const CUSTOM_CSSVAR_FUZZY_MAP_KEYS = Object.keys(CUSTOM_CSSVAR_FUZZY_MAP) as (keyof typeof CUSTOM_CSSVAR_FUZZY_MAP)[]
+export const CUSTOM_CSSVAR_FUZZY_MAP_KEYS = Object.keys(
+  CUSTOM_CSSVAR_FUZZY_MAP,
+) as (keyof typeof CUSTOM_CSSVAR_FUZZY_MAP)[]

@@ -4,7 +4,12 @@ import type { CUSTOM_CSSVAR_FUZZY_MAP_KEYS } from './defaults'
 import type { CustomThemeColorAlias, CustomThemeTokens, ResolvedCustomThemeCSSVars } from './types'
 import { symbols } from '@unocss/core'
 import { colorAliasTracking, defineProperty, themeTracking } from '../utils'
-import { CUSTOM_CSSVAR_FUZZY_MAP, CUSTOM_THEME_COLOR_ALIASES, CUSTOM_THEME_TOKENS_MAP, DEFAULT_COLOR_ALIASES } from './defaults'
+import {
+  CUSTOM_CSSVAR_FUZZY_MAP,
+  CUSTOM_THEME_COLOR_ALIASES,
+  CUSTOM_THEME_TOKENS_MAP,
+  DEFAULT_COLOR_ALIASES,
+} from './defaults'
 
 let colorAliasMaps: CustomThemeColorAlias[] = [DEFAULT_COLOR_ALIASES]
 
@@ -22,8 +27,7 @@ function trackColorAliasPalette(alias: string, no?: string) {
 
   for (const colors of colorAliasMaps) {
     const color = colors[alias as keyof CustomThemeColorAlias]
-    if (typeof color === 'string' && !isRawColor(color))
-      themeTracking('colors', [color, step])
+    if (typeof color === 'string' && !isRawColor(color)) themeTracking('colors', [color, step])
   }
 }
 
@@ -33,14 +37,16 @@ function trackColorAliasPalette(alias: string, no?: string) {
  * @category Tokens
  */
 export function isRawColor(color: string): boolean {
-  return color.startsWith('#')
-    || color.startsWith('rgb(')
-    || color.startsWith('hsl(')
-    || color.startsWith('lab(')
-    || color.startsWith('lch(')
-    || color.startsWith('oklch(')
-    || color.startsWith('color(')
-    || color.startsWith('var(')
+  return (
+    color.startsWith('#') ||
+    color.startsWith('rgb(') ||
+    color.startsWith('hsl(') ||
+    color.startsWith('lab(') ||
+    color.startsWith('lch(') ||
+    color.startsWith('oklch(') ||
+    color.startsWith('color(') ||
+    color.startsWith('var(')
+  )
 }
 
 /**
@@ -57,7 +63,10 @@ export function isColorAlias(alias: string): boolean {
  *
  * @category Tokens
  */
-export function isCustomThemeToken(name: string, front?: LooseAutocomplete<keyof CustomThemeTokens>): boolean {
+export function isCustomThemeToken(
+  name: string,
+  front?: LooseAutocomplete<keyof CustomThemeTokens>,
+): boolean {
   const dash = name.indexOf('-')
 
   if (dash > 0) {
@@ -65,15 +74,12 @@ export function isCustomThemeToken(name: string, front?: LooseAutocomplete<keyof
     const v = name.slice(dash + 1)
     const values = CUSTOM_THEME_TOKENS_MAP[k]
 
-    if (values?.includes(v))
-      return true
+    if (values?.includes(v)) return true
   }
 
-  if (name === 'foreground' && CUSTOM_THEME_TOKENS_MAP.foreground?.includes('base'))
-    return true
+  if (name === 'foreground' && CUSTOM_THEME_TOKENS_MAP.foreground?.includes('base')) return true
 
-  if (front && CUSTOM_THEME_TOKENS_MAP[front]?.includes(name))
-    return true
+  if (front && CUSTOM_THEME_TOKENS_MAP[front]?.includes(name)) return true
 
   return false
 }
@@ -125,8 +131,7 @@ export function generateColorAliasCssVar(alias: string): string {
  * @category Tokens
  */
 export function splitCustomThemeTokenKey(match: string) {
-  if (match.startsWith('var('))
-    return
+  if (match.startsWith('var(')) return
 
   const slash = match.indexOf('/')
   let name = match
@@ -135,13 +140,11 @@ export function splitCustomThemeTokenKey(match: string) {
   if (slash !== -1) {
     const opacityStr = match.slice(slash + 1)
 
-    if (!/^\d+$/.test(opacityStr))
-      return
+    if (!/^\d+$/.test(opacityStr)) return
 
     alpha = Number(opacityStr)
 
-    if (alpha > 100)
-      return
+    if (alpha > 100) return
 
     name = match.slice(0, slash)
   }
@@ -177,8 +180,7 @@ export function parseCustomThemeToken(
 ): CustomThemeParsedResult | undefined {
   const splitted = splitCustomThemeTokenKey(match)
 
-  if (!splitted)
-    return
+  if (!splitted) return
 
   const { name, alpha } = splitted
 
@@ -191,16 +193,14 @@ export function parseCustomThemeToken(
     const v = name.slice(dash + 1)
     const values = CUSTOM_THEME_TOKENS_MAP[k]
 
-    if (values?.includes(v))
-      keys = [k, v]
+    if (values?.includes(v)) keys = [k, v]
   }
 
   // foreground 特例：`text-foreground` ≡ `text-foreground-base`
   if (!keys.length && name === 'foreground' && CUSTOM_THEME_TOKENS_MAP.foreground?.includes('base'))
     keys = ['foreground', 'base']
 
-  if (front && CUSTOM_THEME_TOKENS_MAP[front]?.includes(name))
-    keys = [front, name]
+  if (front && CUSTOM_THEME_TOKENS_MAP[front]?.includes(name)) keys = [front, name]
 
   return { name, keys, alpha }
 }
@@ -217,21 +217,18 @@ export function parseCustomThemeColorCssVar(
 ): CustomThemeParsedResult | undefined {
   const splitted = splitCustomThemeTokenKey(match)
 
-  if (!splitted)
-    return
+  if (!splitted) return
 
   const { name, alpha } = splitted
 
   const suffixes = CUSTOM_CSSVAR_FUZZY_MAP[varName]
-  if (!suffixes)
-    return
+  if (!suffixes) return
 
-  const variable = Object.keys(cssVars).find(
-    k => suffixes.some(suffix => k === `${name}-${suffix}`),
+  const variable = Object.keys(cssVars).find((k) =>
+    suffixes.some((suffix) => k === `${name}-${suffix}`),
   )
 
-  if (!variable)
-    return
+  if (!variable) return
 
   return {
     name,
@@ -250,12 +247,11 @@ const WidthKeys = ['border-width', 'width', 'height', 'padding', 'margin'] as co
 export function parseCustomThemeSize(
   match: string,
   cssVars: ResolvedCustomThemeCSSVars,
-  varName?: typeof WidthKeys[number],
+  varName?: (typeof WidthKeys)[number],
 ) {
   const splitted = splitCustomThemeTokenKey(match)
 
-  if (!splitted)
-    return
+  if (!splitted) return
 
   const { name } = splitted
 
@@ -267,12 +263,11 @@ export function parseCustomThemeSize(
       return acc
     }, [] as string[])
 
-  const variable = Object.keys(cssVars).find(
-    k => suffixes.some(suffix => k === `${name}-${suffix}`),
+  const variable = Object.keys(cssVars).find((k) =>
+    suffixes.some((suffix) => k === `${name}-${suffix}`),
   )
 
-  if (!variable)
-    return
+  if (!variable) return
 
   return `var(--${variable.split('-').join('-')})`
 }
@@ -288,8 +283,7 @@ export function customThemeColorCSSGenerator(
 ): [CSSObject, ...CSSValueInput[]] | undefined {
   const { keys, alpha } = data
 
-  if (keys.length === 0)
-    return
+  if (keys.length === 0) return
 
   const css: CSSObject = {}
   const result: [CSSObject, ...CSSValueInput[]] = [css]
@@ -299,9 +293,8 @@ export function customThemeColorCSSGenerator(
   const alphaKey = `--un-${varName}-opacity`
   const percentage = alpha === undefined ? undefined : `${alpha}%`
 
-  css[property] = percentage === undefined
-    ? value
-    : `color-mix(in oklab, ${value} ${percentage}, transparent)`
+  css[property] =
+    percentage === undefined ? value : `color-mix(in oklab, ${value} ${percentage}, transparent)`
 
   if (percentage !== undefined) {
     result.push(defineProperty(alphaKey, { syntax: '<percentage>', initialValue: '100%' }))
@@ -332,14 +325,14 @@ export function customThemeColorResolver(
   varName: FuzzyMapKey,
   front?: LooseAutocomplete<keyof CustomThemeTokens>,
 ) {
-  return (match: string, cssVars: ResolvedCustomThemeCSSVars): [CSSObject, ...CSSValueInput[]] | undefined => {
+  return (
+    match: string,
+    cssVars: ResolvedCustomThemeCSSVars,
+  ): [CSSObject, ...CSSValueInput[]] | undefined => {
     const token = parseCustomThemeToken(match, front)
-    const data = token?.keys.length
-      ? token
-      : parseCustomThemeColorCssVar(varName, match, cssVars)
+    const data = token?.keys.length ? token : parseCustomThemeColorCssVar(varName, match, cssVars)
 
-    if (!data?.keys.length)
-      return
+    if (!data?.keys.length) return
 
     return customThemeColorCSSGenerator(data, property)
   }

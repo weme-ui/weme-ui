@@ -44,13 +44,15 @@ describe('border color rules', () => {
   })
 
   it('resolves custom css vars through the border-color fuzzy map', () => {
-    const colorOnly = borders(resolveOptions({
-      cssVars: {
-        card: {
-          border: 'border.base',
+    const colorOnly = borders(
+      resolveOptions({
+        cssVars: {
+          card: {
+            border: 'border.base',
+          },
         },
-      },
-    }))
+      }),
+    )
 
     expectUtilities(colorOnly, {
       'border-card': { 'border-color': 'var(--card-border)' },
@@ -65,16 +67,18 @@ describe('border color rules', () => {
   })
 
   it('prefers theme colors and tokens over overlapping css vars', () => {
-    const withOverlap = borders(resolveOptions({
-      cssVars: {
-        'blue-9': {
-          border: 'border.base',
+    const withOverlap = borders(
+      resolveOptions({
+        cssVars: {
+          'blue-9': {
+            border: 'border.base',
+          },
+          'foreground-base': {
+            border: 'border.elevated',
+          },
         },
-        'foreground-base': {
-          border: 'border.elevated',
-        },
-      },
-    }))
+      }),
+    )
 
     expectUtilities(withOverlap, {
       'border-blue-9': { 'border-color': 'var(--blue-9)' },

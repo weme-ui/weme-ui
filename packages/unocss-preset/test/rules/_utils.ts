@@ -25,26 +25,25 @@ function isGenerator(value: object): value is Generator {
 }
 
 function normalize(result: unknown) {
-  if (result == null)
-    return undefined
-  if (typeof result === 'object' && isGenerator(result))
-    return [...result]
+  if (result == null) return undefined
+  if (typeof result === 'object' && isGenerator(result)) return [...result]
   return result
 }
 
 function isEmpty(result: unknown) {
-  if (result == null)
-    return true
-  if (typeof result !== 'object')
-    return false
-  if (Array.isArray(result))
-    return result.length === 0 || result.every(value => value == null)
+  if (result == null) return true
+  if (typeof result !== 'object') return false
+  if (Array.isArray(result)) return result.length === 0 || result.every((value) => value == null)
 
   const values = Object.values(result as CSSObject)
-  return values.length === 0 || values.every(value => value == null)
+  return values.length === 0 || values.every((value) => value == null)
 }
 
-export function matchAllRules(rules: Rule<Theme>[], matcher: string, overrides: Record<string, unknown> = {}) {
+export function matchAllRules(
+  rules: Rule<Theme>[],
+  matcher: string,
+  overrides: Record<string, unknown> = {},
+) {
   const context = createRuleContext(overrides)
   const results: unknown[] = []
 
@@ -53,19 +52,15 @@ export function matchAllRules(rules: Rule<Theme>[], matcher: string, overrides: 
     let match: RegExpMatchArray | undefined
 
     if (typeof pattern === 'string') {
-      if (pattern !== matcher)
-        continue
+      if (pattern !== matcher) continue
       match = [matcher] as unknown as RegExpMatchArray
-    }
-    else {
+    } else {
       match = matcher.match(pattern) ?? undefined
-      if (!match)
-        continue
+      if (!match) continue
     }
 
     const result = normalize(typeof body === 'function' ? body(match, context) : body)
-    if (isEmpty(result))
-      continue
+    if (isEmpty(result)) continue
 
     results.push(result)
   }
@@ -73,7 +68,11 @@ export function matchAllRules(rules: Rule<Theme>[], matcher: string, overrides: 
   return results
 }
 
-export function matchRule(rules: Rule<Theme>[], matcher: string, overrides: Record<string, unknown> = {}) {
+export function matchRule(
+  rules: Rule<Theme>[],
+  matcher: string,
+  overrides: Record<string, unknown> = {},
+) {
   return matchAllRules(rules, matcher, overrides)[0]
 }
 
@@ -85,18 +84,23 @@ export function css(result: unknown): Record<string, unknown> {
       return Object.fromEntries(entries.map((entry: unknown[]) => [entry[0], entry[1]]))
     }
 
-    const object = result.find(item => item && typeof item === 'object' && !Array.isArray(item) && !('syntax' in (item as object)))
-    if (object)
-      return object as Record<string, unknown>
+    const object = result.find(
+      (item) =>
+        item && typeof item === 'object' && !Array.isArray(item) && !('syntax' in (item as object)),
+    )
+    if (object) return object as Record<string, unknown>
   }
 
-  if (result && typeof result === 'object')
-    return result as Record<string, unknown>
+  if (result && typeof result === 'object') return result as Record<string, unknown>
 
   throw new Error('expected a css result')
 }
 
-export function expectUtilities(rules: Rule<Theme>[], cases: Record<string, Record<string, unknown> | undefined>, overrides: Record<string, unknown> = {}) {
+export function expectUtilities(
+  rules: Rule<Theme>[],
+  cases: Record<string, Record<string, unknown> | undefined>,
+  overrides: Record<string, unknown> = {},
+) {
   for (const [utility, expected] of Object.entries(cases)) {
     const result = matchRule(rules, utility, overrides)
     if (expected == null) {

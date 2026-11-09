@@ -1,6 +1,6 @@
 import type { Variant } from '@unocss/core'
-import type { Theme } from '../theme'
 import type { PresetWemeUIOptions } from '~/options'
+import type { Theme } from '../theme'
 import { variantAria, variantTaggedAriaAttributes } from './aria'
 import { variantBreakpoints } from './breakpoints'
 import { variantChildren } from './children'
@@ -11,7 +11,16 @@ import { variantDataAttribute, variantTaggedDataAttributes } from './data'
 import { variantLanguageDirections } from './directions'
 import { variantImportant } from './important'
 import { variantInert } from './inert'
-import { variantContrasts, variantCustomMedia, variantForcedColors, variantMotions, variantNoscript, variantOrientations, variantPrint, variantScripting } from './media'
+import {
+  variantContrasts,
+  variantCustomMedia,
+  variantForcedColors,
+  variantMotions,
+  variantNoscript,
+  variantOrientations,
+  variantPrint,
+  variantScripting,
+} from './media'
 import {
   variantCssLayer,
   variantImplicitGroup,
@@ -24,7 +33,12 @@ import {
 } from './misc'
 import { variantNegative } from './negative'
 import { placeholderModifier } from './placeholder'
-import { variantPartClasses, variantPseudoClassesAndElements, variantPseudoClassFunctions, variantTaggedPseudoClasses } from './pseudo'
+import {
+  variantPartClasses,
+  variantPseudoClassesAndElements,
+  variantPseudoClassFunctions,
+  variantTaggedPseudoClasses,
+} from './pseudo'
 import { variantStartingStyle } from './startingstyle'
 import { variantSupports } from './supports'
 

@@ -3,12 +3,19 @@ import type { Theme } from '../theme'
 import { variantGetParameter, variantParentMatcher } from '@unocss/rule-utils'
 import { h } from '../utils'
 
-export const variantNoscript: VariantObject = variantParentMatcher('noscript', '@media (scripting: none)')
+export const variantNoscript: VariantObject = variantParentMatcher(
+  'noscript',
+  '@media (scripting: none)',
+)
 
 export const variantScripting: VariantObject<Theme> = {
   name: 'scripting',
   match(matcher, ctx) {
-    const variant = variantGetParameter(['script-', 'scripting-'], matcher, ctx.generator.config.separators)
+    const variant = variantGetParameter(
+      ['script-', 'scripting-'],
+      matcher,
+      ctx.generator.config.separators,
+    )
     if (variant) {
       const [match, rest] = variant
       const scriptingValues = ['none', 'initial-only', 'enabled']
@@ -16,10 +23,11 @@ export const variantScripting: VariantObject<Theme> = {
       if (scriptingValues.includes(match)) {
         return {
           matcher: rest,
-          handle: (input, next) => next({
-            ...input,
-            parent: `${input.parent ? `${input.parent} $$ ` : ''}@media (scripting: ${match})`,
-          }),
+          handle: (input, next) =>
+            next({
+              ...input,
+              parent: `${input.parent ? `${input.parent} $$ ` : ''}@media (scripting: ${match})`,
+            }),
         }
       }
     }
@@ -38,16 +46,16 @@ export const variantCustomMedia: VariantObject<Theme> = {
       const [match, rest] = variant
 
       let media = h.bracket(match, ctx.theme) ?? ''
-      if (media === '')
-        media = ctx.theme.media?.[match] ?? ''
+      if (media === '') media = ctx.theme.media?.[match] ?? ''
 
       if (media) {
         return {
           matcher: rest,
-          handle: (input, next) => next({
-            ...input,
-            parent: `${input.parent ? `${input.parent} $$ ` : ''}@media ${media}`,
-          }),
+          handle: (input, next) =>
+            next({
+              ...input,
+              parent: `${input.parent ? `${input.parent} $$ ` : ''}@media ${media}`,
+            }),
         }
       }
     }

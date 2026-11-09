@@ -1,16 +1,26 @@
 import type { CSSEntries, Rule, StaticRule } from '@unocss/core'
 import type { Theme } from '../theme'
-import { globalKeywords, h, insetMap, makeGlobalStaticRules, numberResolver, themeTracking } from '../utils'
+import {
+  globalKeywords,
+  h,
+  insetMap,
+  makeGlobalStaticRules,
+  numberResolver,
+  themeTracking,
+} from '../utils'
 
 export const positions: Rule<Theme>[] = [
-  [/^(?:position-|pos-)?(relative|absolute|fixed|sticky)$/, ([, v]) => ({ position: v }), {
-    autocomplete: [
-      '(position|pos)-<position>',
-      '(position|pos)-<globalKeyword>',
-      '<position>',
-    ],
-  }],
-  [/^(?:position-|pos-)([-\w]+)$/, ([, v]) => globalKeywords.includes(v) ? { position: v } : undefined],
+  [
+    /^(?:position-|pos-)?(relative|absolute|fixed|sticky)$/,
+    ([, v]) => ({ position: v }),
+    {
+      autocomplete: ['(position|pos)-<position>', '(position|pos)-<globalKeyword>', '<position>'],
+    },
+  ],
+  [
+    /^(?:position-|pos-)([-\w]+)$/,
+    ([, v]) => (globalKeywords.includes(v) ? { position: v } : undefined),
+  ],
   [/^(?:position-|pos-)?(static)$/, ([, v]) => ({ position: v })],
 ]
 
@@ -136,27 +146,30 @@ export const placements: StaticRule[] = [
  * This is to add `flex-` and `grid-` prefix to the alignment rules,
  * supporting `flex="~ items-center"` in attributify mode.
  */
-export const flexGridJustifiesAlignments = [...justifies, ...alignments, ...placements]
-  .flatMap(([k, v]): StaticRule[] => [
+export const flexGridJustifiesAlignments = [...justifies, ...alignments, ...placements].flatMap(
+  ([k, v]): StaticRule[] => [
     [`flex-${k}`, v],
     [`grid-${k}`, v],
-  ])
+  ],
+)
 
 function handleInsetValue(v: string, theme?: Theme): string | number | undefined {
   const _v = numberResolver(v)
   if (_v != null) {
     themeTracking(`spacing`)
     return `calc(var(--spacing) * ${_v})`
-  }
-  else {
+  } else {
     return h.bracket.cssvar.global.auto.fraction.rem(v, theme)
   }
 }
 
-function handleInsetValues([, d, v]: string[], { theme }: { theme?: Theme }): CSSEntries | undefined {
+function handleInsetValues(
+  [, d, v]: string[],
+  { theme }: { theme?: Theme },
+): CSSEntries | undefined {
   const r = handleInsetValue(v, theme)
   if (r != null && d in insetMap) {
-    return insetMap[d].map(i => [i.slice(1), r])
+    return insetMap[d].map((i) => [i.slice(1), r])
   }
 }
 
@@ -178,7 +191,10 @@ export const insets: Rule<Theme>[] = [
   [/^(?:position-|pos-)?inset-([rltbse])-(.+)$/, handleInsetValues],
   [/^(?:position-|pos-)?inset-(block|inline)-(.+)$/, handleInsetValues],
   [/^(?:position-|pos-)?inset-([bi][se])-(.+)$/, handleInsetValues],
-  [/^(?:position-|pos-)?(top|left|right|bottom)-(.+)$/, ([, d, v], { theme }) => ({ [d]: handleInsetValue(v, theme) })],
+  [
+    /^(?:position-|pos-)?(top|left|right|bottom)-(.+)$/,
+    ([, d, v], { theme }) => ({ [d]: handleInsetValue(v, theme) }),
+  ],
 ]
 
 export const floats: Rule<Theme>[] = [
@@ -202,7 +218,11 @@ export const floats: Rule<Theme>[] = [
 
 export const zIndexes: Rule<Theme>[] = [
   [/^(?:position-|pos-)?z([\d.]+)$/, ([, v]) => ({ 'z-index': h.number(v) })],
-  [/^(?:position-|pos-)?z-(.+)$/, ([, v], { theme }) => ({ 'z-index': h.bracket.cssvar.global.auto.number(v, theme) }), { autocomplete: 'z-<num>' }],
+  [
+    /^(?:position-|pos-)?z-(.+)$/,
+    ([, v], { theme }) => ({ 'z-index': h.bracket.cssvar.global.auto.number(v, theme) }),
+    { autocomplete: 'z-<num>' },
+  ],
 ]
 
 export const boxSizing: Rule<Theme>[] = [

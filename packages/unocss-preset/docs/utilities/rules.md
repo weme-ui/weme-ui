@@ -450,7 +450,9 @@ Autocomplete shorthands：`position`（relative/absolute/…）、`globalKeyword
 >
   <h2 class="text-lg fw-semibold text-foreground-highlighted">Title</h2>
   <p class="text-sm text-foreground-subtle mt-2">Supporting text</p>
-  <button class="mt-4 bg-accent text-white px-3 py-1.5 rounded-sm hover:bg-accent-10">Action</button>
+  <button class="mt-4 bg-accent text-white px-3 py-1.5 rounded-sm hover:bg-accent-10">
+    Action
+  </button>
 </article>
 ```
 

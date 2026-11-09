@@ -60,56 +60,83 @@ function getSizeValue(theme: Theme, hw: string, prop: string, options: ResolvedW
 
 export function sizes(options: ResolvedWemeUIOptions): Rule<Theme>[] {
   return [
-    [/^size-(min-|max-)?(.+)$/, ([, m, s], { theme }) => ({
-      [getPropName(m, 'w')]: getSizeValue(theme, 'w', s, options),
-      [getPropName(m, 'h')]: getSizeValue(theme, 'h', s, options),
-    })],
-    [/^(?:size-)?(min-|max-)?([wh])-?(.+)$/, ([, m, w, s], { theme }) => ({ [getPropName(m, w)]: getSizeValue(theme, w, s, options) })],
-    [/^(?:size-)?(min-|max-)?(block|inline)-(.+)$/, ([, m, w, s], { theme }) => ({ [getPropName(m, w)]: getSizeValue(theme, w, s, options) }), {
-      autocomplete: [
-        '(w|h)-<num>',
-        '(w|h)-(full|screen|fit|max|min)',
-        '(max|min)-(w|h)-<num>',
-        '(max|min)-(w|h)-(full|screen|fit|max|min)',
-        '(block|inline)-<num>',
-        '(block|inline)-(full|screen|fit|max|min)',
-        '(max|min)-(w|h|block|inline)',
-        '(max|min)-(w|h|block|inline)-<num>',
-        '(max|min)-(w|h|block|inline)-(full|screen|fit|max|min)',
-      ],
-    }],
-    [/^(?:size-)?(min-|max-)?(h)-screen-(.+)$/, ([, m, h, p], context) => ({ [getPropName(m, h)]: handleBreakpoint(context, p, 'verticalBreakpoint') })],
-    [/^(?:size-)?(min-|max-)?(w)-screen-(.+)$/, ([, m, w, p], context) => ({ [getPropName(m, w)]: handleBreakpoint(context, p) }), {
-      autocomplete: [
-        '(w|h)-screen',
-        '(min|max)-(w|h)-screen',
-        'h-screen-$breakpoint',
-        '(min|max)-h-screen-$breakpoint',
-        'w-screen-$breakpoint',
-        '(min|max)-w-screen-$breakpoint',
-      ],
-    }],
+    [
+      /^size-(min-|max-)?(.+)$/,
+      ([, m, s], { theme }) => ({
+        [getPropName(m, 'w')]: getSizeValue(theme, 'w', s, options),
+        [getPropName(m, 'h')]: getSizeValue(theme, 'h', s, options),
+      }),
+    ],
+    [
+      /^(?:size-)?(min-|max-)?([wh])-?(.+)$/,
+      ([, m, w, s], { theme }) => ({ [getPropName(m, w)]: getSizeValue(theme, w, s, options) }),
+    ],
+    [
+      /^(?:size-)?(min-|max-)?(block|inline)-(.+)$/,
+      ([, m, w, s], { theme }) => ({ [getPropName(m, w)]: getSizeValue(theme, w, s, options) }),
+      {
+        autocomplete: [
+          '(w|h)-<num>',
+          '(w|h)-(full|screen|fit|max|min)',
+          '(max|min)-(w|h)-<num>',
+          '(max|min)-(w|h)-(full|screen|fit|max|min)',
+          '(block|inline)-<num>',
+          '(block|inline)-(full|screen|fit|max|min)',
+          '(max|min)-(w|h|block|inline)',
+          '(max|min)-(w|h|block|inline)-<num>',
+          '(max|min)-(w|h|block|inline)-(full|screen|fit|max|min)',
+        ],
+      },
+    ],
+    [
+      /^(?:size-)?(min-|max-)?(h)-screen-(.+)$/,
+      ([, m, h, p], context) => ({
+        [getPropName(m, h)]: handleBreakpoint(context, p, 'verticalBreakpoint'),
+      }),
+    ],
+    [
+      /^(?:size-)?(min-|max-)?(w)-screen-(.+)$/,
+      ([, m, w, p], context) => ({ [getPropName(m, w)]: handleBreakpoint(context, p) }),
+      {
+        autocomplete: [
+          '(w|h)-screen',
+          '(min|max)-(w|h)-screen',
+          'h-screen-$breakpoint',
+          '(min|max)-h-screen-$breakpoint',
+          'w-screen-$breakpoint',
+          '(min|max)-w-screen-$breakpoint',
+        ],
+      },
+    ],
   ]
 }
 
-function handleBreakpoint(context: Readonly<RuleContext<Theme>>, point: string, key: 'breakpoint' | 'verticalBreakpoint' = 'breakpoint') {
+function handleBreakpoint(
+  context: Readonly<RuleContext<Theme>>,
+  point: string,
+  key: 'breakpoint' | 'verticalBreakpoint' = 'breakpoint',
+) {
   const bp = resolveBreakpoints(context, key)
-  if (bp)
-    return bp.find(i => i.point === point)?.size
+  if (bp) return bp.find((i) => i.point === point)?.size
 }
 
 function getAspectRatio(prop: string, theme?: Theme) {
-  if (/^\d+\/\d+$/.test(prop))
-    return prop
+  if (/^\d+\/\d+$/.test(prop)) return prop
 
   switch (prop) {
-    case 'square': return '1/1'
-    case 'video': return '16/9'
+    case 'square':
+      return '1/1'
+    case 'video':
+      return '16/9'
   }
 
   return h.bracket.cssvar.global.auto.number(prop, theme)
 }
 
 export const aspectRatio: Rule<Theme>[] = [
-  [/^(?:size-)?aspect-(?:ratio-)?(.+)$/, ([, d]: string[], { theme }) => ({ 'aspect-ratio': getAspectRatio(d, theme) }), { autocomplete: ['aspect-(square|video|ratio)', 'aspect-ratio-(square|video)'] }],
+  [
+    /^(?:size-)?aspect-(?:ratio-)?(.+)$/,
+    ([, d]: string[], { theme }) => ({ 'aspect-ratio': getAspectRatio(d, theme) }),
+    { autocomplete: ['aspect-(square|video|ratio)', 'aspect-ratio-(square|video)'] },
+  ],
 ]

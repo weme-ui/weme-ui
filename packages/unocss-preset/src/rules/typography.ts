@@ -26,20 +26,33 @@ export function fonts(options: ResolvedWemeUIOptions): Rule<Theme>[] {
 
     // text colors
     // text-base 保留给字号；颜色用 text-foreground / text-foreground-base / c-base
-    [/^text-(?:color-)?(.+)$/, (match, ctx) => {
-      if (/^text-base(?:\/\d+)?$/.test(match[0]))
-        return
-      return handlerColorOrSize(match, ctx, options)
-    }, { autocomplete: 'text-$colors' }],
+    [
+      /^text-(?:color-)?(.+)$/,
+      (match, ctx) => {
+        if (/^text-base(?:\/\d+)?$/.test(match[0])) return
+        return handlerColorOrSize(match, ctx, options)
+      },
+      { autocomplete: 'text-$colors' },
+    ],
 
     // colors
     [/^(?:color|c)-(.+)$/, (match, ctx) => handleColor(match, ctx, options)],
 
     // style
-    [/^(?:text|color|c)-(.+)$/, ([, v]) => globalKeywords.includes(v) ? { color: v } : undefined, { autocomplete: `(text|color|c)-(${globalKeywords.join('|')})` }],
+    [
+      /^(?:text|color|c)-(.+)$/,
+      ([, v]) => (globalKeywords.includes(v) ? { color: v } : undefined),
+      { autocomplete: `(text|color|c)-(${globalKeywords.join('|')})` },
+    ],
 
     // opacity
-    [/^(?:text|color|c)-op(?:acity)?-?(.+)$/, ([, opacity], { theme }) => ({ '--un-text-opacity': h.bracket.percent.cssvar(opacity, theme) }), { autocomplete: '(text|color|c)-(op|opacity)-<percent>' }],
+    [
+      /^(?:text|color|c)-op(?:acity)?-?(.+)$/,
+      ([, opacity], { theme }) => ({
+        '--un-text-opacity': h.bracket.percent.cssvar(opacity, theme),
+      }),
+      { autocomplete: '(text|color|c)-(op|opacity)-<percent>' },
+    ],
 
     // weights
     [
@@ -50,8 +63,7 @@ export function fonts(options: ResolvedWemeUIOptions): Rule<Theme>[] {
         if (theme.fontWeight?.[s]) {
           themeTracking(`fontWeight`, s)
           v = generateThemeVariable('fontWeight', s)
-        }
-        else {
+        } else {
           v = h.bracket.cssvar.global.number(s, theme)
         }
 
@@ -61,10 +73,7 @@ export function fonts(options: ResolvedWemeUIOptions): Rule<Theme>[] {
         }
       },
       {
-        autocomplete: [
-          '(font|fw)-(100|200|300|400|500|600|700|800|900)',
-          '(font|fw)-$fontWeight',
-        ],
+        autocomplete: ['(font|fw)-(100|200|300|400|500|600|700|800|900)', '(font|fw)-$fontWeight'],
       },
     ],
 
@@ -77,12 +86,10 @@ export function fonts(options: ResolvedWemeUIOptions): Rule<Theme>[] {
         if (theme.leading?.[s]) {
           themeTracking('leading', s)
           v = generateThemeVariable('leading', s)
-        }
-        else if (numberResolver(s)) {
+        } else if (numberResolver(s)) {
           themeTracking('spacing')
           v = `calc(var(--spacing) * ${numberResolver(s)})`
-        }
-        else {
+        } else {
           v = h.bracket.cssvar.global.rem(s, theme)
         }
 
@@ -104,7 +111,10 @@ export function fonts(options: ResolvedWemeUIOptions): Rule<Theme>[] {
     ['font-synthesis-style', { 'font-synthesis': 'style' }],
     ['font-synthesis-small-caps', { 'font-synthesis': 'small-caps' }],
     ['font-synthesis-none', { 'font-synthesis': 'none' }],
-    [/^font-synthesis-(.+)$/, ([, s], { theme }) => ({ 'font-synthesis': h.bracket.cssvar.global(s, theme) })],
+    [
+      /^font-synthesis-(.+)$/,
+      ([, s], { theme }) => ({ 'font-synthesis': h.bracket.cssvar.global(s, theme) }),
+    ],
 
     // tracking
     [
@@ -115,8 +125,7 @@ export function fonts(options: ResolvedWemeUIOptions): Rule<Theme>[] {
         if (theme.tracking?.[s]) {
           themeTracking(`tracking`, s)
           v = generateThemeVariable('tracking', s)
-        }
-        else {
+        } else {
           v = h.bracket.cssvar.global.rem(s, theme)
         }
 
@@ -133,7 +142,9 @@ export function fonts(options: ResolvedWemeUIOptions): Rule<Theme>[] {
       /^(?:font-)?word-spacing-(.+)$/,
       ([, s], { theme }) => {
         // Use the same variable as tracking
-        const v = theme.tracking?.[s] ? generateThemeVariable('tracking', s) : h.bracket.cssvar.global.rem(s, theme)
+        const v = theme.tracking?.[s]
+          ? generateThemeVariable('tracking', s)
+          : h.bracket.cssvar.global.rem(s, theme)
         return {
           '--un-word-spacing': v,
           'word-spacing': v,
@@ -216,54 +227,77 @@ export function fonts(options: ResolvedWemeUIOptions): Rule<Theme>[] {
 }
 
 export const tabSizes: Rule<Theme>[] = [
-  [/^tab(?:-(.+))?$/, ([, s], { theme }) => {
-    const v = h.bracket.cssvar.global.number(s || '4', theme)
-    if (v != null) {
-      return {
-        '-moz-tab-size': v,
-        '-o-tab-size': v,
-        'tab-size': v,
+  [
+    /^tab(?:-(.+))?$/,
+    ([, s], { theme }) => {
+      const v = h.bracket.cssvar.global.number(s || '4', theme)
+      if (v != null) {
+        return {
+          '-moz-tab-size': v,
+          '-o-tab-size': v,
+          'tab-size': v,
+        }
       }
-    }
-  }],
+    },
+  ],
 ]
 
 export const textIndents: Rule<Theme>[] = [
-  [/^indent-(.+)$/, ([, s], { theme }) => {
-    let v: string | number | undefined = numberResolver(s)
+  [
+    /^indent-(.+)$/,
+    ([, s], { theme }) => {
+      let v: string | number | undefined = numberResolver(s)
 
-    if (v != null) {
-      themeTracking(`spacing`)
-      return { 'text-indent': `calc(var(--spacing) * ${v})` }
-    }
+      if (v != null) {
+        themeTracking(`spacing`)
+        return { 'text-indent': `calc(var(--spacing) * ${v})` }
+      }
 
-    v = h.bracket.cssvar.auto.global.rem(s, theme)
+      v = h.bracket.cssvar.auto.global.rem(s, theme)
 
-    if (v != null) {
-      return { 'text-indent': v }
-    }
-  }],
+      if (v != null) {
+        return { 'text-indent': v }
+      }
+    },
+  ],
 ]
 
 export const textStrokes: Rule<Theme>[] = [
   // widths
-  [/^text-stroke(?:-(.+))?$/, ([, s = 'DEFAULT'], { theme }) => {
-    if (theme.textStrokeWidth?.[s]) {
-      themeTracking(`textStrokeWidth`, s)
-    }
-    return {
-      '-webkit-text-stroke-width': theme.textStrokeWidth?.[s]
-        ? generateThemeVariable('textStrokeWidth', s)
-        : h.bracket.cssvar.px(s, theme),
-    }
-  }, { autocomplete: 'text-stroke-$textStrokeWidth' }],
+  [
+    /^text-stroke(?:-(.+))?$/,
+    ([, s = 'DEFAULT'], { theme }) => {
+      if (theme.textStrokeWidth?.[s]) {
+        themeTracking(`textStrokeWidth`, s)
+      }
+      return {
+        '-webkit-text-stroke-width': theme.textStrokeWidth?.[s]
+          ? generateThemeVariable('textStrokeWidth', s)
+          : h.bracket.cssvar.px(s, theme),
+      }
+    },
+    { autocomplete: 'text-stroke-$textStrokeWidth' },
+  ],
 
   // colors
-  [/^text-stroke-(.+)$/, colorResolver('-webkit-text-stroke-color', 'text-stroke'), { autocomplete: 'text-stroke-$colors' }],
-  [/^text-stroke-op(?:acity)?-?(.+)$/, ([, opacity], { theme }) => ({ '--un-text-stroke-opacity': h.bracket.percent.cssvar(opacity, theme) }), { autocomplete: 'text-stroke-(op|opacity)-<percent>' }],
+  [
+    /^text-stroke-(.+)$/,
+    colorResolver('-webkit-text-stroke-color', 'text-stroke'),
+    { autocomplete: 'text-stroke-$colors' },
+  ],
+  [
+    /^text-stroke-op(?:acity)?-?(.+)$/,
+    ([, opacity], { theme }) => ({
+      '--un-text-stroke-opacity': h.bracket.percent.cssvar(opacity, theme),
+    }),
+    { autocomplete: 'text-stroke-(op|opacity)-<percent>' },
+  ],
 ]
 
-function handleTextShadow(match: RegExpMatchArray, ctx: RuleContext<Theme>): CSSObject | (CSSValueInput | string)[] | undefined {
+function handleTextShadow(
+  match: RegExpMatchArray,
+  ctx: RuleContext<Theme>,
+): CSSObject | (CSSValueInput | string)[] | undefined {
   const [, s] = match
   const { theme } = ctx
   let res: string[] = []
@@ -282,21 +316,39 @@ function handleTextShadow(match: RegExpMatchArray, ctx: RuleContext<Theme>): CSS
     }
   }
 
-  return colorResolver('--un-text-shadow-color', 'text-shadow')(match, ctx) ?? { 'text-shadow': h.bracket.cssvar.global(s, theme) }
+  return (
+    colorResolver('--un-text-shadow-color', 'text-shadow')(match, ctx) ?? {
+      'text-shadow': h.bracket.cssvar.global(s, theme),
+    }
+  )
 }
 
 export const textShadows: Rule<Theme>[] = [
-  [/^text-shadow-(.+)$/, handleTextShadow, {
-    autocomplete: [
-      'text-shadow-$textShadow',
-      'text-shadow(-color)?-$colors',
-      'text-shadow(-color)?-(op|opacity)-<percent>',
-    ],
-  }],
+  [
+    /^text-shadow-(.+)$/,
+    handleTextShadow,
+    {
+      autocomplete: [
+        'text-shadow-$textShadow',
+        'text-shadow(-color)?-$colors',
+        'text-shadow(-color)?-(op|opacity)-<percent>',
+      ],
+    },
+  ],
 
   // colors
-  [/^text-shadow-color-(.+)$/, colorResolver('--un-text-shadow-color', 'text-shadow'), { autocomplete: 'text-shadow-color-$colors' }],
-  [/^text-shadow(?:-color)?-op(?:acity)?-?(.+)$/, ([, opacity], { theme }) => ({ '--un-text-shadow-opacity': h.bracket.percent.cssvar(opacity, theme) }), { autocomplete: 'text-shadow(-color)?-(op|opacity)-<percent>' }],
+  [
+    /^text-shadow-color-(.+)$/,
+    colorResolver('--un-text-shadow-color', 'text-shadow'),
+    { autocomplete: 'text-shadow-color-$colors' },
+  ],
+  [
+    /^text-shadow(?:-color)?-op(?:acity)?-?(.+)$/,
+    ([, opacity], { theme }) => ({
+      '--un-text-shadow-opacity': h.bracket.percent.cssvar(opacity, theme),
+    }),
+    { autocomplete: 'text-shadow(-color)?-(op|opacity)-<percent>' },
+  ],
 ]
 
 const fontVariantNumericProperties = [
@@ -307,25 +359,73 @@ const fontVariantNumericProperties = [
   defineProperty('--un-numeric-fraction'),
 ]
 const baseFontVariantNumeric = {
-  'font-variant-numeric': 'var(--un-ordinal,) var(--un-slashed-zero,) var(--un-numeric-figure,) var(--un-numeric-spacing,) var(--un-numeric-fraction,)',
+  'font-variant-numeric':
+    'var(--un-ordinal,) var(--un-slashed-zero,) var(--un-numeric-figure,) var(--un-numeric-spacing,) var(--un-numeric-fraction,)',
 }
 
 export const fontVariantNumeric: Rule<Theme>[] = [
-  ['ordinal', [{ '--un-ordinal': 'ordinal', ...baseFontVariantNumeric }, ...fontVariantNumericProperties]],
-  ['slashed-zero', [{ '--un-slashed-zero': 'slashed-zero', ...baseFontVariantNumeric }, ...fontVariantNumericProperties]],
-  ['lining-nums', [{ '--un-numeric-figure': 'lining-nums', ...baseFontVariantNumeric }, ...fontVariantNumericProperties]],
-  ['oldstyle-nums', [{ '--un-numeric-figure': 'oldstyle-nums', ...baseFontVariantNumeric }, ...fontVariantNumericProperties]],
-  ['proportional-nums', [{ '--un-numeric-spacing': 'proportional-nums', ...baseFontVariantNumeric }, ...fontVariantNumericProperties]],
-  ['tabular-nums', [{ '--un-numeric-spacing': 'tabular-nums', ...baseFontVariantNumeric }, ...fontVariantNumericProperties]],
-  ['diagonal-fractions', [{ '--un-numeric-fraction': 'diagonal-fractions', ...baseFontVariantNumeric }, ...fontVariantNumericProperties]],
-  ['stacked-fractions', [{ '--un-numeric-fraction': 'stacked-fractions', ...baseFontVariantNumeric }, ...fontVariantNumericProperties]],
+  [
+    'ordinal',
+    [{ '--un-ordinal': 'ordinal', ...baseFontVariantNumeric }, ...fontVariantNumericProperties],
+  ],
+  [
+    'slashed-zero',
+    [
+      { '--un-slashed-zero': 'slashed-zero', ...baseFontVariantNumeric },
+      ...fontVariantNumericProperties,
+    ],
+  ],
+  [
+    'lining-nums',
+    [
+      { '--un-numeric-figure': 'lining-nums', ...baseFontVariantNumeric },
+      ...fontVariantNumericProperties,
+    ],
+  ],
+  [
+    'oldstyle-nums',
+    [
+      { '--un-numeric-figure': 'oldstyle-nums', ...baseFontVariantNumeric },
+      ...fontVariantNumericProperties,
+    ],
+  ],
+  [
+    'proportional-nums',
+    [
+      { '--un-numeric-spacing': 'proportional-nums', ...baseFontVariantNumeric },
+      ...fontVariantNumericProperties,
+    ],
+  ],
+  [
+    'tabular-nums',
+    [
+      { '--un-numeric-spacing': 'tabular-nums', ...baseFontVariantNumeric },
+      ...fontVariantNumericProperties,
+    ],
+  ],
+  [
+    'diagonal-fractions',
+    [
+      { '--un-numeric-fraction': 'diagonal-fractions', ...baseFontVariantNumeric },
+      ...fontVariantNumericProperties,
+    ],
+  ],
+  [
+    'stacked-fractions',
+    [
+      { '--un-numeric-fraction': 'stacked-fractions', ...baseFontVariantNumeric },
+      ...fontVariantNumericProperties,
+    ],
+  ],
   ['normal-nums', [{ 'font-variant-numeric': 'normal' }]],
 ]
 
-function handleText([, s = 'base']: string[], { theme }: RuleContext<Theme>): CSSObject | undefined {
+function handleText(
+  [, s = 'base']: string[],
+  { theme }: RuleContext<Theme>,
+): CSSObject | undefined {
   const split = splitShorthand(s, 'length')
-  if (!split)
-    return
+  if (!split) return
 
   const [size, leading] = split
 
@@ -336,8 +436,7 @@ function handleText([, s = 'base']: string[], { theme }: RuleContext<Theme>): CS
     if (theme.leading?.[leading]) {
       themeTracking(`leading`, leading)
       lineHeight = generateThemeVariable('leading', leading)
-    }
-    else {
+    } else {
       lineHeight = h.bracket.cssvar.global.rem(leading, theme)
     }
   }
@@ -351,8 +450,11 @@ function handleText([, s = 'base']: string[], { theme }: RuleContext<Theme>): CS
 
     return {
       'font-size': generateThemeVariable('text', [size, 'fontSize']),
-      'line-height': lineHeight ?? `var(--un-leading, ${generateThemeVariable('text', [size, 'lineHeight'])})`,
-      'letter-spacing': sizePairs.letterSpacing ? generateThemeVariable('text', [size, 'letterSpacing']) : undefined,
+      'line-height':
+        lineHeight ?? `var(--un-leading, ${generateThemeVariable('text', [size, 'lineHeight'])})`,
+      'letter-spacing': sizePairs.letterSpacing
+        ? generateThemeVariable('text', [size, 'letterSpacing'])
+        : undefined,
     }
   }
 
@@ -375,11 +477,9 @@ function handleSize([, s]: string[], { theme }: RuleContext<Theme>): CSSObject |
       'font-size': generateThemeVariable('text', [s, 'fontSize']),
       'line-height': `var(--un-leading, ${generateThemeVariable('text', [s, 'lineHeight'])})`,
     }
-  }
-  else {
+  } else {
     const d = h.bracket.cssvar.global.rem(s, theme)
-    if (d)
-      return { 'font-size': d }
+    if (d) return { 'font-size': d }
   }
 }
 
@@ -393,15 +493,22 @@ function handleColor(
     return result
   }
 
-  const customTheme = customThemeColorResolver('color', 'color', 'foreground')(match[1], options.cssVars)
+  const customTheme = customThemeColorResolver(
+    'color',
+    'color',
+    'foreground',
+  )(match[1], options.cssVars)
   if (customTheme) {
     return customTheme
   }
 }
 
-function handlerColorOrSize(match: RegExpMatchArray, ctx: RuleContext<Theme>, options: ResolvedWemeUIOptions): CSSObject | (CSSValueInput | string)[] | undefined {
-  if (isSize(match[1]))
-    return handleSize(match, ctx)
+function handlerColorOrSize(
+  match: RegExpMatchArray,
+  ctx: RuleContext<Theme>,
+  options: ResolvedWemeUIOptions,
+): CSSObject | (CSSValueInput | string)[] | undefined {
+  if (isSize(match[1])) return handleSize(match, ctx)
   return handleColor(match, ctx, options)
 }
 
@@ -411,7 +518,6 @@ export function splitShorthand(body: string, type: string) {
   if (front != null) {
     const match = (front.match(bracketTypeRe) ?? [])[1]
 
-    if (match == null || match === type)
-      return [front, rest]
+    if (match == null || match === type) return [front, rest]
   }
 }

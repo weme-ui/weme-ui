@@ -40,7 +40,7 @@ describe('resolveRadixColorScales', () => {
       const p3 = getRadixColorScales({ name })
 
       expect(result.p3).toEqual(p3)
-      expect(result.oklch).toEqual(p3.map(value => toOklchString(new Color(value))))
+      expect(result.oklch).toEqual(p3.map((value) => toOklchString(new Color(value))))
     }
   })
 
@@ -49,7 +49,7 @@ describe('resolveRadixColorScales', () => {
     const p3 = getRadixColorScales({ name: 'black', mode: 'dark' })
 
     expect(black.p3).toEqual(p3)
-    expect(black.oklch).toEqual(p3.map(value => toOklchString(new Color(value))))
+    expect(black.oklch).toEqual(p3.map((value) => toOklchString(new Color(value))))
   })
 
   it('keeps black and white p3 and oklch scales the same length', () => {

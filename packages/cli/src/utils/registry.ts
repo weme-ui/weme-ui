@@ -1,4 +1,10 @@
-import type { HashableContent, Prettify, RegistryConfig, RegistryItem, RegistryItemFile } from '../types'
+import type {
+  HashableContent,
+  Prettify,
+  RegistryConfig,
+  RegistryItem,
+  RegistryItemFile,
+} from '../types'
 import { RegistryConfigSchema } from '@weme-ui/schema'
 import { hash } from 'hasha'
 import * as v from 'valibot'
@@ -94,8 +100,7 @@ class Registry {
     const result: RegistryItem[] = []
 
     const visit = (item: RegistryItem) => {
-      if (visited.has(item.name))
-        return
+      if (visited.has(item.name)) return
       visited.add(item.name)
 
       for (const name of item.registryDependencies ?? []) {
@@ -119,8 +124,8 @@ class Registry {
    * @returns The resolved files of the item.
    */
   async getItemFiles(item: RegistryItem): Promise<ResolvedRegistryItemFile[]> {
-    return await Promise.all(item.files.map(
-      async (file) => {
+    return await Promise.all(
+      item.files.map(async (file) => {
         const result = await this.getItemFileContent(file.path)
 
         return {
@@ -131,8 +136,8 @@ class Registry {
           content: result.content,
           hash: result.hash,
         }
-      },
-    ))
+      }),
+    )
   }
 
   /**

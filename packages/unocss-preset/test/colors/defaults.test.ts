@@ -11,14 +11,7 @@ import {
 
 describe('radixNeutralColorNames', () => {
   it('lists the six radix neutral scales', () => {
-    expect(RADIX_NEUTRAL_COLOR_NAMES).toEqual([
-      'gray',
-      'mauve',
-      'slate',
-      'sage',
-      'olive',
-      'sand',
-    ])
+    expect(RADIX_NEUTRAL_COLOR_NAMES).toEqual(['gray', 'mauve', 'slate', 'sage', 'olive', 'sand'])
   })
 })
 

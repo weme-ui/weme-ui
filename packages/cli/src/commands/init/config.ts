@@ -13,9 +13,7 @@ import { parseRepoURL, writeFile } from '../../utils'
 export async function generateDefaultConfig(root: string, repo?: string) {
   const { name } = parseRepoURL(repo)
 
-  const registries = repo
-    ? [{ registry: name, repo }]
-    : DEFAULT_REGISTRIES
+  const registries = repo ? [{ registry: name, repo }] : DEFAULT_REGISTRIES
 
   const schema = v.safeParse(ProjectConfigSchema, {
     $schema: CONFIG_SCHEMA_URL,
@@ -27,9 +25,5 @@ export async function generateDefaultConfig(root: string, repo?: string) {
     throw new Error('Failed to generate default config')
   }
 
-  return await writeFile(
-    root,
-    PROJECT_CONFIG_FILENAME,
-    JSON.stringify(schema.output, null, 2),
-  )
+  return await writeFile(root, PROJECT_CONFIG_FILENAME, JSON.stringify(schema.output, null, 2))
 }

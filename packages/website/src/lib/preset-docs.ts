@@ -11,9 +11,7 @@ export interface PresetDocGroup {
 export const PRESET_DOCS_NAV: PresetDocGroup[] = [
   {
     label: '开始',
-    items: [
-      { id: 'index', title: 'Getting started' },
-    ],
+    items: [{ id: 'index', title: 'Getting started' }],
   },
   {
     label: 'Theme',
@@ -40,7 +38,7 @@ export const PRESET_DOCS_NAV: PresetDocGroup[] = [
 ]
 
 const titles = new Map(
-  PRESET_DOCS_NAV.flatMap(group => group.items.map(item => [item.id, item.title] as const)),
+  PRESET_DOCS_NAV.flatMap((group) => group.items.map((item) => [item.id, item.title] as const)),
 )
 
 /** `theme/color.md` 或 `index.md` → collection id。 */
@@ -57,8 +55,7 @@ export function docIdFromRelative(relativePath: string) {
 
 /** 站点根相对路径，不含 `base`。 */
 export function presetDocPath(id: string) {
-  if (id === 'index')
-    return '/docs/unocss-preset/'
+  if (id === 'index') return '/docs/unocss-preset/'
   return `/docs/unocss-preset/${id}/`
 }
 

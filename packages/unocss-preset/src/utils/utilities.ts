@@ -1,7 +1,22 @@
-import type { CSSEntries, CSSObject, CSSObjectInput, CSSValueInput, DynamicMatcher, RuleContext, StaticRule, VariantContext } from '@unocss/core'
+import type {
+  CSSEntries,
+  CSSObject,
+  CSSObjectInput,
+  CSSValueInput,
+  DynamicMatcher,
+  RuleContext,
+  StaticRule,
+  VariantContext,
+} from '@unocss/core'
 import type { Theme } from '../theme'
 import { escapeSelector, symbols, toArray } from '@unocss/core'
-import { colorToString, getStringComponent, getStringComponents, isInterpolatedMethod, parseCssColor } from '@unocss/rule-utils'
+import {
+  colorToString,
+  getStringComponent,
+  getStringComponents,
+  isInterpolatedMethod,
+  parseCssColor,
+} from '@unocss/rule-utils'
 import { parseColorAlias } from '../tokens'
 import { SpecialColorKey } from './constant'
 import { h } from './handlers'
@@ -40,29 +55,39 @@ export function directionSize(
   map: Record<string, string[]> = directionMap,
   formatter: (p: string, d: string) => string = (p, d) => `${p}${d}`,
 ): DynamicMatcher<Theme> {
-  return (([_, direction, size = '4']: (string | undefined)[], { theme }): CSSEntries | undefined => {
+  return ((
+    // oxlint-disable-next-line no-unused-vars
+    [_, direction, size = '4']: (string | undefined)[],
+    { theme },
+  ): CSSEntries | undefined => {
     if (size != null && direction != null) {
       let v: string | number | undefined
 
       const isNegative = size.startsWith('-')
-      if (isNegative)
-        size = size.slice(1)
+      if (isNegative) size = size.slice(1)
 
       v = numberResolver(size)
 
       if (v != null && !Number.isNaN(v)) {
         themeTracking('spacing')
-        return map[direction].map(i => [formatter(property, i), `calc(var(--spacing) * ${isNegative ? '-' : ''}${v})`])
-      }
-      else if (theme.spacing && size in theme.spacing) {
+        return map[direction].map((i) => [
+          formatter(property, i),
+          `calc(var(--spacing) * ${isNegative ? '-' : ''}${v})`,
+        ])
+      } else if (theme.spacing && size in theme.spacing) {
         themeTracking('spacing', size)
-        return map[direction].map(i => [formatter(property, i), isNegative ? `calc(var(--${escapeSelector(`spacing-${size}`)}) * -1)` : `var(--${escapeSelector(`spacing-${size}`)})`])
+        return map[direction].map((i) => [
+          formatter(property, i),
+          isNegative
+            ? `calc(var(--${escapeSelector(`spacing-${size}`)}) * -1)`
+            : `var(--${escapeSelector(`spacing-${size}`)})`,
+        ])
       }
 
       v = h.bracket.cssvar.global.auto.fraction.rem(isNegative ? `-${size}` : size, theme)
 
       if (v != null) {
-        return map[direction].map(i => [formatter(property, i), v])
+        return map[direction].map((i) => [formatter(property, i), v])
       }
     }
   }) as DynamicMatcher<Theme>
@@ -83,8 +108,7 @@ export function splitShorthand(body: string, type: string) {
   if (front != null) {
     const match = (front.match(bracketTypeRe) ?? [])[1]
 
-    if (match == null || match === type)
-      return [front, rest]
+    if (match == null || match === type) return [front, rest]
   }
 }
 
@@ -116,26 +140,28 @@ export function parseColor(body: string, theme: Theme) {
     }
   }
 
-  if (!split)
-    return
+  if (!split) return
 
   let opacity: string | undefined
-  let [main, opacityOrModifier, modifier] = split as [string, string | undefined, string | undefined]
+  let [main, opacityOrModifier, modifier] = split as [
+    string,
+    string | undefined,
+    string | undefined,
+  ]
 
-  if (isInterpolatedMethod(opacityOrModifier) || isInterpolatedMethod(h.bracket(opacityOrModifier ?? '', theme))) {
+  if (
+    isInterpolatedMethod(opacityOrModifier) ||
+    isInterpolatedMethod(h.bracket(opacityOrModifier ?? '', theme))
+  ) {
     modifier = opacityOrModifier
-  }
-  else {
+  } else {
     opacity = opacityOrModifier
   }
 
-  const colors = main
-    .replace(/([a-z])(\d)(?![-_a-z])/g, '$1-$2')
-    .split(/-/g)
+  const colors = main.replace(/([a-z])(\d)(?![-_a-z])/g, '$1-$2').split(/-/g)
   const [name] = colors
 
-  if (!name)
-    return
+  if (!name) return
 
   let parsed = parseThemeColor(theme, colors)
   if (!parsed && colors.length >= 2) {
@@ -161,15 +187,11 @@ export function parseColor(body: string, theme: Theme) {
     const bracket = h.bracketOfColor(main, theme)
     const bracketOrMain = bracket || main
 
-    if (h.numberWithUnit(bracketOrMain))
-      return
+    if (h.numberWithUnit(bracketOrMain)) return
 
-    if (/^#[\da-f]+$/i.test(bracketOrMain))
-      color = bracketOrMain
-    else if (/^hex-[\da-fA-F]+$/.test(bracketOrMain))
-      color = `#${bracketOrMain.slice(4)}`
-    else if (main.startsWith('$'))
-      color = h.cssvar(main)
+    if (/^#[\da-f]+$/i.test(bracketOrMain)) color = bracketOrMain
+    else if (/^hex-[\da-fA-F]+$/.test(bracketOrMain)) color = `#${bracketOrMain.slice(4)}`
+    else if (main.startsWith('$')) color = h.cssvar(main)
 
     color = color || bracket
   }
@@ -204,15 +226,13 @@ export function parseThemeColor(theme: Theme, keys: string[]) {
       no = '9'
       key = [...keys, no]
     }
-  }
-  else if (typeof colorData === 'string') {
+  } else if (typeof colorData === 'string') {
     color = colorData
     key = keys
     no = keys.at(-1)
   }
 
-  if (!color)
-    return
+  if (!color) return
 
   return {
     color,
@@ -224,17 +244,14 @@ export function parseThemeColor(theme: Theme, keys: string[]) {
 export function getThemeByKey(theme: Theme, themeKey: keyof Theme, keys: string[]) {
   const obj = theme[themeKey]
   function deepGet(current: any, path: string[]): any {
-    if (path.length === 0)
-      return current
-    if (!current || typeof current !== 'object')
-      return undefined
+    if (path.length === 0) return current
+    if (!current || typeof current !== 'object') return undefined
     // First, check if the path is a flat key (e.g., foo-bar)
     for (let i = path.length; i > 0; i--) {
       const flatKey = path.slice(0, i).join('-')
       if (flatKey in current) {
         const v = current[flatKey]
-        if (i === path.length)
-          return v
+        if (i === path.length) return v
         // look for the rest of the path
         return deepGet(v, path.slice(i))
       }
@@ -254,8 +271,7 @@ export function colorCSSGenerator(
   varName: string,
   ctx?: RuleContext<Theme>,
 ): [CSSObject, ...CSSValueInput[]] | undefined {
-  if (!data)
-    return
+  if (!data) return
 
   const { color, keys, alpha, modifier } = data
   const rawColorComment = ctx?.generator.config.envMode === 'dev' && color ? ` /* ${color} */` : ''
@@ -272,7 +288,7 @@ export function colorCSSGenerator(
     }
 
     const alphaKey = `--un-${varName}-opacity`
-    const value = (keys && !isCSSVar && !isSpecial) ? generateThemeVariable('colors', keys) : color
+    const value = keys && !isCSSVar && !isSpecial ? generateThemeVariable('colors', keys) : color
     let method = modifier ?? (keys ? 'in srgb' : 'in oklab')
     if (!method.startsWith('in ') && !method.startsWith('var(')) {
       method = `in ${method}`
@@ -293,7 +309,7 @@ export function colorCSSGenerator(
         themeTracking(`colors`, keys)
         if (!modifier) {
           const colorValue = isShadowColor
-            ? `${alpha ? `color-mix(in oklab, ${value} ${alpha}, transparent)` : `${value}`} var(${alphaKey})`
+            ? `${alpha ? `color-mix(in oklab, ${value} ${alpha}, transparent)` : value} var(${alphaKey})`
             : `${value} ${alpha ?? `var(${alphaKey})`}`
 
           if (isShadowColor || alpha) {
@@ -317,8 +333,7 @@ export function colorCSSGenerator(
 export function colorResolver(property: string, varName: string) {
   return ([, body]: string[], ctx: RuleContext<Theme>): (CSSValueInput | string)[] | undefined => {
     const data = parseColor(body ?? '', ctx.theme)
-    if (!data)
-      return
+    if (!data) return
 
     return colorCSSGenerator(data, property, varName, ctx) as (CSSValueInput | string)[]
   }
@@ -332,8 +347,7 @@ export function colorableShadows(shadows: string | string[], colorVar: string, a
   for (let i = 0; i < shadows.length; i++) {
     // shadow values are between 3 to 6 terms including color
     const components = getStringComponents(shadows[i], ' ', 6)
-    if (!components || components.length < 3)
-      return shadows
+    if (!components || components.length < 3) return shadows
 
     let isInset = false
     const pos = components.indexOf('inset')
@@ -346,21 +360,18 @@ export function colorableShadows(shadows: string | string[], colorVar: string, a
     const lastComp = components.at(-1)
     if (parseCssColor(components.at(0))) {
       const color = parseCssColor(components.shift())
-      if (color)
-        colorVarValue = colorToString(color)
-    }
-    else if (parseCssColor(lastComp)) {
+      if (color) colorVarValue = colorToString(color)
+    } else if (parseCssColor(lastComp)) {
       const color = parseCssColor(components.pop())
-      if (color)
-        colorVarValue = colorToString(color)
-    }
-    else if (lastComp && lastComp.startsWith('var(')) {
+      if (color) colorVarValue = colorToString(color)
+    } else if (lastComp && lastComp.startsWith('var(')) {
       const color = components.pop()
-      if (color)
-        colorVarValue = color
+      if (color) colorVarValue = color
     }
 
-    colored.push(`${isInset ? 'inset ' : ''}${components.join(' ')} var(${colorVar}, ${alpha ? `oklab(from ${colorVarValue} l a b / ${alpha})` : colorVarValue})`)
+    colored.push(
+      `${isInset ? 'inset ' : ''}${components.join(' ')} var(${colorVar}, ${alpha ? `oklab(from ${colorVarValue} l a b / ${alpha})` : colorVarValue})`,
+    )
   }
 
   return colored
@@ -374,13 +385,16 @@ export function hasParseableColor(color: string | undefined, theme: Theme) {
 
 // #region resolve breakpoints
 const reLetters = /[a-z]+/gi
-const resolvedBreakpoints = new WeakMap<any, Map<string, { point: string, size: string }[]>>()
+const resolvedBreakpoints = new WeakMap<any, Map<string, { point: string; size: string }[]>>()
 
-export function resolveBreakpoints({ theme, generator }: Readonly<VariantContext<Theme>>, key: 'breakpoint' | 'verticalBreakpoint' = 'breakpoint') {
-  const breakpoints: Record<string, string> | undefined = (generator?.userConfig?.theme as any)?.[key] || theme[key]
+export function resolveBreakpoints(
+  { theme, generator }: Readonly<VariantContext<Theme>>,
+  key: 'breakpoint' | 'verticalBreakpoint' = 'breakpoint',
+) {
+  const breakpoints: Record<string, string> | undefined =
+    (generator?.userConfig?.theme as any)?.[key] || theme[key]
 
-  if (!breakpoints)
-    return undefined
+  if (!breakpoints) return undefined
 
   let cache = resolvedBreakpoints.get(theme)
   if (!cache) {
@@ -388,11 +402,13 @@ export function resolveBreakpoints({ theme, generator }: Readonly<VariantContext
     resolvedBreakpoints.set(theme, cache)
   }
   // horizontal and vertical breakpoints share the same theme, so the cache has to be keyed by both
-  if (cache.has(key))
-    return cache.get(key)
+  if (cache.has(key)) return cache.get(key)
 
   const resolved = Object.entries(breakpoints)
-    .sort((a, b) => Number.parseInt(a[1].replace(reLetters, '')) - Number.parseInt(b[1].replace(reLetters, '')))
+    .toSorted(
+      (a, b) =>
+        Number.parseInt(a[1].replace(reLetters, '')) - Number.parseInt(b[1].replace(reLetters, '')),
+    )
     .map(([point, size]) => ({ point, size }))
 
   cache.set(key, resolved)
@@ -406,18 +422,17 @@ export function resolveVerticalBreakpoints(context: Readonly<VariantContext<Them
 
 // #region Global static & defineProperty
 export function makeGlobalStaticRules(prefix: string, property?: string): StaticRule[] {
-  return globalKeywords.map(keyword => [`${prefix}-${keyword}`, { [property ?? prefix]: keyword }])
+  return globalKeywords.map((keyword) => [
+    `${prefix}-${keyword}`,
+    { [property ?? prefix]: keyword },
+  ])
 }
 
 export function defineProperty(
   property: string,
-  options: { syntax?: string, inherits?: boolean, initialValue?: unknown } = {},
+  options: { syntax?: string; inherits?: boolean; initialValue?: unknown } = {},
 ): CSSValueInput {
-  const {
-    syntax = '*',
-    inherits = false,
-    initialValue,
-  } = options
+  const { syntax = '*', inherits = false, initialValue } = options
 
   const value: CSSObjectInput = {
     [symbols.shortcutsNoMerge]: true,
@@ -443,13 +458,12 @@ export function defineProperty(
 
 // #region Basic util functions
 export function isSize(str: string) {
-  if (str[0] === '[' && str.endsWith(']'))
-    str = str.slice(1, -1)
+  if (str[0] === '[' && str.endsWith(']')) str = str.slice(1, -1)
   return cssMathFnRE.test(str) || numberWithUnitRE.test(str)
 }
 
 export function camelize(str: string) {
-  return str.replace(/-(\w)/g, (_, c) => c ? c.toUpperCase() : '')
+  return str.replace(/-(\w)/g, (_, c) => (c ? c.toUpperCase() : ''))
 }
 
 export function hyphenate(str: string) {
@@ -457,8 +471,10 @@ export function hyphenate(str: string) {
 }
 
 export function compressCSS(css: string, isDev = false) {
-  if (isDev)
-    return css.trim()
-  return css.trim().replace(/\s+/g, ' ').replace(/\/\*[\s\S]*?\*\//g, '')
+  if (isDev) return css.trim()
+  return css
+    .trim()
+    .replace(/\s+/g, ' ')
+    .replace(/\/\*[\s\S]*?\*\//g, '')
 }
 // #endregion

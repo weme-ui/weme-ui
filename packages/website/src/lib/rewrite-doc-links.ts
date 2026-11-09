@@ -23,40 +23,33 @@ export function rewritePresetDocLinks() {
     name: 'rewrite-preset-doc-links',
     link(node: DocLink, ctx: RewriteContext) {
       const next = rewriteDocHref(node.url, ctx.fileURL)
-      if (next)
-        ctx.setProperty(node, 'url', next)
+      if (next) ctx.setProperty(node, 'url', next)
     },
     definition(node: DocLink, ctx: RewriteContext) {
       const next = rewriteDocHref(node.url, ctx.fileURL)
-      if (next)
-        ctx.setProperty(node, 'url', next)
+      if (next) ctx.setProperty(node, 'url', next)
     },
   }
 }
 
 export function rewriteDocHref(url: string, fileURL?: URL) {
-  if (!fileURL)
-    return
+  if (!fileURL) return
 
   const filePath = fileURLToPath(fileURL).replace(/\\/g, '/')
   const mark = filePath.indexOf(DOCS_MARK)
-  if (mark === -1)
-    return
+  if (mark === -1) return
 
   const docsRoot = filePath.slice(0, mark + DOCS_MARK.length - 1)
   const hashAt = url.indexOf('#')
   const pathPart = hashAt === -1 ? url : url.slice(0, hashAt)
   const hash = hashAt === -1 ? '' : url.slice(hashAt)
 
-  if (!pathPart.endsWith('.md'))
-    return
-  if (/^[a-z][a-z0-9+.-]*:/i.test(pathPart) || pathPart.startsWith('//'))
-    return
+  if (!pathPart.endsWith('.md')) return
+  if (/^[a-z][a-z0-9+.-]*:/i.test(pathPart) || pathPart.startsWith('//')) return
 
   const absolute = posix.normalize(posix.join(posix.dirname(filePath), pathPart))
   const rootPrefix = `${docsRoot}/`
-  if (!absolute.startsWith(rootPrefix))
-    return
+  if (!absolute.startsWith(rootPrefix)) return
 
   const id = docIdFromRelative(absolute.slice(rootPrefix.length))
   return `${SITE_BASE}${presetDocPath(id)}${hash}`

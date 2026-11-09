@@ -22,31 +22,36 @@ function normalizeDirection(dir: string) {
   return dirMap[dir] ?? dir
 }
 
-function handleSlide(val: string | undefined, dir: string, theme: Theme): [string, string] | undefined {
+function handleSlide(
+  val: string | undefined,
+  dir: string,
+  theme: Theme,
+): [string, string] | undefined {
   const direction = normalizeDirection(dir)
   const needsNegate = direction === 'top' || direction === 'left'
   let value: string | undefined
 
   if (!val) {
     value = needsNegate ? `-${DEFAULT_SLIDE_TRANSLATE}` : DEFAULT_SLIDE_TRANSLATE
-  }
-  else {
+  } else {
     const num = numberResolver(val)
     if (num != null) {
       themeTracking('spacing')
-      value = needsNegate
-        ? `calc(var(--spacing) * ${num} * -1)`
-        : `calc(var(--spacing) * ${num})`
-    }
-    else {
+      value = needsNegate ? `calc(var(--spacing) * ${num} * -1)` : `calc(var(--spacing) * ${num})`
+    } else {
       value = h.bracket.cssvar.fraction.percent.rem(val, theme)
-      if (value && needsNegate && !value.startsWith('var(--') && value !== '0' && !value.startsWith('-'))
+      if (
+        value &&
+        needsNegate &&
+        !value.startsWith('var(--') &&
+        value !== '0' &&
+        !value.startsWith('-')
+      )
         value = `-${value}`
     }
   }
 
-  if (!value)
-    return
+  if (!value) return
 
   return [value, direction]
 }
@@ -88,14 +93,22 @@ function baseAnimationStyles(name: typeof ENTER | typeof EXIT) {
  * @category Rules
  */
 export const animatePropertyRules: Rule<Theme>[] = [
-  [/^__un-animate-enter$/, function* () {
-    yield* yieldEnterExitProperties('enter')
-    yield* yieldAnimationParamProperties()
-  }, { internal: true }],
-  [/^__un-animate-exit$/, function* () {
-    yield* yieldEnterExitProperties('exit')
-    yield* yieldAnimationParamProperties()
-  }, { internal: true }],
+  [
+    /^__un-animate-enter$/,
+    function* () {
+      yield* yieldEnterExitProperties('enter')
+      yield* yieldAnimationParamProperties()
+    },
+    { internal: true },
+  ],
+  [
+    /^__un-animate-exit$/,
+    function* () {
+      yield* yieldEnterExitProperties('exit')
+      yield* yieldAnimationParamProperties()
+    },
+    { internal: true },
+  ],
 ]
 
 /**
@@ -152,8 +165,7 @@ export const animateModifiers: Rule<Theme>[] = [
     /^fade-in(?:-(.+))?$/,
     ([, op], { theme }) => {
       const value = h.bracket.cssvar.percent(op || DEFAULT_FADE_OPACITY, theme)
-      if (value == null)
-        return
+      if (value == null) return
       return { '--un-enter-opacity': value }
     },
     { autocomplete: ['fade-in', 'fade-in-<percent>'] },
@@ -162,8 +174,7 @@ export const animateModifiers: Rule<Theme>[] = [
     /^fade-out(?:-(.+))?$/,
     ([, op], { theme }) => {
       const value = h.bracket.cssvar.percent(op || DEFAULT_FADE_OPACITY, theme)
-      if (value == null)
-        return
+      if (value == null) return
       return { '--un-exit-opacity': value }
     },
     { autocomplete: ['fade-out', 'fade-out-<percent>'] },
@@ -174,8 +185,7 @@ export const animateModifiers: Rule<Theme>[] = [
     /^zoom-in(?:-(.+))?$/,
     ([, scale], { theme }) => {
       const value = h.bracket.cssvar.fraction.percent(scale || DEFAULT_ZOOM_SCALE, theme)
-      if (value == null)
-        return
+      if (value == null) return
       return { '--un-enter-scale': value }
     },
     { autocomplete: ['zoom-in', 'zoom-in-<percent>'] },
@@ -184,8 +194,7 @@ export const animateModifiers: Rule<Theme>[] = [
     /^zoom-out(?:-(.+))?$/,
     ([, scale], { theme }) => {
       const value = h.bracket.cssvar.fraction.percent(scale || DEFAULT_ZOOM_SCALE, theme)
-      if (value == null)
-        return
+      if (value == null) return
       return { '--un-exit-scale': value }
     },
     { autocomplete: ['zoom-out', 'zoom-out-<percent>'] },
@@ -196,8 +205,7 @@ export const animateModifiers: Rule<Theme>[] = [
     /^spin-in(?:-(.+))?$/,
     ([, deg], { theme }) => {
       const value = h.bracket.cssvar.degree(deg || DEFAULT_SPIN_DEGREE, theme)
-      if (value == null)
-        return
+      if (value == null) return
       return { '--un-enter-rotate': value }
     },
     { autocomplete: ['spin-in', 'spin-in-<num>'] },
@@ -206,8 +214,7 @@ export const animateModifiers: Rule<Theme>[] = [
     /^spin-out(?:-(.+))?$/,
     ([, deg], { theme }) => {
       const value = h.bracket.cssvar.degree(deg || DEFAULT_SPIN_DEGREE, theme)
-      if (value == null)
-        return
+      if (value == null) return
       return { '--un-exit-rotate': value }
     },
     { autocomplete: ['spin-out', 'spin-out-<num>'] },
@@ -218,13 +225,10 @@ export const animateModifiers: Rule<Theme>[] = [
     /^slide-in(?:-from)?-([tblr]|top|bottom|left|right)(?:-(.+))?$/,
     ([, dir, val], { theme }) => {
       const resolved = handleSlide(val, dir, theme)
-      if (!resolved)
-        return
+      if (!resolved) return
       const [value, direction] = resolved
-      if (direction === 'top' || direction === 'bottom')
-        return { '--un-enter-translate-y': value }
-      if (direction === 'left' || direction === 'right')
-        return { '--un-enter-translate-x': value }
+      if (direction === 'top' || direction === 'bottom') return { '--un-enter-translate-y': value }
+      if (direction === 'left' || direction === 'right') return { '--un-enter-translate-x': value }
     },
     {
       autocomplete: [
@@ -240,13 +244,10 @@ export const animateModifiers: Rule<Theme>[] = [
     /^slide-out(?:-to)?-([tblr]|top|bottom|left|right)(?:-(.+))?$/,
     ([, dir, val], { theme }) => {
       const resolved = handleSlide(val, dir, theme)
-      if (!resolved)
-        return
+      if (!resolved) return
       const [value, direction] = resolved
-      if (direction === 'top' || direction === 'bottom')
-        return { '--un-exit-translate-y': value }
-      if (direction === 'left' || direction === 'right')
-        return { '--un-exit-translate-x': value }
+      if (direction === 'top' || direction === 'bottom') return { '--un-exit-translate-y': value }
+      if (direction === 'left' || direction === 'right') return { '--un-exit-translate-x': value }
     },
     {
       autocomplete: [

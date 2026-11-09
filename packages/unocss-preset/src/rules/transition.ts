@@ -1,18 +1,24 @@
 import type { Rule } from '@unocss/core'
 import type { Theme } from '../theme'
-import { defineProperty, generateThemeVariable, globalKeywords, h, makeGlobalStaticRules, themeTracking } from '../utils'
+import {
+  defineProperty,
+  generateThemeVariable,
+  globalKeywords,
+  h,
+  makeGlobalStaticRules,
+  themeTracking,
+} from '../utils'
 
 function resolveTransitionProperty(prop: string, theme: Theme): string | undefined {
   let p: string | undefined
 
   if (h.cssvar(prop) != null) {
     p = h.cssvar(prop)
-  }
-  else {
-    if ((prop.startsWith('[') && prop.endsWith(']'))) {
+  } else {
+    if (prop.startsWith('[') && prop.endsWith(']')) {
       prop = prop.slice(1, -1)
     }
-    const props = prop.split(',').map(p => theme.property?.[p] ?? h.properties(p))
+    const props = prop.split(',').map((p) => theme.property?.[p] ?? h.properties(p))
     if (props.every(Boolean)) {
       p = props.join(',')
     }
@@ -39,9 +45,7 @@ export const transitions: Rule<Theme>[] = [
         return {
           ...defaultTransition,
         }
-      }
-
-      else if (prop != null) {
+      } else if (prop != null) {
         const p = resolveTransitionProperty(prop, theme)
 
         if (p) {
@@ -51,9 +55,7 @@ export const transitions: Rule<Theme>[] = [
             'transition-property': p,
           }
         }
-      }
-
-      else if (d != null) {
+      } else if (d != null) {
         return {
           '--un-duration': h.time(d),
           ...defaultTransition,
@@ -83,8 +85,7 @@ export const transitions: Rule<Theme>[] = [
       if (theme.ease?.[d]) {
         themeTracking('ease', d)
         v = generateThemeVariable('ease', d)
-      }
-      else {
+      } else {
         v = h.bracket.cssvar(d, theme)
       }
 
@@ -104,12 +105,9 @@ export const transitions: Rule<Theme>[] = [
     /^(?:transition-)?property-(.+)$/,
     ([, v], { theme }) => {
       const p = h.global(v) || resolveTransitionProperty(v, theme)
-      if (p)
-        return { 'transition-property': p }
+      if (p) return { 'transition-property': p }
     },
-    { autocomplete: [
-      `transition-property-(${[...globalKeywords].join('|')})`,
-    ] },
+    { autocomplete: [`transition-property-(${[...globalKeywords].join('|')})`] },
   ],
 
   // none

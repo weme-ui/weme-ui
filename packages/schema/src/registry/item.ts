@@ -11,15 +11,7 @@ import { CSSVariables, NonEmptyTrimmedString } from '../shared'
  * @category Registry
  */
 export const RegistryItemTypeEnum = v.pipe(
-  v.picklist([
-    'component',
-    'composable',
-    'block',
-    'layout',
-    'page',
-    'util',
-    'theme',
-  ]),
+  v.picklist(['component', 'composable', 'block', 'layout', 'page', 'util', 'theme']),
   v.metadata({
     title: '注册项类型',
     description: 'registry item 的分类。决定如何归类该 item，以及解析文件时使用哪条默认安装路径。',
@@ -35,13 +27,11 @@ export const RegistryItemTypeEnum = v.pipe(
  * @default 'on-depended'
  */
 export const RegistryItemWhenEnum = v.pipe(
-  v.picklist([
-    'on-init',
-    'on-depended',
-  ]),
+  v.picklist(['on-init', 'on-depended']),
   v.metadata({
     title: '安装时机',
-    description: '控制被动（自动）安装时该 item 何时被安装。"on-init" 表示 registry 初始化后立即安装；"on-depended" 表示仅在其他 item 依赖它时才安装。不影响用户显式请求的安装。',
+    description:
+      '控制被动（自动）安装时该 item 何时被安装。"on-init" 表示 registry 初始化后立即安装；"on-depended" 表示仅在其他 item 依赖它时才安装。不影响用户显式请求的安装。',
     examples: ['on-init', 'on-depended'],
   }),
 )
@@ -54,15 +44,11 @@ export const RegistryItemWhenEnum = v.pipe(
  * @default 'file'
  */
 export const RegistryItemFileKindEnum = v.pipe(
-  v.picklist([
-    'file',
-    'doc',
-    'example',
-    'test',
-  ]),
+  v.picklist(['file', 'doc', 'example', 'test']),
   v.metadata({
     title: '文件种类',
-    description: '文件在 registry item 中的角色。"file" 为主源码；"doc"、"example"、"test" 分别标记配套文档、示例与测试。',
+    description:
+      '文件在 registry item 中的角色。"file" 为主源码；"doc"、"example"、"test" 分别标记配套文档、示例与测试。',
     examples: ['file', 'doc', 'example', 'test'],
   }),
 )
@@ -112,7 +98,8 @@ export const RegistryItemFileSchema = v.pipe(
         NonEmptyTrimmedString,
         v.metadata({
           title: '目标路径',
-          description: '安装该 item 时文件应写入的目标路径。省略时根据 registry 默认路径与 item type 推导。',
+          description:
+            '安装该 item 时文件应写入的目标路径。省略时根据 registry 默认路径与 item type 推导。',
           examples: ['components/ui/button/button.vue'],
         }),
       ),
@@ -187,7 +174,8 @@ export const RegistryItemSchema = v.pipe(
         RegistryItemTypeEnum,
         v.metadata({
           title: '类型',
-          description: '该 registry item 的分类。省略时默认为 "component"。用于归类，并选择对应的默认安装路径。',
+          description:
+            '该 registry item 的分类。省略时默认为 "component"。用于归类，并选择对应的默认安装路径。',
           examples: ['component', 'composable', 'block', 'layout', 'page', 'util', 'theme'],
         }),
       ),
@@ -205,7 +193,8 @@ export const RegistryItemSchema = v.pipe(
         RegistryItemWhenEnum,
         v.metadata({
           title: '安装时机',
-          description: '控制被动（自动）安装时该 item 何时被安装。"on-init" 表示 registry 初始化后立即安装；"on-depended" 表示仅在其他 item 依赖它时才安装。显式安装不受影响。',
+          description:
+            '控制被动（自动）安装时该 item 何时被安装。"on-init" 表示 registry 初始化后立即安装；"on-depended" 表示仅在其他 item 依赖它时才安装。显式安装不受影响。',
           examples: ['on-init', 'on-depended'],
         }),
       ),
@@ -234,7 +223,8 @@ export const RegistryItemSchema = v.pipe(
         CSSVariables,
         v.metadata({
           title: 'CSS 变量',
-          description: '安装该 item 时注入的 CSS 自定义属性。取值会合并进 UnoCSS preset options，嵌套结构为 theme-key → variable-name → value。',
+          description:
+            '安装该 item 时注入的 CSS 自定义属性。取值会合并进 UnoCSS preset options，嵌套结构为 theme-key → variable-name → value。',
           examples: [{ card: { 'bg-color': 'oklch(0.55 0.2 250)' } }],
         }),
       ),
@@ -250,7 +240,8 @@ export const RegistryItemSchema = v.pipe(
         v.array(v.pipe(NonEmptyTrimmedString, v.toLowerCase())),
         v.metadata({
           title: '依赖',
-          description: '该 item 运行时所需的 NPM 包。条目可带版本范围或 tag，例如 "vue^3.0.0" 或 "lodash@latest"。',
+          description:
+            '该 item 运行时所需的 NPM 包。条目可带版本范围或 tag，例如 "vue^3.0.0" 或 "lodash@latest"。',
           examples: ['vue^3.4.0', 'class-variance-authority@latest'],
         }),
       ),
@@ -282,7 +273,8 @@ export const RegistryItemSchema = v.pipe(
         v.array(v.pipe(NonEmptyTrimmedString, v.toLowerCase())),
         v.metadata({
           title: 'Registry 依赖',
-          description: '必须与该 item 一并安装的其他 registry item。按同一或已解析 registry 内的 item 名称引用。',
+          description:
+            '必须与该 item 一并安装的其他 registry item。按同一或已解析 registry 内的 item 名称引用。',
           examples: ['button', 'utils'],
         }),
       ),
@@ -298,29 +290,35 @@ export const RegistryItemSchema = v.pipe(
         v.record(NonEmptyTrimmedString, NonEmptyTrimmedString),
         v.metadata({
           title: '元数据',
-          description: '供工具链与文档使用的任意键值元数据。文档展示字段使用 "docs.*" 命名空间，例如 "docs.category" 与 "docs.categoryLabel"。',
-          examples: [{
-            'docs.category': 'actions',
-            'docs.categoryLabel': 'Actions',
-          }],
+          description:
+            '供工具链与文档使用的任意键值元数据。文档展示字段使用 "docs.*" 命名空间，例如 "docs.category" 与 "docs.categoryLabel"。',
+          examples: [
+            {
+              'docs.category': 'actions',
+              'docs.categoryLabel': 'Actions',
+            },
+          ],
         }),
       ),
     ),
   }),
   v.metadata({
     title: 'Registry item',
-    description: 'registry 中的一个可安装单元。描述标识、类型、文件、CSS 变量，以及 NPM 与 registry 级依赖。',
-    examples: [{
-      name: 'button',
-      title: 'Button',
-      description: '支持多种变体的通用按钮 component。',
-      type: 'component',
-      files: [{ path: 'components/button/button.vue' }],
-      registryDependencies: ['utils'],
-      meta: {
-        'docs.category': 'actions',
-        'docs.categoryLabel': 'Actions',
+    description:
+      'registry 中的一个可安装单元。描述标识、类型、文件、CSS 变量，以及 NPM 与 registry 级依赖。',
+    examples: [
+      {
+        name: 'button',
+        title: 'Button',
+        description: '支持多种变体的通用按钮 component。',
+        type: 'component',
+        files: [{ path: 'components/button/button.vue' }],
+        registryDependencies: ['utils'],
+        meta: {
+          'docs.category': 'actions',
+          'docs.categoryLabel': 'Actions',
+        },
       },
-    }],
+    ],
   }),
 )

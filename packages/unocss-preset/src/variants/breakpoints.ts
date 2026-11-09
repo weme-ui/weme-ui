@@ -15,22 +15,25 @@ export function variantBreakpoints(): VariantObject<Theme> {
         const m = matcher.replace(match[0], '')
         return {
           matcher: m,
-          handle: (input, next) => next({
-            ...input,
-            parent: `${input.parent ? `${input.parent} $$ ` : ''}@media (${match[1]}-width: ${match[2]})`,
-            // parentOrder: order,
-          }),
+          handle: (input, next) =>
+            next({
+              ...input,
+              parent: `${input.parent ? `${input.parent} $$ ` : ''}@media (${match[1]}-width: ${match[2]})`,
+              // parentOrder: order,
+            }),
         }
       }
-      const variantEntries: Array<[string, string, number]> = (resolveBreakpoints(context) ?? [])
-        .map(({ point, size }, idx) => [point, size, idx])
+      const variantEntries: Array<[string, string, number]> = (
+        resolveBreakpoints(context) ?? []
+      ).map(({ point, size }, idx) => [point, size, idx])
       for (const [point, size, idx] of variantEntries) {
         if (!regexCache[point])
-          regexCache[point] = new RegExp(`^((?:([al]t-|[<~]|max-))?${point}(?:${context.generator.config.separators.join('|')}))`)
+          regexCache[point] = new RegExp(
+            `^((?:([al]t-|[<~]|max-))?${point}(?:${context.generator.config.separators.join('|')}))`,
+          )
 
         const match = matcher.match(regexCache[point])
-        if (!match)
-          continue
+        if (!match) continue
 
         const [, pre] = match
 
@@ -38,8 +41,7 @@ export function variantBreakpoints(): VariantObject<Theme> {
         // container rule is responsive, but also is breakpoint aware
         // it is handled on its own module (container.ts) and so we
         // exclude it from here
-        if (m === 'container')
-          continue
+        if (m === 'container') continue
 
         const isLtPrefix = pre.startsWith('lt-') || pre.startsWith('<') || pre.startsWith('max-')
         const isAtPrefix = pre.startsWith('at-') || pre.startsWith('~')
@@ -47,38 +49,41 @@ export function variantBreakpoints(): VariantObject<Theme> {
         let order = 3000 // parseInt(size)
 
         if (isLtPrefix) {
-          order -= (idx + 1)
+          order -= idx + 1
           return {
             matcher: m,
-            handle: (input, next) => next({
-              ...input,
-              parent: `${input.parent ? `${input.parent} $$ ` : ''}@media (max-width: ${calcMaxWidthBySize(size)})`,
-              parentOrder: order,
-            }),
+            handle: (input, next) =>
+              next({
+                ...input,
+                parent: `${input.parent ? `${input.parent} $$ ` : ''}@media (max-width: ${calcMaxWidthBySize(size)})`,
+                parentOrder: order,
+              }),
           }
         }
 
-        order += (idx + 1)
+        order += idx + 1
 
         // support for windicss @<breakpoint> => last breakpoint will not have the upper bound
         if (isAtPrefix && idx < variantEntries.length - 1) {
           return {
             matcher: m,
-            handle: (input, next) => next({
-              ...input,
-              parent: `${input.parent ? `${input.parent} $$ ` : ''}@media (min-width: ${size}) and (max-width: ${calcMaxWidthBySize(variantEntries[idx + 1][1])})`,
-              parentOrder: order,
-            }),
+            handle: (input, next) =>
+              next({
+                ...input,
+                parent: `${input.parent ? `${input.parent} $$ ` : ''}@media (min-width: ${size}) and (max-width: ${calcMaxWidthBySize(variantEntries[idx + 1][1])})`,
+                parentOrder: order,
+              }),
           }
         }
 
         return {
           matcher: m,
-          handle: (input, next) => next({
-            ...input,
-            parent: `${input.parent ? `${input.parent} $$ ` : ''}@media (min-width: ${size})`,
-            parentOrder: order,
-          }),
+          handle: (input, next) =>
+            next({
+              ...input,
+              parent: `${input.parent ? `${input.parent} $$ ` : ''}@media (min-width: ${size})`,
+              parentOrder: order,
+            }),
         }
       }
     },

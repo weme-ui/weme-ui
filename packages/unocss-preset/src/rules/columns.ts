@@ -3,14 +3,18 @@ import type { Theme } from '../theme'
 import { generateThemeVariable, h, makeGlobalStaticRules, themeTracking } from '../utils'
 
 export const columns: Rule<Theme>[] = [
-  [/^columns-(.+)$/, ([, v], { theme }) => {
-    if (theme.container && v in theme.container) {
-      themeTracking('container', v)
-      return { columns: generateThemeVariable('container', v) }
-    }
+  [
+    /^columns-(.+)$/,
+    ([, v], { theme }) => {
+      if (theme.container && v in theme.container) {
+        themeTracking('container', v)
+        return { columns: generateThemeVariable('container', v) }
+      }
 
-    return { columns: h.bracket.numberWithUnit.number.cssvar(v, theme) }
-  }, { autocomplete: ['columns-<num>', 'columns-$container'] }],
+      return { columns: h.bracket.numberWithUnit.number.cssvar(v, theme) }
+    },
+    { autocomplete: ['columns-<num>', 'columns-$container'] },
+  ],
   ['columns-auto', { columns: 'auto' }],
 
   // break before

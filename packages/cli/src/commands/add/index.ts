@@ -1,7 +1,8 @@
+// oxlint-disable no-await-in-loop
 import type { RegistryItemFileKind } from '../../types'
+import { defineCommand } from 'citty'
 import { resolve } from 'node:path/posix'
 import { cwd, exit } from 'node:process'
-import { defineCommand } from 'citty'
 import ora from 'ora'
 import { callWhen, Project, randomColor, unwrapError } from '../../utils'
 
@@ -35,12 +36,15 @@ export default defineCommand({
     }
 
     const cwd = resolve(args.cwd)
-    const kinds = (args.kinds.split(',').map(kind => kind.trim()) || ['file', 'doc']) as RegistryItemFileKind[]
+    const kinds = (args.kinds.split(',').map((kind) => kind.trim()) || [
+      'file',
+      'doc',
+    ]) as RegistryItemFileKind[]
 
     try {
       const project = new Project(cwd)
 
-      if (await project.isInitialized() === false) {
+      if (!(await project.isInitialized())) {
         throw new Error('Project is not initialized')
       }
 
@@ -48,17 +52,14 @@ export default defineCommand({
       const spinner = ora({ text: 'Adding items...' }).start()
 
       for (const item of items) {
-        await callWhen(
-          await project.hasAddedItem(item) === false,
-          async () => {
-            spinner.text = `Adding ${item}...`
-            spinner.color = randomColor()
+        await callWhen(!(await project.hasAddedItem(item)), async () => {
+          spinner.text = `Adding ${item}...`
+          spinner.color = randomColor()
 
-            if (await project.addItem(item, kinds)) {
-              count++
-            }
-          },
-        )
+          if (await project.addItem(item, kinds)) {
+            count++
+          }
+        })
       }
 
       if (count === 0) {
@@ -67,8 +68,7 @@ export default defineCommand({
       }
 
       spinner.succeed('Items added successfully')
-    }
-    catch (err) {
+    } catch (err) {
       console.error(unwrapError(err))
       exit(1)
     }

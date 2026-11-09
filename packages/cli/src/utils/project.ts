@@ -1,16 +1,36 @@
-import type { CssVariables, HashableContent, Prettify, ProjectAddedItem, ProjectAddedItemFile, ProjectAddedRegistry, ProjectConfig, ProjectLockFile, ProjectPaths, RegistryItemFileKind } from '../types'
-import { basename, isAbsolute, join, relative, resolve } from 'node:path/posix'
+// oxlint-disable no-await-in-loop
+import type {
+  CssVariables,
+  HashableContent,
+  Prettify,
+  ProjectAddedItem,
+  ProjectAddedItemFile,
+  ProjectAddedRegistry,
+  ProjectConfig,
+  ProjectLockFile,
+  ProjectPaths,
+  RegistryItemFileKind,
+} from '../types'
 import { LOCKFILE_SCHEMA_URL, ProjectConfigSchema, ProjectLockFileSchema } from '@weme-ui/schema'
 import { defu } from 'defu'
 import { hash } from 'hasha'
+import { basename, isAbsolute, join, relative, resolve } from 'node:path/posix'
 import { addDependency } from 'nypm'
 import * as v from 'valibot'
-import { CLI_TMP_DIR, DEFAULT_PATHS, DEFAULT_REGISTRIES, PROJECT_CONFIG_FILENAME, PROJECT_LOCKFILE_FILENAME } from '../constants'
+import {
+  CLI_TMP_DIR,
+  DEFAULT_PATHS,
+  DEFAULT_REGISTRIES,
+  PROJECT_CONFIG_FILENAME,
+  PROJECT_LOCKFILE_FILENAME,
+} from '../constants'
 import { useRegistry } from './registry'
 import { existsFile, readFile, removeLeadingSlash, writeFile } from './utilities'
 
 type ProjectAddedItemMeta = Pick<ProjectAddedItem, 'type' | 'registry' | 'repo' | 'prefix'>
-type ResolvedProjectAddedItemFile = Prettify<ProjectAddedItemMeta & ProjectAddedItemFile & HashableContent>
+type ResolvedProjectAddedItemFile = Prettify<
+  ProjectAddedItemMeta & ProjectAddedItemFile & HashableContent
+>
 
 interface ProjectInfo {
   root: string
@@ -46,7 +66,7 @@ export class Project {
    * @returns The project info.
    */
   async info(): Promise<ProjectInfo> {
-    const config = await this.hasProjectConfig() ? await this.loadProjectConfig() : null
+    const config = (await this.hasProjectConfig()) ? await this.loadProjectConfig() : null
 
     return {
       root: this.root,
@@ -70,13 +90,14 @@ export class Project {
     const parsed = await this.parseItemName(name)
     const registry = useRegistry(parsed.registry)
 
-    const items = await registry.getItems(item => item.name === parsed.name)
+    const items = await registry.getItems((item) => item.name === parsed.name)
     if (items.length === 0) {
       throw new Error(`Item ${parsed.name} not found in the registry ${parsed.registry}`)
     }
 
     const { paths, registries, defaultRegistry } = await this.info()
-    const itemRegistry = registries.find(registry => registry.registry === parsed.registry) ?? defaultRegistry
+    const itemRegistry =
+      registries.find((registry) => registry.registry === parsed.registry) ?? defaultRegistry
 
     // #region Add items
     const addedItems: ProjectAddedItem[] = []
@@ -107,11 +128,7 @@ export class Project {
             : join(fileDir, item.name)
         }
 
-        await writeFile(
-          this.joinPath(filePath),
-          fileName,
-          file.content,
-        )
+        await writeFile(this.joinPath(filePath), fileName, file.content)
 
         addedItem.files.push({
           kind: file.kind,
@@ -129,7 +146,7 @@ export class Project {
       return false
     }
 
-    const lockfile = await this.loadLockfile() ?? {
+    const lockfile = (await this.loadLockfile()) ?? {
       $schema: LOCKFILE_SCHEMA_URL,
       items: [],
     }
@@ -144,8 +161,8 @@ export class Project {
     // #endregion
 
     // #region Add dependencies
-    const dependencies = items.map(item => item.dependencies ?? []).flat()
-    const devDependencies = items.map(item => item.devDependencies ?? []).flat()
+    const dependencies = items.flatMap((item) => item.dependencies ?? [])
+    const devDependencies = items.flatMap((item) => item.devDependencies ?? [])
 
     if (dependencies.length > 0) {
       await this.addDependencies(dependencies)
@@ -157,7 +174,9 @@ export class Project {
     // #endregion
 
     // #region Add Css Variables
-    const cssVariables = items.map(item => item.cssVars ?? {}).reduce((acc, curr) => defu(acc, curr), {})
+    const cssVariables = items
+      .map((item) => item.cssVars ?? {})
+      .reduce((acc, curr) => defu(acc, curr), {})
     if (Object.keys(cssVariables).length > 0) {
       await this.addCssVariables(cssVariables)
     }
@@ -209,7 +228,7 @@ export class Project {
     if (lockfile) {
       const parsed = await this.parseItemName(name)
       return lockfile.items.some(
-        item => item.name === parsed.name && item.registry === parsed.registry,
+        (item) => item.name === parsed.name && item.registry === parsed.registry,
       )
     }
 
@@ -228,14 +247,14 @@ export class Project {
     const lockfile = await this.loadLockfile()
 
     if (lockfile) {
-      const addedItem = lockfile.items.find(item => item.name === itemName)
+      const addedItem = lockfile.items.find((item) => item.name === itemName)
 
       if (!addedItem) {
         throw new Error(`Item ${itemName} not found in the lockfile`)
       }
 
-      return await Promise.all(addedItem.files.map(
-        async (file) => {
+      return await Promise.all(
+        addedItem.files.map(async (file) => {
           const result = await this.getAddedItemFileContent(file.dest)
 
           return {
@@ -249,8 +268,8 @@ export class Project {
             content: result.content,
             hash: result.hash,
           }
-        },
-      ))
+        }),
+      )
     }
 
     return []
@@ -317,9 +336,9 @@ export class Project {
       this.joinPath(CLI_TMP_DIR, 'uno.config.ts'),
     ]
 
-    const progress = await Promise.all(checkList.map(
-      async path => await existsFile(this.root, path),
-    ))
+    const progress = await Promise.all(
+      checkList.map(async (path) => await existsFile(this.root, path)),
+    )
 
     return progress.every(Boolean)
   }
@@ -378,8 +397,7 @@ export class Project {
         }
 
         return null
-      }
-      catch {}
+      } catch {}
     }
 
     return null
@@ -401,8 +419,7 @@ export class Project {
         if (parsed.success) {
           return parsed.output
         }
-      }
-      catch {}
+      } catch {}
     }
 
     return null
@@ -471,7 +488,7 @@ export class Project {
    * @param input - The item name to parse, format: `<registry>/<item-name>`.
    * @returns The parsed item name.
    */
-  private async parseItemName(input: string): Promise<{ registry: string, name: string }> {
+  private async parseItemName(input: string): Promise<{ registry: string; name: string }> {
     const s = input.trim().replace(/\/+$/, '')
     const i = s.lastIndexOf('/')
 

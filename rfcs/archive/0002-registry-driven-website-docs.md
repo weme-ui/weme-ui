@@ -157,7 +157,11 @@ registry/<library>/registry.json
     { "type": "component", "path": "src/components/button/button.props.ts" },
     { "type": "component", "path": "src/components/button/button.style.ts" },
     { "type": "component", "kind": "doc", "path": "src/components/button/README.md" },
-    { "type": "component", "kind": "example", "path": "src/components/button/examples/button-1.vue" },
+    {
+      "type": "component",
+      "kind": "example",
+      "path": "src/components/button/examples/button-1.vue"
+    },
     { "type": "component", "kind": "test", "path": "src/components/button/button.test.ts" }
   ]
 }

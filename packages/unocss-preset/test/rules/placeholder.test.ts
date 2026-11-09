@@ -41,17 +41,19 @@ describe('placeholder rules', () => {
   })
 
   it('prefers theme colors and tokens over overlapping css vars', () => {
-    const withOverlap = placeholders(resolveOptions({
-      cssVars: {
-        ...cssVars,
-        'blue-9': {
-          text: 'foreground.base',
+    const withOverlap = placeholders(
+      resolveOptions({
+        cssVars: {
+          ...cssVars,
+          'blue-9': {
+            text: 'foreground.base',
+          },
+          'foreground-base': {
+            text: 'accent.9',
+          },
         },
-        'foreground-base': {
-          text: 'accent.9',
-        },
-      },
-    }))
+      }),
+    )
 
     expectUtilities(withOverlap, {
       '$ placeholder-blue-9': { color: 'var(--blue-9)' },

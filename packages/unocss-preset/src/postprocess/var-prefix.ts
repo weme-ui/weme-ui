@@ -8,8 +8,7 @@ export function varPrefix({ variablePrefix: prefix }: PresetWemeUIOptions): Post
 
     obj.entries.forEach((i) => {
       i[0] = i[0].replace(/^--un-/, `--${prefix}`)
-      if (typeof i[1] === 'string')
-        i[1] = i[1].replace(/var\(--un-/g, `var(--${prefix}`)
+      if (typeof i[1] === 'string') i[1] = i[1].replace(/var\(--un-/g, `var(--${prefix}`)
     })
   }
 

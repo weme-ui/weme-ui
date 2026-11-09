@@ -119,8 +119,8 @@ const fields = [
 
 const catalogs = root.catalogs
 const changed = [
-  ...fields.map(field => rewriteCatalogField(field, catalogs, pkgName)),
-  ...fields.map(field => rewriteWorkspaceField(field, workspaceVersions, pkgName)),
+  ...fields.map((field) => rewriteCatalogField(field, catalogs, pkgName)),
+  ...fields.map((field) => rewriteWorkspaceField(field, workspaceVersions, pkgName)),
 ].some(Boolean)
 
 if (changed) {

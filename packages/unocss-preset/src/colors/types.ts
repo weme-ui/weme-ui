@@ -1,9 +1,14 @@
 import type * as colors from '@radix-ui/colors'
-import type { ACCENT_COLOR_NAMES, NEUTRAL_COLOR_NAMES, RADIX_COLOR_NAMES, RADIX_NEUTRAL_COLOR_NAMES } from './defaults'
+import type {
+  ACCENT_COLOR_NAMES,
+  NEUTRAL_COLOR_NAMES,
+  RADIX_COLOR_NAMES,
+  RADIX_NEUTRAL_COLOR_NAMES,
+} from './defaults'
 
 export type RadixColorName = keyof typeof colors
-export type RadixColorPureName = typeof RADIX_COLOR_NAMES[number]
-export type RadixNeutralColorPureName = typeof RADIX_NEUTRAL_COLOR_NAMES[number]
+export type RadixColorPureName = (typeof RADIX_COLOR_NAMES)[number]
+export type RadixNeutralColorPureName = (typeof RADIX_NEUTRAL_COLOR_NAMES)[number]
 
 /**
  * 颜色模式
@@ -56,5 +61,5 @@ export interface AdditionalColors {
   neutral?: Record<string, string>
 }
 
-export type AccentColorNames = typeof ACCENT_COLOR_NAMES[number]
-export type NeutralColorNames = typeof NEUTRAL_COLOR_NAMES[number]
+export type AccentColorNames = (typeof ACCENT_COLOR_NAMES)[number]
+export type NeutralColorNames = (typeof NEUTRAL_COLOR_NAMES)[number]

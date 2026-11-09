@@ -40,7 +40,11 @@ export default mergeConfigs<Theme>([
 `
 
 export async function generateDefaultUnoCSSConfigs(root: string) {
-  const createdBaseConfig = await writeFile(join(root, CLI_TMP_DIR), 'uno.config.ts', baseUnoConfig.trim())
+  const createdBaseConfig = await writeFile(
+    join(root, CLI_TMP_DIR),
+    'uno.config.ts',
+    baseUnoConfig.trim(),
+  )
   const createdUnoConfig = await writeFile(root, 'uno.config.ts', unoConfig.trim())
 
   return createdBaseConfig && createdUnoConfig

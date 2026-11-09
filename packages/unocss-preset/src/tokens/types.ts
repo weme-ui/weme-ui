@@ -44,12 +44,7 @@ export type CustomThemeScaling = '90%' | '95%' | '100%' | '105%' | '110%'
  */
 export type CustomThemeColorAlias = FillRecord<
   LooseAutocomplete<AccentColorNames | NeutralColorNames>,
-  | 'accent'
-  | 'neutral'
-  | 'info'
-  | 'success'
-  | 'warning'
-  | 'error'
+  'accent' | 'neutral' | 'info' | 'success' | 'warning' | 'error'
 >
 
 /**

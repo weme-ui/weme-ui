@@ -169,9 +169,7 @@ presetWemeUI({
     {
       name: 'default',
       colors: { accent: 'blue' },
-      tokens: {
-        /* 可覆盖 DEFAULT_TOKENS */
-      },
+      tokens: {/* 可覆盖 DEFAULT_TOKENS */},
       cssVars: {
         button: { bg: 'accent.9', color: 'white' },
       },

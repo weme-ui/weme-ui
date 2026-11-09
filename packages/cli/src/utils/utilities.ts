@@ -36,8 +36,7 @@ export async function existsFile(root: string, filename: string) {
   const filePath = resolve(root, filename)
   const exists = existsSync(filePath)
 
-  if (!exists)
-    return false
+  if (!exists) return false
 
   const content = await fs.readFile(filePath, 'utf-8')
 
@@ -53,17 +52,14 @@ export async function existsFile(root: string, filename: string) {
  */
 export async function readFile(root: string, filename: string) {
   try {
-    if (!(await existsFile(root, filename)))
-      return null
+    if (!(await existsFile(root, filename))) return null
 
     const content = await fs.readFile(join(ensureDir(root), filename), 'utf-8')
 
-    if (!content)
-      return null
+    if (!content) return null
 
     return content
-  }
-  catch {
+  } catch {
     return null
   }
 }
@@ -80,8 +76,7 @@ export async function writeFile(root: string, filename: string, content: string)
   try {
     const path = join(ensureDir(root), filename)
     await fs.writeFile(path, `${content}\n`, { encoding: 'utf-8', flag: 'w' })
-  }
-  catch {
+  } catch {
     return false
   }
 
@@ -166,12 +161,10 @@ export async function callWhen<T>(
   if (condition) {
     try {
       await callback()
-    }
-    catch (e) {
+    } catch (e) {
       console.error(unwrapError(e))
       exit(1)
-    }
-    finally {
+    } finally {
       if (finalizer) {
         await finalizer()
       }
@@ -179,7 +172,16 @@ export async function callWhen<T>(
   }
 }
 
-type RandomColor = 'black' | 'red' | 'green' | 'yellow' | 'blue' | 'magenta' | 'cyan' | 'white' | 'gray'
+type RandomColor =
+  | 'black'
+  | 'red'
+  | 'green'
+  | 'yellow'
+  | 'blue'
+  | 'magenta'
+  | 'cyan'
+  | 'white'
+  | 'gray'
 
 /**
  * Generate a random color.

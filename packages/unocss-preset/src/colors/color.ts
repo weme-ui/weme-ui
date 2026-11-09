@@ -1,5 +1,11 @@
 import type { GenerateColorScalesOptions } from './generator'
-import type { ColorMode, ColorValueScales, RadixColorName, RadixColorPureName, ResolvedColorScales } from './types'
+import type {
+  ColorMode,
+  ColorValueScales,
+  RadixColorName,
+  RadixColorPureName,
+  ResolvedColorScales,
+} from './types'
 import * as colors from '@radix-ui/colors'
 import Color from 'colorjs.io'
 import { RADIX_COLOR_NAMES } from './defaults'
@@ -22,13 +28,8 @@ export interface GetRadixColorScalesOptions {
 /**
  * 获取 Radix Colors 颜色值刻度
  */
-export function getRadixColorScales(
-  options: GetRadixColorScalesOptions,
-): ColorValueScales<string> {
-  const {
-    name,
-    mode = 'light',
-  } = options
+export function getRadixColorScales(options: GetRadixColorScalesOptions): ColorValueScales<string> {
+  const { name, mode = 'light' } = options
 
   const isBlackOrWhite = name === 'black' || name === 'white'
   const isDarkBlack = name === 'black' && mode === 'dark'
@@ -48,18 +49,14 @@ export function getRadixColorScales(
  * 解析 Radix 颜色刻度
  */
 export function resolveRadixColorScales(options: GenerateColorScalesOptions): ResolvedColorScales {
-  const {
-    color,
-    mode = 'light',
-    kind = 'accent',
-  } = options
+  const { color, mode = 'light', kind = 'accent' } = options
 
   if ([...RADIX_COLOR_NAMES, 'black', 'white'].includes(color)) {
     const radixColors = getRadixColorScales({ name: color as RadixColorPureName, mode })
 
     return {
       p3: radixColors,
-      oklch: radixColors.map(c => toOklchString(new Color(c))) as ColorValueScales<string>,
+      oklch: radixColors.map((c) => toOklchString(new Color(c))) as ColorValueScales<string>,
     }
   }
 

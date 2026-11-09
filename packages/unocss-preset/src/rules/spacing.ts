@@ -4,16 +4,39 @@ import type { CSSEntries, Rule, RuleContext, VariantHandler } from '@unocss/core
 import type { ResolvedWemeUIOptions } from '../options'
 import type { Theme } from '../theme'
 import { parseCustomThemeSize } from '../tokens'
-import { defineProperty, directionMap, directionSize, h, numberResolver, themeTracking } from '../utils'
+import {
+  defineProperty,
+  directionMap,
+  directionSize,
+  h,
+  numberResolver,
+  themeTracking,
+} from '../utils'
 
 export function paddings(options: ResolvedWemeUIOptions): Rule<Theme>[] {
   return [
-    [/^pa?()-?(.+)$/, handleDirectionSize('padding', options), { autocomplete: ['(m|p)<num>', '(m|p)-<num>'] }],
+    [
+      /^pa?()-?(.+)$/,
+      handleDirectionSize('padding', options),
+      { autocomplete: ['(m|p)<num>', '(m|p)-<num>'] },
+    ],
     [/^p-?xy()()$/, handleDirectionSize('padding', options), { autocomplete: '(m|p)-(xy)' }],
     [/^p-?([xy])(?:-?(.+))?$/, handleDirectionSize('padding', options)],
-    [/^p-?([rltbse])(?:-?(.+))?$/, handleDirectionSize('padding', options), { autocomplete: '(m|p)<directions>-<num>' }],
-    [/^p-(block|inline)(?:-(.+))?$/, handleDirectionSize('padding', options), { autocomplete: '(m|p)-(block|inline)-<num>' }],
-    [/^p-?([bi][se])(?:-?(.+))?$/, handleDirectionSize('padding', options), { autocomplete: '(m|p)-(bs|be|is|ie)-<num>' }],
+    [
+      /^p-?([rltbse])(?:-?(.+))?$/,
+      handleDirectionSize('padding', options),
+      { autocomplete: '(m|p)<directions>-<num>' },
+    ],
+    [
+      /^p-(block|inline)(?:-(.+))?$/,
+      handleDirectionSize('padding', options),
+      { autocomplete: '(m|p)-(block|inline)-<num>' },
+    ],
+    [
+      /^p-?([bi][se])(?:-?(.+))?$/,
+      handleDirectionSize('padding', options),
+      { autocomplete: '(m|p)-(bs|be|is|ie)-<num>' },
+    ],
   ]
 }
 
@@ -45,32 +68,40 @@ function handleDirectionSize(
       const v = parseCustomThemeSize(size, options.cssVars, property)
 
       if (v !== undefined) {
-        return map[direction].map(i => [formatter(property, i), v])
+        return map[direction].map((i) => [formatter(property, i), v])
       }
     }
   }
 }
 
 export const spaces: Rule<Theme>[] = [
-  [/^space-([xy])-(.+)$/, handlerSpace, { autocomplete: ['space-(x|y)', 'space-(x|y)-reverse', 'space-(x|y)-$spacing'] }],
-  [/^space-([xy])-reverse$/, function* ([m, d]: string[], { symbols }: RuleContext<Theme>) {
-    yield {
-      [symbols.variants]: [notLastChildSelectorVariant(m)],
-      [`--un-space-${d}-reverse`]: '1',
-    }
-    yield defineProperty(`--un-space-${d}-reverse`, { initialValue: 0 })
-  }],
+  [
+    /^space-([xy])-(.+)$/,
+    handlerSpace,
+    { autocomplete: ['space-(x|y)', 'space-(x|y)-reverse', 'space-(x|y)-$spacing'] },
+  ],
+  [
+    /^space-([xy])-reverse$/,
+    function* ([m, d]: string[], { symbols }: RuleContext<Theme>) {
+      yield {
+        [symbols.variants]: [notLastChildSelectorVariant(m)],
+        [`--un-space-${d}-reverse`]: '1',
+      }
+      yield defineProperty(`--un-space-${d}-reverse`, { initialValue: 0 })
+    },
+  ],
 ]
 
 export function notLastChildSelectorVariant(s: string): VariantHandler {
   return {
     matcher: s,
     order: 1,
-    handle: (input, next) => next({
-      ...input,
-      parent: `${input.parent ? `${input.parent} $$ ` : ''}${input.selector}`,
-      selector: ':where(&>:not(:last-child))',
-    }),
+    handle: (input, next) =>
+      next({
+        ...input,
+        parent: `${input.parent ? `${input.parent} $$ ` : ''}${input.selector}`,
+        selector: ':where(&>:not(:last-child))',
+      }),
   }
 }
 
@@ -80,17 +111,18 @@ function* handlerSpace([m, d, s]: string[], { theme, symbols }: RuleContext<Them
   if (num != null) {
     themeTracking(`spacing`)
     v = `calc(var(--spacing) * ${num})`
-  }
-  else {
+  } else {
     v = theme.spacing?.[s] ?? h.bracket.cssvar.auto.fraction.rem(s || '1', theme)
   }
 
   if (v != null) {
-    const results = directionMap[d === 'x' ? 'inline' : 'block'].map((item, index): [string, string] => {
-      const key = `margin${item}`
-      const value = `calc(${v} * ${index === 0 ? `var(--un-space-${d}-reverse)` : `calc(1 - var(--un-space-${d}-reverse))`})`
-      return [key, value]
-    })
+    const results = directionMap[d === 'x' ? 'inline' : 'block'].map(
+      (item, index): [string, string] => {
+        const key = `margin${item}`
+        const value = `calc(${v} * ${index === 0 ? `var(--un-space-${d}-reverse)` : `calc(1 - var(--un-space-${d}-reverse))`})`
+        return [key, value]
+      },
+    )
 
     if (results) {
       yield {

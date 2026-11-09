@@ -20,7 +20,6 @@ export const placeholderModifier: VariantFunction<Theme> = (input: string, { the
 
 function hasOpacityValue(body: string, theme?: Theme) {
   const match = body.match(/^op(?:acity)?-?(.+)$/)
-  if (match && match[1] != null)
-    return h.bracket.percent(match[1], theme) != null
+  if (match && match[1] != null) return h.bracket.percent(match[1], theme) != null
   return false
 }

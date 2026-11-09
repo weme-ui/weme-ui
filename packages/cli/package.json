@@ -1,34 +1,35 @@
 {
   "name": "@weme-ui/weme-ui",
-  "type": "module",
   "version": "0.2.4",
-  "packageManager": "bun@1.4.4",
   "description": "A CLI to manage Weme UI projects.",
-  "author": "Allen Luo <luoyi@mouji.net>",
-  "license": "MIT",
+  "keywords": [
+    "component",
+    "nuxt",
+    "registry",
+    "typescript",
+    "vue"
+  ],
   "homepage": "https://mouji.net/weme-ui",
+  "bugs": {
+    "url": "https://github.com/weme-ui/weme-ui/issues"
+  },
+  "license": "MIT",
+  "author": "Allen Luo <luoyi@mouji.net>",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/weme-ui/weme-ui.git",
     "directory": "packages/cli"
   },
-  "bugs": {
-    "url": "https://github.com/weme-ui/weme-ui/issues"
+  "bin": {
+    "weme-ui": "./dist/index.js"
   },
-  "keywords": [
-    "component",
-    "registry",
-    "typescript",
-    "vue",
-    "nuxt"
+  "files": [
+    "!dist/**/*.map",
+    "CHANGELOG.md",
+    "dist/**/*"
   ],
+  "type": "module",
   "sideEffects": false,
-  "exports": {
-    ".": {
-      "types": "./dist/index.d.ts",
-      "import": "./dist/index.js"
-    }
-  },
   "main": "./dist/index.js",
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
@@ -40,21 +41,15 @@
       ]
     }
   },
-  "bin": {
-    "weme-ui": "./dist/index.js"
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
   },
-  "files": [
-    "!dist/**/*.map",
-    "CHANGELOG.md",
-    "dist/**/*"
-  ],
   "publishConfig": {
     "access": "public",
     "provenance": true
-  },
-  "engines": {
-    "node": ">=22.14.0",
-    "bun": ">=1.3.12"
   },
   "scripts": {
     "build": "NODE_ENV=deploy tsdown",
@@ -63,19 +58,6 @@
     "test": "NODE_ENV=test vitest run",
     "playground": "bun run src/index.ts",
     "prepack": "bun ../../scripts/materialize-catalog.ts"
-  },
-  "peerDependencies": {
-    "nuxt": "^4.0.0",
-    "valibot": "^1.5.0",
-    "vue": "^3.0.0"
-  },
-  "peerDependenciesMeta": {
-    "nuxt": {
-      "optional": true
-    },
-    "vue": {
-      "optional": true
-    }
   },
   "dependencies": {
     "@weme-ui/schema": "workspace:*",
@@ -102,5 +84,23 @@
     "typescript": "catalog:build",
     "unocss": "catalog:dev",
     "vitest": "catalog:dev"
-  }
+  },
+  "peerDependencies": {
+    "nuxt": "^4.0.0",
+    "valibot": "^1.5.0",
+    "vue": "^3.0.0"
+  },
+  "peerDependenciesMeta": {
+    "nuxt": {
+      "optional": true
+    },
+    "vue": {
+      "optional": true
+    }
+  },
+  "engines": {
+    "bun": ">=1.3.12",
+    "node": ">=22.14.0"
+  },
+  "packageManager": "bun@1.4.4"
 }

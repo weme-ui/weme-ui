@@ -6,7 +6,7 @@ import { alphaPlaceholdersRE } from '@unocss/rule-utils'
 import { compressCSS, detectThemeValue, getThemeByKey, themeTracking, trackedTheme } from '../utils'
 
 /** Exclude output for CSS Variables */
-const ExcludeCssVarKeys = [
+const ExcludeCssVarKeys = new Set([
   'colors',
   'spacing',
   'breakpoint',
@@ -21,7 +21,7 @@ const ExcludeCssVarKeys = [
   'media',
   'supports',
   'containers',
-]
+])
 
 interface ThemeEntries {
   colors: CSSEntry[]
@@ -57,20 +57,16 @@ function collectThemeVars(
 
     if (Array.isArray(value)) {
       themeMap.set(`--${prefix}-${key}`, normalizeThemeValue(value.join(',')))
-    }
-    else if (value && typeof value === 'object') {
+    } else if (value && typeof value === 'object') {
       collectThemeVars(themeMap, value as Record<string, unknown>, `${prefix}-${key}`)
-    }
-    else if (typeof value === 'string') {
+    } else if (typeof value === 'string') {
       themeMap.set(`--${prefix}-${key}`, normalizeThemeValue(value))
     }
   }
 }
 
 function getThemeVarsMap(theme: Theme, keys: string[]): Map<string, string> {
-  const themeMap = new Map<string, string>([
-    ['--spacing', theme.spacing!.DEFAULT],
-  ])
+  const themeMap = new Map<string, string>([['--spacing', theme.spacing!.DEFAULT]])
 
   for (const key of keys) {
     const value = theme[key as keyof Theme]
@@ -85,13 +81,12 @@ function getThemeVarsMap(theme: Theme, keys: string[]): Map<string, string> {
 function trackSafelistThemeValues(ctx: PreflightContext<Theme>): void {
   const { theme, generator } = ctx
   const safelist = uniq(
-    generator.config.safelist.flatMap(s => typeof s === 'function' ? s(ctx) : s),
+    generator.config.safelist.flatMap((s) => (typeof s === 'function' ? s(ctx) : s)),
   )
 
   for (const s of safelist) {
     const [key, ...prop] = s.trim().split(':')
-    if (!(key in theme) || prop.length > 1)
-      continue
+    if (!(key in theme) || prop.length > 1) continue
 
     const props = prop.length === 0 ? ['DEFAULT'] : prop[0].split('-')
     const value = getThemeByKey(theme, key as keyof Theme, props)
@@ -111,8 +106,7 @@ function resolveOnDemandThemeEntries(theme: Theme): ThemeEntries {
     const [key, prop] = entry.split(':') as [keyof Theme, string]
     const value = getThemeByKey(theme, key, prop.split('-'))
 
-    if (typeof value !== 'string')
-      continue
+    if (typeof value !== 'string') continue
 
     if (key === 'colors') {
       colors.push([`--${prop}`, value])
@@ -128,7 +122,7 @@ function resolveOnDemandThemeEntries(theme: Theme): ThemeEntries {
 }
 
 function resolveFullThemeEntries(theme: Theme): ThemeEntries {
-  const keys = Object.keys(theme).filter(k => !ExcludeCssVarKeys.includes(k))
+  const keys = Object.keys(theme).filter((k) => !ExcludeCssVarKeys.has(k))
 
   return {
     deps: Array.from(getThemeVarsMap(theme, keys)),
@@ -136,11 +130,7 @@ function resolveFullThemeEntries(theme: Theme): ThemeEntries {
   }
 }
 
-function resolveColorVariant(
-  theme: Theme,
-  key: string,
-  variant: ColorVariant,
-): string | undefined {
+function resolveColorVariant(theme: Theme, key: string, variant: ColorVariant): string | undefined {
   const variantKey = key.replace(/^--/, '').split('-').join(`-${variant}-`)
   const value = getThemeByKey(theme, 'colors', variantKey.split('-'))
 
@@ -148,8 +138,7 @@ function resolveColorVariant(
 }
 
 function createCssBlock(selector: string, declarations: string[]): string {
-  if (declarations.length === 0)
-    return ''
+  if (declarations.length === 0) return ''
 
   return `
 ${selector} {
@@ -162,8 +151,7 @@ function applyProcessHooks(
   process: PreflightsTheme['process'],
   ctx: PreflightContext<Theme>,
 ): void {
-  if (!process)
-    return
+  if (!process) return
 
   const processors = toArray(process)
   for (const entry of entries) {
@@ -175,7 +163,7 @@ function applyProcessHooks(
 
 function serializeCssEntries(entries: CSSEntry[]): string[] {
   return entries
-    .map(([key, value]) => (key && value) ? `${escapeSelector(key)}: ${value};` : undefined)
+    .map(([key, value]) => (key && value ? `${escapeSelector(key)}: ${value};` : undefined))
     .filter(Boolean) as string[]
 }
 
@@ -185,25 +173,21 @@ function resolveColorCssGroups(theme: Theme, colors: CSSEntry[]) {
   const resolvedP3Colors: string[] = []
   const resolvedP3DarkColors: string[] = []
 
-  const sortedColors = [...colors].sort((a, b) => a[0].localeCompare(b[0]))
+  const sortedColors = [...colors].toSorted((a, b) => a[0].localeCompare(b[0]))
 
   for (const [key, value] of sortedColors) {
-    if (!key || !value)
-      continue
+    if (!key || !value) continue
 
     resolvedColors.push(`${escapeSelector(key)}: ${value};`)
 
     const darkValue = resolveColorVariant(theme, key, 'dark')
-    if (darkValue)
-      resolvedDarkColors.push(`${escapeSelector(key)}: ${darkValue};`)
+    if (darkValue) resolvedDarkColors.push(`${escapeSelector(key)}: ${darkValue};`)
 
     const p3Value = resolveColorVariant(theme, key, 'p3')
-    if (p3Value)
-      resolvedP3Colors.push(`${escapeSelector(key)}: ${p3Value};`)
+    if (p3Value) resolvedP3Colors.push(`${escapeSelector(key)}: ${p3Value};`)
 
     const p3DarkValue = resolveColorVariant(theme, key, 'p3-dark')
-    if (p3DarkValue)
-      resolvedP3DarkColors.push(`${escapeSelector(key)}: ${p3DarkValue};`)
+    if (p3DarkValue) resolvedP3DarkColors.push(`${escapeSelector(key)}: ${p3DarkValue};`)
   }
 
   return {
@@ -224,21 +208,17 @@ function createThemeCSS(
   applyProcessHooks(colors, process, ctx)
 
   const resolvedDeps = serializeCssEntries(deps)
-  const {
-    resolvedColors,
-    resolvedDarkColors,
-    resolvedP3Colors,
-    resolvedP3DarkColors,
-  } = resolveColorCssGroups(ctx.theme, colors)
+  const { resolvedColors, resolvedDarkColors, resolvedP3Colors, resolvedP3DarkColors } =
+    resolveColorCssGroups(ctx.theme, colors)
 
-  if (resolvedDeps.length === 0 && resolvedColors.length === 0)
-    return undefined
+  if (resolvedDeps.length === 0 && resolvedColors.length === 0) return undefined
 
   const depsCSS = createCssBlock(':root, :host', resolvedDeps)
   const colorCSS = createCssBlock(':root, .light', resolvedColors)
   const darkColorCSS = createCssBlock('.dark', resolvedDarkColors)
-  const p3ColorCSS = resolvedP3Colors.length > 0
-    ? `
+  const p3ColorCSS =
+    resolvedP3Colors.length > 0
+      ? `
 @supports (color: color(display-p3 1 1 1)) {
   @media (color-gamut: p3) {
     :root,
@@ -251,14 +231,17 @@ ${resolvedP3DarkColors.join('\n')}
     }
   }
 }`
-    : ''
+      : ''
 
-  return compressCSS(`
+  return compressCSS(
+    `
 ${depsCSS}
 ${colorCSS}
 ${darkColorCSS}
 ${p3ColorCSS}
-`, ctx.generator.config.envMode === 'dev')
+`,
+    ctx.generator.config.envMode === 'dev',
+  )
 }
 
 export function theme(options: ResolvedWemeUIOptions): Preflight<Theme> {
@@ -268,14 +251,12 @@ export function theme(options: ResolvedWemeUIOptions): Preflight<Theme> {
     layer: 'theme',
     getCSS(ctx) {
       const { mode, process } = preflightsTheme
-      if (mode === false)
-        return undefined
+      if (mode === false) return undefined
 
       trackSafelistThemeValues(ctx)
 
       if (mode === 'on-demand') {
-        if (trackedTheme.size === 0)
-          return undefined
+        if (trackedTheme.size === 0) return undefined
 
         const { deps, colors } = resolveOnDemandThemeEntries(ctx.theme)
         return createThemeCSS(ctx, deps, colors, process)

@@ -4,19 +4,13 @@ import { NEUTRAL_COLOR_NAMES } from '../colors'
 import { hasParseableColor } from '../utils'
 
 function isLightColor(color: string) {
-  return [
-    'amber',
-    'yellow',
-    'lime',
-    'mint',
-    'sky',
-  ].includes(color)
+  return ['amber', 'yellow', 'lime', 'mint', 'sky'].includes(color)
 }
 
-const neutrals = [...NEUTRAL_COLOR_NAMES, 'neutral']
+const neutrals = new Set([...NEUTRAL_COLOR_NAMES, 'neutral'])
 
 function isNeutralColor(color: string) {
-  return neutrals.includes(color)
+  return neutrals.has(color)
 }
 /**
  * Fancy shortcuts
@@ -26,100 +20,118 @@ function isNeutralColor(color: string) {
  */
 export const fancyShortcuts: Shortcut<Theme>[] = [
   // solid : fancy-$color
-  [/^fancy-(.+)$/, ([, color], { theme }) => {
-    if (hasParseableColor(color, theme)) {
-      const classNames: string[] = [
-        `bg-${color} text-${color}-1 text-shadow-2xs hover:bg-${color}-10 focus-visible:(outline-${color}-7 z-high)`,
-      ]
+  [
+    /^fancy-(.+)$/,
+    ([, color], { theme }) => {
+      if (hasParseableColor(color, theme)) {
+        const classNames: string[] = [
+          `bg-${color} text-${color}-1 text-shadow-2xs hover:bg-${color}-10 focus-visible:(outline-${color}-7 z-high)`,
+        ]
 
-      if (isLightColor(color)) {
-        classNames.push(`dark:text-${color}-8`)
-      }
-      else {
-        classNames.push(`dark:text-${color}-12`)
-      }
+        if (isLightColor(color)) {
+          classNames.push(`dark:text-${color}-8`)
+        } else {
+          classNames.push(`dark:text-${color}-12`)
+        }
 
-      return classNames.join(' ')
-    }
-  }, { autocomplete: `fancy-$color` }],
+        return classNames.join(' ')
+      }
+    },
+    { autocomplete: `fancy-$color` },
+  ],
 
   // soft : fancy-$color-soft
-  [/^fancy-(.+)-soft$/, ([, color], { theme }) => {
-    if (hasParseableColor(color, theme)) {
-      const classNames: string[] = [
-        `focus-visible:(outline-${color}-7 z-high)`,
-      ]
+  [
+    /^fancy-(.+)-soft$/,
+    ([, color], { theme }) => {
+      if (hasParseableColor(color, theme)) {
+        const classNames: string[] = [`focus-visible:(outline-${color}-7 z-high)`]
 
-      if (isNeutralColor(color)) {
-        classNames.push(`text-${color}-11 bg-${color}-4 hover:text-${color}-12 hover:bg-${color}-5`)
-      }
-      else {
-        classNames.push(`text-${color} bg-${color}-3 hover:text-${color}-10 hover:bg-${color}-4`)
-      }
+        if (isNeutralColor(color)) {
+          classNames.push(
+            `text-${color}-11 bg-${color}-4 hover:text-${color}-12 hover:bg-${color}-5`,
+          )
+        } else {
+          classNames.push(`text-${color} bg-${color}-3 hover:text-${color}-10 hover:bg-${color}-4`)
+        }
 
-      return classNames.join(' ')
-    }
-  }, { autocomplete: `fancy-$color-soft` }],
+        return classNames.join(' ')
+      }
+    },
+    { autocomplete: `fancy-$color-soft` },
+  ],
 
   // outline : fancy-$color-outline
-  [/^fancy-(.+)-outline$/, ([, color], { theme }) => {
-    if (hasParseableColor(color, theme)) {
-      const classNames: string[] = [
-        `bg-transparent hover:(text-${color}-10 bg-${color}-4) focus-visible:(outline-${color}-7 z-high)`,
-        `b-(~ ${color}-4) hover:b-${color}-5`,
-      ]
+  [
+    /^fancy-(.+)-outline$/,
+    ([, color], { theme }) => {
+      if (hasParseableColor(color, theme)) {
+        const classNames: string[] = [
+          `bg-transparent hover:(text-${color}-10 bg-${color}-4) focus-visible:(outline-${color}-7 z-high)`,
+          `b-(~ ${color}-4) hover:b-${color}-5`,
+        ]
 
-      if (isNeutralColor(color)) {
-        classNames.push(`text-${color}-11 hover:text-${color}-12`)
-      }
-      else {
-        classNames.push(`text-${color} hover:text-${color}-10`)
-      }
+        if (isNeutralColor(color)) {
+          classNames.push(`text-${color}-11 hover:text-${color}-12`)
+        } else {
+          classNames.push(`text-${color} hover:text-${color}-10`)
+        }
 
-      return classNames.join(' ')
-    }
-  }, { autocomplete: `fancy-$color-outline` }],
+        return classNames.join(' ')
+      }
+    },
+    { autocomplete: `fancy-$color-outline` },
+  ],
 
   // ghost : fancy-$color-ghost
-  [/^fancy-(.+)-ghost$/, ([, color], { theme }) => {
-    if (hasParseableColor(color, theme)) {
-      const classNames: string[] = [
-        `bg-transparent hover:bg-${color}-4 focus-visible:(outline-${color}-7 z-high)`,
-      ]
+  [
+    /^fancy-(.+)-ghost$/,
+    ([, color], { theme }) => {
+      if (hasParseableColor(color, theme)) {
+        const classNames: string[] = [
+          `bg-transparent hover:bg-${color}-4 focus-visible:(outline-${color}-7 z-high)`,
+        ]
 
-      if (isLightColor(color) || isNeutralColor(color)) {
-        classNames.push(`text-${color}-11`)
-      }
-      else {
-        classNames.push(`text-${color}`)
-      }
+        if (isLightColor(color) || isNeutralColor(color)) {
+          classNames.push(`text-${color}-11`)
+        } else {
+          classNames.push(`text-${color}`)
+        }
 
-      return classNames.join(' ')
-    }
-  }, { autocomplete: `fancy-$color-ghost` }],
+        return classNames.join(' ')
+      }
+    },
+    { autocomplete: `fancy-$color-ghost` },
+  ],
 
   // plain : fancy-$color-plain
-  [/^fancy-(.+)-plain$/, ([, color], { theme }) => {
-    if (hasParseableColor(color, theme)) {
-      const classNames: string[] = [
-        `text-${color} hover:text-${color}-10`,
-      ]
+  [
+    /^fancy-(.+)-plain$/,
+    ([, color], { theme }) => {
+      if (hasParseableColor(color, theme)) {
+        const classNames: string[] = [`text-${color} hover:text-${color}-10`]
 
-      return classNames.join(' ')
-    }
-  }, { autocomplete: `fancy-$color-plain` }],
+        return classNames.join(' ')
+      }
+    },
+    { autocomplete: `fancy-$color-plain` },
+  ],
 
   // inverse : fancy-$color-inverse
-  [/^fancy-(.+)-inverse$/, ([, color], { theme }) => {
-    if (hasParseableColor(color, theme)) {
-      const classNames: string[] = [
-        `bg-${color}-1 hover:bg-${color}-2 focus-visible:(outline-${color}-7 z-high)`,
-        `text-${color} hover:text-${color}-11`,
-      ]
+  [
+    /^fancy-(.+)-inverse$/,
+    ([, color], { theme }) => {
+      if (hasParseableColor(color, theme)) {
+        const classNames: string[] = [
+          `bg-${color}-1 hover:bg-${color}-2 focus-visible:(outline-${color}-7 z-high)`,
+          `text-${color} hover:text-${color}-11`,
+        ]
 
-      return classNames.join(' ')
-    }
-  }, { autocomplete: `fancy-$color-inverse` }],
+        return classNames.join(' ')
+      }
+    },
+    { autocomplete: `fancy-$color-inverse` },
+  ],
 ]
 
 /**
@@ -130,105 +142,116 @@ export const fancyShortcuts: Shortcut<Theme>[] = [
  */
 export const plainShortcuts: Shortcut<Theme>[] = [
   // solid : plain-$color
-  [/^plain-(.+)$/, ([, color], { theme }) => {
-    if (hasParseableColor(color, theme)) {
-      const classNames: string[] = [
-        `bg-${color} text-${color}-1 selection:bg-${color}-5`,
-      ]
+  [
+    /^plain-(.+)$/,
+    ([, color], { theme }) => {
+      if (hasParseableColor(color, theme)) {
+        const classNames: string[] = [`bg-${color} text-${color}-1 selection:bg-${color}-5`]
 
-      if (isLightColor(color)) {
-        classNames.push(`dark:text-${color}-8`)
-      }
-      else {
-        classNames.push(`dark:text-${color}-12`)
-      }
+        if (isLightColor(color)) {
+          classNames.push(`dark:text-${color}-8`)
+        } else {
+          classNames.push(`dark:text-${color}-12`)
+        }
 
-      return classNames.join(' ')
-    }
-  }, { autocomplete: `plain-$color` }],
+        return classNames.join(' ')
+      }
+    },
+    { autocomplete: `plain-$color` },
+  ],
 
   // soft : plain-$color-soft
-  [/^plain-(.+)-soft$/, ([, color], { theme }) => {
-    if (hasParseableColor(color, theme)) {
-      const classNames: string[] = [
-        `bg-${color}-3 selection:bg-${color}-5`,
-      ]
+  [
+    /^plain-(.+)-soft$/,
+    ([, color], { theme }) => {
+      if (hasParseableColor(color, theme)) {
+        const classNames: string[] = [`bg-${color}-3 selection:bg-${color}-5`]
 
-      if (isLightColor(color) || isNeutralColor(color)) {
-        classNames.push(`text-${color}-11`)
-      }
-      else {
-        classNames.push(`text-${color}`)
-      }
+        if (isLightColor(color) || isNeutralColor(color)) {
+          classNames.push(`text-${color}-11`)
+        } else {
+          classNames.push(`text-${color}`)
+        }
 
-      return classNames.join(' ')
-    }
-  }, { autocomplete: `plain-$color-soft` }],
+        return classNames.join(' ')
+      }
+    },
+    { autocomplete: `plain-$color-soft` },
+  ],
 
   // elevated : plain-$color-elevated
-  [/^plain-(.+)-elevated$/, ([, color], { theme }) => {
-    if (hasParseableColor(color, theme)) {
-      const classNames: string[] = [
-        `isolate bg-${color}-3 p-0.75 selection:bg-${color}-5`,
-        `after:content-[""] after:absolute after:inset-0.75 after:z-[-1] after:b-(~ ${color}-5) after:bg-${color}-3 after:rounded-inherit`,
-      ]
+  [
+    /^plain-(.+)-elevated$/,
+    ([, color], { theme }) => {
+      if (hasParseableColor(color, theme)) {
+        const classNames: string[] = [
+          `isolate bg-${color}-3 p-0.75 selection:bg-${color}-5`,
+          `after:content-[""] after:absolute after:inset-0.75 after:z-[-1] after:b-(~ ${color}-5) after:bg-${color}-3 after:rounded-inherit`,
+        ]
 
-      if (isLightColor(color) || isNeutralColor(color)) {
-        classNames.push(`text-${color}-11`)
-      }
-      else {
-        classNames.push(`text-${color}`)
-      }
+        if (isLightColor(color) || isNeutralColor(color)) {
+          classNames.push(`text-${color}-11`)
+        } else {
+          classNames.push(`text-${color}`)
+        }
 
-      return classNames.join(' ')
-    }
-  }, { autocomplete: `plain-$color-elevated` }],
+        return classNames.join(' ')
+      }
+    },
+    { autocomplete: `plain-$color-elevated` },
+  ],
 
   // outline : plain-$color-outline
-  [/^plain-(.+)-outline$/, ([, color], { theme }) => {
-    if (hasParseableColor(color, theme)) {
-      const classNames: string[] = [
-        `bg-transparent b-(~ ${color}-4) selection:bg-${color}-5`,
-      ]
+  [
+    /^plain-(.+)-outline$/,
+    ([, color], { theme }) => {
+      if (hasParseableColor(color, theme)) {
+        const classNames: string[] = [`bg-transparent b-(~ ${color}-4) selection:bg-${color}-5`]
 
-      if (isLightColor(color) || isNeutralColor(color)) {
-        classNames.push(`text-${color}-11`)
-      }
-      else {
-        classNames.push(`text-${color}`)
-      }
+        if (isLightColor(color) || isNeutralColor(color)) {
+          classNames.push(`text-${color}-11`)
+        } else {
+          classNames.push(`text-${color}`)
+        }
 
-      return classNames.join(' ')
-    }
-  }, { autocomplete: `plain-$color-outline` }],
+        return classNames.join(' ')
+      }
+    },
+    { autocomplete: `plain-$color-outline` },
+  ],
 
   // frame : plain-$color-frame
-  [/^plain-(.+)-frame$/, ([, color], { theme }) => {
-    if (hasParseableColor(color, theme)) {
-      const classNames: string[] = [
-        `isolate bg-${color}-3 p-0.75 b-(~ ${color}-5) selection:bg-${color}-5`,
-        `after:content-[""] after:absolute after:inset-0.75 after:z-[-1] after:b-(~ ${color}-5) after:bg-${color}-3 after:rounded-inherit`,
-      ]
+  [
+    /^plain-(.+)-frame$/,
+    ([, color], { theme }) => {
+      if (hasParseableColor(color, theme)) {
+        const classNames: string[] = [
+          `isolate bg-${color}-3 p-0.75 b-(~ ${color}-5) selection:bg-${color}-5`,
+          `after:content-[""] after:absolute after:inset-0.75 after:z-[-1] after:b-(~ ${color}-5) after:bg-${color}-3 after:rounded-inherit`,
+        ]
 
-      if (isLightColor(color) || isNeutralColor(color)) {
-        classNames.push(`text-${color}-11`)
-      }
-      else {
-        classNames.push(`text-${color}`)
-      }
+        if (isLightColor(color) || isNeutralColor(color)) {
+          classNames.push(`text-${color}-11`)
+        } else {
+          classNames.push(`text-${color}`)
+        }
 
-      return classNames.join(' ')
-    }
-  }, { autocomplete: `plain-$color-frame` }],
+        return classNames.join(' ')
+      }
+    },
+    { autocomplete: `plain-$color-frame` },
+  ],
 
   // inverse : plain-$color-inverse
-  [/^plain-(.+)-inverse$/, ([, color], { theme }) => {
-    if (hasParseableColor(color, theme)) {
-      const classNames: string[] = [
-        `bg-${color}-1 text-${color} selection:bg-${color}-5`,
-      ]
+  [
+    /^plain-(.+)-inverse$/,
+    ([, color], { theme }) => {
+      if (hasParseableColor(color, theme)) {
+        const classNames: string[] = [`bg-${color}-1 text-${color} selection:bg-${color}-5`]
 
-      return classNames.join(' ')
-    }
-  }, { autocomplete: `plain-$color-inverse` }],
+        return classNames.join(' ')
+      }
+    },
+    { autocomplete: `plain-$color-inverse` },
+  ],
 ]

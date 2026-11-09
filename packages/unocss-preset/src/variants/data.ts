@@ -13,7 +13,7 @@ export const variantDataAttribute: VariantObject<Theme> = {
       if (dataAttribute) {
         return {
           matcher: rest,
-          selector: s => `${s}[data-${dataAttribute}]`,
+          selector: (s) => `${s}[data-${dataAttribute}]`,
         }
       }
     }
@@ -25,7 +25,11 @@ function taggedData(tagName: string): Variant<Theme> {
   return {
     name: `${tagName}-data`,
     match(matcher, ctx) {
-      const variant = variantGetParameter(`${tagName}-data-`, matcher, ctx.generator.config.separators)
+      const variant = variantGetParameter(
+        `${tagName}-data-`,
+        matcher,
+        ctx.generator.config.separators,
+      )
       if (variant) {
         const [match, rest, label] = variant
         const dataAttribute = h.bracket(match, ctx.theme) ?? ctx.theme.data?.[match] ?? ''
@@ -41,11 +45,12 @@ function taggedData(tagName: string): Variant<Theme> {
 
           return {
             matcher: rest,
-            handle: (input, next) => next({
-              ...input,
-              parent: `${input.parent ? `${input.parent} $$ ` : ''}${input.selector}`,
-              selector: tagSelectorMap[tagName],
-            }),
+            handle: (input, next) =>
+              next({
+                ...input,
+                parent: `${input.parent ? `${input.parent} $$ ` : ''}${input.selector}`,
+                selector: tagSelectorMap[tagName],
+              }),
           }
         }
       }

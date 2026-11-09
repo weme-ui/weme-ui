@@ -33,11 +33,13 @@ describe('custom preflight', () => {
     trackedColorAliases.add('error:1')
 
     const options = resolveOptions({
-      themes: [{
-        name: DEFAULT_NAME,
-        colors: DEFAULT_COLOR_ALIASES,
-        tokens: DEFAULT_TOKENS,
-      }],
+      themes: [
+        {
+          name: DEFAULT_NAME,
+          colors: DEFAULT_COLOR_ALIASES,
+          tokens: DEFAULT_TOKENS,
+        },
+      ],
     })
 
     const css = customPreflight(options)?.getCSS(createPreflightContext())
@@ -57,14 +59,16 @@ describe('custom preflight', () => {
     const darkScales = resolveRadixColorScales({ color: raw, mode: 'dark' })
 
     const options = resolveOptions({
-      themes: [{
-        name: DEFAULT_NAME,
-        colors: {
-          ...DEFAULT_COLOR_ALIASES,
-          accent: raw,
+      themes: [
+        {
+          name: DEFAULT_NAME,
+          colors: {
+            ...DEFAULT_COLOR_ALIASES,
+            accent: raw,
+          },
+          tokens: DEFAULT_TOKENS,
         },
-        tokens: DEFAULT_TOKENS,
-      }],
+      ],
     })
 
     const css = customPreflight(options)?.getCSS(createPreflightContext())
@@ -77,18 +81,20 @@ describe('custom preflight', () => {
     trackedColorAliases.add('accent:9')
 
     const options = resolveOptions({
-      themes: [{
-        name: 'brand',
-        colors: DEFAULT_COLOR_ALIASES,
-        tokens: DEFAULT_TOKENS,
-      }],
+      themes: [
+        {
+          name: 'brand',
+          colors: DEFAULT_COLOR_ALIASES,
+          tokens: DEFAULT_TOKENS,
+        },
+      ],
     })
 
     const css = customPreflight(options)?.getCSS(createPreflightContext())
 
-    expect(css).toContain(':where([data-theme=\'brand\'])')
-    expect(css).toContain('.dark:where([data-theme=\'brand\'])')
-    expect(css).not.toContain(':root, :where([data-theme=\'brand\'])')
+    expect(css).toContain(":where([data-theme='brand'])")
+    expect(css).toContain(".dark:where([data-theme='brand'])")
+    expect(css).not.toContain(":root, :where([data-theme='brand'])")
   })
 
   it('emits multiple themes', () => {
@@ -115,7 +121,7 @@ describe('custom preflight', () => {
     const css = customPreflight(options)?.getCSS(createPreflightContext())
 
     expect(css).toContain(`:root, :where([data-theme='${DEFAULT_NAME}'])`)
-    expect(css).toContain(':where([data-theme=\'brand\'])')
+    expect(css).toContain(":where([data-theme='brand'])")
     expect(css).toContain('--accent-9: var(--custom-accent-9, var(--puerto-9))')
     expect(css).toContain('--accent-9: var(--custom-accent-9, var(--blue-9))')
   })
@@ -165,38 +171,42 @@ describe('custom preflight', () => {
 
   it('emits theme-local cssVars with theme tokens', () => {
     const options = resolveOptions({
-      themes: [{
-        name: 'brand',
-        colors: DEFAULT_COLOR_ALIASES,
-        tokens: DEFAULT_TOKENS,
-        cssVars: {
-          label: 'accent.9',
+      themes: [
+        {
+          name: 'brand',
+          colors: DEFAULT_COLOR_ALIASES,
+          tokens: DEFAULT_TOKENS,
+          cssVars: {
+            label: 'accent.9',
+          },
         },
-      }],
+      ],
     })
 
     const css = customPreflight(options)?.getCSS(createPreflightContext())
 
-    expect(css).toContain(':where([data-theme=\'brand\'])')
+    expect(css).toContain(":where([data-theme='brand'])")
     expect(css).toContain('--label: var(--accent-9)')
     expect(css).toContain('--foreground-base: var(--neutral-11)')
   })
 
   it('emits theme-local size cssVars as raw values', () => {
     const options = resolveOptions({
-      themes: [{
-        name: 'brand',
-        colors: DEFAULT_COLOR_ALIASES,
-        tokens: DEFAULT_TOKENS,
-        cssVars: {
-          gap: 'min(1rem, 2vw)',
+      themes: [
+        {
+          name: 'brand',
+          colors: DEFAULT_COLOR_ALIASES,
+          tokens: DEFAULT_TOKENS,
+          cssVars: {
+            gap: 'min(1rem, 2vw)',
+          },
         },
-      }],
+      ],
     })
 
     const css = customPreflight(options)?.getCSS(createPreflightContext())
 
-    expect(css).toContain(':where([data-theme=\'brand\'])')
+    expect(css).toContain(":where([data-theme='brand'])")
     expect(css).toContain('--gap: min(1rem, 2vw)')
     expect(css).not.toContain('--gap: var(')
   })

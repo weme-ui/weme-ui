@@ -10,9 +10,11 @@ describe('on-demand theme generation', () => {
 
   it('emits resolved palette variables for fancy-accent in one generate', async () => {
     const uno = await createGenerator({
-      presets: [presetWemeUI({
-        preflights: { reset: false },
-      })],
+      presets: [
+        presetWemeUI({
+          preflights: { reset: false },
+        }),
+      ],
     })
 
     const { css } = await uno.generate('fancy-accent')
@@ -26,13 +28,17 @@ describe('on-demand theme generation', () => {
 
   it('emits the mapped palette for a custom accent alias', async () => {
     const uno = await createGenerator({
-      presets: [presetWemeUI({
-        preflights: { reset: false },
-        themes: [{
-          name: DEFAULT_NAME,
-          colors: { accent: 'blue' },
-        }],
-      })],
+      presets: [
+        presetWemeUI({
+          preflights: { reset: false },
+          themes: [
+            {
+              name: DEFAULT_NAME,
+              colors: { accent: 'blue' },
+            },
+          ],
+        }),
+      ],
     })
 
     const { css } = await uno.generate('bg-accent')

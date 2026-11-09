@@ -20,7 +20,8 @@ export const RegistryNameString = v.pipe(
   v.regex(/^[^/]+\/[^/]+$/),
   v.metadata({
     title: 'Registry 名称',
-    description: 'registry 的唯一名称，形式为 "owner/registry"。用于在生态中标识并解析该 registry。',
+    description:
+      'registry 的唯一名称，形式为 "owner/registry"。用于在生态中标识并解析该 registry。',
     examples: ['weme-ui/core', 'weme-ui/slim'],
   }),
 )
@@ -33,10 +34,7 @@ export const RegistryNameString = v.pipe(
  * @default 'public'
  */
 export const RegistryAccessEnum = v.pipe(
-  v.picklist([
-    'public',
-    'private',
-  ]),
+  v.picklist(['public', 'private']),
   v.metadata({
     title: '访问权限',
     description: '控制谁可以访问该 registry。"public" 对所有人开放；"private" 需要授权。',
@@ -50,17 +48,12 @@ export const RegistryAccessEnum = v.pipe(
  * @category Registry
  */
 export const RegistryPathsRecord = v.pipe(
-  v.record(
-    v.union([
-      v.literal('~'),
-      RegistryItemTypeEnum,
-    ]),
-    NonEmptyTrimmedString,
-  ),
+  v.record(v.union([v.literal('~'), RegistryItemTypeEnum]), NonEmptyTrimmedString),
   v.metadata({
     title: '路径',
-    description: '将 registry item 类型映射到安装目标路径。用 "~" 作为根路径别名。路径可使用别名，例如 "~/components"。',
-    examples: [{ '~': 'src', 'component': '~/components' }],
+    description:
+      '将 registry item 类型映射到安装目标路径。用 "~" 作为根路径别名。路径可使用别名，例如 "~/components"。',
+    examples: [{ '~': 'src', component: '~/components' }],
   }),
 )
 
@@ -81,7 +74,8 @@ export const RegistryConfigSchema = v.pipe(
         TrimmedURLString,
         v.metadata({
           title: 'Schema',
-          description: '用于校验该 registry 配置的 JSON Schema URL。编辑器与工具链据此提供补全与校验。',
+          description:
+            '用于校验该 registry 配置的 JSON Schema URL。编辑器与工具链据此提供补全与校验。',
           examples: [REGISTRY_SCHEMA_URL],
         }),
       ),
@@ -207,7 +201,8 @@ export const RegistryConfigSchema = v.pipe(
         v.array(v.pipe(NonEmptyTrimmedString, v.toLowerCase())),
         v.metadata({
           title: '依赖',
-          description: '以该 registry 初始化消费方项目时默认安装的运行时 NPM 包。与 item 级依赖不同，这些依赖对整个 registry 只应用一次。条目可带版本范围或 tag，例如 "vue^3.4.0" 或 "lodash@latest"。',
+          description:
+            '以该 registry 初始化消费方项目时默认安装的运行时 NPM 包。与 item 级依赖不同，这些依赖对整个 registry 只应用一次。条目可带版本范围或 tag，例如 "vue^3.4.0" 或 "lodash@latest"。',
           examples: ['vue^3.4.0', 'class-variance-authority@latest'],
         }),
       ),
@@ -223,7 +218,8 @@ export const RegistryConfigSchema = v.pipe(
         v.array(v.pipe(NonEmptyTrimmedString, v.toLowerCase())),
         v.metadata({
           title: '开发依赖',
-          description: '以该 registry 初始化消费方项目时默认安装的开发用 NPM 包。适用于 registry 共享的工具链（例如测试辅助），而非应用运行时所需的包。条目可带版本范围或 tag。',
+          description:
+            '以该 registry 初始化消费方项目时默认安装的开发用 NPM 包。适用于 registry 共享的工具链（例如测试辅助），而非应用运行时所需的包。条目可带版本范围或 tag。',
           examples: ['vitest^2.0.0', '@vue/test-utils@latest'],
         }),
       ),
@@ -236,7 +232,8 @@ export const RegistryConfigSchema = v.pipe(
       v.array(RegistryItemSchema),
       v.metadata({
         title: 'Items',
-        description: '该 registry 发布的 item 目录。每个 item 描述一个可安装单元，例如 component、block 或工具。',
+        description:
+          '该 registry 发布的 item 目录。每个 item 描述一个可安装单元，例如 component、block 或工具。',
         examples: [{ name: 'button', title: 'Button', description: '按钮 component' }],
       }),
     ),
@@ -251,7 +248,8 @@ export const RegistryConfigSchema = v.pipe(
         v.array(NonEmptyTrimmedString),
         v.metadata({
           title: '排除',
-          description: '在解析或安装时忽略的 registry item 名称列表。适合临时隐藏未完成或已弃用的 item。',
+          description:
+            '在解析或安装时忽略的 registry item 名称列表。适合临时隐藏未完成或已弃用的 item。',
           examples: ['button', 'legacy-card'],
         }),
       ),
@@ -266,12 +264,17 @@ export const RegistryConfigSchema = v.pipe(
   }),
   v.metadata({
     title: 'Registry 配置',
-    description: 'Weme UI registry 的配置。声明标识、访问权限、默认安装路径，以及对外暴露的 items。',
-    examples: [{
-      name: 'weme-ui/slim',
-      access: 'public',
-      defaultPaths: { component: '~/components' },
-      items: [{ name: 'button', title: 'Button', files: [{ path: 'components/button/button.vue' }] }],
-    }],
+    description:
+      'Weme UI registry 的配置。声明标识、访问权限、默认安装路径，以及对外暴露的 items。',
+    examples: [
+      {
+        name: 'weme-ui/slim',
+        access: 'public',
+        defaultPaths: { component: '~/components' },
+        items: [
+          { name: 'button', title: 'Button', files: [{ path: 'components/button/button.vue' }] },
+        ],
+      },
+    ],
   }),
 )

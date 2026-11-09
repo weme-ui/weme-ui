@@ -19,7 +19,8 @@ export const ProjectAddedItemFileSchema = v.pipe(
       RegistryItemFileSchema.entries.kind,
       v.metadata({
         title: '文件种类',
-        description: '文件在 registry item 中的角色。"file" 为主源码；"doc"、"example"、"test" 分别标记配套文档、示例与测试。',
+        description:
+          '文件在 registry item 中的角色。"file" 为主源码；"doc"、"example"、"test" 分别标记配套文档、示例与测试。',
         examples: ['file', 'doc', 'example', 'test'],
       }),
     ),
@@ -51,10 +52,12 @@ export const ProjectAddedItemFileSchema = v.pipe(
   v.metadata({
     title: '已安装文件',
     description: '锁定文件中记录的单个文件：来自 registry 的源路径，以及写入项目的目标路径。',
-    examples: [{
-      source: 'components/button/button.vue',
-      dest: 'src/components/ui/button/button.vue',
-    }],
+    examples: [
+      {
+        source: 'components/button/button.vue',
+        dest: 'src/components/ui/button/button.vue',
+      },
+    ],
   }),
 )
 
@@ -116,7 +119,8 @@ export const ProjectAddedItemSchema = v.pipe(
       ProjectAddedRegistrySchema.entries.prefix,
       v.metadata({
         title: '前缀',
-        description: '安装该 item 时应用的前缀，用于在同一项目存在多个 registry 时隔离文件命名空间。',
+        description:
+          '安装该 item 时应用的前缀，用于在同一项目存在多个 registry 时隔离文件命名空间。',
         examples: ['ui'],
       }),
     ),
@@ -129,25 +133,31 @@ export const ProjectAddedItemSchema = v.pipe(
       v.metadata({
         title: '文件',
         description: '为该 item 写入项目的文件列表，每项含 registry 源路径与项目目标路径。',
-        examples: [{
-          source: 'components/button/button.vue',
-          dest: 'src/components/ui/button/button.vue',
-        }],
+        examples: [
+          {
+            source: 'components/button/button.vue',
+            dest: 'src/components/ui/button/button.vue',
+          },
+        ],
       }),
     ),
   }),
   v.metadata({
     title: '已安装 item',
     description: '已安装进项目的 registry item。记录来源 registry 以及实际写入的文件。',
-    examples: [{
-      registry: 'weme-ui/slim',
-      repo: 'https://github.com/weme-ui/slim',
-      prefix: 'ui',
-      files: [{
-        source: 'components/button/button.vue',
-        dest: 'src/components/ui/button/button.vue',
-      }],
-    }],
+    examples: [
+      {
+        registry: 'weme-ui/slim',
+        repo: 'https://github.com/weme-ui/slim',
+        prefix: 'ui',
+        files: [
+          {
+            source: 'components/button/button.vue',
+            dest: 'src/components/ui/button/button.vue',
+          },
+        ],
+      },
+    ],
   }),
 )
 
@@ -168,7 +178,8 @@ export const ProjectLockFileSchema = v.pipe(
         TrimmedURLString,
         v.metadata({
           title: 'Schema',
-          description: '用于校验该项目锁定文件的 JSON Schema URL。编辑器与工具链据此提供补全与校验。',
+          description:
+            '用于校验该项目锁定文件的 JSON Schema URL。编辑器与工具链据此提供补全与校验。',
           examples: [LOCKFILE_SCHEMA_URL],
         }),
       ),
@@ -183,30 +194,41 @@ export const ProjectLockFileSchema = v.pipe(
       v.metadata({
         title: 'Items',
         description: '当前已安装进项目的 registry items。用于在更新时追踪来源与已安装文件位置。',
-        examples: [{
-          registry: 'weme-ui/slim',
-          prefix: 'ui',
-          files: [{
-            source: 'components/button/button.vue',
-            dest: 'src/components/ui/button/button.vue',
-          }],
-        }],
+        examples: [
+          {
+            registry: 'weme-ui/slim',
+            prefix: 'ui',
+            files: [
+              {
+                source: 'components/button/button.vue',
+                dest: 'src/components/ui/button/button.vue',
+              },
+            ],
+          },
+        ],
       }),
     ),
   }),
   v.metadata({
     title: '项目锁定文件',
-    description: '记录已安装进 Weme UI 项目的 registry items，包括来源 registry 以及磁盘上写入的具体文件。',
-    examples: [{
-      $schema: LOCKFILE_SCHEMA_URL,
-      items: [{
-        registry: 'weme-ui/slim',
-        prefix: 'ui',
-        files: [{
-          source: 'components/button/button.vue',
-          dest: 'src/components/ui/button/button.vue',
-        }],
-      }],
-    }],
+    description:
+      '记录已安装进 Weme UI 项目的 registry items，包括来源 registry 以及磁盘上写入的具体文件。',
+    examples: [
+      {
+        $schema: LOCKFILE_SCHEMA_URL,
+        items: [
+          {
+            registry: 'weme-ui/slim',
+            prefix: 'ui',
+            files: [
+              {
+                source: 'components/button/button.vue',
+                dest: 'src/components/ui/button/button.vue',
+              },
+            ],
+          },
+        ],
+      },
+    ],
   }),
 )

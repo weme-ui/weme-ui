@@ -2,7 +2,7 @@
 
 ## Task Completion Requirements
 
-- All of `bun lint`, `bun lint:fix` and `bun typecheck` must pass before considering tasks completed.
+- All of `bun lint`, `bun lint:fix`, `bun typecheck` and `bun format` must pass before considering tasks completed.
 - NEVER run `bun test`. Always use `bun run test` (runs Vitest).
 
 ## Project

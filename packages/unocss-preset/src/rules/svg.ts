@@ -6,21 +6,48 @@ import { colorResolver, h, isSize } from '../utils'
 
 export function svgUtilities(options: ResolvedWemeUIOptions): Rule<Theme>[] {
   return [
-  // fills
-    [/^fill-(.+)$/, (match, ctx) => handleColor('fill', 'fill', match, ctx, options), { autocomplete: 'fill-$colors' }],
-    [/^fill-op(?:acity)?-?(.+)$/, ([, opacity], { theme }) => ({ '--un-fill-opacity': h.bracket.percent.cssvar(opacity, theme) }), { autocomplete: 'fill-(op|opacity)-<percent>' }],
+    // fills
+    [
+      /^fill-(.+)$/,
+      (match, ctx) => handleColor('fill', 'fill', match, ctx, options),
+      { autocomplete: 'fill-$colors' },
+    ],
+    [
+      /^fill-op(?:acity)?-?(.+)$/,
+      ([, opacity], { theme }) => ({
+        '--un-fill-opacity': h.bracket.percent.cssvar(opacity, theme),
+      }),
+      { autocomplete: 'fill-(op|opacity)-<percent>' },
+    ],
     ['fill-none', { fill: 'none' }],
 
     // stroke size
     [/^stroke-(?:width-|size-)?(.+)$/, handleWidth],
 
     // stroke dash
-    [/^stroke-dash-(.+)$/, ([, s], { theme }) => ({ 'stroke-dasharray': h.bracket.cssvar.number(s, theme) }), { autocomplete: 'stroke-dash-<num>' }],
-    [/^stroke-offset-(.+)$/, ([, s], { theme }) => ({ 'stroke-dashoffset': h.bracket.cssvar.px.numberWithUnit(s, theme) })],
+    [
+      /^stroke-dash-(.+)$/,
+      ([, s], { theme }) => ({ 'stroke-dasharray': h.bracket.cssvar.number(s, theme) }),
+      { autocomplete: 'stroke-dash-<num>' },
+    ],
+    [
+      /^stroke-offset-(.+)$/,
+      ([, s], { theme }) => ({ 'stroke-dashoffset': h.bracket.cssvar.px.numberWithUnit(s, theme) }),
+    ],
 
     // stroke colors
-    [/^stroke-(.+)$/, (match, ctx) => handleColorOrWidth(match, ctx, options), { autocomplete: 'stroke-$colors' }],
-    [/^stroke-op(?:acity)?-?(.+)$/, ([, opacity], { theme }) => ({ '--un-stroke-opacity': h.bracket.percent.cssvar(opacity, theme) }), { autocomplete: 'stroke-(op|opacity)-<percent>' }],
+    [
+      /^stroke-(.+)$/,
+      (match, ctx) => handleColorOrWidth(match, ctx, options),
+      { autocomplete: 'stroke-$colors' },
+    ],
+    [
+      /^stroke-op(?:acity)?-?(.+)$/,
+      ([, opacity], { theme }) => ({
+        '--un-stroke-opacity': h.bracket.percent.cssvar(opacity, theme),
+      }),
+      { autocomplete: 'stroke-(op|opacity)-<percent>' },
+    ],
 
     // line cap
     ['stroke-cap-square', { 'stroke-linecap': 'square' }],
@@ -61,8 +88,11 @@ function handleColor(
   }
 }
 
-function handleColorOrWidth(match: RegExpMatchArray, ctx: RuleContext<Theme>, options: ResolvedWemeUIOptions): CSSObject | (CSSValueInput | string)[] | undefined {
-  if (isSize(match[1]))
-    return handleWidth(match, ctx)
+function handleColorOrWidth(
+  match: RegExpMatchArray,
+  ctx: RuleContext<Theme>,
+  options: ResolvedWemeUIOptions,
+): CSSObject | (CSSValueInput | string)[] | undefined {
+  if (isSize(match[1])) return handleWidth(match, ctx)
   return handleColor('stroke', 'border-color', match, ctx, options)
 }

@@ -7,10 +7,7 @@ import { reset } from './reset'
 import { theme } from './theme'
 
 export function preflights(options: ResolvedWemeUIOptions): Preflight<Theme>[] {
-  return [
-    reset(options),
-    custom(options),
-    theme(options),
-    property(options),
-  ].filter(Boolean) as Preflight<Theme>[]
+  return [reset(options), custom(options), theme(options), property(options)].filter(
+    Boolean,
+  ) as Preflight<Theme>[]
 }

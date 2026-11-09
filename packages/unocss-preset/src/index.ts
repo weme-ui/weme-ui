@@ -21,7 +21,7 @@ import { variants } from './variants'
  */
 export const presetWemeUI = definePreset<PresetWemeUIOptions, Theme>((userOptions = {}) => {
   const options = resolveOptions(userOptions)
-  setColorAliasMaps(options.themes.map(theme => theme.colors))
+  setColorAliasMaps(options.themes.map((theme) => theme.colors))
 
   const transformers = []
 
@@ -48,9 +48,8 @@ export const presetWemeUI = definePreset<PresetWemeUIOptions, Theme>((userOption
     preflights: preflights(options),
     postprocess: postprocessors(options),
     transformers,
-    extractorDefault: options.arbitraryVariants === false
-      ? undefined
-      : extractorArbitraryVariants(),
+    extractorDefault:
+      options.arbitraryVariants === false ? undefined : extractorArbitraryVariants(),
     configResolved() {
       trackedTheme.clear()
       trackedProperties.clear()

@@ -1,9 +1,9 @@
 #!/usr/bin/env bun
 
 import type { ColorKind, ColorMode } from '../src/colors'
+import Color from 'colorjs.io'
 import { mkdirSync, writeFileSync } from 'node:fs'
 import { join } from 'node:path'
-import Color from 'colorjs.io'
 import {
   ADDITIONAL_ACCENT_COLORS,
   ADDITIONAL_NEUTRAL_COLORS,
@@ -43,7 +43,7 @@ const SCALE_DESCRIPTIONS = [
 ] as const
 
 const palettes: Palette[] = [
-  ...RADIX_COLOR_NAMES.map(name => ({ name, color: name })),
+  ...RADIX_COLOR_NAMES.map((name) => ({ name, color: name })),
   { name: 'black', color: 'black' },
   { name: 'white', color: 'white' },
   ...Object.entries(ADDITIONAL_ACCENT_COLORS).map(([name, color]) => ({
@@ -66,7 +66,7 @@ function toHex(oklch: string): string {
   const value = hex.slice(1)
 
   if (value.length === 3 || value.length === 4) {
-    return `#${[...value].map(ch => ch + ch).join('')}`.toUpperCase()
+    return `#${[...value].map((ch) => ch + ch).join('')}`.toUpperCase()
   }
 
   return hex.toUpperCase()

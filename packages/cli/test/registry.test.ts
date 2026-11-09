@@ -122,7 +122,7 @@ describe('load', () => {
       () => {
         throw new Error('expected schema parse to fail')
       },
-      err => err,
+      (err) => err,
     )
 
     expect(error).toBeInstanceOf(Error)
@@ -135,10 +135,7 @@ describe('load', () => {
   it('throws on duplicate item names after schema parse', async () => {
     mockRegistryJson({
       name: DEFAULT_REGISTRY_NAME,
-      items: [
-        item('button'),
-        item('Button', { files: [{ path: 'components/other/other.vue' }] }),
-      ],
+      items: [item('button'), item('Button', { files: [{ path: 'components/other/other.vue' }] })],
     })
 
     await expect(useRegistry(DEFAULT_REGISTRY_NAME).getItems()).rejects.toThrow(
@@ -232,7 +229,7 @@ describe('getItems', () => {
 
     const items = await useRegistry(DEFAULT_REGISTRY_NAME).getItems()
 
-    expect(items.map(entry => entry.name)).toEqual(['utils', 'button', 'card'])
+    expect(items.map((entry) => entry.name)).toEqual(['utils', 'button', 'card'])
   })
 
   it('includes registryDependencies for a filtered item and skips missing names', async () => {
@@ -246,9 +243,10 @@ describe('getItems', () => {
     })
     const registry = useRegistry(DEFAULT_REGISTRY_NAME)
 
-    expect((await registry.getItems(entry => entry.name === 'button')).map(entry => entry.name))
-      .toEqual(['utils', 'button'])
-    expect(await registry.getItems(entry => entry.name === 'nope')).toEqual([])
+    expect(
+      (await registry.getItems((entry) => entry.name === 'button')).map((entry) => entry.name),
+    ).toEqual(['utils', 'button'])
+    expect(await registry.getItems((entry) => entry.name === 'nope')).toEqual([])
   })
 
   it('dedupes a shared dependency and breaks cycles', async () => {
@@ -265,10 +263,12 @@ describe('getItems', () => {
     })
     const registry = useRegistry(DEFAULT_REGISTRY_NAME)
 
-    expect((await registry.getItems(entry => entry.name === 'a')).map(entry => entry.name))
-      .toEqual(['d', 'b', 'c', 'a'])
-    expect((await registry.getItems(entry => entry.name === 'loop-a')).map(entry => entry.name))
-      .toEqual(['loop-b', 'loop-a'])
+    expect(
+      (await registry.getItems((entry) => entry.name === 'a')).map((entry) => entry.name),
+    ).toEqual(['d', 'b', 'c', 'a'])
+    expect(
+      (await registry.getItems((entry) => entry.name === 'loop-a')).map((entry) => entry.name),
+    ).toEqual(['loop-b', 'loop-a'])
   })
 })
 
@@ -276,12 +276,14 @@ describe('getItemFiles', () => {
   it('fetches file content and hash, preserving type, kind, path, and target', async () => {
     mockRegistryJson({
       name: DEFAULT_REGISTRY_NAME,
-      items: [item('button', {
-        files: [
-          { path: BUTTON_PATH },
-          { path: README_PATH, kind: 'doc', target: 'docs/button.md' },
-        ],
-      })],
+      items: [
+        item('button', {
+          files: [
+            { path: BUTTON_PATH },
+            { path: README_PATH, kind: 'doc', target: 'docs/button.md' },
+          ],
+        }),
+      ],
     })
     mockFileContents({
       [BUTTON_PATH]: BUTTON_CONTENT,

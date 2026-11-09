@@ -108,7 +108,7 @@ describe('parseColor', () => {
     expect(faded?.keys).toEqual(['accent', '9'])
 
     expect([...trackedColorAliases]).toEqual([
-      ...CUSTOM_THEME_COLOR_ALIASES.map(alias => `${alias}:9`),
+      ...CUSTOM_THEME_COLOR_ALIASES.map((alias) => `${alias}:9`),
       'error:1',
     ])
     expect(trackedTheme.has('colors:puerto-9')).toBe(true)
@@ -164,10 +164,14 @@ describe('colorCSSGenerator and colorResolver', () => {
       color: 'color-mix(in oklab, var(--blue-9) 50%, transparent)',
     })
 
-    expect(colorCSSGenerator(parseColor('blue-dark-9', theme), 'color', 'text', context)?.[0]).toEqual({
+    expect(
+      colorCSSGenerator(parseColor('blue-dark-9', theme), 'color', 'text', context)?.[0],
+    ).toEqual({
       color: 'var(--blue-dark-9)',
     })
-    expect(colorCSSGenerator(parseColor('blue-p3-dark-9', theme), 'color', 'text', context)?.[0]).toEqual({
+    expect(
+      colorCSSGenerator(parseColor('blue-p3-dark-9', theme), 'color', 'text', context)?.[0],
+    ).toEqual({
       color: 'var(--blue-p3-dark-9)',
     })
   })
@@ -183,25 +187,44 @@ describe('colorCSSGenerator and colorResolver', () => {
 
     const hex = colorCSSGenerator(parseColor('hex-fff/20', theme), 'color', 'text', context)
     expect(hex?.[0].color).toBe('color-mix(in oklab, #fff 20%, transparent)')
-    expect(colorCSSGenerator(parseColor('$brand', theme), 'color', 'text', context)?.[0].color).toBe('var(--brand)')
+    expect(
+      colorCSSGenerator(parseColor('$brand', theme), 'color', 'text', context)?.[0].color,
+    ).toBe('var(--brand)')
     expect(trackedTheme.size).toBe(0)
   })
 
   it('keeps an oklab opacity variable for shadow colors', () => {
-    const plain = colorCSSGenerator(parseColor('blue-9', theme), '--un-shadow-color', 'shadow', context)
+    const plain = colorCSSGenerator(
+      parseColor('blue-9', theme),
+      '--un-shadow-color',
+      'shadow',
+      context,
+    )
     expect(plain?.[0]).toEqual({ '--un-shadow-color': 'var(--blue-9)' })
     expect(plain?.[2]).toMatchObject({
-      '--un-shadow-color': 'color-mix(in oklab, var(--blue-9) var(--un-shadow-opacity), transparent)',
+      '--un-shadow-color':
+        'color-mix(in oklab, var(--blue-9) var(--un-shadow-opacity), transparent)',
     })
 
-    const faded = colorCSSGenerator(parseColor('blue-9/40', theme), '--un-shadow-color', 'shadow', context)
+    const faded = colorCSSGenerator(
+      parseColor('blue-9/40', theme),
+      '--un-shadow-color',
+      'shadow',
+      context,
+    )
     expect(faded?.[2]).toMatchObject({
-      '--un-shadow-color': 'color-mix(in oklab, color-mix(in oklab, var(--blue-9) 40%, transparent) var(--un-shadow-opacity), transparent)',
+      '--un-shadow-color':
+        'color-mix(in oklab, color-mix(in oklab, var(--blue-9) 40%, transparent) var(--un-shadow-opacity), transparent)',
     })
   })
 
   it('uses an interpolation modifier, skips the fallback, and comments raw colors in development', () => {
-    const mixed = colorCSSGenerator(parseColor('blue-9/50/[in_oklab]', theme), 'color', 'text', context)
+    const mixed = colorCSSGenerator(
+      parseColor('blue-9/50/[in_oklab]', theme),
+      'color',
+      'text',
+      context,
+    )
     expect(mixed?.[0].color).toBe('color-mix(in oklab, var(--blue-9) 50%, transparent)')
     expect(mixed).toHaveLength(2)
 
@@ -209,7 +232,9 @@ describe('colorCSSGenerator and colorResolver', () => {
       theme,
       generator: { config: { envMode: 'dev' } },
     } as any)
-    expect(dev?.[0].color).toBe(`color-mix(in srgb, var(--blue-9) 50%, transparent) /* ${blue['9']} */`)
+    expect(dev?.[0].color).toBe(
+      `color-mix(in srgb, var(--blue-9) 50%, transparent) /* ${blue['9']} */`,
+    )
     expect(dev?.[2]).toMatchObject({
       color: `color-mix(in oklab, var(--blue-9) 50%, transparent) /* ${blue['9']} */`,
     })
@@ -229,7 +254,9 @@ describe('colorCSSGenerator and colorResolver', () => {
       theme,
       generator: { config: { envMode: 'dev' } },
     } as any)
-    expect(dev?.[0].color).toBe('color-mix(in srgb, var(--error-1) 20%, transparent) /* var(--error-1) */')
+    expect(dev?.[0].color).toBe(
+      'color-mix(in srgb, var(--error-1) 20%, transparent) /* var(--error-1) */',
+    )
   })
 
   it('resolves theme colors to variables and ignores unknown colors', () => {

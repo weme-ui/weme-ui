@@ -52,7 +52,8 @@ export const ProjectAddedRegistrySchema = v.pipe(
         NonEmptyTrimmedString,
         v.metadata({
           title: '前缀',
-          description: '可选的安装前缀，用于为该 registry 的 items 做命名空间隔离，避免同一项目注册多个 registry 时发生冲突。',
+          description:
+            '可选的安装前缀，用于为该 registry 的 items 做命名空间隔离，避免同一项目注册多个 registry 时发生冲突。',
           examples: ['ui'],
         }),
       ),
@@ -61,11 +62,13 @@ export const ProjectAddedRegistrySchema = v.pipe(
   v.metadata({
     title: '已注册的 Registry',
     description: '已向项目注册的 registry。指明使用哪个 registry，以及可选的拉取来源与安装前缀。',
-    examples: [{
-      repo: 'https://github.com/weme-ui/slim',
-      registry: 'weme-ui/slim',
-      prefix: 'ui',
-    }],
+    examples: [
+      {
+        repo: 'https://github.com/weme-ui/slim',
+        registry: 'weme-ui/slim',
+        prefix: 'ui',
+      },
+    ],
   }),
 )
 
@@ -89,17 +92,17 @@ export const ProjectUnoCSSConfigSchema = v.pipe(
            *
            * @optional
            */
-          accent: v.optional(v.pipe(
-            v.record(
-              v.pipe(NonEmptyTrimmedString, v.toLowerCase()),
-              NonEmptyTrimmedString,
+          accent: v.optional(
+            v.pipe(
+              v.record(v.pipe(NonEmptyTrimmedString, v.toLowerCase()), NonEmptyTrimmedString),
+              v.metadata({
+                title: '主色调',
+                description:
+                  '项目主题的主色调 token。键为 token 名，值为 CSS 颜色字符串，通常使用 oklch。',
+                examples: [{ brand: 'oklch(0.55 0.2 250)', secondary: 'oklch(0.7 0.15 40)' }],
+              }),
             ),
-            v.metadata({
-              title: '主色调',
-              description: '项目主题的主色调 token。键为 token 名，值为 CSS 颜色字符串，通常使用 oklch。',
-              examples: [{ brand: 'oklch(0.55 0.2 250)', secondary: 'oklch(0.7 0.15 40)' }],
-            }),
-          )),
+          ),
 
           /**
            * 中性色
@@ -108,13 +111,11 @@ export const ProjectUnoCSSConfigSchema = v.pipe(
            */
           neutral: v.optional(
             v.pipe(
-              v.record(
-                v.pipe(NonEmptyTrimmedString, v.toLowerCase()),
-                NonEmptyTrimmedString,
-              ),
+              v.record(v.pipe(NonEmptyTrimmedString, v.toLowerCase()), NonEmptyTrimmedString),
               v.metadata({
                 title: '中性色',
-                description: '项目主题的中性（灰阶）色 token。键为 token 名，值为 CSS 颜色字符串，通常使用 oklch。',
+                description:
+                  '项目主题的中性（灰阶）色 token。键为 token 名，值为 CSS 颜色字符串，通常使用 oklch。',
                 examples: [{ stone: 'oklch(0.2 0 0)' }],
               }),
             ),
@@ -123,7 +124,13 @@ export const ProjectUnoCSSConfigSchema = v.pipe(
         v.metadata({
           title: '自定义颜色',
           description: '项目自定义的颜色 token。',
-          examples: [{ brand: 'oklch(0.55 0.2 250)', secondary: 'oklch(0.7 0.15 40)', stone: 'oklch(0.2 0 0)' }],
+          examples: [
+            {
+              brand: 'oklch(0.55 0.2 250)',
+              secondary: 'oklch(0.7 0.15 40)',
+              stone: 'oklch(0.2 0 0)',
+            },
+          ],
         }),
       ),
     ),
@@ -138,7 +145,8 @@ export const ProjectUnoCSSConfigSchema = v.pipe(
         CSSVariables,
         v.metadata({
           title: 'CSS 变量',
-          description: '项目主题的额外 CSS 自定义属性。取值会合并进 UnoCSS preset options，嵌套结构为 theme-key → variable-name → value。',
+          description:
+            '项目主题的额外 CSS 自定义属性。取值会合并进 UnoCSS preset options，嵌套结构为 theme-key → variable-name → value。',
           examples: [{ card: { radius: '0.75rem' } }],
         }),
       ),
@@ -191,12 +199,15 @@ export const ProjectConfigSchema = v.pipe(
         v.array(ProjectAddedRegistrySchema),
         v.metadata({
           title: 'Registries',
-          description: '已向本项目注册的 registries。每项选择一个 registry，并可指定仓库来源与安装前缀。',
-          examples: [{
-            repo: 'https://github.com/weme-ui/slim',
-            registry: 'weme-ui/slim',
-            prefix: 'ui',
-          }],
+          description:
+            '已向本项目注册的 registries。每项选择一个 registry，并可指定仓库来源与安装前缀。',
+          examples: [
+            {
+              repo: 'https://github.com/weme-ui/slim',
+              registry: 'weme-ui/slim',
+              prefix: 'ui',
+            },
+          ],
         }),
       ),
     ),
@@ -210,10 +221,13 @@ export const ProjectConfigSchema = v.pipe(
   }),
   v.metadata({
     title: '项目配置',
-    description: 'Weme UI 项目配置。声明安装路径、已注册的 registries，以及可选的 UnoCSS 主题扩展。',
-    examples: [{
-      paths: { component: '~/components', ui: '~/components/ui' },
-      registries: [{ registry: 'weme-ui/slim', prefix: 'ui' }],
-    }],
+    description:
+      'Weme UI 项目配置。声明安装路径、已注册的 registries，以及可选的 UnoCSS 主题扩展。',
+    examples: [
+      {
+        paths: { component: '~/components', ui: '~/components/ui' },
+        registries: [{ registry: 'weme-ui/slim', prefix: 'ui' }],
+      },
+    ],
   }),
 )

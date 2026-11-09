@@ -4,29 +4,26 @@ import type { Theme } from '../theme'
 import { trackedProperties } from '../utils/track'
 
 export function property(options: ResolvedWemeUIOptions): Preflight<Theme> | undefined {
-  if (options.preflights?.property === false)
-    return undefined
+  if (options.preflights?.property === false) return undefined
 
-  const propertyConfig = typeof options.preflights?.property === 'object'
-    ? options.preflights.property
-    : undefined
+  const propertyConfig =
+    typeof options.preflights?.property === 'object' ? options.preflights.property : undefined
 
-  const parentSelector = propertyConfig?.parent !== undefined
-    ? propertyConfig.parent
-    : '@supports ((-webkit-hyphens: none) and (not (margin-trim: inline))) or ((-moz-orient: inline) and (not (color:rgb(from red r g b))))'
+  const parentSelector =
+    propertyConfig?.parent !== undefined
+      ? propertyConfig.parent
+      : '@supports ((-webkit-hyphens: none) and (not (margin-trim: inline))) or ((-moz-orient: inline) and (not (color:rgb(from red r g b))))'
 
-  const selector = propertyConfig?.selector
-    ?? '*, ::before, ::after, ::backdrop'
+  const selector = propertyConfig?.selector ?? '*, ::before, ::after, ::backdrop'
 
   const prefix = options.variablePrefix ?? 'un-'
 
   return {
     getCSS: () => {
-      if (trackedProperties.size === 0)
-        return
+      if (trackedProperties.size === 0) return
 
       const css = Array.from(trackedProperties.entries())
-        .sort(([a], [b]) => a.localeCompare(b))
+        .toSorted(([a], [b]) => a.localeCompare(b))
         .map(([property, value]) => `${property.replace(/^--un-/, `--${prefix}`)}:${value};`)
         .join('')
 

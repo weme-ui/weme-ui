@@ -9,68 +9,87 @@ import { notLastChildSelectorVariant } from './spacing'
 export function divides(options: ResolvedWemeUIOptions): Rule<Theme>[] {
   return [
     // color & opacity
-    [/^divide-(.+)$/, function* (match, ctx) {
-      const result = colorResolver('border-color', 'divide')(match, ctx)
-      if (result) {
-        yield {
-          [ctx.symbols.variants]: [notLastChildSelectorVariant(match[0])],
-          ...result[0] as CSSObject,
+    [
+      /^divide-(.+)$/,
+      function* (match, ctx) {
+        const result = colorResolver('border-color', 'divide')(match, ctx)
+        if (result) {
+          yield {
+            [ctx.symbols.variants]: [notLastChildSelectorVariant(match[0])],
+            ...(result[0] as CSSObject),
+          }
+          yield result[1]
+          return
         }
-        yield result[1]
-        return
-      }
 
-      const customTheme = customThemeColorResolver('border-color', 'border-color', 'border')(match[1], options.cssVars)
-      if (customTheme) {
-        yield {
-          [ctx.symbols.variants]: [notLastChildSelectorVariant(match[0])],
-          ...customTheme[0] as CSSObject,
+        const customTheme = customThemeColorResolver(
+          'border-color',
+          'border-color',
+          'border',
+        )(match[1], options.cssVars)
+        if (customTheme) {
+          yield {
+            [ctx.symbols.variants]: [notLastChildSelectorVariant(match[0])],
+            ...(customTheme[0] as CSSObject),
+          }
+          yield customTheme[1]
         }
-        yield customTheme[1]
-      }
-    }, { autocomplete: 'divide-$colors' }],
-    [/^divide-op(?:acity)?-?(.+)$/, function* ([match, opacity], { symbols, theme }) {
-      yield {
-        [symbols.variants]: [notLastChildSelectorVariant(match)],
-        '--un-divide-opacity': h.bracket.percent(opacity, theme),
-      }
-    }, { autocomplete: ['divide-(op|opacity)', 'divide-(op|opacity)-<percent>'] }],
+      },
+      { autocomplete: 'divide-$colors' },
+    ],
+    [
+      /^divide-op(?:acity)?-?(.+)$/,
+      function* ([match, opacity], { symbols, theme }) {
+        yield {
+          [symbols.variants]: [notLastChildSelectorVariant(match)],
+          '--un-divide-opacity': h.bracket.percent(opacity, theme),
+        }
+      },
+      { autocomplete: ['divide-(op|opacity)', 'divide-(op|opacity)-<percent>'] },
+    ],
 
     // divides
     [/^divide-?([xy])$/, handlerDivide, { autocomplete: ['divide-(x|y)', 'divide-(x|y)-reverse'] }],
     [/^divide-?([xy])-?(.+)$/, handlerDivide],
-    [/^divide-?([xy])-reverse$/, function* ([m, d]: string[], { symbols }: RuleContext<Theme>) {
-      yield {
-        [symbols.variants]: [notLastChildSelectorVariant(m)],
-        [`--un-divide-${d}-reverse`]: '1',
-      }
-      yield defineProperty(`--un-divide-${d}-reverse`, { initialValue: 0 })
-    }],
+    [
+      /^divide-?([xy])-reverse$/,
+      function* ([m, d]: string[], { symbols }: RuleContext<Theme>) {
+        yield {
+          [symbols.variants]: [notLastChildSelectorVariant(m)],
+          [`--un-divide-${d}-reverse`]: '1',
+        }
+        yield defineProperty(`--un-divide-${d}-reverse`, { initialValue: 0 })
+      },
+    ],
 
     // styles
-    [new RegExp(`^divide-(${borderStyles.join('|')})$`), function* ([match, style]: string[], { symbols }: RuleContext<Theme>) {
-      yield {
-        [symbols.variants]: [notLastChildSelectorVariant(match)],
-        'border-style': style,
-      }
-    }, { autocomplete: borderStyles.map(i => `divide-${i}`) }],
+    [
+      new RegExp(`^divide-(${borderStyles.join('|')})$`),
+      function* ([match, style]: string[], { symbols }: RuleContext<Theme>) {
+        yield {
+          [symbols.variants]: [notLastChildSelectorVariant(match)],
+          'border-style': style,
+        }
+      },
+      { autocomplete: borderStyles.map((i) => `divide-${i}`) },
+    ],
   ]
 }
 
 function* handlerDivide([m, d, s]: string[], { symbols, theme }: RuleContext<Theme>) {
   let v = h.bracket.cssvar.px(s || '1', theme)
   if (v != null) {
-    if (v === '0')
-      v = '0px'
+    if (v === '0') v = '0px'
 
     const directionMap: Record<string, string[]> = {
       x: ['-left', '-right'],
       y: ['-top', '-bottom'],
     }
     const results = directionMap[d].map((item): [string, string][] => {
-      const value = (item.endsWith('left') || item.endsWith('top'))
-        ? `calc(${v} * var(--un-divide-${d}-reverse))`
-        : `calc(${v} * calc(1 - var(--un-divide-${d}-reverse)))`
+      const value =
+        item.endsWith('left') || item.endsWith('top')
+          ? `calc(${v} * var(--un-divide-${d}-reverse))`
+          : `calc(${v} * calc(1 - var(--un-divide-${d}-reverse)))`
       return [
         [`border${item}-width`, value],
         [`border${item}-style`, `var(--un-border-style)`],

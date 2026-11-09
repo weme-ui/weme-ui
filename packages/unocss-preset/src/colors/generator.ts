@@ -1,4 +1,12 @@
-import type { ColorKind, ColorMode, ColorScales, ColorValueScales, RadixColorPureName, RadixNeutralColorPureName, ResolvedColorScales } from './types'
+import type {
+  ColorKind,
+  ColorMode,
+  ColorScales,
+  ColorValueScales,
+  RadixColorPureName,
+  RadixNeutralColorPureName,
+  ResolvedColorScales,
+} from './types'
 import BezierEasing from 'bezier-easing'
 import Color from 'colorjs.io'
 import { getRadixColorScales } from './color'
@@ -8,37 +16,33 @@ import { toOklchString, toP3String } from './utils'
 export type RadixColorScales<T extends RadixColorPureName> = ColorScales<Color, T>
 
 const lightColors = Object.fromEntries(
-  RADIX_COLOR_NAMES.map(name => [
+  RADIX_COLOR_NAMES.map((name) => [
     name,
-    getRadixColorScales({ name }).map(
-      c => new Color(c).to('oklch'),
-    ) as ColorValueScales<Color>,
+    getRadixColorScales({ name }).map((c) => new Color(c).to('oklch')) as ColorValueScales<Color>,
   ]),
 ) as RadixColorScales<RadixColorPureName>
 
 const darkColors = Object.fromEntries(
-  RADIX_COLOR_NAMES.map(name => [
+  RADIX_COLOR_NAMES.map((name) => [
     name,
-    getRadixColorScales({ name, mode: 'dark' }).map(
-      c => new Color(c).to('oklch'),
+    getRadixColorScales({ name, mode: 'dark' }).map((c) =>
+      new Color(c).to('oklch'),
     ) as ColorValueScales<Color>,
   ]),
 ) as RadixColorScales<RadixColorPureName>
 
 const lightNeutralColors = Object.fromEntries(
-  RADIX_NEUTRAL_COLOR_NAMES.map(name => [
+  RADIX_NEUTRAL_COLOR_NAMES.map((name) => [
     name,
-    getRadixColorScales({ name }).map(
-      c => new Color(c).to('oklch'),
-    ) as ColorValueScales<Color>,
+    getRadixColorScales({ name }).map((c) => new Color(c).to('oklch')) as ColorValueScales<Color>,
   ]),
 ) as RadixColorScales<RadixNeutralColorPureName>
 
 const darkNeutralColors = Object.fromEntries(
-  RADIX_NEUTRAL_COLOR_NAMES.map(name => [
+  RADIX_NEUTRAL_COLOR_NAMES.map((name) => [
     name,
-    getRadixColorScales({ name, mode: 'dark' }).map(
-      c => new Color(c).to('oklch'),
+    getRadixColorScales({ name, mode: 'dark' }).map((c) =>
+      new Color(c).to('oklch'),
     ) as ColorValueScales<Color>,
   ]),
 ) as RadixColorScales<RadixNeutralColorPureName>
@@ -66,22 +70,25 @@ export interface GenerateColorScalesOptions {
  * 生成 Radix 颜色刻度
  */
 export function generateRadixColorScales(options: GenerateColorScalesOptions): ResolvedColorScales {
-  const {
-    color,
-    mode = 'light',
-    kind = 'accent',
-  } = options
+  const { color, mode = 'light', kind = 'accent' } = options
 
   const allScales = mode === 'light' ? lightColors : darkColors
   const neutralScales = mode === 'light' ? lightNeutralColors : darkNeutralColors
-  const bgColor = new Color(mode === 'light' ? DEFAULT_BACKGROUND_COLORS.light : DEFAULT_BACKGROUND_COLORS.dark).to('oklch')
+  const bgColor = new Color(
+    mode === 'light' ? DEFAULT_BACKGROUND_COLORS.light : DEFAULT_BACKGROUND_COLORS.dark,
+  ).to('oklch')
 
   const baseColor = new Color(color).to('oklch')
   const baseHex = baseColor.toString({ format: 'hex' })
 
-  const colorScales = kind === 'accent'
-    ? getScaleFromColor(baseColor, baseHex === '#000' || baseHex === '#fff' ? neutralScales : allScales, bgColor)
-    : getScaleFromColor(baseColor, neutralScales, bgColor)
+  const colorScales =
+    kind === 'accent'
+      ? getScaleFromColor(
+          baseColor,
+          baseHex === '#000' || baseHex === '#fff' ? neutralScales : allScales,
+          bgColor,
+        )
+      : getScaleFromColor(baseColor, neutralScales, bgColor)
 
   if (kind === 'accent') {
     const [step9Color] = getStep9Colors(colorScales, baseColor)
@@ -114,7 +121,7 @@ function getScaleFromColor(
   scales: Record<string, ColorValueScales<Color>>,
   bgColor: Color,
 ): ColorValueScales<Color> {
-  const allColors: { scale: string, color: Color, distance: number }[] = []
+  const allColors: { scale: string; color: Color; distance: number }[] = []
 
   Object.entries(scales).forEach(([name, scale]) => {
     for (const color of scale) {
@@ -126,13 +133,11 @@ function getScaleFromColor(
   allColors.sort((a, b) => a.distance - b.distance)
 
   const closestColors = allColors.filter(
-    (c, i, arr) => i === arr.findIndex(v => v.scale === c.scale),
+    (c, i, arr) => i === arr.findIndex((v) => v.scale === c.scale),
   )
 
   const grayScaleNamesStr = RADIX_NEUTRAL_COLOR_NAMES as readonly string[]
-  const allAreGrays = closestColors.every(color =>
-    grayScaleNamesStr.includes(color.scale),
-  )
+  const allAreGrays = closestColors.every((color) => grayScaleNamesStr.includes(color.scale))
   if (!allAreGrays && grayScaleNamesStr.includes(closestColors[0].scale)) {
     while (grayScaleNamesStr.includes(closestColors[1].scale)) {
       closestColors.splice(1, 1)
@@ -164,13 +169,11 @@ function getScaleFromColor(
 
   const scaleA = scales[colorA.scale]
   const scaleB = scales[colorB.scale]
-  const scale = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11].map(i =>
+  const scale = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11].map((i) =>
     new Color(Color.mix(scaleA[i], scaleB[i], ratio)).to('oklch'),
   ) as ColorValueScales<Color>
 
-  const baseColor = scale
-    .slice()
-    .sort((a, b) => source.deltaEOK(a) - source.deltaEOK(b))[0]
+  const baseColor = scale.slice().toSorted((a, b) => source.deltaEOK(a) - source.deltaEOK(b))[0]
 
   const sourceChroma = source.coords?.[1] ?? 0
   const baseChroma = baseColor.coords?.[1] ?? 0
@@ -178,9 +181,10 @@ function getScaleFromColor(
   const ratioC = baseChroma > 0 ? sourceChroma / baseChroma : 0
 
   scale.forEach((color) => {
-    color.coords[1] = baseChroma > 0
-      ? Math.min(sourceChroma * 1.5, (color.coords?.[1] ?? 0) * ratioC)
-      : sourceChroma
+    color.coords[1] =
+      baseChroma > 0
+        ? Math.min(sourceChroma * 1.5, (color.coords?.[1] ?? 0) * ratioC)
+        : sourceChroma
     color.coords[2] = source.coords?.[2] ?? 0
   })
 
@@ -216,11 +220,7 @@ function getScaleFromColor(
   }
 
   const lightnessScale = scale.map(({ coords }) => coords[0] ?? 0)
-  const newLightnessScale = transposeProgressionStart(
-    backgroundColorL,
-    lightnessScale,
-    ease,
-  )
+  const newLightnessScale = transposeProgressionStart(backgroundColorL, lightnessScale, ease)
 
   newLightnessScale.forEach((lightness, i) => {
     scale[i].coords[0] = lightness
@@ -229,10 +229,7 @@ function getScaleFromColor(
   return scale
 }
 
-function getStep9Colors(
-  scale: ColorValueScales<Color>,
-  baseColor: Color,
-): [Color, Color] {
+function getStep9Colors(scale: ColorValueScales<Color>, baseColor: Color): [Color, Color] {
   const referenceBackgroundColor = scale[0]
   const distance = baseColor.deltaEOK(referenceBackgroundColor) * 100
 
@@ -247,9 +244,8 @@ function getButtonHoverColor(source: Color, scales: ColorValueScales<Color>[]) {
   const [L, C, H] = source.coords
   const lightness = L ?? 0
   const chroma = C ?? 0
-  const newL = lightness > 0.4
-    ? lightness - 0.03 / (lightness + 0.1)
-    : lightness + 0.03 / (lightness + 0.1)
+  const newL =
+    lightness > 0.4 ? lightness - 0.03 / (lightness + 0.1) : lightness + 0.03 / (lightness + 0.1)
   const newC = lightness > 0.4 && !Number.isNaN(H) ? chroma * 0.93 : chroma
   const buttonHoverColor = new Color('oklch', [newL, newC, H])
 

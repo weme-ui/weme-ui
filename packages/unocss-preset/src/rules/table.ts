@@ -19,31 +19,45 @@ export const tables: Rule<Theme>[] = [
   ['border-collapse', { 'border-collapse': 'collapse' }],
   ['border-separate', { 'border-collapse': 'separate' }],
 
-  [/^border-spacing-(.+)$/, function* ([, s], { theme }) {
-    const v = resolveValue(s, theme)
+  [
+    /^border-spacing-(.+)$/,
+    function* ([, s], { theme }) {
+      const v = resolveValue(s, theme)
 
-    if (v != null) {
-      yield {
-        '--un-border-spacing-x': v,
-        '--un-border-spacing-y': v,
-        'border-spacing': 'var(--un-border-spacing-x) var(--un-border-spacing-y)',
+      if (v != null) {
+        yield {
+          '--un-border-spacing-x': v,
+          '--un-border-spacing-y': v,
+          'border-spacing': 'var(--un-border-spacing-x) var(--un-border-spacing-y)',
+        }
+        for (const d of ['x', 'y'])
+          yield defineProperty(`--un-border-spacing-${d}`, {
+            syntax: '<length>',
+            initialValue: '0',
+          })
       }
-      for (const d of ['x', 'y'])
-        yield defineProperty(`--un-border-spacing-${d}`, { syntax: '<length>', initialValue: '0' })
-    }
-  }, { autocomplete: ['border-spacing', 'border-spacing-$spacing'] }],
+    },
+    { autocomplete: ['border-spacing', 'border-spacing-$spacing'] },
+  ],
 
-  [/^border-spacing-([xy])-(.+)$/, function* ([, d, s], { theme }) {
-    const v = resolveValue(s, theme)
-    if (v != null) {
-      yield {
-        [`--un-border-spacing-${d}`]: v,
-        'border-spacing': 'var(--un-border-spacing-x) var(--un-border-spacing-y)',
+  [
+    /^border-spacing-([xy])-(.+)$/,
+    function* ([, d, s], { theme }) {
+      const v = resolveValue(s, theme)
+      if (v != null) {
+        yield {
+          [`--un-border-spacing-${d}`]: v,
+          'border-spacing': 'var(--un-border-spacing-x) var(--un-border-spacing-y)',
+        }
+        for (const d of ['x', 'y'])
+          yield defineProperty(`--un-border-spacing-${d}`, {
+            syntax: '<length>',
+            initialValue: '0',
+          })
       }
-      for (const d of ['x', 'y'])
-        yield defineProperty(`--un-border-spacing-${d}`, { syntax: '<length>', initialValue: '0' })
-    }
-  }, { autocomplete: ['border-spacing-(x|y)', 'border-spacing-(x|y)-$spacing'] }],
+    },
+    { autocomplete: ['border-spacing-(x|y)', 'border-spacing-(x|y)-$spacing'] },
+  ],
 
   ['caption-top', { 'caption-side': 'top' }],
   ['caption-bottom', { 'caption-side': 'bottom' }],
@@ -61,8 +75,7 @@ function resolveValue(s: string, theme: Theme) {
     if (num != null) {
       themeTracking(`spacing`)
       v = `calc(var(--spacing) * ${num})`
-    }
-    else {
+    } else {
       v = h.bracket.cssvar.global.auto.fraction.rem(s, theme)
     }
   }

@@ -4,7 +4,15 @@ import type { Theme } from '../theme'
 import type { CustomTheme, CustomThemeColorAlias, ResolvedCustomThemeCSSVars } from '../tokens'
 import { resolveRadixColorScales } from '../colors'
 import { DEFAULT_NAME, generateColorAliasCssVar, isRawColor } from '../tokens'
-import { compressCSS, detectThemeValue, generateThemeVariable, isSize, parseColor, themeTracking, trackedColorAliases } from '../utils'
+import {
+  compressCSS,
+  detectThemeValue,
+  generateThemeVariable,
+  isSize,
+  parseColor,
+  themeTracking,
+  trackedColorAliases,
+} from '../utils'
 
 export function custom(options: ResolvedWemeUIOptions): Preflight<Theme> | undefined {
   if (options.themes.length === 0) {
@@ -17,30 +25,30 @@ export function custom(options: ResolvedWemeUIOptions): Preflight<Theme> | undef
         ? createCssBlock(':root', serializeCssVars(options.cssVars, theme))
         : ''
 
-      const themeCSS = options.themes.map((customTheme) => {
-        const colorAliasCSS = resolveCustomThemeColorAlias(customTheme, theme)
-        const tokensCSS = resolveCustomThemeTokens(customTheme, theme)
+      const themeCSS = options.themes
+        .map((customTheme) => {
+          const colorAliasCSS = resolveCustomThemeColorAlias(customTheme, theme)
+          const tokensCSS = resolveCustomThemeTokens(customTheme, theme)
 
-        return [
-          '/* Custom theme color aliases */',
-          colorAliasCSS,
-          '/* Custom CSS variables */',
-          defaultCssVarsCSS,
-          '/* Custom theme tokens */',
-          tokensCSS,
-        ]
-          .filter(Boolean)
-          .join('\n')
-      }).filter(Boolean).join('\n')
+          return [
+            '/* Custom theme color aliases */',
+            colorAliasCSS,
+            '/* Custom CSS variables */',
+            defaultCssVarsCSS,
+            '/* Custom theme tokens */',
+            tokensCSS,
+          ]
+            .filter(Boolean)
+            .join('\n')
+        })
+        .filter(Boolean)
+        .join('\n')
 
       if (!themeCSS) {
         return undefined
       }
 
-      return compressCSS(
-        themeCSS,
-        generator.config.envMode === 'dev',
-      )
+      return compressCSS(themeCSS, generator.config.envMode === 'dev')
     },
     layer: 'theme',
   }
@@ -53,9 +61,7 @@ function getThemeSelector(name: string, dark = false): string {
     return `.dark${themeSelector}`
   }
 
-  return name === DEFAULT_NAME
-    ? `:root, ${themeSelector}`
-    : themeSelector
+  return name === DEFAULT_NAME ? `:root, ${themeSelector}` : themeSelector
 }
 
 function createCssBlock(selector: string, entries: string[]): string {
@@ -68,10 +74,7 @@ ${entries.join('\n')}
 }`
 }
 
-function serializeCssVars(
-  cssVars: ResolvedCustomThemeCSSVars,
-  theme: Theme,
-): string[] {
+function serializeCssVars(cssVars: ResolvedCustomThemeCSSVars, theme: Theme): string[] {
   const result: string[] = []
   Object.entries(cssVars).forEach(([key, value]) => {
     const body = String(value).replace(/\./g, '-')
@@ -80,12 +83,10 @@ function serializeCssVars(
     if (keys && keys.length > 0) {
       themeTracking('colors', keys)
       result.push(`--${key}: ${generateThemeVariable('colors', keys)};`)
-    }
-    else {
+    } else {
       if (isSize(value)) {
         result.push(`--${key}: ${value};`)
-      }
-      else {
+      } else {
         result.push(`--${key}: ${generateColorAliasCssVar(value)};`)
       }
     }
@@ -96,25 +97,28 @@ function serializeCssVars(
 
 function getTrackedColorAliasGroups(): Record<string, string[]> {
   return Array.from(trackedColorAliases)
-    .sort((a, b) => a.localeCompare(b))
-    .reduce((acc, alias) => {
-      const [name, no] = alias.split(':')
-      acc[name] ??= []
-      acc[name].push(no)
-      return acc
-    }, {} as Record<string, string[]>)
+    .toSorted((a, b) => a.localeCompare(b))
+    .reduce(
+      (acc, alias) => {
+        const [name, no] = alias.split(':')
+        acc[name] ??= []
+        acc[name].push(no)
+        return acc
+      },
+      {} as Record<string, string[]>,
+    )
 }
 
 function resolveAliasDeclarations(
   custom: CustomTheme<ResolvedCustomThemeCSSVars>,
   theme: Theme,
-): { light: string[], dark: string[] } {
+): { light: string[]; dark: string[] } {
   const light: string[] = []
   const dark: string[] = []
 
   Object.entries(getTrackedColorAliasGroups()).forEach(([name, nos]) => {
     const color = custom.colors[name as keyof CustomThemeColorAlias]
-    const sorted = [...nos].sort((a, b) => Number(a) - Number(b))
+    const sorted = [...nos].toSorted((a, b) => Number(a) - Number(b))
 
     if (isRawColor(color)) {
       const lightColorScales = resolveRadixColorScales({ color, mode: 'light' })
@@ -130,8 +134,7 @@ function resolveAliasDeclarations(
 
         detectThemeValue(lightValue, theme)
       })
-    }
-    else {
+    } else {
       sorted.forEach((no) => {
         const value = `var(--custom-${name}-${no}, var(--${color}-${no}))`
 
@@ -146,7 +149,10 @@ function resolveAliasDeclarations(
   return { light, dark }
 }
 
-function resolveCustomThemeColorAlias(custom: CustomTheme<ResolvedCustomThemeCSSVars>, theme: Theme): string {
+function resolveCustomThemeColorAlias(
+  custom: CustomTheme<ResolvedCustomThemeCSSVars>,
+  theme: Theme,
+): string {
   if (trackedColorAliases.size === 0) {
     return ''
   }
@@ -156,10 +162,15 @@ function resolveCustomThemeColorAlias(custom: CustomTheme<ResolvedCustomThemeCSS
   return [
     createCssBlock(getThemeSelector(custom.name), light),
     createCssBlock(getThemeSelector(custom.name, true), dark),
-  ].filter(Boolean).join('\n')
+  ]
+    .filter(Boolean)
+    .join('\n')
 }
 
-function resolveCustomThemeTokens(custom: CustomTheme<ResolvedCustomThemeCSSVars>, theme: Theme): string {
+function resolveCustomThemeTokens(
+  custom: CustomTheme<ResolvedCustomThemeCSSVars>,
+  theme: Theme,
+): string {
   const entries = [
     ...serializeCssVars(custom.tokens, theme),
     ...(custom.cssVars ? serializeCssVars(custom.cssVars, theme) : []),

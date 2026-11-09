@@ -41,17 +41,19 @@ describe('divide rules', () => {
   })
 
   it('prefers theme colors and tokens over overlapping css vars', () => {
-    const withOverlap = divides(resolveOptions({
-      cssVars: {
-        ...cssVars,
-        'blue-9': {
-          border: 'border.base',
+    const withOverlap = divides(
+      resolveOptions({
+        cssVars: {
+          ...cssVars,
+          'blue-9': {
+            border: 'border.base',
+          },
+          'foreground-base': {
+            border: 'border.elevated',
+          },
         },
-        'foreground-base': {
-          border: 'border.elevated',
-        },
-      },
-    }))
+      }),
+    )
 
     expectUtilities(withOverlap, {
       'divide-blue-9': { 'border-color': 'var(--blue-9)' },

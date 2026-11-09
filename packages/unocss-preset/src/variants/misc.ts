@@ -1,6 +1,13 @@
 import type { Variant } from '@unocss/core'
 import type { Theme } from '../theme'
-import { getBracket, hasThemeFn, transformThemeFn, variantGetBracket, variantGetParameter, variantMatcher } from '@unocss/rule-utils'
+import {
+  getBracket,
+  hasThemeFn,
+  transformThemeFn,
+  variantGetBracket,
+  variantGetParameter,
+  variantMatcher,
+} from '@unocss/rule-utils'
 import { h } from '../utils'
 
 export const variantSelector: Variant<Theme> = {
@@ -30,10 +37,11 @@ export const variantCssLayer: Variant<Theme> = {
       if (layer) {
         return {
           matcher: rest,
-          handle: (input, next) => next({
-            ...input,
-            parent: `${input.parent ? `${input.parent} $$ ` : ''}@layer ${layer}`,
-          }),
+          handle: (input, next) =>
+            next({
+              ...input,
+              parent: `${input.parent ? `${input.parent} $$ ` : ''}@layer ${layer}`,
+            }),
         }
       }
     }
@@ -67,7 +75,7 @@ export const variantScope: Variant<Theme> = {
       if (scope) {
         return {
           matcher: rest,
-          selector: s => `${scope} $$ ${s}`,
+          selector: (s) => `${scope} $$ ${s}`,
         }
       }
     }
@@ -77,12 +85,10 @@ export const variantScope: Variant<Theme> = {
 export const variantVariables: Variant<Theme> = {
   name: 'variables',
   match(matcher, ctx) {
-    if (!matcher.startsWith('['))
-      return
+    if (!matcher.startsWith('[')) return
 
     const [match, rest] = getBracket(matcher, '[', ']') ?? []
-    if (!(match && rest))
-      return
+    if (!(match && rest)) return
 
     let newMatcher: string | undefined
     for (const separator of ctx.generator.config.separators) {
@@ -92,13 +98,11 @@ export const variantVariables: Variant<Theme> = {
       }
     }
 
-    if (newMatcher == null)
-      return
+    if (newMatcher == null) return
 
     const variant = h.bracket(match, ctx.theme) ?? ''
     const useParent = variant.startsWith('@')
-    if (!(useParent || variant.includes('&')))
-      return
+    if (!(useParent || variant.includes('&'))) return
 
     return {
       matcher: newMatcher,
@@ -123,8 +127,7 @@ export const variantVariables: Variant<Theme> = {
 export const variantTheme: Variant<Theme> = {
   name: 'theme-variables',
   match(matcher, ctx) {
-    if (!hasThemeFn(matcher))
-      return
+    if (!hasThemeFn(matcher)) return
 
     return {
       matcher,
@@ -140,7 +143,7 @@ export const variantTheme: Variant<Theme> = {
 }
 
 export const variantStickyHover: Variant<Theme>[] = [
-  variantMatcher('@hover', input => ({
+  variantMatcher('@hover', (input) => ({
     parent: `${input.parent ? `${input.parent} $$ ` : ''}@media (hover: hover) and (pointer: fine)`,
     selector: `${input.selector || ''}:hover`,
   })),
@@ -156,11 +159,12 @@ export const variantImplicitGroup: Variant<Theme> = {
       if (group) {
         return {
           matcher: rest,
-          handle: (input, next) => next({
-            ...input,
-            parent: `${input.parent ? `${input.parent} $$ ` : ''}${input.selector}`,
-            selector: `:where(*:is(${group})) &`,
-          }),
+          handle: (input, next) =>
+            next({
+              ...input,
+              parent: `${input.parent ? `${input.parent} $$ ` : ''}${input.selector}`,
+              selector: `:where(*:is(${group})) &`,
+            }),
         }
       }
     }

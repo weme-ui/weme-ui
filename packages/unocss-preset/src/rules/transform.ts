@@ -2,14 +2,21 @@
 /* eslint-disable regexp/no-empty-capturing-group */
 import type { CSSValueInput, CSSValues, Rule, RuleContext } from '@unocss/core'
 import type { Theme } from '../theme'
-import { CONTROL_NO_NEGATIVE, defineProperty, generateThemeVariable, h, makeGlobalStaticRules, numberResolver, positionMap, themeTracking, xyzArray, xyzMap } from '../utils'
+import {
+  CONTROL_NO_NEGATIVE,
+  defineProperty,
+  generateThemeVariable,
+  h,
+  makeGlobalStaticRules,
+  numberResolver,
+  positionMap,
+  themeTracking,
+  xyzArray,
+  xyzMap,
+} from '../utils'
 import { splitComma } from '../utils/handlers/regex'
 
-const transformValues = [
-  'translate',
-  'rotate',
-  'scale',
-]
+const transformValues = ['translate', 'rotate', 'scale']
 
 const transformCpu = [
   'var(--un-rotate-x)',
@@ -21,10 +28,7 @@ const transformCpu = [
 
 const transform = transformCpu
 
-const transformGpu = [
-  'translateZ(0)',
-  transformCpu,
-].join(' ')
+const transformGpu = ['translateZ(0)', transformCpu].join(' ')
 
 export const transformBase = {
   // transform
@@ -43,43 +47,54 @@ export const transforms: Rule<Theme>[] = [
   [
     /^(?:transform-)?origin-(.+)$/,
     ([, s], { theme }) => ({ 'transform-origin': positionMap[s] ?? h.bracket.cssvar(s, theme) }),
-    { autocomplete: [`transform-origin-(${Object.keys(positionMap).join('|')})`, `origin-(${Object.keys(positionMap).join('|')})`] },
+    {
+      autocomplete: [
+        `transform-origin-(${Object.keys(positionMap).join('|')})`,
+        `origin-(${Object.keys(positionMap).join('|')})`,
+      ],
+    },
   ],
 
   // perspectives
-  [/^(transform-)?perspect(?:ive)?-(.+)$/, ([, t, s], { theme }) => {
-    let v
-    if (theme.perspective?.[s]) {
-      themeTracking(`perspective`, s)
-      v = generateThemeVariable('perspective', s)
-    }
-    else {
-      v = h.bracket.cssvar.px.numberWithUnit(s, theme)
-    }
+  [
+    /^(transform-)?perspect(?:ive)?-(.+)$/,
+    ([, t, s], { theme }) => {
+      let v
+      if (theme.perspective?.[s]) {
+        themeTracking(`perspective`, s)
+        v = generateThemeVariable('perspective', s)
+      } else {
+        v = h.bracket.cssvar.px.numberWithUnit(s, theme)
+      }
 
-    if (v != null) {
-      if (t) {
+      if (v != null) {
+        if (t) {
+          return {
+            '--un-perspective': `perspective(${v})`,
+            transform: `var(--un-perspective) ${transform}`,
+          }
+        }
+
         return {
-          '--un-perspective': `perspective(${v})`,
-          'transform': `var(--un-perspective) ${transform}`,
+          perspective: v,
         }
       }
-
-      return {
-        perspective: v,
-      }
-    }
-  }, { autocomplete: [`perspective-<num>`, `perspective-$perspective`] }],
+    },
+    { autocomplete: [`perspective-<num>`, `perspective-$perspective`] },
+  ],
 
   // skip 1 & 2 letters shortcut
-  [/^(?:transform-)?perspect(?:ive)?-origin-(.+)$/, ([, s], { theme }) => {
-    const v = h.bracket.cssvar(s, theme) ?? (s.length >= 3 ? positionMap[s] : undefined)
-    if (v != null) {
-      return {
-        'perspective-origin': v,
+  [
+    /^(?:transform-)?perspect(?:ive)?-origin-(.+)$/,
+    ([, s], { theme }) => {
+      const v = h.bracket.cssvar(s, theme) ?? (s.length >= 3 ? positionMap[s] : undefined)
+      if (v != null) {
+        return {
+          'perspective-origin': v,
+        }
       }
-    }
-  }],
+    },
+  ],
 
   // modifiers
   [/^(?:transform-)?translate-()(.+)$/, handleTranslate],
@@ -87,16 +102,31 @@ export const transforms: Rule<Theme>[] = [
   [/^(?:transform-)?rotate-()(.+)$/, handleRotate],
   [/^(?:transform-)?rotate-([xyz])-(.+)$/, handleRotate],
   [/^(?:transform-)?skew-()(.+)$/, handleSkew],
-  [/^(?:transform-)?skew-([xy])-(.+)$/, handleSkew, { autocomplete: ['transform-skew-(x|y)-<percent>', 'skew-(x|y)-<percent>'] }],
+  [
+    /^(?:transform-)?skew-([xy])-(.+)$/,
+    handleSkew,
+    { autocomplete: ['transform-skew-(x|y)-<percent>', 'skew-(x|y)-<percent>'] },
+  ],
   [/^(?:transform-)?scale-()(.+)$/, handleScale],
-  [/^(?:transform-)?scale-([xyz])-(.+)$/, handleScale, { autocomplete: [`transform-(${transformValues.join('|')})-<percent>`, `transform-(${transformValues.join('|')})-(x|y|z)-<percent>`, `(${transformValues.join('|')})-<percent>`, `(${transformValues.join('|')})-(x|y|z)-<percent>`] }],
+  [
+    /^(?:transform-)?scale-([xyz])-(.+)$/,
+    handleScale,
+    {
+      autocomplete: [
+        `transform-(${transformValues.join('|')})-<percent>`,
+        `transform-(${transformValues.join('|')})-(x|y|z)-<percent>`,
+        `(${transformValues.join('|')})-<percent>`,
+        `(${transformValues.join('|')})-(x|y|z)-<percent>`,
+      ],
+    },
+  ],
 
   // style
   ['transform-3d', { 'transform-style': 'preserve-3d' }],
   ['transform-flat', { 'transform-style': 'flat' }],
 
   // transform-box
-  [/^transform-(border|content|fill|stroke|view)$/, ([,d]) => ({ 'transform-box': `${d}-box` })],
+  [/^transform-(border|content|fill|stroke|view)$/, ([, d]) => ({ 'transform-box': `${d}-box` })],
 
   // base
   ['transform', { transform }],
@@ -106,10 +136,17 @@ export const transforms: Rule<Theme>[] = [
   ...makeGlobalStaticRules('transform'),
 
   // zoom
-  [/^zoom-(.+)$/, ([, v], { theme }) => ({ zoom: h.bracket.percent.cssvar(v, theme) }), { autocomplete: 'zoom-<percent>' }],
+  [
+    /^zoom-(.+)$/,
+    ([, v], { theme }) => ({ zoom: h.bracket.percent.cssvar(v, theme) }),
+    { autocomplete: 'zoom-<percent>' },
+  ],
 ]
 
-function handleTranslate([, d, b]: string[], { theme }: RuleContext<Theme>): CSSValues | (CSSValueInput | string)[] | undefined {
+function handleTranslate(
+  [, d, b]: string[],
+  { theme }: RuleContext<Theme>,
+): CSSValues | (CSSValueInput | string)[] | undefined {
   const v = numberResolver(b) ?? h.bracket.cssvar.none.fraction.rem(b, theme)
 
   if (v != null) {
@@ -123,14 +160,21 @@ function handleTranslate([, d, b]: string[], { theme }: RuleContext<Theme>): CSS
     return [
       [
         ...transformXYZ(d, typeof v === 'number' ? `calc(var(--spacing) * ${v})` : v, 'translate'),
-        ['translate', `var(--un-translate-x) var(--un-translate-y)${d === 'z' ? ' var(--un-translate-z)' : ''}`, CONTROL_NO_NEGATIVE],
+        [
+          'translate',
+          `var(--un-translate-x) var(--un-translate-y)${d === 'z' ? ' var(--un-translate-z)' : ''}`,
+          CONTROL_NO_NEGATIVE,
+        ],
       ],
-      ...['x', 'y', 'z'].map(d => defineProperty(`--un-translate-${d}`, { initialValue: 0 })),
+      ...['x', 'y', 'z'].map((d) => defineProperty(`--un-translate-${d}`, { initialValue: 0 })),
     ]
   }
 }
 
-function handleScale([, d, b]: string[], { theme }: RuleContext<Theme>): CSSValues | (CSSValueInput | string)[] | undefined {
+function handleScale(
+  [, d, b]: string[],
+  { theme }: RuleContext<Theme>,
+): CSSValues | (CSSValueInput | string)[] | undefined {
   const v = h.bracket.cssvar.none.fraction.percent(b, theme)
 
   if (v != null) {
@@ -145,12 +189,15 @@ function handleScale([, d, b]: string[], { theme }: RuleContext<Theme>): CSSValu
         ...transformXYZ(d, v, 'scale'),
         ['scale', `var(--un-scale-x) var(--un-scale-y)${d === 'z' ? ' var(--un-scale-z)' : ''}`],
       ],
-      ...['x', 'y', 'z'].map(d => defineProperty(`--un-scale-${d}`, { initialValue: 1 })),
+      ...['x', 'y', 'z'].map((d) => defineProperty(`--un-scale-${d}`, { initialValue: 1 })),
     ]
   }
 }
 
-function handleRotate([, d = '', b]: string[], { theme }: RuleContext<Theme>): CSSValues | (CSSValueInput | string)[] | undefined {
+function handleRotate(
+  [, d = '', b]: string[],
+  { theme }: RuleContext<Theme>,
+): CSSValues | (CSSValueInput | string)[] | undefined {
   const v = h.bracket.cssvar.none.degree(b, theme)
   if (v != null) {
     if (v === 'none') {
@@ -165,11 +212,14 @@ function handleRotate([, d = '', b]: string[], { theme }: RuleContext<Theme>): C
           ...transformXYZ(d, v.endsWith('deg') ? `rotate${d.toUpperCase()}(${v})` : v, 'rotate'),
           ['transform', transform],
         ],
-        ...['x', 'y', 'z'].map(d => defineProperty(`--un-rotate-${d}`, { initialValue: `rotate${d.toUpperCase()}(0)` })),
-        ...['x', 'y'].map(d => defineProperty(`--un-skew-${d}`, { initialValue: `skew${d.toUpperCase()}(0)` })),
+        ...['x', 'y', 'z'].map((d) =>
+          defineProperty(`--un-rotate-${d}`, { initialValue: `rotate${d.toUpperCase()}(0)` }),
+        ),
+        ...['x', 'y'].map((d) =>
+          defineProperty(`--un-skew-${d}`, { initialValue: `skew${d.toUpperCase()}(0)` }),
+        ),
       ]
-    }
-    else {
+    } else {
       return {
         rotate: h.bracket.cssvar.degree(b, theme),
       }
@@ -177,17 +227,27 @@ function handleRotate([, d = '', b]: string[], { theme }: RuleContext<Theme>): C
   }
 }
 
-function handleSkew([, d, b]: string[], { theme }: RuleContext<Theme>): CSSValues | (CSSValueInput | string)[] | undefined {
+function handleSkew(
+  [, d, b]: string[],
+  { theme }: RuleContext<Theme>,
+): CSSValues | (CSSValueInput | string)[] | undefined {
   const v = h.bracket.cssvar.degree(b, theme)
   const ds = xyzMap[d]
   if (v != null && ds) {
     return [
       [
-        ...ds.map(_d => [`--un-skew${_d}`, v.endsWith('deg') ? `skew${_d.slice(1).toUpperCase()}(${v})` : v]) as any,
+        ...(ds.map((_d) => [
+          `--un-skew${_d}`,
+          v.endsWith('deg') ? `skew${_d.slice(1).toUpperCase()}(${v})` : v,
+        ]) as any),
         ['transform', transform],
       ],
-      ...['x', 'y', 'z'].map(d => defineProperty(`--un-rotate-${d}`, { initialValue: `rotate${d.toUpperCase()}(0)` })),
-      ...['x', 'y'].map(d => defineProperty(`--un-skew-${d}`, { initialValue: `skew${d.toUpperCase()}(0)` })),
+      ...['x', 'y', 'z'].map((d) =>
+        defineProperty(`--un-rotate-${d}`, { initialValue: `rotate${d.toUpperCase()}(0)` }),
+      ),
+      ...['x', 'y'].map((d) =>
+        defineProperty(`--un-skew-${d}`, { initialValue: `skew${d.toUpperCase()}(0)` }),
+      ),
     ]
   }
 }

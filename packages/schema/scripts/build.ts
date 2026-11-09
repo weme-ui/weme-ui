@@ -1,7 +1,7 @@
 import type { GenericSchema } from 'valibot'
+import { toJsonSchema } from '@valibot/to-json-schema'
 import { existsSync, mkdirSync, writeFileSync } from 'node:fs'
 import { join, resolve } from 'node:path'
-import { toJsonSchema } from '@valibot/to-json-schema'
 import {
   CONFIG_SCHEMA_FILENAME,
   LOCKFILE_SCHEMA_FILENAME,
@@ -53,8 +53,7 @@ function enforceNoAdditionalProperties(node: unknown): void {
       for (const item of value) {
         enforceNoAdditionalProperties(item)
       }
-    }
-    else {
+    } else {
       enforceNoAdditionalProperties(value)
     }
   }
@@ -78,13 +77,15 @@ function build(info: BuildInfo) {
 
     enforceNoAdditionalProperties(schemaJSON)
 
-    const output = JSON.stringify(schemaJSON, null, 2).replaceAll('"$schema": "http://', '"$schema": "https://')
+    const output = JSON.stringify(schemaJSON, null, 2).replaceAll(
+      '"$schema": "http://',
+      '"$schema": "https://',
+    )
 
     writeFileSync(join(destRoot, name), `${output}\n`, 'utf-8')
 
     console.log(`  ⇢ JSON Schema \`${name}\` generated.`)
-  }
-  catch (e) {
+  } catch (e) {
     error(` 🥵 Failed to generate JSON Schema ${name}:`, e)
   }
 }
@@ -95,6 +96,7 @@ async function main() {
   console.log('')
 
   await Promise.all(
+    // oxlint-disable-next-line typescript/await-thenable
     tasks.map(build),
   ).then(() => {
     log('🎉  JSON Schemas built successfully.')

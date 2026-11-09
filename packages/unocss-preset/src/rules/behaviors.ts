@@ -3,39 +3,81 @@ import type { ResolvedWemeUIOptions } from '../options'
 import type { Theme } from '../theme'
 import { symbols } from '@unocss/core'
 import { customThemeColorResolver, parseCustomThemeSize } from '../tokens'
-import { colorResolver, defineProperty, globalKeywords, h, isSize, makeGlobalStaticRules } from '../utils'
+import {
+  colorResolver,
+  defineProperty,
+  globalKeywords,
+  h,
+  isSize,
+  makeGlobalStaticRules,
+} from '../utils'
 
 export function outline(options: ResolvedWemeUIOptions): Rule<Theme>[] {
   return [
     // size
-    [/^outline-(?:width-|size-)?(.+)$/, (match, ctx) => handleWidth(match, ctx, options), { autocomplete: 'outline-(width|size)-<num>' }],
+    [
+      /^outline-(?:width-|size-)?(.+)$/,
+      (match, ctx) => handleWidth(match, ctx, options),
+      { autocomplete: 'outline-(width|size)-<num>' },
+    ],
 
     // color
-    [/^outline-(?:color-)?(.+)$/, (match, ctx) => handleColorOrWidth(match, ctx, options), { autocomplete: 'outline-$colors' }],
-    [/^outline-op(?:acity)?-?(.+)$/, ([, opacity], { theme }) => ({ '--un-outline-opacity': h.bracket.percent.cssvar(opacity, theme) }), { autocomplete: 'outline-(op|opacity)-<percent>' }],
+    [
+      /^outline-(?:color-)?(.+)$/,
+      (match, ctx) => handleColorOrWidth(match, ctx, options),
+      { autocomplete: 'outline-$colors' },
+    ],
+    [
+      /^outline-op(?:acity)?-?(.+)$/,
+      ([, opacity], { theme }) => ({
+        '--un-outline-opacity': h.bracket.percent.cssvar(opacity, theme),
+      }),
+      { autocomplete: 'outline-(op|opacity)-<percent>' },
+    ],
 
     // offset
-    [/^outline-offset-(.+)$/, ([, d], { theme }) => ({ 'outline-offset': h.bracket.cssvar.global.px(d, theme) }), { autocomplete: 'outline-(offset)-<num>' }],
+    [
+      /^outline-offset-(.+)$/,
+      ([, d], { theme }) => ({ 'outline-offset': h.bracket.cssvar.global.px(d, theme) }),
+      { autocomplete: 'outline-(offset)-<num>' },
+    ],
     ['outline-offset-none', { 'outline-offset': '0' }],
 
     // style
-    ['outline', [
-      {
-        'outline-style': 'var(--un-outline-style)',
-        'outline-width': '1px',
-      },
-      defineProperty('--un-outline-style', { initialValue: 'solid' }),
-    ]],
-    ['outline-hidden', [
-      { 'outline-style': 'none' },
-      {
-        [symbols.parent]: `@media (forced-colors: active)`,
-        'outline': `2px solid transparent`,
-        'outline-offset': `2px`,
-      },
-    ]],
+    [
+      'outline',
+      [
+        {
+          'outline-style': 'var(--un-outline-style)',
+          'outline-width': '1px',
+        },
+        defineProperty('--un-outline-style', { initialValue: 'solid' }),
+      ],
+    ],
+    [
+      'outline-hidden',
+      [
+        { 'outline-style': 'none' },
+        {
+          [symbols.parent]: `@media (forced-colors: active)`,
+          outline: `2px solid transparent`,
+          'outline-offset': `2px`,
+        },
+      ],
+    ],
     ['outline-none', { '--un-outline-style': 'none', 'outline-style': 'none' }],
-    ...['auto', 'dashed', 'dotted', 'double', 'solid', 'groove', 'ridge', 'inset', 'outset', ...globalKeywords].map(v => [`outline-${v}`, { '--un-outline-style': v, 'outline-style': v }] as Rule<Theme>),
+    ...[
+      'auto',
+      'dashed',
+      'dotted',
+      'double',
+      'solid',
+      'groove',
+      'ridge',
+      'inset',
+      'outset',
+      ...globalKeywords,
+    ].map((v) => [`outline-${v}`, { '--un-outline-style': v, 'outline-style': v }] as Rule<Theme>),
   ]
 }
 
@@ -62,8 +104,7 @@ function* handleColorOrWidth(
 ): Generator<CSSValueInput | string | undefined> {
   if (isSize(match[1])) {
     yield* handleWidth(match, ctx, options)
-  }
-  else {
+  } else {
     yield* handleColor('outline-color', 'outline', 'border-color', match, ctx, options)
   }
 }
@@ -91,8 +132,8 @@ function* handleColor(
 }
 
 export const appearance: Rule<Theme>[] = [
-  ['appearance-auto', { '-webkit-appearance': 'auto', 'appearance': 'auto' }],
-  ['appearance-none', { '-webkit-appearance': 'none', 'appearance': 'none' }],
+  ['appearance-auto', { '-webkit-appearance': 'auto', appearance: 'auto' }],
+  ['appearance-none', { '-webkit-appearance': 'none', appearance: 'none' }],
 ]
 
 function willChangeProperty(prop: string, theme?: Theme): string | undefined {
@@ -102,10 +143,13 @@ function willChangeProperty(prop: string, theme?: Theme): string | undefined {
     return v
   }
 
-  return h.properties.auto.cssvar.global(prop) ?? {
-    contents: 'contents',
-    scroll: 'scroll-position',
-  }[prop]
+  return (
+    h.properties.auto.cssvar.global(prop) ??
+    {
+      contents: 'contents',
+      scroll: 'scroll-position',
+    }[prop]
+  )
 }
 
 export const willChange: Rule<Theme>[] = [
@@ -113,71 +157,101 @@ export const willChange: Rule<Theme>[] = [
 ]
 
 const listStyles: Record<string, string> = {
-  'disc': 'disc',
-  'circle': 'circle',
-  'square': 'square',
-  'decimal': 'decimal',
+  disc: 'disc',
+  circle: 'circle',
+  square: 'square',
+  decimal: 'decimal',
   'zero-decimal': 'decimal-leading-zero',
-  'greek': 'lower-greek',
-  'roman': 'lower-roman',
+  greek: 'lower-greek',
+  roman: 'lower-roman',
   'upper-roman': 'upper-roman',
-  'alpha': 'lower-alpha',
+  alpha: 'lower-alpha',
   'upper-alpha': 'upper-alpha',
-  'latin': 'lower-latin',
+  latin: 'lower-latin',
   'upper-latin': 'upper-latin',
 }
 
 export const listStyle: Rule<Theme>[] = [
   // base
-  [/^list-(.+?)(?:-(outside|inside))?$/, ([, alias, position]) => {
-    const style = listStyles[alias]
-    if (style) {
-      if (position) {
-        return {
-          'list-style-position': position,
-          'list-style-type': style,
+  [
+    /^list-(.+?)(?:-(outside|inside))?$/,
+    ([, alias, position]) => {
+      const style = listStyles[alias]
+      if (style) {
+        if (position) {
+          return {
+            'list-style-position': position,
+            'list-style-type': style,
+          }
         }
+        return { 'list-style-type': style }
       }
-      return { 'list-style-type': style }
-    }
-  }, { autocomplete: [`list-(${Object.keys(listStyles).join('|')})`, `list-(${Object.keys(listStyles).join('|')})-(outside|inside)`] }],
+    },
+    {
+      autocomplete: [
+        `list-(${Object.keys(listStyles).join('|')})`,
+        `list-(${Object.keys(listStyles).join('|')})-(outside|inside)`,
+      ],
+    },
+  ],
   // styles
   ['list-outside', { 'list-style-position': 'outside' }],
   ['list-inside', { 'list-style-position': 'inside' }],
   ['list-none', { 'list-style-type': 'none' }],
   // image
-  [/^list-image-(.+)$/, ([, d], { theme }) => {
-    if (/^\[url\(.+\)\]$/.test(d))
-      return { 'list-style-image': h.bracket(d, theme) }
-  }],
+  [
+    /^list-image-(.+)$/,
+    ([, d], { theme }) => {
+      if (/^\[url\(.+\)\]$/.test(d)) return { 'list-style-image': h.bracket(d, theme) }
+    },
+  ],
   ['list-image-none', { 'list-style-image': 'none' }],
   ...makeGlobalStaticRules('list', 'list-style-type'),
 ]
 
 export function accents(options: ResolvedWemeUIOptions): Rule<Theme>[] {
   return [
-    [/^accent-(.+)$/, (match, ctx) => handleColor('accent-color', 'accent', 'color', match, ctx, options), { autocomplete: 'accent-$colors' }],
-    [/^accent-op(?:acity)?-?(.+)$/, ([, d], { theme }) => ({ '--un-accent-opacity': h.bracket.percent(d, theme) }), { autocomplete: ['accent-(op|opacity)', 'accent-(op|opacity)-<percent>'] }],
+    [
+      /^accent-(.+)$/,
+      (match, ctx) => handleColor('accent-color', 'accent', 'color', match, ctx, options),
+      { autocomplete: 'accent-$colors' },
+    ],
+    [
+      /^accent-op(?:acity)?-?(.+)$/,
+      ([, d], { theme }) => ({ '--un-accent-opacity': h.bracket.percent(d, theme) }),
+      { autocomplete: ['accent-(op|opacity)', 'accent-(op|opacity)-<percent>'] },
+    ],
   ]
 }
 
 export function carets(options: ResolvedWemeUIOptions): Rule<Theme>[] {
   return [
-    [/^caret-(.+)$/, (match, ctx) => handleColor('caret-color', 'caret', 'color', match, ctx, options), { autocomplete: 'caret-$colors' }],
-    [/^caret-op(?:acity)?-?(.+)$/, ([, d], { theme }) => ({ '--un-caret-opacity': h.bracket.percent(d, theme) }), { autocomplete: ['caret-(op|opacity)', 'caret-(op|opacity)-<percent>'] }],
+    [
+      /^caret-(.+)$/,
+      (match, ctx) => handleColor('caret-color', 'caret', 'color', match, ctx, options),
+      { autocomplete: 'caret-$colors' },
+    ],
+    [
+      /^caret-op(?:acity)?-?(.+)$/,
+      ([, d], { theme }) => ({ '--un-caret-opacity': h.bracket.percent(d, theme) }),
+      { autocomplete: ['caret-(op|opacity)', 'caret-(op|opacity)-<percent>'] },
+    ],
   ]
 }
 
 export const imageRenderings: Rule<Theme>[] = [
   ['image-render-auto', { 'image-rendering': 'auto' }],
   ['image-render-edge', { 'image-rendering': 'crisp-edges' }],
-  ['image-render-pixel', [
-    ['-ms-interpolation-mode', 'nearest-neighbor'],
-    ['image-rendering', '-webkit-optimize-contrast'],
-    ['image-rendering', '-moz-crisp-edges'],
-    ['image-rendering', '-o-pixelated'],
-    ['image-rendering', 'pixelated'],
-  ]],
+  [
+    'image-render-pixel',
+    [
+      ['-ms-interpolation-mode', 'nearest-neighbor'],
+      ['image-rendering', '-webkit-optimize-contrast'],
+      ['image-rendering', '-moz-crisp-edges'],
+      ['image-rendering', '-o-pixelated'],
+      ['image-rendering', 'pixelated'],
+    ],
+  ],
 ]
 
 export const overscrolls: Rule<Theme>[] = [

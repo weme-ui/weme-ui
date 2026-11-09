@@ -8,9 +8,7 @@ const anchoredNumberRE = /^-?[0-9.]+(?:[a-z]+|%)?$/
 const numberRE = /-?[0-9.]+(?:[a-z]+|%)?/
 const spacingMultiplyRE = /var\(--spacing(?:-[\w-]+)?\)\s*\*\s*(-?[0-9.]+(?:[a-z]+|%)?)/
 
-const ignoreProps = [
-  /\b(opacity|color|flex|backdrop-filter|^filter|^scale|transform|mask-image)\b/,
-]
+const ignoreProps = [/\b(opacity|color|flex|backdrop-filter|^filter|^scale|transform|mask-image)\b/]
 
 function negateMathFunction(value: string) {
   const match = value.match(cssMathFnRE) || value.match(cssVarFnRE)
@@ -39,7 +37,7 @@ function negateFunctionBody(value: string) {
     const [fnBody, rest] = getStringComponent(match[2], '(', ')', ' ') ?? []
     if (fnBody) {
       const body = anchoredNumberRE.test(fnBody.slice(1, -1))
-        ? fnBody.replace(numberRE, i => i.startsWith('-') ? i.slice(1) : `-${i}`)
+        ? fnBody.replace(numberRE, (i) => (i.startsWith('-') ? i.slice(1) : `-${i}`))
         : `(calc(${fnBody} * -1))`
       return `${match[1]}${body}${rest ? ` ${rest}` : ''}`
     }
@@ -49,45 +47,39 @@ function negateFunctionBody(value: string) {
 export const variantNegative: Variant<Theme> = {
   name: 'negative',
   match(matcher) {
-    if (!matcher.startsWith('-'))
-      return
+    if (!matcher.startsWith('-')) return
 
     return {
       matcher: matcher.slice(1),
       body: (body) => {
-        if (body.some(v => v[0] === CONTROL_NO_NEGATIVE))
-          return
+        if (body.some((v) => v[0] === CONTROL_NO_NEGATIVE)) return
 
         let changed = false
         for (const v of body) {
           const [prop, rawValue, meta] = v
 
           // skip `symbols.variants` and other non-string values
-          if (typeof rawValue === 'object')
-            continue
+          if (typeof rawValue === 'object') continue
 
-          if (meta && toArray(meta).includes(CONTROL_NO_NEGATIVE))
-            continue
+          if (meta && toArray(meta).includes(CONTROL_NO_NEGATIVE)) continue
 
           const value = rawValue?.toString()
-          if (!value || value === '0' || ignoreProps.some(i => i.test(prop)))
-            continue
+          if (!value || value === '0' || ignoreProps.some((i) => i.test(prop))) continue
 
-          const nextValue = negateMathFunction(value)
-            ?? negateFunctionBody(value)
-            ?? (anchoredNumberRE.test(value)
-              ? value.replace(numberRE, i => i.startsWith('-') ? i.slice(1) : `-${i}`)
+          const nextValue =
+            negateMathFunction(value) ??
+            negateFunctionBody(value) ??
+            (anchoredNumberRE.test(value)
+              ? value.replace(numberRE, (i) => (i.startsWith('-') ? i.slice(1) : `-${i}`))
               : undefined)
 
-          if (!nextValue || nextValue === value)
-            continue
+          if (!nextValue || nextValue === value) continue
 
           v[1] = nextValue
           changed = true
         }
 
-        if (changed)
-          return body
+        if (changed) return body
         return []
       },
     }

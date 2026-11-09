@@ -1,4 +1,15 @@
-import type { ProjectAddedItemFileSchema, ProjectAddedItemSchema, ProjectAddedRegistrySchema, ProjectConfigSchema, ProjectLockFileSchema, RegistryConfigSchema, RegistryItemFileKindEnum, RegistryItemFileSchema, RegistryItemSchema, RegistryItemTypeEnum } from '@weme-ui/schema'
+import type {
+  ProjectAddedItemFileSchema,
+  ProjectAddedItemSchema,
+  ProjectAddedRegistrySchema,
+  ProjectConfigSchema,
+  ProjectLockFileSchema,
+  RegistryConfigSchema,
+  RegistryItemFileKindEnum,
+  RegistryItemFileSchema,
+  RegistryItemSchema,
+  RegistryItemTypeEnum,
+} from '@weme-ui/schema'
 import type * as v from 'valibot'
 
 export type Prettify<T> = { [K in keyof T]: T[K] } & {}

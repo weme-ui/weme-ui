@@ -41,14 +41,16 @@ describe('size rules', () => {
   })
 
   it('prefers theme spacing over size css vars when both exist', () => {
-    const withOverlap = sizes(resolveOptions({
-      cssVars: {
-        4: {
-          width: '20rem',
-          height: '10rem',
+    const withOverlap = sizes(
+      resolveOptions({
+        cssVars: {
+          4: {
+            width: '20rem',
+            height: '10rem',
+          },
         },
-      },
-    }))
+      }),
+    )
 
     expectUtilities(withOverlap, {
       'w-4': { width: 'calc(var(--spacing) * 4)' },

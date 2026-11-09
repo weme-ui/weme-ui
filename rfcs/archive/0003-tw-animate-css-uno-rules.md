@@ -119,7 +119,7 @@ Theme 侧以压缩字符串写入 `theme.animation.keyframes`（与现有 keyfra
 用 **Shortcut**（非 Rule），示意：
 
 ```ts
-[
+;[
   /^animate-in$/,
   () => [
     'keyframes-un-enter',

@@ -13,7 +13,7 @@ export const variantAria: VariantObject<Theme> = {
       if (aria) {
         return {
           matcher: rest,
-          selector: s => `${s}[aria-${aria}]`,
+          selector: (s) => `${s}[aria-${aria}]`,
         }
       }
     }
@@ -26,7 +26,11 @@ function taggedAria(tagName: string): Variant<Theme> {
   return {
     name: `${tagName}-aria`,
     match(matcher, ctx) {
-      const variant = variantGetParameter(`${tagName}-aria-`, matcher, ctx.generator.config.separators)
+      const variant = variantGetParameter(
+        `${tagName}-aria-`,
+        matcher,
+        ctx.generator.config.separators,
+      )
       if (variant) {
         const [match, rest, label] = variant
         const ariaAttribute = h.bracket(match, ctx.theme) ?? ctx.theme.aria?.[match] ?? ''
@@ -42,11 +46,12 @@ function taggedAria(tagName: string): Variant<Theme> {
 
           return {
             matcher: rest,
-            handle: (input, next) => next({
-              ...input,
-              parent: `${input.parent ? `${input.parent} $$ ` : ''}${input.selector}`,
-              selector: tagSelectorMap[tagName],
-            }),
+            handle: (input, next) =>
+              next({
+                ...input,
+                parent: `${input.parent ? `${input.parent} $$ ` : ''}${input.selector}`,
+                selector: tagSelectorMap[tagName],
+              }),
           }
         }
       }

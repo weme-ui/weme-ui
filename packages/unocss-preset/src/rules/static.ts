@@ -2,7 +2,44 @@ import type { Rule } from '@unocss/core'
 import type { Theme } from '../theme'
 import { defineProperty, globalKeywords, h, makeGlobalStaticRules, positionMap } from '../utils'
 
-const cursorValues = ['auto', 'default', 'none', 'context-menu', 'help', 'pointer', 'progress', 'wait', 'cell', 'crosshair', 'text', 'vertical-text', 'alias', 'copy', 'move', 'no-drop', 'not-allowed', 'grab', 'grabbing', 'all-scroll', 'col-resize', 'row-resize', 'n-resize', 'e-resize', 's-resize', 'w-resize', 'ne-resize', 'nw-resize', 'se-resize', 'sw-resize', 'ew-resize', 'ns-resize', 'nesw-resize', 'nwse-resize', 'zoom-in', 'zoom-out']
+const cursorValues = [
+  'auto',
+  'default',
+  'none',
+  'context-menu',
+  'help',
+  'pointer',
+  'progress',
+  'wait',
+  'cell',
+  'crosshair',
+  'text',
+  'vertical-text',
+  'alias',
+  'copy',
+  'move',
+  'no-drop',
+  'not-allowed',
+  'grab',
+  'grabbing',
+  'all-scroll',
+  'col-resize',
+  'row-resize',
+  'n-resize',
+  'e-resize',
+  's-resize',
+  'w-resize',
+  'ne-resize',
+  'nw-resize',
+  'se-resize',
+  'sw-resize',
+  'ew-resize',
+  'ns-resize',
+  'nesw-resize',
+  'nwse-resize',
+  'zoom-in',
+  'zoom-out',
+]
 const containValues = ['size', 'layout', 'paint', 'style']
 
 // display table included on table.ts
@@ -32,24 +69,30 @@ export const cursors: Rule<Theme>[] = [
 ]
 
 export const contains: Rule<Theme>[] = [
-  [/^contain-(.*)$/, ([, d], { theme }) => {
-    const value = h.bracket(d, theme)
-    if (value != null) {
-      return {
-        contain: value.split(' ').map(e => h.cssvar.fraction(e) ?? e).join(' '),
+  [
+    /^contain-(.*)$/,
+    ([, d], { theme }) => {
+      const value = h.bracket(d, theme)
+      if (value != null) {
+        return {
+          contain: value
+            .split(' ')
+            .map((e) => h.cssvar.fraction(e) ?? e)
+            .join(' '),
+        }
       }
-    }
 
-    return containValues.includes(d)
-      ? [
-          {
-            '--un-contain-size': d,
-            'contain': containValues.map(i => `var(--un-contain-${i})`).join(' '),
-          },
-          ...containValues.map(i => defineProperty(`--un-contain-${i}`)),
-        ]
-      : undefined
-  }],
+      return containValues.includes(d)
+        ? [
+            {
+              '--un-contain-size': d,
+              contain: containValues.map((i) => `var(--un-contain-${i})`).join(' '),
+            },
+            ...containValues.map((i) => defineProperty(`--un-contain-${i}`)),
+          ]
+        : undefined
+    },
+  ],
   ['contain-strict', { contain: 'strict' }],
   ['contain-content', { contain: 'content' }],
   ['contain-none', { contain: 'none' }],
@@ -80,25 +123,45 @@ export const userSelects: Rule<Theme>[] = [
 export const whitespaces: Rule<Theme>[] = [
   [
     /^(?:whitespace-|ws-)([-\w]+)$/,
-    ([, v]) => ['normal', 'nowrap', 'pre', 'pre-line', 'pre-wrap', 'break-spaces', ...globalKeywords].includes(v) ? { 'white-space': v } : undefined,
+    ([, v]) =>
+      [
+        'normal',
+        'nowrap',
+        'pre',
+        'pre-line',
+        'pre-wrap',
+        'break-spaces',
+        ...globalKeywords,
+      ].includes(v)
+        ? { 'white-space': v }
+        : undefined,
     { autocomplete: '(whitespace|ws)-(normal|nowrap|pre|pre-line|pre-wrap|break-spaces)' },
   ],
 ]
 
 export const contentVisibility: Rule<Theme>[] = [
-  [/^intrinsic(?:-(block|inline|w|h))?(?:-size)?-(.+)$/, ([, d, s], { theme }) => {
-    const sizeMap = {
-      block: 'block-size',
-      inline: 'inline-size',
-      w: 'width',
-      h: 'height',
-    }
-    return { [`contain-intrinsic-${sizeMap[d as keyof typeof sizeMap] ?? 'size'}`]: h.bracket.cssvar.global.fraction.rem(s, theme) }
-  }, { autocomplete: [
-    'intrinsic-size-<num>',
-    'intrinsic-<num>',
-    'intrinsic-(block|inline|w|h)-<num>',
-  ] }],
+  [
+    /^intrinsic(?:-(block|inline|w|h))?(?:-size)?-(.+)$/,
+    ([, d, s], { theme }) => {
+      const sizeMap = {
+        block: 'block-size',
+        inline: 'inline-size',
+        w: 'width',
+        h: 'height',
+      }
+      return {
+        [`contain-intrinsic-${sizeMap[d as keyof typeof sizeMap] ?? 'size'}`]:
+          h.bracket.cssvar.global.fraction.rem(s, theme),
+      }
+    },
+    {
+      autocomplete: [
+        'intrinsic-size-<num>',
+        'intrinsic-<num>',
+        'intrinsic-(block|inline|w|h)-<num>',
+      ],
+    },
+  ],
   ['content-visibility-visible', { 'content-visibility': 'visible' }],
   ['content-visibility-hidden', { 'content-visibility': 'hidden' }],
   ['content-visibility-auto', { 'content-visibility': 'auto' }],
@@ -106,18 +169,21 @@ export const contentVisibility: Rule<Theme>[] = [
 ]
 
 export const contents: Rule<Theme>[] = [
-  [/^content-(.+)$/, ([, v], { theme }) => {
-    const _v = h.bracket.cssvar(v, theme)
-    if (_v != null) {
-      return [
-        {
-          '--un-content': h.bracket.cssvar(v, theme),
-          'content': 'var(--un-content)',
-        },
-        defineProperty('--un-content', { initialValue: '""' }),
-      ]
-    }
-  }],
+  [
+    /^content-(.+)$/,
+    ([, v], { theme }) => {
+      const _v = h.bracket.cssvar(v, theme)
+      if (_v != null) {
+        return [
+          {
+            '--un-content': h.bracket.cssvar(v, theme),
+            content: 'var(--un-content)',
+          },
+          defineProperty('--un-content', { initialValue: '""' }),
+        ]
+      }
+    },
+  ],
   ['content-empty', { content: '""' }],
   ['content-none', { content: 'none' }],
 ]
@@ -141,8 +207,8 @@ export const textWraps: Rule<Theme>[] = [
 ]
 
 export const textOverflows: Rule<Theme>[] = [
-  ['truncate', { 'overflow': 'hidden', 'text-overflow': 'ellipsis', 'white-space': 'nowrap' }],
-  ['text-truncate', { 'overflow': 'hidden', 'text-overflow': 'ellipsis', 'white-space': 'nowrap' }],
+  ['truncate', { overflow: 'hidden', 'text-overflow': 'ellipsis', 'white-space': 'nowrap' }],
+  ['text-truncate', { overflow: 'hidden', 'text-overflow': 'ellipsis', 'white-space': 'nowrap' }],
   ['text-ellipsis', { 'text-overflow': 'ellipsis' }],
   ['text-clip', { 'text-overflow': 'clip' }],
 ]
@@ -171,23 +237,33 @@ export const fontStyles: Rule<Theme>[] = [
 ]
 
 export const fontSmoothings: Rule<Theme>[] = [
-  ['antialiased', {
-    '-webkit-font-smoothing': 'antialiased',
-    '-moz-osx-font-smoothing': 'grayscale',
-  }],
-  ['subpixel-antialiased', {
-    '-webkit-font-smoothing': 'auto',
-    '-moz-osx-font-smoothing': 'auto',
-  }],
+  [
+    'antialiased',
+    {
+      '-webkit-font-smoothing': 'antialiased',
+      '-moz-osx-font-smoothing': 'grayscale',
+    },
+  ],
+  [
+    'subpixel-antialiased',
+    {
+      '-webkit-font-smoothing': 'auto',
+      '-moz-osx-font-smoothing': 'auto',
+    },
+  ],
 ]
 
-export const hyphens: Rule<Theme>[] = [
-  ...['manual', 'auto', 'none', ...globalKeywords].map(keyword => [`hyphens-${keyword}`, {
-    '-webkit-hyphens': keyword,
-    '-ms-hyphens': keyword,
-    'hyphens': keyword,
-  }] as Rule<Theme>),
-]
+export const hyphens: Rule<Theme>[] = ['manual', 'auto', 'none', ...globalKeywords].map(
+  (keyword) =>
+    [
+      `hyphens-${keyword}`,
+      {
+        '-webkit-hyphens': keyword,
+        '-ms-hyphens': keyword,
+        hyphens: keyword,
+      },
+    ] as Rule<Theme>,
+)
 
 export const writingModes: Rule<Theme>[] = [
   ['write-vertical-right', { 'writing-mode': 'vertical-rl' }],
@@ -207,13 +283,13 @@ export const screenReadersAccess: Rule<Theme>[] = [
   [
     'sr-only',
     {
-      'position': 'absolute',
-      'width': '1px',
-      'height': '1px',
-      'padding': '0',
-      'margin': '-1px',
-      'overflow': 'hidden',
-      'clip': 'rect(0,0,0,0)',
+      position: 'absolute',
+      width: '1px',
+      height: '1px',
+      padding: '0',
+      margin: '-1px',
+      overflow: 'hidden',
+      clip: 'rect(0,0,0,0)',
       'white-space': 'nowrap',
       'border-width': 0,
     },
@@ -221,13 +297,13 @@ export const screenReadersAccess: Rule<Theme>[] = [
   [
     'not-sr-only',
     {
-      'position': 'static',
-      'width': 'auto',
-      'height': 'auto',
-      'padding': '0',
-      'margin': '0',
-      'overflow': 'visible',
-      'clip': 'auto',
+      position: 'static',
+      width: 'auto',
+      height: 'auto',
+      padding: '0',
+      margin: '0',
+      overflow: 'visible',
+      clip: 'auto',
       'white-space': 'normal',
     },
   ],
@@ -248,14 +324,21 @@ export const objectPositions: Rule<Theme>[] = [
   ['object-none', { 'object-fit': 'none' }],
 
   // object position
-  [/^object-(.+)$/, ([, d], { theme }) => {
-    if (positionMap[d])
-      return { 'object-position': positionMap[d] }
-    const position = h.bracketOfPosition(d, theme)
-    if (position != null)
-      return { 'object-position': position.split(' ').map(e => h.position.fraction.auto.px.cssvar(e) ?? e).join(' ') }
-  }, { autocomplete: `object-(${Object.keys(positionMap).join('|')})` }],
-
+  [
+    /^object-(.+)$/,
+    ([, d], { theme }) => {
+      if (positionMap[d]) return { 'object-position': positionMap[d] }
+      const position = h.bracketOfPosition(d, theme)
+      if (position != null)
+        return {
+          'object-position': position
+            .split(' ')
+            .map((e) => h.position.fraction.auto.px.cssvar(e) ?? e)
+            .join(' '),
+        }
+    },
+    { autocomplete: `object-(${Object.keys(positionMap).join('|')})` },
+  ],
 ]
 
 export const backgroundBlendModes: Rule<Theme>[] = [

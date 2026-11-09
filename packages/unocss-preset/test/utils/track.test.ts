@@ -25,10 +25,7 @@ describe('themeTracking', () => {
     themeTracking('colors', ['blue', '9'])
     themeTracking('colors', 'red')
 
-    expect([...trackedTheme]).toEqual([
-      'colors:blue-9',
-      'colors:red',
-    ])
+    expect([...trackedTheme]).toEqual(['colors:blue-9', 'colors:red'])
   })
 })
 

@@ -1,5 +1,5 @@
-import { fileURLToPath } from 'node:url'
 import Vue from '@vitejs/plugin-vue'
+import { fileURLToPath } from 'node:url'
 import UnoCSS from 'unocss/vite'
 import AutoImport from 'unplugin-auto-import/vite'
 import Components from 'unplugin-vue-components/vite'
@@ -47,9 +47,7 @@ export default defineConfig({
       directoryAsNamespace: true,
       collapseSamePrefixes: true,
       dts: 'src/components.d.ts',
-      types: [
-        { from: 'vue-router', names: ['RouterLink', 'RouterView'] },
-      ],
+      types: [{ from: 'vue-router', names: ['RouterLink', 'RouterView'] }],
     }),
 
     // https://github.com/unocss/unocss

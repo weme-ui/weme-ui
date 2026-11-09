@@ -9,14 +9,14 @@ export const scrolls: Rule<Theme>[] = [
   ['scrollbar-gutter-stable', { 'scrollbar-gutter': 'stable' }],
   ['scrollbar-gutter-both', { 'scrollbar-gutter': 'stable both-edges' }],
 
-  ...['x', 'y', 'both'].map<StaticRule>(d => [
+  ...['x', 'y', 'both'].map<StaticRule>((d) => [
     `snap-${d}`,
     [
       { 'scroll-snap-type': `${d} var(--un-scroll-snap-strictness)` },
       defineProperty('--un-scroll-snap-strictness', { initialValue: 'proximity' }),
     ],
   ]),
-  ...['mandatory', 'proximity'].map<StaticRule>(d => [
+  ...['mandatory', 'proximity'].map<StaticRule>((d) => [
     `snap-${d}`,
     [
       { '--un-scroll-snap-strictness': d },
@@ -37,14 +37,18 @@ export const scrolls: Rule<Theme>[] = [
 
   // scroll margin
 
-  [/^scroll-ma?()-?(.+)$/, directionSize('scroll-margin'), {
-    autocomplete: [
-      'scroll-(m|p|ma|pa|block|inline)',
-      'scroll-(m|p|ma|pa|block|inline)-$spacing',
-      'scroll-(m|p|ma|pa|block|inline)-(x|y|r|l|t|b|bs|be|is|ie)',
-      'scroll-(m|p|ma|pa|block|inline)-(x|y|r|l|t|b|bs|be|is|ie)-$spacing',
-    ],
-  }],
+  [
+    /^scroll-ma?()-?(.+)$/,
+    directionSize('scroll-margin'),
+    {
+      autocomplete: [
+        'scroll-(m|p|ma|pa|block|inline)',
+        'scroll-(m|p|ma|pa|block|inline)-$spacing',
+        'scroll-(m|p|ma|pa|block|inline)-(x|y|r|l|t|b|bs|be|is|ie)',
+        'scroll-(m|p|ma|pa|block|inline)-(x|y|r|l|t|b|bs|be|is|ie)-$spacing',
+      ],
+    },
+  ],
   [/^scroll-m-?([xy])-?(.+)$/, directionSize('scroll-margin')],
   [/^scroll-m-?([rltb])-?(.+)$/, directionSize('scroll-margin')],
   [/^scroll-m-(block|inline)-(.+)$/, directionSize('scroll-margin')],

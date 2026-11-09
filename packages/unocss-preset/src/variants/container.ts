@@ -6,8 +6,7 @@ import { h } from '../utils'
 export const variantContainerQuery: VariantObject<Theme> = {
   name: '@',
   match(matcher, ctx) {
-    if (matcher.startsWith('@container'))
-      return
+    if (matcher.startsWith('@container')) return
 
     const variant = variantGetParameter('@', matcher, ctx.generator.config.separators)
     if (variant) {
@@ -16,24 +15,23 @@ export const variantContainerQuery: VariantObject<Theme> = {
       let container: string | undefined
       if (unbracket) {
         container = h.numberWithUnit(unbracket)
-      }
-      else {
+      } else {
         container = ctx.theme.container?.[match] ?? ''
       }
 
       if (container) {
         let order = 1000 + Object.keys(ctx.theme.container ?? {}).indexOf(match)
 
-        if (label)
-          order += 1000
+        if (label) order += 1000
 
         return {
           matcher: rest,
-          handle: (input, next) => next({
-            ...input,
-            parent: `${input.parent ? `${input.parent} $$ ` : ''}@container${label ? ` ${label} ` : ' '}(min-width: ${container})`,
-            parentOrder: order,
-          }),
+          handle: (input, next) =>
+            next({
+              ...input,
+              parent: `${input.parent ? `${input.parent} $$ ` : ''}@container${label ? ` ${label} ` : ' '}(min-width: ${container})`,
+              parentOrder: order,
+            }),
         }
       }
     }

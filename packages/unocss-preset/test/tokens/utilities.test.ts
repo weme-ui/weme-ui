@@ -270,7 +270,9 @@ describe('parseCustomThemeColorCssVar', () => {
   })
 
   it('matches name-suffix keys from cssVars using the fuzzy map', () => {
-    expect(parseCustomThemeColorCssVar('color', 'card', { 'card-text': 'foreground.base' })).toEqual({
+    expect(
+      parseCustomThemeColorCssVar('color', 'card', { 'card-text': 'foreground.base' }),
+    ).toEqual({
       name: 'card',
       keys: ['card', 'text'],
     })
@@ -278,26 +280,38 @@ describe('parseCustomThemeColorCssVar', () => {
       name: 'card',
       keys: ['card', 'color'],
     })
-    expect(parseCustomThemeColorCssVar('background-color', 'card', { 'card-background': 'background.base' })).toEqual({
+    expect(
+      parseCustomThemeColorCssVar('background-color', 'card', {
+        'card-background': 'background.base',
+      }),
+    ).toEqual({
       name: 'card',
       keys: ['card', 'background'],
     })
-    expect(parseCustomThemeColorCssVar('background-color', 'card', { 'card-bg': 'background.muted' })).toEqual({
+    expect(
+      parseCustomThemeColorCssVar('background-color', 'card', { 'card-bg': 'background.muted' }),
+    ).toEqual({
       name: 'card',
       keys: ['card', 'bg'],
     })
-    expect(parseCustomThemeColorCssVar('border-color', 'card', { 'card-border-color': 'border.base' })).toEqual({
+    expect(
+      parseCustomThemeColorCssVar('border-color', 'card', { 'card-border-color': 'border.base' }),
+    ).toEqual({
       name: 'card',
       keys: ['card', 'border', 'color'],
     })
-    expect(parseCustomThemeColorCssVar('border-color', 'card', { 'card-border': 'border.elevated' })).toEqual({
+    expect(
+      parseCustomThemeColorCssVar('border-color', 'card', { 'card-border': 'border.elevated' }),
+    ).toEqual({
       name: 'card',
       keys: ['card', 'border'],
     })
-    expect(parseCustomThemeColorCssVar('fill', 'card', { 'card-fill': 'background.base' })).toEqual({
-      name: 'card',
-      keys: ['card', 'fill'],
-    })
+    expect(parseCustomThemeColorCssVar('fill', 'card', { 'card-fill': 'background.base' })).toEqual(
+      {
+        name: 'card',
+        keys: ['card', 'fill'],
+      },
+    )
     expect(parseCustomThemeColorCssVar('width', 'card', { 'card-w': '50%' })).toEqual({
       name: 'card',
       keys: ['card', 'w'],
@@ -309,7 +323,9 @@ describe('parseCustomThemeColorCssVar', () => {
   })
 
   it('keeps a valid alpha on the matched name', () => {
-    expect(parseCustomThemeColorCssVar('color', 'card/50', { 'card-text': 'foreground.base' })).toEqual({
+    expect(
+      parseCustomThemeColorCssVar('color', 'card/50', { 'card-text': 'foreground.base' }),
+    ).toEqual({
       name: 'card',
       keys: ['card', 'text'],
       alpha: 50,
@@ -317,19 +333,23 @@ describe('parseCustomThemeColorCssVar', () => {
   })
 
   it('prefers the first matching css var key when multiple suffixes exist', () => {
-    expect(parseCustomThemeColorCssVar('color', 'card', {
-      'card-color': 'accent.9',
-      'card-text': 'foreground.base',
-    })).toEqual({
+    expect(
+      parseCustomThemeColorCssVar('color', 'card', {
+        'card-color': 'accent.9',
+        'card-text': 'foreground.base',
+      }),
+    ).toEqual({
       name: 'card',
       keys: ['card', 'color'],
       alpha: undefined,
     })
 
-    expect(parseCustomThemeColorCssVar('color', 'card', {
-      'card-text': 'foreground.base',
-      'card-color': 'accent.9',
-    })).toEqual({
+    expect(
+      parseCustomThemeColorCssVar('color', 'card', {
+        'card-text': 'foreground.base',
+        'card-color': 'accent.9',
+      }),
+    ).toEqual({
       name: 'card',
       keys: ['card', 'text'],
       alpha: undefined,
@@ -338,9 +358,15 @@ describe('parseCustomThemeColorCssVar', () => {
 
   it('returns undefined when no name-suffix key exists', () => {
     expect(parseCustomThemeColorCssVar('color', 'card', {})).toBeUndefined()
-    expect(parseCustomThemeColorCssVar('color', 'card', { 'panel-text': 'foreground.base' })).toBeUndefined()
-    expect(parseCustomThemeColorCssVar('color', 'card', { 'card-background': 'background.base' })).toBeUndefined()
-    expect(parseCustomThemeColorCssVar('width', 'card', { 'card-text': 'foreground.base' })).toBeUndefined()
+    expect(
+      parseCustomThemeColorCssVar('color', 'card', { 'panel-text': 'foreground.base' }),
+    ).toBeUndefined()
+    expect(
+      parseCustomThemeColorCssVar('color', 'card', { 'card-background': 'background.base' }),
+    ).toBeUndefined()
+    expect(
+      parseCustomThemeColorCssVar('width', 'card', { 'card-text': 'foreground.base' }),
+    ).toBeUndefined()
   })
 })
 
@@ -409,13 +435,17 @@ describe('generateColorAliasCssVar', () => {
 
 describe('parseCustomThemeSize', () => {
   it('rejects a css variable or invalid alpha before matching', () => {
-    expect(parseCustomThemeSize('var(--card-border-width)', { 'card-border-width': '2px' })).toBeUndefined()
+    expect(
+      parseCustomThemeSize('var(--card-border-width)', { 'card-border-width': '2px' }),
+    ).toBeUndefined()
     expect(parseCustomThemeSize('card/foo', { 'card-border-width': '2px' })).toBeUndefined()
     expect(parseCustomThemeSize('card/101', { 'card-border-width': '2px' })).toBeUndefined()
   })
 
   it('resolves size keys across the default width fuzzy maps', () => {
-    expect(parseCustomThemeSize('card', { 'card-border-width': '2px' })).toBe('var(--card-border-width)')
+    expect(parseCustomThemeSize('card', { 'card-border-width': '2px' })).toBe(
+      'var(--card-border-width)',
+    )
     expect(parseCustomThemeSize('card', { 'card-width': '15rem' })).toBe('var(--card-width)')
     expect(parseCustomThemeSize('card', { 'card-w': '50%' })).toBe('var(--card-w)')
     expect(parseCustomThemeSize('card', { 'card-height': '10rem' })).toBe('var(--card-height)')
@@ -424,43 +454,77 @@ describe('parseCustomThemeSize', () => {
   })
 
   it('restricts matching when a fuzzy map key is provided', () => {
-    expect(parseCustomThemeSize('card', {
-      'card-width': '15rem',
-      'card-border-width': '2px',
-    }, 'border-width')).toBe('var(--card-border-width)')
+    expect(
+      parseCustomThemeSize(
+        'card',
+        {
+          'card-width': '15rem',
+          'card-border-width': '2px',
+        },
+        'border-width',
+      ),
+    ).toBe('var(--card-border-width)')
 
-    expect(parseCustomThemeSize('card', {
-      'card-border-width': '2px',
-      'card-width': '15rem',
-    }, 'width')).toBe('var(--card-width)')
+    expect(
+      parseCustomThemeSize(
+        'card',
+        {
+          'card-border-width': '2px',
+          'card-width': '15rem',
+        },
+        'width',
+      ),
+    ).toBe('var(--card-width)')
 
-    expect(parseCustomThemeSize('card', {
-      'card-width': '15rem',
-    }, 'border-width')).toBeUndefined()
+    expect(
+      parseCustomThemeSize(
+        'card',
+        {
+          'card-width': '15rem',
+        },
+        'border-width',
+      ),
+    ).toBeUndefined()
   })
 
   it('prefers the first matching css var key when multiple size suffixes exist', () => {
-    expect(parseCustomThemeSize('card', {
-      'card-width': '15rem',
-      'card-max-width': '20rem',
-      'card-min-width': '10rem',
-    }, 'width')).toBe('var(--card-width)')
+    expect(
+      parseCustomThemeSize(
+        'card',
+        {
+          'card-width': '15rem',
+          'card-max-width': '20rem',
+          'card-min-width': '10rem',
+        },
+        'width',
+      ),
+    ).toBe('var(--card-width)')
 
-    expect(parseCustomThemeSize('card', {
-      'card-max-width': '20rem',
-      'card-min-width': '10rem',
-      'card-width': '15rem',
-    }, 'width')).toBe('var(--card-max-width)')
+    expect(
+      parseCustomThemeSize(
+        'card',
+        {
+          'card-max-width': '20rem',
+          'card-min-width': '10rem',
+          'card-width': '15rem',
+        },
+        'width',
+      ),
+    ).toBe('var(--card-max-width)')
 
-    expect(parseCustomThemeSize('card', {
-      'card-border-width': '2px',
-      'card-width': '15rem',
-      'card-height': '10rem',
-    })).toBe('var(--card-border-width)')
+    expect(
+      parseCustomThemeSize('card', {
+        'card-border-width': '2px',
+        'card-width': '15rem',
+        'card-height': '10rem',
+      }),
+    ).toBe('var(--card-border-width)')
   })
 
   it('ignores alpha and still resolves the size variable', () => {
-    expect(parseCustomThemeSize('card/40', { 'card-border-width': '2px' })).toBe('var(--card-border-width)')
+    expect(parseCustomThemeSize('card/40', { 'card-border-width': '2px' })).toBe(
+      'var(--card-border-width)',
+    )
   })
 
   it('returns undefined when no size key exists', () => {
@@ -476,27 +540,35 @@ describe('customThemeColorCSSGenerator', () => {
   })
 
   it('returns undefined when keys are empty', () => {
-    expect(customThemeColorCSSGenerator({ name: 'accent', keys: [], alpha: undefined }, 'color')).toBeUndefined()
+    expect(
+      customThemeColorCSSGenerator({ name: 'accent', keys: [], alpha: undefined }, 'color'),
+    ).toBeUndefined()
     expect(trackedProperties.size).toBe(0)
   })
 
   it('emits a theme variable without an opacity property when alpha is unset', () => {
-    const result = customThemeColorCSSGenerator({
-      name: 'foreground-base',
-      keys: ['foreground', 'base'],
-      alpha: undefined,
-    }, 'border-color')
+    const result = customThemeColorCSSGenerator(
+      {
+        name: 'foreground-base',
+        keys: ['foreground', 'base'],
+        alpha: undefined,
+      },
+      'border-color',
+    )
 
     expect(result).toEqual([{ 'border-color': 'var(--foreground-base)' }])
     expect(trackedProperties.has('--un-border-opacity')).toBe(false)
   })
 
   it('mixes a positive alpha in oklab and adds a color-mix fallback', () => {
-    const result = customThemeColorCSSGenerator({
-      name: 'foreground-base',
-      keys: ['foreground', 'base'],
-      alpha: 50,
-    }, 'color')
+    const result = customThemeColorCSSGenerator(
+      {
+        name: 'foreground-base',
+        keys: ['foreground', 'base'],
+        alpha: 50,
+      },
+      'color',
+    )
 
     expect(result?.[0]).toEqual({
       color: 'color-mix(in oklab, var(--foreground-base) 50%, transparent)',
@@ -510,11 +582,14 @@ describe('customThemeColorCSSGenerator', () => {
   })
 
   it('mixes alpha 0 as a percentage', () => {
-    const result = customThemeColorCSSGenerator({
-      name: 'foreground-highlighted',
-      keys: ['foreground', 'highlighted'],
-      alpha: 0,
-    }, 'color')
+    const result = customThemeColorCSSGenerator(
+      {
+        name: 'foreground-highlighted',
+        keys: ['foreground', 'highlighted'],
+        alpha: 0,
+      },
+      'color',
+    )
 
     expect(result?.[0]).toEqual({
       color: 'color-mix(in oklab, var(--foreground-highlighted) 0%, transparent)',
@@ -523,14 +598,22 @@ describe('customThemeColorCSSGenerator', () => {
   })
 
   it('treats shadow-like properties the same as other colors without alpha', () => {
-    for (const property of ['shadow-color', 'inset-shadow-color', 'text-shadow-color', 'drop-shadow-color'] as const) {
+    for (const property of [
+      'shadow-color',
+      'inset-shadow-color',
+      'text-shadow-color',
+      'drop-shadow-color',
+    ] as const) {
       trackedProperties.clear()
 
-      const result = customThemeColorCSSGenerator({
-        name: 'foreground-base',
-        keys: ['foreground', 'base'],
-        alpha: undefined,
-      }, property)
+      const result = customThemeColorCSSGenerator(
+        {
+          name: 'foreground-base',
+          keys: ['foreground', 'base'],
+          alpha: undefined,
+        },
+        property,
+      )
 
       const varName = property.replace(/-color/g, '')
 
@@ -540,11 +623,14 @@ describe('customThemeColorCSSGenerator', () => {
   })
 
   it('mixes a positive alpha for shadow-like properties without nested opacity', () => {
-    const result = customThemeColorCSSGenerator({
-      name: 'foreground-base',
-      keys: ['foreground', 'base'],
-      alpha: 40,
-    }, 'shadow-color')
+    const result = customThemeColorCSSGenerator(
+      {
+        name: 'foreground-base',
+        keys: ['foreground', 'base'],
+        alpha: 40,
+      },
+      'shadow-color',
+    )
 
     expect(result?.[0]).toEqual({
       'shadow-color': 'color-mix(in oklab, var(--foreground-base) 40%, transparent)',
@@ -595,7 +681,9 @@ describe('customThemeColorResolver', () => {
     const border = customThemeColorResolver('border-color', 'border-color', 'border')
 
     expect(bg('elevated', {})?.[0]).toEqual({ 'background-color': 'var(--background-elevated)' })
-    expect(bg('background-elevated', {})?.[0]).toEqual({ 'background-color': 'var(--background-elevated)' })
+    expect(bg('background-elevated', {})?.[0]).toEqual({
+      'background-color': 'var(--background-elevated)',
+    })
     expect(bg('elevated/50', {})?.[0]).toEqual({
       'background-color': 'color-mix(in oklab, var(--background-elevated) 50%, transparent)',
     })
@@ -653,9 +741,8 @@ describe('successful results snapshots', () => {
       'accent/100',
     ]
 
-    expect(
-      Object.fromEntries(inputs.map(input => [input, splitCustomThemeTokenKey(input)])),
-    ).toMatchInlineSnapshot(`
+    expect(Object.fromEntries(inputs.map((input) => [input, splitCustomThemeTokenKey(input)])))
+      .toMatchInlineSnapshot(`
       {
         "accent": {
           "alpha": undefined,
@@ -1113,11 +1200,22 @@ describe('successful results snapshots', () => {
   it('parseCustomThemeColorCssVar', () => {
     const results: Record<string, ReturnType<typeof parseCustomThemeColorCssVar>> = {}
 
-    for (const [property, suffixes] of Object.entries(CUSTOM_CSSVAR_FUZZY_MAP) as [FuzzyMapKey, string[]][]) {
+    for (const [property, suffixes] of Object.entries(CUSTOM_CSSVAR_FUZZY_MAP) as [
+      FuzzyMapKey,
+      string[],
+    ][]) {
       for (const suffix of suffixes) {
         const cssVars = { [`card-${suffix}`]: 'token' }
-        results[`${property}:card-${suffix}`] = parseCustomThemeColorCssVar(property, 'card', cssVars)
-        results[`${property}:card-${suffix}/50`] = parseCustomThemeColorCssVar(property, 'card/50', cssVars)
+        results[`${property}:card-${suffix}`] = parseCustomThemeColorCssVar(
+          property,
+          'card',
+          cssVars,
+        )
+        results[`${property}:card-${suffix}/50`] = parseCustomThemeColorCssVar(
+          property,
+          'card/50',
+          cssVars,
+        )
       }
     }
 
@@ -1822,18 +1920,17 @@ describe('successful results snapshots', () => {
 
   it('generateColorAliasCssVar', () => {
     const inputs = [
-      ...CUSTOM_THEME_COLOR_ALIASES.map(alias => `${alias}.9`),
+      ...CUSTOM_THEME_COLOR_ALIASES.map((alias) => `${alias}.9`),
       ...Object.entries(CUSTOM_THEME_TOKENS_MAP).flatMap(([scope, variants]) =>
-        variants.map(variant => `${scope}.${variant}`),
+        variants.map((variant) => `${scope}.${variant}`),
       ),
       'a.b.c',
       'card-bg',
       '#fff',
     ]
 
-    expect(
-      Object.fromEntries(inputs.map(input => [input, generateColorAliasCssVar(input)])),
-    ).toMatchInlineSnapshot(`
+    expect(Object.fromEntries(inputs.map((input) => [input, generateColorAliasCssVar(input)])))
+      .toMatchInlineSnapshot(`
       {
         "#fff": "#fff",
         "a.b.c": "var(--a-b-c)",
@@ -1863,7 +1960,7 @@ describe('successful results snapshots', () => {
   it('customThemeColorCSSGenerator', () => {
     trackedProperties.clear()
 
-    const cases: [string, { name: string, keys: string[], alpha: number | undefined }][] = [
+    const cases: [string, { name: string; keys: string[]; alpha: number | undefined }][] = [
       ['color', { name: 'foreground-base', keys: ['foreground', 'base'], alpha: undefined }],
       ['color', { name: 'foreground-base', keys: ['foreground', 'base'], alpha: 0 }],
       ['color', { name: 'foreground-base', keys: ['foreground', 'base'], alpha: 50 }],

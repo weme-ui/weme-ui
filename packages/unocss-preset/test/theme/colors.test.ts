@@ -9,20 +9,7 @@ import {
 } from '~/colors/defaults'
 import { colors } from '~/theme/colors'
 
-const SCALE_KEYS = [
-  '1',
-  '2',
-  '3',
-  '4',
-  '5',
-  '6',
-  '7',
-  '8',
-  '9',
-  '10',
-  '11',
-  '12',
-] as const
+const SCALE_KEYS = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'] as const
 
 type ThemeColor = ThemeColorScales & {
   dark?: ThemeColorScales
@@ -31,7 +18,11 @@ type ThemeColor = ThemeColorScales & {
 
 function expectScale(scale: ThemeColorScales | undefined) {
   expect(scale).toBeDefined()
-  expect(Object.keys(scale ?? {}).filter(key => key !== 'dark' && key !== 'p3').sort()).toEqual([...SCALE_KEYS].sort())
+  expect(
+    Object.keys(scale ?? {})
+      .filter((key) => key !== 'dark' && key !== 'p3')
+      .toSorted(),
+  ).toEqual([...SCALE_KEYS].toSorted())
 
   for (const key of SCALE_KEYS) {
     expect(scale?.[key]).toEqual(expect.any(String))
@@ -41,7 +32,7 @@ function expectScale(scale: ThemeColorScales | undefined) {
 
 function expectThemeColor(
   themeColor: ThemeColor | undefined,
-  options: { color: string, kind?: 'accent' | 'neutral' },
+  options: { color: string; kind?: 'accent' | 'neutral' },
 ) {
   const light = resolveRadixColorScales({ color: options.color, mode: 'light', kind: options.kind })
   const dark = resolveRadixColorScales({ color: options.color, mode: 'dark', kind: options.kind })
@@ -90,7 +81,9 @@ describe('colors', () => {
       expect(themeColors.blue?.['1']).toMatch(/^oklch\(/)
       expect(themeColors.blue?.p3?.['1']).toMatch(/^color\(display-p3 |^color\(p3 /)
       expect(themeColors.blue?.dark?.['1']).toMatch(/^oklch\(/)
-      expect(themeColors.blue?.p3?.dark?.['1']).toBe(getRadixColorScales({ name: 'blue', mode: 'dark' })[0])
+      expect(themeColors.blue?.p3?.dark?.['1']).toBe(
+        getRadixColorScales({ name: 'blue', mode: 'dark' })[0],
+      )
     })
 
     it('keeps additional accent and neutral colors when accent/neutral are empty', () => {
@@ -114,15 +107,16 @@ describe('colors', () => {
       for (const name of RADIX_COLOR_NAMES) {
         expectThemeColor(themeColors[name], { color: name })
         expect(themeColors[name]?.p3?.['1']).toBe(getRadixColorScales({ name })[0])
-        expect(themeColors[name]?.p3?.dark?.['1']).toBe(getRadixColorScales({ name, mode: 'dark' })[0])
+        expect(themeColors[name]?.p3?.dark?.['1']).toBe(
+          getRadixColorScales({ name, mode: 'dark' })[0],
+        )
       }
     })
 
     it('includes both chromatic and neutral radix names', () => {
       const names = Object.keys(colors())
 
-      for (const name of RADIX_NEUTRAL_COLOR_NAMES)
-        expect(names).toContain(name)
+      for (const name of RADIX_NEUTRAL_COLOR_NAMES) expect(names).toContain(name)
 
       expect(names).toContain('blue')
       expect(names).toContain('tomato')
@@ -146,9 +140,13 @@ describe('colors', () => {
       const themeColors = colors()
 
       expect(themeColors.black?.p3?.['1']).toBe(getRadixColorScales({ name: 'black' })[0])
-      expect(themeColors.black?.p3?.dark?.['1']).toBe(getRadixColorScales({ name: 'black', mode: 'dark' })[0])
+      expect(themeColors.black?.p3?.dark?.['1']).toBe(
+        getRadixColorScales({ name: 'black', mode: 'dark' })[0],
+      )
       expect(themeColors.white?.p3?.['1']).toBe(getRadixColorScales({ name: 'white' })[0])
-      expect(themeColors.white?.p3?.dark?.['1']).toBe(getRadixColorScales({ name: 'white', mode: 'dark' })[0])
+      expect(themeColors.white?.p3?.dark?.['1']).toBe(
+        getRadixColorScales({ name: 'white', mode: 'dark' })[0],
+      )
 
       expect(themeColors.black?.p3?.['1']).toBe(themeColors.white?.p3?.dark?.['1'])
       expect(themeColors.white?.p3?.['1']).toBe(themeColors.black?.p3?.dark?.['1'])
@@ -298,15 +296,17 @@ describe('colors', () => {
     })
 
     it('exposes the expected top-level color names by default', () => {
-      const names = Object.keys(colors()).sort()
+      const names = Object.keys(colors()).toSorted()
 
-      expect(names).toEqual([
-        ...RADIX_COLOR_NAMES,
-        'black',
-        'white',
-        ...Object.keys(ADDITIONAL_ACCENT_COLORS),
-        ...Object.keys(ADDITIONAL_NEUTRAL_COLORS),
-      ].sort())
+      expect(names).toEqual(
+        [
+          ...RADIX_COLOR_NAMES,
+          'black',
+          'white',
+          ...Object.keys(ADDITIONAL_ACCENT_COLORS),
+          ...Object.keys(ADDITIONAL_NEUTRAL_COLORS),
+        ].toSorted(),
+      )
     })
   })
 })

@@ -24,16 +24,18 @@ describe('theme preflight', () => {
   it('can be disabled', () => {
     trackedTheme.add('radius:lg')
 
-    expect(createThemePreflight({ preflights: { theme: false } }).getCSS(createPreflightContext())).toBeUndefined()
+    expect(
+      createThemePreflight({ preflights: { theme: false } }).getCSS(createPreflightContext()),
+    ).toBeUndefined()
   })
 
   it('emits only tracked theme variables in on-demand mode', () => {
     trackedTheme.add('radius:lg')
     trackedTheme.add('spacing:DEFAULT')
 
-    expect(createThemePreflight({ preflights: { theme: 'on-demand' } }).getCSS(createPreflightContext())).toBe(
-      `:root, :host { --radius-lg: ${radius.lg}; --spacing: ${spacing.DEFAULT}; }`,
-    )
+    expect(
+      createThemePreflight({ preflights: { theme: 'on-demand' } }).getCSS(createPreflightContext()),
+    ).toBe(`:root, :host { --radius-lg: ${radius.lg}; --spacing: ${spacing.DEFAULT}; }`)
   })
 
   it('emits tracked colors in light, dark and display-p3 blocks', () => {
@@ -41,7 +43,9 @@ describe('theme preflight', () => {
     trackedTheme.add('colors:gray-1')
 
     const gray = buildTheme({}).colors.gray
-    const css = createThemePreflight({ preflights: { theme: 'on-demand' } }).getCSS(createPreflightContext())
+    const css = createThemePreflight({ preflights: { theme: 'on-demand' } }).getCSS(
+      createPreflightContext(),
+    )
 
     expect(css).toBe(
       `:root, :host { --radius-lg: ${radius.lg}; } :root, .light { --gray-1: ${gray['1']}; } .dark { --gray-1: ${gray.dark['1']}; } @supports (color: color(display-p3 1 1 1)) { @media (color-gamut: p3) { :root, .light { --gray-1: ${gray.p3['1']}; } .dark { --gray-1: ${gray.p3.dark['1']}; } } }`,
@@ -53,7 +57,9 @@ describe('theme preflight', () => {
     trackedTheme.add('colors:gray-1')
 
     const gray = buildTheme({}).colors.gray
-    const css = createThemePreflight({ preflights: { theme: 'on-demand' } }).getCSS(createPreflightContext())
+    const css = createThemePreflight({ preflights: { theme: 'on-demand' } }).getCSS(
+      createPreflightContext(),
+    )
 
     expect(css).toContain(`:root, .light { --gray-1: ${gray['1']}; }`)
     expect(css).toContain(`.dark { --gray-1: ${gray.dark['1']}; }`)
@@ -61,9 +67,11 @@ describe('theme preflight', () => {
   })
 
   it('tracks safelist theme keys before generating on-demand variables', () => {
-    const css = createThemePreflight().getCSS(createPreflightContext({
-      safelist: ['radius:sm', () => ['leading:tight']],
-    }))
+    const css = createThemePreflight().getCSS(
+      createPreflightContext({
+        safelist: ['radius:sm', () => ['leading:tight']],
+      }),
+    )
 
     expect(trackedTheme.has('radius:sm')).toBe(true)
     expect(trackedTheme.has('leading:tight')).toBe(true)
@@ -72,7 +80,9 @@ describe('theme preflight', () => {
   })
 
   it('emits the full theme variable map when mode is enabled', () => {
-    const css = createThemePreflight({ preflights: { theme: true } }).getCSS(createPreflightContext())
+    const css = createThemePreflight({ preflights: { theme: true } }).getCSS(
+      createPreflightContext(),
+    )
 
     expect(css).toContain('--spacing:')
     expect(css).toContain('--radius-lg:')

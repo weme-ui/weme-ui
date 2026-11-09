@@ -4,25 +4,24 @@ const fs = require('node:fs')
 const path = require('node:path')
 
 const scopes = ['registry', 'packages']
-  .filter(scope => fs.existsSync(path.resolve(__dirname, scope)))
-  .map(scope => fs.readdirSync(path.resolve(__dirname, scope), { withFileTypes: true }))
-  .flat()
-  .filter(dirent => dirent.isDirectory())
-  .map(dirent => dirent.name.replace(/s$/, ''))
+  .filter((scope) => fs.existsSync(path.resolve(__dirname, scope)))
+  .flatMap((scope) => fs.readdirSync(path.resolve(__dirname, scope), { withFileTypes: true }))
+  .filter((dirent) => dirent.isDirectory())
+  .map((dirent) => dirent.name.replace(/s$/, ''))
 
 // precomputed scope
 const scopeComplete = execSync('git status --porcelain || true')
   .toString()
   .trim()
   .split('\n')
-  .find(r => r.includes('M  registry') || r.includes('M  packages'))
+  .find((r) => r.includes('M  registry') || r.includes('M  packages'))
   ?.replace(/(\/)/g, '%%')
   ?.match(/(?:registry|packages)%%((\w|-)*)/)?.[1]
   ?.replace(/s$/, '')
 
 /** @type {import('cz-git').UserConfig} */
 module.exports = {
-  ignores: [commit => commit.includes('init')],
+  ignores: [(commit) => commit.includes('init')],
   extends: ['@commitlint/config-conventional'],
   rules: {
     'body-leading-blank': [2, 'always'],

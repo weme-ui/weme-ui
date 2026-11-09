@@ -11,4 +11,6 @@ export const shortcuts: Shortcut<Theme>[] = [
   fancyShortcuts,
   plainShortcuts,
   utilityShortcuts,
-].flat().map(shortcut => shortcut as Shortcut<Theme>)
+]
+  .flat()
+  .map((shortcut) => shortcut as Shortcut<Theme>)

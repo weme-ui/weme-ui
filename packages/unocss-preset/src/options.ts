@@ -1,7 +1,13 @@
 import type { Arrayable, CSSEntry, DeepPartial, PreflightContext } from '@unocss/core'
 import type { AdditionalColors } from './colors'
 import type { Theme } from './theme'
-import type { CustomTheme, CustomThemeColorAlias, CustomThemeCSSVars, CustomThemeTokens, ResolvedCustomThemeCSSVars } from './tokens'
+import type {
+  CustomTheme,
+  CustomThemeColorAlias,
+  CustomThemeCSSVars,
+  CustomThemeTokens,
+  ResolvedCustomThemeCSSVars,
+} from './tokens'
 import type { Prettify } from './utils'
 import { defu } from 'defu'
 import { DEFAULT_COLOR_ALIASES, DEFAULT_NAME, DEFAULT_TOKENS } from './tokens'
@@ -129,25 +135,27 @@ export interface PresetWemeUIOptions {
      * - `true` 或 `undefined`: 启用默认配置
      * - `object`: 启用自定义配置
      */
-    property?: boolean | {
-      /**
-       * 自定义父选择器 (例如，@supports 查询或 @layer)
-       *
-       * - `string`: 使用自定义父选择器
-       * - `false`: 没有父选择器，直接应用属性到选择器
-       * - `undefined`: 使用默认 @supports 查询
-       *
-       * @default '@supports ((-webkit-hyphens: none) and (not (margin-trim: inline))) or ((-moz-orient: inline) and (not (color:rgb(from red r g b))))'
-       */
-      parent?: string | false
+    property?:
+      | boolean
+      | {
+          /**
+           * 自定义父选择器 (例如，@supports 查询或 @layer)
+           *
+           * - `string`: 使用自定义父选择器
+           * - `false`: 没有父选择器，直接应用属性到选择器
+           * - `undefined`: 使用默认 @supports 查询
+           *
+           * @default '@supports ((-webkit-hyphens: none) and (not (margin-trim: inline))) or ((-moz-orient: inline) and (not (color:rgb(from red r g b))))'
+           */
+          parent?: string | false
 
-      /**
-       * 自定义选择器，用于应用属性
-       *
-       * @default '*, ::before, ::after, ::backdrop'
-       */
-      selector?: string
-    }
+          /**
+           * 自定义选择器，用于应用属性
+           *
+           * @default '*, ::before, ::after, ::backdrop'
+           */
+          selector?: string
+        }
   }
 
   /**
@@ -171,17 +179,19 @@ export interface PresetWemeUIOptions {
  *
  * @category Preset
  */
-export type ResolvedWemeUIOptions = Prettify<Omit<PresetWemeUIOptions, 'themes' | 'cssVars'> & {
-  /**
-   * 初始化后的主题
-   */
-  themes: CustomTheme<ResolvedCustomThemeCSSVars>[]
+export type ResolvedWemeUIOptions = Prettify<
+  Omit<PresetWemeUIOptions, 'themes' | 'cssVars'> & {
+    /**
+     * 初始化后的主题
+     */
+    themes: CustomTheme<ResolvedCustomThemeCSSVars>[]
 
-  /**
-   * 初始化后的 CSS 变量
-   */
-  cssVars: ResolvedCustomThemeCSSVars
-}>
+    /**
+     * 初始化后的 CSS 变量
+     */
+    cssVars: ResolvedCustomThemeCSSVars
+  }
+>
 
 /**
  * 解析预设选项
@@ -205,8 +215,7 @@ export function resolveOptions(options: PresetWemeUIOptions): ResolvedWemeUIOpti
       tokens: flattenCssVars(DEFAULT_TOKENS),
       cssVars: {},
     })
-  }
-  else {
+  } else {
     options.themes?.forEach((theme) => {
       themes.push({
         name: theme.name ?? DEFAULT_NAME,
@@ -224,12 +233,13 @@ export function resolveOptions(options: PresetWemeUIOptions): ResolvedWemeUIOpti
   }
 }
 
-function flattenCssVars(cssVars: CustomThemeTokens | CustomThemeCSSVars): ResolvedCustomThemeCSSVars {
+function flattenCssVars(
+  cssVars: CustomThemeTokens | CustomThemeCSSVars,
+): ResolvedCustomThemeCSSVars {
   return Object.entries(cssVars).reduce((acc, [scope, vals]) => {
     if (typeof vals === 'string') {
       acc[scope] = vals
-    }
-    else {
+    } else {
       Object.entries(vals).forEach(([key, value]) => {
         acc[`${scope}-${key}`] = value as string
       })

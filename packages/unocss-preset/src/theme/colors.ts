@@ -1,7 +1,12 @@
+import type { PresetWemeUIOptions } from '~/options'
 import type { ColorKind, ColorMode } from '../colors'
 import type { Theme, ThemeColorScales } from './types'
-import type { PresetWemeUIOptions } from '~/options'
-import { ADDITIONAL_ACCENT_COLORS, ADDITIONAL_NEUTRAL_COLORS, RADIX_COLOR_NAMES, resolveRadixColorScales } from '../colors'
+import {
+  ADDITIONAL_ACCENT_COLORS,
+  ADDITIONAL_NEUTRAL_COLORS,
+  RADIX_COLOR_NAMES,
+  resolveRadixColorScales,
+} from '../colors'
 
 /**
  * 颜色
@@ -9,10 +14,7 @@ import { ADDITIONAL_ACCENT_COLORS, ADDITIONAL_NEUTRAL_COLORS, RADIX_COLOR_NAMES,
  * @category Theme
  */
 export function colors(options: PresetWemeUIOptions['colors'] = {}) {
-  const {
-    accent,
-    neutral,
-  } = options
+  const { accent, neutral } = options
 
   let colors: Exclude<Theme['colors'], undefined> = {}
 
@@ -23,11 +25,11 @@ export function colors(options: PresetWemeUIOptions['colors'] = {}) {
   // #endregion
 
   // #region Custom Colors
-  Object.entries({ ...ADDITIONAL_ACCENT_COLORS, ...(accent || {}) }).forEach(([name, color]) => {
+  Object.entries({ ...ADDITIONAL_ACCENT_COLORS, ...accent }).forEach(([name, color]) => {
     colors = Object.assign(colors, createThemeColors(name, color, 'accent'))
   })
 
-  Object.entries({ ...ADDITIONAL_NEUTRAL_COLORS, ...(neutral || {}) }).forEach(([name, color]) => {
+  Object.entries({ ...ADDITIONAL_NEUTRAL_COLORS, ...neutral }).forEach(([name, color]) => {
     colors = Object.assign(colors, createThemeColors(name, color, 'neutral'))
   })
   // #endregion
@@ -35,11 +37,7 @@ export function colors(options: PresetWemeUIOptions['colors'] = {}) {
   return colors
 }
 
-function createThemeColors(
-  name: string,
-  color?: string,
-  kind?: ColorKind,
-) {
+function createThemeColors(name: string, color?: string, kind?: ColorKind) {
   const colors: Exclude<Theme['colors'], undefined> = {}
   const modes: ColorMode[] = ['light', 'dark']
   const scales = {

@@ -63,7 +63,7 @@
     },
     "packages/colors": {
       "name": "@weme-ui/colors",
-      "version": "1.0.0",
+      "version": "1.0.1",
       "dependencies": {
         "bezier-easing": "^3.2.0",
         "colorjs.io": "^0.7.1",

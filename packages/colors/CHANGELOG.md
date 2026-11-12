@@ -1,5 +1,11 @@
 # @weme-ui/colors
 
+## 1.0.1
+
+### Patch Changes
+
+- 重新发布 1.0.1。1.0.0 的 npm 发布没有进入注册表。
+
 ## 1.0.0
 
 ### Major Changes

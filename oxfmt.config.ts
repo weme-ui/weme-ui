@@ -17,5 +17,5 @@ export default defineConfig({
       'unknown',
     ],
   },
-  ignorePatterns: ['docs'],
+  ignorePatterns: ['docs', '*.schema.json'],
 })

@@ -61,6 +61,24 @@
         "vue",
       ],
     },
+    "packages/colors": {
+      "name": "@weme-ui/colors",
+      "version": "0.0.0",
+      "dependencies": {
+        "bezier-easing": "^3.2.0",
+        "colorjs.io": "^0.7.1",
+      },
+      "devDependencies": {
+        "@radix-ui/colors": "^3.0.0",
+        "@types/node": "catalog:dev",
+        "tsdown": "catalog:build",
+        "typescript": "catalog:build",
+        "vitest": "catalog:dev",
+      },
+      "peerDependencies": {
+        "@radix-ui/colors": "^3.0.0",
+      },
+    },
     "packages/schema": {
       "name": "@weme-ui/schema",
       "version": "5.0.1",
@@ -766,6 +784,8 @@
     "@vue/language-core": ["@vue/language-core@3.3.13", "", { "dependencies": { "@volar/language-core": "2.4.28", "@vue/compiler-dom": "^3.5.0", "@vue/shared": "^3.5.0", "alien-signals": "^3.2.1", "muggle-string": "^0.4.1", "path-browserify": "^1.0.1", "picomatch": "^4.0.4" } }, "sha512-axA0Xemn5LuUKuKWob0/kVq7xQ2mJJM6VqA9Exvt35nM9yRC31goWVve/G/Zb2ZCLsXC8FHYjjfXlnshknSCew=="],
 
     "@vue/shared": ["@vue/shared@3.5.44", "", {}, "sha512-H82XLH0DjmSOdbEwO15x3QTo1f5PWEtv237eLpYKc0mqLu+B8hnq16lFWmuBmNurkeiG3wr+oM1FhOll/YVFRg=="],
+
+    "@weme-ui/colors": ["@weme-ui/colors@workspace:packages/colors"],
 
     "@weme-ui/schema": ["@weme-ui/schema@workspace:packages/schema"],
 

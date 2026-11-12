@@ -62,7 +62,7 @@
   },
   "devDependencies": {
     "@radix-ui/colors": "^3.0.0",
-    "@types/node": "^26.6.6",
+    "@types/node": "catalog:dev",
     "tsdown": "catalog:build",
     "typescript": "catalog:build",
     "vitest": "catalog:dev"

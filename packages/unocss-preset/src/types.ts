@@ -4,5 +4,6 @@ export type {
   CustomThemeColorName,
   CustomThemeRadius,
   CustomThemeScaling,
+  CustomThemeTokens,
   CustomTheme,
 } from './custom/types'

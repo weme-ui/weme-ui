@@ -71,11 +71,6 @@ export interface Theme {
   media?: Record<string, string>
   supports?: Record<string, string>
 
-  // for custom css variables and tokens (used for indexing)
-  custom?: {
-    tokens?: Record<string, string[]>
-    cssVars?: Record<string, string[]>
-  }
   // for custom css variables (used for indexing)
   cssVars?: Record<string, string[]>
 }

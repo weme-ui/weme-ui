@@ -21,6 +21,9 @@ import {
 } from './utils'
 import { variants } from './variants'
 
+export * from './types'
+export * from './custom/theme'
+
 /**
  * 额外颜色
  */

@@ -1,4 +1,4 @@
-import type { Theme } from '~/theme'
+import type { Theme } from '../../theme'
 import { escapeSelector } from '@unocss/core'
 import { transformThemeFn } from '@unocss/rule-utils'
 import { globalKeywords } from '../mappings'
@@ -177,6 +177,9 @@ function processThemeVariable(
 }
 
 function bracketWithType(str: string, requiredType?: string, theme?: Theme) {
+  // Tailwind v4 shorthand: `(--foo)` is an alias of `[--foo]`
+  if (str && /^\(--[^()]+\)$/.test(str)) str = `[${str.slice(1, -1)}]`
+
   if (str && str.startsWith('[') && str.endsWith(']')) {
     let base: string | undefined
     let hintedType: string | undefined
@@ -196,6 +199,7 @@ function bracketWithType(str: string, requiredType?: string, theme?: Theme) {
 
     if (!base) return
 
+    // test/preset-attributify.test.ts > fixture5
     if (base === '=""') return
 
     if (theme) {
@@ -297,8 +301,6 @@ export function bracketOfNumber(str: string, theme?: Theme) {
 }
 
 export function cssvar(str: string) {
-  if (str == null || typeof str !== 'string') return
-
   if (str.startsWith('var(')) return str
 
   const match = str.match(/^(?:\$|--)([^\s'"`;{}]+)$/)

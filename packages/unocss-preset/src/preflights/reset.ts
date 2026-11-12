@@ -1,5 +1,5 @@
 import type { Preflight } from '@unocss/core'
-import type { ResolvedWemeUIOptions } from '../options'
+import type { PresetWemeUIOptions } from '..'
 import type { Theme } from '../theme'
 import { compressCSS, themeTracking } from '../utils'
 
@@ -48,13 +48,11 @@ html,
     'Segoe UI',
     Roboto,
     'Helvetica Neue',
-    'Noto Sans',
-    Arial,
+    'Open Sans',
+    system-ui,
     sans-serif,
     'Apple Color Emoji',
-    'Segoe UI Emoji',
-    'Segoe UI Symbol',
-    'Noto Color Emoji'
+    'Segoe UI Emoji'
   ); /* 4 */
   font-feature-settings: var(--default-font-featureSettings, normal); /* 5 */
   font-variation-settings: var(--default-font-variationSettings, normal); /* 6 */
@@ -128,14 +126,12 @@ samp,
 pre {
   font-family: var(
     --default-monoFont-family,
-    ui-monospace,
-    SFMono-Regular,
     Menlo,
-    Monaco,
     Consolas,
-    'Liberation Mono',
-    'Courier New',
-    monospace
+    'Bitstream Vera Sans Mono',
+    monospace,
+    'Apple Color Emoji',
+    'Segoe UI Emoji'
   ); /* 1 */
   font-feature-settings: var(--default-monoFont-featureSettings, normal); /* 2 */
   font-variation-settings: var(--default-monoFont-variationSettings, normal); /* 3 */
@@ -409,66 +405,8 @@ input:where([type='button'], [type='reset'], [type='submit']),
 }
 `
 
-const wemeUIStyles = `
-
-/*
-  Color Schema
-*/
-
-:root, .light {
-  color-scheme: light;
-}
-
-.dark {
-  color-scheme: dark;
-}
-
-/*
-  Scaling
-*/
-
-[data-scaling='90%'] {
-  --scaling: 0.9;
-}
-[data-scaling='95%'] {
-  --scaling: 0.95;
-}
-[data-scaling='100%'] {
-  --scaling: 1;
-}
-[data-scaling='105%'] {
-  --scaling: 1.05;
-}
-[data-scaling='110%'] {
-  --scaling: 1.1;
-}
-
-/*
-  Radius
-*/
-
-[data-radius='none'] {
-  --radius-factor: 0;
-}
-[data-radius='xs'] {
-  --radius-factor: 0.5;
-}
-[data-radius='sm'] {
-  --radius-factor: 0.75;
-}
-[data-radius='md'] {
-  --radius-factor: 1;
-}
-[data-radius='lg'] {
-  --radius-factor: 1.5;
-}
-[data-radius='full'] {
-  --radius-factor: 1.5;
-}
-`
-
-export function reset(options: ResolvedWemeUIOptions): Preflight<Theme> | undefined {
-  if (options.preflights?.reset === false) return undefined
+export function reset(options: PresetWemeUIOptions): Preflight<Theme> | undefined {
+  if (options.reset === false) return undefined
 
   return {
     getCSS: ({ generator }) => {
@@ -477,7 +415,7 @@ export function reset(options: ResolvedWemeUIOptions): Preflight<Theme> | undefi
       themeTracking('default', ['font', 'family'])
       themeTracking('default', ['monoFont', 'family'])
 
-      return compressCSS(resetCSS + wemeUIStyles, generator.config.envMode === 'dev')
+      return compressCSS(resetCSS, generator.config.envMode === 'dev')
     },
     layer: 'base',
   }

@@ -1,8 +1,8 @@
 import type { Rule, RuleContext } from '@unocss/core'
-import type { ResolvedWemeUIOptions } from '../options'
 import type { Theme } from '../theme'
-import { parseCustomThemeSize } from '../tokens'
-import { generateThemeVariable, h, resolveBreakpoints, themeTracking } from '../utils'
+import { resolveBreakpoints } from '@unocss/rule-utils'
+import { getCustomCSSVarVariable, parseCustomCSSVar } from '../custom'
+import { generateThemeVariable, h, themeTracking } from '../utils'
 
 const sizeMapping: Record<string, string> = {
   h: 'height',
@@ -15,7 +15,7 @@ function getPropName(minmax: string, hw: string) {
   return `${minmax || ''}${sizeMapping[hw]}`
 }
 
-function getSizeValue(theme: Theme, hw: string, prop: string, options: ResolvedWemeUIOptions) {
+function getSizeValue(theme: Theme, hw: string, prop: string) {
   let v: string | undefined
 
   const keys: (keyof Theme)[] = ['container', 'spacing']
@@ -48,68 +48,64 @@ function getSizeValue(theme: Theme, hw: string, prop: string, options: ResolvedW
     v = `calc(var(--spacing) * ${h.number(prop)})`
   }
 
-  if (!v) {
-    const themeSize = parseCustomThemeSize(prop, options.cssVars, hw === 'w' ? 'width' : 'height')
-    if (themeSize) {
-      v = themeSize
-    }
+  const parsed = parseCustomCSSVar(prop, theme)
+  if (parsed) {
+    v = getCustomCSSVarVariable(parsed, hw === 'w' ? 'width' : hw === 'h' ? 'height' : 'size')
   }
 
   return v ?? h.bracket.cssvar.global.auto.none.fraction.rem(prop, theme)
 }
 
-export function sizes(options: ResolvedWemeUIOptions): Rule<Theme>[] {
-  return [
-    [
-      /^size-(min-|max-)?(.+)$/,
-      ([, m, s], { theme }) => ({
-        [getPropName(m, 'w')]: getSizeValue(theme, 'w', s, options),
-        [getPropName(m, 'h')]: getSizeValue(theme, 'h', s, options),
-      }),
-    ],
-    [
-      /^(?:size-)?(min-|max-)?([wh])-?(.+)$/,
-      ([, m, w, s], { theme }) => ({ [getPropName(m, w)]: getSizeValue(theme, w, s, options) }),
-    ],
-    [
-      /^(?:size-)?(min-|max-)?(block|inline)-(.+)$/,
-      ([, m, w, s], { theme }) => ({ [getPropName(m, w)]: getSizeValue(theme, w, s, options) }),
-      {
-        autocomplete: [
-          '(w|h)-<num>',
-          '(w|h)-(full|screen|fit|max|min)',
-          '(max|min)-(w|h)-<num>',
-          '(max|min)-(w|h)-(full|screen|fit|max|min)',
-          '(block|inline)-<num>',
-          '(block|inline)-(full|screen|fit|max|min)',
-          '(max|min)-(w|h|block|inline)',
-          '(max|min)-(w|h|block|inline)-<num>',
-          '(max|min)-(w|h|block|inline)-(full|screen|fit|max|min)',
-        ],
-      },
-    ],
-    [
-      /^(?:size-)?(min-|max-)?(h)-screen-(.+)$/,
-      ([, m, h, p], context) => ({
-        [getPropName(m, h)]: handleBreakpoint(context, p, 'verticalBreakpoint'),
-      }),
-    ],
-    [
-      /^(?:size-)?(min-|max-)?(w)-screen-(.+)$/,
-      ([, m, w, p], context) => ({ [getPropName(m, w)]: handleBreakpoint(context, p) }),
-      {
-        autocomplete: [
-          '(w|h)-screen',
-          '(min|max)-(w|h)-screen',
-          'h-screen-$breakpoint',
-          '(min|max)-h-screen-$breakpoint',
-          'w-screen-$breakpoint',
-          '(min|max)-w-screen-$breakpoint',
-        ],
-      },
-    ],
-  ]
-}
+export const sizes: Rule<Theme>[] = [
+  [
+    /^size-(min-|max-)?(.+)$/,
+    ([, m, s], { theme }) => ({
+      [getPropName(m, 'w')]: getSizeValue(theme, 'w', s),
+      [getPropName(m, 'h')]: getSizeValue(theme, 'h', s),
+    }),
+  ],
+  [
+    /^(?:size-)?(min-|max-)?([wh])-?(.+)$/,
+    ([, m, w, s], { theme }) => ({ [getPropName(m, w)]: getSizeValue(theme, w, s) }),
+  ],
+  [
+    /^(?:size-)?(min-|max-)?(block|inline)-(.+)$/,
+    ([, m, w, s], { theme }) => ({ [getPropName(m, w)]: getSizeValue(theme, w, s) }),
+    {
+      autocomplete: [
+        '(w|h)-<num>',
+        '(w|h)-(full|screen|fit|max|min)',
+        '(max|min)-(w|h)-<num>',
+        '(max|min)-(w|h)-(full|screen|fit|max|min)',
+        '(block|inline)-<num>',
+        '(block|inline)-(full|screen|fit|max|min)',
+        '(max|min)-(w|h|block|inline)',
+        '(max|min)-(w|h|block|inline)-<num>',
+        '(max|min)-(w|h|block|inline)-(full|screen|fit|max|min)',
+      ],
+    },
+  ],
+  [
+    /^(?:size-)?(min-|max-)?(h)-screen-(.+)$/,
+    ([, m, h, p], context) => ({
+      [getPropName(m, h)]: handleBreakpoint(context, p, 'verticalBreakpoint'),
+    }),
+  ],
+  [
+    /^(?:size-)?(min-|max-)?(w)-screen-(.+)$/,
+    ([, m, w, p], context) => ({ [getPropName(m, w)]: handleBreakpoint(context, p) }),
+    {
+      autocomplete: [
+        '(w|h)-screen',
+        '(min|max)-(w|h)-screen',
+        'h-screen-$breakpoint',
+        '(min|max)-h-screen-$breakpoint',
+        'w-screen-$breakpoint',
+        '(min|max)-w-screen-$breakpoint',
+      ],
+    },
+  ],
+]
 
 function handleBreakpoint(
   context: Readonly<RuleContext<Theme>>,

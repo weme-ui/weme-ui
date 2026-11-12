@@ -7,103 +7,38 @@
 
 [![npm version][npm-version-src]][npm-version-href]
 [![License][license-src]][license-href]
-[![code style][code-style-src]][code-style-href]
 
 <p align="center">
-  Re-usable UI components with Reka UI and UnoCSS.
+  UnoCSS preset for Weme UI
 </p>
 
 <p align="center">
   ⚠️ Do not use in production. This project is still in early development.
 </p>
 
-## 文档
+## Checklist
 
-完整能力说明见 [GitHub docs](https://github.com/weme-ui/weme-ui/tree/main/packages/unocss-preset/docs)：
+- **Rules**
+  - [ ] rules/background.ts
+  - [ ] rules/behaviors.ts
+  - [ ] rules/border.ts
+  - [ ] rules/color.ts
+  - [ ] rules/decoration.ts
+  - [ ] rules/divide.ts
+  - [ ] rules/filters.ts
+  - [ ] rules/gap.ts
+  - [ ] rules/mask.ts
+  - [ ] rules/placeholder.ts
+  - [ ] rules/ring.ts
+  - [ ] rules/scrolls.ts
+  - [ ] rules/shadow.ts
+  - [ ] rules/svg.ts
+  - [ ] rules/typography.ts
 
-- [Getting started](https://github.com/weme-ui/weme-ui/blob/main/packages/unocss-preset/docs/index.md) — 安装与配置
-- [Theme overview](https://github.com/weme-ui/weme-ui/blob/main/packages/unocss-preset/docs/theme/index.md) — Theme 解剖结构与 Preflight
-- [Color](https://github.com/weme-ui/weme-ui/blob/main/packages/unocss-preset/docs/theme/color.md) — 色板、刻度、亮暗色与 P3
-- [Palette](https://github.com/weme-ui/weme-ui/blob/main/packages/unocss-preset/docs/theme/palette.md) — 色卡预览
-- [Dark mode](https://github.com/weme-ui/weme-ui/blob/main/packages/unocss-preset/docs/theme/dark-mode.md) — class / media 切换与推荐实践
-- [Tokens](https://github.com/weme-ui/weme-ui/blob/main/packages/unocss-preset/docs/theme/tokens.md) — 颜色别名、语义 Tokens、自定义变量
-- [Typography](https://github.com/weme-ui/weme-ui/blob/main/packages/unocss-preset/docs/theme/typography.md) / [Spacing](https://github.com/weme-ui/weme-ui/blob/main/packages/unocss-preset/docs/theme/spacing.md) / [Radius](https://github.com/weme-ui/weme-ui/blob/main/packages/unocss-preset/docs/theme/radius.md) / [Shadows](https://github.com/weme-ui/weme-ui/blob/main/packages/unocss-preset/docs/theme/shadows.md)
-- [Rules](https://github.com/weme-ui/weme-ui/blob/main/packages/unocss-preset/docs/utilities/rules.md) — 全部工具类规则速查
-- [Animation](https://github.com/weme-ui/weme-ui/blob/main/packages/unocss-preset/docs/utilities/animate.md) — 完整 keyframe 与组合 Enter / Exit
-- [Variants](https://github.com/weme-ui/weme-ui/blob/main/packages/unocss-preset/docs/utilities/variants.md) — 断点、暗色、伪类、ARIA 等变体
-
-## 生成颜色 CSS 变量
-
-```css
-/* layer: theme */
-:root,
-.light {
-  --amber-1: oklch(99.425% 0.00285 84.559);
-}
-
-.dark {
-  --amber-1: oklch(18.496% 0.01336 77.796);
-}
-
-@supports (color: color(display-p3 1 1 1)) {
-  @media (color-gamut: p3) {
-    :root,
-    .light {
-      --amber-1: color(display-p3 0.995 0.992 0.985);
-    }
-
-    .dark {
-      --amber-1: color(display-p3 0.082 0.07 0.05);
-    }
-  }
-}
-
-:where([data-theme='default']) {
-  --accent-1: var(--amber-1);
-}
-
-.dark:where([data-theme='default']) {
-  --accent-1: var(--amber-1);
-}
-
-:where([data-theme='default']) {
-  --text-color-highlighted: var(--neutral-12);
-  --text-color: var(--neutral-11);
-  --text-color-subtle: var(--neutral-6);
-  --text-color-muted: var(--neutral-4);
-  --text-color-inverted: var(--neutral-1);
-}
-
-/* layer: default */
-.bg-amber-1 {
-  background-color: var(--amber-1);
-}
-.bg-amber-1\/10 {
-  background-color: color-mix(in srgb, var(--amber-1) 10%, transparent);
-}
-@supports (color: color-mix(in lab, red, red)) {
-  .bg-amber-1\/10 {
-    background-color: color-mix(in oklab, var(--amber-1) 10%, transparent);
-  }
-}
-```
-
-## 规则调整清单
-
-- [x] background
-- [x] behaviors
-- [x] border
-- [x] color
-- [x] decoration
-- [x] divide
-- [x] placeholder
-- [x] svg
-- [x] typography
-- [x] ~~filters~~
-- [x] ~~gap~~
-- [x] ~~mask~~
-- [x] ~~ring~~
-- [x] ~~shadow~~
+- **Utils**
+  - [ ] utils/handlers/handlers.ts
+  - [ ] utils/track.ts
+  - [ ] utils/utilities.ts
 
 ## 许可证
 
@@ -114,5 +49,3 @@
 [license-src]: https://img.shields.io/github/license/weme-ui/weme-ui.svg?style=flat&colorA=1d2129&colorB=4CBBA5
 [license-href]: https://github.com/weme-ui/weme-ui/blob/main/LICENSE
 [github-href]: https://github.com/weme-ui/weme-ui
-[code-style-src]: https://antfu.me/badge-code-style.svg
-[code-style-href]: https://github.com/antfu/eslint-config

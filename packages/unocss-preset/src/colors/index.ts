@@ -1,5 +1,0 @@
-export * from './color'
-export * from './defaults'
-export * from './generator'
-export * from './types'
-export * from './utils'

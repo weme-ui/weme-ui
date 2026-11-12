@@ -1,5 +1,5 @@
 import type { Variant } from '@unocss/core'
-import type { PresetWemeUIOptions } from '~/options'
+import type { PresetWemeUIOptions } from '..'
 import type { Theme } from '../theme'
 import { variantAria, variantTaggedAriaAttributes } from './aria'
 import { variantBreakpoints } from './breakpoints'

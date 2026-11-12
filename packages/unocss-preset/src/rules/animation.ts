@@ -43,38 +43,23 @@ export const animations: Rule<Theme>[] = [
   // timings
   [
     /^animate-duration-(.+)$/,
-    ([, d], { theme }) => {
-      const v = theme.duration?.[d || 'DEFAULT'] ?? h.bracket.cssvar.time(d, theme)
-      if (v == null) return
-      return {
-        'animation-duration': v,
-        '--un-animation-duration': v,
-      }
-    },
+    ([, d], { theme }) => ({
+      'animation-duration': theme.duration?.[d || 'DEFAULT'] ?? h.bracket.cssvar.time(d, theme),
+    }),
     { autocomplete: ['animate-duration'] },
   ],
   [
     /^animate-delay-(.+)$/,
-    ([, d], { theme }) => {
-      const v = theme.duration?.[d || 'DEFAULT'] ?? h.bracket.cssvar.time(d, theme)
-      if (v == null) return
-      return {
-        'animation-delay': v,
-        '--un-animation-delay': v,
-      }
-    },
+    ([, d], { theme }) => ({
+      'animation-delay': theme.duration?.[d || 'DEFAULT'] ?? h.bracket.cssvar.time(d, theme),
+    }),
     { autocomplete: ['animate-delay'] },
   ],
   [
     /^animate-ease(?:-(.+))?$/,
-    ([, d], { theme }) => {
-      const v = theme.ease?.[d || 'DEFAULT'] ?? h.bracket.cssvar(d, theme)
-      if (v == null) return
-      return {
-        'animation-timing-function': v,
-        '--un-animation-ease': v,
-      }
-    },
+    ([, d], { theme }) => ({
+      'animation-timing-function': theme.ease?.[d || 'DEFAULT'] ?? h.bracket.cssvar(d, theme),
+    }),
     { autocomplete: ['animate-ease', 'animate-ease-$ease'] },
   ],
 

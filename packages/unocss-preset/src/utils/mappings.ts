@@ -1,8 +1,3 @@
-/**
- * 方向映射
- *
- * @category Utils
- */
 export const directionMap: Record<string, string[]> = {
   l: ['-left'],
   r: ['-right'],
@@ -21,11 +16,6 @@ export const directionMap: Record<string, string[]> = {
   inline: ['-inline-start', '-inline-end'],
 }
 
-/**
- * 内边距映射
- *
- * @category Utils
- */
 export const insetMap: Record<string, string[]> = {
   ...directionMap,
   x: ['-inset-inline'],
@@ -42,11 +32,6 @@ export const insetMap: Record<string, string[]> = {
   inline: ['-inset-inline-start', '-inset-inline-end'],
 }
 
-/**
- * 角落映射
- *
- * @category Utils
- */
 export const cornerMap: Record<string, string[]> = {
   l: ['-top-left', '-bottom-left'],
   r: ['-top-right', '-bottom-right'],
@@ -81,11 +66,6 @@ export const cornerMap: Record<string, string[]> = {
   'ie-be': ['-end-end'],
 }
 
-/**
- * XYZ 映射
- *
- * @category Utils
- */
 export const xyzMap: Record<string, string[]> = {
   x: ['-x'],
   y: ['-y'],
@@ -93,19 +73,9 @@ export const xyzMap: Record<string, string[]> = {
   '': ['-x', '-y'],
 }
 
-/**
- * XYZ 数组
- *
- * @category Utils
- */
 export const xyzArray = ['x', 'y', 'z']
 
-/**
- * 基础位置映射
- *
- * @category Utils
- */
-export const basePositionMap = [
+const basePositionMap = [
   'top',
   'top center',
   'top left',
@@ -130,11 +100,6 @@ export const basePositionMap = [
   'center center',
 ]
 
-/**
- * 位置映射
- *
- * @category Utils
- */
 export const positionMap: Record<string, string> = Object.assign(
   {},
 
@@ -146,23 +111,7 @@ export const positionMap: Record<string, string> = Object.assign(
   ...basePositionMap.map((p) => ({ [p.replace(/\b(\w)\w+/g, '$1').replace(/ /, '')]: p })),
 )
 
-/**
- * 全局关键字
- *
- * @category Utils
- */
 export const globalKeywords = ['inherit', 'initial', 'revert', 'revert-layer', 'unset']
 
-/**
- * CSS 数学函数正则表达式
- *
- * @category Utils
- */
 export const cssMathFnRE = /^(calc|clamp|min|max)\s*\((.+)\)(.*)/
-
-/**
- * CSS 变量函数正则表达式
- *
- * @category Utils
- */
 export const cssVarFnRE = /^(var)\s*\((.+)\)(.*)/

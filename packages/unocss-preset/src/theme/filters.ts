@@ -1,10 +1,5 @@
 import type { Theme } from './types'
 
-/**
- * 模糊
- *
- * @category Theme
- */
 export const blur = {
   DEFAULT: '8px',
   xs: '4px',

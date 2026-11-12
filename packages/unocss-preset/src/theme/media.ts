@@ -1,10 +1,5 @@
 import type { Theme } from './types'
 
-/**
- * 媒体
- *
- * @category Theme
- */
 export const media = {
   portrait: '(orientation: portrait)',
   landscape: '(orientation: landscape)',

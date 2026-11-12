@@ -1,5 +1,4 @@
-import type { UserShortcuts } from '@unocss/core'
-import type { Theme } from '../theme'
+import type { StaticShortcutMap } from '@unocss/core'
 
 /**
  * Utility shortcuts
@@ -7,13 +6,12 @@ import type { Theme } from '../theme'
  *
  * @category Shortcuts
  */
-export const utilityShortcuts: UserShortcuts<Theme>[] = [
+export const utilitiesShortcuts: StaticShortcutMap[] = [
   // Positioning
   {
-    abs: 'absolute',
-    'abs-center': 'top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2',
-    'abs-x-center': 'left-1/2 -translate-x-1/2',
-    'abs-y-center': 'top-1/2 -translate-y-1/2',
+    'absolute-center': 'top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2',
+    'absolute-x-center': 'left-1/2 -translate-x-1/2',
+    'absolute-y-center': 'top-1/2 -translate-y-1/2',
 
     'flex-center': 'items-center justify-center',
     'flex-x-center': 'justify-center',
@@ -28,10 +26,12 @@ export const utilityShortcuts: UserShortcuts<Theme>[] = [
 
   // Z-index
   {
-    'z-highest': 'z-9999',
-    'z-higher': 'z-999',
-    'z-high': 'z-99',
-    'z-medium': 'z-9',
-    'z-low': 'z-1',
+    'z-base': 'z-0',
+    'z-raised': 'z-1',
+    'z-popover': 'z-100',
+    'z-dropdown': 'z-200',
+    'z-overlay': 'z-300',
+    'z-modal': 'z-400',
+    'z-toast': 'z-500',
   },
 ]

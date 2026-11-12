@@ -1,21 +1,12 @@
 import type { Preflight } from '@unocss/core'
-import type { ResolvedWemeUIOptions } from '../options'
+import type { PresetWemeUIOptions } from '..'
 import type { Theme } from '../theme'
 import { trackedProperties } from '../utils/track'
 
-export function property(options: ResolvedWemeUIOptions): Preflight<Theme> | undefined {
-  if (options.preflights?.property === false) return undefined
-
-  const propertyConfig =
-    typeof options.preflights?.property === 'object' ? options.preflights.property : undefined
-
+export function property(options: PresetWemeUIOptions): Preflight<Theme> | undefined {
   const parentSelector =
-    propertyConfig?.parent !== undefined
-      ? propertyConfig.parent
-      : '@supports ((-webkit-hyphens: none) and (not (margin-trim: inline))) or ((-moz-orient: inline) and (not (color:rgb(from red r g b))))'
-
-  const selector = propertyConfig?.selector ?? '*, ::before, ::after, ::backdrop'
-
+    '@supports ((-webkit-hyphens: none) and (not (margin-trim: inline))) or ((-moz-orient: inline) and (not (color:rgb(from red r g b))))'
+  const selector = '*, ::before, ::after, ::backdrop'
   const prefix = options.variablePrefix ?? 'un-'
 
   return {
@@ -27,9 +18,7 @@ export function property(options: ResolvedWemeUIOptions): Preflight<Theme> | und
         .map(([property, value]) => `${property.replace(/^--un-/, `--${prefix}`)}:${value};`)
         .join('')
 
-      return parentSelector === false
-        ? `${selector}{${css}}`
-        : `${parentSelector}{${selector}{${css}}}`
+      return `${parentSelector}{${selector}{${css}}}`
     },
     layer: 'properties',
   }

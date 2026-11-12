@@ -1,8 +1,9 @@
-import type { PresetWemeUIOptions } from '~/options'
+import type { PresetWemeUIOptions } from '..'
 import type { Theme } from './types'
-import { animation } from './animation'
+import { animation } from './animate'
 import { aria } from './aria'
 import { colors } from './colors'
+import { customCSSVars } from './custom'
 import { blur } from './filters'
 import { font, fontWeight, leading, text, textStrokeWidth, tracking } from './font'
 import { media } from './media'
@@ -22,30 +23,38 @@ import { ease, property } from './transition'
 
 export function theme(options: PresetWemeUIOptions) {
   return {
-    animation,
-    aria,
-    blur,
-    breakpoint,
-    container,
-    default: defaults,
-    dropShadow,
-    ease,
+    // for rules
     font,
+    colors: colors(options.colors),
+    spacing,
+    breakpoint,
+    verticalBreakpoint,
+    text,
     fontWeight,
-    insetShadow,
+    tracking,
     leading,
-    media,
-    perspective,
-    property,
+    textStrokeWidth,
     radius,
     shadow,
-    spacing,
-    supports,
-    text,
+    insetShadow,
+    dropShadow,
     textShadow,
-    textStrokeWidth,
-    colors: colors(options.colors),
-    tracking,
-    verticalBreakpoint,
+    ease,
+    animation,
+    blur,
+    perspective,
+    property,
+    default: defaults,
+
+    // for rules & variants
+    container,
+
+    // for variant
+    aria,
+    media,
+    supports,
+
+    // for custom css variables
+    cssVars: customCSSVars(options),
   } satisfies Theme
 }

@@ -96,8 +96,8 @@
         "valibot": "^1.5.0",
       },
     },
-    "packages/unocss": {
-      "name": "@weme-ui/unocss",
+    "packages/unocss-preset": {
+      "name": "@weme-ui/unocss-preset",
       "version": "0.3.2",
       "dependencies": {
         "@unocss/core": "^66.12.0",
@@ -118,31 +118,6 @@
         "vitest": "catalog:dev",
       },
       "peerDependencies": {
-        "unocss": "^66.10.5",
-      },
-    },
-    "packages/unocss-preset": {
-      "name": "@weme-ui/unocss-preset",
-      "version": "0.3.2",
-      "dependencies": {
-        "@unocss/core": "catalog:dev",
-        "@unocss/extractor-arbitrary-variants": "catalog:dev",
-        "@unocss/rule-utils": "catalog:dev",
-        "@unocss/transformer-variant-group": "catalog:dev",
-        "bezier-easing": "^3.2.0",
-        "colorjs.io": "^0.7.1",
-        "defu": "catalog:utils",
-      },
-      "devDependencies": {
-        "@radix-ui/colors": "^3.0.0",
-        "@types/node": "catalog:dev",
-        "tsdown": "catalog:build",
-        "type-fest": "catalog:utils",
-        "typescript": "catalog:build",
-        "vitest": "catalog:dev",
-      },
-      "peerDependencies": {
-        "@radix-ui/colors": "^3.0.0",
         "unocss": "^66.10.5",
       },
     },
@@ -823,8 +798,6 @@
     "@weme-ui/colors": ["@weme-ui/colors@workspace:packages/colors"],
 
     "@weme-ui/schema": ["@weme-ui/schema@workspace:packages/schema"],
-
-    "@weme-ui/unocss": ["@weme-ui/unocss@workspace:packages/unocss"],
 
     "@weme-ui/unocss-preset": ["@weme-ui/unocss-preset@workspace:packages/unocss-preset"],
 
@@ -1954,14 +1927,6 @@
 
     "@vue/compiler-core/estree-walker": ["estree-walker@2.0.2", "", {}, "sha512-Rfkk/Mp/DL7JVje3u18FxFujQlTNR2q6QfMSMB7AvCBx91NGj/ba3kCfza0f6dVDbw7YlRf/nDrn7pQrCCyQ/w=="],
 
-    "@weme-ui/unocss-preset/@unocss/core": ["@unocss/core@66.10.5", "", {}, "sha512-fukv4bL32z/kWIiKgDy5ih452Jzf7S76p8RnP4N+3utqMFeqWayEApiqRidGv5b6NwPguTsKXaLsy+mbK9aMfA=="],
-
-    "@weme-ui/unocss-preset/@unocss/extractor-arbitrary-variants": ["@unocss/extractor-arbitrary-variants@66.10.5", "", { "dependencies": { "@unocss/core": "66.10.5" } }, "sha512-8qCJjByALdNiGQB1xHWK3tAl3n+hacBLlklqHhgNj0qWYtr3Hp+pfyA2nuyzJcPXkolqtGn1APJ1TNPbL5w+qg=="],
-
-    "@weme-ui/unocss-preset/@unocss/rule-utils": ["@unocss/rule-utils@66.10.5", "", { "dependencies": { "@unocss/core": "66.10.5", "magic-string": "^1.4.1" } }, "sha512-ePcz9fJfEVN4VXJgx2bPdGSZ/ujdyUhiJOnMTwIWRxlUdZ2Wgc5aT6zTb9W9AjOB0eWxO2Iyb0HGhA9GGuIY8g=="],
-
-    "@weme-ui/unocss-preset/@unocss/transformer-variant-group": ["@unocss/transformer-variant-group@66.10.5", "", { "dependencies": { "@unocss/core": "66.10.5" } }, "sha512-e1l3bCxl4qMizPJPe6E6tfS2swdL9r/ohiKxSxku6+/kyKYnAxRcpVPK6IbmkurQfo73cjSJUV+zXmqdxbdWNQ=="],
-
     "ansi-align/string-width": ["string-width@4.2.3", "", { "dependencies": { "emoji-regex": "^8.0.0", "is-fullwidth-code-point": "^3.0.0", "strip-ansi": "^6.0.1" } }, "sha512-wKyQRQpjJ0sIp62ErSZdGsjMJWsap5oRNihHhu6G7JVO/9jIB6UyevL+tXuOqrng8j/cxKTWyWUwvSTriiZz/g=="],
 
     "anymatch/picomatch": ["picomatch@2.3.2", "", {}, "sha512-V7+vQEJ06Z+c5tSye8S+nHUfI51xoXIXjHQ99cQtKUkQqqO1kO/KCJUfZXuB47h/YBlDhah2H3hdUGXn8ie0oA=="],
@@ -2149,8 +2114,6 @@
     "@volar/language-server/@volar/language-core/@volar/source-map": ["@volar/source-map@2.4.30", "", {}, "sha512-zym1ob/KwDDyN+0jGVtxwbxJSRRnUvv5HspCtz3yEfVVdCG4/dzxJktMGPAgemqRuVs81O0o/y0q3qOUErR8kg=="],
 
     "@volar/language-service/@volar/language-core/@volar/source-map": ["@volar/source-map@2.4.30", "", {}, "sha512-zym1ob/KwDDyN+0jGVtxwbxJSRRnUvv5HspCtz3yEfVVdCG4/dzxJktMGPAgemqRuVs81O0o/y0q3qOUErR8kg=="],
-
-    "@weme-ui/unocss-preset/@unocss/rule-utils/magic-string": ["magic-string@1.4.3", "", { "dependencies": { "@jridgewell/sourcemap-codec": "^1.6.0" } }, "sha512-z12OxmaPGE0F4xlpGdjuAUckipLpQlTAuAmyGhNoD7ODpYUzvDfvtxUbjM/jwznyP178oju/KDdyi220wNJ0RQ=="],
 
     "ansi-align/string-width/emoji-regex": ["emoji-regex@8.0.0", "", {}, "sha512-MSjYzcWNOA0ewAHpz0MxpYFvwg6yjy1NG3xteoqz644VCo/RPgnr1/GGt+ic3iJTzQ8Eu3TdM14SawnVUmGE6A=="],
 

@@ -1,54 +1,33 @@
-import type { FillRecord } from '../utils'
+import type { FillRecord } from '../utils/types'
 
 /**
- * 主题颜色刻度
+ * UnoCSS 颜色刻度
  *
- * @category Theme
  * @link {@see https://www.radix-ui.com/colors}
  */
-export type ThemeColorScales = FillRecord<
+export type UnoColorScales = FillRecord<
   string,
   '1' | '2' | '3' | '4' | '5' | '6' | '7' | '8' | '9' | '10' | '11' | '12'
 >
 
 /**
- * 主题颜色
- *
- * @category Theme
- *
- * @link {@see https://www.radix-ui.com/colors}
+ * UnoCSS 颜色
  */
-export interface ThemeColors {
-  [key: string]: ThemeColorScales & {
-    dark: ThemeColorScales
-    p3: ThemeColorScales & {
-      dark: ThemeColorScales
+export type UnoColors = {
+  [key: string]: UnoColorScales & {
+    dark: UnoColorScales
+    p3: UnoColorScales & {
+      dark: UnoColorScales
     }
   }
 }
 
 /**
- * 主题动画
- *
- * @category Theme
- */
-interface ThemeAnimations {
-  keyframes?: Record<string, string>
-  durations?: Record<string, string>
-  timingFns?: Record<string, string>
-  properties?: Record<string, object>
-  counts?: Record<string, string | number>
-  category?: Record<string, string>
-}
-
-/**
  * 主题
- *
- * @category Theme
  */
 export interface Theme {
   font?: Record<string, string>
-  colors?: ThemeColors
+  colors?: UnoColors
   spacing?: Record<string, string>
   breakpoint?: Record<string, string>
   verticalBreakpoint?: Record<string, string>
@@ -69,7 +48,14 @@ export interface Theme {
   property?: Record<string, string>
   default?: Record<string, Record<string, string>>
 
-  animation?: ThemeAnimations
+  animation?: {
+    keyframes?: Record<string, string>
+    durations?: Record<string, string>
+    timingFns?: Record<string, string>
+    properties?: Record<string, object>
+    counts?: Record<string, string | number>
+    category?: Record<string, string>
+  }
   duration?: Record<string, string>
 
   // container
@@ -84,4 +70,12 @@ export interface Theme {
   data?: Record<string, string>
   media?: Record<string, string>
   supports?: Record<string, string>
+
+  // for custom css variables and tokens (used for indexing)
+  custom?: {
+    tokens?: Record<string, string[]>
+    cssVars?: Record<string, string[]>
+  }
+  // for custom css variables (used for indexing)
+  cssVars?: Record<string, string[]>
 }

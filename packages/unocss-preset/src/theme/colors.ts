@@ -1,66 +1,98 @@
-import type { PresetWemeUIOptions } from '~/options'
-import type { ColorKind, ColorMode } from '../colors'
-import type { Theme, ThemeColorScales } from './types'
+import type { ColorKind, ColorMode, ColorValue } from '@weme-ui/colors'
+import type { PresetWemeUIOptions } from '..'
+import type { UnoColorScales, Theme } from './types'
 import {
   ADDITIONAL_ACCENT_COLORS,
   ADDITIONAL_NEUTRAL_COLORS,
   RADIX_COLOR_NAMES,
-  resolveRadixColorScales,
-} from '../colors'
+  resolveColor,
+} from '@weme-ui/colors'
+import { defu } from 'defu'
+
+type ResolvedUnoThemeColors = Exclude<Theme['colors'], undefined>
 
 /**
- * 颜色
+ * UnoCSS 主题颜色
  *
- * @category Theme
+ * @param options - 选项
  */
-export function colors(options: PresetWemeUIOptions['colors'] = {}) {
+export function colors(options: PresetWemeUIOptions['colors'] = {}): ResolvedUnoThemeColors {
   const { accent, neutral } = options
 
-  let colors: Exclude<Theme['colors'], undefined> = {}
+  let colors: ResolvedUnoThemeColors = {}
 
   // #region Radix Colors
-  Array.from([...RADIX_COLOR_NAMES, 'black', 'white']).forEach((name) => {
-    colors = Object.assign(colors, createThemeColors(name))
+  Array.from(RADIX_COLOR_NAMES).forEach((name) => {
+    colors = defu(colors, createThemeColors(name))
   })
   // #endregion
 
-  // #region Custom Colors
-  Object.entries({ ...ADDITIONAL_ACCENT_COLORS, ...accent }).forEach(([name, color]) => {
-    colors = Object.assign(colors, createThemeColors(name, color, 'accent'))
+  // #region Black and White Colors
+  const blackAuto = createThemeColors('black')
+  const whiteAuto = createThemeColors('white')
+
+  const black = createSolidColors('black')
+  const white = createSolidColors('white')
+
+  colors = defu(
+    colors,
+    { black, white },
+    // Alpha Black and Alpha White
+    {
+      'black-auto': blackAuto['black'],
+      'white-auto': whiteAuto['white'],
+    },
+  )
+  // #endregion
+
+  // #region Additional Colors
+  Object.entries({
+    ...ADDITIONAL_ACCENT_COLORS,
+    ...accent,
+  }).forEach(([name, color]) => {
+    colors = defu(colors, createThemeColors(name, color, 'accent'))
   })
 
-  Object.entries({ ...ADDITIONAL_NEUTRAL_COLORS, ...neutral }).forEach(([name, color]) => {
-    colors = Object.assign(colors, createThemeColors(name, color, 'neutral'))
+  Object.entries({
+    ...ADDITIONAL_NEUTRAL_COLORS,
+    ...neutral,
+  }).forEach(([name, color]) => {
+    colors = defu(colors, createThemeColors(name, color, 'neutral'))
   })
   // #endregion
 
   return colors
 }
 
+/**
+ * 创建 UnoCSS 主题颜色
+ *
+ * @param name - 颜色名称
+ * @param color - 颜色值
+ * @param kind - 颜色类型
+ */
 function createThemeColors(name: string, color?: string, kind?: ColorKind) {
-  const colors: Exclude<Theme['colors'], undefined> = {}
+  const colors: ResolvedUnoThemeColors = {}
   const modes: ColorMode[] = ['light', 'dark']
+
   const scales = {
-    oklch: {} as ThemeColorScales,
-    p3: {} as ThemeColorScales,
-    darkOklch: {} as ThemeColorScales,
-    darkP3: {} as ThemeColorScales,
+    oklch: {} as UnoColorScales,
+    p3: {} as UnoColorScales,
+    darkOklch: {} as UnoColorScales,
+    darkP3: {} as UnoColorScales,
   }
 
   modes.forEach((mode) => {
-    const colorScales = resolveRadixColorScales({
-      color: color || name,
-      mode,
-      kind,
-    })
+    const resolvedColor = resolveColor(color || name, mode, kind)
+
     const oklchTarget = mode === 'light' ? scales.oklch : scales.darkOklch
     const p3Target = mode === 'light' ? scales.p3 : scales.darkP3
 
-    colorScales.oklch.forEach((value, index) => {
-      oklchTarget[(index + 1).toString() as keyof ThemeColorScales] = value
+    resolvedColor.oklch.forEach((value, index) => {
+      oklchTarget[(index + 1).toString() as keyof UnoColorScales] = value
     })
-    colorScales.p3.forEach((value, index) => {
-      p3Target[(index + 1).toString() as keyof ThemeColorScales] = value
+    resolvedColor.p3.forEach((value, index) => {
+      p3Target[(index + 1).toString() as keyof UnoColorScales] = value
     })
   })
 
@@ -74,4 +106,56 @@ function createThemeColors(name: string, color?: string, kind?: ColorKind) {
   }
 
   return colors
+}
+
+/**
+ * 创建纯色颜色
+ *
+ * @param color - 颜色名称
+ * @returns - 颜色值
+ */
+function createSolidColors(color: 'black' | 'white') {
+  const revertScale = (scale: ColorValue<string>) => {
+    const reverted = {} as UnoColorScales
+
+    scale.forEach((value, index) => {
+      reverted[(12 - index).toString() as keyof UnoColorScales] = value
+    })
+    return reverted
+  }
+
+  const scale = resolveColor(color === 'black' ? '#000' : '#FFF', 'dark', 'neutral')
+
+  if (color === 'black') {
+    const oklch = revertScale(scale.oklch)
+    const p3 = revertScale(scale.p3)
+
+    return {
+      ...oklch,
+      dark: oklch,
+      p3: {
+        ...p3,
+        dark: p3,
+      },
+    }
+  }
+
+  const oklch = scale.oklch.reduce((acc, value, index) => {
+    acc[(index + 1).toString() as keyof UnoColorScales] = value
+    return acc
+  }, {} as UnoColorScales)
+
+  const p3 = scale.p3.reduce((acc, value, index) => {
+    acc[(index + 1).toString() as keyof UnoColorScales] = value
+    return acc
+  }, {} as UnoColorScales)
+
+  return {
+    ...oklch,
+    dark: oklch,
+    p3: {
+      ...p3,
+      dark: p3,
+    },
+  }
 }

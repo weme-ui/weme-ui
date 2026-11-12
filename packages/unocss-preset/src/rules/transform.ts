@@ -1,5 +1,3 @@
-/* eslint-disable regexp/no-empty-group */
-/* eslint-disable regexp/no-empty-capturing-group */
 import type { CSSValueInput, CSSValues, Rule, RuleContext } from '@unocss/core'
 import type { Theme } from '../theme'
 import {

@@ -1,3 +1,4 @@
+// oxlint-disable no-unused-vars
 import type { Rule } from '@unocss/core'
 import type { Theme } from '../theme'
 import { h } from '../utils'
@@ -43,7 +44,6 @@ export const cssVariables: Rule<Theme>[] = [
 export const cssProperty: Rule<Theme>[] = [
   [
     /^\[(.*)\]$/,
-    // oxlint-disable-next-line no-unused-vars
     ([_, body], { theme }) => {
       if (!body.includes(':')) return
 

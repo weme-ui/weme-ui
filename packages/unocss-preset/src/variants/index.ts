@@ -1,3 +1,4 @@
+/* @export-submodules */
 export * from './aria'
 export * from './breakpoints'
 export * from './children'
@@ -8,6 +9,7 @@ export * from './data'
 export * from './default'
 export * from './directions'
 export * from './important'
+export * from './inert'
 export * from './media'
 export * from './misc'
 export * from './negative'

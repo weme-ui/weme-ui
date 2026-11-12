@@ -1,10 +1,5 @@
 import type { Theme } from './types'
 
-/**
- * ARIA
- *
- * @category Theme
- */
 export const aria = {
   busy: 'busy="true"',
   checked: 'checked="true"',

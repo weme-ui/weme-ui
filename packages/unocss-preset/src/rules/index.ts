@@ -1,5 +1,4 @@
 export * from './align'
-export * from './animate'
 export * from './animation'
 export * from './background'
 export * from './behaviors'

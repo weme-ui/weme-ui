@@ -1,3 +1,4 @@
+// oxlint-disable no-unused-vars
 import type {
   CSSEntries,
   CSSObject,
@@ -16,8 +17,17 @@ import {
   getStringComponents,
   isInterpolatedMethod,
   parseCssColor,
+  resolveBreakpoints as resolveBreakpointsShared,
 } from '@unocss/rule-utils'
-import { parseColorAlias } from '../tokens'
+import {
+  getCustomCSSVarVariable,
+  isColorAlias,
+  isCustomCSSVar,
+  isThemeToken,
+  parseColorAlias,
+  parseCustomCSSVar,
+  parseThemeTokenVariable,
+} from '../custom'
 import { SpecialColorKey } from './constant'
 import { h } from './handlers'
 import { bracketTypeRe, numberWithUnitRE } from './handlers/regex'
@@ -25,7 +35,6 @@ import { cssMathFnRE, directionMap, globalKeywords } from './mappings'
 import { detectThemeValue, generateThemeVariable, propertyTracking, themeTracking } from './track'
 
 // #region Number Resolver
-
 export function numberResolver(size: string, defaultValue?: string | number): number | undefined {
   const v = h.number(size) ?? defaultValue
 
@@ -38,11 +47,9 @@ export function numberResolver(size: string, defaultValue?: string | number): nu
     return num
   }
 }
-
 // #endregion
 
 // #region Direction with size
-
 /**
  * Returns a {@link DynamicMatcher} that generates spacing CSS properties for directional utilities.
  *
@@ -56,7 +63,6 @@ export function directionSize(
   formatter: (p: string, d: string) => string = (p, d) => `${p}${d}`,
 ): DynamicMatcher<Theme> {
   return ((
-    // oxlint-disable-next-line no-unused-vars
     [_, direction, size = '4']: (string | undefined)[],
     { theme },
   ): CSSEntries | undefined => {
@@ -92,7 +98,6 @@ export function directionSize(
     }
   }) as DynamicMatcher<Theme>
 }
-
 // #endregion
 
 // #region With Colors
@@ -176,8 +181,8 @@ export function parseColor(body: string, theme: Theme) {
     }
   }
 
-  // parse custom theme color alias
-  if (!parsed) {
+  // Parse color alias
+  if (!parsed && isColorAlias(name)) {
     parsed = parseColorAlias(colors)
   }
 
@@ -196,11 +201,25 @@ export function parseColor(body: string, theme: Theme) {
     color = color || bracket
   }
 
+  // Parse theme token
+  let tokens: string[] | undefined
+  if (!color && isThemeToken(colors.join('-'))) {
+    tokens = colors
+  }
+
+  // Parse custom CSS var
+  let cssVars: [string, string[]] | undefined
+  if (!color && !tokens) {
+    cssVars = parseCustomCSSVar(colors.join('-'), theme)
+  }
+
   return {
     opacity,
     modifier: (modifier && h.bracket.cssvar(modifier, theme)) || modifier,
     name,
     no,
+    tokens,
+    cssVars,
     color: color ?? SpecialColorKey[name as keyof typeof SpecialColorKey],
     alpha: h.bracket.cssvar.percent(opacity ?? '', theme),
     /**
@@ -273,7 +292,18 @@ export function colorCSSGenerator(
 ): [CSSObject, ...CSSValueInput[]] | undefined {
   if (!data) return
 
-  const { color, keys, alpha, modifier } = data
+  let { cssVars, tokens, color, keys, alpha, modifier } = data
+
+  // Parse theme token
+  if (!color && tokens) {
+    color = parseThemeTokenVariable(tokens, varName)
+  }
+
+  // Parse custom CSS var
+  if (!color && cssVars) {
+    color = getCustomCSSVarVariable(cssVars, varName)
+  }
+
   const rawColorComment = ctx?.generator.config.envMode === 'dev' && color ? ` /* ${color} */` : ''
   const css: CSSObject = {}
 
@@ -287,6 +317,19 @@ export function colorCSSGenerator(
       return result
     }
 
+    // Arbitrary `var()` values are already complete colors: pass them through
+    // unless an opacity is applied. Wrapping them in `color-mix()` is
+    // unnecessary and nests another `color-mix()` when the fallback contains
+    // one. This mirrors `preset-mini`/`preset-wind3` and Tailwind v4, where
+    // `bg-[var(--x)]` emits `background-color: var(--x)`.
+    if (isCSSVar && !keys && !alpha && !modifier) {
+      // Keep the theme dependency: with on-demand preflights the definition of
+      // the referenced `--colors-*` variable is only emitted when it is tracked.
+      if (ctx?.theme) detectThemeValue(color, ctx.theme)
+      css[property] = color
+      return result
+    }
+
     const alphaKey = `--un-${varName}-opacity`
     const value = keys && !isCSSVar && !isSpecial ? generateThemeVariable('colors', keys) : color
     let method = modifier ?? (keys ? 'in srgb' : 'in oklab')
@@ -295,30 +338,28 @@ export function colorCSSGenerator(
     }
 
     css[property] = alpha
-      ? `color-mix(${method}, ${value} ${alpha ?? `var(${alphaKey})`}, transparent)${rawColorComment}`
+      ? `color-mix(${method}, ${value} ${alpha}, transparent)${rawColorComment}`
       : `${value}${rawColorComment}`
 
     const isShadowColor = ['shadow', 'inset-shadow', 'text-shadow', 'drop-shadow'].includes(varName)
 
-    // 无透明度时不注册 @property；shadow 族 @supports 仍引用 opacity 变量
-    if (alpha || isShadowColor)
+    if (alpha || isShadowColor) {
       result.push(defineProperty(alphaKey, { syntax: '<percentage>', initialValue: '100%' }))
+    }
 
     if (!isSpecial) {
       if (keys && !isCSSVar) {
         themeTracking(`colors`, keys)
-        if (!modifier) {
+        if (!modifier && (alpha || isShadowColor)) {
           const colorValue = isShadowColor
             ? `${alpha ? `color-mix(in oklab, ${value} ${alpha}, transparent)` : value} var(${alphaKey})`
             : `${value} ${alpha ?? `var(${alphaKey})`}`
 
-          if (isShadowColor || alpha) {
-            result.push({
-              [symbols.parent]: '@supports (color: color-mix(in lab, red, red))',
-              [symbols.noMerge]: true,
-              [property]: `color-mix(in oklab, ${colorValue}, transparent)${rawColorComment}`,
-            })
-          }
+          result.push({
+            [symbols.parent]: '@supports (color: color-mix(in lab, red, red))',
+            [symbols.noMerge]: true,
+            [property]: `color-mix(in oklab, ${colorValue}, transparent)${rawColorComment}`,
+          })
         }
       }
       if (ctx?.theme) {
@@ -378,45 +419,26 @@ export function colorableShadows(shadows: string | string[], colorVar: string, a
 }
 
 export function hasParseableColor(color: string | undefined, theme: Theme) {
-  return color != null && !!parseColor(color, theme)?.color
+  return (
+    (color != null && !!parseColor(color, theme)?.color) ||
+    (color != null && isColorAlias(color)) ||
+    (color != null && isThemeToken(color)) ||
+    (color != null && isCustomCSSVar(color, theme))
+  )
 }
 
 // #endregion
 
 // #region resolve breakpoints
-const reLetters = /[a-z]+/gi
-const resolvedBreakpoints = new WeakMap<any, Map<string, { point: string; size: string }[]>>()
-
 export function resolveBreakpoints(
   { theme, generator }: Readonly<VariantContext<Theme>>,
   key: 'breakpoint' | 'verticalBreakpoint' = 'breakpoint',
 ) {
-  const breakpoints: Record<string, string> | undefined =
-    (generator?.userConfig?.theme as any)?.[key] || theme[key]
-
-  if (!breakpoints) return undefined
-
-  let cache = resolvedBreakpoints.get(theme)
-  if (!cache) {
-    cache = new Map()
-    resolvedBreakpoints.set(theme, cache)
-  }
-  // horizontal and vertical breakpoints share the same theme, so the cache has to be keyed by both
-  if (cache.has(key)) return cache.get(key)
-
-  const resolved = Object.entries(breakpoints)
-    .toSorted(
-      (a, b) =>
-        Number.parseInt(a[1].replace(reLetters, '')) - Number.parseInt(b[1].replace(reLetters, '')),
-    )
-    .map(([point, size]) => ({ point, size }))
-
-  cache.set(key, resolved)
-  return resolved
+  return resolveBreakpointsShared({ theme, generator }, key)
 }
 
 export function resolveVerticalBreakpoints(context: Readonly<VariantContext<Theme>>) {
-  return resolveBreakpoints(context, 'verticalBreakpoint')
+  return resolveBreakpointsShared(context, 'verticalBreakpoint')
 }
 // #endregion
 

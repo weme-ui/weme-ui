@@ -1,12 +1,5 @@
 import type { Theme } from './types'
 
-/**
- * 尺寸
- *
- * @category Theme
- *
- * @link {@see https://www.radix-ui.com/themes/docs/theme/breakpoints}
- */
 export const container = {
   '3xs': '16rem',
   '2xs': '18rem',
@@ -27,7 +20,7 @@ export const container = {
 /**
  * 断点
  *
- * @category Theme
+ * `mobile` > `tablet` > `laptop` > `desktop` > `wide`
  *
  * @link {@see https://www.radix-ui.com/themes/docs/theme/breakpoints}
  */
@@ -39,11 +32,4 @@ export const breakpoint = {
   wide: '1640px',
 } satisfies Theme['breakpoint']
 
-/**
- * 垂直断点
- *
- * @category Theme
- *
- * @link {@see https://www.radix-ui.com/themes/docs/theme/breakpoints}
- */
-export const verticalBreakpoint = { ...breakpoint } satisfies Theme['verticalBreakpoint']
+export const verticalBreakpoint = { ...breakpoint } satisfies Theme['breakpoint']

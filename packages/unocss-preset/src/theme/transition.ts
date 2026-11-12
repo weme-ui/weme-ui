@@ -1,10 +1,5 @@
 import type { Theme } from './types'
 
-/**
- * 缓动
- *
- * @category Theme
- */
 export const ease = {
   linear: 'linear',
   in: 'cubic-bezier(0.4, 0, 1, 1)',
@@ -13,11 +8,6 @@ export const ease = {
   DEFAULT: 'cubic-bezier(0.4, 0, 0.2, 1)',
 } satisfies Theme['ease']
 
-/**
- * 属性
- *
- * @category Theme
- */
 export const property = {
   none: 'none',
   all: 'all',

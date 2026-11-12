@@ -1,80 +1,62 @@
 import type { CSSObject, Rule, RuleContext } from '@unocss/core'
-import type { ResolvedWemeUIOptions } from '../options'
 import type { Theme } from '../theme'
-import { customThemeColorResolver } from '../tokens'
 import { colorResolver, defineProperty, h } from '../utils'
 import { borderStyles } from './border'
 import { notLastChildSelectorVariant } from './spacing'
 
-export function divides(options: ResolvedWemeUIOptions): Rule<Theme>[] {
-  return [
-    // color & opacity
-    [
-      /^divide-(.+)$/,
-      function* (match, ctx) {
-        const result = colorResolver('border-color', 'divide')(match, ctx)
-        if (result) {
-          yield {
-            [ctx.symbols.variants]: [notLastChildSelectorVariant(match[0])],
-            ...(result[0] as CSSObject),
-          }
-          yield result[1]
-          return
-        }
-
-        const customTheme = customThemeColorResolver(
-          'border-color',
-          'border-color',
-          'border',
-        )(match[1], options.cssVars)
-        if (customTheme) {
-          yield {
-            [ctx.symbols.variants]: [notLastChildSelectorVariant(match[0])],
-            ...(customTheme[0] as CSSObject),
-          }
-          yield customTheme[1]
-        }
-      },
-      { autocomplete: 'divide-$colors' },
-    ],
-    [
-      /^divide-op(?:acity)?-?(.+)$/,
-      function* ([match, opacity], { symbols, theme }) {
+export const divides: Rule<Theme>[] = [
+  // color & opacity
+  [
+    /^divide-(.+)$/,
+    function* (match, ctx) {
+      const result = colorResolver('border-color', 'divide')(match, ctx)
+      if (result) {
         yield {
-          [symbols.variants]: [notLastChildSelectorVariant(match)],
-          '--un-divide-opacity': h.bracket.percent(opacity, theme),
+          [ctx.symbols.variants]: [notLastChildSelectorVariant(match[0])],
+          ...(result[0] as CSSObject),
         }
-      },
-      { autocomplete: ['divide-(op|opacity)', 'divide-(op|opacity)-<percent>'] },
-    ],
+        yield result[1]
+      }
+    },
+    { autocomplete: 'divide-$colors' },
+  ],
+  [
+    /^divide-op(?:acity)?-?(.+)$/,
+    function* ([match, opacity], { symbols, theme }) {
+      yield {
+        [symbols.variants]: [notLastChildSelectorVariant(match)],
+        '--un-divide-opacity': h.bracket.percent(opacity, theme),
+      }
+    },
+    { autocomplete: ['divide-(op|opacity)', 'divide-(op|opacity)-<percent>'] },
+  ],
 
-    // divides
-    [/^divide-?([xy])$/, handlerDivide, { autocomplete: ['divide-(x|y)', 'divide-(x|y)-reverse'] }],
-    [/^divide-?([xy])-?(.+)$/, handlerDivide],
-    [
-      /^divide-?([xy])-reverse$/,
-      function* ([m, d]: string[], { symbols }: RuleContext<Theme>) {
-        yield {
-          [symbols.variants]: [notLastChildSelectorVariant(m)],
-          [`--un-divide-${d}-reverse`]: '1',
-        }
-        yield defineProperty(`--un-divide-${d}-reverse`, { initialValue: 0 })
-      },
-    ],
+  // divides
+  [/^divide-?([xy])$/, handlerDivide, { autocomplete: ['divide-(x|y)', 'divide-(x|y)-reverse'] }],
+  [/^divide-?([xy])-?(.+)$/, handlerDivide],
+  [
+    /^divide-?([xy])-reverse$/,
+    function* ([m, d]: string[], { symbols }: RuleContext<Theme>) {
+      yield {
+        [symbols.variants]: [notLastChildSelectorVariant(m)],
+        [`--un-divide-${d}-reverse`]: '1',
+      }
+      yield defineProperty(`--un-divide-${d}-reverse`, { initialValue: 0 })
+    },
+  ],
 
-    // styles
-    [
-      new RegExp(`^divide-(${borderStyles.join('|')})$`),
-      function* ([match, style]: string[], { symbols }: RuleContext<Theme>) {
-        yield {
-          [symbols.variants]: [notLastChildSelectorVariant(match)],
-          'border-style': style,
-        }
-      },
-      { autocomplete: borderStyles.map((i) => `divide-${i}`) },
-    ],
-  ]
-}
+  // styles
+  [
+    new RegExp(`^divide-(${borderStyles.join('|')})$`),
+    function* ([match, style]: string[], { symbols }: RuleContext<Theme>) {
+      yield {
+        [symbols.variants]: [notLastChildSelectorVariant(match)],
+        'border-style': style,
+      }
+    },
+    { autocomplete: borderStyles.map((i) => `divide-${i}`) },
+  ],
+]
 
 function* handlerDivide([m, d, s]: string[], { symbols, theme }: RuleContext<Theme>) {
   let v = h.bracket.cssvar.px(s || '1', theme)

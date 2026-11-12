@@ -23,7 +23,7 @@
   },
   "dependencies": {
     "@astrojs/check": "^0.9.12",
-    "@astrojs/markdown-satteri": "0.4.5",
+    "@astrojs/markdown-satteri": "0.4.9",
     "@unocss/astro": "catalog:dev",
     "@weme-ui/unocss-preset": "workspace:*",
     "astro": "^7.4.11",

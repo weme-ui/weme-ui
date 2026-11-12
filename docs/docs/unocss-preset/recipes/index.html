@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="zh-CN" class="dark"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>组合类名、变量与变体 — Weme UI</title><meta name="description" content="组合类名、变量与变体"><link rel="icon" type="image/svg+xml" href="/weme-ui/weme.svg"><script>document.documentElement.classList.add('js')</script><link rel="stylesheet" href="/weme-ui/_astro/LandingLayout.D1_V9znS.css"></head><body><header class="site-nav"><a class="brand" href="/weme-ui/">WEME<span class="dot">.</span></a><nav class="nav-links" aria-label="页面"><a href="https://github.com/weme-ui/weme-ui" target="_blank" rel="noreferrer">GitHub</a><a href="https://weme-ui.github.io/slim" target="_blank" rel="noreferrer">slim</a><a href="/weme-ui/docs/unocss-preset/" aria-current="page">Preset</a></nav></header><div class="docs-shell"><nav class="docs-nav" aria-label="Preset 文档"><div class="docs-group"><p>入门</p><ul><li><a href="/weme-ui/docs/unocss-preset/">概览</a></li><li><a href="/weme-ui/docs/unocss-preset/getting-started/">安装 preset 并写出第一个类名</a></li></ul></div><div class="docs-group"><p>主题与变量</p><ul><li><a href="/weme-ui/docs/unocss-preset/preset-and-theme/">配置 Preset 与定制主题</a></li><li><a href="/weme-ui/docs/unocss-preset/radix-colors/">使用 Radix Colors 刻度与别名</a></li><li><a href="/weme-ui/docs/unocss-preset/css-variables/">使用并覆盖自定义 CSS 变量</a></li></ul></div><div class="docs-group"><p>规则、变体、快捷方式</p><ul><li><a href="/weme-ui/docs/unocss-preset/rules/">按场景选用 Rules 类名</a></li><li><a href="/weme-ui/docs/unocss-preset/variants/">用 Variants 写暗色、断点与状态</a></li><li><a href="/weme-ui/docs/unocss-preset/shortcuts/">用 Shortcuts 收拢重复类名</a></li></ul></div><div class="docs-group"><p>预检与后处理</p><ul><li><a href="/weme-ui/docs/unocss-preset/preflights-and-postprocess/">理解 Preflights 与 Postprocess</a></li></ul></div><div class="docs-group"><p>最佳实践</p><ul><li><a href="/weme-ui/docs/unocss-preset/recipes/" aria-current="page">组合类名、变量与变体</a></li></ul></div><div class="docs-group"><p>扩展开发</p><ul><li><a href="/weme-ui/docs/unocss-preset/extending/">在仓库里新增规则、变量与变体</a></li></ul></div></nav><article class="prose"><h1 id="组合类名变量与变体">组合类名、变量与变体</h1>
+<!DOCTYPE html><html lang="zh-CN" class="dark"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>组合 — Weme UI</title><meta name="description" content="组合"><link rel="icon" type="image/svg+xml" href="/weme-ui/weme.svg"><script>document.documentElement.classList.add('js')</script><link rel="stylesheet" href="/weme-ui/_astro/LandingLayout.BC-Y8Y7c.css"></head><body><header class="site-nav"><a class="brand" href="/weme-ui/">WEME<span class="dot">.</span></a><nav class="nav-links" aria-label="页面"><a href="https://github.com/weme-ui/weme-ui" target="_blank" rel="noreferrer">GitHub</a><a href="https://weme-ui.github.io/slim" target="_blank" rel="noreferrer">slim</a><a href="/weme-ui/docs/unocss-preset/" aria-current="page">Preset</a></nav></header><div class="docs-shell"><nav class="docs-nav" aria-label="Preset 文档"><div class="docs-group"><p>入门</p><ul><li><a href="/weme-ui/docs/unocss-preset/">概览</a></li><li><a href="/weme-ui/docs/unocss-preset/getting-started/">快速开始</a></li></ul></div><div class="docs-group"><p>主题与变量</p><ul><li><a href="/weme-ui/docs/unocss-preset/preset-and-theme/">主题</a></li><li><a href="/weme-ui/docs/unocss-preset/radix-colors/">颜色</a></li><li><a href="/weme-ui/docs/unocss-preset/css-variables/">CSS 变量</a></li></ul></div><div class="docs-group"><p>规则、变体、快捷方式</p><ul><li><a href="/weme-ui/docs/unocss-preset/rules/">Rules</a></li><li><a href="/weme-ui/docs/unocss-preset/variants/">Variants</a></li><li><a href="/weme-ui/docs/unocss-preset/shortcuts/">Shortcuts</a></li></ul></div><div class="docs-group"><p>预检与后处理</p><ul><li><a href="/weme-ui/docs/unocss-preset/preflights-and-postprocess/">Preflights</a></li></ul></div><div class="docs-group"><p>最佳实践</p><ul><li><a href="/weme-ui/docs/unocss-preset/recipes/" aria-current="page">组合</a></li></ul></div><div class="docs-group"><p>扩展开发</p><ul><li><a href="/weme-ui/docs/unocss-preset/extending/">新增规则</a></li></ul></div></nav><article class="prose"><h1 id="组合">组合</h1>
 <p>前面各页的类名可以叠在同一个元素上。这一页给出四块可以直接改文案使用的界面，并标出必须成对出现的类。所有类名都来自本包已经导出的规则、shortcut、变体和默认 token。</p>
 <p>组合示例，基于源码导出构造。</p>
 <h2 id="使用场景">使用场景</h2>
@@ -27,7 +27,6 @@
 <li>按钮若要在暗色下改阶，祖先要有 <code>class="dark"</code>，元素上再写 <code>dark:bg-accent-4</code>。只写 <code>dark:</code>、祖先没有 <code>.dark</code>，这条分支不生效。</li>
 <li><code>truncate</code> 同时写 <code>overflow</code>、<code>text-overflow</code> 和 <code>white-space</code>。它不会自己把 flex 子项的宽度压到可以出现省略号。</li>
 </ul>
-<p>Sources: <code>packages/unocss/src/custom/default.ts</code>, <code>packages/unocss/src/rules/border.ts</code>, <code>packages/unocss/src/rules/flex.ts</code>, <code>packages/unocss/src/variants/dark.ts</code>, <code>packages/unocss/src/theme/size.ts</code></p>
 <h2 id="表单控件">表单控件</h2>
 <p>焦点环要同时有宽度和颜色。占位符颜色用 <code>placeholder-</code> 加颜色名。禁用用属性配合 <code>aria-disabled:</code>，而不是只加 <code>is-disabled</code>。</p>
 <pre class="astro-code vitesse-black" style="background-color:#000;color:#dbd7cacc; overflow-x: auto;" tabindex="0" data-language="html"><code><span class="line"><span style="color:#444444">&lt;</span><span style="color:#4D9375">form</span><span style="color:#BD976A"> class</span><span style="color:#444444">=</span><span style="color:#C98A7D77">"</span><span style="color:#C98A7D">grid gap-md rounded-lg bg-default p-lg text-default</span><span style="color:#C98A7D77">"</span><span style="color:#444444">&gt;</span></span>
@@ -62,7 +61,6 @@
 <span class="line"><span style="color:#444444">&lt;/</span><span style="color:#4D9375">form</span><span style="color:#444444">&gt;</span></span></code></pre>
 <p><code>placeholder-neutral-9</code> 生成 <code>::placeholder { color: var(--neutral-9) }</code>。<code>ring ring-accent</code> 才有 1px 的 accent 环；只留 <code>ring-accent</code> 时只有颜色变量。<code>aria-disabled:is-disabled</code> 在属性为 <code>true</code> 时展开 <code>op-50 select-none pointer-events-none</code>。</p>
 <p><code>min-h-24</code> 是 <code>min-height: calc(var(--spacing) * 24)</code>。<code>min-h-lg</code> 也能命中，因为 <code>lg</code> 在间距表里，结果是 <code>var(--spacing-lg)</code>。两条都是尺寸规则，不是两套不同的高度系统。</p>
-<p>Sources: <code>packages/unocss/src/rules/ring.ts</code>, <code>packages/unocss/src/rules/placeholder.ts</code>, <code>packages/unocss/src/shortcuts/utilities.ts</code>, <code>packages/unocss/src/variants/aria.ts</code>, <code>packages/unocss/src/rules/size.ts</code></p>
 <h2 id="确认框">确认框</h2>
 <p>层叠用 shortcut：遮罩 <code>z-overlay</code>（<code>z-300</code>），对话框 <code>z-modal</code>（<code>z-400</code>），完成后的提示 <code>z-toast</code>（<code>z-500</code>）。居中 shortcut 自己不含定位。</p>
 <pre class="astro-code vitesse-black" style="background-color:#000;color:#dbd7cacc; overflow-x: auto;" tabindex="0" data-language="html"><code><span class="line"><span style="color:#444444">&lt;</span><span style="color:#4D9375">div</span><span style="color:#BD976A"> class</span><span style="color:#444444">=</span><span style="color:#C98A7D77">"</span><span style="color:#C98A7D">relative min-h-screen bg-muted</span><span style="color:#C98A7D77">"</span><span style="color:#444444">&gt;</span></span>
@@ -88,7 +86,6 @@
 <li><code>bg-black/40</code> 混合的是 <code>black</code> 的第 9 阶。若要透明黑，改 <code>bg-black-auto</code>。</li>
 <li>提示用 <code>bottom-4</code>。<code>bottom-lg</code> 没有对应规则。</li>
 </ul>
-<p>Sources: <code>packages/unocss/src/shortcuts/utilities.ts</code>, <code>packages/unocss/src/rules/position.ts</code>, <code>packages/unocss/src/theme/size.ts</code>, <code>packages/unocss/src/theme/misc.ts</code></p>
 <h2 id="响应式顶栏">响应式顶栏</h2>
 <p>窄屏把横向链接藏进 <code>max-tablet:hidden</code>，并留一个始终可见的按钮。容器宽度用 <code>@container</code> 与 <code>@md:</code>，它看的是父容器 <code>28rem</code>，不是视口的 <code>tablet</code> 768px。</p>
 <pre class="astro-code vitesse-black" style="background-color:#000;color:#dbd7cacc; overflow-x: auto;" tabindex="0" data-language="html"><code><span class="line"><span style="color:#444444">&lt;</span><span style="color:#4D9375">html</span><span style="color:#BD976A"> class</span><span style="color:#444444">=</span><span style="color:#C98A7D77">"</span><span style="color:#C98A7D">light</span><span style="color:#C98A7D77">"</span><span style="color:#BD976A"> data-theme</span><span style="color:#444444">=</span><span style="color:#C98A7D77">"</span><span style="color:#C98A7D">default</span><span style="color:#C98A7D77">"</span><span style="color:#BD976A"> data-radius</span><span style="color:#444444">=</span><span style="color:#C98A7D77">"</span><span style="color:#C98A7D">md</span><span style="color:#C98A7D77">"</span><span style="color:#BD976A"> data-scaling</span><span style="color:#444444">=</span><span style="color:#C98A7D77">"</span><span style="color:#C98A7D">100%</span><span style="color:#C98A7D77">"</span><span style="color:#444444">&gt;</span></span>
@@ -113,7 +110,6 @@
 <span class="line"><span style="color:#444444">  &lt;/</span><span style="color:#4D9375">div</span><span style="color:#444444">&gt;</span></span>
 <span class="line"><span style="color:#444444">&lt;/</span><span style="color:#4D9375">html</span><span style="color:#444444">&gt;</span></span></code></pre>
 <p><code>container</code> 这个 shortcut 会在 <code>mobile</code>、<code>tablet</code>、<code>laptop</code>、<code>desktop</code>、<code>wide</code> 上设置最大宽度，默认不自动居中。横向内边距仍要自己写 <code>px-lg</code>。<code>hidden tablet:flex</code> 把导航只留给 768px 以上。</p>
-<p>Sources: <code>packages/unocss/src/rules/container.ts</code>, <code>packages/unocss/src/variants/container.ts</code>, <code>packages/unocss/src/variants/breakpoints.ts</code>, <code>packages/unocss/src/theme/size.ts</code>, <code>packages/unocss/src/preflights/preflight.ts</code></p>
 <h2 id="一起改主题时">一起改主题时</h2>
 <p>换强调色不要改这四块 HTML。在配置里把别名指到别的 Radix 色，或覆盖 <code>--custom-accent-9</code>：</p>
 <pre class="astro-code vitesse-black" style="background-color:#000;color:#dbd7cacc; overflow-x: auto;" tabindex="0" data-language="ts"><code><span class="line"><span style="color:#4D9375">import</span><span style="color:#444444"> {</span><span style="color:#BD976A"> presetWemeUI</span><span style="color:#444444"> }</span><span style="color:#4D9375"> from</span><span style="color:#C98A7D77"> '</span><span style="color:#C98A7D">@weme-ui/unocss-preset</span><span style="color:#C98A7D77">'</span></span>
@@ -132,7 +128,6 @@
 <span class="line"><span style="color:#444444">  ],</span></span>
 <span class="line"><span style="color:#444444">}</span></span></code></pre>
 <p>类名继续写 <code>bg-accent</code>、<code>bg-accent-4</code>、<code>hover:bg-accent-10</code>。没写进 <code>cssVars</code> 的阶仍回退到 <code>puerto</code>。</p>
-<p>Sources: <code>packages/unocss/src/index.ts</code>, <code>packages/unocss/src/preflights/custom.ts</code>, <code>packages/unocss/src/custom/default.ts</code></p>
 <h2 id="注意事项">注意事项</h2>
 <ul>
 <li>祖先 <code>.dark</code> 负责换色板。<code>dark:</code> 只负责换工具类。两件事先决条件不同。</li>
@@ -143,10 +138,10 @@
 </ul>
 <h2 id="相关页面">相关页面</h2>
 <ul>
-<li>安装 preset 并写出第一个类名</li>
-<li>使用并覆盖自定义 CSS 变量</li>
-<li>按场景选用 Rules 类名</li>
-<li>用 Shortcuts 收拢重复类名</li>
-<li>用 Variants 写暗色、断点与状态</li>
+<li>快速开始</li>
+<li>CSS 变量</li>
+<li>Rules</li>
+<li>Shortcuts</li>
+<li>Variants</li>
 </ul>
 </article></div><footer class="site-foot"><span>早期开发，请勿用于生产</span><span>MIT · 2026</span></footer><script type="module">function e(){document.querySelectorAll(`[data-copy-command]`).forEach(e=>{e.addEventListener(`click`,async()=>{let t=e.dataset.copyCommand;if(!t)return;let n=e.dataset.labelIdle||`复制`,r=e.dataset.labelDone||`已复制`;try{await navigator.clipboard.writeText(t),e.textContent=r,window.setTimeout(()=>{e.textContent=n},1600)}catch{e.textContent=`复制失败`,window.setTimeout(()=>{e.textContent=n},1600)}})})}e();</script></body></html>

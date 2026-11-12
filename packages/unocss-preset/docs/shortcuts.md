@@ -1,4 +1,4 @@
-# 用 Shortcuts 收拢重复类名
+# Shortcuts
 
 shortcut 在匹配工具类之前把一个短类展开成若干条已经存在的工具类，再由那些工具类产出 CSS。本包只有两处：`utilitiesShortcuts` 里的定位、对齐、状态和层叠，以及 `containerShortcuts` 里的 `container`。
 
@@ -76,8 +76,6 @@ shortcut 在匹配工具类之前把一个短类展开成若干条已经存在�
 
 `inset-0` 来自定位规则，配合 `fixed`。`bg-black/40` 是黑色第 9 阶的 40% 混合，不是纯黑半透明；要透明黑用 `bg-black-auto`。
 
-Sources: `packages/unocss/src/shortcuts/utilities.ts`, `packages/unocss/src/shortcuts/index.ts`, `packages/unocss/src/rules/position.ts`, `packages/unocss/src/rules/static.ts`, `packages/unocss/src/rules/color.ts`
-
 ## container
 
 `container` 不是宽度工具类 `w-md`。shortcut 把 `container` 展开成内部规则 `__container`，并给每个断点再挂一条 `断点:__container`。
@@ -97,8 +95,6 @@ Sources: `packages/unocss/src/shortcuts/utilities.ts`, `packages/unocss/src/shor
 `__container` 在没有变体时写 `width: 100%`。遇到断点变体时，最大宽度取该断点的 `min-width`。`theme.containers`（注意是复数）若提供 `maxWidth`、`padding`、`center`，会改写这三项。`theme()` 没有设置 `containers`。默认因此没有自动水平居中，也没有额外的容器 padding。页面上的 `px-lg` 仍是普通间距类。
 
 `theme.container`（单数）是另一张表，给 `w-md`、`max-w-prose`、`@md:` 用，键是 `3xs` 到 `7xl` 和 `prose`。它不驱动 `container` 这个 shortcut。
-
-Sources: `packages/unocss/src/rules/container.ts`, `packages/unocss/src/theme/size.ts`, `packages/unocss/src/theme/default.ts`
 
 ## 和变体一起写
 
@@ -146,8 +142,6 @@ shortcut 本身可以再加变体。变体作用在展开后的声明上。
 
 对话框用 `z-modal`，遮罩用 `z-overlay`，提示用 `z-toast`。`aria-disabled:is-disabled` 只在 `aria-disabled="true"` 时展开那三条禁用声明。`max-w-md` 读 `container.md` 的 `28rem`，和 shortcut `container` 无关。
 
-Sources: `packages/unocss/src/shortcuts/utilities.ts`, `packages/unocss/src/rules/container.ts`, `packages/unocss/src/variants/aria.ts`
-
 ## 补全缩写
 
 preset 的 `autocomplete.shorthands` 是：
@@ -161,8 +155,6 @@ preset 的 `autocomplete.shorthands` 是：
 
 这只影响编辑器补全里的占位，不会多出名为 `globalKeyword` 的类。类名仍然是 `relative`、`absolute` 这些。
 
-Sources: `packages/unocss/src/shorthands.ts`, `packages/unocss/src/index.ts`
-
 ## 注意事项
 
 - `absolute-center` 不含 `absolute`。父级要 `relative`，自身要 `absolute` 或 `fixed`。
@@ -175,7 +167,7 @@ Sources: `packages/unocss/src/shorthands.ts`, `packages/unocss/src/index.ts`
 
 ## 相关页面
 
-- 按场景选用 Rules 类名
-- 用 Variants 写暗色、断点与状态
-- 组合类名、变量与变体
-- 在仓库里新增规则、变量与变体
+- Rules
+- Variants
+- 组合
+- 新增规则

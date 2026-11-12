@@ -1,4 +1,4 @@
-# 用 Variants 写暗色、断点与状态
+# Variants
 
 变体写在类名前面，用 `:` 和后面的工具类分开。它们不发明新的颜色或间距，只改变「这条工具类在什么条件下生效」。暗色色板本身由 `.dark` 里的 CSS 变量完成；`dark:` 是在那个条件里换一条工具类。
 
@@ -42,8 +42,6 @@
 
 `.dark:` 生成 `.dark` 祖先。`@dark:` 生成 `@media (prefers-color-scheme: dark)`。`@light:` 是亮色偏好。`not-dark:` 是 `@media not (prefers-color-scheme: dark)`。`dark: 'media'` 时，不带点、不带 `@` 的 `dark:` / `light:` 也会变成这两条媒体查询，默认类名 `.light` 和 `.dark` 不再参与。
 
-Sources: `packages/unocss/src/variants/dark.ts`, `packages/unocss/src/index.ts`
-
 ## 断点
 
 | 前缀 | 宽度 |
@@ -64,8 +62,6 @@ Sources: `packages/unocss/src/variants/dark.ts`, `packages/unocss/src/index.ts`
 ```
 
 宽屏导航在平板以下用 `max-tablet:hidden` 整个藏起时，记得另给一块窄屏导航，否则小屏没有入口。
-
-Sources: `packages/unocss/src/variants/breakpoints.ts`, `packages/unocss/src/theme/size.ts`
 
 ## 状态、aria 和 data
 
@@ -112,8 +108,6 @@ Sources: `packages/unocss/src/variants/breakpoints.ts`, `packages/unocss/src/the
 ```
 
 `data-open:` 这种不带方括号的名字 ⚠️ NOT FOUND IN SOURCE（默认主题没有 `data.open`）。同样的范围前缀有 `group-data-`、`peer-data-`、`parent-data-`、`previous-data-`、`has-data-`、`in-data-`，属性值仍然要写在方括号里，例如 `group-data-[open]:text-highlighted`。
-
-Sources: `packages/unocss/src/variants/pseudo.ts`, `packages/unocss/src/variants/aria.ts`, `packages/unocss/src/variants/data.ts`, `packages/unocss/src/theme/aria.ts`, `packages/unocss/src/theme/default.ts`
 
 ## 媒体、容器、方向和 important
 
@@ -167,8 +161,6 @@ Sources: `packages/unocss/src/variants/pseudo.ts`, `packages/unocss/src/variants
 </ul>
 ```
 
-Sources: `packages/unocss/src/variants/media.ts`, `packages/unocss/src/variants/supports.ts`, `packages/unocss/src/variants/container.ts`, `packages/unocss/src/variants/directions.ts`, `packages/unocss/src/variants/important.ts`, `packages/unocss/src/variants/combinators.ts`, `packages/unocss/src/variants/children.ts`, `packages/unocss/src/variants/startingstyle.ts`, `packages/unocss/src/variants/inert.ts`, `packages/unocss/src/theme/media.ts`, `packages/unocss/src/theme/supports.ts`, `packages/unocss/src/theme/size.ts`, `packages/unocss/src/rules/container.ts`
-
 ## 叠在一起
 
 变体可以连写。生成器对 `dark:hover:bg-accent-10` 的结果是：`.dark .dark\:hover\:bg-accent-10:hover`。
@@ -193,8 +185,6 @@ Sources: `packages/unocss/src/variants/media.ts`, `packages/unocss/src/variants/
 
 窄屏按钮拉满宽度，暗色下改用 4 阶底和 12 阶字，悬停与焦点升到 10 阶，减动效时去掉过渡。`data-open` 在区域上，按钮若要跟着变，应写成祖先形式；按钮自己的 `data-[open]:` 只看按钮上的属性。
 
-Sources: `packages/unocss/src/variants/dark.ts`, `packages/unocss/src/variants/default.ts`
-
 ## 注意事项
 
 - 断点前缀是 `tablet:` 不是 `md:`。`md` 用在间距、圆角、容器查询 `@md:`，三套键不要混。
@@ -206,7 +196,7 @@ Sources: `packages/unocss/src/variants/dark.ts`, `packages/unocss/src/variants/d
 
 ## 相关页面
 
-- 安装 preset 并写出第一个类名
-- 配置 Preset 与定制主题
-- 按场景选用 Rules 类名
-- 理解 Preflights 与 Postprocess
+- 快速开始
+- 主题
+- Rules
+- Preflights

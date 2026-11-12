@@ -1,4 +1,4 @@
-# 使用 Radix Colors 刻度与别名
+# 颜色
 
 颜色类读的是主题里的 12 阶色，不是写死的十六进制。省略阶数时用第 9 阶。亮色值在 `:root`，暗色值在 `.dark`，支持 P3 的屏幕再覆盖一层 `color(display-p3 …)`。别名 `accent`、`neutral`、`info`、`success`、`warning`、`error` 再指到这些具体色上。
 
@@ -28,8 +28,6 @@ Radix 强调色：`tomato`、`red`、`ruby`、`crimson`、`pink`、`plum`、`pur
 | `info` | `indigo` |
 | `warning` | `brown` |
 | `error` | `tomato` |
-
-Sources: `packages/colors/src/constants.ts`, `packages/unocss/src/theme/colors.ts`, `packages/unocss/src/custom/default.ts`
 
 ## 刻度怎么写
 
@@ -70,8 +68,6 @@ Sources: `packages/colors/src/constants.ts`, `packages/unocss/src/theme/colors.t
 
 同一套阶数也可以用在文字、边框和光标色：`text-jade-11`、`c-jade-11`、`color-jade-11`、`border-jade-7`、`b-jade-7`、`caret-jade-11`、`accent-jade`。
 
-Sources: `packages/unocss/src/theme/types.ts`, `packages/unocss/src/theme/colors.ts`, `packages/unocss/src/utils/utilities.ts`, `packages/unocss/src/rules/color.ts`, `packages/unocss/src/rules/typography.ts`, `packages/unocss/src/rules/border.ts`, `packages/unocss/test/preset.test.ts`
-
 ## 暗色和 P3
 
 用到的阶数才会输出。`bg-indigo` 只带动 `--indigo-9`，不会把 1–12 全部打进 CSS。别名同理：只用 `bg-accent-3` 时，主题块里出现 `--accent-3`，不会出现没用到的 `--accent-1`。
@@ -101,8 +97,6 @@ Sources: `packages/unocss/src/theme/types.ts`, `packages/unocss/src/theme/colors
 ```
 
 P3 查询包在 `@supports (color: color(display-p3 1 1 1))` 和 `@media (color-gamut: p3)` 里。不支持的环境继续用 oklch。
-
-Sources: `packages/unocss/src/preflights/theme.ts`, `packages/unocss/src/preflights/custom.ts`, `packages/unocss/src/variants/dark.ts`
 
 ## 别名
 
@@ -145,8 +139,6 @@ Sources: `packages/unocss/src/preflights/theme.ts`, `packages/unocss/src/preflig
 
 暗色容器里，`bg-accent` 仍是第 9 阶，但 `--puerto-9` 换成 `.dark` 里的值。悬停用第 10 阶。错误文字用 `error` 别名的第 11 阶，默认落到 `tomato`。
 
-Sources: `packages/unocss/src/custom/utilities.ts`, `packages/unocss/src/custom/default.ts`, `packages/unocss/src/preflights/custom.ts`, `packages/unocss/test/preset.test.ts`
-
 ## 自己加一个颜色
 
 `colors.accent` 走强调色算法，`colors.neutral` 走中性色算法。同一种源色，两种算法的 12 阶不一样。
@@ -169,8 +161,6 @@ export default {
 <span class="bg-zinc-3 text-zinc-11 border-l border-zinc-8 pl-sm">自定义 zinc</span>
 ```
 
-Sources: `packages/unocss/src/theme/colors.ts`, `packages/unocss/test/theme/colors.test.ts`
-
 ## 注意事项
 
 - 只用到的阶数会输出。安全列表或实际类名里没有的阶，CSS 里不会有对应变量。
@@ -181,7 +171,7 @@ Sources: `packages/unocss/src/theme/colors.ts`, `packages/unocss/test/theme/colo
 
 ## 相关页面
 
-- 配置 Preset 与定制主题
-- 使用并覆盖自定义 CSS 变量
-- 按场景选用 Rules 类名
-- 理解 Preflights 与 Postprocess
+- 主题
+- CSS 变量
+- Rules
+- Preflights

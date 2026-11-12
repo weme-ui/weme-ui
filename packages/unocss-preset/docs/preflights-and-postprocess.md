@@ -1,4 +1,4 @@
-# 理解 Preflights 与 Postprocess
+# Preflights
 
 类名负责单条声明。preflight 负责铺 reset、色板变量、主题 token 和 `@property`。postprocess 在声明已经生成之后，统一改 `!important` 和 `--un-` 前缀。
 
@@ -53,8 +53,6 @@ export default {
 
 `data-radius="full"` 的系数是 `1.5`。主题选项 `radius: 'full'` 写的 `--default-radius-factor` 却是 `3`。属性在时，圆角公式先用 `--radius-factor`，所以页面上的 `full` 是 1.5 倍，不是 3 倍。
 
-Sources: `packages/unocss/src/preflights/index.ts`, `packages/unocss/src/preflights/reset.ts`, `packages/unocss/src/preflights/preflight.ts`, `packages/unocss/src/custom/mappings.ts`, `packages/unocss/src/index.ts`
-
 ## 主题变量什么时候出现
 
 `custom` 把三块拼在一起：全局 `cssVars`、各主题的颜色别名、各主题的 token 与 `cssVars`。别名只输出实际用到的阶。token 会整表输出，因此默认主题只要挂上，`--text`、`--bg`、`--border` 以及它们引用的 `neutral` / `iron` 阶就会出现，哪怕你只写了 `p-4`。
@@ -85,15 +83,11 @@ Sources: `packages/unocss/src/preflights/index.ts`, `packages/unocss/src/preflig
 
 只打开系统暗色、根节点没有 `.dark` 时，`:root` 里仍是亮色值。`dark: 'media'` 不会把这组变量改挂到 `prefers-color-scheme`。
 
-Sources: `packages/unocss/src/preflights/custom.ts`, `packages/unocss/src/preflights/theme.ts`, `packages/unocss/src/utils/utilities.ts`
-
 ## @property
 
 用到阴影、环、透明度时，规则会登记 `--un-shadow`、`--un-ring-color`、`--un-bg-opacity` 等属性。`property` preflight 把它们收成一段 `@property`，并包在一条针对旧浏览器的 `@supports` 里。`properties` 层的声明不加 `important` 选项里的 `!important`。
 
 默认前缀是 `un-`，所以看到的是 `--un-shadow`。把 `variablePrefix` 改成别的值后，同一段会变成新前缀，工具类里的 `var(--un-` 也会一起换。
-
-Sources: `packages/unocss/src/preflights/property.ts`, `packages/unocss/src/utils/utilities.ts`, `packages/unocss/src/rules/shadow.ts`
 
 ## important 和变量前缀
 
@@ -134,8 +128,6 @@ export default {
 
 `tablet:shadow-md` 同样包在 `#app :is(...)` 里，媒体查询留在外面。颜色变量 `--accent-9` 不受 `variablePrefix` 影响，前缀只替换以 `--un-` 开头的内部变量。
 
-Sources: `packages/unocss/src/postprocess/default.ts`, `packages/unocss/src/postprocess/important.ts`, `packages/unocss/src/postprocess/varPrefix.ts`, `packages/unocss/src/index.ts`
-
 ## 注意事项
 
 - 关掉 `reset` 不会关掉 `color-scheme`、`data-scaling`、`data-radius`。
@@ -147,7 +139,7 @@ Sources: `packages/unocss/src/postprocess/default.ts`, `packages/unocss/src/post
 
 ## 相关页面
 
-- 配置 Preset 与定制主题
-- 使用 Radix Colors 刻度与别名
-- 使用并覆盖自定义 CSS 变量
-- 用 Variants 写暗色、断点与状态
+- 主题
+- 颜色
+- CSS 变量
+- Variants

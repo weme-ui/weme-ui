@@ -1,4 +1,4 @@
-# 组合类名、变量与变体
+# 组合
 
 前面各页的类名可以叠在同一个元素上。这一页给出四块可以直接改文案使用的界面，并标出必须成对出现的类。所有类名都来自本包已经导出的规则、shortcut、变体和默认 token。
 
@@ -34,8 +34,6 @@
 - `border` 和 `border-elevated`。前者是 1px，后者才是颜色。
 - 按钮若要在暗色下改阶，祖先要有 `class="dark"`，元素上再写 `dark:bg-accent-4`。只写 `dark:`、祖先没有 `.dark`，这条分支不生效。
 - `truncate` 同时写 `overflow`、`text-overflow` 和 `white-space`。它不会自己把 flex 子项的宽度压到可以出现省略号。
-
-Sources: `packages/unocss/src/custom/default.ts`, `packages/unocss/src/rules/border.ts`, `packages/unocss/src/rules/flex.ts`, `packages/unocss/src/variants/dark.ts`, `packages/unocss/src/theme/size.ts`
 
 ## 表单控件
 
@@ -78,8 +76,6 @@ Sources: `packages/unocss/src/custom/default.ts`, `packages/unocss/src/rules/bor
 
 `min-h-24` 是 `min-height: calc(var(--spacing) * 24)`。`min-h-lg` 也能命中，因为 `lg` 在间距表里，结果是 `var(--spacing-lg)`。两条都是尺寸规则，不是两套不同的高度系统。
 
-Sources: `packages/unocss/src/rules/ring.ts`, `packages/unocss/src/rules/placeholder.ts`, `packages/unocss/src/shortcuts/utilities.ts`, `packages/unocss/src/variants/aria.ts`, `packages/unocss/src/rules/size.ts`
-
 ## 确认框
 
 层叠用 shortcut：遮罩 `z-overlay`（`z-300`），对话框 `z-modal`（`z-400`），完成后的提示 `z-toast`（`z-500`）。居中 shortcut 自己不含定位。
@@ -109,8 +105,6 @@ Sources: `packages/unocss/src/rules/ring.ts`, `packages/unocss/src/rules/placeho
 - `max-w-md` 来自 `theme.container.md`（`28rem`），不是 shortcut `container`。
 - `bg-black/40` 混合的是 `black` 的第 9 阶。若要透明黑，改 `bg-black-auto`。
 - 提示用 `bottom-4`。`bottom-lg` 没有对应规则。
-
-Sources: `packages/unocss/src/shortcuts/utilities.ts`, `packages/unocss/src/rules/position.ts`, `packages/unocss/src/theme/size.ts`, `packages/unocss/src/theme/misc.ts`
 
 ## 响应式顶栏
 
@@ -142,8 +136,6 @@ Sources: `packages/unocss/src/shortcuts/utilities.ts`, `packages/unocss/src/rule
 
 `container` 这个 shortcut 会在 `mobile`、`tablet`、`laptop`、`desktop`、`wide` 上设置最大宽度，默认不自动居中。横向内边距仍要自己写 `px-lg`。`hidden tablet:flex` 把导航只留给 768px 以上。
 
-Sources: `packages/unocss/src/rules/container.ts`, `packages/unocss/src/variants/container.ts`, `packages/unocss/src/variants/breakpoints.ts`, `packages/unocss/src/theme/size.ts`, `packages/unocss/src/preflights/preflight.ts`
-
 ## 一起改主题时
 
 换强调色不要改这四块 HTML。在配置里把别名指到别的 Radix 色，或覆盖 `--custom-accent-9`：
@@ -168,8 +160,6 @@ export default {
 
 类名继续写 `bg-accent`、`bg-accent-4`、`hover:bg-accent-10`。没写进 `cssVars` 的阶仍回退到 `puerto`。
 
-Sources: `packages/unocss/src/index.ts`, `packages/unocss/src/preflights/custom.ts`, `packages/unocss/src/custom/default.ts`
-
 ## 注意事项
 
 - 祖先 `.dark` 负责换色板。`dark:` 只负责换工具类。两件事先决条件不同。
@@ -180,8 +170,8 @@ Sources: `packages/unocss/src/index.ts`, `packages/unocss/src/preflights/custom.
 
 ## 相关页面
 
-- 安装 preset 并写出第一个类名
-- 使用并覆盖自定义 CSS 变量
-- 按场景选用 Rules 类名
-- 用 Shortcuts 收拢重复类名
-- 用 Variants 写暗色、断点与状态
+- 快速开始
+- CSS 变量
+- Rules
+- Shortcuts
+- Variants

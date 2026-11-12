@@ -1,4 +1,4 @@
-# 在仓库里新增规则、变量与变体
+# 新增规则
 
 使用这个包时，能扩展的是 `presetWemeUI` 的 `themes`、`colors`、`cssVars`，以及应用自己的 UnoCSS 配置。仓库里新增一种工具类、一个变体或一条 shortcut，要改对应目录再挂进已经存在的数组。包入口没有 `defineRule`、`defineVariant`、`defineShortcut`。
 
@@ -77,8 +77,6 @@ export default {
 
 应用配置里还可以并列放 UnoCSS 自己的 `rules`、`shortcuts`、`variants`。那些数组不属于本包，本包也不会读取它们。本包返回的 `rules` 只来自 `src/rules/default.ts`。
 
-Sources: `packages/unocss/src/index.ts`, `packages/unocss/src/theme/colors.ts`, `packages/unocss/src/custom/types.ts`, `packages/unocss/src/custom/theme.ts`
-
 ## 新增一条规则
 
 1. 在 `src/rules/` 加文件，或写进已有的规则文件。
@@ -103,8 +101,6 @@ export const markers: Rule<Theme>[] = [
 把 `markers` 放进 `rules` 数组、`questionMark` 之前。若前面已有规则先匹配到同一个类名，后面的规则不会再执行。
 
 只在开发环境出现的调试类，沿用 `questionMark` 的做法：读取 `generator.userConfig.envMode === 'dev'`，其他模式不返回声明。
-
-Sources: `packages/unocss/src/rules/default.ts`, `packages/unocss/src/rules/index.ts`, `packages/unocss/src/rules/decoration.ts`, `packages/unocss/src/rules/question-mark.ts`, `packages/unocss/src/utils/track.ts`, `packages/unocss/src/utils/utilities.ts`
 
 ## 新增一个变体
 
@@ -132,8 +128,6 @@ export const variantOpen: VariantObject<Theme> = {
 
 变体若依赖主题表，表要在 `theme()` 里赋值。`data` 变体已经会读 `theme.data`，但 `theme()` 没有提供这张表，所以默认只能用方括号。要支持 `data-open:` 这种名字，需要在 `src/theme/default.ts` 的返回值里加上 `data`，并在 `Theme` 类型里保留该字段。类型上已经有 `data?: Record<string, string>`，实现侧没有填。
 
-Sources: `packages/unocss/src/variants/default.ts`, `packages/unocss/src/variants/index.ts`, `packages/unocss/src/variants/data.ts`, `packages/unocss/src/theme/default.ts`, `packages/unocss/src/theme/types.ts`
-
 ## 新增 shortcut 或 preflight
 
 shortcut 只有 `src/shortcuts/index.ts` 一处拼接：`containerShortcuts` 和 `utilitiesShortcuts`。新的静态映射追加进这个数组。展开的目标必须是已经能匹配的工具类，例如 `items-center`，不要指向不存在的类。
@@ -152,8 +146,6 @@ preflight 在 `preflights()` 里按层追加。新的全局变量放进 `theme` 
 
 若 badge 还要一个本包没有的属性，再按上一节加规则，并让规则读取 `var(--badge)` 或 `colorResolver`。
 
-Sources: `packages/unocss/src/shortcuts/index.ts`, `packages/unocss/src/preflights/index.ts`, `packages/unocss/src/index.ts`, `packages/unocss/src/utils/track.ts`
-
 ## 注意事项
 
 - 不要从 `@weme-ui/unocss-preset` 导入 `defineTheme`、`rules`、`variants`。入口没有这些导出。
@@ -165,8 +157,8 @@ Sources: `packages/unocss/src/shortcuts/index.ts`, `packages/unocss/src/prefligh
 
 ## 相关页面
 
-- 配置 Preset 与定制主题
-- 使用并覆盖自定义 CSS 变量
-- 按场景选用 Rules 类名
-- 用 Variants 写暗色、断点与状态
-- 理解 Preflights 与 Postprocess
+- 主题
+- CSS 变量
+- Rules
+- Variants
+- Preflights

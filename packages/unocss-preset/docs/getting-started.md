@@ -1,4 +1,4 @@
-# 安装 preset 并写出第一个类名
+# 快速开始
 
 把 `@weme-ui/unocss-preset` 交给 UnoCSS 之后，类名会解析成 Radix 色阶变量、语义 token，以及随 `data-scaling` 变化的间距。这一页只解决三件事：装上包、写上 `presets`、让一个页面同时出现颜色、文字和间距。
 
@@ -23,8 +23,6 @@ import { presetWemeUI } from '@weme-ui/unocss-preset'
 import type { PresetWemeUIOptions } from '@weme-ui/unocss-preset'
 ```
 
-Sources: `packages/unocss/package.json`, `packages/unocss/src/index.ts`, `packages/unocss/src/utils/constant.ts`
-
 ## 最小配置
 
 不传选项时，preset 自己补上这些值：`dark` 为 `'class'`，`variablePrefix` 为 `'un-'`，`important` 为 `false`，`arbitraryVariants` 与 `transformerVariantGroup` 为 `true`，`themes` / `colors` / `cssVars` 为空。空的 `themes` 会再放进内置的 `default` 主题。`reset` 只有在你写成 `false` 时才关闭，不写就输出 reset。
@@ -40,8 +38,6 @@ export default {
 ```
 
 默认主题的强调色别名是 `puerto`，中性色别名是 `iron`。所以什么类名都不改时，`bg-accent` 最终指向 `--accent-9`，而 `--accent-9` 的回退是 `--puerto-9`。
-
-Sources: `packages/unocss/src/index.ts`, `packages/unocss/src/custom/default.ts`
 
 ## 第一组类名
 
@@ -68,8 +64,6 @@ Sources: `packages/unocss/src/index.ts`, `packages/unocss/src/custom/default.ts`
 ```
 
 数字间距 `p-4` 乘的是 `--spacing`。命名间距 `gap-md` 用的是 `--spacing-md`。颜色类不写阶数时用第 9 阶，所以 `bg-indigo` 和 `bg-indigo-9` 是同一条背景。
-
-Sources: `packages/unocss/src/custom/default.ts`, `packages/unocss/src/rules/color.ts`, `packages/unocss/src/rules/typography.ts`, `packages/unocss/src/rules/spacing.ts`, `packages/unocss/src/shortcuts/utilities.ts`, `packages/unocss/test/preset.test.ts`
 
 ## 暗色和断点
 
@@ -102,8 +96,6 @@ Sources: `packages/unocss/src/custom/default.ts`, `packages/unocss/src/rules/col
 
 亮色下按钮是强调色第 9 阶底、反色字。`hover:bg-accent-10` 只在指针悬停时升到第 10 阶。祖先变成 `.dark` 后，`dark:bg-accent-4` 和 `dark:text-accent-12` 换掉底和字。`tablet:px-xl` 在 768px 以上加大左右内边距。`data-theme="default"` 可以不写：默认主题的选择器同时包含 `:root`。
 
-Sources: `packages/unocss/src/index.ts`, `packages/unocss/src/variants/dark.ts`, `packages/unocss/src/theme/size.ts`, `packages/unocss/src/preflights/custom.ts`
-
 ## 任意变体
 
 `arbitraryVariants` 默认开启。入口注释里的写法可以生成子元素和属性选择器：
@@ -123,8 +115,6 @@ Sources: `packages/unocss/src/index.ts`, `packages/unocss/src/variants/dark.ts`,
 
 `transformerVariantGroup` 默认也会挂上 `@unocss/transformer-variant-group`，注释中的例子是 `b-(~ default)`。当前安装的 66.12.0 transformer 只返回高亮信息，不改写源码。把 `hover:(bg-accent text-inverted)` 交给生成器时，得不到 `hover:bg-accent`。类名请写成展开形式：`hover:bg-accent hover:text-inverted`。
 
-Sources: `packages/unocss/src/index.ts`
-
 ## 注意事项
 
 - 没写阶数的颜色类用第 9 阶。`bg-black` 也是 `--black-9`，不是常量 `#000`。
@@ -134,7 +124,7 @@ Sources: `packages/unocss/src/index.ts`
 
 ## 相关页面
 
-- 配置 Preset 与定制主题
-- 使用 Radix Colors 刻度与别名
-- 使用并覆盖自定义 CSS 变量
-- 用 Variants 写暗色、断点与状态
+- 主题
+- 颜色
+- CSS 变量
+- Variants

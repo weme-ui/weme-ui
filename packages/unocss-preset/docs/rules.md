@@ -1,4 +1,4 @@
-# 按场景选用 Rules 类名
+# Rules
 
 `rules` 是一组按顺序匹配的工具类。先命中的规则生效。这一页不罗列每一个文件，只按界面上会写到的类名说明：排版、间距、尺寸、颜色、边框、阴影、布局、过渡。颜色阶和 token 的细节在另外两页，这里关注类名怎么和它们拼在一起。
 
@@ -34,8 +34,6 @@
 
 对齐用 `text-left`、`text-center`、`text-right`、`text-justify`、`text-start`、`text-end`，也可以写成 `text-align-start`。
 
-Sources: `packages/unocss/src/rules/typography.ts`, `packages/unocss/src/rules/align.ts`, `packages/unocss/src/theme/font.ts`
-
 ## 间距、尺寸、圆角
 
 数字类乘 `--spacing`：`p-4` 是 `calc(var(--spacing) * 4)`。命名键走独立变量：`p-lg`、`gap-md`、`m-xl`。方向字母是 `x`、`y`、`t`、`r`、`b`、`l`、`s`、`e`，以及 `block`、`inline`。
@@ -54,8 +52,6 @@ Sources: `packages/unocss/src/rules/typography.ts`, `packages/unocss/src/rules/a
 <img class="size-16 aspect-square rounded-full object-cover" alt="" />
 <div class="w-md rounded-t-lg rounded-b-sm"></div>
 ```
-
-Sources: `packages/unocss/src/rules/spacing.ts`, `packages/unocss/src/rules/size.ts`, `packages/unocss/src/rules/border.ts`, `packages/unocss/src/theme/misc.ts`, `packages/unocss/src/theme/size.ts`
 
 ## 颜色、边框、阴影和环
 
@@ -88,8 +84,6 @@ Sources: `packages/unocss/src/rules/spacing.ts`, `packages/unocss/src/rules/size
 ```
 
 这两条类只设置渐变停止色变量。背景图层是否拉成一条渐变，还要再写背景规则里能产生 `background-image` 的类。只写 `from-accent to-neutral-3` 不会自动出现可见渐变。
-
-Sources: `packages/unocss/src/rules/border.ts`, `packages/unocss/src/rules/shadow.ts`, `packages/unocss/src/rules/ring.ts`, `packages/unocss/src/rules/background.ts`, `packages/unocss/src/rules/color.ts`
 
 ## 布局、显示和过渡
 
@@ -134,8 +128,6 @@ Sources: `packages/unocss/src/rules/border.ts`, `packages/unocss/src/rules/shado
 </article>
 ```
 
-Sources: `packages/unocss/src/rules/flex.ts`, `packages/unocss/src/rules/grid.ts`, `packages/unocss/src/rules/static.ts`, `packages/unocss/src/rules/position.ts`, `packages/unocss/src/rules/transition.ts`, `packages/unocss/src/rules/animation.ts`, `packages/unocss/src/theme/transition.ts`, `packages/unocss/src/theme/animate.ts`
-
 ## 显示、光标和透明度
 
 `hidden` 是 `display: none`。`cursor-pointer`、`cursor-not-allowed` 来自光标表。透明度可以写 `op-50`、`op50`、`opacity-100`。`scheme-dark` 与 `color-scheme-dark` 设置 `color-scheme`。
@@ -147,8 +139,6 @@ Sources: `packages/unocss/src/rules/flex.ts`, `packages/unocss/src/rules/grid.ts
 ```
 
 `aria-disabled:op-50` 生成 `[aria-disabled="true"]` 上的 `opacity: 50%`。
-
-Sources: `packages/unocss/src/rules/static.ts`, `packages/unocss/src/rules/color.ts`, `packages/unocss/src/rules/behaviors.ts`
 
 ## 注意事项
 
@@ -163,7 +153,7 @@ Sources: `packages/unocss/src/rules/static.ts`, `packages/unocss/src/rules/color
 
 ## 相关页面
 
-- 使用 Radix Colors 刻度与别名
-- 使用并覆盖自定义 CSS 变量
-- 用 Variants 写暗色、断点与状态
-- 用 Shortcuts 收拢重复类名
+- 颜色
+- CSS 变量
+- Variants
+- Shortcuts

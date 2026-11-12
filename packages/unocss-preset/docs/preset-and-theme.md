@@ -1,4 +1,4 @@
-# 配置 Preset 与定制主题
+# 主题
 
 `presetWemeUI(options)` 的每个字段都会改变选择器、变量前缀或主题块。这一页按字段说明写什么、生成什么，以及默认主题在什么条件下被追加进去。
 
@@ -41,8 +41,6 @@ export default {
 }
 ```
 
-Sources: `packages/unocss/src/index.ts`, `packages/unocss/src/theme/default.ts`, `packages/unocss/src/preflights/reset.ts`
-
 ## 暗色模式
 
 `'class'` 时，`dark:` 的前缀是 `.dark`，`light:` 的前缀是 `.light`。对象形式可以改类名，缺省仍是 `.light` 和 `.dark`。
@@ -70,8 +68,6 @@ presetWemeUI({
 ```
 
 无论 `dark` 怎么设，另外一组变体始终存在：`.dark:`、`.light:`、`@dark:`、`@light:`、`not-dark:`。`.dark:` 固定匹配类名 `.dark`。`@dark:` 固定是 `prefers-color-scheme: dark`。色板变量本身仍写在 `.dark` 规则里，见 Preflights 那一页。
-
-Sources: `packages/unocss/src/index.ts`, `packages/unocss/src/variants/dark.ts`, `packages/unocss/src/preflights/theme.ts`
 
 ## 默认主题什么时候出现
 
@@ -195,8 +191,6 @@ export default {
 
 `radius: 'lg'` 来自 `themeRadiusMap` 的 `1.5`，`scaling: '110%'` 来自 `1.1`。`bg-panel` 用 `--panel-bg`，`border-panel` 用 `--panel-border`。
 
-Sources: `packages/unocss/src/index.ts`, `packages/unocss/src/custom/theme.ts`, `packages/unocss/src/custom/default.ts`, `packages/unocss/src/custom/types.ts`, `packages/unocss/src/custom/mappings.ts`, `packages/unocss/src/preflights/custom.ts`
-
 ## 额外颜色
 
 `colors.accent` 与 `colors.neutral` 会和内置的 `clay`、`moroccan`、`puerto`、`iron`、`covert` 一起做成 12 阶色。测试里的写法：
@@ -219,8 +213,6 @@ presetWemeUI({
 ```
 
 `defu` 保留先写入的键。Radix 色和 `black` / `white` 先进入主题，同名的 `colors` 不会盖掉它们。新名字可以，`indigo` 这种已有名字不行。
-
-Sources: `packages/unocss/src/theme/colors.ts`, `packages/unocss/src/index.ts`, `packages/unocss/test/theme/colors.test.ts`
 
 ## 圆角、缩放、字号和间距
 
@@ -254,8 +246,6 @@ Sources: `packages/unocss/src/theme/colors.ts`, `packages/unocss/src/index.ts`, 
 </main>
 ```
 
-Sources: `packages/unocss/src/preflights/preflight.ts`, `packages/unocss/src/theme/misc.ts`, `packages/unocss/src/theme/font.ts`, `packages/unocss/src/theme/size.ts`, `packages/unocss/src/custom/mappings.ts`
-
 ## 注意事项
 
 - `name: 'default'` 不会替换内置主题，内置块写在后面。换一套默认外观时用别的 `name`，并在根节点写 `data-theme`。
@@ -266,7 +256,7 @@ Sources: `packages/unocss/src/preflights/preflight.ts`, `packages/unocss/src/the
 
 ## 相关页面
 
-- 安装 preset 并写出第一个类名
-- 使用 Radix Colors 刻度与别名
-- 使用并覆盖自定义 CSS 变量
-- 理解 Preflights 与 Postprocess
+- 快速开始
+- 颜色
+- CSS 变量
+- Preflights

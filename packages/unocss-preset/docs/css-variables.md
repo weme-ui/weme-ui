@@ -1,4 +1,4 @@
-# 使用并覆盖自定义 CSS 变量
+# CSS 变量
 
 语义颜色和你自己声明的变量，最后都变成 `--变量名`，再被 `bg-*`、`text-*`、`border-*`、`w-*` 读走。类名和变量名经常不一致：`base`、`default`、`color` 会被短键丢掉，`background` 变成 `bg`，`foreground` 变成 `text`。
 
@@ -49,8 +49,6 @@
 ```
 
 `text-default` 的声明是 `color: var(--text)`，不是 `var(--text-default)`。`bg-default` 是 `background-color: var(--bg)`。`border-default` 是 `border-color: var(--border)`。
-
-Sources: `packages/unocss/src/custom/default.ts`, `packages/unocss/src/custom/mappings.ts`, `packages/unocss/src/custom/utilities.ts`, `packages/unocss/src/preflights/custom.ts`, `packages/unocss/test/preset.test.ts`
 
 ## 自己的 cssVars
 
@@ -118,8 +116,6 @@ presetWemeUI({
 <div class="from-card to-card-muted"></div>
 ```
 
-Sources: `packages/unocss/src/index.ts`, `packages/unocss/src/theme/custom.ts`, `packages/unocss/src/custom/mappings.ts`, `packages/unocss/src/custom/utilities.ts`, `packages/unocss/src/preflights/custom.ts`, `packages/unocss/src/rules/size.ts`, `packages/unocss/test/preset.test.ts`, `packages/unocss/test/theme/custom.test.ts`
-
 ## 短键撞在一起
 
 `cssVarShortKeysMap` 把 `color`、`base`、`default` 收成空字符串，再从键里删掉。同一对象里这三项会挤成一个变量，先出现的留下。
@@ -140,8 +136,6 @@ cssVars: {
 `background` 单独变成 `--test-bg: #000`。随后 `base` 变成 `--test: #000`。`default` 和 `color` 也想占用 `--test`，被丢掉，`#f00` 和 `#fff` 不会出现。`muted` 仍是 `--test-muted: var(--neutral-3)`。
 
 只声明 `background`、不声明 `color` / `base` 时，`text-page` 仍可能生成 `color: var(--page)`，而 CSS 里只有 `--page-bg`。文字类会匹配成功，变量却是空的。需要文字色时，显式写 `color` 或 `base`。
-
-Sources: `packages/unocss/src/custom/mappings.ts`, `packages/unocss/src/preflights/custom.ts`, `packages/unocss/test/preset.test.ts`
 
 ## 覆盖别名和主题变量
 
@@ -194,8 +188,6 @@ export default {
 
 `style` 只是提前放上 `--custom-accent-9`。同一件事也可以放进 `cssVars`，不必写在元素上。`bg-muted` 和 `text-highlighted` 继续用默认 token。`tablet:p-xl` 在 768px 以上改间距。
 
-Sources: `packages/unocss/src/custom/types.ts`, `packages/unocss/src/preflights/custom.ts`, `packages/unocss/src/custom/utilities.ts`
-
 ## 在类名里直接写变量
 
 `rules/variables.ts` 提供缩写属性到 `var(--*)` 的写法，名字以 `$` 开头：
@@ -207,8 +199,6 @@ Sources: `packages/unocss/src/custom/types.ts`, `packages/unocss/src/preflights/
 
 `fw` 对应 `font-weight`，`select` 对应 `user-select`，`ws` 对应 `white-space`。上面的 `--card` 如果来自颜色字段，内容是颜色，不适合当字重；这里只说明 `$` 类名会读已有变量，不会新建变量。方括号规则要求属性名是一段连续的名字，值里可以包含 `var(...)`。
 
-Sources: `packages/unocss/src/rules/variables.ts`
-
 ## 注意事项
 
 - 类名 `text-default` 对应变量 `--text`。覆盖时改 `--text`，改 `--text-default` 不会作用到这个类。
@@ -219,7 +209,7 @@ Sources: `packages/unocss/src/rules/variables.ts`
 
 ## 相关页面
 
-- 配置 Preset 与定制主题
-- 使用 Radix Colors 刻度与别名
-- 按场景选用 Rules 类名
-- 理解 Preflights 与 Postprocess
+- 主题
+- 颜色
+- Rules
+- Preflights

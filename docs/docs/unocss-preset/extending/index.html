@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="zh-CN" class="dark"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>在仓库里新增规则、变量与变体 — Weme UI</title><meta name="description" content="在仓库里新增规则、变量与变体"><link rel="icon" type="image/svg+xml" href="/weme-ui/weme.svg"><script>document.documentElement.classList.add('js')</script><link rel="stylesheet" href="/weme-ui/_astro/LandingLayout.D1_V9znS.css"></head><body><header class="site-nav"><a class="brand" href="/weme-ui/">WEME<span class="dot">.</span></a><nav class="nav-links" aria-label="页面"><a href="https://github.com/weme-ui/weme-ui" target="_blank" rel="noreferrer">GitHub</a><a href="https://weme-ui.github.io/slim" target="_blank" rel="noreferrer">slim</a><a href="/weme-ui/docs/unocss-preset/" aria-current="page">Preset</a></nav></header><div class="docs-shell"><nav class="docs-nav" aria-label="Preset 文档"><div class="docs-group"><p>入门</p><ul><li><a href="/weme-ui/docs/unocss-preset/">概览</a></li><li><a href="/weme-ui/docs/unocss-preset/getting-started/">安装 preset 并写出第一个类名</a></li></ul></div><div class="docs-group"><p>主题与变量</p><ul><li><a href="/weme-ui/docs/unocss-preset/preset-and-theme/">配置 Preset 与定制主题</a></li><li><a href="/weme-ui/docs/unocss-preset/radix-colors/">使用 Radix Colors 刻度与别名</a></li><li><a href="/weme-ui/docs/unocss-preset/css-variables/">使用并覆盖自定义 CSS 变量</a></li></ul></div><div class="docs-group"><p>规则、变体、快捷方式</p><ul><li><a href="/weme-ui/docs/unocss-preset/rules/">按场景选用 Rules 类名</a></li><li><a href="/weme-ui/docs/unocss-preset/variants/">用 Variants 写暗色、断点与状态</a></li><li><a href="/weme-ui/docs/unocss-preset/shortcuts/">用 Shortcuts 收拢重复类名</a></li></ul></div><div class="docs-group"><p>预检与后处理</p><ul><li><a href="/weme-ui/docs/unocss-preset/preflights-and-postprocess/">理解 Preflights 与 Postprocess</a></li></ul></div><div class="docs-group"><p>最佳实践</p><ul><li><a href="/weme-ui/docs/unocss-preset/recipes/">组合类名、变量与变体</a></li></ul></div><div class="docs-group"><p>扩展开发</p><ul><li><a href="/weme-ui/docs/unocss-preset/extending/" aria-current="page">在仓库里新增规则、变量与变体</a></li></ul></div></nav><article class="prose"><h1 id="在仓库里新增规则变量与变体">在仓库里新增规则、变量与变体</h1>
+<!DOCTYPE html><html lang="zh-CN" class="dark"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>新增规则 — Weme UI</title><meta name="description" content="新增规则"><link rel="icon" type="image/svg+xml" href="/weme-ui/weme.svg"><script>document.documentElement.classList.add('js')</script><link rel="stylesheet" href="/weme-ui/_astro/LandingLayout.BC-Y8Y7c.css"></head><body><header class="site-nav"><a class="brand" href="/weme-ui/">WEME<span class="dot">.</span></a><nav class="nav-links" aria-label="页面"><a href="https://github.com/weme-ui/weme-ui" target="_blank" rel="noreferrer">GitHub</a><a href="https://weme-ui.github.io/slim" target="_blank" rel="noreferrer">slim</a><a href="/weme-ui/docs/unocss-preset/" aria-current="page">Preset</a></nav></header><div class="docs-shell"><nav class="docs-nav" aria-label="Preset 文档"><div class="docs-group"><p>入门</p><ul><li><a href="/weme-ui/docs/unocss-preset/">概览</a></li><li><a href="/weme-ui/docs/unocss-preset/getting-started/">快速开始</a></li></ul></div><div class="docs-group"><p>主题与变量</p><ul><li><a href="/weme-ui/docs/unocss-preset/preset-and-theme/">主题</a></li><li><a href="/weme-ui/docs/unocss-preset/radix-colors/">颜色</a></li><li><a href="/weme-ui/docs/unocss-preset/css-variables/">CSS 变量</a></li></ul></div><div class="docs-group"><p>规则、变体、快捷方式</p><ul><li><a href="/weme-ui/docs/unocss-preset/rules/">Rules</a></li><li><a href="/weme-ui/docs/unocss-preset/variants/">Variants</a></li><li><a href="/weme-ui/docs/unocss-preset/shortcuts/">Shortcuts</a></li></ul></div><div class="docs-group"><p>预检与后处理</p><ul><li><a href="/weme-ui/docs/unocss-preset/preflights-and-postprocess/">Preflights</a></li></ul></div><div class="docs-group"><p>最佳实践</p><ul><li><a href="/weme-ui/docs/unocss-preset/recipes/">组合</a></li></ul></div><div class="docs-group"><p>扩展开发</p><ul><li><a href="/weme-ui/docs/unocss-preset/extending/" aria-current="page">新增规则</a></li></ul></div></nav><article class="prose"><h1 id="新增规则">新增规则</h1>
 <p>使用这个包时，能扩展的是 <code>presetWemeUI</code> 的 <code>themes</code>、<code>colors</code>、<code>cssVars</code>，以及应用自己的 UnoCSS 配置。仓库里新增一种工具类、一个变体或一条 shortcut，要改对应目录再挂进已经存在的数组。包入口没有 <code>defineRule</code>、<code>defineVariant</code>、<code>defineShortcut</code>。</p>
 <p><code>src/index.ts</code> 对包外只导出 <code>presetWemeUI</code>、默认导出和 <code>PresetWemeUIOptions</code>。<code>defineTheme</code> 在 <code>src/custom/theme.ts</code>，给仓库内的调用补默认字段。</p>
 <h2 id="使用场景">使用场景</h2>
@@ -64,7 +64,6 @@
 <span class="line"><span style="color:#444444">&lt;/</span><span style="color:#4D9375">body</span><span style="color:#444444">&gt;</span></span></code></pre>
 <p><code>bg-badge</code> 读 <code>--badge-bg</code>，<code>text-badge</code> 读 <code>--badge</code>（<code>color</code> 被短键丢掉）。<code>zinc</code> 是一整套 12 阶，类名写 <code>bg-zinc-3</code>。</p>
 <p>应用配置里还可以并列放 UnoCSS 自己的 <code>rules</code>、<code>shortcuts</code>、<code>variants</code>。那些数组不属于本包，本包也不会读取它们。本包返回的 <code>rules</code> 只来自 <code>src/rules/default.ts</code>。</p>
-<p>Sources: <code>packages/unocss/src/index.ts</code>, <code>packages/unocss/src/theme/colors.ts</code>, <code>packages/unocss/src/custom/types.ts</code>, <code>packages/unocss/src/custom/theme.ts</code></p>
 <h2 id="新增一条规则">新增一条规则</h2>
 <ol>
 <li>在 <code>src/rules/</code> 加文件，或写进已有的规则文件。</li>
@@ -83,7 +82,6 @@
 <span class="line"><span style="color:#444444">]</span></span></code></pre>
 <p>把 <code>markers</code> 放进 <code>rules</code> 数组、<code>questionMark</code> 之前。若前面已有规则先匹配到同一个类名，后面的规则不会再执行。</p>
 <p>只在开发环境出现的调试类，沿用 <code>questionMark</code> 的做法：读取 <code>generator.userConfig.envMode === 'dev'</code>，其他模式不返回声明。</p>
-<p>Sources: <code>packages/unocss/src/rules/default.ts</code>, <code>packages/unocss/src/rules/index.ts</code>, <code>packages/unocss/src/rules/decoration.ts</code>, <code>packages/unocss/src/rules/question-mark.ts</code>, <code>packages/unocss/src/utils/track.ts</code>, <code>packages/unocss/src/utils/utilities.ts</code></p>
 <h2 id="新增一个变体">新增一个变体</h2>
 <p>变体集中在 <code>variants(options)</code>。新变体应能读到 <code>PresetWemeUIOptions</code>，这样暗色类名、前缀才和配置一致。文件放在 <code>src/variants/</code>，从 <code>src/variants/index.ts</code> 导出，再加进 <code>variants()</code> 的返回数组。</p>
 <p>顺序会影响谁先改写 matcher。断点、暗色、<code>important</code> 已经占据前面的位置。新的状态变体放在伪类附近，避免抢在 <code>variantNegative</code>（前导 <code>-</code>）之前。</p>
@@ -102,7 +100,6 @@
 <span class="line"><span style="color:#444444">}</span></span></code></pre>
 <p>这是贡献示意，不是当前可用类名。现成的打开状态请写 <code>data-[open]:</code> 或 <code>[&amp;[open]]:p-2</code>。</p>
 <p>变体若依赖主题表，表要在 <code>theme()</code> 里赋值。<code>data</code> 变体已经会读 <code>theme.data</code>，但 <code>theme()</code> 没有提供这张表，所以默认只能用方括号。要支持 <code>data-open:</code> 这种名字，需要在 <code>src/theme/default.ts</code> 的返回值里加上 <code>data</code>，并在 <code>Theme</code> 类型里保留该字段。类型上已经有 <code>data?: Record&lt;string, string&gt;</code>，实现侧没有填。</p>
-<p>Sources: <code>packages/unocss/src/variants/default.ts</code>, <code>packages/unocss/src/variants/index.ts</code>, <code>packages/unocss/src/variants/data.ts</code>, <code>packages/unocss/src/theme/default.ts</code>, <code>packages/unocss/src/theme/types.ts</code></p>
 <h2 id="新增-shortcut-或-preflight">新增 shortcut 或 preflight</h2>
 <p>shortcut 只有 <code>src/shortcuts/index.ts</code> 一处拼接：<code>containerShortcuts</code> 和 <code>utilitiesShortcuts</code>。新的静态映射追加进这个数组。展开的目标必须是已经能匹配的工具类，例如 <code>items-center</code>，不要指向不存在的类。</p>
 <p>preflight 在 <code>preflights()</code> 里按层追加。新的全局变量放进 <code>theme</code> 层时，和 <code>custom</code>、<code>theme</code> 用同一层，避免盖住 <code>base</code> 里的 reset。需要随类名出现的变量继续用 <code>themeTracking</code>，不要在 preflight 里无条件打印整张色板。</p>
@@ -112,7 +109,6 @@
 <span class="line"><span style="color:#DBD7CACC">  新主题变量，旧的背景和文字规则</span></span>
 <span class="line"><span style="color:#444444">&lt;/</span><span style="color:#4D9375">span</span><span style="color:#444444">&gt;</span></span></code></pre>
 <p>若 badge 还要一个本包没有的属性，再按上一节加规则，并让规则读取 <code>var(--badge)</code> 或 <code>colorResolver</code>。</p>
-<p>Sources: <code>packages/unocss/src/shortcuts/index.ts</code>, <code>packages/unocss/src/preflights/index.ts</code>, <code>packages/unocss/src/index.ts</code>, <code>packages/unocss/src/utils/track.ts</code></p>
 <h2 id="注意事项">注意事项</h2>
 <ul>
 <li>不要从 <code>@weme-ui/unocss-preset</code> 导入 <code>defineTheme</code>、<code>rules</code>、<code>variants</code>。入口没有这些导出。</li>
@@ -124,10 +120,10 @@
 </ul>
 <h2 id="相关页面">相关页面</h2>
 <ul>
-<li>配置 Preset 与定制主题</li>
-<li>使用并覆盖自定义 CSS 变量</li>
-<li>按场景选用 Rules 类名</li>
-<li>用 Variants 写暗色、断点与状态</li>
-<li>理解 Preflights 与 Postprocess</li>
+<li>主题</li>
+<li>CSS 变量</li>
+<li>Rules</li>
+<li>Variants</li>
+<li>Preflights</li>
 </ul>
 </article></div><footer class="site-foot"><span>早期开发，请勿用于生产</span><span>MIT · 2026</span></footer><script type="module">function e(){document.querySelectorAll(`[data-copy-command]`).forEach(e=>{e.addEventListener(`click`,async()=>{let t=e.dataset.copyCommand;if(!t)return;let n=e.dataset.labelIdle||`复制`,r=e.dataset.labelDone||`已复制`;try{await navigator.clipboard.writeText(t),e.textContent=r,window.setTimeout(()=>{e.textContent=n},1600)}catch{e.textContent=`复制失败`,window.setTimeout(()=>{e.textContent=n},1600)}})})}e();</script></body></html>

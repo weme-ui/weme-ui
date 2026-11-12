@@ -1,5 +1,11 @@
 # @weme-ui/unocss-preset
 
+## 0.5.0
+
+### Minor Changes
+
+- 从包入口导出 `defineTheme` 和 `CustomTheme` 等主题类型，并去掉 `Theme` 上仅供内部索引的 `custom` 字段。
+
 ## 0.4.0
 
 ### Minor Changes

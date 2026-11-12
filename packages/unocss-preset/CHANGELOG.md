@@ -1,5 +1,11 @@
 # @weme-ui/unocss-preset
 
+## 0.5.1
+
+### Patch Changes
+
+- 从包入口导出 `CustomThemeTokens`，以及 `isColorAlias`、`isRawColor`、`isCustomCSSVar`、`isThemeScopeToken`、`isThemeToken`。
+
 ## 0.5.0
 
 ### Minor Changes

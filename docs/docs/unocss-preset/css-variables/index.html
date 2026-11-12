@@ -1,0 +1,209 @@
+<!DOCTYPE html><html lang="zh-CN" class="dark"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>使用并覆盖自定义 CSS 变量 — Weme UI</title><meta name="description" content="使用并覆盖自定义 CSS 变量"><link rel="icon" type="image/svg+xml" href="/weme-ui/weme.svg"><script>document.documentElement.classList.add('js')</script><link rel="stylesheet" href="/weme-ui/_astro/LandingLayout.BK6XZBaz.css"></head><body><header class="site-nav"><a class="brand" href="/weme-ui/">WEME<span class="dot">.</span></a><nav class="nav-links" aria-label="页面"><a href="https://github.com/weme-ui/weme-ui" target="_blank" rel="noreferrer">GitHub</a><a href="https://weme-ui.github.io/slim" target="_blank" rel="noreferrer">slim</a><a href="/weme-ui/docs/unocss-preset/" aria-current="page">Preset</a></nav></header><div class="docs-shell"><nav class="docs-nav" aria-label="Preset 文档"><div class="docs-group"><p>入门</p><ul><li><a href="/weme-ui/docs/unocss-preset/">概览</a></li><li><a href="/weme-ui/docs/unocss-preset/getting-started/">安装 preset 并写出第一个类名</a></li></ul></div><div class="docs-group"><p>主题与变量</p><ul><li><a href="/weme-ui/docs/unocss-preset/preset-and-theme/">配置 Preset 与定制主题</a></li><li><a href="/weme-ui/docs/unocss-preset/radix-colors/">使用 Radix Colors 刻度与别名</a></li><li><a href="/weme-ui/docs/unocss-preset/css-variables/" aria-current="page">使用并覆盖自定义 CSS 变量</a></li></ul></div><div class="docs-group"><p>规则、变体、快捷方式</p><ul><li><a href="/weme-ui/docs/unocss-preset/rules/">按场景选用 Rules 类名</a></li><li><a href="/weme-ui/docs/unocss-preset/variants/">用 Variants 写暗色、断点与状态</a></li><li><a href="/weme-ui/docs/unocss-preset/shortcuts/">用 Shortcuts 收拢重复类名</a></li></ul></div><div class="docs-group"><p>预检与后处理</p><ul><li><a href="/weme-ui/docs/unocss-preset/preflights-and-postprocess/">理解 Preflights 与 Postprocess</a></li></ul></div><div class="docs-group"><p>最佳实践</p><ul><li><a href="/weme-ui/docs/unocss-preset/recipes/">组合类名、变量与变体</a></li></ul></div><div class="docs-group"><p>扩展开发</p><ul><li><a href="/weme-ui/docs/unocss-preset/extending/">在仓库里新增规则、变量与变体</a></li></ul></div></nav><article class="prose"><h1 id="使用并覆盖自定义-css-变量">使用并覆盖自定义 CSS 变量</h1>
+<p>语义颜色和你自己声明的变量，最后都变成 <code>--变量名</code>，再被 <code>bg-*</code>、<code>text-*</code>、<code>border-*</code>、<code>w-*</code> 读走。类名和变量名经常不一致：<code>base</code>、<code>default</code>、<code>color</code> 会被短键丢掉，<code>background</code> 变成 <code>bg</code>，<code>foreground</code> 变成 <code>text</code>。</p>
+<p>这一页说明默认 token 写成什么类、<code>cssVars</code> 写在哪一层，以及怎样覆盖 <code>--accent-*</code>。</p>
+<h2 id="使用场景">使用场景</h2>
+<ul>
+<li>页面只想写 <code>bg-muted</code>、<code>text-highlighted</code>、<code>border</code>，不关心背后是 <code>iron</code> 的第几阶。</li>
+<li>给卡片、侧栏声明一组自己的变量，让 <code>bg-card</code>、<code>w-card</code> 读到它们。</li>
+<li>不换主题名字，只把强调色从 <code>puerto</code> 改成某一阶 <code>indigo</code>。</li>
+</ul>
+<h2 id="默认-token">默认 token</h2>
+<p>内置 token 在进入 CSS 之前会按短键改名：</p>
+<table>
+<thead>
+<tr>
+<th>配置里的键</th>
+<th>实际变量</th>
+<th>对应类名</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>foreground.highlighted</code> = <code>neutral.12</code></td>
+<td><code>--text-highlighted</code></td>
+<td><code>text-highlighted</code></td>
+</tr>
+<tr>
+<td><code>foreground.base</code> = <code>neutral.11</code></td>
+<td><code>--text</code></td>
+<td><code>text-default</code></td>
+</tr>
+<tr>
+<td><code>foreground.subtle</code> = <code>neutral.9</code></td>
+<td><code>--text-subtle</code></td>
+<td><code>text-subtle</code></td>
+</tr>
+<tr>
+<td><code>foreground.muted</code> = <code>neutral.7</code></td>
+<td><code>--text-muted</code></td>
+<td><code>text-muted</code></td>
+</tr>
+<tr>
+<td><code>foreground.inverted</code> = <code>neutral.1</code></td>
+<td><code>--text-inverted</code></td>
+<td><code>text-inverted</code></td>
+</tr>
+<tr>
+<td><code>background.base</code> = <code>neutral.1</code></td>
+<td><code>--bg</code></td>
+<td><code>bg-default</code></td>
+</tr>
+<tr>
+<td><code>background.muted</code> = <code>neutral.3</code></td>
+<td><code>--bg-muted</code></td>
+<td><code>bg-muted</code></td>
+</tr>
+<tr>
+<td><code>background.elevated</code> = <code>neutral.4</code></td>
+<td><code>--bg-elevated</code></td>
+<td><code>bg-elevated</code></td>
+</tr>
+<tr>
+<td><code>background.inverted</code> = <code>neutral.12</code></td>
+<td><code>--bg-inverted</code></td>
+<td><code>bg-inverted</code></td>
+</tr>
+<tr>
+<td><code>border.base</code> = <code>neutral.5</code></td>
+<td><code>--border</code></td>
+<td><code>border-default</code>、<code>b-default</code></td>
+</tr>
+<tr>
+<td><code>border.elevated</code> = <code>neutral.6</code></td>
+<td><code>--border-elevated</code></td>
+<td><code>border-elevated</code>、<code>b-elevated</code></td>
+</tr>
+<tr>
+<td><code>border.inverted</code> = <code>neutral.12</code></td>
+<td><code>--border-inverted</code></td>
+<td><code>border-inverted</code>、<code>b-inverted</code></td>
+</tr>
+</tbody>
+</table>
+<p><code>neutral.12</code> 这种值会先变成颜色变量 <code>var(--neutral-12)</code>，再由别名指到 <code>--iron-12</code>。</p>
+<pre class="astro-code vitesse-black" style="background-color:#000;color:#dbd7cacc; overflow-x: auto;" tabindex="0" data-language="html"><code><span class="line"><span style="color:#444444">&lt;</span><span style="color:#4D9375">article</span><span style="color:#BD976A"> class</span><span style="color:#444444">=</span><span style="color:#C98A7D77">"</span><span style="color:#C98A7D">bg-default text-default border border-default rounded-md</span><span style="color:#C98A7D77">"</span><span style="color:#444444">&gt;</span></span>
+<span class="line"><span style="color:#444444">  &lt;</span><span style="color:#4D9375">h2</span><span style="color:#BD976A"> class</span><span style="color:#444444">=</span><span style="color:#C98A7D77">"</span><span style="color:#C98A7D">text-highlighted</span><span style="color:#C98A7D77">"</span><span style="color:#444444">&gt;</span><span style="color:#DBD7CACC">标题用 12 阶中性色</span><span style="color:#444444">&lt;/</span><span style="color:#4D9375">h2</span><span style="color:#444444">&gt;</span></span>
+<span class="line"><span style="color:#444444">  &lt;</span><span style="color:#4D9375">p</span><span style="color:#BD976A"> class</span><span style="color:#444444">=</span><span style="color:#C98A7D77">"</span><span style="color:#C98A7D">text-subtle</span><span style="color:#C98A7D77">"</span><span style="color:#444444">&gt;</span><span style="color:#DBD7CACC">次要说明用 9 阶。</span><span style="color:#444444">&lt;/</span><span style="color:#4D9375">p</span><span style="color:#444444">&gt;</span></span>
+<span class="line"><span style="color:#444444">  &lt;</span><span style="color:#4D9375">p</span><span style="color:#BD976A"> class</span><span style="color:#444444">=</span><span style="color:#C98A7D77">"</span><span style="color:#C98A7D">text-muted</span><span style="color:#C98A7D77">"</span><span style="color:#444444">&gt;</span><span style="color:#DBD7CACC">辅助信息用 7 阶。</span><span style="color:#444444">&lt;/</span><span style="color:#4D9375">p</span><span style="color:#444444">&gt;</span></span>
+<span class="line"><span style="color:#444444">  &lt;</span><span style="color:#4D9375">span</span><span style="color:#BD976A"> class</span><span style="color:#444444">=</span><span style="color:#C98A7D77">"</span><span style="color:#C98A7D">bg-inverted text-inverted px-sm</span><span style="color:#C98A7D77">"</span><span style="color:#444444">&gt;</span><span style="color:#DBD7CACC">反色标签</span><span style="color:#444444">&lt;/</span><span style="color:#4D9375">span</span><span style="color:#444444">&gt;</span></span>
+<span class="line"><span style="color:#444444">&lt;/</span><span style="color:#4D9375">article</span><span style="color:#444444">&gt;</span></span></code></pre>
+<p>把背景色拿去当文字色、把文字色拿去当背景色，测试里这些类是成立的：</p>
+<pre class="astro-code vitesse-black" style="background-color:#000;color:#dbd7cacc; overflow-x: auto;" tabindex="0" data-language="html"><code><span class="line"><span style="color:#444444">&lt;</span><span style="color:#4D9375">p</span><span style="color:#BD976A"> class</span><span style="color:#444444">=</span><span style="color:#C98A7D77">"</span><span style="color:#C98A7D">text-bg-muted</span><span style="color:#C98A7D77">"</span><span style="color:#444444">&gt;</span><span style="color:#DBD7CACC">文字色读 --bg-muted</span><span style="color:#444444">&lt;/</span><span style="color:#4D9375">p</span><span style="color:#444444">&gt;</span></span>
+<span class="line"><span style="color:#444444">&lt;</span><span style="color:#4D9375">p</span><span style="color:#BD976A"> class</span><span style="color:#444444">=</span><span style="color:#C98A7D77">"</span><span style="color:#C98A7D">bg-text text-inverted</span><span style="color:#C98A7D77">"</span><span style="color:#444444">&gt;</span><span style="color:#DBD7CACC">背景色读 --text</span><span style="color:#444444">&lt;/</span><span style="color:#4D9375">p</span><span style="color:#444444">&gt;</span></span>
+<span class="line"><span style="color:#444444">&lt;</span><span style="color:#4D9375">div</span><span style="color:#BD976A"> class</span><span style="color:#444444">=</span><span style="color:#C98A7D77">"</span><span style="color:#C98A7D">bg-border</span><span style="color:#C98A7D77">"</span><span style="color:#444444">&gt;</span><span style="color:#DBD7CACC">背景色读 --border</span><span style="color:#444444">&lt;/</span><span style="color:#4D9375">div</span><span style="color:#444444">&gt;</span></span></code></pre>
+<p><code>text-default</code> 的声明是 <code>color: var(--text)</code>，不是 <code>var(--text-default)</code>。<code>bg-default</code> 是 <code>background-color: var(--bg)</code>。<code>border-default</code> 是 <code>border-color: var(--border)</code>。</p>
+<p>Sources: <code>packages/unocss/src/custom/default.ts</code>, <code>packages/unocss/src/custom/mappings.ts</code>, <code>packages/unocss/src/custom/utilities.ts</code>, <code>packages/unocss/src/preflights/custom.ts</code>, <code>packages/unocss/test/preset.test.ts</code></p>
+<h2 id="自己的-cssvars">自己的 cssVars</h2>
+<p><code>presetWemeUI({ cssVars })</code> 写到 <code>:root</code>。某个主题的 <code>cssVars</code> 写到该主题的选择器。值有三种结果：</p>
+<ul>
+<li>能解析成主题色，例如 <code>neutral.3</code>：变成 <code>var(--neutral-3)</code>，并带上那一阶颜色。</li>
+<li>尺寸或原始颜色，例如 <code>100px</code>、<code>#000</code>、<code>oklch(...)</code>、<code>var(--已有)</code>：原样写入。</li>
+<li>其他字符串：变成 <code>var(--把点换成横线)</code>。</li>
+</ul>
+<p>短键在写变量时就生效。下面这组字段：</p>
+<pre class="astro-code vitesse-black" style="background-color:#000;color:#dbd7cacc; overflow-x: auto;" tabindex="0" data-language="ts"><code><span class="line"><span style="color:#80A665">presetWemeUI</span><span style="color:#444444">({</span></span>
+<span class="line"><span style="color:#B8A965">  cssVars</span><span style="color:#444444">: {</span></span>
+<span class="line"><span style="color:#B8A965">    card</span><span style="color:#444444">: {</span></span>
+<span class="line"><span style="color:#B8A965">      background</span><span style="color:#444444">: </span><span style="color:#C98A7D77">'</span><span style="color:#C98A7D">neutral.1</span><span style="color:#C98A7D77">'</span><span style="color:#444444">,</span></span>
+<span class="line"><span style="color:#B8A965">      muted</span><span style="color:#444444">: </span><span style="color:#C98A7D77">'</span><span style="color:#C98A7D">neutral.3</span><span style="color:#C98A7D77">'</span><span style="color:#444444">,</span></span>
+<span class="line"><span style="color:#B8A965">      border</span><span style="color:#444444">: </span><span style="color:#C98A7D77">'</span><span style="color:#C98A7D">neutral.6</span><span style="color:#C98A7D77">'</span><span style="color:#444444">,</span></span>
+<span class="line"><span style="color:#B8A965">      color</span><span style="color:#444444">: </span><span style="color:#C98A7D77">'</span><span style="color:#C98A7D">neutral.12</span><span style="color:#C98A7D77">'</span><span style="color:#444444">,</span></span>
+<span class="line"><span style="color:#B8A965">      width</span><span style="color:#444444">: </span><span style="color:#C98A7D77">'</span><span style="color:#C98A7D">20rem</span><span style="color:#C98A7D77">'</span><span style="color:#444444">,</span></span>
+<span class="line"><span style="color:#444444">    },</span></span>
+<span class="line"><span style="color:#444444">  },</span></span>
+<span class="line"><span style="color:#444444">})</span></span></code></pre>
+<p>得到：</p>
+<pre class="astro-code vitesse-black" style="background-color:#000;color:#dbd7cacc; overflow-x: auto;" tabindex="0" data-language="css"><code><span class="line"><span style="color:#444444">:</span><span style="color:#BD976A">root</span><span style="color:#444444"> {</span></span>
+<span class="line"><span style="color:#BD976A">  --card-bg</span><span style="color:#444444">:</span><span style="color:#B8A965"> var</span><span style="color:#444444">(</span><span style="color:#BD976A">--neutral-1</span><span style="color:#444444">);</span></span>
+<span class="line"><span style="color:#BD976A">  --card-muted</span><span style="color:#444444">:</span><span style="color:#B8A965"> var</span><span style="color:#444444">(</span><span style="color:#BD976A">--neutral-3</span><span style="color:#444444">);</span></span>
+<span class="line"><span style="color:#BD976A">  --card-border</span><span style="color:#444444">:</span><span style="color:#B8A965"> var</span><span style="color:#444444">(</span><span style="color:#BD976A">--neutral-6</span><span style="color:#444444">);</span></span>
+<span class="line"><span style="color:#BD976A">  --card</span><span style="color:#444444">:</span><span style="color:#B8A965"> var</span><span style="color:#444444">(</span><span style="color:#BD976A">--neutral-12</span><span style="color:#444444">);</span></span>
+<span class="line"><span style="color:#BD976A">  --card-width</span><span style="color:#444444">:</span><span style="color:#4C9A91"> 20</span><span style="color:#CB7676">rem</span><span style="color:#444444">;</span></span>
+<span class="line"><span style="color:#444444">}</span></span></code></pre>
+<p><code>background</code> 变成 <code>bg</code>，<code>color</code> 被丢掉，所以颜色落在 <code>--card</code> 上，而不是 <code>--card-color</code>。</p>
+<p>类名按属性去匹配后缀：</p>
+<pre class="astro-code vitesse-black" style="background-color:#000;color:#dbd7cacc; overflow-x: auto;" tabindex="0" data-language="html"><code><span class="line"><span style="color:#444444">&lt;</span><span style="color:#4D9375">article</span><span style="color:#BD976A"> class</span><span style="color:#444444">=</span><span style="color:#C98A7D77">"</span><span style="color:#C98A7D">bg-card text-card border border-card w-card p-lg rounded-lg</span><span style="color:#C98A7D77">"</span><span style="color:#444444">&gt;</span></span>
+<span class="line"><span style="color:#444444">  &lt;</span><span style="color:#4D9375">p</span><span style="color:#BD976A"> class</span><span style="color:#444444">=</span><span style="color:#C98A7D77">"</span><span style="color:#C98A7D">bg-card-muted text-card</span><span style="color:#C98A7D77">"</span><span style="color:#444444">&gt;</span><span style="color:#DBD7CACC">卡片里的次级条</span><span style="color:#444444">&lt;/</span><span style="color:#4D9375">p</span><span style="color:#444444">&gt;</span></span>
+<span class="line"><span style="color:#444444">&lt;/</span><span style="color:#4D9375">article</span><span style="color:#444444">&gt;</span></span></code></pre>
+<p>生成结果：</p>
+<pre class="astro-code vitesse-black" style="background-color:#000;color:#dbd7cacc; overflow-x: auto;" tabindex="0" data-language="css"><code><span class="line"><span style="color:#444444">.</span><span style="color:#BD976A">bg-card</span><span style="color:#444444"> {</span><span style="color:#B8A965"> background-color</span><span style="color:#444444">:</span><span style="color:#B8A965"> var</span><span style="color:#444444">(</span><span style="color:#BD976A">--card-bg</span><span style="color:#444444">);</span><span style="color:#444444"> }</span></span>
+<span class="line"><span style="color:#444444">.</span><span style="color:#BD976A">text-card</span><span style="color:#444444"> {</span><span style="color:#B8A965"> color</span><span style="color:#444444">:</span><span style="color:#B8A965"> var</span><span style="color:#444444">(</span><span style="color:#BD976A">--card</span><span style="color:#444444">);</span><span style="color:#444444"> }</span></span>
+<span class="line"><span style="color:#444444">.</span><span style="color:#BD976A">border-card</span><span style="color:#444444"> {</span><span style="color:#B8A965"> border-color</span><span style="color:#444444">:</span><span style="color:#B8A965"> var</span><span style="color:#444444">(</span><span style="color:#BD976A">--card-border</span><span style="color:#444444">);</span><span style="color:#444444"> }</span></span>
+<span class="line"><span style="color:#444444">.</span><span style="color:#BD976A">w-card</span><span style="color:#444444"> {</span><span style="color:#B8A965"> width</span><span style="color:#444444">:</span><span style="color:#B8A965"> var</span><span style="color:#444444">(</span><span style="color:#BD976A">--card-width</span><span style="color:#444444">);</span><span style="color:#444444"> }</span></span>
+<span class="line"><span style="color:#444444">.</span><span style="color:#BD976A">bg-card-muted</span><span style="color:#444444"> {</span><span style="color:#B8A965"> background-color</span><span style="color:#444444">:</span><span style="color:#B8A965"> var</span><span style="color:#444444">(</span><span style="color:#BD976A">--card-muted</span><span style="color:#444444">);</span><span style="color:#444444"> }</span></span></code></pre>
+<p><code>bg</code> 优先找 <code>bg</code>，再找 <code>color</code>。<code>text</code> 优先找 <code>text</code>，再找 <code>color</code>。这里没有 <code>card-text</code>，文字就用 <code>--card</code>。宽度找 <code>width</code>，所以是 <code>--card-width</code>。<code>size-card</code> 会同时找宽和高的 <code>size</code> 后缀；只声明了 <code>width</code> 时，宽能对上，高不一定有自己的变量。</p>
+<p>测试里同一套名字还可以用在这些前缀上：<code>c-</code>、<code>color-</code>、<code>b-</code>、<code>ring-</code>、<code>outline-</code>、<code>shadow-</code>、<code>fill-</code>、<code>stroke-</code>、<code>accent-</code>、<code>caret-</code>、<code>decoration-</code>、<code>underline-</code>、<code>divide-</code>、<code>drop-shadow-</code>、<code>drop-shadow-color-</code>、<code>rule-</code>、<code>inset-ring-</code>、<code>placeholder-</code>、<code>from-</code>、<code>to-</code>、<code>via-</code>、<code>mask-linear-from-</code>、<code>h-</code>、<code>size-</code>。</p>
+<pre class="astro-code vitesse-black" style="background-color:#000;color:#dbd7cacc; overflow-x: auto;" tabindex="0" data-language="html"><code><span class="line"><span style="color:#444444">&lt;</span><span style="color:#4D9375">svg</span><span style="color:#BD976A"> class</span><span style="color:#444444">=</span><span style="color:#C98A7D77">"</span><span style="color:#C98A7D">fill-card stroke-card</span><span style="color:#C98A7D77">"</span><span style="color:#444444">&gt;&lt;/</span><span style="color:#4D9375">svg</span><span style="color:#444444">&gt;</span></span>
+<span class="line"><span style="color:#444444">&lt;</span><span style="color:#4D9375">input</span><span style="color:#BD976A"> class</span><span style="color:#444444">=</span><span style="color:#C98A7D77">"</span><span style="color:#C98A7D">caret-card placeholder-card</span><span style="color:#C98A7D77">"</span><span style="color:#BD976A"> placeholder</span><span style="color:#444444">=</span><span style="color:#C98A7D77">"</span><span style="color:#C98A7D">卡片色的占位</span><span style="color:#C98A7D77">"</span><span style="color:#444444"> /&gt;</span></span>
+<span class="line"><span style="color:#444444">&lt;</span><span style="color:#4D9375">div</span><span style="color:#BD976A"> class</span><span style="color:#444444">=</span><span style="color:#C98A7D77">"</span><span style="color:#C98A7D">from-card to-card-muted</span><span style="color:#C98A7D77">"</span><span style="color:#444444">&gt;&lt;/</span><span style="color:#4D9375">div</span><span style="color:#444444">&gt;</span></span></code></pre>
+<p>Sources: <code>packages/unocss/src/index.ts</code>, <code>packages/unocss/src/theme/custom.ts</code>, <code>packages/unocss/src/custom/mappings.ts</code>, <code>packages/unocss/src/custom/utilities.ts</code>, <code>packages/unocss/src/preflights/custom.ts</code>, <code>packages/unocss/src/rules/size.ts</code>, <code>packages/unocss/test/preset.test.ts</code>, <code>packages/unocss/test/theme/custom.test.ts</code></p>
+<h2 id="短键撞在一起">短键撞在一起</h2>
+<p><code>cssVarShortKeysMap</code> 把 <code>color</code>、<code>base</code>、<code>default</code> 收成空字符串，再从键里删掉。同一对象里这三项会挤成一个变量，先出现的留下。</p>
+<pre class="astro-code vitesse-black" style="background-color:#000;color:#dbd7cacc; overflow-x: auto;" tabindex="0" data-language="ts"><code><span class="line"><span style="color:#80A665">cssVars</span><span style="color:#444444">:</span><span style="color:#444444"> {</span></span>
+<span class="line"><span style="color:#80A665">  test</span><span style="color:#444444">:</span><span style="color:#444444"> {</span></span>
+<span class="line"><span style="color:#80A665">    background</span><span style="color:#444444">:</span><span style="color:#C98A7D77"> '</span><span style="color:#C98A7D">#000</span><span style="color:#C98A7D77">'</span><span style="color:#444444">,</span></span>
+<span class="line"><span style="color:#80A665">    base</span><span style="color:#444444">:</span><span style="color:#C98A7D77"> '</span><span style="color:#C98A7D">#000</span><span style="color:#C98A7D77">'</span><span style="color:#444444">,</span></span>
+<span class="line"><span style="color:#4D9375">    default</span><span style="color:#DBD7CACC">: </span><span style="color:#C98A7D77">'</span><span style="color:#C98A7D">#f00</span><span style="color:#C98A7D77">'</span><span style="color:#444444">,</span></span>
+<span class="line"><span style="color:#80A665">    color</span><span style="color:#444444">:</span><span style="color:#C98A7D77"> '</span><span style="color:#C98A7D">#fff</span><span style="color:#C98A7D77">'</span><span style="color:#444444">,</span></span>
+<span class="line"><span style="color:#80A665">    border</span><span style="color:#444444">:</span><span style="color:#C98A7D77"> '</span><span style="color:#C98A7D">#000</span><span style="color:#C98A7D77">'</span><span style="color:#444444">,</span></span>
+<span class="line"><span style="color:#80A665">    muted</span><span style="color:#444444">:</span><span style="color:#C98A7D77"> '</span><span style="color:#C98A7D">neutral.3</span><span style="color:#C98A7D77">'</span><span style="color:#444444">,</span></span>
+<span class="line"><span style="color:#444444">  },</span></span>
+<span class="line"><span style="color:#444444">}</span></span></code></pre>
+<p><code>background</code> 单独变成 <code>--test-bg: #000</code>。随后 <code>base</code> 变成 <code>--test: #000</code>。<code>default</code> 和 <code>color</code> 也想占用 <code>--test</code>，被丢掉，<code>#f00</code> 和 <code>#fff</code> 不会出现。<code>muted</code> 仍是 <code>--test-muted: var(--neutral-3)</code>。</p>
+<p>只声明 <code>background</code>、不声明 <code>color</code> / <code>base</code> 时，<code>text-page</code> 仍可能生成 <code>color: var(--page)</code>，而 CSS 里只有 <code>--page-bg</code>。文字类会匹配成功，变量却是空的。需要文字色时，显式写 <code>color</code> 或 <code>base</code>。</p>
+<p>Sources: <code>packages/unocss/src/custom/mappings.ts</code>, <code>packages/unocss/src/preflights/custom.ts</code>, <code>packages/unocss/test/preset.test.ts</code></p>
+<h2 id="覆盖别名和主题变量">覆盖别名和主题变量</h2>
+<p>别名的形式固定为：</p>
+<pre class="astro-code vitesse-black" style="background-color:#000;color:#dbd7cacc; overflow-x: auto;" tabindex="0" data-language="css"><code><span class="line"><span style="color:#DBD7CACC">--accent-9: var(--custom-accent-9, var(--puerto-9));</span></span></code></pre>
+<p>只要 <code>--custom-accent-9</code> 有值，就不再用 <code>puerto</code>。全局 <code>cssVars</code> 的原始 <code>var(...)</code> 会原样写出。</p>
+<pre class="astro-code vitesse-black" style="background-color:#000;color:#dbd7cacc; overflow-x: auto;" tabindex="0" data-language="ts"><code><span class="line"><span style="color:#4D9375">import</span><span style="color:#444444"> {</span><span style="color:#BD976A"> presetWemeUI</span><span style="color:#444444"> }</span><span style="color:#4D9375"> from</span><span style="color:#C98A7D77"> '</span><span style="color:#C98A7D">@weme-ui/unocss-preset</span><span style="color:#C98A7D77">'</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#4D9375">export</span><span style="color:#4D9375"> default</span><span style="color:#444444"> {</span></span>
+<span class="line"><span style="color:#B8A965">  presets</span><span style="color:#444444">: [</span></span>
+<span class="line"><span style="color:#80A665">    presetWemeUI</span><span style="color:#444444">({</span></span>
+<span class="line"><span style="color:#B8A965">      cssVars</span><span style="color:#444444">: {</span></span>
+<span class="line"><span style="color:#C98A7D77">        '</span><span style="color:#C98A7D">custom-accent-9</span><span style="color:#C98A7D77">'</span><span style="color:#444444">: </span><span style="color:#C98A7D77">'</span><span style="color:#C98A7D">var(--indigo-9)</span><span style="color:#C98A7D77">'</span><span style="color:#444444">,</span></span>
+<span class="line"><span style="color:#C98A7D77">        '</span><span style="color:#C98A7D">custom-accent-3</span><span style="color:#C98A7D77">'</span><span style="color:#444444">: </span><span style="color:#C98A7D77">'</span><span style="color:#C98A7D">var(--indigo-3)</span><span style="color:#C98A7D77">'</span><span style="color:#444444">,</span></span>
+<span class="line"><span style="color:#B8A965">        page</span><span style="color:#444444">: {</span></span>
+<span class="line"><span style="color:#B8A965">          background</span><span style="color:#444444">: </span><span style="color:#C98A7D77">'</span><span style="color:#C98A7D">#f7f7f5</span><span style="color:#C98A7D77">'</span><span style="color:#444444">,</span></span>
+<span class="line"><span style="color:#444444">        },</span></span>
+<span class="line"><span style="color:#444444">      },</span></span>
+<span class="line"><span style="color:#444444">    }),</span></span>
+<span class="line"><span style="color:#444444">  ],</span></span>
+<span class="line"><span style="color:#444444">}</span></span></code></pre>
+<pre class="astro-code vitesse-black" style="background-color:#000;color:#dbd7cacc; overflow-x: auto;" tabindex="0" data-language="html"><code><span class="line"><span style="color:#444444">&lt;</span><span style="color:#4D9375">body</span><span style="color:#BD976A"> class</span><span style="color:#444444">=</span><span style="color:#C98A7D77">"</span><span style="color:#C98A7D">bg-page text-default</span><span style="color:#C98A7D77">"</span><span style="color:#444444">&gt;</span></span>
+<span class="line"><span style="color:#444444">  &lt;</span><span style="color:#4D9375">button</span><span style="color:#BD976A"> class</span><span style="color:#444444">=</span><span style="color:#C98A7D77">"</span><span style="color:#C98A7D">bg-accent-3 text-accent</span><span style="color:#C98A7D77">"</span><span style="color:#444444">&gt;</span><span style="color:#DBD7CACC">仍写 accent，实际读 indigo</span><span style="color:#444444">&lt;/</span><span style="color:#4D9375">button</span><span style="color:#444444">&gt;</span></span>
+<span class="line"><span style="color:#444444">&lt;/</span><span style="color:#4D9375">body</span><span style="color:#444444">&gt;</span></span></code></pre>
+<p>这只覆盖你写到类名里的那些阶。没用到的阶仍回退到 <code>puerto</code>。</p>
+<p>主题级变量不要和全局变量混在一个选择器里。全局在 <code>:root</code>，主题在 <code>:where([data-theme="名称"])</code>。同名时，带 <code>data-theme</code> 的块只在该属性下生效；默认主题因为选择器含 <code>:root</code>，会作用到整份文档。</p>
+<p>组合示例，基于源码导出构造：</p>
+<pre class="astro-code vitesse-black" style="background-color:#000;color:#dbd7cacc; overflow-x: auto;" tabindex="0" data-language="html"><code><span class="line"><span style="color:#444444">&lt;</span><span style="color:#4D9375">html</span><span style="color:#BD976A"> class</span><span style="color:#444444">=</span><span style="color:#C98A7D77">"</span><span style="color:#C98A7D">dark</span><span style="color:#C98A7D77">"</span><span style="color:#BD976A"> data-theme</span><span style="color:#444444">=</span><span style="color:#C98A7D77">"</span><span style="color:#C98A7D">default</span><span style="color:#C98A7D77">"</span><span style="color:#BD976A"> style</span><span style="color:#444444">=</span><span style="color:#C98A7D77">"</span><span style="color:#C98A7D">--custom-accent-9: var(--indigo-9)</span><span style="color:#C98A7D77">"</span><span style="color:#444444">&gt;</span></span>
+<span class="line"><span style="color:#444444">  &lt;</span><span style="color:#4D9375">section</span><span style="color:#BD976A"> class</span><span style="color:#444444">=</span><span style="color:#C98A7D77">"</span><span style="color:#C98A7D">bg-muted text-highlighted border border-elevated rounded-lg p-lg tablet:p-xl</span><span style="color:#C98A7D77">"</span><span style="color:#444444">&gt;</span></span>
+<span class="line"><span style="color:#444444">    &lt;</span><span style="color:#4D9375">h2</span><span style="color:#BD976A"> class</span><span style="color:#444444">=</span><span style="color:#C98A7D77">"</span><span style="color:#C98A7D">text-accent</span><span style="color:#C98A7D77">"</span><span style="color:#444444">&gt;</span><span style="color:#DBD7CACC">暗色里的强调标题</span><span style="color:#444444">&lt;/</span><span style="color:#4D9375">h2</span><span style="color:#444444">&gt;</span></span>
+<span class="line"><span style="color:#444444">    &lt;</span><span style="color:#4D9375">p</span><span style="color:#BD976A"> class</span><span style="color:#444444">=</span><span style="color:#C98A7D77">"</span><span style="color:#C98A7D">text-subtle</span><span style="color:#C98A7D77">"</span><span style="color:#444444">&gt;</span><span style="color:#DBD7CACC">正文仍走 neutral token，标题的第 9 阶改读 indigo。</span><span style="color:#444444">&lt;/</span><span style="color:#4D9375">p</span><span style="color:#444444">&gt;</span></span>
+<span class="line"><span style="color:#444444">  &lt;/</span><span style="color:#4D9375">section</span><span style="color:#444444">&gt;</span></span>
+<span class="line"><span style="color:#444444">&lt;/</span><span style="color:#4D9375">html</span><span style="color:#444444">&gt;</span></span></code></pre>
+<p><code>style</code> 只是提前放上 <code>--custom-accent-9</code>。同一件事也可以放进 <code>cssVars</code>，不必写在元素上。<code>bg-muted</code> 和 <code>text-highlighted</code> 继续用默认 token。<code>tablet:p-xl</code> 在 768px 以上改间距。</p>
+<p>Sources: <code>packages/unocss/src/custom/types.ts</code>, <code>packages/unocss/src/preflights/custom.ts</code>, <code>packages/unocss/src/custom/utilities.ts</code></p>
+<h2 id="在类名里直接写变量">在类名里直接写变量</h2>
+<p><code>rules/variables.ts</code> 提供缩写属性到 <code>var(--*)</code> 的写法，名字以 <code>$</code> 开头：</p>
+<pre class="astro-code vitesse-black" style="background-color:#000;color:#dbd7cacc; overflow-x: auto;" tabindex="0" data-language="html"><code><span class="line"><span style="color:#444444">&lt;</span><span style="color:#4D9375">div</span><span style="color:#BD976A"> class</span><span style="color:#444444">=</span><span style="color:#C98A7D77">"</span><span style="color:#C98A7D">fw-$card select-$card</span><span style="color:#C98A7D77">"</span><span style="color:#444444">&gt;</span><span style="color:#DBD7CACC">字重和 user-select 都写成 var(--card)</span><span style="color:#444444">&lt;/</span><span style="color:#4D9375">div</span><span style="color:#444444">&gt;</span></span>
+<span class="line"><span style="color:#444444">&lt;</span><span style="color:#4D9375">p</span><span style="color:#BD976A"> class</span><span style="color:#444444">=</span><span style="color:#C98A7D77">"</span><span style="color:#C98A7D">[color:var(--text-subtle)]</span><span style="color:#C98A7D77">"</span><span style="color:#444444">&gt;</span><span style="color:#DBD7CACC">这条声明直接写成 color: var(--text-subtle)</span><span style="color:#444444">&lt;/</span><span style="color:#4D9375">p</span><span style="color:#444444">&gt;</span></span></code></pre>
+<p><code>fw</code> 对应 <code>font-weight</code>，<code>select</code> 对应 <code>user-select</code>，<code>ws</code> 对应 <code>white-space</code>。上面的 <code>--card</code> 如果来自颜色字段，内容是颜色，不适合当字重；这里只说明 <code>$</code> 类名会读已有变量，不会新建变量。方括号规则要求属性名是一段连续的名字，值里可以包含 <code>var(...)</code>。</p>
+<p>Sources: <code>packages/unocss/src/rules/variables.ts</code></p>
+<h2 id="注意事项">注意事项</h2>
+<ul>
+<li>类名 <code>text-default</code> 对应变量 <code>--text</code>。覆盖时改 <code>--text</code>，改 <code>--text-default</code> 不会作用到这个类。</li>
+<li><code>background</code> 与 <code>color</code> 不要假设都会保留。看短键表：一个变 <code>bg</code>，一个消失。</li>
+<li>同一短键只保留先出现的值。<code>base</code>、<code>default</code>、<code>color</code> 不要同时拿来表示不同颜色。</li>
+<li>全局 <code>cssVars</code> 会整表输出，不看你有没有用到类名。主题色阶相反，只有被引用的阶才输出。</li>
+<li>主题 token 的值写成 <code>neutral.12</code> 这种「颜色.阶」。写成未知字符串时，会变成 <code>var(--未知字符串)</code>。</li>
+</ul>
+<h2 id="相关页面">相关页面</h2>
+<ul>
+<li>配置 Preset 与定制主题</li>
+<li>使用 Radix Colors 刻度与别名</li>
+<li>按场景选用 Rules 类名</li>
+<li>理解 Preflights 与 Postprocess</li>
+</ul>
+</article></div><footer class="site-foot"><span>早期开发，请勿用于生产</span><span>MIT · 2026</span></footer><script type="module">function e(){document.querySelectorAll(`[data-copy-command]`).forEach(e=>{e.addEventListener(`click`,async()=>{let t=e.dataset.copyCommand;if(!t)return;let n=e.dataset.labelIdle||`复制`,r=e.dataset.labelDone||`已复制`;try{await navigator.clipboard.writeText(t),e.textContent=r,window.setTimeout(()=>{e.textContent=n},1600)}catch{e.textContent=`复制失败`,window.setTimeout(()=>{e.textContent=n},1600)}})})}e();</script></body></html>

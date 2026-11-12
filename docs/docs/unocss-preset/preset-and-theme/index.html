@@ -1,0 +1,252 @@
+<!DOCTYPE html><html lang="zh-CN" class="dark"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>配置 Preset 与定制主题 — Weme UI</title><meta name="description" content="配置 Preset 与定制主题"><link rel="icon" type="image/svg+xml" href="/weme-ui/weme.svg"><script>document.documentElement.classList.add('js')</script><link rel="stylesheet" href="/weme-ui/_astro/LandingLayout.BK6XZBaz.css"></head><body><header class="site-nav"><a class="brand" href="/weme-ui/">WEME<span class="dot">.</span></a><nav class="nav-links" aria-label="页面"><a href="https://github.com/weme-ui/weme-ui" target="_blank" rel="noreferrer">GitHub</a><a href="https://weme-ui.github.io/slim" target="_blank" rel="noreferrer">slim</a><a href="/weme-ui/docs/unocss-preset/" aria-current="page">Preset</a></nav></header><div class="docs-shell"><nav class="docs-nav" aria-label="Preset 文档"><div class="docs-group"><p>入门</p><ul><li><a href="/weme-ui/docs/unocss-preset/">概览</a></li><li><a href="/weme-ui/docs/unocss-preset/getting-started/">安装 preset 并写出第一个类名</a></li></ul></div><div class="docs-group"><p>主题与变量</p><ul><li><a href="/weme-ui/docs/unocss-preset/preset-and-theme/" aria-current="page">配置 Preset 与定制主题</a></li><li><a href="/weme-ui/docs/unocss-preset/radix-colors/">使用 Radix Colors 刻度与别名</a></li><li><a href="/weme-ui/docs/unocss-preset/css-variables/">使用并覆盖自定义 CSS 变量</a></li></ul></div><div class="docs-group"><p>规则、变体、快捷方式</p><ul><li><a href="/weme-ui/docs/unocss-preset/rules/">按场景选用 Rules 类名</a></li><li><a href="/weme-ui/docs/unocss-preset/variants/">用 Variants 写暗色、断点与状态</a></li><li><a href="/weme-ui/docs/unocss-preset/shortcuts/">用 Shortcuts 收拢重复类名</a></li></ul></div><div class="docs-group"><p>预检与后处理</p><ul><li><a href="/weme-ui/docs/unocss-preset/preflights-and-postprocess/">理解 Preflights 与 Postprocess</a></li></ul></div><div class="docs-group"><p>最佳实践</p><ul><li><a href="/weme-ui/docs/unocss-preset/recipes/">组合类名、变量与变体</a></li></ul></div><div class="docs-group"><p>扩展开发</p><ul><li><a href="/weme-ui/docs/unocss-preset/extending/">在仓库里新增规则、变量与变体</a></li></ul></div></nav><article class="prose"><h1 id="配置-preset-与定制主题">配置 Preset 与定制主题</h1>
+<p><code>presetWemeUI(options)</code> 的每个字段都会改变选择器、变量前缀或主题块。这一页按字段说明写什么、生成什么，以及默认主题在什么条件下被追加进去。</p>
+<p>主题对象的形状是 <code>CustomTheme</code>：<code>name</code>、<code>radius</code>、<code>scaling</code>、<code>aliases</code>、<code>tokens</code>、<code>cssVars</code>。仓库里的 <code>defineTheme</code> 会用默认主题补齐缺省字段，但 <code>src/index.ts</code> 没有把它再导出。从 <code>@weme-ui/unocss-preset</code> 只能拿到 <code>presetWemeUI</code> 和 <code>PresetWemeUIOptions</code>。调用方要自己写完整对象，或在本仓库源码里调用 <code>defineTheme</code>。</p>
+<h2 id="使用场景">使用场景</h2>
+<ul>
+<li>暗色要跟系统 <code>prefers-color-scheme</code>，或要改成 <code>.light</code> / <code>.dark</code> 以外的类名。</li>
+<li>和现有 CSS 抢优先级，需要 <code>!important</code> 或 <code>#app</code> 前缀。</li>
+<li>做一个叫 <code>brand</code> 的主题，换强调色、圆角和缩放，而不是改默认的 <code>puerto</code> / <code>iron</code>。</li>
+<li>给色板加一个主题里没有的颜色名，例如 <code>zinc</code>。</li>
+</ul>
+<h2 id="选项一览">选项一览</h2>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>不传时</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>dark</code></td>
+<td><code>'class'</code></td>
+<td><code>'class'</code> 或 <code>{ light, dark }</code> 时，<code>dark:</code> / <code>light:</code> 变成祖先类；<code>'media'</code> 时变成 <code>prefers-color-scheme</code></td>
+</tr>
+<tr>
+<td><code>variablePrefix</code></td>
+<td><code>'un-'</code></td>
+<td>不是 <code>'un-'</code> 时，后处理把 <code>--un-</code> 换成这个前缀</td>
+</tr>
+<tr>
+<td><code>prefix</code></td>
+<td>不设置</td>
+<td>原样交给 preset 的 <code>prefix</code></td>
+</tr>
+<tr>
+<td><code>reset</code></td>
+<td>未赋值，只有 <code>false</code> 才关闭</td>
+<td>控制是否输出 reset</td>
+</tr>
+<tr>
+<td><code>important</code></td>
+<td><code>false</code></td>
+<td><code>true</code> 给声明加 <code>!important</code>；字符串则包一层该选择器</td>
+</tr>
+<tr>
+<td><code>arbitraryVariants</code></td>
+<td><code>true</code></td>
+<td>为 <code>true</code> 时使用 <code>extractorArbitraryVariants</code></td>
+</tr>
+<tr>
+<td><code>transformerVariantGroup</code></td>
+<td><code>true</code></td>
+<td>为 <code>true</code> 时挂上变体组 transformer</td>
+</tr>
+<tr>
+<td><code>themes</code></td>
+<td><code>[]</code>，随后可能追加默认主题</td>
+<td>每个主题一块 <code>[data-theme]</code> CSS</td>
+</tr>
+<tr>
+<td><code>colors</code></td>
+<td><code>{}</code></td>
+<td><code>accent</code> / <code>neutral</code> 两张表，用来增加颜色</td>
+</tr>
+<tr>
+<td><code>cssVars</code></td>
+<td><code>{}</code></td>
+<td>写到 <code>:root</code> 的自定义变量</td>
+</tr>
+</tbody>
+</table>
+<pre class="astro-code vitesse-black" style="background-color:#000;color:#dbd7cacc; overflow-x: auto;" tabindex="0" data-language="ts"><code><span class="line"><span style="color:#4D9375">import</span><span style="color:#444444"> {</span><span style="color:#BD976A"> presetWemeUI</span><span style="color:#444444"> }</span><span style="color:#4D9375"> from</span><span style="color:#C98A7D77"> '</span><span style="color:#C98A7D">@weme-ui/unocss-preset</span><span style="color:#C98A7D77">'</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#4D9375">export</span><span style="color:#4D9375"> default</span><span style="color:#444444"> {</span></span>
+<span class="line"><span style="color:#B8A965">  presets</span><span style="color:#444444">: [</span></span>
+<span class="line"><span style="color:#80A665">    presetWemeUI</span><span style="color:#444444">({</span></span>
+<span class="line"><span style="color:#B8A965">      dark</span><span style="color:#444444">: </span><span style="color:#C98A7D77">'</span><span style="color:#C98A7D">class</span><span style="color:#C98A7D77">'</span><span style="color:#444444">,</span></span>
+<span class="line"><span style="color:#B8A965">      variablePrefix</span><span style="color:#444444">: </span><span style="color:#C98A7D77">'</span><span style="color:#C98A7D">un-</span><span style="color:#C98A7D77">'</span><span style="color:#444444">,</span></span>
+<span class="line"><span style="color:#B8A965">      reset</span><span style="color:#444444">: </span><span style="color:#4D9375">true</span><span style="color:#444444">,</span></span>
+<span class="line"><span style="color:#B8A965">      important</span><span style="color:#444444">: </span><span style="color:#4D9375">false</span><span style="color:#444444">,</span></span>
+<span class="line"><span style="color:#444444">    }),</span></span>
+<span class="line"><span style="color:#444444">  ],</span></span>
+<span class="line"><span style="color:#444444">}</span></span></code></pre>
+<p>Sources: <code>packages/unocss/src/index.ts</code>, <code>packages/unocss/src/theme/default.ts</code>, <code>packages/unocss/src/preflights/reset.ts</code></p>
+<h2 id="暗色模式">暗色模式</h2>
+<p><code>'class'</code> 时，<code>dark:</code> 的前缀是 <code>.dark</code>，<code>light:</code> 的前缀是 <code>.light</code>。对象形式可以改类名，缺省仍是 <code>.light</code> 和 <code>.dark</code>。</p>
+<pre class="astro-code vitesse-black" style="background-color:#000;color:#dbd7cacc; overflow-x: auto;" tabindex="0" data-language="ts"><code><span class="line"><span style="color:#80A665">presetWemeUI</span><span style="color:#444444">({</span></span>
+<span class="line"><span style="color:#B8A965">  dark</span><span style="color:#444444">: {</span></span>
+<span class="line"><span style="color:#B8A965">    light</span><span style="color:#444444">: </span><span style="color:#C98A7D77">'</span><span style="color:#C98A7D">.theme-light</span><span style="color:#C98A7D77">'</span><span style="color:#444444">,</span></span>
+<span class="line"><span style="color:#B8A965">    dark</span><span style="color:#444444">: </span><span style="color:#C98A7D77">'</span><span style="color:#C98A7D">.theme-dark</span><span style="color:#C98A7D77">'</span><span style="color:#444444">,</span></span>
+<span class="line"><span style="color:#444444">  },</span></span>
+<span class="line"><span style="color:#444444">})</span></span></code></pre>
+<pre class="astro-code vitesse-black" style="background-color:#000;color:#dbd7cacc; overflow-x: auto;" tabindex="0" data-language="html"><code><span class="line"><span style="color:#444444">&lt;</span><span style="color:#4D9375">body</span><span style="color:#BD976A"> class</span><span style="color:#444444">=</span><span style="color:#C98A7D77">"</span><span style="color:#C98A7D">theme-dark</span><span style="color:#C98A7D77">"</span><span style="color:#444444">&gt;</span></span>
+<span class="line"><span style="color:#444444">  &lt;</span><span style="color:#4D9375">p</span><span style="color:#BD976A"> class</span><span style="color:#444444">=</span><span style="color:#C98A7D77">"</span><span style="color:#C98A7D">text-highlighted light:text-subtle</span><span style="color:#C98A7D77">"</span><span style="color:#444444">&gt;</span><span style="color:#DBD7CACC">这段字在暗色容器里用高亮色。</span><span style="color:#444444">&lt;/</span><span style="color:#4D9375">p</span><span style="color:#444444">&gt;</span></span>
+<span class="line"><span style="color:#444444">&lt;/</span><span style="color:#4D9375">body</span><span style="color:#444444">&gt;</span></span></code></pre>
+<p><code>dark: 'media'</code> 时，<code>dark:</code> / <code>light:</code> 不再要求页面上的类，而是：</p>
+<pre class="astro-code vitesse-black" style="background-color:#000;color:#dbd7cacc; overflow-x: auto;" tabindex="0" data-language="css"><code><span class="line"><span style="color:#444444">@</span><span style="color:#4D9375">media</span><span style="color:#444444"> (</span><span style="color:#DBD7CACC">prefers-color-scheme</span><span style="color:#444444">:</span><span style="color:#DBD7CACC"> dark</span><span style="color:#444444">)</span><span style="color:#444444"> {</span><span style="color:#758575DD"> /* dark: 工具类 */</span><span style="color:#444444"> }</span></span>
+<span class="line"><span style="color:#444444">@</span><span style="color:#4D9375">media</span><span style="color:#444444"> (</span><span style="color:#DBD7CACC">prefers-color-scheme</span><span style="color:#444444">:</span><span style="color:#DBD7CACC"> light</span><span style="color:#444444">)</span><span style="color:#444444"> {</span><span style="color:#758575DD"> /* light: 工具类 */</span><span style="color:#444444"> }</span></span></code></pre>
+<p>无论 <code>dark</code> 怎么设，另外一组变体始终存在：<code>.dark:</code>、<code>.light:</code>、<code>@dark:</code>、<code>@light:</code>、<code>not-dark:</code>。<code>.dark:</code> 固定匹配类名 <code>.dark</code>。<code>@dark:</code> 固定是 <code>prefers-color-scheme: dark</code>。色板变量本身仍写在 <code>.dark</code> 规则里，见 Preflights 那一页。</p>
+<p>Sources: <code>packages/unocss/src/index.ts</code>, <code>packages/unocss/src/variants/dark.ts</code>, <code>packages/unocss/src/preflights/theme.ts</code></p>
+<h2 id="默认主题什么时候出现">默认主题什么时候出现</h2>
+<pre class="astro-code vitesse-black" style="background-color:#000;color:#dbd7cacc; overflow-x: auto;" tabindex="0" data-language="ts"><code><span class="line"><span style="color:#4D9375">if</span><span style="color:#444444"> (</span><span style="color:#BD976A">options</span><span style="color:#444444">.</span><span style="color:#BD976A">themes</span><span style="color:#444444">?.</span><span style="color:#B8A965">length</span><span style="color:#CB7676"> ===</span><span style="color:#4C9A91"> 0</span><span style="color:#CB7676"> ||</span><span style="color:#BD976A"> options</span><span style="color:#444444">.</span><span style="color:#BD976A">themes</span><span style="color:#444444">?.</span><span style="color:#80A665">some</span><span style="color:#444444">((</span><span style="color:#BD976A">t</span><span style="color:#444444">)</span><span style="color:#444444"> =&gt;</span><span style="color:#BD976A"> t</span><span style="color:#444444">.</span><span style="color:#BD976A">name</span><span style="color:#CB7676"> ===</span><span style="color:#C98A7D77"> '</span><span style="color:#C98A7D">default</span><span style="color:#C98A7D77">'</span><span style="color:#444444">))</span><span style="color:#444444"> {</span></span>
+<span class="line"><span style="color:#BD976A">  options</span><span style="color:#444444">.</span><span style="color:#BD976A">themes</span><span style="color:#444444">.</span><span style="color:#80A665">push</span><span style="color:#444444">(</span><span style="color:#BD976A">DEFAULT_THEME</span><span style="color:#444444">)</span></span>
+<span class="line"><span style="color:#444444">}</span></span></code></pre>
+<p>三种结果：</p>
+<ul>
+<li>不传 <code>themes</code>，或传 <code>[]</code>：数组里只有内置 <code>default</code>（<code>radius: 'md'</code>，<code>scaling: '100%'</code>，<code>accent: 'puerto'</code>，<code>neutral: 'iron'</code>）。</li>
+<li>只传 <code>name</code> 不是 <code>'default'</code> 的主题：不会再追加内置主题。页面必须带上对应的 <code>data-theme</code>。</li>
+<li>自己放了一个 <code>name: 'default'</code>：你的对象在前，内置 <code>DEFAULT_THEME</code> 在后。同选择器上后写的变量覆盖先写的。想替换内置默认主题时，不要用这个名字。</li>
+</ul>
+<p><code>name === 'default'</code> 的选择器是 <code>:root,:where([data-theme="default"])</code>。其他名字只有 <code>:where([data-theme="名称"])</code>，不会自动落到 <code>:root</code>。</p>
+<p>仓库内可以用 <code>defineTheme</code> 补默认值。它不在包入口上。</p>
+<pre class="astro-code vitesse-black" style="background-color:#000;color:#dbd7cacc; overflow-x: auto;" tabindex="0" data-language="ts"><code><span class="line"><span style="color:#4D9375">import</span><span style="color:#444444"> {</span><span style="color:#BD976A"> defineTheme</span><span style="color:#444444"> }</span><span style="color:#4D9375"> from</span><span style="color:#C98A7D77"> '</span><span style="color:#C98A7D">./custom/theme</span><span style="color:#C98A7D77">'</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#CB7676">const </span><span style="color:#BD976A">brand</span><span style="color:#444444"> =</span><span style="color:#80A665"> defineTheme</span><span style="color:#444444">({</span></span>
+<span class="line"><span style="color:#B8A965">  name</span><span style="color:#444444">: </span><span style="color:#C98A7D77">'</span><span style="color:#C98A7D">brand</span><span style="color:#C98A7D77">'</span><span style="color:#444444">,</span></span>
+<span class="line"><span style="color:#B8A965">  radius</span><span style="color:#444444">: </span><span style="color:#C98A7D77">'</span><span style="color:#C98A7D">lg</span><span style="color:#C98A7D77">'</span><span style="color:#444444">,</span></span>
+<span class="line"><span style="color:#B8A965">  scaling</span><span style="color:#444444">: </span><span style="color:#C98A7D77">'</span><span style="color:#C98A7D">110%</span><span style="color:#C98A7D77">'</span><span style="color:#444444">,</span></span>
+<span class="line"><span style="color:#B8A965">  aliases</span><span style="color:#444444">: {</span></span>
+<span class="line"><span style="color:#B8A965">    accent</span><span style="color:#444444">: </span><span style="color:#C98A7D77">'</span><span style="color:#C98A7D">indigo</span><span style="color:#C98A7D77">'</span><span style="color:#444444">,</span></span>
+<span class="line"><span style="color:#B8A965">    neutral</span><span style="color:#444444">: </span><span style="color:#C98A7D77">'</span><span style="color:#C98A7D">slate</span><span style="color:#C98A7D77">'</span><span style="color:#444444">,</span></span>
+<span class="line"><span style="color:#444444">  },</span></span>
+<span class="line"><span style="color:#B8A965">  tokens</span><span style="color:#444444">: {</span></span>
+<span class="line"><span style="color:#B8A965">    foreground</span><span style="color:#444444">: {</span></span>
+<span class="line"><span style="color:#B8A965">      highlighted</span><span style="color:#444444">: </span><span style="color:#C98A7D77">'</span><span style="color:#C98A7D">accent.12</span><span style="color:#C98A7D77">'</span><span style="color:#444444">,</span></span>
+<span class="line"><span style="color:#B8A965">      base</span><span style="color:#444444">: </span><span style="color:#C98A7D77">'</span><span style="color:#C98A7D">neutral.12</span><span style="color:#C98A7D77">'</span><span style="color:#444444">,</span></span>
+<span class="line"><span style="color:#444444">    },</span></span>
+<span class="line"><span style="color:#444444">  },</span></span>
+<span class="line"><span style="color:#B8A965">  cssVars</span><span style="color:#444444">: {</span></span>
+<span class="line"><span style="color:#B8A965">    panel</span><span style="color:#444444">: {</span></span>
+<span class="line"><span style="color:#B8A965">      background</span><span style="color:#444444">: </span><span style="color:#C98A7D77">'</span><span style="color:#C98A7D">neutral.2</span><span style="color:#C98A7D77">'</span><span style="color:#444444">,</span></span>
+<span class="line"><span style="color:#B8A965">      border</span><span style="color:#444444">: </span><span style="color:#C98A7D77">'</span><span style="color:#C98A7D">accent.6</span><span style="color:#C98A7D77">'</span><span style="color:#444444">,</span></span>
+<span class="line"><span style="color:#444444">    },</span></span>
+<span class="line"><span style="color:#444444">  },</span></span>
+<span class="line"><span style="color:#444444">})</span></span></code></pre>
+<p><code>defineTheme</code> 用 <code>defu</code> 把没写的 <code>aliases</code>、<code>tokens</code>、<code>cssVars</code> 和默认主题合并。只改 <code>accent</code> 时，<code>neutral</code>、<code>success</code>、<code>info</code>、<code>warning</code>、<code>error</code> 仍是 <code>iron</code>、<code>green</code>、<code>indigo</code>、<code>brown</code>、<code>tomato</code>。</p>
+<p>从已发布的包调用时，写成完整对象：</p>
+<pre class="astro-code vitesse-black" style="background-color:#000;color:#dbd7cacc; overflow-x: auto;" tabindex="0" data-language="ts"><code><span class="line"><span style="color:#4D9375">import</span><span style="color:#444444"> {</span><span style="color:#BD976A"> presetWemeUI</span><span style="color:#444444"> }</span><span style="color:#4D9375"> from</span><span style="color:#C98A7D77"> '</span><span style="color:#C98A7D">@weme-ui/unocss-preset</span><span style="color:#C98A7D77">'</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#4D9375">export</span><span style="color:#4D9375"> default</span><span style="color:#444444"> {</span></span>
+<span class="line"><span style="color:#B8A965">  presets</span><span style="color:#444444">: [</span></span>
+<span class="line"><span style="color:#80A665">    presetWemeUI</span><span style="color:#444444">({</span></span>
+<span class="line"><span style="color:#B8A965">      themes</span><span style="color:#444444">: [</span></span>
+<span class="line"><span style="color:#444444">        {</span></span>
+<span class="line"><span style="color:#B8A965">          name</span><span style="color:#444444">: </span><span style="color:#C98A7D77">'</span><span style="color:#C98A7D">brand</span><span style="color:#C98A7D77">'</span><span style="color:#444444">,</span></span>
+<span class="line"><span style="color:#B8A965">          radius</span><span style="color:#444444">: </span><span style="color:#C98A7D77">'</span><span style="color:#C98A7D">lg</span><span style="color:#C98A7D77">'</span><span style="color:#444444">,</span></span>
+<span class="line"><span style="color:#B8A965">          scaling</span><span style="color:#444444">: </span><span style="color:#C98A7D77">'</span><span style="color:#C98A7D">110%</span><span style="color:#C98A7D77">'</span><span style="color:#444444">,</span></span>
+<span class="line"><span style="color:#B8A965">          aliases</span><span style="color:#444444">: {</span></span>
+<span class="line"><span style="color:#B8A965">            accent</span><span style="color:#444444">: </span><span style="color:#C98A7D77">'</span><span style="color:#C98A7D">indigo</span><span style="color:#C98A7D77">'</span><span style="color:#444444">,</span></span>
+<span class="line"><span style="color:#B8A965">            neutral</span><span style="color:#444444">: </span><span style="color:#C98A7D77">'</span><span style="color:#C98A7D">slate</span><span style="color:#C98A7D77">'</span><span style="color:#444444">,</span></span>
+<span class="line"><span style="color:#B8A965">            success</span><span style="color:#444444">: </span><span style="color:#C98A7D77">'</span><span style="color:#C98A7D">green</span><span style="color:#C98A7D77">'</span><span style="color:#444444">,</span></span>
+<span class="line"><span style="color:#B8A965">            info</span><span style="color:#444444">: </span><span style="color:#C98A7D77">'</span><span style="color:#C98A7D">indigo</span><span style="color:#C98A7D77">'</span><span style="color:#444444">,</span></span>
+<span class="line"><span style="color:#B8A965">            warning</span><span style="color:#444444">: </span><span style="color:#C98A7D77">'</span><span style="color:#C98A7D">brown</span><span style="color:#C98A7D77">'</span><span style="color:#444444">,</span></span>
+<span class="line"><span style="color:#B8A965">            error</span><span style="color:#444444">: </span><span style="color:#C98A7D77">'</span><span style="color:#C98A7D">tomato</span><span style="color:#C98A7D77">'</span><span style="color:#444444">,</span></span>
+<span class="line"><span style="color:#444444">          },</span></span>
+<span class="line"><span style="color:#B8A965">          tokens</span><span style="color:#444444">: {</span></span>
+<span class="line"><span style="color:#B8A965">            foreground</span><span style="color:#444444">: {</span></span>
+<span class="line"><span style="color:#B8A965">              highlighted</span><span style="color:#444444">: </span><span style="color:#C98A7D77">'</span><span style="color:#C98A7D">accent.12</span><span style="color:#C98A7D77">'</span><span style="color:#444444">,</span></span>
+<span class="line"><span style="color:#B8A965">              base</span><span style="color:#444444">: </span><span style="color:#C98A7D77">'</span><span style="color:#C98A7D">neutral.12</span><span style="color:#C98A7D77">'</span><span style="color:#444444">,</span></span>
+<span class="line"><span style="color:#B8A965">              subtle</span><span style="color:#444444">: </span><span style="color:#C98A7D77">'</span><span style="color:#C98A7D">neutral.9</span><span style="color:#C98A7D77">'</span><span style="color:#444444">,</span></span>
+<span class="line"><span style="color:#B8A965">              muted</span><span style="color:#444444">: </span><span style="color:#C98A7D77">'</span><span style="color:#C98A7D">neutral.7</span><span style="color:#C98A7D77">'</span><span style="color:#444444">,</span></span>
+<span class="line"><span style="color:#B8A965">              inverted</span><span style="color:#444444">: </span><span style="color:#C98A7D77">'</span><span style="color:#C98A7D">neutral.1</span><span style="color:#C98A7D77">'</span><span style="color:#444444">,</span></span>
+<span class="line"><span style="color:#444444">            },</span></span>
+<span class="line"><span style="color:#B8A965">            background</span><span style="color:#444444">: {</span></span>
+<span class="line"><span style="color:#B8A965">              base</span><span style="color:#444444">: </span><span style="color:#C98A7D77">'</span><span style="color:#C98A7D">neutral.1</span><span style="color:#C98A7D77">'</span><span style="color:#444444">,</span></span>
+<span class="line"><span style="color:#B8A965">              muted</span><span style="color:#444444">: </span><span style="color:#C98A7D77">'</span><span style="color:#C98A7D">neutral.3</span><span style="color:#C98A7D77">'</span><span style="color:#444444">,</span></span>
+<span class="line"><span style="color:#B8A965">              elevated</span><span style="color:#444444">: </span><span style="color:#C98A7D77">'</span><span style="color:#C98A7D">neutral.4</span><span style="color:#C98A7D77">'</span><span style="color:#444444">,</span></span>
+<span class="line"><span style="color:#B8A965">              inverted</span><span style="color:#444444">: </span><span style="color:#C98A7D77">'</span><span style="color:#C98A7D">neutral.12</span><span style="color:#C98A7D77">'</span><span style="color:#444444">,</span></span>
+<span class="line"><span style="color:#444444">            },</span></span>
+<span class="line"><span style="color:#B8A965">            border</span><span style="color:#444444">: {</span></span>
+<span class="line"><span style="color:#B8A965">              base</span><span style="color:#444444">: </span><span style="color:#C98A7D77">'</span><span style="color:#C98A7D">neutral.5</span><span style="color:#C98A7D77">'</span><span style="color:#444444">,</span></span>
+<span class="line"><span style="color:#B8A965">              elevated</span><span style="color:#444444">: </span><span style="color:#C98A7D77">'</span><span style="color:#C98A7D">neutral.6</span><span style="color:#C98A7D77">'</span><span style="color:#444444">,</span></span>
+<span class="line"><span style="color:#B8A965">              inverted</span><span style="color:#444444">: </span><span style="color:#C98A7D77">'</span><span style="color:#C98A7D">neutral.12</span><span style="color:#C98A7D77">'</span><span style="color:#444444">,</span></span>
+<span class="line"><span style="color:#444444">            },</span></span>
+<span class="line"><span style="color:#444444">          },</span></span>
+<span class="line"><span style="color:#B8A965">          cssVars</span><span style="color:#444444">: {</span></span>
+<span class="line"><span style="color:#B8A965">            panel</span><span style="color:#444444">: {</span></span>
+<span class="line"><span style="color:#B8A965">              background</span><span style="color:#444444">: </span><span style="color:#C98A7D77">'</span><span style="color:#C98A7D">neutral.2</span><span style="color:#C98A7D77">'</span><span style="color:#444444">,</span></span>
+<span class="line"><span style="color:#B8A965">              border</span><span style="color:#444444">: </span><span style="color:#C98A7D77">'</span><span style="color:#C98A7D">accent.6</span><span style="color:#C98A7D77">'</span><span style="color:#444444">,</span></span>
+<span class="line"><span style="color:#444444">            },</span></span>
+<span class="line"><span style="color:#444444">          },</span></span>
+<span class="line"><span style="color:#444444">        },</span></span>
+<span class="line"><span style="color:#444444">      ],</span></span>
+<span class="line"><span style="color:#444444">    }),</span></span>
+<span class="line"><span style="color:#444444">  ],</span></span>
+<span class="line"><span style="color:#444444">}</span></span></code></pre>
+<pre class="astro-code vitesse-black" style="background-color:#000;color:#dbd7cacc; overflow-x: auto;" tabindex="0" data-language="html"><code><span class="line"><span style="color:#444444">&lt;</span><span style="color:#4D9375">body</span><span style="color:#BD976A"> data-theme</span><span style="color:#444444">=</span><span style="color:#C98A7D77">"</span><span style="color:#C98A7D">brand</span><span style="color:#C98A7D77">"</span><span style="color:#BD976A"> data-radius</span><span style="color:#444444">=</span><span style="color:#C98A7D77">"</span><span style="color:#C98A7D">lg</span><span style="color:#C98A7D77">"</span><span style="color:#BD976A"> data-scaling</span><span style="color:#444444">=</span><span style="color:#C98A7D77">"</span><span style="color:#C98A7D">110%</span><span style="color:#C98A7D77">"</span><span style="color:#444444">&gt;</span></span>
+<span class="line"><span style="color:#444444">  &lt;</span><span style="color:#4D9375">section</span><span style="color:#BD976A"> class</span><span style="color:#444444">=</span><span style="color:#C98A7D77">"</span><span style="color:#C98A7D">bg-panel text-highlighted border border-panel rounded-lg p-lg</span><span style="color:#C98A7D77">"</span><span style="color:#444444">&gt;</span></span>
+<span class="line"><span style="color:#DBD7CACC">    品牌主题下的面板</span></span>
+<span class="line"><span style="color:#444444">  &lt;/</span><span style="color:#4D9375">section</span><span style="color:#444444">&gt;</span></span>
+<span class="line"><span style="color:#444444">&lt;/</span><span style="color:#4D9375">body</span><span style="color:#444444">&gt;</span></span></code></pre>
+<p>组合示例，基于源码导出构造。生成结果里，品牌主题块包含：</p>
+<pre class="astro-code vitesse-black" style="background-color:#000;color:#dbd7cacc; overflow-x: auto;" tabindex="0" data-language="css"><code><span class="line"><span style="color:#444444">:</span><span style="color:#BD976A">where</span><span style="color:#444444">([</span><span style="color:#BD976A">data-theme</span><span style="color:#CB7676">=</span><span style="color:#C98A7D77">"</span><span style="color:#C98A7D">brand</span><span style="color:#C98A7D77">"</span><span style="color:#444444">])</span><span style="color:#444444"> {</span></span>
+<span class="line"><span style="color:#BD976A">  --default-radius-factor</span><span style="color:#444444">:</span><span style="color:#4C9A91"> 1.5</span><span style="color:#444444">;</span></span>
+<span class="line"><span style="color:#BD976A">  --default-scaling</span><span style="color:#444444">:</span><span style="color:#4C9A91"> 1.1</span><span style="color:#444444">;</span></span>
+<span class="line"><span style="color:#BD976A">  --accent-9</span><span style="color:#444444">:</span><span style="color:#B8A965"> var</span><span style="color:#444444">(</span><span style="color:#BD976A">--custom-accent-9</span><span style="color:#444444">,</span><span style="color:#B8A965"> var</span><span style="color:#444444">(</span><span style="color:#BD976A">--indigo-9</span><span style="color:#444444">));</span></span>
+<span class="line"><span style="color:#BD976A">  --panel-bg</span><span style="color:#444444">:</span><span style="color:#B8A965"> var</span><span style="color:#444444">(</span><span style="color:#BD976A">--neutral-2</span><span style="color:#444444">);</span></span>
+<span class="line"><span style="color:#BD976A">  --panel-border</span><span style="color:#444444">:</span><span style="color:#B8A965"> var</span><span style="color:#444444">(</span><span style="color:#BD976A">--accent-6</span><span style="color:#444444">);</span></span>
+<span class="line"><span style="color:#444444">}</span></span></code></pre>
+<p><code>radius: 'lg'</code> 来自 <code>themeRadiusMap</code> 的 <code>1.5</code>，<code>scaling: '110%'</code> 来自 <code>1.1</code>。<code>bg-panel</code> 用 <code>--panel-bg</code>，<code>border-panel</code> 用 <code>--panel-border</code>。</p>
+<p>Sources: <code>packages/unocss/src/index.ts</code>, <code>packages/unocss/src/custom/theme.ts</code>, <code>packages/unocss/src/custom/default.ts</code>, <code>packages/unocss/src/custom/types.ts</code>, <code>packages/unocss/src/custom/mappings.ts</code>, <code>packages/unocss/src/preflights/custom.ts</code></p>
+<h2 id="额外颜色">额外颜色</h2>
+<p><code>colors.accent</code> 与 <code>colors.neutral</code> 会和内置的 <code>clay</code>、<code>moroccan</code>、<code>puerto</code>、<code>iron</code>、<code>covert</code> 一起做成 12 阶色。测试里的写法：</p>
+<pre class="astro-code vitesse-black" style="background-color:#000;color:#dbd7cacc; overflow-x: auto;" tabindex="0" data-language="ts"><code><span class="line"><span style="color:#80A665">presetWemeUI</span><span style="color:#444444">({</span></span>
+<span class="line"><span style="color:#B8A965">  colors</span><span style="color:#444444">: {</span></span>
+<span class="line"><span style="color:#B8A965">    accent</span><span style="color:#444444">: {</span></span>
+<span class="line"><span style="color:#B8A965">      zinc</span><span style="color:#444444">: </span><span style="color:#C98A7D77">'</span><span style="color:#C98A7D">oklch(27.9% 0.041 260.031)</span><span style="color:#C98A7D77">'</span><span style="color:#444444">,</span></span>
+<span class="line"><span style="color:#444444">    },</span></span>
+<span class="line"><span style="color:#B8A965">    neutral</span><span style="color:#444444">: {</span></span>
+<span class="line"><span style="color:#B8A965">      mist</span><span style="color:#444444">: </span><span style="color:#C98A7D77">'</span><span style="color:#C98A7D">oklch(96% 0.002 260)</span><span style="color:#C98A7D77">'</span><span style="color:#444444">,</span></span>
+<span class="line"><span style="color:#444444">    },</span></span>
+<span class="line"><span style="color:#444444">  },</span></span>
+<span class="line"><span style="color:#444444">})</span></span></code></pre>
+<pre class="astro-code vitesse-black" style="background-color:#000;color:#dbd7cacc; overflow-x: auto;" tabindex="0" data-language="html"><code><span class="line"><span style="color:#444444">&lt;</span><span style="color:#4D9375">div</span><span style="color:#BD976A"> class</span><span style="color:#444444">=</span><span style="color:#C98A7D77">"</span><span style="color:#C98A7D">bg-zinc-9 text-mist-12 border border-zinc-7</span><span style="color:#C98A7D77">"</span><span style="color:#444444">&gt;</span><span style="color:#DBD7CACC">锌色底，雾色字</span><span style="color:#444444">&lt;/</span><span style="color:#4D9375">div</span><span style="color:#444444">&gt;</span></span></code></pre>
+<p><code>defu</code> 保留先写入的键。Radix 色和 <code>black</code> / <code>white</code> 先进入主题，同名的 <code>colors</code> 不会盖掉它们。新名字可以，<code>indigo</code> 这种已有名字不行。</p>
+<p>Sources: <code>packages/unocss/src/theme/colors.ts</code>, <code>packages/unocss/src/index.ts</code>, <code>packages/unocss/test/theme/colors.test.ts</code></p>
+<h2 id="圆角缩放字号和间距">圆角、缩放、字号和间距</h2>
+<p>主题上的 <code>radius</code> / <code>scaling</code> 写入 <code>--default-radius-factor</code> 和 <code>--default-scaling</code>。页面上的属性写入另一对变量，而且优先：</p>
+<pre class="astro-code vitesse-black" style="background-color:#000;color:#dbd7cacc; overflow-x: auto;" tabindex="0" data-language="css"><code><span class="line"><span style="color:#444444">[</span><span style="color:#BD976A">data-scaling</span><span style="color:#CB7676">=</span><span style="color:#C98A7D77">'</span><span style="color:#C98A7D">90%</span><span style="color:#C98A7D77">'</span><span style="color:#444444">]</span><span style="color:#444444"> {</span><span style="color:#BD976A"> --scaling</span><span style="color:#444444">:</span><span style="color:#4C9A91"> 0.9</span><span style="color:#444444">;</span><span style="color:#444444"> }</span></span>
+<span class="line"><span style="color:#444444">[</span><span style="color:#BD976A">data-scaling</span><span style="color:#CB7676">=</span><span style="color:#C98A7D77">'</span><span style="color:#C98A7D">100%</span><span style="color:#C98A7D77">'</span><span style="color:#444444">]</span><span style="color:#444444"> {</span><span style="color:#BD976A"> --scaling</span><span style="color:#444444">:</span><span style="color:#4C9A91"> 1</span><span style="color:#444444">;</span><span style="color:#444444"> }</span></span>
+<span class="line"><span style="color:#444444">[</span><span style="color:#BD976A">data-scaling</span><span style="color:#CB7676">=</span><span style="color:#C98A7D77">'</span><span style="color:#C98A7D">110%</span><span style="color:#C98A7D77">'</span><span style="color:#444444">]</span><span style="color:#444444"> {</span><span style="color:#BD976A"> --scaling</span><span style="color:#444444">:</span><span style="color:#4C9A91"> 1.1</span><span style="color:#444444">;</span><span style="color:#444444"> }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#444444">[</span><span style="color:#BD976A">data-radius</span><span style="color:#CB7676">=</span><span style="color:#C98A7D77">'</span><span style="color:#C98A7D">none</span><span style="color:#C98A7D77">'</span><span style="color:#444444">]</span><span style="color:#444444"> {</span><span style="color:#BD976A"> --radius-factor</span><span style="color:#444444">:</span><span style="color:#4C9A91"> 0</span><span style="color:#444444">;</span><span style="color:#444444"> }</span></span>
+<span class="line"><span style="color:#444444">[</span><span style="color:#BD976A">data-radius</span><span style="color:#CB7676">=</span><span style="color:#C98A7D77">'</span><span style="color:#C98A7D">md</span><span style="color:#C98A7D77">'</span><span style="color:#444444">]</span><span style="color:#444444"> {</span><span style="color:#BD976A"> --radius-factor</span><span style="color:#444444">:</span><span style="color:#4C9A91"> 1</span><span style="color:#444444">;</span><span style="color:#444444"> }</span></span>
+<span class="line"><span style="color:#444444">[</span><span style="color:#BD976A">data-radius</span><span style="color:#CB7676">=</span><span style="color:#C98A7D77">'</span><span style="color:#C98A7D">lg</span><span style="color:#C98A7D77">'</span><span style="color:#444444">]</span><span style="color:#444444"> {</span><span style="color:#BD976A"> --radius-factor</span><span style="color:#444444">:</span><span style="color:#4C9A91"> 1.5</span><span style="color:#444444">;</span><span style="color:#444444"> }</span></span>
+<span class="line"><span style="color:#444444">[</span><span style="color:#BD976A">data-radius</span><span style="color:#CB7676">=</span><span style="color:#C98A7D77">'</span><span style="color:#C98A7D">full</span><span style="color:#C98A7D77">'</span><span style="color:#444444">]</span><span style="color:#444444"> {</span><span style="color:#BD976A"> --radius-factor</span><span style="color:#444444">:</span><span style="color:#4C9A91"> 1.5</span><span style="color:#444444">;</span><span style="color:#444444"> }</span></span></code></pre>
+<p>间距和圆角类读的是：</p>
+<pre class="astro-code vitesse-black" style="background-color:#000;color:#dbd7cacc; overflow-x: auto;" tabindex="0" data-language="css"><code><span class="line"><span style="color:#DBD7CACC">--spacing: calc(0.25rem * var(--scaling, var(--default-scaling, 1)));</span></span>
+<span class="line"><span style="color:#DBD7CACC">--radius-lg: calc(0.5rem * var(--scaling, var(--default-scaling, 1)) * var(--radius-factor, var(--default-radius-factor, 1)));</span></span></code></pre>
+<p>所以 <code>data-radius</code> / <code>data-scaling</code> 会立刻影响 <code>p-4</code>、<code>gap-md</code>、<code>rounded-lg</code>。属性没写时才落到主题配置的默认系数。</p>
+<p>字号键是 <code>xs</code>、<code>sm</code>、<code>base</code>、<code>lg</code>、<code>xl</code>、<code>2xl</code> 直到 <code>9xl</code>。间距键是 <code>xs</code>、<code>sm</code>、<code>md</code>、<code>lg</code>、<code>xl</code>、<code>2xl</code> 直到 <code>9xl</code>。断点是 <code>mobile</code> 520px、<code>tablet</code> 768px、<code>laptop</code> 1024px、<code>desktop</code> 1280px、<code>wide</code> 1640px。</p>
+<pre class="astro-code vitesse-black" style="background-color:#000;color:#dbd7cacc; overflow-x: auto;" tabindex="0" data-language="html"><code><span class="line"><span style="color:#444444">&lt;</span><span style="color:#4D9375">main</span><span style="color:#BD976A"> data-scaling</span><span style="color:#444444">=</span><span style="color:#C98A7D77">"</span><span style="color:#C98A7D">95%</span><span style="color:#C98A7D77">"</span><span style="color:#BD976A"> data-radius</span><span style="color:#444444">=</span><span style="color:#C98A7D77">"</span><span style="color:#C98A7D">sm</span><span style="color:#C98A7D77">"</span><span style="color:#BD976A"> class</span><span style="color:#444444">=</span><span style="color:#C98A7D77">"</span><span style="color:#C98A7D">font-sans text-base p-lg rounded-md</span><span style="color:#C98A7D77">"</span><span style="color:#444444">&gt;</span></span>
+<span class="line"><span style="color:#444444">  &lt;</span><span style="color:#4D9375">h1</span><span style="color:#BD976A"> class</span><span style="color:#444444">=</span><span style="color:#C98A7D77">"</span><span style="color:#C98A7D">text-3xl fw-semibold tracking-tight</span><span style="color:#C98A7D77">"</span><span style="color:#444444">&gt;</span><span style="color:#DBD7CACC">设置页</span><span style="color:#444444">&lt;/</span><span style="color:#4D9375">h1</span><span style="color:#444444">&gt;</span></span>
+<span class="line"><span style="color:#444444">&lt;/</span><span style="color:#4D9375">main</span><span style="color:#444444">&gt;</span></span></code></pre>
+<p>Sources: <code>packages/unocss/src/preflights/preflight.ts</code>, <code>packages/unocss/src/theme/misc.ts</code>, <code>packages/unocss/src/theme/font.ts</code>, <code>packages/unocss/src/theme/size.ts</code>, <code>packages/unocss/src/custom/mappings.ts</code></p>
+<h2 id="注意事项">注意事项</h2>
+<ul>
+<li><code>name: 'default'</code> 不会替换内置主题，内置块写在后面。换一套默认外观时用别的 <code>name</code>，并在根节点写 <code>data-theme</code>。</li>
+<li><code>themeRadiusMap</code> 里 <code>full</code> 是 <code>'3'</code>，preflight 里 <code>[data-radius='full']</code> 是 <code>1.5</code>。属性存在时 <code>--radius-factor: 1.5</code> 胜出，主题选项里的 <code>radius: 'full'</code> 只影响 <code>--default-radius-factor</code>。</li>
+<li><code>colors</code> 不能覆盖已经存在的 Radix 色名。</li>
+<li><code>defineTheme</code> 只存在于 <code>src/custom/theme.ts</code>。发布包的入口没有这个函数。</li>
+<li><code>reset</code> 的注释写着默认 <code>true</code>，函数体只判断 <code>=== false</code>。不传和传 <code>true</code> 都会输出 reset。没有单独的开关可以关掉 base 层里的 <code>color-scheme</code>、<code>data-scaling</code>、<code>data-radius</code>。</li>
+</ul>
+<h2 id="相关页面">相关页面</h2>
+<ul>
+<li>安装 preset 并写出第一个类名</li>
+<li>使用 Radix Colors 刻度与别名</li>
+<li>使用并覆盖自定义 CSS 变量</li>
+<li>理解 Preflights 与 Postprocess</li>
+</ul>
+</article></div><footer class="site-foot"><span>早期开发，请勿用于生产</span><span>MIT · 2026</span></footer><script type="module">function e(){document.querySelectorAll(`[data-copy-command]`).forEach(e=>{e.addEventListener(`click`,async()=>{let t=e.dataset.copyCommand;if(!t)return;let n=e.dataset.labelIdle||`复制`,r=e.dataset.labelDone||`已复制`;try{await navigator.clipboard.writeText(t),e.textContent=r,window.setTimeout(()=>{e.textContent=n},1600)}catch{e.textContent=`复制失败`,window.setTimeout(()=>{e.textContent=n},1600)}})})}e();</script></body></html>

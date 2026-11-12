@@ -1,0 +1,149 @@
+<!DOCTYPE html><html lang="zh-CN" class="dark"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>使用 Radix Colors 刻度与别名 — Weme UI</title><meta name="description" content="使用 Radix Colors 刻度与别名"><link rel="icon" type="image/svg+xml" href="/weme-ui/weme.svg"><script>document.documentElement.classList.add('js')</script><link rel="stylesheet" href="/weme-ui/_astro/LandingLayout.BK6XZBaz.css"></head><body><header class="site-nav"><a class="brand" href="/weme-ui/">WEME<span class="dot">.</span></a><nav class="nav-links" aria-label="页面"><a href="https://github.com/weme-ui/weme-ui" target="_blank" rel="noreferrer">GitHub</a><a href="https://weme-ui.github.io/slim" target="_blank" rel="noreferrer">slim</a><a href="/weme-ui/docs/unocss-preset/" aria-current="page">Preset</a></nav></header><div class="docs-shell"><nav class="docs-nav" aria-label="Preset 文档"><div class="docs-group"><p>入门</p><ul><li><a href="/weme-ui/docs/unocss-preset/">概览</a></li><li><a href="/weme-ui/docs/unocss-preset/getting-started/">安装 preset 并写出第一个类名</a></li></ul></div><div class="docs-group"><p>主题与变量</p><ul><li><a href="/weme-ui/docs/unocss-preset/preset-and-theme/">配置 Preset 与定制主题</a></li><li><a href="/weme-ui/docs/unocss-preset/radix-colors/" aria-current="page">使用 Radix Colors 刻度与别名</a></li><li><a href="/weme-ui/docs/unocss-preset/css-variables/">使用并覆盖自定义 CSS 变量</a></li></ul></div><div class="docs-group"><p>规则、变体、快捷方式</p><ul><li><a href="/weme-ui/docs/unocss-preset/rules/">按场景选用 Rules 类名</a></li><li><a href="/weme-ui/docs/unocss-preset/variants/">用 Variants 写暗色、断点与状态</a></li><li><a href="/weme-ui/docs/unocss-preset/shortcuts/">用 Shortcuts 收拢重复类名</a></li></ul></div><div class="docs-group"><p>预检与后处理</p><ul><li><a href="/weme-ui/docs/unocss-preset/preflights-and-postprocess/">理解 Preflights 与 Postprocess</a></li></ul></div><div class="docs-group"><p>最佳实践</p><ul><li><a href="/weme-ui/docs/unocss-preset/recipes/">组合类名、变量与变体</a></li></ul></div><div class="docs-group"><p>扩展开发</p><ul><li><a href="/weme-ui/docs/unocss-preset/extending/">在仓库里新增规则、变量与变体</a></li></ul></div></nav><article class="prose"><h1 id="使用-radix-colors-刻度与别名">使用 Radix Colors 刻度与别名</h1>
+<p>颜色类读的是主题里的 12 阶色，不是写死的十六进制。省略阶数时用第 9 阶。亮色值在 <code>:root</code>，暗色值在 <code>.dark</code>，支持 P3 的屏幕再覆盖一层 <code>color(display-p3 …)</code>。别名 <code>accent</code>、<code>neutral</code>、<code>info</code>、<code>success</code>、<code>warning</code>、<code>error</code> 再指到这些具体色上。</p>
+<h2 id="使用场景">使用场景</h2>
+<ul>
+<li>按 Radix 的 1–12 阶画背景、分割线、正文和实心按钮。</li>
+<li>组件只写 <code>bg-accent</code>、<code>text-error</code>，换主题时改别名，不改类名。</li>
+<li>给一个不在 Radix 名单里的品牌色做一整套 12 阶。</li>
+</ul>
+<h2 id="有哪些名字">有哪些名字</h2>
+<p>Radix 中性色：<code>gray</code>、<code>mauve</code>、<code>slate</code>、<code>sage</code>、<code>olive</code>、<code>sand</code>。</p>
+<p>Radix 强调色：<code>tomato</code>、<code>red</code>、<code>ruby</code>、<code>crimson</code>、<code>pink</code>、<code>plum</code>、<code>purple</code>、<code>violet</code>、<code>iris</code>、<code>indigo</code>、<code>blue</code>、<code>cyan</code>、<code>sky</code>、<code>teal</code>、<code>jade</code>、<code>green</code>、<code>mint</code>、<code>grass</code>、<code>lime</code>、<code>bronze</code>、<code>gold</code>、<code>brown</code>、<code>orange</code>、<code>amber</code>、<code>yellow</code>。</p>
+<p>额外中性色：<code>iron</code>（<code>#53595d</code>）、<code>covert</code>（<code>#13151a</code>）。额外强调色：<code>clay</code>（<code>#d97757</code>）、<code>moroccan</code>（<code>#065aed</code>）、<code>puerto</code>（<code>#3fc1aa</code>）。</p>
+<p>另外还有 <code>black</code>、<code>white</code>，以及 <code>black-auto</code>、<code>white-auto</code>。</p>
+<p>默认别名：</p>
+<table>
+<thead>
+<tr>
+<th>别名</th>
+<th>指向</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>accent</code></td>
+<td><code>puerto</code></td>
+</tr>
+<tr>
+<td><code>neutral</code></td>
+<td><code>iron</code></td>
+</tr>
+<tr>
+<td><code>success</code></td>
+<td><code>green</code></td>
+</tr>
+<tr>
+<td><code>info</code></td>
+<td><code>indigo</code></td>
+</tr>
+<tr>
+<td><code>warning</code></td>
+<td><code>brown</code></td>
+</tr>
+<tr>
+<td><code>error</code></td>
+<td><code>tomato</code></td>
+</tr>
+</tbody>
+</table>
+<p>Sources: <code>packages/colors/src/constants.ts</code>, <code>packages/unocss/src/theme/colors.ts</code>, <code>packages/unocss/src/custom/default.ts</code></p>
+<h2 id="刻度怎么写">刻度怎么写</h2>
+<p>每个颜色有 <code>'1'</code> 到 <code>'12'</code>，以及 <code>dark</code> 和 <code>p3</code> / <code>p3.dark</code>。类名只写名字和阶数，暗色与 P3 由 preflight 写进变量。</p>
+<pre class="astro-code vitesse-black" style="background-color:#000;color:#dbd7cacc; overflow-x: auto;" tabindex="0" data-language="html"><code><span class="line"><span style="color:#444444">&lt;</span><span style="color:#4D9375">div</span><span style="color:#BD976A"> class</span><span style="color:#444444">=</span><span style="color:#C98A7D77">"</span><span style="color:#C98A7D">bg-indigo-2 text-indigo-11 border border-indigo-6</span><span style="color:#C98A7D77">"</span><span style="color:#444444">&gt;</span></span>
+<span class="line"><span style="color:#444444">  &lt;</span><span style="color:#4D9375">h2</span><span style="color:#BD976A"> class</span><span style="color:#444444">=</span><span style="color:#C98A7D77">"</span><span style="color:#C98A7D">text-indigo-12 fw-semibold</span><span style="color:#C98A7D77">"</span><span style="color:#444444">&gt;</span><span style="color:#DBD7CACC">Indigo 信息块</span><span style="color:#444444">&lt;/</span><span style="color:#4D9375">h2</span><span style="color:#444444">&gt;</span></span>
+<span class="line"><span style="color:#444444">  &lt;</span><span style="color:#4D9375">p</span><span style="color:#BD976A"> class</span><span style="color:#444444">=</span><span style="color:#C98A7D77">"</span><span style="color:#C98A7D">text-indigo-11</span><span style="color:#C98A7D77">"</span><span style="color:#444444">&gt;</span><span style="color:#DBD7CACC">2 阶做底，11 阶做正文，6 阶做边。</span><span style="color:#444444">&lt;/</span><span style="color:#4D9375">p</span><span style="color:#444444">&gt;</span></span>
+<span class="line"><span style="color:#444444">&lt;/</span><span style="color:#4D9375">div</span><span style="color:#444444">&gt;</span></span></code></pre>
+<p>不写阶数等于第 9 阶：</p>
+<pre class="astro-code vitesse-black" style="background-color:#000;color:#dbd7cacc; overflow-x: auto;" tabindex="0" data-language="html"><code><span class="line"><span style="color:#444444">&lt;</span><span style="color:#4D9375">button</span><span style="color:#BD976A"> class</span><span style="color:#444444">=</span><span style="color:#C98A7D77">"</span><span style="color:#C98A7D">bg-indigo text-white-auto</span><span style="color:#C98A7D77">"</span><span style="color:#444444">&gt;</span><span style="color:#DBD7CACC">主按钮</span><span style="color:#444444">&lt;/</span><span style="color:#4D9375">button</span><span style="color:#444444">&gt;</span></span>
+<span class="line"><span style="color:#444444">&lt;</span><span style="color:#4D9375">button</span><span style="color:#BD976A"> class</span><span style="color:#444444">=</span><span style="color:#C98A7D77">"</span><span style="color:#C98A7D">bg-indigo-9 text-white-auto</span><span style="color:#C98A7D77">"</span><span style="color:#444444">&gt;</span><span style="color:#DBD7CACC">和上一颗相同的底色</span><span style="color:#444444">&lt;/</span><span style="color:#4D9375">button</span><span style="color:#444444">&gt;</span></span></code></pre>
+<p><code>bg-indigo</code> 与 <code>bg-indigo-9</code> 都是 <code>background-color: var(--indigo-9)</code>。<code>bg-white-auto</code> 是 <code>var(--white-auto-9)</code>。<code>bg-black</code> 是 <code>var(--black-9)</code>，亮暗两套刻度相同，但第 9 阶不是纯黑。</p>
+<p>透明度写在 <code>/</code> 后面，生成 <code>color-mix</code>。支持 <code>color-mix(in lab, red, red)</code> 时再补一条 <code>in oklab</code>：</p>
+<pre class="astro-code vitesse-black" style="background-color:#000;color:#dbd7cacc; overflow-x: auto;" tabindex="0" data-language="html"><code><span class="line"><span style="color:#444444">&lt;</span><span style="color:#4D9375">div</span><span style="color:#BD976A"> class</span><span style="color:#444444">=</span><span style="color:#C98A7D77">"</span><span style="color:#C98A7D">bg-indigo/80 text-indigo-12</span><span style="color:#C98A7D77">"</span><span style="color:#444444">&gt;</span><span style="color:#DBD7CACC">80% 的 indigo 第 9 阶</span><span style="color:#444444">&lt;/</span><span style="color:#4D9375">div</span><span style="color:#444444">&gt;</span></span></code></pre>
+<pre class="astro-code vitesse-black" style="background-color:#000;color:#dbd7cacc; overflow-x: auto;" tabindex="0" data-language="css"><code><span class="line"><span style="color:#444444">.</span><span style="color:#BD976A">bg-indigo</span><span style="color:#C99076">\/</span><span style="color:#BD976A">80</span><span style="color:#444444"> {</span></span>
+<span class="line"><span style="color:#B8A965">  background-color</span><span style="color:#444444">:</span><span style="color:#B8A965"> color-mix</span><span style="color:#444444">(</span><span style="color:#BD976A">in</span><span style="color:#C99076"> srgb</span><span style="color:#444444">,</span><span style="color:#B8A965"> var</span><span style="color:#444444">(</span><span style="color:#BD976A">--indigo-9</span><span style="color:#444444">)</span><span style="color:#4C9A91"> 80</span><span style="color:#CB7676">%</span><span style="color:#444444">,</span><span style="color:#C99076"> transparent</span><span style="color:#444444">);</span></span>
+<span class="line"><span style="color:#444444">}</span></span>
+<span class="line"><span style="color:#444444">@</span><span style="color:#4D9375">supports</span><span style="color:#444444"> (</span><span style="color:#B8A965">color</span><span style="color:#444444">:</span><span style="color:#B8A965"> color-mix</span><span style="color:#444444">(</span><span style="color:#BD976A">in</span><span style="color:#BD976A"> lab</span><span style="color:#444444">,</span><span style="color:#C99076"> red</span><span style="color:#444444">,</span><span style="color:#C99076"> red</span><span style="color:#444444">))</span><span style="color:#444444"> {</span></span>
+<span class="line"><span style="color:#444444">  .</span><span style="color:#BD976A">bg-indigo</span><span style="color:#C99076">\/</span><span style="color:#BD976A">80</span><span style="color:#444444"> {</span></span>
+<span class="line"><span style="color:#B8A965">    background-color</span><span style="color:#444444">:</span><span style="color:#B8A965"> color-mix</span><span style="color:#444444">(</span><span style="color:#BD976A">in</span><span style="color:#BD976A"> oklab</span><span style="color:#444444">,</span><span style="color:#B8A965"> var</span><span style="color:#444444">(</span><span style="color:#BD976A">--indigo-9</span><span style="color:#444444">)</span><span style="color:#4C9A91"> 80</span><span style="color:#CB7676">%</span><span style="color:#444444">,</span><span style="color:#C99076"> transparent</span><span style="color:#444444">);</span></span>
+<span class="line"><span style="color:#444444">  }</span></span>
+<span class="line"><span style="color:#444444">}</span></span></code></pre>
+<p>同一套阶数也可以用在文字、边框和光标色：<code>text-jade-11</code>、<code>c-jade-11</code>、<code>color-jade-11</code>、<code>border-jade-7</code>、<code>b-jade-7</code>、<code>caret-jade-11</code>、<code>accent-jade</code>。</p>
+<p>Sources: <code>packages/unocss/src/theme/types.ts</code>, <code>packages/unocss/src/theme/colors.ts</code>, <code>packages/unocss/src/utils/utilities.ts</code>, <code>packages/unocss/src/rules/color.ts</code>, <code>packages/unocss/src/rules/typography.ts</code>, <code>packages/unocss/src/rules/border.ts</code>, <code>packages/unocss/test/preset.test.ts</code></p>
+<h2 id="暗色和-p3">暗色和 P3</h2>
+<p>用到的阶数才会输出。<code>bg-indigo</code> 只带动 <code>--indigo-9</code>，不会把 1–12 全部打进 CSS。别名同理：只用 <code>bg-accent-3</code> 时，主题块里出现 <code>--accent-3</code>，不会出现没用到的 <code>--accent-1</code>。</p>
+<pre class="astro-code vitesse-black" style="background-color:#000;color:#dbd7cacc; overflow-x: auto;" tabindex="0" data-language="css"><code><span class="line"><span style="color:#444444">:</span><span style="color:#BD976A">root</span><span style="color:#444444"> {</span></span>
+<span class="line"><span style="color:#BD976A">  --indigo-9</span><span style="color:#444444">:</span><span style="color:#B8A965"> oklch</span><span style="color:#444444">(</span><span style="color:#4C9A91">54.4</span><span style="color:#CB7676">%</span><span style="color:#4C9A91"> 0.1912</span><span style="color:#4C9A91"> 267.1</span><span style="color:#444444">);</span></span>
+<span class="line"><span style="color:#444444">}</span></span>
+<span class="line"><span style="color:#444444">.</span><span style="color:#BD976A">dark</span><span style="color:#444444"> {</span></span>
+<span class="line"><span style="color:#BD976A">  --indigo-9</span><span style="color:#444444">:</span><span style="color:#B8A965"> oklch</span><span style="color:#444444">(</span><span style="color:#4C9A91">54.4</span><span style="color:#CB7676">%</span><span style="color:#4C9A91"> 0.1912</span><span style="color:#4C9A91"> 267.1</span><span style="color:#444444">);</span></span>
+<span class="line"><span style="color:#444444">}</span></span>
+<span class="line"><span style="color:#444444">@</span><span style="color:#4D9375">supports</span><span style="color:#444444"> (</span><span style="color:#B8A965">color</span><span style="color:#444444">:</span><span style="color:#B8A965"> color</span><span style="color:#444444">(</span><span style="color:#DBD7CACC">display-p3 </span><span style="color:#4C9A91">1</span><span style="color:#4C9A91"> 1</span><span style="color:#4C9A91"> 1</span><span style="color:#444444">))</span><span style="color:#444444"> {</span></span>
+<span class="line"><span style="color:#444444">  @</span><span style="color:#4D9375">media</span><span style="color:#444444"> (</span><span style="color:#DBD7CACC">color-gamut</span><span style="color:#444444">:</span><span style="color:#DBD7CACC"> p3</span><span style="color:#444444">)</span><span style="color:#444444"> {</span></span>
+<span class="line"><span style="color:#444444">    :</span><span style="color:#BD976A">root</span><span style="color:#444444"> {</span><span style="color:#BD976A"> --indigo-9</span><span style="color:#444444">:</span><span style="color:#B8A965"> color</span><span style="color:#444444">(</span><span style="color:#DBD7CACC">display-p3 </span><span style="color:#4C9A91">0.276</span><span style="color:#4C9A91"> 0.384</span><span style="color:#4C9A91"> 0.837</span><span style="color:#444444">);</span><span style="color:#444444"> }</span></span>
+<span class="line"><span style="color:#444444">    .</span><span style="color:#BD976A">dark</span><span style="color:#444444"> {</span><span style="color:#BD976A"> --indigo-9</span><span style="color:#444444">:</span><span style="color:#B8A965"> color</span><span style="color:#444444">(</span><span style="color:#DBD7CACC">display-p3 </span><span style="color:#4C9A91">0.276</span><span style="color:#4C9A91"> 0.384</span><span style="color:#4C9A91"> 0.837</span><span style="color:#444444">);</span><span style="color:#444444"> }</span></span>
+<span class="line"><span style="color:#444444">  }</span></span>
+<span class="line"><span style="color:#444444">}</span></span></code></pre>
+<p>因此祖先带上 <code>class="dark"</code> 后，<code>bg-indigo</code> 自动读暗色值。<code>dark:bg-slate-1</code> 则是在暗色下改用另一条类。</p>
+<pre class="astro-code vitesse-black" style="background-color:#000;color:#dbd7cacc; overflow-x: auto;" tabindex="0" data-language="html"><code><span class="line"><span style="color:#444444">&lt;</span><span style="color:#4D9375">section</span><span style="color:#BD976A"> class</span><span style="color:#444444">=</span><span style="color:#C98A7D77">"</span><span style="color:#C98A7D">bg-slate-1 text-slate-12 dark:bg-slate-1</span><span style="color:#C98A7D77">"</span><span style="color:#444444">&gt;</span></span>
+<span class="line"><span style="color:#444444">  &lt;</span><span style="color:#4D9375">p</span><span style="color:#BD976A"> class</span><span style="color:#444444">=</span><span style="color:#C98A7D77">"</span><span style="color:#C98A7D">text-slate-11</span><span style="color:#C98A7D77">"</span><span style="color:#444444">&gt;</span><span style="color:#DBD7CACC">底色类不用重复写 dark:，变量自己会换。</span><span style="color:#444444">&lt;/</span><span style="color:#4D9375">p</span><span style="color:#444444">&gt;</span></span>
+<span class="line"><span style="color:#444444">  &lt;</span><span style="color:#4D9375">span</span><span style="color:#BD976A"> class</span><span style="color:#444444">=</span><span style="color:#C98A7D77">"</span><span style="color:#C98A7D">bg-amber-9 text-amber-12 dark:bg-amber-4 dark:text-amber-11</span><span style="color:#C98A7D77">"</span><span style="color:#444444">&gt;</span><span style="color:#DBD7CACC">仅暗色改用 4 阶底</span><span style="color:#444444">&lt;/</span><span style="color:#4D9375">span</span><span style="color:#444444">&gt;</span></span>
+<span class="line"><span style="color:#444444">&lt;/</span><span style="color:#4D9375">section</span><span style="color:#444444">&gt;</span></span></code></pre>
+<p>P3 查询包在 <code>@supports (color: color(display-p3 1 1 1))</code> 和 <code>@media (color-gamut: p3)</code> 里。不支持的环境继续用 oklch。</p>
+<p>Sources: <code>packages/unocss/src/preflights/theme.ts</code>, <code>packages/unocss/src/preflights/custom.ts</code>, <code>packages/unocss/src/variants/dark.ts</code></p>
+<h2 id="别名">别名</h2>
+<p><code>bg-accent</code> 先解析成 <code>var(--accent-9)</code>。主题块再把别名接到具体色：</p>
+<pre class="astro-code vitesse-black" style="background-color:#000;color:#dbd7cacc; overflow-x: auto;" tabindex="0" data-language="css"><code><span class="line"><span style="color:#444444">:</span><span style="color:#BD976A">root</span><span style="color:#444444">,</span></span>
+<span class="line"><span style="color:#444444">:</span><span style="color:#BD976A">where</span><span style="color:#444444">([</span><span style="color:#BD976A">data-theme</span><span style="color:#CB7676">=</span><span style="color:#C98A7D77">"</span><span style="color:#C98A7D">default</span><span style="color:#C98A7D77">"</span><span style="color:#444444">])</span><span style="color:#444444"> {</span></span>
+<span class="line"><span style="color:#BD976A">  --accent-9</span><span style="color:#444444">:</span><span style="color:#B8A965"> var</span><span style="color:#444444">(</span><span style="color:#BD976A">--custom-accent-9</span><span style="color:#444444">,</span><span style="color:#B8A965"> var</span><span style="color:#444444">(</span><span style="color:#BD976A">--puerto-9</span><span style="color:#444444">));</span></span>
+<span class="line"><span style="color:#BD976A">  --neutral-1</span><span style="color:#444444">:</span><span style="color:#B8A965"> var</span><span style="color:#444444">(</span><span style="color:#BD976A">--custom-neutral-1</span><span style="color:#444444">,</span><span style="color:#B8A965"> var</span><span style="color:#444444">(</span><span style="color:#BD976A">--iron-1</span><span style="color:#444444">));</span></span>
+<span class="line"><span style="color:#444444">}</span></span></code></pre>
+<p>默认主题下，<code>bg-accent</code> → <code>--accent-9</code> → <code>--puerto-9</code>。<code>text-neutral-11</code> → <code>--neutral-11</code> → <code>--iron-11</code>。</p>
+<p>六个别名都可以带阶数：</p>
+<pre class="astro-code vitesse-black" style="background-color:#000;color:#dbd7cacc; overflow-x: auto;" tabindex="0" data-language="html"><code><span class="line"><span style="color:#444444">&lt;</span><span style="color:#4D9375">p</span><span style="color:#BD976A"> class</span><span style="color:#444444">=</span><span style="color:#C98A7D77">"</span><span style="color:#C98A7D">bg-success-3 text-success-11 border border-success-7</span><span style="color:#C98A7D77">"</span><span style="color:#444444">&gt;</span><span style="color:#DBD7CACC">保存成功</span><span style="color:#444444">&lt;/</span><span style="color:#4D9375">p</span><span style="color:#444444">&gt;</span></span>
+<span class="line"><span style="color:#444444">&lt;</span><span style="color:#4D9375">p</span><span style="color:#BD976A"> class</span><span style="color:#444444">=</span><span style="color:#C98A7D77">"</span><span style="color:#C98A7D">bg-warning-3 text-warning-11</span><span style="color:#C98A7D77">"</span><span style="color:#444444">&gt;</span><span style="color:#DBD7CACC">库存不足</span><span style="color:#444444">&lt;/</span><span style="color:#4D9375">p</span><span style="color:#444444">&gt;</span></span>
+<span class="line"><span style="color:#444444">&lt;</span><span style="color:#4D9375">p</span><span style="color:#BD976A"> class</span><span style="color:#444444">=</span><span style="color:#C98A7D77">"</span><span style="color:#C98A7D">bg-error-3 text-error-11</span><span style="color:#C98A7D77">"</span><span style="color:#444444">&gt;</span><span style="color:#DBD7CACC">无法连接</span><span style="color:#444444">&lt;/</span><span style="color:#4D9375">p</span><span style="color:#444444">&gt;</span></span>
+<span class="line"><span style="color:#444444">&lt;</span><span style="color:#4D9375">p</span><span style="color:#BD976A"> class</span><span style="color:#444444">=</span><span style="color:#C98A7D77">"</span><span style="color:#C98A7D">bg-info-3 text-info-11</span><span style="color:#C98A7D77">"</span><span style="color:#444444">&gt;</span><span style="color:#DBD7CACC">只读模式</span><span style="color:#444444">&lt;/</span><span style="color:#4D9375">p</span><span style="color:#444444">&gt;</span></span></code></pre>
+<p>别名的值如果是 <code>#</code>、<code>rgb(</code>、<code>hsl(</code>、<code>lab(</code>、<code>lch(</code>、<code>oklch(</code>、<code>color(</code> 或 <code>var(</code> 开头，主题块会写成该颜色算出的 P3 刻度，而不是 <code>var(--名字-阶)</code>。普通颜色名则写成 <code>var(--custom-别名-阶, var(--颜色名-阶))</code>。</p>
+<p>组合示例，基于源码导出构造：</p>
+<pre class="astro-code vitesse-black" style="background-color:#000;color:#dbd7cacc; overflow-x: auto;" tabindex="0" data-language="html"><code><span class="line"><span style="color:#444444">&lt;</span><span style="color:#4D9375">div</span><span style="color:#BD976A"> class</span><span style="color:#444444">=</span><span style="color:#C98A7D77">"</span><span style="color:#C98A7D">dark</span><span style="color:#C98A7D77">"</span><span style="color:#444444">&gt;</span></span>
+<span class="line"><span style="color:#444444">  &lt;</span><span style="color:#4D9375">button</span><span style="color:#BD976A"> class</span><span style="color:#444444">=</span><span style="color:#C98A7D77">"</span><span style="color:#C98A7D">bg-accent text-inverted rounded-md px-lg py-sm hover:bg-accent-10</span><span style="color:#C98A7D77">"</span><span style="color:#444444">&gt;</span></span>
+<span class="line"><span style="color:#DBD7CACC">    发布</span></span>
+<span class="line"><span style="color:#444444">  &lt;/</span><span style="color:#4D9375">button</span><span style="color:#444444">&gt;</span></span>
+<span class="line"><span style="color:#444444">  &lt;</span><span style="color:#4D9375">button</span><span style="color:#BD976A"> class</span><span style="color:#444444">=</span><span style="color:#C98A7D77">"</span><span style="color:#C98A7D">bg-neutral-3 text-neutral-12 border border-neutral-7 ml-sm</span><span style="color:#C98A7D77">"</span><span style="color:#444444">&gt;</span></span>
+<span class="line"><span style="color:#DBD7CACC">    存草稿</span></span>
+<span class="line"><span style="color:#444444">  &lt;/</span><span style="color:#4D9375">button</span><span style="color:#444444">&gt;</span></span>
+<span class="line"><span style="color:#444444">  &lt;</span><span style="color:#4D9375">span</span><span style="color:#BD976A"> class</span><span style="color:#444444">=</span><span style="color:#C98A7D77">"</span><span style="color:#C98A7D">text-error-11 ml-md</span><span style="color:#C98A7D77">"</span><span style="color:#444444">&gt;</span><span style="color:#DBD7CACC">标题不能为空</span><span style="color:#444444">&lt;/</span><span style="color:#4D9375">span</span><span style="color:#444444">&gt;</span></span>
+<span class="line"><span style="color:#444444">&lt;/</span><span style="color:#4D9375">div</span><span style="color:#444444">&gt;</span></span></code></pre>
+<p>暗色容器里，<code>bg-accent</code> 仍是第 9 阶，但 <code>--puerto-9</code> 换成 <code>.dark</code> 里的值。悬停用第 10 阶。错误文字用 <code>error</code> 别名的第 11 阶，默认落到 <code>tomato</code>。</p>
+<p>Sources: <code>packages/unocss/src/custom/utilities.ts</code>, <code>packages/unocss/src/custom/default.ts</code>, <code>packages/unocss/src/preflights/custom.ts</code>, <code>packages/unocss/test/preset.test.ts</code></p>
+<h2 id="自己加一个颜色">自己加一个颜色</h2>
+<p><code>colors.accent</code> 走强调色算法，<code>colors.neutral</code> 走中性色算法。同一种源色，两种算法的 12 阶不一样。</p>
+<pre class="astro-code vitesse-black" style="background-color:#000;color:#dbd7cacc; overflow-x: auto;" tabindex="0" data-language="ts"><code><span class="line"><span style="color:#4D9375">import</span><span style="color:#444444"> {</span><span style="color:#BD976A"> presetWemeUI</span><span style="color:#444444"> }</span><span style="color:#4D9375"> from</span><span style="color:#C98A7D77"> '</span><span style="color:#C98A7D">@weme-ui/unocss-preset</span><span style="color:#C98A7D77">'</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#4D9375">export</span><span style="color:#4D9375"> default</span><span style="color:#444444"> {</span></span>
+<span class="line"><span style="color:#B8A965">  presets</span><span style="color:#444444">: [</span></span>
+<span class="line"><span style="color:#80A665">    presetWemeUI</span><span style="color:#444444">({</span></span>
+<span class="line"><span style="color:#B8A965">      colors</span><span style="color:#444444">: {</span></span>
+<span class="line"><span style="color:#B8A965">        accent</span><span style="color:#444444">: { </span><span style="color:#B8A965">zinc</span><span style="color:#444444">: </span><span style="color:#C98A7D77">'</span><span style="color:#C98A7D">oklch(27.9% 0.041 260.031)</span><span style="color:#C98A7D77">'</span><span style="color:#444444"> },</span></span>
+<span class="line"><span style="color:#444444">      },</span></span>
+<span class="line"><span style="color:#444444">    }),</span></span>
+<span class="line"><span style="color:#444444">  ],</span></span>
+<span class="line"><span style="color:#444444">}</span></span></code></pre>
+<pre class="astro-code vitesse-black" style="background-color:#000;color:#dbd7cacc; overflow-x: auto;" tabindex="0" data-language="html"><code><span class="line"><span style="color:#444444">&lt;</span><span style="color:#4D9375">span</span><span style="color:#BD976A"> class</span><span style="color:#444444">=</span><span style="color:#C98A7D77">"</span><span style="color:#C98A7D">bg-zinc-3 text-zinc-11 border-l border-zinc-8 pl-sm</span><span style="color:#C98A7D77">"</span><span style="color:#444444">&gt;</span><span style="color:#DBD7CACC">自定义 zinc</span><span style="color:#444444">&lt;/</span><span style="color:#4D9375">span</span><span style="color:#444444">&gt;</span></span></code></pre>
+<p>Sources: <code>packages/unocss/src/theme/colors.ts</code>, <code>packages/unocss/test/theme/colors.test.ts</code></p>
+<h2 id="注意事项">注意事项</h2>
+<ul>
+<li>只用到的阶数会输出。安全列表或实际类名里没有的阶，CSS 里不会有对应变量。</li>
+<li><code>bg-black</code> / <code>bg-white</code> 是 12 阶里的默认第 9 阶。要带透明的黑白用 <code>black-auto</code>、<code>white-auto</code>。</li>
+<li>别名变量形如 <code>--accent-9: var(--custom-accent-9, var(--puerto-9))</code>。换色优先写 <code>--custom-accent-9</code>，或换一个不是 <code>default</code> 的主题。细节在 CSS 变量那一页。</li>
+<li>把已有 Radix 名字再放进 <code>colors</code> 不会覆盖原色。</li>
+<li><code>text-sm</code> 不是颜色。颜色阶是数字，<code>text-indigo-11</code> 才是颜色，<code>text-sm</code> 是字号。</li>
+</ul>
+<h2 id="相关页面">相关页面</h2>
+<ul>
+<li>配置 Preset 与定制主题</li>
+<li>使用并覆盖自定义 CSS 变量</li>
+<li>按场景选用 Rules 类名</li>
+<li>理解 Preflights 与 Postprocess</li>
+</ul>
+</article></div><footer class="site-foot"><span>早期开发，请勿用于生产</span><span>MIT · 2026</span></footer><script type="module">function e(){document.querySelectorAll(`[data-copy-command]`).forEach(e=>{e.addEventListener(`click`,async()=>{let t=e.dataset.copyCommand;if(!t)return;let n=e.dataset.labelIdle||`复制`,r=e.dataset.labelDone||`已复制`;try{await navigator.clipboard.writeText(t),e.textContent=r,window.setTimeout(()=>{e.textContent=n},1600)}catch{e.textContent=`复制失败`,window.setTimeout(()=>{e.textContent=n},1600)}})})}e();</script></body></html>

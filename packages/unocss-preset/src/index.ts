@@ -23,6 +23,13 @@ import { variants } from './variants'
 
 export * from './types'
 export * from './custom/theme'
+export {
+  isColorAlias,
+  isRawColor,
+  isCustomCSSVar,
+  isThemeScopeToken,
+  isThemeToken,
+} from './custom/utilities'
 
 /**
  * 额外颜色

@@ -1,5 +1,11 @@
 # @weme-ui/colors
 
+## 1.0.0
+
+### Major Changes
+
+- 发布 `@weme-ui/colors` 1.0.0，作为首个稳定主版本。
+
 ## 0.1.0
 
 ### Minor Changes

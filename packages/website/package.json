@@ -26,7 +26,7 @@
     "@astrojs/markdown-satteri": "0.4.5",
     "@unocss/astro": "catalog:dev",
     "@weme-ui/unocss-preset": "workspace:*",
-    "astro": "^7.4.4",
+    "astro": "^7.4.11",
     "unocss": "catalog:dev"
   },
   "devDependencies": {

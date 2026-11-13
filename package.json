@@ -13,7 +13,7 @@
     "url": "git+https://github.com/weme-ui/weme-ui.git"
   },
   "workspaces": [
-    "packages/*"
+    "packages/**"
   ],
   "type": "module",
   "scripts": {

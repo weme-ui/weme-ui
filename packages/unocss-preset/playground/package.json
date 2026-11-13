@@ -1,0 +1,21 @@
+{
+  "name": "playground",
+  "private": true,
+  "type": "module",
+  "sideEffects": false,
+  "scripts": {
+    "dev": "vite"
+  },
+  "dependencies": {
+    "@vueuse/core": "catalog:utils",
+    "unocss": "catalog:dev",
+    "vite": "catalog:dev",
+    "vue": "catalog:dev",
+    "vue-router": "catalog:dev"
+  },
+  "devDependencies": {
+    "@iconify-json/lucide": "^1.2.154",
+    "@typescript/typescript6": "catalog:build",
+    "@vitejs/plugin-vue": "catalog:dev"
+  }
+}

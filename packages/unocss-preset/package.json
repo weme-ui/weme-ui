@@ -62,14 +62,12 @@
     "@radix-ui/colors": "catalog:utils",
     "@types/node": "catalog:dev",
     "@typescript/typescript6": "catalog:build",
-    "@vitejs/plugin-vue": "catalog:dev",
     "@weme-ui/colors": "workspace:*",
     "bezier-easing": "catalog:utils",
     "colorjs.io": "catalog:utils",
     "defu": "catalog:utils",
     "tsdown": "catalog:build",
     "type-fest": "catalog:utils",
-    "vite": "catalog:dev",
     "vitest": "catalog:dev"
   },
   "peerDependencies": {

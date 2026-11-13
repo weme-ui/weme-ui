@@ -5,7 +5,9 @@
   </h1>
 </p>
 
-[![npm version][npm-version-src]][npm-version-href]
+[![cli version][cli-version-src]][cli-version-href]
+[![preset version][preset-version-src]][preset-version-href]
+[![colors version][colors-version-src]][colors-version-href]
 [![License][license-src]][license-href]
 
 <p align="center">
@@ -34,8 +36,12 @@ pnpm dlx @weme-ui/weme-ui add slim/button
 
 [MIT][license-href] License © 2025 [weme-ui][github-href]
 
-[npm-version-src]: https://img.shields.io/npm/v/@weme-ui/weme-ui?style=flat&colorA=1d2129&colorB=4CBBA5
-[npm-version-href]: https://npmjs.com/package/@weme-ui/weme-ui
+[cli-version-src]: https://img.shields.io/npm/v/%40weme-ui%2Fweme-ui?style=flat&logoColor=1d2129&label=cli&color=4CBBA5
+[cli-version-href]: https://npmjs.com/package/@weme-ui/weme-ui
+[preset-version-src]: https://img.shields.io/npm/v/%40weme-ui%2Funocss-preset?style=flat&logoColor=1d2129&label=unocss-preset&color=4CBBA5
+[preset-version-href]: https://npmjs.com/package/@weme-ui/unocss-preset
+[colors-version-src]: https://img.shields.io/npm/v/%40weme-ui%2Fcolors?style=flat&logoColor=1d2129&label=colors&color=4CBBA5
+[colors-version-href]: https://npmjs.com/package/@weme-ui/colors
 [license-src]: https://img.shields.io/github/license/weme-ui/weme-ui.svg?style=flat&colorA=1d2129&colorB=4CBBA5
 [license-href]: https://github.com/weme-ui/weme-ui/blob/main/LICENSE
 [github-href]: https://github.com/weme-ui/weme-ui

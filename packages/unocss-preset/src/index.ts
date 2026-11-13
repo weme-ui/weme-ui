@@ -4,6 +4,9 @@ import type { Theme } from './theme/types'
 import { definePreset } from '@unocss/core'
 import { extractorArbitraryVariants } from '@unocss/extractor-arbitrary-variants'
 import transformerVariantGroup from '@unocss/transformer-variant-group'
+import { defu } from 'defu'
+import { existsSync } from 'node:fs'
+import { resolve } from 'node:path'
 import { DEFAULT_THEME, defineTheme } from './custom'
 import { postprocessors } from './postprocess'
 import { preflights } from './preflights'
@@ -30,6 +33,7 @@ export {
   isThemeScopeToken,
   isThemeToken,
 } from './custom/utilities'
+export { defineUnoConfig } from './config'
 
 /**
  * 额外颜色
@@ -106,6 +110,13 @@ export interface PresetWemeUIOptions extends PresetOptions {
   important?: boolean | string
 
   /**
+   * 指定 Weme UI 配置文件路径，当为 `false` 时，不会加载 Weme UI 配置
+   *
+   * @default 'weme.config.json'
+   */
+  wemeConfig?: string | false
+
+  /**
    * 启用任意变体，例如 `<div class="[&>*]:m-1 [&[open]]:p-2"></div>`
    *
    * 禁用此选项可能会略微提高性能
@@ -140,15 +151,28 @@ export interface PresetWemeUIOptions extends PresetOptions {
 /**
  * Weme UI UnoCSS 预设
  */
-export const presetWemeUI = definePreset<PresetWemeUIOptions, Theme>((options = {}) => {
+export const presetWemeUI = definePreset<PresetWemeUIOptions, Theme>(async (options = {}) => {
   options.dark = options.dark ?? 'class'
   options.variablePrefix = options.variablePrefix ?? 'un-'
   options.important = options.important ?? false
+  options.wemeConfig = options.wemeConfig ?? 'weme.config.json'
   options.arbitraryVariants = options.arbitraryVariants ?? true
   options.transformerVariantGroup = options.transformerVariantGroup ?? true
   options.themes = options.themes ?? []
   options.colors = options.colors ?? {}
   options.cssVars = options.cssVars ?? {}
+
+  if (options.wemeConfig !== false) {
+    const wemeConfigPath = resolve(process.cwd(), options.wemeConfig)
+    if (existsSync(wemeConfigPath)) {
+      const wemeConfig = await import(resolve(process.cwd(), options.wemeConfig))
+
+      if (wemeConfig) {
+        options.colors = defu(options.colors, wemeConfig.unocss?.colors ?? {})
+        options.cssVars = defu(options.cssVars, wemeConfig.unocss?.cssVars ?? {})
+      }
+    }
+  }
 
   if (!options.themes?.length) {
     options.themes.push(DEFAULT_THEME)

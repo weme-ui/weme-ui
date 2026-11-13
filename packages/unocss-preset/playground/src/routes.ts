@@ -56,4 +56,14 @@ export const routes: RouteRecordRaw[] = [
     },
     component: () => import('./pages/theme/color-rules.vue'),
   },
+
+  // Utils
+  {
+    path: '/utils/css-vars',
+    meta: {
+      category: 'Utils',
+      title: 'CSS Vars',
+    },
+    component: () => import('./pages/utils/css-vars.vue'),
+  },
 ]

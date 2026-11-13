@@ -1,7 +1,7 @@
-import { defineConfig, presetIcons } from 'unocss'
-import { presetWemeUI } from '../src'
+import { presetIcons } from 'unocss'
+import { presetWemeUI, defineUnoConfig } from '../src'
 
-export default defineConfig({
+export default defineUnoConfig({
   presets: [
     presetWemeUI({
       themes: [

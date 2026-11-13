@@ -1,9 +1,8 @@
 {
   "name": "@weme-ui/website",
-  "version": "0.0.0",
   "private": true,
   "description": "Landing page, UnoCSS Preset docs, and JSON Schema host for Weme UI.",
-  "homepage": "https://mouji.net/weme-ui",
+  "homepage": "https://github.com/weme-ui/weme-ui",
   "bugs": {
     "url": "https://github.com/weme-ui/weme-ui/issues"
   },
@@ -31,7 +30,7 @@
   },
   "devDependencies": {
     "@types/node": "catalog:dev",
-    "typescript": "catalog:build"
+    "@typescript/typescript6": "catalog:build"
   },
   "engines": {
     "bun": ">=1.3.12",

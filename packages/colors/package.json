@@ -8,7 +8,7 @@
     "unocss",
     "weme-ui"
   ],
-  "homepage": "https://mouji.net/weme-ui",
+  "homepage": "https://github.com/weme-ui/weme-ui",
   "bugs": {
     "url": "https://github.com/weme-ui/weme-ui/issues"
   },
@@ -57,14 +57,14 @@
     "export:colors": "bun run scripts/export-colors.ts"
   },
   "dependencies": {
-    "bezier-easing": "^3.2.0",
-    "colorjs.io": "^0.7.1"
+    "bezier-easing": "catalog:utils",
+    "colorjs.io": "catalog:utils"
   },
   "devDependencies": {
-    "@radix-ui/colors": "^3.0.0",
+    "@radix-ui/colors": "catalog:utils",
     "@types/node": "catalog:dev",
+    "@typescript/typescript6": "catalog:build",
     "tsdown": "catalog:build",
-    "typescript": "catalog:build",
     "vitest": "catalog:dev"
   },
   "peerDependencies": {

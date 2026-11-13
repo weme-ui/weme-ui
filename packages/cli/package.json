@@ -9,7 +9,7 @@
     "typescript",
     "vue"
   ],
-  "homepage": "https://mouji.net/weme-ui",
+  "homepage": "https://github.com/weme-ui/weme-ui",
   "bugs": {
     "url": "https://github.com/weme-ui/weme-ui/issues"
   },
@@ -79,9 +79,9 @@
     "@types/make-fetch-happen": "^10.0.4",
     "@types/node": "catalog:dev",
     "@types/semver": "^7.8.0",
+    "@typescript/typescript6": "catalog:build",
     "pkg-types": "^2.4.0",
     "tsdown": "catalog:build",
-    "typescript": "catalog:build",
     "unocss": "catalog:dev",
     "vitest": "catalog:dev"
   },

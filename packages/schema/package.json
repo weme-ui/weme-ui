@@ -6,7 +6,7 @@
     "schema",
     "weme-ui"
   ],
-  "homepage": "https://mouji.net/weme-ui",
+  "homepage": "https://github.com/weme-ui/weme-ui",
   "bugs": {
     "url": "https://github.com/weme-ui/weme-ui/issues"
   },
@@ -60,11 +60,11 @@
   "devDependencies": {
     "@adobe/jsonschema2md": "^8.0.11",
     "@types/node": "catalog:dev",
+    "@typescript/typescript6": "catalog:build",
     "@valibot/to-json-schema": "^1.8.0",
     "premove": "catalog:utils",
     "serve": "catalog:utils",
     "tsdown": "catalog:build",
-    "typescript": "catalog:build",
     "valibot": "catalog:utils"
   },
   "peerDependencies": {

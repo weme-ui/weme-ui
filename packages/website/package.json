@@ -30,7 +30,7 @@
   },
   "devDependencies": {
     "@types/node": "catalog:dev",
-    "@typescript/typescript6": "catalog:build"
+    "typescript": "catalog:build"
   },
   "engines": {
     "bun": ">=1.3.12",

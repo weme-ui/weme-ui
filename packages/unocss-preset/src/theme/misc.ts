@@ -64,6 +64,8 @@ export const radius = {
   '3xl': `calc(1.5rem * ${SCALING_VAR} * ${RADIUS_FACTOR_VAR})`,
   // 32px
   '4xl': `calc(2rem * ${SCALING_VAR} * ${RADIUS_FACTOR_VAR})`,
+  // 100%
+  full: '100%',
 } satisfies Theme['radius']
 
 /**

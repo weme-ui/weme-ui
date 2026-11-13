@@ -36,8 +36,8 @@ export function custom(options: PresetWemeUIOptions): Preflight<Theme> | undefin
   return {
     getCSS: ({ generator, theme }) => {
       const globalCssVars = resolveGlobalCssVars(options.cssVars ?? {}, theme)
-      const themeCssBlocks = resolveThemeCssVars(options.themes ?? [], theme)
-      const colorAliasBlocks = resolveThemeColorAliases(options.themes ?? [])
+      const themeCssBlocks = resolveThemeCssVars((options.themes as CustomTheme[]) ?? [], theme)
+      const colorAliasBlocks = resolveThemeColorAliases((options.themes as CustomTheme[]) ?? [])
 
       return compressCSS(
         [globalCssVars, ...colorAliasBlocks, ...themeCssBlocks].join('\n'),

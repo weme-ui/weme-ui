@@ -1,4 +1,5 @@
 import type { PresetWemeUIOptions } from '..'
+import type { CustomTheme } from '../custom/types'
 import type { Theme } from './types'
 import { applyShortKeys, flattenCssVars, type CustomThemeCSSVars } from '../custom'
 
@@ -10,14 +11,14 @@ export function customCSSVars(options: PresetWemeUIOptions): Theme['cssVars'] {
     Object.assign(cssVars, resolveIndexes(options.cssVars))
   }
 
+  const themes = options.themes as CustomTheme[]
+
   // Theme css vars
-  if (options.themes) {
-    options.themes.forEach((theme) => {
-      if (theme.cssVars && Object.keys(theme.cssVars).length > 0) {
-        Object.assign(cssVars, resolveIndexes(theme.cssVars))
-      }
-    })
-  }
+  themes.forEach((theme) => {
+    if (theme.cssVars && Object.keys(theme.cssVars).length > 0) {
+      Object.assign(cssVars, resolveIndexes(theme.cssVars))
+    }
+  })
 
   return cssVars
 }

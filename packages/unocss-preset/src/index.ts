@@ -1,10 +1,10 @@
 import type { PresetOptions, SourceCodeTransformer } from '@unocss/core'
-import type { CustomTheme, CustomThemeCSSVars } from './custom/types'
+import type { CustomTheme, CustomThemeCSSVars, DefineThemeOptions } from './custom/types'
 import type { Theme } from './theme/types'
 import { definePreset } from '@unocss/core'
 import { extractorArbitraryVariants } from '@unocss/extractor-arbitrary-variants'
 import transformerVariantGroup from '@unocss/transformer-variant-group'
-import { DEFAULT_THEME } from './custom'
+import { DEFAULT_THEME, defineTheme } from './custom'
 import { postprocessors } from './postprocess'
 import { preflights } from './preflights'
 import { rules } from './rules'
@@ -124,7 +124,7 @@ export interface PresetWemeUIOptions extends PresetOptions {
   /**
    * 自定义主题
    */
-  themes?: CustomTheme[]
+  themes?: DefineThemeOptions[]
 
   /**
    * 自定义主题颜色
@@ -150,11 +150,13 @@ export const presetWemeUI = definePreset<PresetWemeUIOptions, Theme>((options = 
   options.colors = options.colors ?? {}
   options.cssVars = options.cssVars ?? {}
 
-  if (options.themes?.length === 0 || options.themes?.some((t) => t.name === 'default')) {
+  if (!options.themes?.length) {
     options.themes.push(DEFAULT_THEME)
+  } else {
+    options.themes = options.themes.map((t) => defineTheme(t))
   }
 
-  setColorAliasMap(options.themes?.map((t) => t.aliases) ?? [])
+  setColorAliasMap((options.themes as CustomTheme[]).map((t) => t.aliases))
 
   const transformers = [
     options.transformerVariantGroup ? transformerVariantGroup() : undefined,

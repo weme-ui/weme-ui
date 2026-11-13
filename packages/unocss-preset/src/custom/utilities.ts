@@ -242,7 +242,7 @@ export function flattenCssVars(
       acc[scope] = vals
     } else {
       Object.entries(vals).forEach(([key, value]) => {
-        acc[`${scope}-${key}`] = value
+        acc[`${scope}-${key}`] = value as string
       })
     }
     return acc

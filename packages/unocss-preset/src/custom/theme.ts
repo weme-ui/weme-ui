@@ -1,11 +1,6 @@
-import type { DeepPartial } from '@unocss/core'
-import type { CustomTheme, CustomThemeTokens } from './types'
+import type { CustomTheme, CustomThemeTokens, DefineThemeOptions } from './types'
 import { defu } from 'defu'
 import { DEFAULT_THEME } from './default'
-
-type DefineThemeOptions = DeepPartial<Omit<CustomTheme, 'name'>> & {
-  name: string
-}
 
 /**
  * 定义主题

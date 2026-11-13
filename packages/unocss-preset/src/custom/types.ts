@@ -1,3 +1,4 @@
+import type { DeepPartial } from '@unocss/core'
 import type { AccentColorName, NeutralColorName } from '@weme-ui/colors'
 import type { FillRecord, LooseAutocomplete } from '../utils/types'
 
@@ -79,11 +80,6 @@ export interface CustomThemeTokens {
    * - `--border-inverted`
    */
   border: FillRecord<string, 'base' | 'elevated' | 'inverted'>
-
-  /**
-   * Additional tokens
-   */
-  [key: string]: string | Record<string, string>
 }
 
 /**
@@ -140,4 +136,14 @@ export interface CustomTheme {
    * CSS 变量
    */
   cssVars: CustomThemeCSSVars
+}
+
+/**
+ * 定义主题选项
+ */
+export type DefineThemeOptions = DeepPartial<Omit<CustomTheme, 'name'>> & {
+  /**
+   * 主题名称
+   */
+  name: string
 }

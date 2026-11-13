@@ -171,7 +171,7 @@ function processThemeVariable(
   const val = hasDefault ? valOrObj.DEFAULT : valOrObj
   const varKey = hasDefault && themeKey !== 'spacing' ? `${varPaths}.DEFAULT` : varPaths
 
-  if (val != null) themeTracking(themeKey, themeKeyPaths.length ? themeKeyPaths : undefined)
+  if (val != null) themeTracking(theme, themeKey, themeKeyPaths.length ? themeKeyPaths : undefined)
 
   return { val, varKey }
 }

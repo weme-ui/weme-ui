@@ -59,7 +59,7 @@ export const transforms: Rule<Theme>[] = [
     ([, t, s], { theme }) => {
       let v
       if (theme.perspective?.[s]) {
-        themeTracking(`perspective`, s)
+        themeTracking(theme, `perspective`, s)
         v = generateThemeVariable('perspective', s)
       } else {
         v = h.bracket.cssvar.px.numberWithUnit(s, theme)
@@ -154,7 +154,7 @@ function handleTranslate(
       }
     }
 
-    themeTracking(`spacing`)
+    themeTracking(theme, `spacing`)
     return [
       [
         ...transformXYZ(d, typeof v === 'number' ? `calc(var(--spacing) * ${v})` : v, 'translate'),

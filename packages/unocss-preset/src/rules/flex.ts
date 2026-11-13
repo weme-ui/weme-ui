@@ -44,12 +44,12 @@ export const flex: Rule<Theme>[] = [
     /^(?:flex-)?basis-(.+)$/,
     ([, d], { theme }) => {
       if (theme.container?.[d]) {
-        themeTracking('container', d)
+        themeTracking(theme, 'container', d)
         return { 'flex-basis': generateThemeVariable('container', d) }
       }
       const v = numberResolver(d)
       if (v != null) {
-        themeTracking(`spacing`)
+        themeTracking(theme, `spacing`)
         return { 'flex-basis': `calc(var(--spacing) * ${v})` }
       }
       return { 'flex-basis': h.bracket.cssvar.auto.fraction.rem(d, theme) }

@@ -409,11 +409,11 @@ export function reset(options: PresetWemeUIOptions): Preflight<Theme> | undefine
   if (options.reset === false) return undefined
 
   return {
-    getCSS: ({ generator }) => {
-      themeTracking('font', 'sans')
-      themeTracking('font', 'mono')
-      themeTracking('default', ['font', 'family'])
-      themeTracking('default', ['monoFont', 'family'])
+    getCSS: ({ generator, theme }) => {
+      themeTracking(theme, 'font', 'sans')
+      themeTracking(theme, 'font', 'mono')
+      themeTracking(theme, 'default', ['font', 'family'])
+      themeTracking(theme, 'default', ['monoFont', 'family'])
 
       return compressCSS(resetCSS, generator.config.envMode === 'dev')
     },

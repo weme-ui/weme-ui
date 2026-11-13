@@ -5,7 +5,7 @@ import { definePreset } from '@unocss/core'
 import { extractorArbitraryVariants } from '@unocss/extractor-arbitrary-variants'
 import transformerVariantGroup from '@unocss/transformer-variant-group'
 import { defu } from 'defu'
-import { existsSync } from 'node:fs'
+import { existsSync, readFileSync } from 'node:fs'
 import { resolve } from 'node:path'
 import { DEFAULT_THEME, defineTheme } from './custom'
 import { postprocessors } from './postprocess'
@@ -14,14 +14,7 @@ import { rules } from './rules'
 import { shortcuts } from './shortcuts'
 import { shorthands } from './shorthands'
 import { theme } from './theme'
-import {
-  PRESET_NAME,
-  trackedProperties,
-  trackedTheme,
-  trackedCSSVars,
-  trackedColorAliases,
-  setColorAliasMap,
-} from './utils'
+import { PRESET_NAME, setColorAliasMap } from './utils'
 import { variants } from './variants'
 
 export * from './types'
@@ -151,7 +144,7 @@ export interface PresetWemeUIOptions extends PresetOptions {
 /**
  * Weme UI UnoCSS 预设
  */
-export const presetWemeUI = definePreset<PresetWemeUIOptions, Theme>(async (options = {}) => {
+export const presetWemeUI = definePreset<PresetWemeUIOptions, Theme>((options = {}) => {
   options.dark = options.dark ?? 'class'
   options.variablePrefix = options.variablePrefix ?? 'un-'
   options.important = options.important ?? false
@@ -165,11 +158,12 @@ export const presetWemeUI = definePreset<PresetWemeUIOptions, Theme>(async (opti
   if (options.wemeConfig !== false) {
     const wemeConfigPath = resolve(process.cwd(), options.wemeConfig)
     if (existsSync(wemeConfigPath)) {
-      const wemeConfig = await import(resolve(process.cwd(), options.wemeConfig))
+      const wemeConfig = readFileSync(wemeConfigPath, 'utf-8')
 
       if (wemeConfig) {
-        options.colors = defu(options.colors, wemeConfig.unocss?.colors ?? {})
-        options.cssVars = defu(options.cssVars, wemeConfig.unocss?.cssVars ?? {})
+        const wemeConfigJson = JSON.parse(wemeConfig)
+        options.colors = defu(options.colors, wemeConfigJson.unocss?.colors ?? {})
+        options.cssVars = defu(options.cssVars, wemeConfigJson.unocss?.cssVars ?? {})
       }
     }
   }
@@ -207,18 +201,6 @@ export const presetWemeUI = definePreset<PresetWemeUIOptions, Theme>(async (opti
       shorthands,
     },
     options,
-    configResolved() {
-      trackedTheme.clear()
-      trackedProperties.clear()
-      trackedCSSVars.clear()
-      trackedColorAliases.clear()
-    },
-    meta: {
-      themeDeps: trackedTheme,
-      propertyDeps: trackedProperties,
-      colorAliasDeps: trackedColorAliases,
-      cssVarDeps: trackedCSSVars,
-    },
   }
 })
 

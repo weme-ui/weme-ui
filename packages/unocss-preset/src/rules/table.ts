@@ -73,7 +73,7 @@ function resolveValue(s: string, theme: Theme) {
   if (!v) {
     const num = numberResolver(s)
     if (num != null) {
-      themeTracking(`spacing`)
+      themeTracking(theme, `spacing`)
       v = `calc(var(--spacing) * ${num})`
     } else {
       v = h.bracket.cssvar.global.auto.fraction.rem(s, theme)

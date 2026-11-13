@@ -199,7 +199,7 @@ function handlerRounded(
     if (_v != null) {
       const isVar = theme.radius && s in theme.radius
       if (isVar) {
-        themeTracking(`radius`, s)
+        themeTracking(theme, `radius`, s)
       }
 
       return cornerMap[a].map((i) => [

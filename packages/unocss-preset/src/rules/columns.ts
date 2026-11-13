@@ -7,7 +7,7 @@ export const columns: Rule<Theme>[] = [
     /^columns-(.+)$/,
     ([, v], { theme }) => {
       if (theme.container && v in theme.container) {
-        themeTracking('container', v)
+        themeTracking(theme, 'container', v)
         return { columns: generateThemeVariable('container', v) }
       }
 

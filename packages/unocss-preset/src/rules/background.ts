@@ -95,7 +95,7 @@ function bgGradientColorResolver() {
         }
 
         if (keys) {
-          themeTracking(`colors`, keys)
+          themeTracking(theme, `colors`, keys)
         }
         if (theme) {
           detectThemeValue(color, theme)

@@ -1,7 +1,7 @@
 import type { Preflight } from '@unocss/core'
 import type { PresetWemeUIOptions } from '..'
 import type { Theme } from '../theme'
-import { trackedProperties } from '../utils/track'
+import { getTrackedProperties } from '../utils/track'
 
 export function property(options: PresetWemeUIOptions): Preflight<Theme> | undefined {
   const parentSelector =
@@ -10,7 +10,8 @@ export function property(options: PresetWemeUIOptions): Preflight<Theme> | undef
   const prefix = options.variablePrefix ?? 'un-'
 
   return {
-    getCSS: () => {
+    getCSS: ({ theme }) => {
+      const trackedProperties = getTrackedProperties(theme)
       if (trackedProperties.size === 0) return
 
       const css = Array.from(trackedProperties.entries())

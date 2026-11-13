@@ -64,7 +64,11 @@ export function notLastChildSelectorVariant(s: string): VariantHandler {
     handle: (input, next) =>
       next({
         ...input,
-        parent: `${input.parent ? `${input.parent} $$ ` : ''}${input.selector}`,
+        // Keep the whole selector, including prefixes added by variants such as
+        // `peer-*` and `group-*`, inside the `:where()`: the child combinator has
+        // to apply to the utility element, not to the prefix.
+        parent: `${input.parent ? `${input.parent} $$ ` : ''}${input.prefix}${input.selector}`,
+        prefix: '',
         selector: ':where(&>:not(:last-child))',
       }),
   }
@@ -74,7 +78,7 @@ function* handlerSpace([m, d, s]: string[], { theme, symbols }: RuleContext<Them
   let v: string | undefined
   const num = numberResolver(s)
   if (num != null) {
-    themeTracking(`spacing`)
+    themeTracking(theme, `spacing`)
     v = `calc(var(--spacing) * ${num})`
   } else {
     v = theme.spacing?.[s] ?? h.bracket.cssvar.auto.fraction.rem(s || '1', theme)

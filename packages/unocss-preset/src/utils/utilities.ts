@@ -75,13 +75,13 @@ export function directionSize(
       v = numberResolver(size)
 
       if (v != null && !Number.isNaN(v)) {
-        themeTracking('spacing')
+        themeTracking(theme, 'spacing')
         return map[direction].map((i) => [
           formatter(property, i),
           `calc(var(--spacing) * ${isNegative ? '-' : ''}${v})`,
         ])
       } else if (theme.spacing && size in theme.spacing) {
-        themeTracking('spacing', size)
+        themeTracking(theme, 'spacing', size)
         return map[direction].map((i) => [
           formatter(property, i),
           isNegative
@@ -183,7 +183,7 @@ export function parseColor(body: string, theme: Theme) {
 
   // Parse color alias
   if (!parsed && isColorAlias(name)) {
-    parsed = parseColorAlias(colors)
+    parsed = parseColorAlias(theme, colors)
   }
 
   let { no, keys, color } = parsed ?? {}
@@ -348,8 +348,8 @@ export function colorCSSGenerator(
     }
 
     if (!isSpecial) {
-      if (keys && !isCSSVar) {
-        themeTracking(`colors`, keys)
+      if (keys && !isCSSVar && ctx?.theme) {
+        themeTracking(ctx.theme, `colors`, keys)
         if (!modifier && (alpha || isShadowColor)) {
           const colorValue = isShadowColor
             ? `${alpha ? `color-mix(in oklab, ${value} ${alpha}, transparent)` : value} var(${alphaKey})`
@@ -460,20 +460,23 @@ export function defineProperty(
     [symbols.shortcutsNoMerge]: true,
     [symbols.noMerge]: true,
     [symbols.noScope]: true,
-    [symbols.variants]: () => [
-      {
-        parent: '',
-        layer: 'properties',
-        selector: () => `@property ${property}`,
-      },
-    ],
+    [symbols.variants]: (_handlers, ctx) => {
+      if (ctx?.theme)
+        propertyTracking(ctx.theme, property, initialValue ? String(initialValue) : 'initial')
+      return [
+        {
+          parent: '',
+          layer: 'properties',
+          selector: () => `@property ${property}`,
+        },
+      ]
+    },
     syntax: JSON.stringify(syntax),
     inherits: inherits ? 'true' : 'false',
   }
   if (initialValue != null) {
     value['initial-value'] = initialValue as keyof CSSObjectInput
   }
-  propertyTracking(property, initialValue ? String(initialValue) : 'initial')
   return value
 }
 // #endregion

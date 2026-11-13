@@ -1,7 +1,13 @@
 import type { CSSEntry, Preflight } from '@unocss/core'
 import type { Theme } from '../theme/types'
 import { escapeSelector, uniq } from '@unocss/core'
-import { compressCSS, detectThemeValue, getThemeByKey, themeTracking, trackedTheme } from '../utils'
+import {
+  compressCSS,
+  detectThemeValue,
+  getThemeByKey,
+  getTrackedTheme,
+  themeTracking,
+} from '../utils'
 
 interface TrackedThemeEntries {
   colors: CSSEntry[]
@@ -28,13 +34,14 @@ export function theme(): Preflight<Theme> {
             const v = getThemeByKey(theme, key as keyof Theme, props)
 
             if (typeof v === 'string') {
-              themeTracking(key, props)
+              themeTracking(theme, key, props)
               detectThemeValue(v, theme)
             }
           }
         }
       }
 
+      const trackedTheme = getTrackedTheme(theme)
       if (trackedTheme.size === 0) return undefined
 
       const { colors, deps } = resolveTrackedThemeEntries(theme)
@@ -150,6 +157,10 @@ function serializeTrackedThemeEntries(entries: CSSEntry[]): string[] {
 function resolveTrackedThemeEntries(theme: Theme): TrackedThemeEntries {
   const colors: CSSEntry[] = []
   const deps: CSSEntry[] = []
+
+  const trackedTheme = Array.from(getTrackedTheme(theme)).toSorted((a, b) =>
+    a[0].localeCompare(b[0]),
+  )
 
   for (const entry of trackedTheme) {
     const [key, prop] = entry.split(':') as [keyof Theme, string]

@@ -37,7 +37,10 @@ export function custom(options: PresetWemeUIOptions): Preflight<Theme> | undefin
     getCSS: ({ generator, theme }) => {
       const globalCssVars = resolveGlobalCssVars(options.cssVars ?? {}, theme)
       const themeCssBlocks = resolveThemeCssVars((options.themes as CustomTheme[]) ?? [], theme)
-      const colorAliasBlocks = resolveThemeColorAliases((options.themes as CustomTheme[]) ?? [])
+      const colorAliasBlocks = resolveThemeColorAliases(
+        (options.themes as CustomTheme[]) ?? [],
+        theme,
+      )
 
       return compressCSS(
         [globalCssVars, ...colorAliasBlocks, ...themeCssBlocks].join('\n'),
@@ -109,7 +112,7 @@ function getThemeSelector(name: string, scheme?: 'light' | 'dark'): string {
  * @param themes - 自定义主题列表
  * @returns 解析后的主题颜色别名块列表
  */
-function resolveThemeColorAliases(themes: CustomTheme[]): string[] {
+function resolveThemeColorAliases(themes: CustomTheme[], theme: Theme): string[] {
   if (trackedColorAliases.size === 0) {
     return []
   }
@@ -138,7 +141,7 @@ function resolveThemeColorAliases(themes: CustomTheme[]): string[] {
         sortedNos.forEach((no) => {
           light.push(`--${name}-${no}: var(--custom-${name}-${no}, var(--${color}-${no}));`)
 
-          themeTracking('colors', [color, no])
+          themeTracking(theme, 'colors', [color, no])
         })
       }
     })
@@ -195,7 +198,7 @@ function serializeCSSEntries(vars: FlattenedCustomThemeCSSVars, theme: Theme): s
     const { keys } = parseColor(body, theme) ?? {}
 
     if (keys && keys.length > 0) {
-      themeTracking('colors', keys)
+      themeTracking(theme, 'colors', keys)
       entries.push(`--${key}: ${generateThemeVariable('colors', keys)};`)
     } else {
       if (isSize(value) || isRawColor(value)) {

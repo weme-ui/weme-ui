@@ -53,7 +53,7 @@ export function isColorAlias(alias: string): alias is CustomThemeColorName {
  * @param keys 拆分键值，如：bg-accent-7 -> ['accent', '7']
  * @returns 颜色别名信息
  */
-export function parseColorAlias(keys: string[]) {
+export function parseColorAlias(theme: Theme, keys: string[]) {
   const [alias, ...rest] = keys
 
   if (!isColorAlias(alias)) {
@@ -71,7 +71,7 @@ export function parseColorAlias(keys: string[]) {
     return
   }
 
-  colorAliasTracking(alias, no)
+  colorAliasTracking(theme, alias, no)
 
   return {
     color,
@@ -206,26 +206,30 @@ export function getCustomCSSVarVariable(cssVars: [string, string[]], varName: st
     return ''
   }
 
+  let variable: string = ''
+
   const map = cssVarNameMap.get(varName) || []
   if (map.length === 0) {
     const matched = variants.find((variant) => variant === `${token}-${varName}`)
     if (matched) {
-      cssVarTracking(applyShortKeys(matched))
-      return `var(--${applyShortKeys(matched)})`
+      variable = applyShortKeys(matched)
+    }
+  } else {
+    for (const m of map) {
+      const matched = variants.find((variant) => variant === `${token}-${m}`)
+      if (matched) {
+        variable = applyShortKeys(matched)
+      }
     }
   }
 
-  for (const m of map) {
-    const matched = variants.find((variant) => variant === `${token}-${m}`)
-    if (matched) {
-      cssVarTracking(applyShortKeys(matched))
-      return `var(--${applyShortKeys(matched)})`
-    }
+  if (!variable) {
+    variable = applyShortKeys(token)
   }
 
-  cssVarTracking(applyShortKeys(token))
+  cssVarTracking(variable)
 
-  return `var(--${applyShortKeys(token)})`
+  return `var(--${variable})`
 }
 
 // #endregion

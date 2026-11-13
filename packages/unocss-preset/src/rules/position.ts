@@ -153,10 +153,10 @@ export const flexGridJustifiesAlignments = [...justifies, ...alignments, ...plac
   ],
 )
 
-function handleInsetValue(v: string, theme?: Theme): string | number | undefined {
+function handleInsetValue(v: string, theme: Theme): string | number | undefined {
   const _v = numberResolver(v)
   if (_v != null) {
-    themeTracking(`spacing`)
+    themeTracking(theme, `spacing`)
     return `calc(var(--spacing) * ${_v})`
   } else {
     return h.bracket.cssvar.global.auto.fraction.rem(v, theme)
@@ -165,7 +165,7 @@ function handleInsetValue(v: string, theme?: Theme): string | number | undefined
 
 function handleInsetValues(
   [, d, v]: string[],
-  { theme }: { theme?: Theme },
+  { theme }: { theme: Theme },
 ): CSSEntries | undefined {
   const r = handleInsetValue(v, theme)
   if (r != null && d in insetMap) {

@@ -21,7 +21,7 @@ function getSizeValue(theme: Theme, hw: string, prop: string) {
   const keys: (keyof Theme)[] = ['container', 'spacing']
   for (const key of keys) {
     if ((theme[key] as Record<string, any>)?.[prop]) {
-      themeTracking(key, prop)
+      themeTracking(theme, key, prop)
       v = generateThemeVariable(key, prop)
       break
     }
@@ -44,7 +44,7 @@ function getSizeValue(theme: Theme, hw: string, prop: string) {
   }
 
   if (!v && h.number(prop) != null) {
-    themeTracking(`spacing`)
+    themeTracking(theme, `spacing`)
     v = `calc(var(--spacing) * ${h.number(prop)})`
   }
 

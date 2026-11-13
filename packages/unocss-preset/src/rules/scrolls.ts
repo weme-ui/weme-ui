@@ -44,7 +44,7 @@ export const scrolls: Rule<Theme>[] = [
     ([, w, v], { theme, symbols }) => {
       let value: string | undefined
       if (h.number(v) != null) {
-        themeTracking('spacing')
+        themeTracking(theme, 'spacing')
         value = `calc(var(--spacing) * ${h.number(v)})`
       } else {
         value = h.bracket.cssvar.global.fraction.rem(v, theme)
@@ -66,7 +66,7 @@ export const scrolls: Rule<Theme>[] = [
       if (v === 'full') {
         value = 'calc(infinity * 1px)'
       } else if (theme.radius && v in theme.radius) {
-        themeTracking('radius', v)
+        themeTracking(theme, 'radius', v)
         value = generateThemeVariable('radius', v)
       } else {
         value = h.bracket.cssvar.global.fraction.rem(v, theme)

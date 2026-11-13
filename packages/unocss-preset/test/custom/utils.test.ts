@@ -1,22 +1,7 @@
 import { describe, expect, it } from 'vitest'
-import { isThemeToken, parseColorAlias, parseThemeTokenVariable } from '../../src/custom'
+import { isThemeToken, parseThemeTokenVariable } from '../../src/custom'
 
 describe('custom utils', () => {
-  it('should parse color alias', () => {
-    const parsed = parseColorAlias(['accent', '12'])
-
-    expect(parsed).toMatchInlineSnapshot(`
-      {
-        "color": "var(--accent-12)",
-        "keys": [
-          "accent",
-          "12",
-        ],
-        "no": "12",
-      }
-    `)
-  })
-
   it('should check if token is theme token', () => {
     const cases = [
       'highlighted',

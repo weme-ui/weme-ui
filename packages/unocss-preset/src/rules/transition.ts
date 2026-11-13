@@ -32,8 +32,8 @@ export const transitions: Rule<Theme>[] = [
   [
     /^transition(?:-(\D+?))?(?:-(\d+))?$/,
     ([, prop, d], { theme }) => {
-      themeTracking('default', ['transition', 'timingFunction'])
-      themeTracking('default', ['transition', 'duration'])
+      themeTracking(theme, 'default', ['transition', 'timingFunction'])
+      themeTracking(theme, 'default', ['transition', 'duration'])
 
       const defaultTransition = {
         'transition-property': theme.property?.DEFAULT,
@@ -83,7 +83,7 @@ export const transitions: Rule<Theme>[] = [
     ([, d = 'DEFAULT'], { theme }) => {
       let v
       if (theme.ease?.[d]) {
-        themeTracking('ease', d)
+        themeTracking(theme, 'ease', d)
         v = generateThemeVariable('ease', d)
       } else {
         v = h.bracket.cssvar(d, theme)

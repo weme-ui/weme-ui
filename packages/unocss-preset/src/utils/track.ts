@@ -8,18 +8,28 @@ import { getThemeByKey } from './utilities'
 // #region Theme
 
 /**
- * Used to track theme keys.
+ * Tracked theme keys of one generator.
  *
  * eg: colors:red-100
  *
  * @internal
  */
-export const trackedTheme = new Set<string>([])
+const trackedThemeByTheme = new WeakMap<Theme, Set<string>>()
 
-export function themeTracking(key: string, props: Arrayable<string> = 'DEFAULT') {
+export function getTrackedTheme(theme: Theme): Set<string> {
+  let set = trackedThemeByTheme.get(theme)
+  if (!set) {
+    set = new Set()
+    trackedThemeByTheme.set(theme, set)
+  }
+  return set
+}
+
+export function themeTracking(theme: Theme, key: string, props: Arrayable<string> = 'DEFAULT') {
+  const tracked = getTrackedTheme(theme)
   const k = `${key}:${toArray(props).join('-')}`
-  if (!trackedTheme.has(k)) {
-    trackedTheme.add(k)
+  if (!tracked.has(k)) {
+    tracked.add(k)
   }
 }
 
@@ -35,7 +45,7 @@ export function detectThemeValue(value: string, theme: Theme) {
       const themeValue = getThemeByKey(theme, key as keyof Theme, path)
 
       if (typeof themeValue === 'string') {
-        themeTracking(key, path)
+        themeTracking(theme, key, path)
         detectThemeValue(themeValue, theme)
       }
     }
@@ -46,11 +56,22 @@ export function detectThemeValue(value: string, theme: Theme) {
 
 // #region Properties
 
-export const trackedProperties = new Map<string, string>()
+const trackedPropertiesByTheme = new WeakMap<Theme, Map<string, string>>()
 
-export function propertyTracking(property: string, value: string) {
-  if (!trackedProperties.has(property)) {
-    trackedProperties.set(property, value)
+export function getTrackedProperties(theme: Theme): Map<string, string> {
+  let map = trackedPropertiesByTheme.get(theme)
+  if (!map) {
+    map = new Map()
+    trackedPropertiesByTheme.set(theme, map)
+  }
+  return map
+}
+
+export function propertyTracking(theme: Theme, property: string, value: string) {
+  const tracked = getTrackedProperties(theme)
+
+  if (!tracked.has(property)) {
+    tracked.set(property, value)
   }
 }
 
@@ -90,7 +111,7 @@ export const trackedColorAliases = new Set<string>([])
  * @param alias - 颜色别名
  * @param scale - 颜色刻度
  */
-export function colorAliasTracking(alias: string, scale?: string) {
+export function colorAliasTracking(theme: Theme, alias: string, scale?: string) {
   const no = scale ?? '9'
   const key = `${alias}:${no}`
 
@@ -101,7 +122,7 @@ export function colorAliasTracking(alias: string, scale?: string) {
       const color = colorAlias[alias as keyof CustomThemeColorAliases]
 
       if (typeof color === 'string' && !isRawColor(color)) {
-        themeTracking('colors', [color, no])
+        themeTracking(theme, 'colors', [color, no])
       }
     }
   }

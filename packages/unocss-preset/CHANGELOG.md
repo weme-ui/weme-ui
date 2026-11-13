@@ -1,5 +1,15 @@
 # @weme-ui/unocss-preset
 
+## 0.6.0
+
+### Minor Changes
+
+- `themes` 改为接受 `DefineThemeOptions`，可部分覆盖默认主题；未传入主题时仍使用默认主题。同时导出 `DefineThemeOptions`。
+
+### Patch Changes
+
+- 修正主题 token 映射：`bg` 的档位由 `subtle` 改为 `elevated`，并按当前变量名解析作用域内的 token。
+
 ## 0.5.1
 
 ### Patch Changes

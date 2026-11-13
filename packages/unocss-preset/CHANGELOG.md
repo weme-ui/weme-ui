@@ -1,5 +1,15 @@
 # @weme-ui/unocss-preset
 
+## 0.7.0
+
+### Minor Changes
+
+- 导出 `defineUnoConfig`，扫描内容时包含 `*.style.ts` 和 `*.uno.ts`。`presetWemeUI` 新增 `wemeConfig`，默认读取项目里的 `weme.config.json`，并把其中的 `unocss.colors` 与 `unocss.cssVars` 合并进预设。
+
+### Patch Changes
+
+- 修正 `isCustomCSSVar`：token 同时匹配同名变量和以该 token 加 `-` 开头的变量。
+
 ## 0.6.1
 
 ### Patch Changes

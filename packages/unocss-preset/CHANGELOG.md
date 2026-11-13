@@ -1,5 +1,11 @@
 # @weme-ui/unocss-preset
 
+## 0.6.1
+
+### Patch Changes
+
+- 修正 `isCustomCSSVar`：不含 `-` 的 token 只匹配带连字符的前缀，避免把无效主题键当成自定义 CSS 变量。
+
 ## 0.6.0
 
 ### Minor Changes

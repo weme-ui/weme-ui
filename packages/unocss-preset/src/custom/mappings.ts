@@ -53,8 +53,8 @@ export const cssVarNameMap: Map<string, string[]> = new Map([
 export const themeTokensMap: Record<string, string[]> = {
   // text-highlighted, text-default, text-subtle, text-muted, text-inverted
   text: ['highlighted', 'default', 'subtle', 'muted', 'inverted'],
-  // bg-default, bg-muted, bg-subtle, bg-inverted
-  bg: ['default', 'muted', 'subtle', 'inverted'],
+  // bg-default, bg-muted, bg-elevated, bg-inverted
+  bg: ['default', 'muted', 'elevated', 'inverted'],
   // border-default, border-elevated, border-inverted
   border: ['default', 'elevated', 'inverted'],
 }

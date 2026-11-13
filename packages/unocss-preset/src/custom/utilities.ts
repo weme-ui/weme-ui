@@ -114,24 +114,41 @@ export function isThemeScopeToken(token: string): boolean {
  * 解析主题令牌变量
  *
  * @param tokens 令牌
- * @param scope 作用域
+ * @param varName 变量名
  * @returns 主题令牌变量
  */
-export function parseThemeTokenVariable(tokens: string[], scope?: string): string {
-  if (tokens.length === 1) {
-    const [token] = tokens
+export function parseThemeTokenVariable(tokens: string[], varName: string): string {
+  if (tokens.filter(Boolean).length === 0) {
+    return ''
+  }
 
-    if (isThemeScopeToken(token)) {
-      cssVarTracking(token)
-      return `var(--${token})`
-    } else {
-      cssVarTracking(applyShortKeys(scope ? `${scope}-${token}` : token))
-      return `var(--${applyShortKeys(scope ? `${scope}-${token}` : token)})`
+  let variable = ''
+
+  const [scope] = tokens
+  const isCrossScope = tokens.length > 1 && isThemeScopeToken(scope) && scope !== varName
+
+  if (isCrossScope) {
+    variable = applyShortKeys(tokens.join('-'))
+  }
+
+  if (tokens.length === 1) {
+    const inScope = Object.entries(themeTokensMap).some(
+      ([name, tokens]) => name === varName && tokens.includes(scope),
+    )
+
+    if (inScope) {
+      variable = applyShortKeys(`${varName}-${scope}`)
+    } else if (isThemeScopeToken(scope)) {
+      variable = applyShortKeys(scope)
     }
   }
 
-  cssVarTracking(applyShortKeys(tokens.join('-')))
-  return `var(--${applyShortKeys(tokens.join('-'))})`
+  if (variable) {
+    cssVarTracking(variable)
+    return `var(--${variable})`
+  }
+
+  return ''
 }
 
 // #endregion

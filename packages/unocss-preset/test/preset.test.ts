@@ -212,6 +212,20 @@ describe('preset weme-ui', () => {
         presetWemeUI({
           reset: false,
           cssVars: {
+            'activity-bar': {
+              width: '3.5rem',
+              'active-bg': 'neutral.3',
+              'active-color': 'neutral.12',
+            },
+            scrollbar: {
+              color: 'neutral.3',
+              'thumb-color': 'neutral.8',
+              'thumb-hover-color': 'neutral.9',
+            },
+            tooltip: {
+              background: 'neutral.12',
+              color: 'neutral.1',
+            },
             test: {
               width: '100px',
               height: '100px',
@@ -221,7 +235,15 @@ describe('preset weme-ui', () => {
       ],
     })
 
-    const { css } = await uno.generate('w-test h-test size-test b-t')
+    const { css } = await uno.generate(
+      [
+        'b-t b-b b-l b-r',
+        'w-test h-test size-test',
+        'w-activity-bar bg-activity-bar-active text-activity-bar-active',
+        'c-scrollbar bg-scrollbar-thumb bg-scrollbar-thumb-hover',
+        'c-tooltip bg-tooltip',
+      ].join(' '),
+    )
 
     expect(css).toContain('--test-width: 100px;')
     expect(css).toContain('--test-height: 100px;')
@@ -229,5 +251,22 @@ describe('preset weme-ui', () => {
     expect(css).toContain('.h-test')
     expect(css).toContain('.size-test')
     expect(css).toContain('.b-t{border-top-width:1px;}')
+    expect(css).toContain('.b-b{border-bottom-width:1px;}')
+    expect(css).toContain('.b-l{border-left-width:1px;}')
+    expect(css).toContain('.b-r{border-right-width:1px;}')
+    expect(css).toContain('.w-activity-bar{width:var(--activity-bar-width);}')
+    expect(css).toContain(
+      '.bg-activity-bar-active{background-color:var(--activity-bar-active-bg);}',
+    )
+    expect(css).toContain('.text-activity-bar-active{color:var(--activity-bar-active);}')
+    expect(css).toContain('.c-scrollbar{color:var(--scrollbar);}')
+    expect(css).toContain('.bg-scrollbar-thumb{background-color:var(--scrollbar-thumb);}')
+    expect(css).toContain(
+      '.bg-scrollbar-thumb-hover{background-color:var(--scrollbar-thumb-hover);}',
+    )
+    expect(css).toContain('.bg-tooltip{background-color:var(--tooltip-bg);}')
+    expect(css).toContain('.c-tooltip{color:var(--tooltip);}')
+
+    // expect(css).toMatchInlineSnapshot()
   })
 })

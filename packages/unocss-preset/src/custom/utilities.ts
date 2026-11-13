@@ -167,10 +167,7 @@ export function isCustomCSSVar(token: string, theme: Theme): boolean {
 
   const inArray = (array: string[]) =>
     array.some((val) => {
-      if (!token.includes('-')) {
-        return val.startsWith(token + '-')
-      }
-      return val === token
+      return val === token || val.startsWith(token + '-')
     })
 
   return inArray(originalCssVars) || inArray(cssVarKeys)

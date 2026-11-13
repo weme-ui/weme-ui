@@ -52,6 +52,7 @@ function getSizeValue(theme: Theme, hw: string, prop: string) {
   if (parsed) {
     v = getCustomCSSVarVariable(parsed, hw === 'w' ? 'width' : hw === 'h' ? 'height' : 'size')
   }
+  console.log(prop, v, parsed)
 
   return v ?? h.bracket.cssvar.global.auto.none.fraction.rem(prop, theme)
 }

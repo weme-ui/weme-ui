@@ -1,5 +1,11 @@
 # @weme-ui/unocss-preset
 
+## 0.7.1
+
+### Patch Changes
+
+- 主题、属性和颜色别名的追踪改为按当前 theme 隔离。自定义 CSS 变量在没有更具体的映射时回退到 token 本身。`space-*` 的非末子选择器会保留 `peer` / `group` 等变体前缀。`weme.config.json` 改为同步读取并按 JSON 解析。
+
 ## 0.7.0
 
 ### Minor Changes

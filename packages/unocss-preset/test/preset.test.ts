@@ -221,12 +221,13 @@ describe('preset weme-ui', () => {
       ],
     })
 
-    const { css } = await uno.generate('w-test h-test size-test')
+    const { css } = await uno.generate('w-test h-test size-test b-t')
 
     expect(css).toContain('--test-width: 100px;')
     expect(css).toContain('--test-height: 100px;')
     expect(css).toContain('.w-test')
     expect(css).toContain('.h-test')
     expect(css).toContain('.size-test')
+    expect(css).toContain('.b-t{border-top-width:1px;}')
   })
 })

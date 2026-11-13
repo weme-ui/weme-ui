@@ -55,4 +55,28 @@ describe('theme custom', () => {
     const matched = getCustomCSSVarVariable(['test', ['test', 'test-bg']], 'bg')
     expect(matched).toMatchInlineSnapshot(`"var(--test-bg)"`)
   })
+
+  it('should get theme by key with invalid key', () => {
+    const myTheme = theme({
+      themes: [
+        {
+          ...DEFAULT_THEME,
+          cssVars: {
+            test: {
+              base: '#f00',
+            },
+          },
+        },
+      ],
+      cssVars: {
+        test: {
+          base: '#000',
+        },
+      },
+    })
+
+    expect(isCustomCSSVar('tes', myTheme)).toBe(false)
+    expect(isCustomCSSVar('te', myTheme)).toBe(false)
+    expect(isCustomCSSVar('t', myTheme)).toBe(false)
+  })
 })

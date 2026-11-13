@@ -165,10 +165,15 @@ export function isCustomCSSVar(token: string, theme: Theme): boolean {
   const originalCssVars: string[] = getThemeByKey(theme, 'cssVars', ['_']) || []
   const cssVarKeys: string[] = getThemeByKey(theme, 'cssVars', ['keys']) || []
 
-  return (
-    originalCssVars.some((cssVar) => cssVar.startsWith(token)) ||
-    cssVarKeys.some((cssVar) => cssVar.startsWith(token))
-  )
+  const inArray = (array: string[]) =>
+    array.some((val) => {
+      if (!token.includes('-')) {
+        return val.startsWith(token + '-')
+      }
+      return val === token
+    })
+
+  return inArray(originalCssVars) || inArray(cssVarKeys)
 }
 
 /**

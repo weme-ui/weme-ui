@@ -53,7 +53,7 @@
     "build:output": "bun run scripts/build.ts",
     "build:docs": "premove ./docs && jsonschema2md -d ./dist -x ../website/public -o ./docs",
     "dev": "NODE_ENV=development tsdown --watch",
-    "typecheck": "tsc --noEmit",
+    "typecheck": "tsc6 --noEmit",
     "preview": "serve -l 3000",
     "prepack": "bun ../../scripts/materialize-catalog.ts"
   },

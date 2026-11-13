@@ -48,7 +48,7 @@
     "build": "NODE_ENV=deploy tsdown",
     "dev": "NODE_ENV=development tsdown --watch",
     "play": "NODE_ENV=development bun run --cwd playground dev",
-    "typecheck": "tsc --noEmit",
+    "typecheck": "tsc6 --noEmit",
     "test": "NODE_ENV=test vitest run",
     "prepack": "bun ../../scripts/materialize-catalog.ts"
   },

@@ -11,15 +11,15 @@
   },
   "dependencies": {
     "vue": "^3.5.45",
-    "vue-router": "^5.5.0"
+    "vue-router": "^5.5.1"
   },
   "devDependencies": {
     "@antfu/eslint-config": "^10.0.0",
     "@types/node": "^26.6.6",
     "@vitejs/plugin-vue": "^6.0.11",
     "@vitejs/plugin-vue-jsx": "^5.1.6",
-    "@weme-ui/unocss-preset": "^0.7.0",
-    "eslint": "^10.14.0",
+    "@weme-ui/unocss-preset": "^0.7.1",
+    "eslint": "^10.15.0",
     "eslint-plugin-format": "^2.0.1",
     "magic-string": "^1.4.5",
     "typescript": "6.0.3",

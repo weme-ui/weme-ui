@@ -1,6 +1,6 @@
 {
   "name": "@weme-ui/unocss-preset",
-  "version": "0.7.1",
+  "version": "0.8.0",
   "description": "UnoCSS preset for Weme UI.",
   "keywords": [
     "radix-colors",

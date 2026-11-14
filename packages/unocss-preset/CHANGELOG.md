@@ -1,5 +1,11 @@
 # @weme-ui/unocss-preset
 
+## 0.8.0
+
+### Minor Changes
+
+- `defineUnoConfig` 改为异步，并接受扫描选项：默认扫描 `src` 下的 `*.uno.ts` 并合并进配置，`includeStyle` 控制是否纳入 `*.style.ts`。同时导出 `loadComponentUnoConfigs` 和 `loadCustomThemes`。
+
 ## 0.7.1
 
 ### Patch Changes

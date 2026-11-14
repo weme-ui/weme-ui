@@ -66,6 +66,7 @@
     "bezier-easing": "catalog:utils",
     "colorjs.io": "catalog:utils",
     "defu": "catalog:utils",
+    "tinyglobby": "^0.2.17",
     "tsdown": "catalog:build",
     "type-fest": "catalog:utils",
     "vitest": "catalog:dev"

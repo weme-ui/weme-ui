@@ -66,4 +66,12 @@ export const routes: RouteRecordRaw[] = [
     },
     component: () => import('./pages/utils/css-vars.vue'),
   },
+  {
+    path: '/utils/shortcut',
+    meta: {
+      category: 'Utils',
+      title: 'Shortcut',
+    },
+    component: () => import('./pages/utils/shortcut.vue'),
+  },
 ]

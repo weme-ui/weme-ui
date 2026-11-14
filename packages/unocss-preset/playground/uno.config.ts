@@ -1,5 +1,7 @@
 import { presetIcons } from 'unocss'
-import { presetWemeUI, defineUnoConfig } from '../src'
+import { presetWemeUI, defineUnoConfig, loadCustomThemes } from '../src'
+
+const themes = await loadCustomThemes()
 
 export default defineUnoConfig({
   presets: [
@@ -11,6 +13,7 @@ export default defineUnoConfig({
             accent: 'clay',
           },
         },
+        ...themes,
       ],
     }),
     presetIcons(),

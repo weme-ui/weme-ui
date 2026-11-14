@@ -6,6 +6,10 @@ import { defineConfig } from 'vite'
 export default defineConfig({
   plugins: [Vue(), UnoCSS()],
 
+  devtools: {
+    apply: 'serve',
+  },
+
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url)),

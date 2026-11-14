@@ -26,7 +26,7 @@ export {
   isThemeScopeToken,
   isThemeToken,
 } from './custom/utilities'
-export { defineUnoConfig } from './config'
+export { defineUnoConfig, loadComponentUnoConfigs, loadCustomThemes } from './config'
 
 /**
  * 额外颜色

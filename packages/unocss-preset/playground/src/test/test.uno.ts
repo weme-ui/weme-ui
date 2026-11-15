@@ -1,7 +1,5 @@
-import type { UserConfig } from 'unocss'
+import type { UserExtendConfig } from '../../../src/custom'
 
 export default {
-  shortcuts: {
-    'test-shortcut': 'bg-red-5',
-  },
-} satisfies UserConfig
+  shortcuts: [{ 'test-shortcut': 'bg-red-5' }],
+} satisfies UserExtendConfig

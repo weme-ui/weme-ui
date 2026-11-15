@@ -10,6 +10,10 @@ export default defineConfig({
     apply: 'serve',
   },
 
+  optimizeDeps: {
+    include: ['@weme-ui/unocss-preset'],
+  },
+
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url)),

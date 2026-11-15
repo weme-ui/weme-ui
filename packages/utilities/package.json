@@ -1,0 +1,64 @@
+{
+  "name": "@weme-ui/utilities",
+  "version": "0.0.0",
+  "description": "Utilities for Weme UI.",
+  "keywords": [
+    "weme-ui"
+  ],
+  "homepage": "https://weme-ui.github.io/weme-ui/",
+  "bugs": {
+    "url": "https://github.com/weme-ui/weme-ui/issues"
+  },
+  "license": "MIT",
+  "author": "Allen Luo <luoyi@mouji.net>",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/weme-ui/weme-ui.git",
+    "directory": "packages/utilities"
+  },
+  "files": [
+    "!dist/**/*.map",
+    "CHANGELOG.md",
+    "dist/**/*"
+  ],
+  "type": "module",
+  "sideEffects": false,
+  "types": "dist/index.d.mts",
+  "typesVersions": {
+    "*": {
+      "*": [
+        "dist/*",
+        "dist/index.d.mts"
+      ]
+    }
+  },
+  "exports": {
+    ".": "./dist/index.mjs",
+    "./package.json": "./package.json"
+  },
+  "publishConfig": {
+    "access": "public",
+    "provenance": true
+  },
+  "scripts": {
+    "build": "NODE_ENV=deploy tsdown",
+    "dev": "NODE_ENV=development tsdown --watch",
+    "typecheck": "tsc6 --noEmit",
+    "test": "NODE_ENV=test vitest run",
+    "prepack": "bun ../../scripts/materialize-catalog.ts"
+  },
+  "dependencies": {
+    "@weme-ui/colors": "workspace:*",
+    "defu": "catalog:utils"
+  },
+  "devDependencies": {
+    "@types/node": "catalog:dev",
+    "@typescript/typescript6": "catalog:build",
+    "tsdown": "catalog:build",
+    "vitest": "catalog:dev"
+  },
+  "engines": {
+    "node": ">=22.14.0"
+  },
+  "packageManager": "bun@1.4.4"
+}

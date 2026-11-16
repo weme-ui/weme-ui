@@ -1,5 +1,12 @@
 # @weme-ui/weme-ui
 
+## 0.2.14
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @weme-ui/unocss-preset@0.8.1
+
 ## 0.2.13
 
 ### Patch Changes

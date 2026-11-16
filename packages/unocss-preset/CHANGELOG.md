@@ -2,6 +2,23 @@
 
 6.0.0 起与仓库其余公开包使用同一个版本。新的变更记录见仓库根目录 [CHANGELOG.md](../../CHANGELOG.md)，并同步到本文件顶部。
 
+## v6.0.1
+
+[compare changes](https://github.com/weme-ui/weme-ui/compare/v6.0.0...v6.0.1)
+
+### 🚀 Enhancements
+
+- **unocss-preset:** Integrate Weme UI configuration loading for weme.config.json ([0c6d30a3](https://github.com/weme-ui/weme-ui/commit/0c6d30a3))
+
+### 🩹 Fixes
+
+- **unocss-preset:** Enhance Weme UI configuration loading with defu for merging options ([8d4f3e16](https://github.com/weme-ui/weme-ui/commit/8d4f3e16))
+- **unocss-preset:** Ensure themes are properly defined when loading Weme UI configuration ([298c880d](https://github.com/weme-ui/weme-ui/commit/298c880d))
+
+### ❤️ Contributors
+
+- Yubai ([@xiaoshop](https://github.com/xiaoshop))
+
 ## v6.0.0
 
 [compare changes](https://github.com/weme-ui/weme-ui/compare/@weme-ui/unocss-preset@0.8.2...v6.0.0)

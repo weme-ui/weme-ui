@@ -1,8 +1,11 @@
-import type { ThemeConfig } from '@weme-ui/utilities'
+import type { RegistryItemTypeEnum } from '@weme-ui/schema'
+import type { ThemeConfig, UserExtendUnoConfig } from '@weme-ui/utilities'
+import type { Theme } from './theme'
 import { ProjectConfigSchema } from '@weme-ui/schema'
 import createJiti from 'jiti'
 import { existsSync, readdirSync, readFileSync } from 'node:fs'
 import { join } from 'node:path/posix'
+import { mergeDeep } from 'unocss'
 import * as v from 'valibot'
 
 /**
@@ -38,7 +41,7 @@ export function loadCustomTheme() {
     return []
   }
 
-  const themesPath = getThemesPath()
+  const themesPath = getPaths('theme')
   const jiti = createJiti(join(process.cwd(), themesPath))
   const dir = join(process.cwd(), themesPath)
 
@@ -50,6 +53,31 @@ export function loadCustomTheme() {
     .filter((file) => file.endsWith('.theme.ts'))
     .map((file) => jiti(join(dir, file)).default as ThemeConfig)
     .filter(Boolean)
+}
+
+export function loadUserExtendUnoConfig(): UserExtendUnoConfig<Theme> | undefined {
+  if (!wemeConfig) {
+    return undefined
+  }
+
+  const componentsPath = getPaths('component')
+  const jiti = createJiti(join(process.cwd(), componentsPath))
+  const dir = join(process.cwd(), componentsPath)
+
+  if (!existsSync(dir)) {
+    return undefined
+  }
+
+  const files = readdirSync(dir, { recursive: true })
+    .filter((file) => file.toString().endsWith('.uno.ts'))
+    .map((file) => jiti(join(dir, file.toString())).default as UserExtendUnoConfig<Theme>)
+    .filter(Boolean)
+
+  return files.reduce((acc, file) => {
+    acc.shortcuts = mergeDeep(acc.shortcuts || [], file.shortcuts || [])
+    acc.animations = mergeDeep(acc.animations || {}, file.animations || {})
+    return acc
+  }, {} as UserExtendUnoConfig<Theme>)
 }
 
 /**
@@ -89,21 +117,22 @@ function loadWemeConfigFile() {
 }
 
 /**
- * 获取主题路径
+ * 获取路径
  *
- * @returns 主题路径
+ * @param path 路径类型
+ * @returns 路径
  * @internal
  */
-function getThemesPath() {
+function getPaths(path: v.InferOutput<typeof RegistryItemTypeEnum>) {
   let rootPath = ''
   let themesPath = ''
 
   if (wemeConfig && wemeConfig.paths) {
     rootPath = wemeConfig.paths['~'] || 'src'
-    themesPath = wemeConfig.paths['theme'] || '~/themes'
+    themesPath = wemeConfig.paths[path] || `~/${path}s`
 
     return join('.', themesPath.replace('~', rootPath))
   }
 
-  return join('.', 'src', 'themes')
+  return join('.', 'src', `${path}s`)
 }

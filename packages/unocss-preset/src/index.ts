@@ -1,12 +1,22 @@
 import type { PresetOptions, SourceCodeTransformer } from '@unocss/core'
-import type { ThemeConfig, ThemeCSSVariables, UserThemeConfig } from '@weme-ui/utilities'
+import type {
+  ThemeConfig,
+  ThemeCSSVariables,
+  UserExtendUnoConfig,
+  UserThemeConfig,
+} from '@weme-ui/utilities'
 import type { Theme } from './theme/types'
-import { definePreset } from '@unocss/core'
+import { definePreset, mergeDeep, toArray } from '@unocss/core'
 import { extractorArbitraryVariants } from '@unocss/extractor-arbitrary-variants'
 import transformerVariantGroup from '@unocss/transformer-variant-group'
 import { DEFAULT_THEME, defineTheme } from '@weme-ui/utilities'
 import { defu } from 'defu'
-import { loadCustomColors, loadCustomCssVars, loadCustomTheme } from './config'
+import {
+  loadCustomColors,
+  loadCustomCssVars,
+  loadCustomTheme,
+  loadUserExtendUnoConfig,
+} from './config'
 import { postprocessors } from './postprocess'
 import { preflights } from './preflights'
 import { rules } from './rules'
@@ -145,10 +155,19 @@ export const presetWemeUI = definePreset<PresetWemeUIOptions, Theme>((options = 
   options.colors = options.colors ?? {}
   options.cssVars = options.cssVars ?? {}
 
+  let extendShortcuts: UserExtendUnoConfig<Theme>['shortcuts']
+  let extendAnimations: UserExtendUnoConfig<Theme>['animations']
+
   if (options.loadWemeConfig) {
     options.colors = defu(options.colors, loadCustomColors())
     options.cssVars = defu(options.cssVars, loadCustomCssVars())
     options.themes = [...options.themes.map((t) => defineTheme(t)), ...loadCustomTheme()]
+
+    const extendUnoConfig = loadUserExtendUnoConfig()
+    if (extendUnoConfig) {
+      extendShortcuts = extendUnoConfig.shortcuts
+      extendAnimations = extendUnoConfig.animations
+    }
   }
 
   if (!options.themes?.length) {
@@ -165,8 +184,8 @@ export const presetWemeUI = definePreset<PresetWemeUIOptions, Theme>((options = 
     name: PRESET_NAME,
     docs: 'https://weme-ui.github.io/weme-ui/docs/unocss-preset/',
     rules,
-    shortcuts,
-    theme: theme(options),
+    shortcuts: mergeDeep(shortcuts, toArray(extendShortcuts || []), true),
+    theme: mergeDeep(theme(options), { animation: extendAnimations }),
     layers: {
       properties: -200,
       theme: -150,

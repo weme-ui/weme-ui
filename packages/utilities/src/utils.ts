@@ -131,3 +131,13 @@ export function parseTokenCssVariable(tokens: string[], varName: string): string
 
   return ''
 }
+
+/**
+ * 移除 CSS 变量前缀
+ *
+ * @param variable - CSS 变量，如 `var(--test-bg)`
+ * @returns 移除 CSS 变量前缀后的变量，如 `test-bg`
+ */
+export function unwrapCssVariable(variable: string): string {
+  return variable.replace(/var\(\s*--([^)]+)\s*\)/, '$1')
+}

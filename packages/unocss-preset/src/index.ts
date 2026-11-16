@@ -148,13 +148,11 @@ export const presetWemeUI = definePreset<PresetWemeUIOptions, Theme>((options = 
   if (options.loadWemeConfig) {
     options.colors = defu(options.colors, loadCustomColors())
     options.cssVars = defu(options.cssVars, loadCustomCssVars())
-    options.themes = [...options.themes, ...loadCustomTheme()]
+    options.themes = [...options.themes.map((t) => defineTheme(t)), ...loadCustomTheme()]
   }
 
   if (!options.themes?.length) {
     options.themes.push(DEFAULT_THEME)
-  } else {
-    options.themes = options.themes.map((t) => defineTheme(t))
   }
 
   setColorAliasMap((options.themes as ThemeConfig[]).map((t) => t.aliases))

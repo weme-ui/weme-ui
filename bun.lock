@@ -22,7 +22,7 @@
     },
     "packages/cli": {
       "name": "@weme-ui/weme-ui",
-      "version": "0.2.13",
+      "version": "0.2.14",
       "bin": {
         "weme-ui": "./dist/index.js",
       },
@@ -99,7 +99,7 @@
     },
     "packages/unocss-preset": {
       "name": "@weme-ui/unocss-preset",
-      "version": "0.8.0",
+      "version": "0.8.1",
       "dependencies": {
         "@unocss/core": "catalog:dev",
         "@unocss/extractor-arbitrary-variants": "catalog:dev",
@@ -125,7 +125,7 @@
     },
     "packages/utilities": {
       "name": "@weme-ui/utilities",
-      "version": "0.0.0",
+      "version": "0.1.0",
       "dependencies": {
         "@weme-ui/colors": "workspace:*",
         "defu": "catalog:utils",

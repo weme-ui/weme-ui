@@ -1,5 +1,12 @@
 # @weme-ui/unocss-preset
 
+## 0.8.1
+
+### Patch Changes
+
+- Updated dependencies [[`d537c04`](https://github.com/weme-ui/weme-ui/commit/d537c041f6650c49fb38f04731c3e0c76596d584)]:
+  - @weme-ui/utilities@0.1.0
+
 ## 0.8.0
 
 ### Minor Changes

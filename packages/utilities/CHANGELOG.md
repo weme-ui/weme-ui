@@ -1,5 +1,11 @@
 # @weme-ui/utilities
 
+## 0.1.1
+
+### Patch Changes
+
+- [`24d564b`](https://github.com/weme-ui/weme-ui/commit/24d564b882818244f89a98a8ba0048451902d5ff) Thanks [@moujinet](https://github.com/moujinet)! - 通过 GitHub Actions 的 Trusted Publisher 再发布一次，以完成 OIDC 校验。
+
 ## 0.1.0
 
 ### Minor Changes

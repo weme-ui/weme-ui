@@ -1,3 +1,4 @@
+import type { UserConfig } from '@unocss/core'
 import type { AccentColorName, NeutralColorName } from '@weme-ui/colors'
 
 /**
@@ -191,4 +192,30 @@ export interface UserThemeConfig {
    * CSS 变量
    */
   cssVars?: ThemeCSSVariables
+}
+
+/**
+ * 组件级扩展 UnoCSS 配置
+ */
+export interface UserExtendUnoConfig<Theme extends object = object> {
+  /**
+   * UnoCSS shortcuts
+   *
+   * @description 组件级 shortcuts 配置，简化组件样式的开发提供支持
+   */
+  shortcuts?: UserConfig<Theme>['shortcuts']
+
+  /**
+   * UnoCSS animations
+   *
+   * @description 组件级 animations 配置，简化组件动画的开发提供支持
+   */
+  animations?: {
+    keyframes?: Record<string, string>
+    durations?: Record<string, string>
+    timingFns?: Record<string, string>
+    properties?: Record<string, object>
+    counts?: Record<string, string | number>
+    category?: Record<string, string>
+  }
 }

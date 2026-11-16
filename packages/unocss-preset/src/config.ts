@@ -1,45 +1,109 @@
-import type { UserConfig } from '@unocss/core'
-import type { Theme } from './theme/types'
+import type { ThemeConfig } from '@weme-ui/utilities'
+import { ProjectConfigSchema } from '@weme-ui/schema'
+import createJiti from 'jiti'
+import { existsSync, readdirSync, readFileSync } from 'node:fs'
+import { join } from 'node:path/posix'
+import * as v from 'valibot'
 
-interface DefineUnoConfigOptions {
-  /**
-   * 是否包含 style.ts 文件
-   *
-   * @default true
-   */
-  includeStyle?: boolean
+/**
+ * Weme UI 配置对象
+ */
+const wemeConfig = loadWemeConfigFile()
+
+/**
+ * 加载 Weme UI 自定义颜色
+ *
+ * @returns 自定义颜色对象，如果不存在则返回 undefined
+ */
+export function loadCustomColors() {
+  return wemeConfig ? wemeConfig.unocss?.colors : undefined
 }
 
 /**
- * 定义 UnoCSS 配置
+ * 加载 Weme UI 自定义 CSS 变量
  *
- * @param config - UnoCSS 配置
- * @returns UnoCSS 配置
+ * @returns 自定义 CSS 变量对象，如果不存在则返回 undefined
  */
-export function defineUnoConfig(
-  config: UserConfig<Theme>,
-  options?: DefineUnoConfigOptions,
-): UserConfig<Theme> {
-  const { includeStyle = true } = options || {}
+export function loadCustomCssVars() {
+  return wemeConfig ? wemeConfig.unocss?.cssVars : undefined
+}
 
-  // Configure the content pipeline to include *.style.ts files in the project.
-  if (includeStyle) {
-    if (
-      config.content?.pipeline &&
-      config.content?.pipeline.include &&
-      Array.isArray(config.content?.pipeline.include)
-    ) {
-      config.content.pipeline.include.push(/\.(style.[jt]s)($|\?)/)
-    } else {
-      config.content = {
-        pipeline: {
-          include: [
-            /\.(vue|svelte|[jt]sx|vine.ts|style.[jt]s|mdx?|astro|elm|php|phtml|marko|html)($|\?)/,
-          ],
-        },
-      }
-    }
+/**
+ * 加载 Weme UI 自定义主题
+ *
+ * @returns 自定义主题列表
+ */
+export function loadCustomTheme() {
+  if (!wemeConfig) {
+    return []
   }
 
-  return config
+  const themesPath = getThemesPath()
+  const jiti = createJiti(join(process.cwd(), themesPath))
+  const dir = join(process.cwd(), themesPath)
+
+  if (!existsSync(dir)) {
+    return []
+  }
+
+  return readdirSync(dir)
+    .filter((file) => file.endsWith('.theme.ts'))
+    .map((file) => jiti(join(dir, file)).default as ThemeConfig)
+    .filter(Boolean)
+}
+
+/**
+ * 加载 Weme UI 配置文件
+ *
+ * @returns 解析后的配置对象，如果不存在则返回 undefined
+ * @internal
+ */
+function loadWemeConfigFile() {
+  const wemeConfigPath = join(process.cwd(), 'weme.config.json')
+  if (!existsSync(wemeConfigPath)) {
+    return
+  }
+
+  const wemeConfigContent = readFileSync(wemeConfigPath, 'utf-8')
+  if (!wemeConfigContent) {
+    return
+  }
+
+  try {
+    const wemeConfig = JSON.parse(wemeConfigContent)
+
+    if (!wemeConfig.unocss) {
+      return
+    }
+
+    const parsed = v.safeParse(ProjectConfigSchema, wemeConfig)
+
+    if (!parsed.success) {
+      return
+    }
+
+    return parsed.output
+  } catch {
+    return
+  }
+}
+
+/**
+ * 获取主题路径
+ *
+ * @returns 主题路径
+ * @internal
+ */
+function getThemesPath() {
+  let rootPath = ''
+  let themesPath = ''
+
+  if (wemeConfig && wemeConfig.paths) {
+    rootPath = wemeConfig.paths['~'] || 'src'
+    themesPath = wemeConfig.paths['theme'] || '~/themes'
+
+    return join('.', themesPath.replace('~', rootPath))
+  }
+
+  return join('.', 'src', 'themes')
 }

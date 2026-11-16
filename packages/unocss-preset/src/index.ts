@@ -5,6 +5,7 @@ import { definePreset } from '@unocss/core'
 import { extractorArbitraryVariants } from '@unocss/extractor-arbitrary-variants'
 import transformerVariantGroup from '@unocss/transformer-variant-group'
 import { DEFAULT_THEME, defineTheme } from '@weme-ui/utilities'
+import { loadCustomColors, loadCustomCssVars, loadCustomTheme } from './config'
 import { postprocessors } from './postprocess'
 import { preflights } from './preflights'
 import { rules } from './rules'
@@ -107,6 +108,13 @@ export interface PresetWemeUIOptions extends PresetOptions {
   transformerVariantGroup?: boolean
 
   /**
+   * 加载 Weme UI 配置
+   *
+   * @default true
+   */
+  loadWemeConfig?: boolean
+
+  /**
    * 自定义主题
    */
   themes?: UserThemeConfig[]
@@ -131,14 +139,26 @@ export const presetWemeUI = definePreset<PresetWemeUIOptions, Theme>((options = 
   options.important = options.important ?? false
   options.arbitraryVariants = options.arbitraryVariants ?? true
   options.transformerVariantGroup = options.transformerVariantGroup ?? true
+  options.loadWemeConfig = options.loadWemeConfig ?? true
   options.themes = options.themes ?? []
   options.colors = options.colors ?? {}
   options.cssVars = options.cssVars ?? {}
+
+  if (options.loadWemeConfig) {
+    options.colors = loadCustomColors()
+    options.cssVars = loadCustomCssVars()
+    options.themes = loadCustomTheme()
+  }
 
   if (!options.themes?.length) {
     options.themes.push(DEFAULT_THEME)
   } else {
     options.themes = options.themes.map((t) => defineTheme(t))
+  }
+
+  if (options.loadWemeConfig) {
+    options.colors = loadCustomColors()
+    options.cssVars = loadCustomCssVars()
   }
 
   setColorAliasMap((options.themes as ThemeConfig[]).map((t) => t.aliases))

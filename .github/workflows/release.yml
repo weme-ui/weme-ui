@@ -2,8 +2,8 @@ name: Release
 
 on:
   push:
-    branches:
-      - main
+    tags:
+      - 'v*'
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
@@ -15,7 +15,6 @@ jobs:
     permissions:
       id-token: write
       contents: write
-      pull-requests: write
     runs-on: ubuntu-latest
     timeout-minutes: 20
     steps:
@@ -35,15 +34,24 @@ jobs:
       - name: Install
         run: bun install --frozen-lockfile
 
-      # v2 只认 *-script / commit-message / pr-title。
-      # 有 changeset 时开 Version PR；合并后再走 publish-script 构建并发布。
-      - name: Create Release Pull Request or Publish
-        uses: changesets/action@v2.1.2
-        with:
-          version-script: bun run version-packages
-          publish-script: bun run release
-          commit-message: 'chore: version packages'
-          pr-title: 'chore: version packages'
-          create-github-releases: true
+      - name: Check tag
+        run: bun scripts/release.ts --check
+
+      - name: Lint
+        run: bun run lint
+
+      - name: Typecheck
+        run: bun run typecheck
+
+      - name: Test
+        run: bun run test
+
+      - name: Publish
+        run: bun run release
         env:
           NPM_CONFIG_PROVENANCE: true
+
+      - name: GitHub Release
+        run: bunx changelogen gh release "${GITHUB_REF_NAME#v}"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

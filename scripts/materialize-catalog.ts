@@ -125,5 +125,5 @@ const changed = [
 
 if (changed) {
   writeFileSync(pkgPath, `${JSON.stringify(pkg, null, 2)}\n`)
-  console.log(`Materialized catalog and workspace versions in ${pkgName}`)
+  console.error(`Materialized catalog and workspace versions in ${pkgName}`)
 }

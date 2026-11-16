@@ -1,8 +1,9 @@
 import makeFetch from 'make-fetch-happen'
+import { join } from 'node:path/posix'
 import { CLI_TMP_DIR } from '../constants'
 
 const fetch = makeFetch.defaults({
-  cachePath: CLI_TMP_DIR,
+  cachePath: join(CLI_TMP_DIR, 'cache'),
   noProxy: ['raw.githubusercontent.com'],
 })
 

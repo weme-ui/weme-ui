@@ -56,6 +56,7 @@
     "@unocss/extractor-arbitrary-variants": "catalog:dev",
     "@unocss/rule-utils": "catalog:dev",
     "@unocss/transformer-variant-group": "catalog:dev",
+    "@weme-ui/schema": "workspace:*",
     "@weme-ui/utilities": "workspace:*"
   },
   "devDependencies": {
@@ -66,8 +67,10 @@
     "bezier-easing": "catalog:utils",
     "colorjs.io": "catalog:utils",
     "defu": "catalog:utils",
+    "jiti": "catalog:utils",
     "tsdown": "catalog:build",
     "type-fest": "catalog:utils",
+    "valibot": "catalog:utils",
     "vitest": "catalog:dev"
   },
   "peerDependencies": {

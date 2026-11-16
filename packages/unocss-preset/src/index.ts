@@ -5,6 +5,7 @@ import { definePreset } from '@unocss/core'
 import { extractorArbitraryVariants } from '@unocss/extractor-arbitrary-variants'
 import transformerVariantGroup from '@unocss/transformer-variant-group'
 import { DEFAULT_THEME, defineTheme } from '@weme-ui/utilities'
+import { defu } from 'defu'
 import { loadCustomColors, loadCustomCssVars, loadCustomTheme } from './config'
 import { postprocessors } from './postprocess'
 import { preflights } from './preflights'
@@ -145,20 +146,15 @@ export const presetWemeUI = definePreset<PresetWemeUIOptions, Theme>((options = 
   options.cssVars = options.cssVars ?? {}
 
   if (options.loadWemeConfig) {
-    options.colors = loadCustomColors()
-    options.cssVars = loadCustomCssVars()
-    options.themes = loadCustomTheme()
+    options.colors = defu(options.colors, loadCustomColors())
+    options.cssVars = defu(options.cssVars, loadCustomCssVars())
+    options.themes = [...options.themes, ...loadCustomTheme()]
   }
 
   if (!options.themes?.length) {
     options.themes.push(DEFAULT_THEME)
   } else {
     options.themes = options.themes.map((t) => defineTheme(t))
-  }
-
-  if (options.loadWemeConfig) {
-    options.colors = loadCustomColors()
-    options.cssVars = loadCustomCssVars()
   }
 
   setColorAliasMap((options.themes as ThemeConfig[]).map((t) => t.aliases))

@@ -9,6 +9,7 @@
 [![preset version][preset-version-src]][preset-version-href]
 [![utilities version][utilities-version-src]][utilities-version-href]
 [![colors version][colors-version-src]][colors-version-href]
+[![schema version][schema-version-src]][schema-version-href]
 [![License][license-src]][license-href]
 
 <p align="center">
@@ -45,6 +46,8 @@ pnpm dlx @weme-ui/weme-ui add button
 [colors-version-href]: https://npmjs.com/package/@weme-ui/colors
 [utilities-version-src]: https://img.shields.io/npm/v/@weme-ui/utilities?style=flat&colorA=1d2129&label=utilities&colorB=4CBBA5
 [utilities-version-href]: https://npmjs.com/package/@weme-ui/utilities
+[schema-version-src]: https://img.shields.io/npm/v/@weme-ui/schema?style=flat&colorA=1d2129&label=schema&colorB=4CBBA5
+[schema-version-href]: https://npmjs.com/package/@weme-ui/schema
 [license-src]: https://img.shields.io/github/license/weme-ui/weme-ui.svg?style=flat&colorA=1d2129&colorB=4CBBA5
 [license-href]: https://github.com/weme-ui/weme-ui/blob/main/LICENSE
 [github-href]: https://github.com/weme-ui/weme-ui

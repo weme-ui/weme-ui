@@ -37,6 +37,11 @@ jobs:
       - name: Check tag
         run: bun scripts/release.ts --check
 
+      # dist is gitignored. oxlint resolves workspace packages through their
+      # package exports, which point at dist. turbo runs dependencies first.
+      - name: Build workspace packages
+        run: bunx turbo run build --filter=@weme-ui/schema --filter=@weme-ui/unocss-preset
+
       - name: Lint
         run: bun run lint
 

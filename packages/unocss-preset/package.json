@@ -47,7 +47,6 @@
   "scripts": {
     "build": "NODE_ENV=deploy tsdown",
     "dev": "NODE_ENV=development tsdown --watch",
-    "play": "NODE_ENV=development bun run --cwd playground dev",
     "typecheck": "tsc6 --noEmit",
     "test": "NODE_ENV=test vitest run",
     "prepack": "bun ../../scripts/materialize-catalog.ts"
@@ -56,7 +55,8 @@
     "@unocss/core": "catalog:dev",
     "@unocss/extractor-arbitrary-variants": "catalog:dev",
     "@unocss/rule-utils": "catalog:dev",
-    "@unocss/transformer-variant-group": "catalog:dev"
+    "@unocss/transformer-variant-group": "catalog:dev",
+    "@weme-ui/utilities": "workspace:*"
   },
   "devDependencies": {
     "@radix-ui/colors": "catalog:utils",
@@ -66,13 +66,12 @@
     "bezier-easing": "catalog:utils",
     "colorjs.io": "catalog:utils",
     "defu": "catalog:utils",
-    "tinyglobby": "^0.2.17",
     "tsdown": "catalog:build",
     "type-fest": "catalog:utils",
     "vitest": "catalog:dev"
   },
   "peerDependencies": {
-    "unocss": "^66.12.0"
+    "unocss": "^66.13.0"
   },
   "engines": {
     "node": ">=22.14.0"

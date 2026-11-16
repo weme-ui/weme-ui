@@ -20,19 +20,26 @@ import {
   resolveBreakpoints as resolveBreakpointsShared,
 } from '@unocss/rule-utils'
 import {
-  getCustomCSSVarVariable,
-  isColorAlias,
-  isCustomCSSVar,
+  isCustomCssVariable,
+  isThemeColorAliasName,
   isThemeToken,
-  parseColorAlias,
-  parseCustomCSSVar,
-  parseThemeTokenVariable,
-} from '../custom'
+  matchCustomCssVariable,
+  parseCustomCssVariable,
+  parseTokenCssVariable,
+  unwrapCssVariable,
+} from '@weme-ui/utilities'
 import { SpecialColorKey } from './constant'
+import { parseColorAlias } from './custom'
 import { h } from './handlers'
 import { bracketTypeRe, numberWithUnitRE } from './handlers/regex'
 import { cssMathFnRE, directionMap, globalKeywords } from './mappings'
-import { detectThemeValue, generateThemeVariable, propertyTracking, themeTracking } from './track'
+import {
+  cssVarTracking,
+  detectThemeValue,
+  generateThemeVariable,
+  propertyTracking,
+  themeTracking,
+} from './track'
 
 // #region Number Resolver
 export function numberResolver(size: string, defaultValue?: string | number): number | undefined {
@@ -182,7 +189,7 @@ export function parseColor(body: string, theme: Theme) {
   }
 
   // Parse color alias
-  if (!parsed && isColorAlias(name)) {
+  if (!parsed && isThemeColorAliasName(name)) {
     parsed = parseColorAlias(theme, colors)
   }
 
@@ -210,7 +217,10 @@ export function parseColor(body: string, theme: Theme) {
   // Parse custom CSS var
   let cssVars: [string, string[]] | undefined
   if (!color && !tokens) {
-    cssVars = parseCustomCSSVar(colors.join('-'), theme)
+    cssVars = matchCustomCssVariable(
+      colors.join('-'),
+      getThemeByKey(theme, 'cssVars', ['keys']) || [],
+    )
   }
 
   return {
@@ -296,12 +306,20 @@ export function colorCSSGenerator(
 
   // Parse theme token
   if (!color && tokens) {
-    color = parseThemeTokenVariable(tokens, varName)
+    color = parseTokenCssVariable(tokens, varName)
+    // tracking
+    if (color) {
+      cssVarTracking(unwrapCssVariable(color))
+    }
   }
 
   // Parse custom CSS var
   if (!color && cssVars) {
-    color = getCustomCSSVarVariable(cssVars, varName)
+    color = parseCustomCssVariable(cssVars, varName)
+    // tracking
+    if (color) {
+      cssVarTracking(unwrapCssVariable(color))
+    }
   }
 
   const rawColorComment = ctx?.generator.config.envMode === 'dev' && color ? ` /* ${color} */` : ''
@@ -421,9 +439,9 @@ export function colorableShadows(shadows: string | string[], colorVar: string, a
 export function hasParseableColor(color: string | undefined, theme: Theme) {
   return (
     (color != null && !!parseColor(color, theme)?.color) ||
-    (color != null && isColorAlias(color)) ||
+    (color != null && isThemeColorAliasName(color)) ||
     (color != null && isThemeToken(color)) ||
-    (color != null && isCustomCSSVar(color, theme))
+    (color != null && isCustomCssVariable(color, getThemeByKey(theme, 'cssVars', ['keys']) || []))
   )
 }
 

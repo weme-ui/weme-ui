@@ -1,7 +1,12 @@
 import type { CSSObject, Rule, RuleContext } from '@unocss/core'
 import type { Theme } from '../theme'
-import { getCustomCSSVarVariable, parseThemeTokenVariable } from '../custom'
 import {
+  parseCustomCssVariable,
+  parseTokenCssVariable,
+  unwrapCssVariable,
+} from '@weme-ui/utilities'
+import {
+  cssVarTracking,
   defineProperty,
   detectThemeValue,
   generateThemeVariable,
@@ -71,12 +76,18 @@ function bgGradientColorResolver() {
 
       // Parse theme token
       if (!color && tokens) {
-        color = parseThemeTokenVariable(tokens, 'bg')
+        color = parseTokenCssVariable(tokens, 'bg')
+        if (color) {
+          cssVarTracking(unwrapCssVariable(color))
+        }
       }
 
       // Parse custom CSS var
       if (!color && cssVars) {
-        color = getCustomCSSVarVariable(cssVars, 'bg')
+        color = parseCustomCssVariable(cssVars, 'bg')
+        if (color) {
+          cssVarTracking(unwrapCssVariable(color))
+        }
       }
 
       if (color) {

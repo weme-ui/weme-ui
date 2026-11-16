@@ -1,8 +1,7 @@
 import type { Arrayable } from '@unocss/core'
-import type { CustomThemeColorAliases } from '../custom/types'
 import type { Theme } from '../theme/types'
 import { toArray } from '@unocss/core'
-import { DEFAULT_COLOR_ALIASES, isColorAlias, isRawColor } from '../custom'
+import { isRawColor, isThemeColorAliasName, type ThemeColorAliasMap } from '@weme-ui/utilities'
 import { getThemeByKey } from './utilities'
 
 // #region Theme
@@ -91,7 +90,19 @@ export function cssVarTracking(key: string) {
 
 // #region Custom Color Aliases
 
-let colorAliasMap: CustomThemeColorAliases[] = []
+/**
+ * 默认主题颜色
+ */
+const DEFAULT_COLOR_ALIASES: Readonly<ThemeColorAliasMap> = {
+  accent: 'puerto',
+  neutral: 'iron',
+  success: 'green',
+  info: 'indigo',
+  warning: 'brown',
+  error: 'tomato',
+}
+
+let colorAliasMap: ThemeColorAliasMap[] = []
 
 /**
  * 设置颜色别名映射
@@ -99,7 +110,7 @@ let colorAliasMap: CustomThemeColorAliases[] = []
  * @param map - 颜色别名映射
  * @internal
  */
-export function setColorAliasMap(maps: CustomThemeColorAliases[]) {
+export function setColorAliasMap(maps: ThemeColorAliasMap[]) {
   colorAliasMap = maps && maps.length > 0 ? maps : [DEFAULT_COLOR_ALIASES]
 }
 
@@ -115,11 +126,11 @@ export function colorAliasTracking(theme: Theme, alias: string, scale?: string) 
   const no = scale ?? '9'
   const key = `${alias}:${no}`
 
-  if (isColorAlias(alias) && !trackedColorAliases.has(key)) {
+  if (isThemeColorAliasName(alias) && !trackedColorAliases.has(key)) {
     trackedColorAliases.add(key)
 
     for (const colorAlias of colorAliasMap) {
-      const color = colorAlias[alias as keyof CustomThemeColorAliases]
+      const color = colorAlias[alias as keyof ThemeColorAliasMap]
 
       if (typeof color === 'string' && !isRawColor(color)) {
         themeTracking(theme, 'colors', [color, no])

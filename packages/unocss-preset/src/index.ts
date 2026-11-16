@@ -1,13 +1,10 @@
 import type { PresetOptions, SourceCodeTransformer } from '@unocss/core'
-import type { CustomTheme, CustomThemeCSSVars, DefineThemeOptions } from './custom/types'
+import type { ThemeConfig, ThemeCSSVariables, UserThemeConfig } from '@weme-ui/utilities'
 import type { Theme } from './theme/types'
 import { definePreset } from '@unocss/core'
 import { extractorArbitraryVariants } from '@unocss/extractor-arbitrary-variants'
 import transformerVariantGroup from '@unocss/transformer-variant-group'
-import { defu } from 'defu'
-import { existsSync, readFileSync } from 'node:fs'
-import { resolve } from 'node:path'
-import { DEFAULT_THEME, defineTheme } from './custom'
+import { DEFAULT_THEME, defineTheme } from '@weme-ui/utilities'
 import { postprocessors } from './postprocess'
 import { preflights } from './preflights'
 import { rules } from './rules'
@@ -18,15 +15,6 @@ import { PRESET_NAME, setColorAliasMap } from './utils'
 import { variants } from './variants'
 
 export * from './types'
-export * from './custom/theme'
-export {
-  isColorAlias,
-  isRawColor,
-  isCustomCSSVar,
-  isThemeScopeToken,
-  isThemeToken,
-} from './custom/utilities'
-export { defineUnoConfig, loadComponentUnoConfigs, loadCustomThemes } from './config'
 
 /**
  * 额外颜色
@@ -103,13 +91,6 @@ export interface PresetWemeUIOptions extends PresetOptions {
   important?: boolean | string
 
   /**
-   * 指定 Weme UI 配置文件路径，当为 `false` 时，不会加载 Weme UI 配置
-   *
-   * @default 'weme.config.json'
-   */
-  wemeConfig?: string | false
-
-  /**
    * 启用任意变体，例如 `<div class="[&>*]:m-1 [&[open]]:p-2"></div>`
    *
    * 禁用此选项可能会略微提高性能
@@ -128,7 +109,7 @@ export interface PresetWemeUIOptions extends PresetOptions {
   /**
    * 自定义主题
    */
-  themes?: DefineThemeOptions[]
+  themes?: UserThemeConfig[]
 
   /**
    * 自定义主题颜色
@@ -138,7 +119,7 @@ export interface PresetWemeUIOptions extends PresetOptions {
   /**
    * 自定义主题 CSS 变量
    */
-  cssVars?: CustomThemeCSSVars
+  cssVars?: ThemeCSSVariables
 }
 
 /**
@@ -148,25 +129,11 @@ export const presetWemeUI = definePreset<PresetWemeUIOptions, Theme>((options = 
   options.dark = options.dark ?? 'class'
   options.variablePrefix = options.variablePrefix ?? 'un-'
   options.important = options.important ?? false
-  options.wemeConfig = options.wemeConfig ?? 'weme.config.json'
   options.arbitraryVariants = options.arbitraryVariants ?? true
   options.transformerVariantGroup = options.transformerVariantGroup ?? true
   options.themes = options.themes ?? []
   options.colors = options.colors ?? {}
   options.cssVars = options.cssVars ?? {}
-
-  if (options.wemeConfig !== false) {
-    const wemeConfigPath = resolve(process.cwd(), options.wemeConfig)
-    if (existsSync(wemeConfigPath)) {
-      const wemeConfig = readFileSync(wemeConfigPath, 'utf-8')
-
-      if (wemeConfig) {
-        const wemeConfigJson = JSON.parse(wemeConfig)
-        options.colors = defu(options.colors, wemeConfigJson.unocss?.colors ?? {})
-        options.cssVars = defu(options.cssVars, wemeConfigJson.unocss?.cssVars ?? {})
-      }
-    }
-  }
 
   if (!options.themes?.length) {
     options.themes.push(DEFAULT_THEME)
@@ -174,7 +141,7 @@ export const presetWemeUI = definePreset<PresetWemeUIOptions, Theme>((options = 
     options.themes = options.themes.map((t) => defineTheme(t))
   }
 
-  setColorAliasMap((options.themes as CustomTheme[]).map((t) => t.aliases))
+  setColorAliasMap((options.themes as ThemeConfig[]).map((t) => t.aliases))
 
   const transformers = [
     options.transformerVariantGroup ? transformerVariantGroup() : undefined,

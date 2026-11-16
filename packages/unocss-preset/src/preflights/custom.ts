@@ -1,22 +1,20 @@
 import type { Preflight } from '@unocss/core'
-import type { PresetWemeUIOptions } from '..'
 import type {
-  CustomTheme,
-  CustomThemeColorAliases,
-  CustomThemeCSSVars,
-  FlattenedCustomThemeCSSVars,
-} from '../custom/types'
+  FlattenedThemeCSSVariables,
+  ThemeColorAliasName,
+  ThemeConfig,
+  ThemeCSSVariables,
+} from '@weme-ui/utilities'
+import type { PresetWemeUIOptions } from '..'
 import type { Theme } from '../theme'
 import { resolveColor } from '@weme-ui/colors'
 import {
-  applyShortKeys,
-  DEFAULT_RADIUS_FACTOR,
-  DEFAULT_SCALING,
-  flattenCssVars,
+  applyTokenShortKeys,
+  flattenCssVariables,
   isRawColor,
   themeRadiusMap,
   themeScalingMap,
-} from '../custom'
+} from '@weme-ui/utilities'
 import {
   compressCSS,
   detectThemeValue,
@@ -36,9 +34,9 @@ export function custom(options: PresetWemeUIOptions): Preflight<Theme> | undefin
   return {
     getCSS: ({ generator, theme }) => {
       const globalCssVars = resolveGlobalCssVars(options.cssVars ?? {}, theme)
-      const themeCssBlocks = resolveThemeCssVars((options.themes as CustomTheme[]) ?? [], theme)
+      const themeCssBlocks = resolveThemeCssVars((options.themes as ThemeConfig[]) ?? [], theme)
       const colorAliasBlocks = resolveThemeColorAliases(
-        (options.themes as CustomTheme[]) ?? [],
+        (options.themes as ThemeConfig[]) ?? [],
         theme,
       )
 
@@ -58,8 +56,8 @@ export function custom(options: PresetWemeUIOptions): Preflight<Theme> | undefin
  * @param theme - 主题
  * @returns 全局 CSS 变量
  */
-function resolveGlobalCssVars(cssVars: CustomThemeCSSVars, theme: Theme): string {
-  const flattenedCssVars = flattenCssVars(cssVars)
+function resolveGlobalCssVars(cssVars: ThemeCSSVariables, theme: Theme): string {
+  const flattenedCssVars = flattenCssVariables(cssVars)
   const entries = serializeCSSEntries(flattenedCssVars, theme)
 
   return createCssBlock(':root', entries)
@@ -72,14 +70,14 @@ function resolveGlobalCssVars(cssVars: CustomThemeCSSVars, theme: Theme): string
  * @param theme - 主题
  * @returns 解析后的主题 CSS 块列表
  */
-function resolveThemeCssVars(themes: CustomTheme[], theme: Theme): string[] {
+function resolveThemeCssVars(themes: ThemeConfig[], theme: Theme): string[] {
   const entries = themes.map((t) => {
-    const themeTokens = t.tokens ? flattenCssVars(t.tokens) : {}
-    const themeCSSVars = t.cssVars ? flattenCssVars(t.cssVars) : {}
+    const themeTokens = t.tokens ? flattenCssVariables(t.tokens) : {}
+    const themeCSSVars = t.cssVars ? flattenCssVariables(t.cssVars) : {}
 
     const themeOptions = [
-      `--default-radius-factor: ${themeRadiusMap[t.radius] ?? DEFAULT_RADIUS_FACTOR};`,
-      `--default-scaling: ${themeScalingMap[t.scaling] ?? DEFAULT_SCALING};`,
+      `--default-radius-factor: ${themeRadiusMap[t.radius] ?? 1};`,
+      `--default-scaling: ${themeScalingMap[t.scaling] ?? 1};`,
     ]
 
     const themeEntries = [
@@ -112,7 +110,7 @@ function getThemeSelector(name: string, scheme?: 'light' | 'dark'): string {
  * @param themes - 自定义主题列表
  * @returns 解析后的主题颜色别名块列表
  */
-function resolveThemeColorAliases(themes: CustomTheme[], theme: Theme): string[] {
+function resolveThemeColorAliases(themes: ThemeConfig[], theme: Theme): string[] {
   if (trackedColorAliases.size === 0) {
     return []
   }
@@ -122,7 +120,7 @@ function resolveThemeColorAliases(themes: CustomTheme[], theme: Theme): string[]
     const dark: string[] = []
 
     Object.entries(getTrackedColorAliasGroups()).forEach(([name, nos]) => {
-      const color = t.aliases[name as keyof CustomThemeColorAliases]
+      const color = t.aliases[name as ThemeColorAliasName]
       const sortedNos = [...nos].toSorted((a, b) => Number(a) - Number(b))
 
       if (isRawColor(color)) {
@@ -181,17 +179,17 @@ ${entries.join('\n')}
  * @param theme - 主题
  * @returns 序列化后的 CSS 变量
  */
-function serializeCSSEntries(vars: FlattenedCustomThemeCSSVars, theme: Theme): string[] {
+function serializeCSSEntries(vars: FlattenedThemeCSSVariables, theme: Theme): string[] {
   const entries: string[] = []
 
   const dedupedVars = Object.entries(vars).reduce((acc, [key, value]) => {
-    const shortKey = applyShortKeys(key)
+    const shortKey = applyTokenShortKeys(key)
     if (acc[shortKey]) {
       return acc
     }
     acc[shortKey] = value
     return acc
-  }, {} as FlattenedCustomThemeCSSVars)
+  }, {} as FlattenedThemeCSSVariables)
 
   Object.entries(dedupedVars).forEach(([key, value]) => {
     const body = value.replace(/\./g, '-')

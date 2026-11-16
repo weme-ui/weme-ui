@@ -1,8 +1,8 @@
 import type { Rule, RuleContext } from '@unocss/core'
 import type { Theme } from '../theme'
 import { resolveBreakpoints } from '@unocss/rule-utils'
-import { getCustomCSSVarVariable, parseCustomCSSVar } from '../custom'
-import { generateThemeVariable, h, themeTracking } from '../utils'
+import { matchCustomCssVariable, parseCustomCssVariable } from '@weme-ui/utilities'
+import { generateThemeVariable, getThemeByKey, h, themeTracking } from '../utils'
 
 const sizeMapping: Record<string, string> = {
   h: 'height',
@@ -48,9 +48,9 @@ function getSizeValue(theme: Theme, hw: string, prop: string) {
     v = `calc(var(--spacing) * ${h.number(prop)})`
   }
 
-  const parsed = parseCustomCSSVar(prop, theme)
+  const parsed = matchCustomCssVariable(prop, getThemeByKey(theme, 'cssVars', ['keys']))
   if (parsed) {
-    v = getCustomCSSVarVariable(parsed, hw === 'w' ? 'width' : hw === 'h' ? 'height' : 'size')
+    v = parseCustomCssVariable(parsed, hw === 'w' ? 'width' : hw === 'h' ? 'height' : 'size')
   }
 
   return v ?? h.bracket.cssvar.global.auto.none.fraction.rem(prop, theme)

@@ -1,7 +1,7 @@
+import type { ThemeConfig, ThemeCSSVariables } from '@weme-ui/utilities'
 import type { PresetWemeUIOptions } from '..'
-import type { CustomTheme } from '../custom/types'
 import type { Theme } from './types'
-import { applyShortKeys, flattenCssVars, type CustomThemeCSSVars } from '../custom'
+import { applyTokenShortKeys, flattenCssVariables } from '@weme-ui/utilities'
 
 export function customCSSVars(options: PresetWemeUIOptions): Theme['cssVars'] {
   const cssVars: Theme['cssVars'] = {}
@@ -11,7 +11,7 @@ export function customCSSVars(options: PresetWemeUIOptions): Theme['cssVars'] {
     Object.assign(cssVars, resolveIndexes(options.cssVars))
   }
 
-  const themes = options.themes as CustomTheme[]
+  const themes = options.themes as ThemeConfig[]
 
   // Theme css vars
   themes.forEach((theme) => {
@@ -23,8 +23,8 @@ export function customCSSVars(options: PresetWemeUIOptions): Theme['cssVars'] {
   return cssVars
 }
 
-function resolveIndexes(cssVars: CustomThemeCSSVars): Record<string, string[]> {
-  const flattened = flattenCssVars(cssVars)
+function resolveIndexes(cssVars: ThemeCSSVariables): Record<string, string[]> {
+  const flattened = flattenCssVariables(cssVars)
 
   return Object.entries(flattened).reduce(
     (acc, [key]) => {
@@ -35,7 +35,7 @@ function resolveIndexes(cssVars: CustomThemeCSSVars): Record<string, string[]> {
         acc['_'].push(key)
       }
 
-      const shortKey = applyShortKeys(key)
+      const shortKey = applyTokenShortKeys(key)
       if (!acc['keys'].includes(shortKey)) {
         acc['keys'].push(shortKey)
       }

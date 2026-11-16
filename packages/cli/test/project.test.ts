@@ -111,7 +111,7 @@ function mockRegistry(
 }
 
 function writtenContent(content: string) {
-  return `${content}\n`
+  return `${content.trim()}\n`
 }
 
 async function readLockfile(root: string) {

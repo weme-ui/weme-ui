@@ -18,6 +18,14 @@ const cli = defineCommand({
     init: () => import('./commands/init').then((r) => r.default),
 
     /**
+     * 准备项目环境
+     *
+     * @example
+     * ```bunx @weme-ui/weme-ui prepare```
+     */
+    prepare: () => import('./commands/prepare').then((r) => r.default),
+
+    /**
      * 添加组件
      *
      * @example

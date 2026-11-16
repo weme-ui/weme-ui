@@ -11,15 +11,10 @@ import { ensureDir, existsFile } from '../../utils'
  * Initialize the project template.
  *
  * @param cwd - The current working directory.
- * @param template - The template to initialize.
  * @throws If the template is not found.
  */
-export async function initProjectTemplate(cwd: string, template: string = 'vite') {
-  const templatePath = join(cwd, CLI_TMP_DIR, 'repository', 'templates', template)
-
-  if (!existsSync(templatePath)) {
-    throw new Error(`Template ${template} not found`)
-  }
+export async function initProjectTemplate(cwd: string) {
+  const templatePath = join(cwd, CLI_TMP_DIR, 'repository')
 
   const files = await glob('**', { cwd: templatePath, onlyFiles: true })
 
@@ -55,7 +50,7 @@ export async function cloneTemplateRepository(cwd: string) {
     'clone',
     '--depth',
     '1',
-    'https://github.com/weme-ui/weme-ui.git',
+    'https://github.com/weme-ui/vite-starter.git',
     repositoryPath,
   ])
 

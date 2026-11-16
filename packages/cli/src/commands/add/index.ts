@@ -12,7 +12,7 @@ import { callWhen, Project, randomColor, unwrapError } from '../../utils'
 export default defineCommand({
   meta: {
     name: 'add',
-    description: 'Add items to your project',
+    description: 'Add Weme UI items to your project',
   },
 
   args: {
@@ -45,15 +45,15 @@ export default defineCommand({
       const project = new Project(cwd)
 
       if (!(await project.isInitialized())) {
-        throw new Error('Project is not initialized')
+        throw new Error('Weme UI is not initialized')
       }
 
       let count = 0
-      const spinner = ora({ text: 'Adding items...' }).start()
+      const spinner = ora({ text: 'Adding Weme UI items...' }).start()
 
       for (const item of items) {
         await callWhen(!(await project.hasAddedItem(item)), async () => {
-          spinner.text = `Adding ${item}...`
+          spinner.text = `Adding Weme UI ${item}...`
           spinner.color = randomColor()
 
           if (await project.addItem(item, kinds)) {
@@ -67,7 +67,7 @@ export default defineCommand({
         exit(1)
       }
 
-      spinner.succeed('Items added successfully')
+      spinner.succeed('Weme UI items added successfully')
     } catch (err) {
       console.error(unwrapError(err))
       exit(1)

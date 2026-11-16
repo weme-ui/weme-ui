@@ -128,7 +128,7 @@ export class Project {
             : join(fileDir, item.name)
         }
 
-        await writeFile(this.joinPath(filePath), fileName, file.content)
+        await writeFile(this.joinPath(filePath), fileName, file.content.trim())
 
         addedItem.files.push({
           kind: file.kind,
@@ -226,7 +226,7 @@ export class Project {
     const lockfile = await this.loadLockfile()
 
     if (lockfile) {
-      const parsed = await this.parseItemName(name)
+      const parsed = await this.parseItemName(await this.resolveItemName(name))
       return lockfile.items.some(
         (item) => item.name === parsed.name && item.registry === parsed.registry,
       )
@@ -377,6 +377,20 @@ export class Project {
    */
   async hasUnoConfig(): Promise<boolean> {
     return await existsFile(this.root, join(CLI_TMP_DIR, 'uno.config.ts'))
+  }
+
+  /**
+   * Resolve the item name.
+   *
+   * @param name - The item name to resolve.
+   * @returns The resolved item name.
+   */
+  private async resolveItemName(name: string): Promise<string> {
+    if (name.includes('/')) {
+      return name
+    }
+
+    return `${(await this.info()).defaultRegistry.registry}/${name}`
   }
 
   /**

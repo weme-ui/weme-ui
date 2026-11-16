@@ -38,20 +38,20 @@ export default defineCommand({
       const project = new Project(cwd)
 
       if (await project.isInitialized()) {
-        throw new Error('Project already initialized')
+        throw new Error('Weme UI is already initialized')
       }
 
-      const spinner = ora({ text: 'Initializing project...' }).start()
+      const spinner = ora({ text: 'Initializing Weme UI project...' }).start()
 
       const { name, branch } = parseRepoURL(args.repo)
 
       // 1. Initialize project from clone template repository
       await callWhen(!(await project.hasPackageJson()), async () => {
         spinner.color = randomColor()
-        spinner.text = 'Cloning template repository...'
+        spinner.text = 'Cloning Weme UI template repository...'
         await cloneTemplateRepository(cwd)
 
-        spinner.text = 'Initializing project structure...'
+        spinner.text = 'Initializing Weme UI project structure...'
         spinner.color = randomColor()
         await initProjectTemplate(cwd)
       })

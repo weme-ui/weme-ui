@@ -16,30 +16,6 @@
   ⚠️ Do not use in production. This project is still in early development.
 </p>
 
-## Checklist
-
-- **Rules**
-  - [ ] rules/background.ts
-  - [ ] rules/behaviors.ts
-  - [ ] rules/border.ts
-  - [ ] rules/color.ts
-  - [ ] rules/decoration.ts
-  - [ ] rules/divide.ts
-  - [ ] rules/filters.ts
-  - [ ] rules/gap.ts
-  - [ ] rules/mask.ts
-  - [ ] rules/placeholder.ts
-  - [ ] rules/ring.ts
-  - [ ] rules/scrolls.ts
-  - [ ] rules/shadow.ts
-  - [ ] rules/svg.ts
-  - [ ] rules/typography.ts
-
-- **Utils**
-  - [ ] utils/handlers/handlers.ts
-  - [ ] utils/track.ts
-  - [ ] utils/utilities.ts
-
 ## 许可证
 
 [MIT][license-href] License © 2025 [weme-ui][github-href]

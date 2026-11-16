@@ -7,6 +7,7 @@
 
 [![cli version][cli-version-src]][cli-version-href]
 [![preset version][preset-version-src]][preset-version-href]
+[![utilities version][utilities-version-src]][utilities-version-href]
 [![colors version][colors-version-src]][colors-version-href]
 [![License][license-src]][license-href]
 
@@ -29,7 +30,7 @@ pnpm dlx @weme-ui/weme-ui init
 ### 添加组件
 
 ```bash
-pnpm dlx @weme-ui/weme-ui add slim/button
+pnpm dlx @weme-ui/weme-ui add button
 ```
 
 ## 许可证
@@ -42,6 +43,8 @@ pnpm dlx @weme-ui/weme-ui add slim/button
 [preset-version-href]: https://npmjs.com/package/@weme-ui/unocss-preset
 [colors-version-src]: https://img.shields.io/npm/v/%40weme-ui%2Fcolors?style=flat&colorA=1d2129&label=colors&colorB=4CBBA5
 [colors-version-href]: https://npmjs.com/package/@weme-ui/colors
+[utilities-version-src]: https://img.shields.io/npm/v/@weme-ui/utilities?style=flat&colorA=1d2129&label=utilities&colorB=4CBBA5
+[utilities-version-href]: https://npmjs.com/package/@weme-ui/utilities
 [license-src]: https://img.shields.io/github/license/weme-ui/weme-ui.svg?style=flat&colorA=1d2129&colorB=4CBBA5
 [license-href]: https://github.com/weme-ui/weme-ui/blob/main/LICENSE
 [github-href]: https://github.com/weme-ui/weme-ui

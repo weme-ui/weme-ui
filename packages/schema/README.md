@@ -7,7 +7,6 @@
 
 [![npm version][npm-version-src]][npm-version-href]
 [![License][license-src]][license-href]
-[![code style][code-style-src]][code-style-href]
 
 <p align="center">
   Re-usable UI components with Reka UI and UnoCSS.
@@ -26,5 +25,3 @@
 [license-src]: https://img.shields.io/github/license/weme-ui/weme-ui.svg?style=flat&colorA=1d2129&colorB=4CBBA5
 [license-href]: https://github.com/weme-ui/weme-ui/blob/main/LICENSE
 [github-href]: https://github.com/weme-ui/weme-ui
-[code-style-src]: https://antfu.me/badge-code-style.svg
-[code-style-href]: https://github.com/antfu/eslint-config

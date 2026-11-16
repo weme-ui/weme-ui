@@ -1,14 +1,24 @@
 import { writeFile } from '../../utils'
 
-const unoConfig = `import { defineUnoConfig, presetWemeUI } from '@weme-ui/unocss-preset'
+export async function generateDefaultUnoCSSConfigs(root: string) {
+  const unoConfig = `import type { Theme } from '@weme-ui/unocss-preset'
+import { defineConfig } from 'unocss'
+import { presetWemeUI } from '@weme-ui/unocss-preset'
 
-export default defineUnoConfig({
+export default defineConfig<Theme>({
   presets: [
     presetWemeUI(),
   ],
+
+  content: {
+    pipeline: {
+      include: [
+        /\\.(vue|svelte|[jt]sx|vine.ts|style.[jt]s|mdx?|astro|elm|php|phtml|marko|html)($|\\?)/,
+      ],
+    },
+  },
 })
 `
 
-export async function generateDefaultUnoCSSConfigs(root: string) {
   return await writeFile(root, 'uno.config.ts', unoConfig.trim())
 }

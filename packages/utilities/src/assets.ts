@@ -68,6 +68,10 @@ export function isThemeTokenScope(name: string): boolean {
  * @returns 是否是自定义 CSS 变量
  */
 export function isCustomCssVariable(name: string, data: string[]): boolean {
+  if (!data || data.length === 0) {
+    return false
+  }
+
   return data.some((val) => {
     return val === name || val.startsWith(`${name}-`)
   })

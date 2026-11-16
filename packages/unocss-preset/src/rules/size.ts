@@ -48,7 +48,7 @@ function getSizeValue(theme: Theme, hw: string, prop: string) {
     v = `calc(var(--spacing) * ${h.number(prop)})`
   }
 
-  const parsed = matchCustomCssVariable(prop, getThemeByKey(theme, 'cssVars', ['keys']))
+  const parsed = matchCustomCssVariable(prop, getThemeByKey(theme, 'cssVars', ['keys']) || [])
   if (parsed) {
     v = parseCustomCssVariable(parsed, hw === 'w' ? 'width' : hw === 'h' ? 'height' : 'size')
   }

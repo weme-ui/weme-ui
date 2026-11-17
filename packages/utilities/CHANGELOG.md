@@ -2,6 +2,19 @@
 
 6.0.0 起与仓库其余公开包使用同一个版本。新的变更记录见仓库根目录 [CHANGELOG.md](../../CHANGELOG.md)，并同步到本文件顶部。
 
+## v6.1.3
+
+[compare changes](https://github.com/weme-ui/weme-ui/compare/v6.1.2...v6.1.3)
+
+### 🩹 Fixes
+
+- **utilities:** Allow 'neutral' as a valid theme neutral color ([1d5d751d](https://github.com/weme-ui/weme-ui/commit/1d5d751d))
+- **unocss-preset:** Ensure animation property defaults to an empty object when not provided ([c99e9e8c](https://github.com/weme-ui/weme-ui/commit/c99e9e8c))
+
+### ❤️ Contributors
+
+- Yubai ([@xiaoshop](https://github.com/xiaoshop))
+
 ## v6.1.2
 
 [compare changes](https://github.com/weme-ui/weme-ui/compare/v6.1.1...v6.1.2)

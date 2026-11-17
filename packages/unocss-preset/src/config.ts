@@ -75,7 +75,7 @@ export function loadUserExtendUnoConfig(): UserExtendUnoConfig<Theme> | undefine
 
   return files.reduce((acc, file) => {
     acc.shortcuts = file.shortcuts
-      ? mergeDeep(acc.shortcuts || [], toArray(file.shortcuts))
+      ? [...(acc.shortcuts ? toArray(acc.shortcuts) : []), ...toArray(file.shortcuts)]
       : acc.shortcuts
     acc.animations = file.animations
       ? mergeDeep(acc.animations || {}, file.animations || {})

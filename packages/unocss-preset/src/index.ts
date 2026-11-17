@@ -185,7 +185,7 @@ export const presetWemeUI = definePreset<PresetWemeUIOptions, Theme>((options = 
     docs: 'https://weme-ui.github.io/weme-ui/docs/unocss-preset/',
     rules,
     shortcuts: mergeDeep(shortcuts, toArray(extendShortcuts || []), true),
-    theme: mergeDeep(theme(options), { animation: extendAnimations }),
+    theme: mergeDeep(theme(options), { animation: extendAnimations ?? {} }),
     layers: {
       properties: -200,
       theme: -150,

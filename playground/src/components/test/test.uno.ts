@@ -9,13 +9,11 @@ export default <UserExtendUnoConfig<Theme>>{
       ([, color]) => {
         if (hasParseableColor(color)) {
           const classNames: string[] = [
-            `bg-${color} text-${color}-1 text-shadow-2xs hover:bg-${color}-10 focus-visible:(outline-${color}-7 z-high)`,
+            `bg-${color} text-white-12 text-shadow-2xs hover:bg-${color}-10 focus-visible:(outline-${color}-7 z-raised)`,
           ]
 
           if (isRequiresInvertedColor(color)) {
-            classNames.push(`dark:text-${color}-8`)
-          } else {
-            classNames.push(`dark:text-${color}-12`)
+            classNames.push(`dark:text-black-12`)
           }
 
           return classNames.join(' ')
@@ -28,17 +26,9 @@ export default <UserExtendUnoConfig<Theme>>{
       /^btn-(.+)-soft$/,
       ([, color]) => {
         if (hasParseableColor(color)) {
-          const classNames: string[] = [`focus-visible:(outline-${color}-7 z-high)`]
-
-          if (isThemeNeutralColor(color)) {
-            classNames.push(
-              `text-${color}-11 bg-${color}-4 hover:text-${color}-12 hover:bg-${color}-5`,
-            )
-          } else {
-            classNames.push(
-              `text-${color} bg-${color}-3 hover:text-${color}-10 hover:bg-${color}-4`,
-            )
-          }
+          const classNames: string[] = [
+            `text-${color}-11 bg-${color}-4 hover:bg-${color}-5 focus-visible:(outline-${color}-7 z-raised)`,
+          ]
 
           return classNames.join(' ')
         }
@@ -51,14 +41,14 @@ export default <UserExtendUnoConfig<Theme>>{
       ([, color]) => {
         if (hasParseableColor(color)) {
           const classNames: string[] = [
-            `bg-transparent hover:(text-${color}-10 bg-${color}-4) focus-visible:(outline-${color}-7 z-high)`,
+            `bg-transparent hover:bg-${color}-4 focus-visible:(outline-${color}-7 z-raised)`,
             `b-(~ ${color}-4) hover:b-${color}-5`,
           ]
 
           if (isThemeNeutralColor(color)) {
-            classNames.push(`text-${color}-11 hover:text-${color}-12`)
+            classNames.push(`text-${color}-11`)
           } else {
-            classNames.push(`text-${color} hover:text-${color}-10`)
+            classNames.push(`text-${color} hover:text-${color}-11`)
           }
 
           return classNames.join(' ')
@@ -67,19 +57,18 @@ export default <UserExtendUnoConfig<Theme>>{
       { autocomplete: `btn-$colors-outline` },
     ],
 
-    // ghost : btn-$color-ghost
     [
       /^btn-(.+)-ghost$/,
       ([, color]) => {
         if (hasParseableColor(color)) {
           const classNames: string[] = [
-            `bg-transparent hover:bg-${color}-4 focus-visible:(outline-${color}-7 z-high)`,
+            `bg-transparent hover:bg-${color}-4 focus-visible:(outline-${color}-7 z-raised)`,
           ]
 
-          if (isThemeNeutralColor(color) || isThemeNeutralColor(color)) {
+          if (isThemeNeutralColor(color)) {
             classNames.push(`text-${color}-11`)
           } else {
-            classNames.push(`text-${color}`)
+            classNames.push(`text-${color} hover:text-${color}-11`)
           }
 
           return classNames.join(' ')
@@ -88,12 +77,17 @@ export default <UserExtendUnoConfig<Theme>>{
       { autocomplete: `btn-$colors-ghost` },
     ],
 
-    // plain : btn-$color-plain
     [
       /^btn-(.+)-plain$/,
       ([, color]) => {
         if (hasParseableColor(color)) {
-          const classNames: string[] = [`text-${color} hover:text-${color}-10`]
+          const classNames: string[] = []
+
+          if (isThemeNeutralColor(color)) {
+            classNames.push(`text-${color}-11 hover:text-${color}-12`)
+          } else {
+            classNames.push(`text-${color} hover:text-${color}-11`)
+          }
 
           return classNames.join(' ')
         }
@@ -101,15 +95,19 @@ export default <UserExtendUnoConfig<Theme>>{
       { autocomplete: `btn-$colors-plain` },
     ],
 
-    // inverse : btn-$color-inverse
     [
       /^btn-(.+)-inverse$/,
       ([, color]) => {
         if (hasParseableColor(color)) {
           const classNames: string[] = [
-            `bg-${color}-1 hover:bg-${color}-2 focus-visible:(outline-${color}-7 z-high)`,
-            `text-${color} hover:text-${color}-11`,
+            `bg-${color}-1 hover:bg-${color}-2 focus-visible:(outline-${color}-7 z-raised)`,
           ]
+
+          if (isThemeNeutralColor(color)) {
+            classNames.push(`text-${color}-11 hover:text-${color}-12`)
+          } else {
+            classNames.push(`text-${color} hover:text-${color}-11`)
+          }
 
           return classNames.join(' ')
         }

@@ -269,4 +269,17 @@ describe('preset weme-ui', () => {
 
     // expect(css).toMatchInlineSnapshot()
   })
+
+  it('should parse token with opacity', async () => {
+    const uno = await createGenerator({
+      envMode: 'dev',
+      presets: [presetWemeUI({ reset: false })],
+    })
+
+    const { css } = await uno.generate('b-default/60 b-default b-red/60')
+
+    expect(css).toContain('.b-default{')
+    expect(css).toContain('.b-default\\/60{')
+    expect(css).toContain('.b-red\\/60{')
+  })
 })

@@ -2,6 +2,18 @@
 
 6.0.0 起与仓库其余公开包使用同一个版本。新的变更记录见仓库根目录 [CHANGELOG.md](../../CHANGELOG.md)，并同步到本文件顶部。
 
+## v6.1.1
+
+[compare changes](https://github.com/weme-ui/weme-ui/compare/v6.1.0...v6.1.1)
+
+### 🚀 Enhancements
+
+- **utilities:** Add color parsing functions for theme and neutral colors ([4f9673fb](https://github.com/weme-ui/weme-ui/commit/4f9673fb))
+
+### ❤️ Contributors
+
+- Yubai ([@xiaoshop](https://github.com/xiaoshop))
+
 ## v6.1.0
 
 [compare changes](https://github.com/weme-ui/weme-ui/compare/v6.0.1...v6.1.0)

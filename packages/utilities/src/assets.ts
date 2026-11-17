@@ -1,6 +1,24 @@
+import type { AccentColorName, NeutralColorName } from '@weme-ui/colors'
 import type { ThemeColorAliasName } from './types'
+import { ACCENT_COLOR_NAMES, NEUTRAL_COLOR_NAMES } from '@weme-ui/colors'
 import { THEME_COLOR_ALIAS_NAMES } from './constants'
 import { themeTokensMap } from './mappings'
+
+/**
+ * 是否是可以解析的颜色
+ *
+ * @param color 颜色
+ * @param includeTokens 是否包含主题令牌
+ * @returns 是否是可以解析的颜色
+ */
+export function hasParseableColor(color: string, includeTokens = false): boolean {
+  return (
+    isRawColor(color) ||
+    isThemeColor(color) ||
+    isThemeColorAliasName(color) ||
+    (includeTokens && isThemeToken(color) && isThemeTokenScope(color))
+  )
+}
 
 /**
  * 是否是原始颜色
@@ -22,6 +40,39 @@ export function isRawColor(color: string): boolean {
     'var(',
   ]
   return prefixes.some((prefix) => color.startsWith(prefix))
+}
+
+/**
+ * 是否是主题颜色
+ *
+ * @param color 颜色
+ * @returns 是否是主题颜色
+ */
+export function isThemeColor(color: string): boolean {
+  return (
+    ACCENT_COLOR_NAMES.includes(color as AccentColorName) ||
+    ['black', 'white', 'black-auto', 'white-auto'].includes(color)
+  )
+}
+
+/**
+ * 是否是主题中性颜色
+ *
+ * @param color 颜色
+ * @returns 是否是主题中性颜色
+ */
+export function isThemeNeutralColor(color: string): boolean {
+  return NEUTRAL_COLOR_NAMES.includes(color as NeutralColorName)
+}
+
+/**
+ * 是否需要反转颜色，因为这些颜色较浅，需要使用较深的前景色方能看清
+ *
+ * @param color 颜色
+ * @returns 是否需要反转颜色
+ */
+export function isRequiresInvertedColor(color: string): boolean {
+  return ['amber', 'yellow', 'lime', 'mint', 'sky'].includes(color)
 }
 
 /**

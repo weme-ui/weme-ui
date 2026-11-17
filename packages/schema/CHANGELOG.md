@@ -2,6 +2,18 @@
 
 6.0.0 起与仓库其余公开包使用同一个版本。新的变更记录见仓库根目录 [CHANGELOG.md](../../CHANGELOG.md)，并同步到本文件顶部。
 
+## v6.1.4
+
+[compare changes](https://github.com/weme-ui/weme-ui/compare/v6.1.3...v6.1.4)
+
+### 🩹 Fixes
+
+- **unocss-preset:** Ensure proper merging of user-defined shortcuts and animations ([e02a0ddc](https://github.com/weme-ui/weme-ui/commit/e02a0ddc))
+
+### ❤️ Contributors
+
+- Yubai ([@xiaoshop](https://github.com/xiaoshop))
+
 ## v6.1.3
 
 [compare changes](https://github.com/weme-ui/weme-ui/compare/v6.1.2...v6.1.3)

@@ -62,7 +62,7 @@ export function isThemeColor(color: string): boolean {
  * @returns 是否是主题中性颜色
  */
 export function isThemeNeutralColor(color: string): boolean {
-  return NEUTRAL_COLOR_NAMES.includes(color as NeutralColorName)
+  return NEUTRAL_COLOR_NAMES.includes(color as NeutralColorName) || color === 'neutral'
 }
 
 /**

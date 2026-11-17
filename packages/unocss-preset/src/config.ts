@@ -1,11 +1,11 @@
 import type { RegistryItemTypeEnum } from '@weme-ui/schema'
 import type { ThemeConfig, UserExtendUnoConfig } from '@weme-ui/utilities'
 import type { Theme } from './theme'
+import { mergeDeep, toArray } from '@unocss/core'
 import { ProjectConfigSchema } from '@weme-ui/schema'
 import createJiti from 'jiti'
 import { existsSync, readdirSync, readFileSync } from 'node:fs'
 import { join } from 'node:path/posix'
-import { mergeDeep } from 'unocss'
 import * as v from 'valibot'
 
 /**
@@ -74,8 +74,12 @@ export function loadUserExtendUnoConfig(): UserExtendUnoConfig<Theme> | undefine
     .filter(Boolean)
 
   return files.reduce((acc, file) => {
-    acc.shortcuts = mergeDeep(acc.shortcuts || [], file.shortcuts || [])
-    acc.animations = mergeDeep(acc.animations || {}, file.animations || {})
+    acc.shortcuts = file.shortcuts
+      ? mergeDeep(acc.shortcuts || [], toArray(file.shortcuts))
+      : acc.shortcuts
+    acc.animations = file.animations
+      ? mergeDeep(acc.animations || {}, file.animations || {})
+      : acc.animations
     return acc
   }, {} as UserExtendUnoConfig<Theme>)
 }

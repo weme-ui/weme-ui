@@ -49,9 +49,10 @@ export function isRawColor(color: string): boolean {
  * @returns 是否是主题颜色
  */
 export function isThemeColor(color: string): boolean {
+  const [val] = color.split('/')
   return (
-    ACCENT_COLOR_NAMES.includes(color as AccentColorName) ||
-    ['black', 'white', 'black-auto', 'white-auto'].includes(color)
+    ACCENT_COLOR_NAMES.includes(val as AccentColorName) ||
+    ['black', 'white', 'black-auto', 'white-auto'].includes(val)
   )
 }
 
@@ -62,7 +63,8 @@ export function isThemeColor(color: string): boolean {
  * @returns 是否是主题中性颜色
  */
 export function isThemeNeutralColor(color: string): boolean {
-  return NEUTRAL_COLOR_NAMES.includes(color as NeutralColorName) || color === 'neutral'
+  const [val] = color.split('/')
+  return NEUTRAL_COLOR_NAMES.includes(val as NeutralColorName) || val === 'neutral'
 }
 
 /**
@@ -72,7 +74,8 @@ export function isThemeNeutralColor(color: string): boolean {
  * @returns 是否需要反转颜色
  */
 export function isRequiresInvertedColor(color: string): boolean {
-  return ['amber', 'yellow', 'lime', 'mint', 'sky'].includes(color)
+  const [val] = color.split('/')
+  return ['amber', 'yellow', 'lime', 'mint', 'sky'].includes(val)
 }
 
 /**
@@ -82,7 +85,8 @@ export function isRequiresInvertedColor(color: string): boolean {
  * @returns 是否是颜色别名
  */
 export function isThemeColorAliasName(name: string): name is ThemeColorAliasName {
-  return THEME_COLOR_ALIAS_NAMES.includes(name as ThemeColorAliasName)
+  const [val] = name.split('/')
+  return THEME_COLOR_ALIAS_NAMES.includes(val as ThemeColorAliasName)
 }
 
 /**
@@ -92,10 +96,11 @@ export function isThemeColorAliasName(name: string): name is ThemeColorAliasName
  * @returns 是否是主题令牌名称
  */
 export function isThemeToken(name: string): boolean {
+  const [val] = name.split('/')
   return Object.entries(themeTokensMap).some(([scope, tokens]) => {
-    const isSingleToken = tokens.includes(name) || isThemeTokenScope(name)
+    const isSingleToken = tokens.includes(val) || isThemeTokenScope(val)
     if (!isSingleToken) {
-      return tokens.some((tk) => `${scope}-${tk}` === name)
+      return tokens.some((tk) => `${scope}-${tk}` === val)
     }
     return isSingleToken
   })
@@ -108,7 +113,8 @@ export function isThemeToken(name: string): boolean {
  * @returns 是否是主题令牌范围
  */
 export function isThemeTokenScope(name: string): boolean {
-  return Object.keys(themeTokensMap).includes(name)
+  const [val] = name.split('/')
+  return Object.keys(themeTokensMap).includes(val)
 }
 
 /**
@@ -123,7 +129,8 @@ export function isCustomCssVariable(name: string, data: string[]): boolean {
     return false
   }
 
+  const [color] = name.split('/')
   return data.some((val) => {
-    return val === name || val.startsWith(`${name}-`)
+    return val === color || val.startsWith(`${color}-`)
   })
 }

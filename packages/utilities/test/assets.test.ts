@@ -39,7 +39,20 @@ describe('assets', () => {
   })
 
   it('should be theme color alias name', () => {
-    const tests = ['accent', 'neutral', 'info', 'success', 'warning', 'error']
+    const tests = [
+      'accent',
+      'neutral',
+      'info',
+      'success',
+      'warning',
+      'error',
+      'accent/60',
+      'neutral/60',
+      'info/60',
+      'success/60',
+      'warning/60',
+      'error/60',
+    ]
 
     for (const test of tests) {
       expect(isThemeColorAliasName(test)).toBe(true)
@@ -68,6 +81,9 @@ describe('assets', () => {
       'border-default',
       'border-elevated',
       'border-inverted',
+      'border-default/60',
+      'border-elevated/60',
+      'border-inverted/60',
     ]
 
     for (const test of tests) {
@@ -76,7 +92,7 @@ describe('assets', () => {
   })
 
   it('should be theme token scope', () => {
-    const tests = ['text', 'bg', 'border']
+    const tests = ['text', 'bg', 'border', 'text/60', 'bg/60', 'border/60']
 
     for (const test of tests) {
       expect(isThemeTokenScope(test)).toBe(true)
@@ -84,7 +100,17 @@ describe('assets', () => {
   })
 
   it('should be custom css variable', () => {
-    const tests = ['test', 'test-bg', 'test-border', 'test-width', 'test-height']
+    const tests = [
+      'test',
+      'test-bg',
+      'test-border',
+      'test-width',
+      'test-height',
+      'test-bg/60',
+      'test-border/60',
+      'test-width/60',
+      'test-height/60',
+    ]
 
     for (const test of tests) {
       expect(isCustomCssVariable(test, data)).toBe(true)

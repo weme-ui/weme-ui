@@ -2,6 +2,18 @@
 
 6.0.0 之前的变更仍写在各包的 CHANGELOG.md。
 
+## v6.1.2
+
+[compare changes](https://github.com/weme-ui/weme-ui/compare/v6.1.1...v6.1.2)
+
+### 🩹 Fixes
+
+- **unocss-preset:** Remove unnecessary check for unocss in Weme UI configuration loading ([13625fc3](https://github.com/weme-ui/weme-ui/commit/13625fc3))
+
+### ❤️ Contributors
+
+- Yubai ([@xiaoshop](https://github.com/xiaoshop))
+
 ## v6.1.1
 
 [compare changes](https://github.com/weme-ui/weme-ui/compare/v6.1.0...v6.1.1)

@@ -56,21 +56,21 @@
     "@unocss/extractor-arbitrary-variants": "catalog:dev",
     "@unocss/rule-utils": "catalog:dev",
     "@unocss/transformer-variant-group": "catalog:dev",
+    "@weme-ui/colors": "workspace:*",
     "@weme-ui/schema": "workspace:*",
-    "@weme-ui/utilities": "workspace:*"
+    "@weme-ui/utilities": "workspace:*",
+    "valibot": "catalog:utils"
   },
   "devDependencies": {
     "@radix-ui/colors": "catalog:utils",
     "@types/node": "catalog:dev",
     "@typescript/typescript6": "catalog:build",
-    "@weme-ui/colors": "workspace:*",
     "bezier-easing": "catalog:utils",
     "colorjs.io": "catalog:utils",
     "defu": "catalog:utils",
     "jiti": "catalog:utils",
     "tsdown": "catalog:build",
     "type-fest": "catalog:utils",
-    "valibot": "catalog:utils",
     "vitest": "catalog:dev"
   },
   "peerDependencies": {

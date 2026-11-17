@@ -99,17 +99,10 @@ function loadWemeConfigFile() {
 
   try {
     const wemeConfig = JSON.parse(wemeConfigContent)
-
-    if (!wemeConfig.unocss) {
-      return
-    }
-
     const parsed = v.safeParse(ProjectConfigSchema, wemeConfig)
-
     if (!parsed.success) {
       return
     }
-
     return parsed.output
   } catch {
     return

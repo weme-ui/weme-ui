@@ -16,6 +16,6 @@ export default {
   },
   scopeMap: {
     color: 'colors',
-    utilitie: 'utilities',
+    utility: 'utilities',
   },
 } satisfies Partial<ChangelogConfig>

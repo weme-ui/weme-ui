@@ -22,7 +22,7 @@
     },
     "packages/cli": {
       "name": "@weme-ui/weme-ui",
-      "version": "6.0.1",
+      "version": "6.1.1",
       "bin": {
         "weme-ui": "./dist/index.js",
       },
@@ -63,7 +63,7 @@
     },
     "packages/colors": {
       "name": "@weme-ui/colors",
-      "version": "6.0.1",
+      "version": "6.1.1",
       "dependencies": {
         "bezier-easing": "catalog:utils",
         "colorjs.io": "catalog:utils",
@@ -81,7 +81,7 @@
     },
     "packages/schema": {
       "name": "@weme-ui/schema",
-      "version": "6.0.1",
+      "version": "6.1.1",
       "devDependencies": {
         "@adobe/jsonschema2md": "^8.0.11",
         "@types/node": "catalog:dev",
@@ -98,27 +98,27 @@
     },
     "packages/unocss-preset": {
       "name": "@weme-ui/unocss-preset",
-      "version": "6.0.1",
+      "version": "6.1.1",
       "dependencies": {
         "@unocss/core": "catalog:dev",
         "@unocss/extractor-arbitrary-variants": "catalog:dev",
         "@unocss/rule-utils": "catalog:dev",
         "@unocss/transformer-variant-group": "catalog:dev",
+        "@weme-ui/colors": "workspace:*",
         "@weme-ui/schema": "workspace:*",
         "@weme-ui/utilities": "workspace:*",
+        "valibot": "catalog:utils",
       },
       "devDependencies": {
         "@radix-ui/colors": "catalog:utils",
         "@types/node": "catalog:dev",
         "@typescript/typescript6": "catalog:build",
-        "@weme-ui/colors": "workspace:*",
         "bezier-easing": "catalog:utils",
         "colorjs.io": "catalog:utils",
         "defu": "catalog:utils",
         "jiti": "catalog:utils",
         "tsdown": "catalog:build",
         "type-fest": "catalog:utils",
-        "valibot": "catalog:utils",
         "vitest": "catalog:dev",
       },
       "peerDependencies": {
@@ -127,7 +127,7 @@
     },
     "packages/utilities": {
       "name": "@weme-ui/utilities",
-      "version": "6.0.1",
+      "version": "6.1.1",
       "dependencies": {
         "@weme-ui/colors": "workspace:*",
         "defu": "catalog:utils",

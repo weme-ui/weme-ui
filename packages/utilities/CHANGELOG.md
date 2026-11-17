@@ -2,6 +2,18 @@
 
 6.0.0 起与仓库其余公开包使用同一个版本。新的变更记录见仓库根目录 [CHANGELOG.md](../../CHANGELOG.md)，并同步到本文件顶部。
 
+## v6.1.6
+
+[compare changes](https://github.com/weme-ui/weme-ui/compare/v6.1.5...v6.1.6)
+
+### 🩹 Fixes
+
+- **utilities:** Update color functions to handle color values with opacity support ([77865972](https://github.com/weme-ui/weme-ui/commit/77865972))
+
+### ❤️ Contributors
+
+- Yubai ([@xiaoshop](https://github.com/xiaoshop))
+
 ## v6.1.5
 
 [compare changes](https://github.com/weme-ui/weme-ui/compare/v6.1.4...v6.1.5)

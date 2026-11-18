@@ -22,7 +22,7 @@
     },
     "packages/cli": {
       "name": "@weme-ui/weme-ui",
-      "version": "6.1.1",
+      "version": "6.1.6",
       "bin": {
         "weme-ui": "./dist/index.js",
       },
@@ -63,7 +63,7 @@
     },
     "packages/colors": {
       "name": "@weme-ui/colors",
-      "version": "6.1.1",
+      "version": "6.1.6",
       "dependencies": {
         "bezier-easing": "catalog:utils",
         "colorjs.io": "catalog:utils",
@@ -81,7 +81,7 @@
     },
     "packages/schema": {
       "name": "@weme-ui/schema",
-      "version": "6.1.1",
+      "version": "6.1.6",
       "devDependencies": {
         "@adobe/jsonschema2md": "^8.0.11",
         "@types/node": "catalog:dev",
@@ -98,7 +98,7 @@
     },
     "packages/unocss-preset": {
       "name": "@weme-ui/unocss-preset",
-      "version": "6.1.1",
+      "version": "6.1.6",
       "dependencies": {
         "@unocss/core": "catalog:dev",
         "@unocss/extractor-arbitrary-variants": "catalog:dev",
@@ -127,7 +127,7 @@
     },
     "packages/utilities": {
       "name": "@weme-ui/utilities",
-      "version": "6.1.1",
+      "version": "6.1.6",
       "dependencies": {
         "@weme-ui/colors": "workspace:*",
         "defu": "catalog:utils",
@@ -165,7 +165,7 @@
         "vue-router": "catalog:dev",
       },
       "devDependencies": {
-        "@iconify-json/lucide": "^1.2.155",
+        "@iconify-json/lucide": "^1.2.156",
         "@typescript/typescript6": "catalog:build",
         "@vitejs/devtools": "^0.8.3",
         "@vitejs/devtools-vite": "^0.8.3",
@@ -403,7 +403,7 @@
 
     "@gar/promise-retry": ["@gar/promise-retry@1.0.3", "", {}, "sha512-GmzA9ckNokPypTg10pgpeHNQe7ph+iIKKmhKu3Ob9ANkswreCx7R3cKmY781K8QK3AqVL3xVh9A42JvIAbkkSA=="],
 
-    "@iconify-json/lucide": ["@iconify-json/lucide@1.2.155", "", { "dependencies": { "@iconify/types": "*" } }, "sha512-pntdVKUFkr/NA+R5wVvRlpRFCr+wY8xKU1wFjywvOr5taNq8Y6MTfHTZ6v7P5M0pe3LQYUO2rYzKCgIfAhdcDA=="],
+    "@iconify-json/lucide": ["@iconify-json/lucide@1.2.156", "", { "dependencies": { "@iconify/types": "*" } }, "sha512-IOB3g2X+cmpoEPcjEbGfpDWPPzXioeDW2gnYgaNxYSaVEHyM4fQqP2uz29cdRQJbQwo5CTQ8D9NJnATeCQKatQ=="],
 
     "@iconify/types": ["@iconify/types@2.0.0", "", {}, "sha512-+wluvCrRhXrhyOmRDJ3q8mux9JkKy5SJ/v8ol2tu4FVjyYvtEzkc/3pK15ET6RKg4b4w4BmTk1+gsCUhf21Ykg=="],
 

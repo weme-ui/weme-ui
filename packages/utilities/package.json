@@ -49,12 +49,12 @@
   },
   "dependencies": {
     "@weme-ui/colors": "workspace:*",
-    "defu": "catalog:utils"
+    "defu": "catalog:utils",
+    "unocss": "catalog:dev"
   },
   "devDependencies": {
     "@types/node": "catalog:dev",
     "@typescript/typescript6": "catalog:build",
-    "@unocss/core": "catalog:dev",
     "tsdown": "catalog:build",
     "vitest": "catalog:dev"
   },

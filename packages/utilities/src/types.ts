@@ -1,5 +1,5 @@
-import type { UserConfig } from '@unocss/core'
 import type { AccentColorName, NeutralColorName } from '@weme-ui/colors'
+import type { UserConfig } from 'unocss'
 
 /**
  * 松散的自动补全类型

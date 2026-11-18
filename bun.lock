@@ -22,7 +22,7 @@
     },
     "packages/cli": {
       "name": "@weme-ui/weme-ui",
-      "version": "6.1.6",
+      "version": "6.1.7",
       "bin": {
         "weme-ui": "./dist/index.js",
       },
@@ -63,7 +63,7 @@
     },
     "packages/colors": {
       "name": "@weme-ui/colors",
-      "version": "6.1.6",
+      "version": "6.1.7",
       "dependencies": {
         "bezier-easing": "catalog:utils",
         "colorjs.io": "catalog:utils",
@@ -81,7 +81,7 @@
     },
     "packages/schema": {
       "name": "@weme-ui/schema",
-      "version": "6.1.6",
+      "version": "6.1.7",
       "devDependencies": {
         "@adobe/jsonschema2md": "^8.0.11",
         "@types/node": "catalog:dev",
@@ -98,7 +98,7 @@
     },
     "packages/unocss-preset": {
       "name": "@weme-ui/unocss-preset",
-      "version": "6.1.6",
+      "version": "6.1.7",
       "dependencies": {
         "@unocss/core": "catalog:dev",
         "@unocss/extractor-arbitrary-variants": "catalog:dev",
@@ -127,15 +127,15 @@
     },
     "packages/utilities": {
       "name": "@weme-ui/utilities",
-      "version": "6.1.6",
+      "version": "6.1.7",
       "dependencies": {
         "@weme-ui/colors": "workspace:*",
         "defu": "catalog:utils",
+        "unocss": "catalog:dev",
       },
       "devDependencies": {
         "@types/node": "catalog:dev",
         "@typescript/typescript6": "catalog:build",
-        "@unocss/core": "catalog:dev",
         "tsdown": "catalog:build",
         "vitest": "catalog:dev",
       },

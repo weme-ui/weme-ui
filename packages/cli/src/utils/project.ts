@@ -333,7 +333,6 @@ export class Project {
       this.joinPath(PROJECT_CONFIG_FILENAME),
       this.joinPath(CLI_TMP_DIR, PROJECT_LOCKFILE_FILENAME),
       this.joinPath('package.json'),
-      this.joinPath(CLI_TMP_DIR, 'uno.config.ts'),
     ]
 
     const progress = await Promise.all(

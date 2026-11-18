@@ -2,6 +2,18 @@
 
 6.0.0 之前的变更仍写在各包的 CHANGELOG.md。
 
+## v6.1.7
+
+[compare changes](https://github.com/weme-ui/weme-ui/compare/v6.1.6...v6.1.7)
+
+### 🩹 Fixes
+
+- **cli:** Remove unused configuration file reference from project utility ([b07e0d89](https://github.com/weme-ui/weme-ui/commit/b07e0d89))
+
+### ❤️ Contributors
+
+- Yubai ([@xiaoshop](https://github.com/xiaoshop))
+
 ## v6.1.6
 
 [compare changes](https://github.com/weme-ui/weme-ui/compare/v6.1.5...v6.1.6)

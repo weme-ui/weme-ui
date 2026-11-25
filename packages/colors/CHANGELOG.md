@@ -2,6 +2,18 @@
 
 6.0.0 起与仓库其余公开包使用同一个版本。新的变更记录见仓库根目录 [CHANGELOG.md](../../CHANGELOG.md)，并同步到本文件顶部。
 
+## v6.2.2
+
+[compare changes](https://github.com/weme-ui/weme-ui/compare/v6.2.1...v6.2.2)
+
+### 🚀 Enhancements
+
+- **config:** Add initial configuration package with loader, types, and Vite plugin integration ([50810a72](https://github.com/weme-ui/weme-ui/commit/50810a72))
+
+### ❤️ Contributors
+
+- Yubai ([@xiaoshop](https://github.com/xiaoshop))
+
 ## v6.2.1
 
 [compare changes](https://github.com/weme-ui/weme-ui/compare/v6.2.0...v6.2.1)

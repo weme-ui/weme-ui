@@ -2,6 +2,18 @@
 
 6.0.0 之前的变更仍写在各包的 CHANGELOG.md。
 
+## v6.2.2
+
+[compare changes](https://github.com/weme-ui/weme-ui/compare/v6.2.1...v6.2.2)
+
+### 🚀 Enhancements
+
+- **config:** Add initial configuration package with loader, types, and Vite plugin integration ([50810a72](https://github.com/weme-ui/weme-ui/commit/50810a72))
+
+### ❤️ Contributors
+
+- Yubai ([@xiaoshop](https://github.com/xiaoshop))
+
 ## v6.2.1
 
 [compare changes](https://github.com/weme-ui/weme-ui/compare/v6.2.0...v6.2.1)

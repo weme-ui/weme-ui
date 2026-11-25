@@ -4,8 +4,8 @@ import { loadConfig } from './loader'
 
 const VIRTUAL_ID = 'weme-ui:config'
 
-export default function VitePlugin(options: Options): Plugin {
-  const { configFile = 'weme.config.json' } = options
+export default function VitePlugin(options?: Options): Plugin {
+  const { configFile = 'weme.config.json' } = options ?? {}
   const resolvedId = `\0${VIRTUAL_ID}`
 
   function asArray<T = string>(v: unknown): T[] {

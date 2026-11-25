@@ -73,7 +73,7 @@
       "simple-git-hooks": "^2.13.1",
       "tsdown": "^0.23.7",
       "tsrs": "^0.25.0-ts7.1.0-beta",
-      "turbo": "^2.11.11"
+      "turbo": "^2.11.13"
     },
     "dev": {
       "@testing-library/vue": "^8.1.0",

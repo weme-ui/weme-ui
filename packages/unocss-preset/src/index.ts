@@ -15,6 +15,7 @@ import {
   loadCustomColors,
   loadCustomCssVars,
   loadCustomTheme,
+  loadCustomThemeColors,
   loadUserExtendUnoConfig,
 } from './config'
 import { postprocessors } from './postprocess'
@@ -157,6 +158,7 @@ export const presetWemeUI = definePreset<PresetWemeUIOptions, Theme>((options = 
 
   let extendShortcuts: UserExtendUnoConfig<Theme>['shortcuts']
   let extendAnimations: UserExtendUnoConfig<Theme>['animations']
+  let safelist: string[] = []
 
   if (options.loadWemeConfig) {
     options.colors = defu(options.colors, loadCustomColors())
@@ -168,6 +170,8 @@ export const presetWemeUI = definePreset<PresetWemeUIOptions, Theme>((options = 
       extendShortcuts = extendUnoConfig.shortcuts
       extendAnimations = extendUnoConfig.animations
     }
+
+    safelist = loadCustomThemeColors()
   }
 
   if (!options.themes?.length) {
@@ -200,6 +204,7 @@ export const presetWemeUI = definePreset<PresetWemeUIOptions, Theme>((options = 
     autocomplete: {
       shorthands,
     },
+    safelist,
     options,
   }
 })

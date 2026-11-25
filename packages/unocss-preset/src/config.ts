@@ -55,6 +55,11 @@ export function loadCustomTheme() {
     .filter(Boolean)
 }
 
+/**
+ * 加载 Weme UI 自定义 UnoCSS 配置
+ *
+ * @returns 自定义 UnoCSS 配置，如果不存在则返回 undefined
+ */
 export function loadUserExtendUnoConfig(): UserExtendUnoConfig<Theme> | undefined {
   if (!wemeConfig) {
     return undefined
@@ -82,6 +87,33 @@ export function loadUserExtendUnoConfig(): UserExtendUnoConfig<Theme> | undefine
       : acc.animations
     return acc
   }, {} as UserExtendUnoConfig<Theme>)
+}
+
+/**
+ * 加载 Weme UI 自定义主题颜色，用于 safelist 配置
+ *
+ * @returns 自定义主题颜色列表，如果不存在则返回空数组
+ */
+export function loadCustomThemeColors(): string[] {
+  if (!wemeConfig) {
+    return []
+  }
+
+  const colors = new Set<string>()
+
+  if (wemeConfig.theme?.accentColors) {
+    wemeConfig.theme.accentColors.forEach((color) => colors.add(color))
+  }
+
+  if (wemeConfig.theme?.neutralColors) {
+    wemeConfig.theme.neutralColors.forEach((color) => colors.add(color))
+  }
+
+  if (wemeConfig.theme?.colorPalettes) {
+    wemeConfig.theme.colorPalettes.forEach((color) => colors.add(color))
+  }
+
+  return Array.from(colors)
 }
 
 /**

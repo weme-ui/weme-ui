@@ -2,6 +2,18 @@
 
 6.0.0 之前的变更仍写在各包的 CHANGELOG.md。
 
+## v6.2.1
+
+[compare changes](https://github.com/weme-ui/weme-ui/compare/v6.2.0...v6.2.1)
+
+### 💅 Refactors
+
+- **unocss-preset:** Streamline theme color handling and update preflight integration ([79d5ce2e](https://github.com/weme-ui/weme-ui/commit/79d5ce2e))
+
+### ❤️ Contributors
+
+- Yubai ([@xiaoshop](https://github.com/xiaoshop))
+
 ## v6.2.0
 
 [compare changes](https://github.com/weme-ui/weme-ui/compare/v6.1.8...v6.2.0)

@@ -8,6 +8,7 @@ export const versionFiles = [
   'packages/schema/package.json',
   'packages/unocss-preset/package.json',
   'packages/utilities/package.json',
+  'packages/config/package.json',
 ] as const
 
 export const changelogFiles = [
@@ -16,6 +17,7 @@ export const changelogFiles = [
   'packages/schema/CHANGELOG.md',
   'packages/unocss-preset/CHANGELOG.md',
   'packages/utilities/CHANGELOG.md',
+  'packages/config/CHANGELOG.md',
 ] as const
 
 export const publishDirectories = [
@@ -24,6 +26,7 @@ export const publishDirectories = [
   'packages/utilities',
   'packages/unocss-preset',
   'packages/cli',
+  'packages/config',
 ] as const
 
 export const publishedVersionFloor = '5.0.1'

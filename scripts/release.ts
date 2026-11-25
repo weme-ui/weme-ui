@@ -73,6 +73,7 @@ run([
   '--filter=@weme-ui/utilities',
   '--filter=@weme-ui/unocss-preset',
   '--filter=@weme-ui/weme-ui',
+  '--filter=@weme-ui/config',
 ])
 run(['bun', 'run', '--filter', '@weme-ui/schema', 'build:output'])
 

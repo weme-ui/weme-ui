@@ -38,6 +38,7 @@ Weme UI 项目配置。声明安装路径、已注册的 registries，以及可�
 | [$schema](#schema)        | `string` | Optional | cannot be null | [项目配置](config-properties-schema.md "undefined#/properties/$schema")        |
 | [paths](#paths)           | `object` | Optional | cannot be null | [项目配置](config-properties-路径.md "undefined#/properties/paths")              |
 | [registries](#registries) | `array`  | Optional | cannot be null | [项目配置](config-properties-registries.md "undefined#/properties/registries") |
+| [theme](#theme)           | `object` | Optional | cannot be null | [项目配置](config-properties-主题配置.md "undefined#/properties/theme")            |
 | [unocss](#unocss)         | `object` | Optional | cannot be null | [项目配置](config-properties-unocss-扩展.md "undefined#/properties/unocss")      |
 
 ## $schema
@@ -128,6 +129,43 @@ The default value is:
   "repo": "https://github.com/weme-ui/slim",
   "registry": "weme-ui/slim",
   "prefix": "ui"
+}
+```
+
+## theme
+
+项目主题配置。声明启用的主题色、中性色与色盘，用于构建主题变量。
+
+`theme`
+
+* is optional
+
+* Type: `object` ([主题配置](config-properties-主题配置.md))
+
+* cannot be null
+
+* defined in: [项目配置](config-properties-主题配置.md "undefined#/properties/theme")
+
+### theme Type
+
+`object` ([主题配置](config-properties-主题配置.md))
+
+### theme Examples
+
+```json
+{
+  "accentColors": [
+    "clay",
+    "forest"
+  ],
+  "neutralColors": [
+    "stone",
+    "slate"
+  ],
+  "colorPalettes": [
+    "neutral",
+    "rose"
+  ]
 }
 ```
 

@@ -159,6 +159,74 @@ export const ProjectUnoCSSConfigSchema = v.pipe(
 )
 
 /**
+ * 项目主题配置
+ *
+ * @category Project
+ */
+export const ProjectThemeSchema = v.pipe(
+  v.object({
+    /**
+     * 主题色
+     *
+     * @optional
+     */
+    accentColors: v.optional(
+      v.pipe(
+        v.array(NonEmptyTrimmedString),
+        v.metadata({
+          title: '主题色',
+          description: '项目启用的主题色列表，用于构建主题变量。',
+          examples: ['clay', 'forest'],
+        }),
+      ),
+    ),
+
+    /**
+     * 中性色
+     *
+     * @optional
+     */
+    neutralColors: v.optional(
+      v.pipe(
+        v.array(NonEmptyTrimmedString),
+        v.metadata({
+          title: '中性色',
+          description: '项目启用的中性色列表，用于构建主题变量。',
+          examples: ['stone', 'slate'],
+        }),
+      ),
+    ),
+
+    /**
+     * 启用色盘
+     *
+     * @optional
+     */
+    colorPalettes: v.optional(
+      v.pipe(
+        v.array(NonEmptyTrimmedString),
+        v.metadata({
+          title: '色盘',
+          description: '项目启用的色盘列表，用于图标、图示等视觉元素的颜色选择。',
+          examples: ['neutral', 'rose'],
+        }),
+      ),
+    ),
+  }),
+  v.metadata({
+    title: '主题配置',
+    description: '项目主题配置。声明启用的主题色、中性色与色盘，用于构建主题变量。',
+    examples: [
+      {
+        accentColors: ['clay', 'forest'],
+        neutralColors: ['stone', 'slate'],
+        colorPalettes: ['neutral', 'rose'],
+      },
+    ],
+  }),
+)
+
+/**
  * 项目配置
  *
  * @category Project
@@ -211,6 +279,13 @@ export const ProjectConfigSchema = v.pipe(
         }),
       ),
     ),
+
+    /**
+     * 主题配置
+     *
+     * @optional
+     */
+    theme: v.optional(ProjectThemeSchema),
 
     /**
      * 扩展 UnoCSS 配置

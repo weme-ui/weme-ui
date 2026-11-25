@@ -30,6 +30,8 @@
 
 * [主色调](./config-properties-unocss-扩展-properties-自定义颜色-properties-主色调.md "项目主题的主色调 token。键为 token 名，值为 CSS 颜色字符串，通常使用 oklch。") – `undefined#/properties/unocss/properties/colors/properties/accent`
 
+* [主题配置](./config-properties-主题配置.md "项目主题配置。声明启用的主题色、中性色与色盘，用于构建主题变量。") – `undefined#/properties/theme`
+
 * [元数据](./registry-properties-items-registry-item-properties-元数据.md "供工具链与文档使用的任意键值元数据。文档展示字段使用 \"docs") – `undefined#/properties/items/items/properties/meta`
 
 * [已安装 item](./lockfile-properties-items-已安装-item.md "已安装进项目的 registry item。记录来源 registry 以及实际写入的文件。") – `undefined#/properties/items/items`
@@ -54,6 +56,10 @@
 
 * [Registry 依赖](./registry-properties-items-registry-item-properties-registry-依赖.md "必须与该 item 一并安装的其他 registry item。按同一或已解析 registry 内的 item 名称引用。") – `undefined#/properties/items/items/properties/registryDependencies`
 
+* [中性色](./config-properties-主题配置-properties-中性色.md "项目启用的中性色列表，用于构建主题变量。") – `undefined#/properties/theme/properties/neutralColors`
+
+* [主题色](./config-properties-主题配置-properties-主题色.md "项目启用的主题色列表，用于构建主题变量。") – `undefined#/properties/theme/properties/accentColors`
+
 * [依赖](./registry-properties-依赖.md "以该 registry 初始化消费方项目时默认安装的运行时 NPM 包。与 item 级依赖不同，这些依赖对整个 registry 只应用一次。条目可带版本范围或 tag，例如 \"vue^3") – `undefined#/properties/dependencies`
 
 * [依赖](./registry-properties-items-registry-item-properties-依赖.md "该 item 运行时所需的 NPM 包。条目可带版本范围或 tag，例如 \"vue^3") – `undefined#/properties/items/items/properties/dependencies`
@@ -67,6 +73,8 @@
 * [文件](./lockfile-properties-items-已安装-item-properties-文件.md "为该 item 写入项目的文件列表，每项含 registry 源路径与项目目标路径。") – `undefined#/properties/items/items/properties/files`
 
 * [文件](./registry-properties-items-registry-item-properties-文件.md "构成该 registry item 的文件列表。至少应列出主要源文件。") – `undefined#/properties/items/items/properties/files`
+
+* [色盘](./config-properties-主题配置-properties-色盘.md "项目启用的色盘列表，用于图标、图示等视觉元素的颜色选择。") – `undefined#/properties/theme/properties/colorPalettes`
 
 * [贡献者](./registry-properties-贡献者.md "参与该 registry 的贡献者列表。通常为姓名，可选附带邮箱。") – `undefined#/properties/contributors`
 

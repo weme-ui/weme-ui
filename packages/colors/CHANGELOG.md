@@ -2,6 +2,18 @@
 
 6.0.0 起与仓库其余公开包使用同一个版本。新的变更记录见仓库根目录 [CHANGELOG.md](../../CHANGELOG.md)，并同步到本文件顶部。
 
+## v6.2.0
+
+[compare changes](https://github.com/weme-ui/weme-ui/compare/v6.1.8...v6.2.0)
+
+### 🚀 Enhancements
+
+- **unocss-preset:** Add functions to load custom theme colors and integrate into safelist ([ea139295](https://github.com/weme-ui/weme-ui/commit/ea139295))
+
+### ❤️ Contributors
+
+- Yubai ([@xiaoshop](https://github.com/xiaoshop))
+
 ## v6.1.8
 
 [compare changes](https://github.com/weme-ui/weme-ui/compare/v6.1.7...v6.1.8)

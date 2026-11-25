@@ -2,6 +2,24 @@
 
 6.0.0 起与仓库其余公开包使用同一个版本。新的变更记录见仓库根目录 [CHANGELOG.md](../../CHANGELOG.md)，并同步到本文件顶部。
 
+## v6.2.6
+
+[compare changes](https://github.com/weme-ui/weme-ui/compare/v6.2.5...v6.2.6)
+
+### 🚀 Enhancements
+
+- **config:** Add TypeScript declaration file for theme color configuration ([26711eb7](https://github.com/weme-ui/weme-ui/commit/26711eb7))
+- **config:** Specify main entry point in package.json ([c7acfefb](https://github.com/weme-ui/weme-ui/commit/c7acfefb))
+
+### 🩹 Fixes
+
+- **config:** Update export syntax for color arrays in VitePlugin ([8f87448a](https://github.com/weme-ui/weme-ui/commit/8f87448a))
+- **config:** Replace fileURLToPath with resolve for improved path handling in loadConfig function ([0ffb51c2](https://github.com/weme-ui/weme-ui/commit/0ffb51c2))
+
+### ❤️ Contributors
+
+- Yubai ([@xiaoshop](https://github.com/xiaoshop))
+
 ## v6.2.5
 
 [compare changes](https://github.com/weme-ui/weme-ui/compare/v6.2.4...v6.2.5)

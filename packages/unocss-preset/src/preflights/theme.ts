@@ -1,7 +1,9 @@
 import type { CSSEntry, Preflight } from '@unocss/core'
 import type { Theme } from '../theme/types'
 import { escapeSelector, uniq } from '@unocss/core'
+import { isThemeColorAliasName } from '@weme-ui/utilities'
 import {
+  colorAliasTracking,
   compressCSS,
   detectThemeValue,
   getThemeByKey,
@@ -16,7 +18,7 @@ interface TrackedThemeEntries {
 
 type ColorVariant = 'dark' | 'p3' | 'p3-dark'
 
-export function theme(): Preflight<Theme> {
+export function theme(customThemeColors: string[]): Preflight<Theme> {
   return {
     layer: 'theme',
     getCSS(ctx) {
@@ -37,6 +39,24 @@ export function theme(): Preflight<Theme> {
               themeTracking(theme, key, props)
               detectThemeValue(v, theme)
             }
+          }
+        }
+      }
+
+      // 处理自定义主题颜色
+      if (customThemeColors.length > 0) {
+        const steps = Array.from({ length: 12 }, (_, i) => i + 1)
+
+        for (const color of customThemeColors) {
+          if (isThemeColorAliasName(color)) {
+            steps.forEach((step) => {
+              colorAliasTracking(theme, color, step.toString())
+            })
+          } else {
+            steps.forEach((step) => {
+              themeTracking(theme, 'colors', [color, step.toString()])
+              detectThemeValue(color, theme)
+            })
           }
         }
       }

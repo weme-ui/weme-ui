@@ -158,7 +158,7 @@ export const presetWemeUI = definePreset<PresetWemeUIOptions, Theme>((options = 
 
   let extendShortcuts: UserExtendUnoConfig<Theme>['shortcuts']
   let extendAnimations: UserExtendUnoConfig<Theme>['animations']
-  let safelist: string[] = []
+  let customThemeColors: string[] = []
 
   if (options.loadWemeConfig) {
     options.colors = defu(options.colors, loadCustomColors())
@@ -171,7 +171,7 @@ export const presetWemeUI = definePreset<PresetWemeUIOptions, Theme>((options = 
       extendAnimations = extendUnoConfig.animations
     }
 
-    safelist = loadCustomThemeColors()
+    customThemeColors = loadCustomThemeColors()
   }
 
   if (!options.themes?.length) {
@@ -196,7 +196,7 @@ export const presetWemeUI = definePreset<PresetWemeUIOptions, Theme>((options = 
       base: -100,
     },
     transformers,
-    preflights: preflights(options),
+    preflights: preflights(options, customThemeColors),
     variants: variants(options),
     prefix: options.prefix,
     postprocess: postprocessors(options),
@@ -204,7 +204,6 @@ export const presetWemeUI = definePreset<PresetWemeUIOptions, Theme>((options = 
     autocomplete: {
       shorthands,
     },
-    safelist,
     options,
   }
 })

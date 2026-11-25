@@ -7,8 +7,15 @@ import { property } from './property'
 import { reset } from './reset'
 import { theme } from './theme'
 
-export const preflights: (options: PresetWemeUIOptions) => Preflight<Theme>[] = (options) => {
-  return [reset(options), preflight(), custom(options), theme(), property(options)].filter(
-    Boolean,
-  ) as Preflight<Theme>[]
+export const preflights: (
+  options: PresetWemeUIOptions,
+  customThemeColors: string[],
+) => Preflight<Theme>[] = (options, customThemeColors) => {
+  return [
+    reset(options),
+    preflight(),
+    custom(options),
+    theme(customThemeColors),
+    property(options),
+  ].filter(Boolean) as Preflight<Theme>[]
 }

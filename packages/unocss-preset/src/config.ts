@@ -104,11 +104,9 @@ export function loadCustomThemeColors(): string[] {
   if (wemeConfig.theme?.accentColors) {
     wemeConfig.theme.accentColors.forEach((color) => colors.add(color))
   }
-
   if (wemeConfig.theme?.neutralColors) {
     wemeConfig.theme.neutralColors.forEach((color) => colors.add(color))
   }
-
   if (wemeConfig.theme?.colorPalettes) {
     wemeConfig.theme.colorPalettes.forEach((color) => colors.add(color))
   }

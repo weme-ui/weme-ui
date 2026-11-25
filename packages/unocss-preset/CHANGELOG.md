@@ -2,6 +2,22 @@
 
 6.0.0 起与仓库其余公开包使用同一个版本。新的变更记录见仓库根目录 [CHANGELOG.md](../../CHANGELOG.md)，并同步到本文件顶部。
 
+## v6.1.8
+
+[compare changes](https://github.com/weme-ui/weme-ui/compare/v6.1.7...v6.1.8)
+
+### 🚀 Enhancements
+
+- **schema:** Add theme configuration schema with accent colors, neutral colors, and color palettes ([88506c8b](https://github.com/weme-ui/weme-ui/commit/88506c8b))
+
+### 💅 Refactors
+
+- **docs:** Update docs ([8ee847c4](https://github.com/weme-ui/weme-ui/commit/8ee847c4))
+
+### ❤️ Contributors
+
+- Yubai ([@xiaoshop](https://github.com/xiaoshop))
+
 ## v6.1.7
 
 [compare changes](https://github.com/weme-ui/weme-ui/compare/v6.1.6...v6.1.7)

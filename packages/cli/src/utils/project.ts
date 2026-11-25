@@ -95,13 +95,15 @@ export class Project {
       throw new Error(`Item ${parsed.name} not found in the registry ${parsed.registry}`)
     }
 
+    const uniqueItems = items.filter(async (item) => !(await this.hasAddedItem(item.name)))
+
     const { paths, registries, defaultRegistry } = await this.info()
     const itemRegistry =
       registries.find((registry) => registry.registry === parsed.registry) ?? defaultRegistry
 
     // #region Add items
     const addedItems: ProjectAddedItem[] = []
-    for (const item of items) {
+    for (const item of uniqueItems) {
       const files = await registry.getItemFiles(item)
       const addedItem: ProjectAddedItem = {
         name: item.name,

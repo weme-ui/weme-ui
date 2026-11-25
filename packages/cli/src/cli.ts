@@ -18,20 +18,23 @@ const cli = defineCommand({
     init: () => import('./commands/init').then((r) => r.default),
 
     /**
-     * 准备项目环境
-     *
-     * @example
-     * ```bunx @weme-ui/weme-ui prepare```
-     */
-    prepare: () => import('./commands/prepare').then((r) => r.default),
-
-    /**
      * 添加组件
      *
      * @example
-     * ```bunx @weme-ui/weme-ui add weme-ui/slim/button```
+     * ```bunx @weme-ui/weme-ui add button```
      */
     add: () => import('./commands/add').then((r) => r.default),
+
+    /**
+     * 管理 Weme UI 注册表
+     *
+     * @example
+     * - `bunx @weme-ui/weme-ui registry add button`
+     * - `bunx @weme-ui/weme-ui registry check button`
+     * - `bunx @weme-ui/weme-ui registry update button`
+     * - `bunx @weme-ui/weme-ui registry doctor`
+     */
+    registry: () => import('./commands/registry').then((r) => r.default),
   },
 })
 

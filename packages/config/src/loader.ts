@@ -1,6 +1,6 @@
 import { ProjectConfigSchema } from '@weme-ui/schema'
 import { readFileSync } from 'node:fs'
-import { fileURLToPath } from 'node:url'
+import { resolve } from 'node:path/posix'
 import * as v from 'valibot'
 
 type ProjectConfig = v.InferOutput<typeof ProjectConfigSchema>
@@ -13,7 +13,7 @@ type ProjectConfig = v.InferOutput<typeof ProjectConfigSchema>
  */
 export function loadConfig(filename: string): ProjectConfig | undefined {
   try {
-    const configPath = fileURLToPath(new URL(filename, import.meta.url))
+    const configPath = resolve('./', filename)
     const configContent = readFileSync(configPath, 'utf-8')
     if (!configContent) return
 

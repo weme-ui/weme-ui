@@ -17,7 +17,6 @@
     "directory": "packages/config"
   },
   "files": [
-    "!dist/**/*.map",
     "CHANGELOG.md",
     "dist/**/*"
   ],
@@ -28,17 +27,14 @@
   "typesVersions": {
     "*": {
       "*": [
-        "dist/*",
-        "dist/index.d.mts"
+        "./dist/*"
       ]
     }
   },
   "exports": {
     ".": "./dist/index.mjs",
     "./client": "./dist/client.d.mts",
-    "./types": "./dist/types.mts",
-    "./loader": "./dist/loader.mjs",
-    "./package.json": "./package.json"
+    "./loader": "./dist/loader.mjs"
   },
   "publishConfig": {
     "access": "public",

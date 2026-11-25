@@ -1,8 +1,10 @@
 import type { Plugin } from 'vite'
 import type { Options } from './types'
+import { exactRegex } from '@rolldown/pluginutils'
 import { loadConfig } from './loader'
 
-const VIRTUAL_ID = 'weme-ui:config'
+const VIRTUAL_ID = 'virtual:weme-ui-config'
+const RESOLVED_ID = `\0${VIRTUAL_ID}`
 
 export default function VitePlugin(options?: Options): Plugin {
   const { configFile = 'weme.config.json' } = options ?? {}
@@ -19,25 +21,30 @@ export default function VitePlugin(options?: Options): Plugin {
   return {
     name: 'weme-ui:config',
     enforce: 'pre',
-    resolveId(id) {
-      if (id === VIRTUAL_ID) return resolvedId
+    resolveId: {
+      filter: { id: exactRegex(VIRTUAL_ID) },
+      handler() {
+        return RESOLVED_ID
+      },
     },
-    load(id) {
-      if (id !== resolvedId) return
+    load: {
+      filter: { id: exactRegex(RESOLVED_ID) },
+      handler() {
+        const config = loadConfig(configFile)
+        if (!config || !config.theme) {
+          return `export const accentColors:string[] = [];\nexport const neutralColors:string[] = [];\nexport const colorPalettes:string[] = [];`
+        }
 
-      const config = loadConfig(configFile)
-      if (!config || !config.theme) {
-        return `export const accentColors:string[] = [];\nexport const neutralColors:string[] = [];\nexport const colorPalettes:string[] = [];`
-      }
+        const codes: string[] = [
+          emitCode('accentColors', config.theme.accentColors),
+          emitCode('neutralColors', config.theme.neutralColors),
+          emitCode('colorPalettes', config.theme.colorPalettes),
+        ]
 
-      const codes: string[] = [
-        emitCode('accentColors', config.theme.accentColors),
-        emitCode('neutralColors', config.theme.neutralColors),
-        emitCode('colorPalettes', config.theme.colorPalettes),
-      ]
-
-      return codes.join('\n')
+        return codes.join('\n')
+      },
     },
+
     configureServer(server) {
       const reload = () => {
         const mod = server.moduleGraph.getModuleById(resolvedId)

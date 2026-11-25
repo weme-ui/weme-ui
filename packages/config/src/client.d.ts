@@ -1,4 +1,4 @@
-declare module 'virtual:weme-theme' {
+declare module 'virtual:weme-ui-config' {
   /**
    * The accent colors for the theme.
    */

@@ -15,7 +15,7 @@ export default function VitePlugin(options?: Options): Plugin {
   }
 
   function emitCode(name: string, value: unknown) {
-    return `export const ${name}: string[] = ${JSON.stringify(asArray(value))};`
+    return `export const ${name} = ${JSON.stringify(asArray(value))};`
   }
 
   return {
@@ -32,7 +32,7 @@ export default function VitePlugin(options?: Options): Plugin {
       handler() {
         const config = loadConfig(configFile)
         if (!config || !config.theme) {
-          return `export const accentColors:string[] = [];\nexport const neutralColors:string[] = [];\nexport const colorPalettes:string[] = [];`
+          return `export const accentColors = [];\nexport const neutralColors = [];\nexport const colorPalettes = [];`
         }
 
         const codes: string[] = [

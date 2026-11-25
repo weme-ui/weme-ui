@@ -1,6 +1,6 @@
 {
   "name": "@weme-ui/config",
-  "version": "6.2.2",
+  "version": "6.2.3",
   "description": "Config loader for Weme UI.",
   "keywords": [
     "weme-ui"

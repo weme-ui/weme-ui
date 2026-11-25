@@ -8,6 +8,7 @@ export default defineConfig({
     'packages/schema/package.json',
     'packages/unocss-preset/package.json',
     'packages/utilities/package.json',
+    'packages/config/package.json',
   ],
   commit: 'release: v%s',
   tag: 'v%s',

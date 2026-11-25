@@ -17,6 +17,6 @@
     "skipDefaultLibCheck": true,
     "skipLibCheck": true
   },
-  "include": ["src/**/*.ts", "tsdown.config.ts"],
+  "include": ["src/**/*.ts", "tsdown.config.ts", "client.d.ts"],
   "exclude": ["node_modules", "dist"]
 }

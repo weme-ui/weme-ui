@@ -18,7 +18,8 @@
   },
   "files": [
     "CHANGELOG.md",
-    "dist/**/*"
+    "dist",
+    "client.d.ts"
   ],
   "type": "module",
   "sideEffects": false,
@@ -33,7 +34,7 @@
   },
   "exports": {
     ".": "./dist/index.mjs",
-    "./client": "./dist/client.d.mts",
+    "./client": "./client.d.ts",
     "./loader": "./dist/loader.mjs"
   },
   "publishConfig": {

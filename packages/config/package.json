@@ -1,0 +1,71 @@
+{
+  "name": "@weme-ui/config",
+  "version": "6.2.1",
+  "description": "Config loader for Weme UI.",
+  "keywords": [
+    "weme-ui"
+  ],
+  "homepage": "https://weme-ui.github.io/weme-ui/",
+  "bugs": {
+    "url": "https://github.com/weme-ui/weme-ui/issues"
+  },
+  "license": "MIT",
+  "author": "Allen Luo <luoyi@mouji.net>",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/weme-ui/weme-ui.git",
+    "directory": "packages/config"
+  },
+  "files": [
+    "!dist/**/*.map",
+    "CHANGELOG.md",
+    "dist/**/*"
+  ],
+  "type": "module",
+  "sideEffects": false,
+  "module": "./dist/index.mjs",
+  "types": "dist/index.d.mts",
+  "typesVersions": {
+    "*": {
+      "*": [
+        "dist/*",
+        "dist/index.d.mts"
+      ]
+    }
+  },
+  "exports": {
+    ".": "./dist/index.mjs",
+    "./client": "./dist/client.d.mts",
+    "./types": "./dist/types.mts",
+    "./loader": "./dist/loader.mjs",
+    "./package.json": "./package.json"
+  },
+  "publishConfig": {
+    "access": "public",
+    "provenance": true
+  },
+  "scripts": {
+    "build": "tsdown",
+    "dev": "tsdown --watch",
+    "typecheck": "tsc6 --noEmit",
+    "prepack": "bun ../../scripts/materialize-catalog.ts"
+  },
+  "dependencies": {
+    "@weme-ui/schema": "workspace:*",
+    "valibot": "catalog:utils",
+    "vite": "catalog:dev"
+  },
+  "devDependencies": {
+    "@types/node": "catalog:dev",
+    "@typescript/typescript6": "catalog:build",
+    "tsdown": "catalog:build"
+  },
+  "peerDependencies": {
+    "valibot": "^1.5",
+    "vite": "^8"
+  },
+  "engines": {
+    "node": ">=22.14.0"
+  },
+  "packageManager": "bun@1.4.5"
+}

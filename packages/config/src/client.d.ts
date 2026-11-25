@@ -1,0 +1,14 @@
+declare module 'virtual:weme-theme' {
+  /**
+   * The accent colors for the theme.
+   */
+  export const accentColors: string[]
+  /**
+   * The neutral colors for the theme.
+   */
+  export const neutralColors: string[]
+  /**
+   * The color palettes for the theme.
+   */
+  export const colorPalettes: string[]
+}

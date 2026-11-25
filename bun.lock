@@ -22,7 +22,7 @@
     },
     "packages/cli": {
       "name": "@weme-ui/weme-ui",
-      "version": "6.1.8",
+      "version": "6.2.1",
       "bin": {
         "weme-ui": "./dist/index.js",
       },
@@ -63,7 +63,7 @@
     },
     "packages/colors": {
       "name": "@weme-ui/colors",
-      "version": "6.1.8",
+      "version": "6.2.1",
       "dependencies": {
         "bezier-easing": "catalog:utils",
         "colorjs.io": "catalog:utils",
@@ -79,9 +79,27 @@
         "@radix-ui/colors": "^3.0.0",
       },
     },
+    "packages/config": {
+      "name": "@weme-ui/config",
+      "version": "6.2.1",
+      "dependencies": {
+        "@weme-ui/schema": "workspace:*",
+        "valibot": "catalog:utils",
+        "vite": "catalog:dev",
+      },
+      "devDependencies": {
+        "@types/node": "catalog:dev",
+        "@typescript/typescript6": "catalog:build",
+        "tsdown": "catalog:build",
+      },
+      "peerDependencies": {
+        "valibot": "^1.5",
+        "vite": "^8",
+      },
+    },
     "packages/schema": {
       "name": "@weme-ui/schema",
-      "version": "6.1.8",
+      "version": "6.2.1",
       "devDependencies": {
         "@adobe/jsonschema2md": "^8.0.11",
         "@types/node": "catalog:dev",
@@ -98,7 +116,7 @@
     },
     "packages/unocss-preset": {
       "name": "@weme-ui/unocss-preset",
-      "version": "6.1.8",
+      "version": "6.2.1",
       "dependencies": {
         "@unocss/core": "catalog:dev",
         "@unocss/extractor-arbitrary-variants": "catalog:dev",
@@ -127,7 +145,7 @@
     },
     "packages/utilities": {
       "name": "@weme-ui/utilities",
-      "version": "6.1.8",
+      "version": "6.2.1",
       "dependencies": {
         "@weme-ui/colors": "workspace:*",
         "defu": "catalog:utils",
@@ -866,6 +884,8 @@
     "@vueuse/shared": ["@vueuse/shared@15.0.0", "", { "peerDependencies": { "vue": "^3.5.0" } }, "sha512-vbNXhGrbV53xPOMSyOzMHQRvhMgZf7oNDw2RChUetVxwTIEkInQ1joZ9JbT0G3z2n2AJNjvmCWeM9ySYrnvogA=="],
 
     "@weme-ui/colors": ["@weme-ui/colors@workspace:packages/colors"],
+
+    "@weme-ui/config": ["@weme-ui/config@workspace:packages/config"],
 
     "@weme-ui/schema": ["@weme-ui/schema@workspace:packages/schema"],
 

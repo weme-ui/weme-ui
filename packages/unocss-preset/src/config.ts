@@ -107,9 +107,6 @@ export function loadCustomThemeColors(): string[] {
   if (wemeConfig.theme?.neutralColors) {
     wemeConfig.theme.neutralColors.forEach((color) => colors.add(color))
   }
-  if (wemeConfig.theme?.colorPalettes) {
-    wemeConfig.theme.colorPalettes.forEach((color) => colors.add(color))
-  }
 
   return Array.from(colors)
 }

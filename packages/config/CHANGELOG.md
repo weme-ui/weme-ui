@@ -2,6 +2,20 @@
 
 6.0.0 起与仓库其余公开包使用同一个版本。新的变更记录见仓库根目录 [CHANGELOG.md](../../CHANGELOG.md)，并同步到本文件顶部。
 
+## v6.2.7
+
+[compare changes](https://github.com/weme-ui/weme-ui/compare/v6.2.6...v6.2.7)
+
+### 💅 Refactors
+
+- **config:** Remove colorPalettes from TypeScript declarations and VitePlugin return values ([64952d8d](https://github.com/weme-ui/weme-ui/commit/64952d8d))
+- **schema:** Remove colorPalettes from ProjectThemeSchema definition ([69b204b6](https://github.com/weme-ui/weme-ui/commit/69b204b6))
+- **config:** Remove colorPalettes handling from loadCustomThemeColors function ([9808f89b](https://github.com/weme-ui/weme-ui/commit/9808f89b))
+
+### ❤️ Contributors
+
+- Yubai ([@xiaoshop](https://github.com/xiaoshop))
+
 ## v6.2.6
 
 [compare changes](https://github.com/weme-ui/weme-ui/compare/v6.2.5...v6.2.6)

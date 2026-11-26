@@ -1,6 +1,6 @@
 {
   "name": "@weme-ui/weme-ui",
-  "version": "6.2.6",
+  "version": "6.2.7",
   "description": "A CLI to manage Weme UI projects.",
   "keywords": [
     "component",

@@ -1,6 +1,6 @@
 {
   "name": "@weme-ui/schema",
-  "version": "6.2.6",
+  "version": "6.2.7",
   "description": "JSON schema sources for Weme UI.",
   "keywords": [
     "schema",

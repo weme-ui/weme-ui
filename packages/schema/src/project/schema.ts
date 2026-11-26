@@ -196,31 +196,14 @@ export const ProjectThemeSchema = v.pipe(
         }),
       ),
     ),
-
-    /**
-     * 启用色盘
-     *
-     * @optional
-     */
-    colorPalettes: v.optional(
-      v.pipe(
-        v.array(NonEmptyTrimmedString),
-        v.metadata({
-          title: '色盘',
-          description: '项目启用的色盘列表，用于图标、图示等视觉元素的颜色选择。',
-          examples: ['neutral', 'rose'],
-        }),
-      ),
-    ),
   }),
   v.metadata({
     title: '主题配置',
-    description: '项目主题配置。声明启用的主题色、中性色与色盘，用于构建主题变量。',
+    description: '项目主题配置。声明启用的主题色、中性色，用于构建主题变量。',
     examples: [
       {
         accentColors: ['clay', 'forest'],
         neutralColors: ['stone', 'slate'],
-        colorPalettes: ['neutral', 'rose'],
       },
     ],
   }),

@@ -7,8 +7,4 @@ declare module 'virtual:weme-ui-config' {
    * The neutral colors for the theme.
    */
   export const neutralColors: string[]
-  /**
-   * The color palettes for the theme.
-   */
-  export const colorPalettes: string[]
 }

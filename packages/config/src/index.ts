@@ -32,13 +32,12 @@ export default function VitePlugin(options?: Options): Plugin {
       handler() {
         const config = loadConfig(configFile)
         if (!config || !config.theme) {
-          return `export const accentColors = [];\nexport const neutralColors = [];\nexport const colorPalettes = [];`
+          return `export const accentColors = [];\nexport const neutralColors = [];`
         }
 
         const codes: string[] = [
           emitCode('accentColors', config.theme.accentColors),
           emitCode('neutralColors', config.theme.neutralColors),
-          emitCode('colorPalettes', config.theme.colorPalettes),
         ]
 
         return codes.join('\n')
